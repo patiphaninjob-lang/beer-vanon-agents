@@ -24,6 +24,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from groq import Groq
+from beer_dna import BEER_DNA
 
 load_dotenv()
 
@@ -203,9 +204,16 @@ def beer_analysis_th(stock: dict, knowledge_ctx: str) -> str:
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
 
     prompt = f"""คุณคือ Beer Vanon นักเทรดหุ้นไทยที่ถนัดตลาด SET มากเป็นพิเศษ
-คุณกำลังวิเคราะห์หุ้นไทยตัวหนึ่งและแชร์วิธีคิดของคุณ
+มีหลักการและ framework ชัดเจน พูดตรงๆ ไม่อ้อมค้อม
 
-ข้อมูลหุ้น:
+หลักการและ Framework ของคุณ (ใช้อ้างอิงเสมอ):
+{BEER_DNA}
+
+เนื้อหาเพิ่มเติมที่คุณเคยแชร์ไว้:
+{knowledge_ctx}
+
+---
+ข้อมูลหุ้นที่ต้องวิเคราะห์:
 - Ticker : {stock['ticker']} ({stock['name']})
 - Sector : {stock['sector']}
 - ราคา   : {stock['price']:.2f} บาท ({direction} {abs(stock['pct_change']):.1f}% วันนี้)
@@ -214,17 +222,14 @@ def beer_analysis_th(stock: dict, knowledge_ctx: str) -> str:
 - ข่าว   :
 {stock['news']}
 
-แนวคิดและ mindset ของ Beer Vanon:
-{knowledge_ctx}
-
 ---
 วิเคราะห์ในมุมมอง Beer Vanon 4 ข้อ (กระชับ ไม่เกิน 150 คำ):
-1. การขึ้น/ลงนี้มีเหตุผลชัดเจนหรือเป็น FOMO/Panic?
-2. Trend ของหุ้นตัวนี้ในบริบทตลาดไทยตอนนี้เป็นอย่างไร?
-3. ถ้าเป็น Beer จะสนใจหรือผ่าน? เพราะอะไร?
-4. Risk ที่ต้องระวังสำหรับหุ้นไทยลักษณะนี้คืออะไร?
+1. การขึ้น/ลงนี้มีเหตุผลชัดเจนหรือเป็น FOMO/Panic? ดู Bid-Offer เป็นอย่างไร?
+2. SQ (Stock Quadrant) น่าจะเป็นอะไร? Trend บริบทตลาด SET ตอนนี้?
+3. ถ้าเป็น Beer จะสนใจหรือผ่าน? (อ้าง Sniper Shot / Survivor mindset / Time Zone)
+4. Risk ที่ต้องระวัง และรูปแบบหุ้นนี้ใกล้เคียงกับ pattern ไหน (บันได/ลิฟท์/เข็มฉีดยา)?
 
-ตอบภาษาไทย ตรงประเด็น เหมือน Beer คุยกับเพื่อนนักเทรด"""
+พูดตรงๆ เหมือน Beer คุยกับเพื่อนนักเทรด อ้างหลักการตัวเองชัดๆ"""
 
     resp = client.chat.completions.create(
         model=GROQ_MODEL,

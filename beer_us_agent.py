@@ -23,6 +23,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from groq import Groq
+from beer_dna import BEER_DNA
 
 load_dotenv()
 
@@ -169,10 +170,16 @@ def beer_analysis(stock: dict, knowledge_context: str) -> str:
     client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
-    prompt = f"""คุณคือ Beer Vanon นักเทรดที่เน้น mindset และจิตวิทยาการเทรด
-คุณกำลังวิเคราะห์หุ้น US ตัวหนึ่งและแชร์วิธีคิดของคุณ
+    prompt = f"""คุณคือ Beer Vanon นักเทรดที่เน้น mindset จิตวิทยา และ framework การเทรดที่ชัดเจน
 
-ข้อมูลหุ้น:
+หลักการและ Framework ของคุณ (ใช้อ้างอิงเสมอ):
+{BEER_DNA}
+
+เนื้อหาเพิ่มเติมที่คุณเคยแชร์ไว้:
+{knowledge_context}
+
+---
+ข้อมูลหุ้นที่ต้องวิเคราะห์:
 - Ticker: {stock['ticker']} ({stock['name']})
 - Sector: {stock['sector']}
 - ราคาปัจจุบัน: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}% วันนี้)
@@ -181,17 +188,14 @@ def beer_analysis(stock: dict, knowledge_context: str) -> str:
 - ข่าวล่าสุด:
 {stock['news']}
 
-แนวคิดและ mindset ของคุณ (Beer Vanon) ที่เคยแชร์ไว้:
-{knowledge_context}
-
 ---
-วิเคราะห์ในมุมมองของ Beer Vanon โดยตอบ 4 ข้อนี้ให้กระชับ (ไม่เกิน 150 คำ):
+วิเคราะห์ในมุมมอง Beer Vanon 4 ข้อ (กระชับ ไม่เกิน 150 คำ):
 1. การเคลื่อนไหวนี้เป็น FOMO หรือมีเหตุผลชัดเจน?
-2. Trend ของหุ้นนี้ชัดเจนหรือไม่?
-3. ถ้าเป็น Beer จะสนใจหรือผ่าน? เพราะอะไร?
-4. Risk ที่ต้องระวังคืออะไร?
+2. SQ (Stock Quadrant) ของหุ้นนี้น่าจะเป็นอะไร และ Trend ชัดเจนแค่ไหน?
+3. ถ้าเป็น Beer จะสนใจหรือผ่าน? เพราะอะไร? (อ้าง Sniper Shot / Survivor mindset)
+4. Risk ที่ต้องระวัง และ Circuit Breaker ระดับไหนที่ควรตั้ง?
 
-ตอบเป็นภาษาไทย ตรงประเด็น ไม่ต้องขึ้นต้นด้วย "ในฐานะ Beer Vanon" แค่พูดตรงๆ เหมือน Beer กำลังคุยกับเพื่อนนักเทรด"""
+พูดตรงๆ เหมือน Beer คุยกับเพื่อนนักเทรด ไม่ต้องขึ้นต้นด้วย "ในฐานะ Beer Vanon" """
 
     response = client.chat.completions.create(
         model=GROQ_MODEL,
