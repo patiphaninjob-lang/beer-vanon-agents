@@ -1,0 +1,45 @@
+# ── Secrets (ห้ามขึ้น GitHub เด็ดขาด) ──
+.env
+fb_cookies.txt
+
+# ── Python cache ──
+__pycache__/
+*.pyc
+*.pyo
+
+# ── Claude / Playwright local state ──
+.claude/
+.playwright-mcp/
+
+# ── Windows desktop files (ไม่จำเป็นบน cloud) ──
+*.ico
+*.bat
+*.lnk
+create_shortcuts.py
+
+# ── Raw scraped data ขนาดใหญ่ (agents ใช้แค่ beervanon_cleaned.json) ──
+beervanon_page_data.json
+beervanon_page_data.md
+beervanon_cleaned.md
+beervanon_knowledge.html
+
+# ── Screenshots / images ──
+*.png
+
+# ── Local output files ──
+report.html
+beer_th_report.html
+Beer Vanon Daily Report/
+
+# ── Tkinter / Streamlit desktop apps (ไม่รันบน cloud) ──
+beer_homework.py
+beer_homework_th.py
+coach.py
+homework_checker.py
+
+# ── Utility scripts (ไม่จำเป็นบน cloud) ──
+scrape_beervanon.py
+transcribe_videos.py
+clean_data.py
+build_embeddings.py
+mindset_scores.json

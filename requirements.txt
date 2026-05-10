@@ -1,0 +1,5 @@
+groq
+yfinance
+numpy
+sentence-transformers
+python-dotenv
