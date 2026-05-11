@@ -2,7 +2,7 @@ name: Beer US Agent (หุ้น US)
 
 on:
   schedule:
-    - cron: '0 13 * * 1-5'    # 20:00 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์
+    - cron: '40 12 * * 1-5'   # 19:40 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์ → email ถึง ~20:00
   workflow_dispatch:            # รันมือได้จาก GitHub UI
 
 jobs:

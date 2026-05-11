@@ -2,7 +2,7 @@ name: Beer TH Agent (หุ้นไทย)
 
 on:
   schedule:
-    - cron: '30 10 * * 1-5'   # 17:30 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์
+    - cron: '10 10 * * 1-5'   # 17:10 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์ → email ถึง ~17:30
   workflow_dispatch:            # รันมือได้จาก GitHub UI
 
 jobs:
