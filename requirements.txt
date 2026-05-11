@@ -3,3 +3,4 @@ yfinance
 numpy
 sentence-transformers
 python-dotenv
+mplfinance

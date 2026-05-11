@@ -197,6 +197,58 @@ def get_stock_context_th(ticker: str) -> dict:
     }
 
 
+# ─── Chart Generator ─────────────────────────────────────────
+
+def generate_chart_b64(ticker: str) -> str:
+    """Candlestick 6 เดือน + EMA Beer (5/15/35/89) → base64 PNG ฝังใน email"""
+    try:
+        import mplfinance as mpf
+        import matplotlib
+        matplotlib.use("Agg")
+        import io, base64
+
+        import yfinance as yf
+        hist = yf.Ticker(ticker).history(period="6mo")
+        if len(hist) < 10:
+            return ""
+
+        for n in [5, 15, 35, 89]:
+            hist[f"EMA{n}"] = hist["Close"].ewm(span=n, adjust=False).mean()
+
+        mc = mpf.make_marketcolors(
+            up="#16c784", down="#ea3943",
+            wick={"up": "#16c784", "down": "#ea3943"},
+            volume={"up": "#16c784", "down": "#ea3943"},
+            edge={"up": "#16c784", "down": "#ea3943"},
+        )
+        style = mpf.make_mpf_style(
+            marketcolors=mc,
+            facecolor="#111827", edgecolor="#374151",
+            figcolor="#111827", gridcolor="#1f2937", gridstyle="-",
+            rc={"axes.labelcolor": "#9ca3af",
+                "xtick.color": "#6b7280", "ytick.color": "#6b7280"},
+        )
+        adds = [
+            mpf.make_addplot(hist["EMA5"],  color="#fbbf24", width=0.8),
+            mpf.make_addplot(hist["EMA15"], color="#60a5fa", width=0.8),
+            mpf.make_addplot(hist["EMA35"], color="#a78bfa", width=1.2),
+            mpf.make_addplot(hist["EMA89"], color="#f87171", width=1.5),
+        ]
+        buf = io.BytesIO()
+        mpf.plot(
+            hist, type="candle", style=style,
+            volume=True, addplot=adds,
+            title=f"\n{ticker}  Daily · 6M",
+            figsize=(10, 5),
+            savefig=dict(fname=buf, bbox_inches="tight", dpi=110),
+        )
+        buf.seek(0)
+        return base64.b64encode(buf.read()).decode()
+    except Exception as e:
+        print(f"  chart error [{ticker}]: {e}")
+        return ""
+
+
 # ─── Beer Analysis (Thai) ─────────────────────────────────────
 
 def beer_analysis_th(stock: dict, knowledge_ctx: str) -> str:
@@ -248,10 +300,20 @@ def fmt_pct(pct: float) -> str:
     return f'<span style="color:{color};font-weight:bold">{sign}{pct:.2f}%</span>'
 
 
-def stock_card_th(stock: dict, analysis: str) -> str:
+def stock_card_th(stock: dict, analysis: str, chart_b64: str = "") -> str:
     arrow = "▲" if stock["pct_change"] >= 0 else "▼"
     color = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
     pe    = f"P/E {stock['pe_ratio']:.1f}" if stock["pe_ratio"] else ""
+    chart_html = (
+        f'<img src="data:image/png;base64,{chart_b64}" '
+        f'style="width:100%;border-radius:8px;margin-top:12px;display:block">'
+        f'<div style="font-size:0.72em;color:#4b5563;margin-top:4px;text-align:right">'
+        f'<span style="color:#fbbf24">— EMA5</span> &nbsp;'
+        f'<span style="color:#60a5fa">— EMA15</span> &nbsp;'
+        f'<span style="color:#a78bfa">— EMA35</span> &nbsp;'
+        f'<span style="color:#f87171">— EMA89</span></div>'
+        if chart_b64 else ""
+    )
     return f"""
 <div style="background:#1a1f2e;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid {color}">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
@@ -273,6 +335,7 @@ def stock_card_th(stock: dict, analysis: str) -> str:
     <div style="color:#f0b90b;font-weight:bold;margin-bottom:8px">🍺 Beer มองว่า...</div>
     {analysis.replace(chr(10), '<br>')}
   </div>
+  {chart_html}
 </div>"""
 
 
@@ -289,8 +352,8 @@ def index_pill(name: str, d: dict | None) -> str:
 
 
 def build_html_report_th(gainers_data, losers_data, index_snap, date_str) -> str:
-    gainer_cards = "".join(stock_card_th(s["stock"], s["analysis"]) for s in gainers_data)
-    loser_cards  = "".join(stock_card_th(s["stock"], s["analysis"]) for s in losers_data)
+    gainer_cards = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart","")) for s in gainers_data)
+    loser_cards  = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart","")) for s in losers_data)
     index_row    = "".join(index_pill(k, index_snap.get(k)) for k in ["SET","SET50","mai"])
 
     return f"""<!DOCTYPE html>
@@ -379,7 +442,8 @@ def main():
             query    = "หุ้นขึ้นแรง momentum FOMO วินัย trend ตลาดไทย"
             ctx      = search_knowledge(query, posts, embeddings, embed_model)
             analysis = beer_analysis_th(stock, ctx)
-            gainers_data.append({"stock": stock, "analysis": analysis})
+            chart    = generate_chart_b64(ticker)
+            gainers_data.append({"stock": stock, "analysis": analysis, "chart": chart})
             print("OK")
         except Exception as e:
             print(f"Error: {e}")
@@ -393,7 +457,8 @@ def main():
             query    = "หุ้นลง ตัดขาดทุน loss ยอมรับ จิตใจ อารมณ์ ตลาดไทย"
             ctx      = search_knowledge(query, posts, embeddings, embed_model)
             analysis = beer_analysis_th(stock, ctx)
-            losers_data.append({"stock": stock, "analysis": analysis})
+            chart    = generate_chart_b64(ticker)
+            losers_data.append({"stock": stock, "analysis": analysis, "chart": chart})
             print("OK")
         except Exception as e:
             print(f"Error: {e}")
