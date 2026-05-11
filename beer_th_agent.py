@@ -212,9 +212,6 @@ def generate_chart_b64(ticker: str) -> str:
         if len(hist) < 10:
             return ""
 
-        for n in [5, 15, 35, 89]:
-            hist[f"EMA{n}"] = hist["Close"].ewm(span=n, adjust=False).mean()
-
         mc = mpf.make_marketcolors(
             up="#16c784", down="#ea3943",
             wick={"up": "#16c784", "down": "#ea3943"},
@@ -224,20 +221,15 @@ def generate_chart_b64(ticker: str) -> str:
         style = mpf.make_mpf_style(
             marketcolors=mc,
             facecolor="#111827", edgecolor="#374151",
-            figcolor="#111827", gridcolor="#1f2937", gridstyle="-",
+            figcolor="#111827", gridcolor="#111827", gridstyle="-",
             rc={"axes.labelcolor": "#9ca3af",
-                "xtick.color": "#6b7280", "ytick.color": "#6b7280"},
+                "xtick.color": "#6b7280", "ytick.color": "#6b7280",
+                "axes.grid": False},
         )
-        adds = [
-            mpf.make_addplot(hist["EMA5"],  color="#fbbf24", width=0.8),
-            mpf.make_addplot(hist["EMA15"], color="#60a5fa", width=0.8),
-            mpf.make_addplot(hist["EMA35"], color="#a78bfa", width=1.2),
-            mpf.make_addplot(hist["EMA89"], color="#f87171", width=1.5),
-        ]
         buf = io.BytesIO()
         mpf.plot(
             hist, type="candle", style=style,
-            volume=True, addplot=adds,
+            volume=True,
             title=f"\n{ticker}  Daily · 6M",
             figsize=(10, 5),
             savefig=dict(fname=buf, bbox_inches="tight", dpi=110),
@@ -307,11 +299,6 @@ def stock_card_th(stock: dict, analysis: str, chart_b64: str = "") -> str:
     chart_html = (
         f'<img src="data:image/png;base64,{chart_b64}" '
         f'style="width:100%;border-radius:8px;margin-top:12px;display:block">'
-        f'<div style="font-size:0.72em;color:#4b5563;margin-top:4px;text-align:right">'
-        f'<span style="color:#fbbf24">— EMA5</span> &nbsp;'
-        f'<span style="color:#60a5fa">— EMA15</span> &nbsp;'
-        f'<span style="color:#a78bfa">— EMA35</span> &nbsp;'
-        f'<span style="color:#f87171">— EMA89</span></div>'
         if chart_b64 else ""
     )
     return f"""
