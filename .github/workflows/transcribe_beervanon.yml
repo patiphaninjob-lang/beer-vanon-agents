@@ -1,0 +1,71 @@
+name: Transcribe Beer Vanon Videos (Groq)
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 09:00 Bangkok (UTC+7) ทุกวัน — หลัง Groq quota reset
+  workflow_dispatch:        # รันมือได้จาก GitHub UI
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340    # ~5.5 ชั่วโมง (Groq quota ~2ชม. audio + overhead)
+
+    permissions:
+      contents: write       # ให้ commit JSON กลับ repo ได้
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-transcribe-v1
+
+      - name: Install dependencies
+        run: pip install groq yt-dlp python-dotenv httpx
+
+      - name: Install ffmpeg
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Show current progress
+        run: |
+          python -c "
+          import json
+          data = json.load(open('beervanon_youtube_playlist.json', encoding='utf-8'))
+          done = sum(1 for v in data if v.get('transcript') and not v['transcript'].startswith('[') and v['transcript'] != '')
+          print(f'Progress before run: {done}/{len(data)} videos done')
+          "
+
+      - name: Run transcription (cloud worker)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          # เซ็ต WORKER_ID เป็น "cloud" สำหรับ GitHub Actions
+          sed -i 's/^WORKER_ID.*/WORKER_ID      = "cloud"/' transcribe_groq.py
+          python transcribe_groq.py
+
+      - name: Show progress after run
+        run: |
+          python -c "
+          import json
+          data = json.load(open('beervanon_youtube_playlist.json', encoding='utf-8'))
+          done = sum(1 for v in data if v.get('transcript') and not v['transcript'].startswith('[') and v['transcript'] != '')
+          print(f'Progress after run: {done}/{len(data)} videos done')
+          "
+
+      - name: Commit updated transcripts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add beervanon_youtube_playlist.json
+          git diff --staged --quiet || git commit -m "🎙️ Auto-transcribe: update Beer Vanon transcripts [skip ci]"
+          git push
