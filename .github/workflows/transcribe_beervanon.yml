@@ -69,3 +69,75 @@ jobs:
           git add beervanon_youtube_playlist.json
           git diff --staged --quiet || git commit -m "🎙️ Auto-transcribe: update Beer Vanon transcripts [skip ci]"
           git push
+
+      - name: Send email report
+        if: always()
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          python - <<'PYEOF'
+          import json, os, smtplib
+          from email.mime.text import MIMEText
+          from email.mime.multipart import MIMEMultipart
+          from datetime import datetime
+
+          data = json.load(open('beervanon_youtube_playlist.json', encoding='utf-8'))
+
+          done, errors, pending = [], [], []
+          for v in data:
+              t = v.get('transcript', '')
+              if t and not t.startswith('[') and t not in {'', '[ดาวน์โหลดไม่สำเร็จ]'}:
+                  done.append(v)
+              elif t.startswith('[ถอดเสียงไม่ได้') or t == '[ดาวน์โหลดไม่สำเร็จ]':
+                  errors.append(v)
+              else:
+                  pending.append(v)
+
+          total = len(data)
+          pct = len(done) / total * 100
+
+          bar_filled = int(pct / 5)
+          bar = '█' * bar_filled + '░' * (20 - bar_filled)
+
+          done_list = '\n'.join(f'  ✅ {v["title"][:60]}' for v in done[-5:]) or '  (ยังไม่มี)'
+          error_list = '\n'.join(f'  ❌ {v["title"][:60]}\n     {v.get("transcript","")[:80]}' for v in errors) or '  (ไม่มี)'
+          pending_list = '\n'.join(f'  ⏳ {v["title"][:60]}' for v in pending[:5]) or '  (ไม่มี)'
+          if len(pending) > 5:
+              pending_list += f'\n  ... และอีก {len(pending)-5} วิดีโอ'
+
+          body = f"""🎙️ Beer Vanon Transcription Report
+          ════════════════════════════════════
+          📅 {datetime.utcnow().strftime('%Y-%m-%d %H:%M')} UTC  (ประมาณ {datetime.utcnow().hour+7:02d}:{datetime.utcnow().minute:02d} น. Bangkok)
+
+          ━━━━ ความคืบหน้า ━━━━
+          [{bar}] {pct:.0f}%
+          ✅ เสร็จแล้ว:  {len(done)}/{total} วิดีโอ
+          ⏳ รอถอด:   {len(pending)} วิดีโอ
+          ❌ Error:    {len(errors)} วิดีโอ
+
+          ━━━━ 5 คลิปล่าสุดที่เสร็จ ━━━━
+          {done_list}
+
+          ━━━━ คลิปที่มี Error ━━━━
+          {error_list}
+
+          ━━━━ คิวถัดไป ━━━━
+          {pending_list}
+
+          ────────────────────────────────────
+          ☁️  GitHub Actions — cloud rescue worker
+          """
+
+          msg = MIMEMultipart()
+          msg['From'] = os.environ['GMAIL_USER']
+          msg['To'] = 'patiphan.injob@gmail.com'
+          msg['Subject'] = f'🎙️ Beer Vanon Transcripts — {len(done)}/{total} done ({pct:.0f}%)'
+          msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+          with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
+              s.login(os.environ['GMAIL_USER'], os.environ['GMAIL_APP_PASSWORD'])
+              s.send_message(msg)
+
+          print(f'📧 Email sent — {len(done)}/{total} done ({pct:.0f}%)')
+          PYEOF
