@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Legend Learning Lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <p class="eyebrow">Stock Learning System</p>
+          <h1>The Legend</h1>
+          <p class="brand-copy">เปลี่ยนคลังความรู้หุ้น 20 บท ให้กลายเป็นระบบเรียน ทบทวน และฝึกคิดแบบใช้งานจริง</p>
+        </div>
+
+        <nav class="nav-tabs" aria-label="มุมมองหลัก">
+          <button class="nav-tab active" data-view="dashboard">ภาพรวม</button>
+          <button class="nav-tab" data-view="coach">Coach Mode</button>
+          <button class="nav-tab" data-view="roadmap">Roadmap</button>
+          <button class="nav-tab" data-view="mindmap">Mind Map</button>
+          <button class="nav-tab" data-view="review">ทบทวน</button>
+          <button class="nav-tab" data-view="quiz">Quiz</button>
+        </nav>
+
+        <div class="study-meter">
+          <div>
+            <span class="meter-label">ความคืบหน้า</span>
+            <strong id="overallPercent">0%</strong>
+          </div>
+          <div class="meter-track">
+            <span id="overallBar"></span>
+          </div>
+          <p id="nextSuggestion">เลือกบทแรกที่อยากเริ่ม แล้วติ๊กว่าจบเมื่อเรียนเสร็จ</p>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Learning Lab</p>
+            <h2 id="viewTitle">ภาพรวมการเรียน</h2>
+          </div>
+          <label class="search-box">
+            <span>ค้นหา</span>
+            <input id="searchInput" type="search" placeholder="เช่น Wyckoff, Money Game, Scalper">
+          </label>
+        </section>
+
+        <section class="view active" id="dashboardView">
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span>บทเรียนทั้งหมด</span>
+              <strong id="totalLessons">20</strong>
+            </article>
+            <article class="stat-card">
+              <span>เรียนจบแล้ว</span>
+              <strong id="doneLessons">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>หัวข้อแกนหลัก</span>
+              <strong>6</strong>
+            </article>
+            <article class="stat-card">
+              <span>เวลารวมโดยประมาณ</span>
+              <strong>64 ชม.</strong>
+            </article>
+          </div>
+
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>เส้นทางที่แนะนำ</h3>
+                <span>เรียนจากภาพใหญ่ไปสู่การลงมือ</span>
+              </div>
+              <ol class="learning-path" id="learningPath"></ol>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>บทถัดไป</h3>
+                <span>เลือกจากสถานะปัจจุบัน</span>
+              </div>
+              <div id="nextLessonCard" class="next-card"></div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <h3>Mind Maps ครบ 20 บท</h3>
+              <span>แตกจากภาพใหญ่ลงไปถึงปลายทางของแต่ละบท</span>
+            </div>
+            <p>ชุดใหม่นี้จัดทุกบทเป็น mind map ตาม skill ที่คุณกำหนด: แก่นกลาง → กิ่งความรู้หลัก → รายละเอียดที่ต้องจำ → จุดจบของบทว่าต้องคิด/ทำอะไรให้ได้จริง</p>
+            <a class="primary-btn" href="mindmap_pages/index.html">เปิด Mind Maps ทั้งหมด</a>
+            <a class="ghost-btn" href="lesson_01_mindmap.html">เปิดตัวอย่างละเอียดบทที่ 1</a>
+          </section>
+        </section>
+
+        <section class="view" id="coachView">
+          <div class="coach-hero">
+            <div>
+              <p class="eyebrow">Personal Module 01</p>
+              <h3 id="moduleTitle">เหตุผลที่ต้องชนะเกมนี้</h3>
+              <p id="moduleMission"></p>
+            </div>
+            <div class="coach-score">
+              <span>Mastery</span>
+              <strong id="moduleScore">0/20</strong>
+            </div>
+          </div>
+
+          <div class="coach-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>แก่นที่ต้องจำ</h3>
+                <span>ไม่ใช่จำคำ แต่จำระบบคิด</span>
+              </div>
+              <ul class="check-list" id="moduleCore"></ul>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>5 คำถามก่อนเรียนทุกบท</h3>
+                <span>ใช้กันความรู้กระจาย</span>
+              </div>
+              <ol class="learning-path" id="moduleFramework"></ol>
+            </section>
+          </div>
+
+          <section class="panel scenario-panel">
+            <div class="panel-heading">
+              <h3>Scenario Drill</h3>
+              <span>ฝึกแยกหลักฐานออกจาก FOMO</span>
+            </div>
+            <p id="scenarioPrompt"></p>
+            <div id="scenarioOptions" class="quiz-options"></div>
+            <p id="scenarioFeedback" class="quiz-feedback"></p>
+          </section>
+
+          <div class="coach-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>แบบฝึกเขียนจริง</h3>
+                <span>ตอบเพื่อสร้างระบบของตัวเอง</span>
+              </div>
+              <div id="moduleExercises" class="exercise-list"></div>
+              <button id="saveModuleBtn" class="primary-btn">บันทึกคำตอบ</button>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Mastery Check</h3>
+                <span>ผ่านเมื่อได้ 16/20</span>
+              </div>
+              <div id="moduleMastery" class="mastery-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="roadmapView">
+          <div class="lesson-grid" id="lessonGrid"></div>
+        </section>
+
+        <section class="view" id="mindmapView">
+          <div class="mindmap-wrap">
+            <div class="mindmap-center">
+              <strong>The Legend</strong>
+              <span>ระบบคิดของนักเทรด</span>
+            </div>
+            <div class="mindmap-nodes" id="mindmapNodes"></div>
+          </div>
+          <div class="panel detail-panel" id="topicDetail"></div>
+        </section>
+
+        <section class="view" id="reviewView">
+          <div class="review-layout">
+            <section class="flashcard" id="flashcard">
+              <p class="eyebrow">Flashcard</p>
+              <h3 id="cardQuestion"></h3>
+              <p id="cardAnswer"></p>
+              <div class="card-actions">
+                <button id="showAnswerBtn" class="primary-btn">เฉลย</button>
+                <button id="nextCardBtn" class="ghost-btn">ใบถัดไป</button>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>บันทึกความเข้าใจ</h3>
+                <span>เขียนด้วยภาษาของตัวเอง</span>
+              </div>
+              <textarea id="studyNote" placeholder="วันนี้เข้าใจอะไรเพิ่ม? จุดไหนยังงง? จะเอาไปใช้กับตลาดจริงอย่างไร?"></textarea>
+              <button id="saveNoteBtn" class="primary-btn">บันทึกโน้ต</button>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="quizView">
+          <div class="quiz-shell">
+            <section class="panel quiz-panel">
+              <div class="panel-heading">
+                <h3 id="quizQuestion"></h3>
+                <span id="quizCounter"></span>
+              </div>
+              <div id="quizOptions" class="quiz-options"></div>
+              <p id="quizFeedback" class="quiz-feedback"></p>
+              <button id="nextQuizBtn" class="primary-btn">ข้อต่อไป</button>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="course_modules.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

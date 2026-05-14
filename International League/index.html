@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>International League — Learning Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <p class="eyebrow">Super Trader · International</p>
+        <h1>Int'l League</h1>
+        <p class="brand-sub">หุ้น US · Options · Macro<br>11 บท จากวิทยากรชั้นนำ</p>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="tab active" data-view="dashboard">ภาพรวม</button>
+        <button class="tab" data-view="roadmap">Roadmap</button>
+        <button class="tab" data-view="mindmap">Mind Map</button>
+        <button class="tab" data-view="review">ทบทวน</button>
+        <button class="tab" data-view="quiz">Quiz</button>
+      </nav>
+
+      <div class="progress-block">
+        <div class="progress-header">
+          <span>ความคืบหน้า</span>
+          <strong id="overallPct">0%</strong>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <p class="progress-hint" id="progressHint">เลือกบทแรกแล้วเริ่มได้เลย</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Learning Lab</p>
+          <h2 id="viewTitle">ภาพรวมการเรียน</h2>
+        </div>
+        <label class="search-wrap">
+          <input type="search" id="searchInput" placeholder="ค้นหาบท หัวข้อ หรือคำสำคัญ…">
+        </label>
+      </header>
+
+      <!-- Dashboard -->
+      <section class="view active" id="dashboardView">
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num"><span id="doneLessons">0</span>&thinsp;/&thinsp;<span id="totalLessons">11</span></span>
+            <span class="stat-label">บทที่เรียนจบ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">30+ ชม.</span>
+            <span class="stat-label">เนื้อหารวม</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">5</span>
+            <span class="stat-label">หมวดความรู้</span>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <h3 class="section-title">Learning Path แนะนำ</h3>
+            <ol class="learning-path" id="learningPath"></ol>
+          </div>
+          <div>
+            <h3 class="section-title">บทถัดไปที่ควรเรียน</h3>
+            <article class="lesson-card highlight" id="nextLesson"></article>
+          </div>
+        </div>
+
+        <h3 class="section-title">ทุกบทเรียน</h3>
+        <div class="lesson-grid" id="lessonGrid"></div>
+      </section>
+
+      <!-- Roadmap -->
+      <section class="view" id="roadmapView">
+        <p class="view-intro">เรียงตาม learning path ที่แนะนำ — เรียนตามลำดับเพื่อความเข้าใจที่ต่อเนื่อง</p>
+        <div class="roadmap" id="roadmapList"></div>
+      </section>
+
+      <!-- Mind Map -->
+      <section class="view" id="mindmapView">
+        <div class="mindmap-layout">
+          <div class="mindmap-canvas" id="mindmapCanvas">
+            <svg class="map-svg" id="mapSvg"></svg>
+            <div class="map-center">
+              <strong>Int'l League</strong>
+              <span>11 บท · 5 หมวด</span>
+            </div>
+            <div class="map-nodes" id="mapNodes"></div>
+          </div>
+          <div class="topic-panel" id="topicPanel">
+            <p style="color:#94A3B8;font-size:14px;margin-top:40px;text-align:center;">กดที่ node ใดๆ<br>เพื่อดูรายละเอียด</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Review (Flashcards) -->
+      <section class="view" id="reviewView">
+        <div class="card-area">
+          <p class="card-counter" id="cardCounter"></p>
+          <div class="flashcard">
+            <div class="fc-question" id="fcQuestion"></div>
+            <div class="fc-answer hidden" id="fcAnswer"></div>
+          </div>
+          <div class="card-actions">
+            <button class="btn ghost" id="showAnswerBtn">เฉลย</button>
+            <button class="btn primary" id="nextCardBtn">ข้อถัดไป →</button>
+          </div>
+          <div class="note-block">
+            <h4>โน้ตของฉัน</h4>
+            <textarea id="studyNote" rows="4" placeholder="จดสิ่งที่เข้าใจแล้ว หรือสิ่งที่ยังสงสัย…"></textarea>
+            <button class="btn ghost" id="saveNoteBtn">บันทึกโน้ต</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <section class="view" id="quizView">
+        <div class="quiz-area">
+          <p class="quiz-counter" id="quizCounter"></p>
+          <p class="quiz-question" id="quizQuestion"></p>
+          <div class="quiz-options" id="quizOptions"></div>
+          <p class="quiz-feedback" id="quizFeedback"></p>
+          <button class="btn primary" id="nextQuizBtn">ข้อถัดไป →</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
