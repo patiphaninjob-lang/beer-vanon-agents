@@ -314,8 +314,8 @@
     "transcript": "",
     "transcript_path": "",
     "markdown_path": "",
-    "status": "pending",
-    "error": "",
+    "status": "failed_transcribe",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `whisper-large-v3-turbo` in organization `org_01kr5x8mgffbvvcxb71h9spqx3` service tier `on_demand` on seconds of audio per hour (ASPH): Limit 7200, Used 6415, Requested 1200. Please try again in 3m27.5s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'seconds', 'code': 'rate_limit_exceeded'}}",
     "transcribed_at": "",
     "transcript_source": ""
   },

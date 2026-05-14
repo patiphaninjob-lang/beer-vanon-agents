@@ -6,7 +6,7 @@ Transcribe Beer Vanon Folder — Gemini CLI
 import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-import json, os, shutil, subprocess, tempfile, time, datetime
+import json, os, platform, shutil, subprocess, tempfile, time, datetime
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -17,7 +17,7 @@ VIDEOS_JSON = BASE_DIR / "videos.json"
 TRANSCRIPTS_DIR = BASE_DIR / "transcripts"
 GROQ_MODEL = "whisper-large-v3-turbo"
 CHUNK_MIN = 20
-FFMPEG = str(Path("audio") / "ffmpeg.exe")
+FFMPEG = str(Path("audio") / "ffmpeg.exe") if platform.system() == "Windows" else "ffmpeg"
 
 def get_client():
     import groq, httpx
@@ -36,12 +36,13 @@ def download_audio(url: str, out_dir: str) -> str | None:
     opts = {
         "format": "bestaudio/best",
         "outtmpl": os.path.join(out_dir, "%(id)s.%(ext)s"),
-        "ffmpeg_location": "audio",
         "quiet": True,
         "no_warnings": True,
         "postprocessors": [{"key": "FFmpegExtractAudio",
                             "preferredcodec": "mp3", "preferredquality": "96"}],
     }
+    if platform.system() == "Windows":
+        opts["ffmpeg_location"] = "audio"
     try:
         with yt_dlp.YoutubeDL(opts) as ydl:
             info = ydl.extract_info(url, download=True)

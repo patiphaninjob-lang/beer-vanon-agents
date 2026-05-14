@@ -1,4 +1,4 @@
-name: Transcribe Beer Vanon (New Format)
+name: Transcribe Beer Vanon (YouTube)
 
 on:
   schedule:
@@ -22,29 +22,45 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install groq yt-dlp python-dotenv httpx
-
       - name: Install ffmpeg
         run: sudo apt-get install -y ffmpeg
 
-      - name: Run transcription
+      - name: Install Python dependencies
+        run: pip install groq yt-dlp python-dotenv httpx sentence-transformers numpy
+
+      - name: Cache HuggingFace model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-paraphrase-multilingual-MiniLM-L12-v2
+
+      # ── Step 1: Transcribe ──────────────────────────────────────────────
+      - name: Transcribe remaining videos
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: |
-          # แก้ไขสคริปต์ให้รันบน linux (ไม่ต้องใช้ .exe)
-          sed -i "s/FFMPEG = str(Path(\"audio\") \/ \"ffmpeg.exe\")/FFMPEG = \"ffmpeg\"/" transcribe_beervanon_folder.py
-          python transcribe_beervanon_folder.py
+        run: python transcribe_beervanon_folder.py
 
+      # ── Step 2: Merge into master knowledge base ───────────────────────
+      - name: Merge YouTube transcripts into beervanon_cleaned.json
+        run: python merge_youtube_knowledge.py
+
+      # ── Step 3: Rebuild embeddings ─────────────────────────────────────
+      - name: Rebuild embeddings.npz
+        run: python build_embeddings.py
+
+      # ── Step 4: Commit & Push everything ───────────────────────────────
       - name: Commit & Push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "beervanon on youtube/videos.json"
-          git add "beervanon on youtube/transcripts/*"
-          git diff --staged --quiet || git commit -m "🎙️ Cloud Transcribe: update transcripts [skip ci]"
+          git add "beervanon on youtube/transcripts/"
+          git add beervanon_cleaned.json
+          git add embeddings.npz
+          git diff --staged --quiet || git commit -m "🎙️ Auto-transcribe: update Beer Vanon transcripts [skip ci]"
           git push
 
+      # ── Step 5: Email report ───────────────────────────────────────────
       - name: Send email report
         if: always()
         env:
@@ -52,67 +68,83 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: |
           python - <<'PYEOF'
-          import json, os, smtplib
+          import json, os, glob, smtplib
           from email.mime.text import MIMEText
           from email.mime.multipart import MIMEMultipart
           from datetime import datetime
 
           VIDEOS_JSON = "beervanon on youtube/videos.json"
           if not os.path.exists(VIDEOS_JSON):
-              print("File not found")
-              exit(0)
+              print("File not found"); exit(0)
 
           with open(VIDEOS_JSON, "r", encoding="utf-8") as f:
               data = json.load(f)
 
-          done = [v for v in data if v.get("status") == "done"]
-          failed = [v for v in data if str(v.get("status", "")).startswith("failed")]
-          pending = [v for v in data if v.get("status") is None or v.get("status") == "pending"]
+          done    = [v for v in data if v.get("status") == "done"]
+          failed  = [v for v in data if str(v.get("status","")).startswith("failed")]
+          pending = [v for v in data if v.get("status") not in ("done",) and not str(v.get("status","")).startswith("failed")]
 
           total = len(data)
           pct = (len(done) / total * 100) if total > 0 else 0
-
           bar_filled = int(pct / 5)
-          bar = '█' * bar_filled + '░' * (20 - bar_filled)
+          bar = "█" * bar_filled + "░" * (20 - bar_filled)
 
-          done_list = '\n'.join(f'  ✅ {v["title"][:60]}' for v in done[-5:]) or '  (ไม่มี)'
-          error_list = '\n'.join(f'  ❌ {v["title"][:60]}\n     {v.get("error","")[:80]}' for v in failed) or '  (ไม่มี)'
-          pending_list = '\n'.join(f'  ⏳ {v["title"][:60]}' for v in pending[:5]) or '  (ไม่มี)'
+          # Count master knowledge base
+          master_count = 0
+          if os.path.exists("beervanon_cleaned.json"):
+              with open("beervanon_cleaned.json", encoding="utf-8") as f:
+                  master_count = len(json.load(f))
 
-          body = f"""🎙️ Beer Vanon Transcription Report (NEW)
-          ════════════════════════════════════
-          📅 {datetime.utcnow().strftime('%Y-%m-%d %H:%M')} UTC
+          # Embeddings info
+          import numpy as np
+          emb_shape = "N/A"
+          if os.path.exists("embeddings.npz"):
+              d = np.load("embeddings.npz", allow_pickle=True)
+              if "embeddings" in d:
+                  emb_shape = str(d["embeddings"].shape)
 
-          ━━━━ ความคืบหน้า ━━━━
-          [{bar}] {pct:.0f}%
-          ✅ เสร็จแล้ว:  {len(done)}/{total} วิดีโอ
-          ⏳ รอถอด:   {len(pending)} วิดีโอ
-          ❌ Error:    {len(failed)} วิดีโอ
+          done_list    = "\n".join(f"  ✅ {v['title'][:65]}" for v in done[-5:]) or "  (ไม่มี)"
+          failed_list  = "\n".join(f"  ❌ {v['title'][:55]}\n     {v.get('error','')[:80]}" for v in failed) or "  (ไม่มี)"
+          pending_list = "\n".join(f"  ⏳ {v['title'][:65]}" for v in pending[:5]) or "  (ไม่มี)"
 
-          ━━━━ 5 คลิปล่าสุดที่เสร็จ ━━━━
-          {done_list}
+          body = f"""🎙️ Beer Vanon Transcription — Auto Report
+  ════════════════════════════════════════
+  📅 {datetime.utcnow().strftime('%Y-%m-%d %H:%M')} UTC  (ชั่วโมง +7 → {(datetime.utcnow().hour+7)%24:02d}:00 Bangkok)
 
-          ━━━━ คลิปที่มี Error ━━━━
-          {error_list}
+  ━━━━ YouTube: beervanon on youtube ━━━━
+  [{bar}] {pct:.0f}%
+  ✅ เสร็จแล้ว : {len(done)}/{total} วิดีโอ
+  ⏳ รอถอดเสียง: {len(pending)} วิดีโอ
+  ❌ Error      : {len(failed)} วิดีโอ
 
-          ━━━━ คิวถัดไป ━━━━
-          {pending_list}
+  ━━━━ Knowledge Base ━━━━
+  📚 beervanon_cleaned.json : {master_count} entries
+  🧠 embeddings.npz         : {emb_shape}
 
-          ────────────────────────────────────
-          ☁️  GitHub Actions — Cloud Transcriber (New Format)
-          """
+  ━━━━ 5 คลิปล่าสุดที่เสร็จ ━━━━
+  {done_list}
+
+  ━━━━ คิวถัดไป ━━━━
+  {pending_list}
+
+  ━━━━ Error Details ━━━━
+  {failed_list}
+
+  ────────────────────────────────────────
+  ☁️  GitHub Actions — ปิดเครื่องก็รันได้
+  """
 
           msg = MIMEMultipart()
-          msg['From'] = os.environ['GMAIL_USER']
-          msg['To'] = 'patiphan.injob@gmail.com'
-          msg['Subject'] = f'🎙️ [Cloud] Beer Vanon — {len(done)}/{total} done ({pct:.0f}%)'
-          msg.attach(MIMEText(body, 'plain', 'utf-8'))
+          msg["From"]    = os.environ["GMAIL_USER"]
+          msg["To"]      = "patiphan.injob@gmail.com"
+          msg["Subject"] = f"🎙️ [Transcribe] {len(done)}/{total} done ({pct:.0f}%) | KB: {master_count} | {emb_shape}"
+          msg.attach(MIMEText(body, "plain", "utf-8"))
 
           try:
-              with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
-                  s.login(os.environ['GMAIL_USER'], os.environ['GMAIL_APP_PASSWORD'])
+              with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+                  s.login(os.environ["GMAIL_USER"], os.environ["GMAIL_APP_PASSWORD"])
                   s.send_message(msg)
-              print('📧 Email sent successfully')
+              print("📧 Email sent")
           except Exception as e:
-              print(f'Failed to send email: {e}')
+              print(f"Email error: {e}")
           PYEOF
