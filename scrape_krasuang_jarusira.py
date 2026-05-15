@@ -613,8 +613,15 @@ async def main():
                 await context.add_cookies(load_netscape_cookies(COOKIE_PATH))
                 await page.goto("https://www.facebook.com", wait_until="domcontentloaded")
                 await page.wait_for_timeout(3000)
-                if "login" in page.url or "checkpoint" in page.url:
-                    print("❌ Cookies หมดอายุ!")
+                # ตรวจสอบทั้ง URL และ DOM — Facebook บางครั้งเด้งกลับ "/" โดยยัง
+                # แสดงหน้า login อยู่ (URL ไม่มี "login" แต่ session จริงๆ หมดอายุ)
+                url_bad = "login" in page.url or "checkpoint" in page.url
+                dom_bad = await page.evaluate(
+                    "() => !!document.querySelector('input[name=\"email\"], input[name=\"pass\"], "
+                    "a[href*=\"/login\"]')"
+                )
+                if url_bad or dom_bad:
+                    print("❌ Cookies หมดอายุ! (URL bad:" + str(url_bad) + " DOM bad:" + str(dom_bad) + ")")
                     send_cookie_expired_email()
                     sys.exit(1)
                 print("✅ Session ยังใช้ได้\n")
