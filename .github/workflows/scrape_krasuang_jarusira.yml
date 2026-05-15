@@ -8,6 +8,8 @@ on:
         required: false
         default: 'true'
         type: boolean
+  schedule:
+    - cron: "0 18 * * *"   # ทุกวัน 01:00 น. เวลาไทย (UTC+7)
 
 jobs:
   scrape:
