@@ -40,7 +40,7 @@ CHUNK_MIN     = 10
 FFMPEG        = str(Path("audio") / "ffmpeg.exe") if platform.system() == "Windows" else "ffmpeg"
 GMAIL_USER    = os.environ.get("GMAIL_USER", "patiphan.injob@gmail.com")
 GMAIL_PASS    = os.environ.get("GMAIL_APP_PASSWORD", "")
-EMAIL_EVERY   = 25
+EMAIL_MILESTONES = [30, 60, 90]  # ส่งเมื่อผ่าน 30%, 60%, 90%
 HEADLESS          = os.environ.get("PLAYWRIGHT_HEADLESS", "false").lower() == "true"
 USE_SAVED_COOKIES = os.environ.get("USE_SAVED_COOKIES", "false").lower() == "true"
 # ==================
@@ -196,7 +196,7 @@ def send_start_email(total_urls: int, resume_count: int):
     <tr><td style="padding:8px"><b>เหลือทำ</b></td><td>{total_urls - resume_count} โพสต์</td></tr>
     <tr><td style="padding:8px"><b>เริ่มเมื่อ</b></td><td>{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</td></tr>
   </table>
-  <p style="color:#888;font-size:12px">จะส่งรายงานความคืบหน้าทุก {EMAIL_EVERY} โพสต์</p>
+  <p style="color:#888;font-size:12px">จะส่งรายงานความคืบหน้าที่ 30%, 60%, 90%</p>
 </div>"""
     send_email("🚀 Krasuang Scraper เริ่มทำงาน", html)
 
@@ -634,8 +634,11 @@ async def main():
                 posts.append(post)
                 save_progress(posts)
 
-                if i % EMAIL_EVERY == 0:
-                    send_progress_email(posts, i, total, start_time)
+                if total > 0:
+                    pct = i / total * 100
+                    prev_pct = (i - 1) / total * 100
+                    if any(prev_pct < m <= pct for m in EMAIL_MILESTONES):
+                        send_progress_email(posts, i, total, start_time)
 
                 await asyncio.sleep(random.uniform(1.5, 3.0))
 
