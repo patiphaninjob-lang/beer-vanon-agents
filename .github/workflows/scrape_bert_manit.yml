@@ -1,0 +1,78 @@
+name: Scrape Bert Manit (รันได้ปิดคอม)
+
+# รันมือเองจาก GitHub UI → Actions → "Scrape Bert Manit" → Run workflow
+on:
+  workflow_dispatch:
+    inputs:
+      resume:
+        description: 'Resume จากข้อมูลที่มีอยู่ใน repo (true = ข้ามโพสต์ที่ทำแล้ว)'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # สูงสุด 6 ชั่วโมง
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ── 2. Python ────────────────────────────────────────────────
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ── 3. System deps (ffmpeg) ──────────────────────────────────
+      - name: Install ffmpeg
+        run: sudo apt-get install -y ffmpeg
+
+      # ── 4. Python packages ───────────────────────────────────────
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-bert-scraper
+
+      - name: Install Python dependencies
+        run: pip install playwright groq python-dotenv yt-dlp
+
+      # ── 5. Playwright browser ────────────────────────────────────
+      - name: Install Playwright Chromium
+        run: playwright install chromium && playwright install-deps chromium
+
+      # ── 6. Restore Facebook cookies ─────────────────────────────
+      # Secret: FB_COOKIES_B64 = เนื้อหาของ bert_manit/fb_cookies.txt แปลงเป็น base64
+      # วิธีสร้าง (Windows): certutil -encode bert_manit\fb_cookies.txt cookie_b64.txt
+      # แล้วก็อปปี้เนื้อหาใน cookie_b64.txt (ไม่รวมบรรทัดแรกและบรรทัดสุดท้าย) ไปใส่ใน Secret
+      - name: Restore Facebook cookies
+        env:
+          FB_COOKIES_B64: ${{ secrets.FB_COOKIES_B64 }}
+        run: |
+          mkdir -p bert_manit
+          echo "$FB_COOKIES_B64" | base64 --decode > bert_manit/fb_cookies.txt
+          echo "✅ Cookies restored ($(wc -l < bert_manit/fb_cookies.txt) lines)"
+
+      # ── 7. รัน Scraper ────────────────────────────────────────────
+      - name: Run Bert Manit Scraper
+        env:
+          GROQ_API_KEY:        ${{ secrets.GROQ_API_KEY }}
+          GMAIL_USER:          ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
+          PLAYWRIGHT_HEADLESS: 'true'
+          USE_SAVED_COOKIES:   'true'
+        run: python scrape_bert_manit.py
+
+      # ── 8. Commit ผลลัพธ์กลับ repo ───────────────────────────────
+      - name: Commit scraped data
+        run: |
+          git config user.name  "Bert Scraper Bot"
+          git config user.email "actions@github.com"
+          git add bert_manit/bert_manit_page_data.json \
+                  bert_manit/bert_manit_page_data.md || true
+          git diff --staged --quiet && echo "ไม่มีข้อมูลใหม่" || \
+            git commit -m "🤖 Bert Manit scrape update — $(date +'%Y-%m-%d %H:%M') [skip ci]"
+          git push || echo "Push ล้มเหลว (อาจไม่มีการเปลี่ยนแปลง)"
