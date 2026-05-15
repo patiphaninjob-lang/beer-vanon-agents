@@ -107,32 +107,35 @@ jobs:
           failed_list  = "\n".join(f"  ❌ {v['title'][:55]}\n     {v.get('error','')[:80]}" for v in failed) or "  (ไม่มี)"
           pending_list = "\n".join(f"  ⏳ {v['title'][:65]}" for v in pending[:5]) or "  (ไม่มี)"
 
-          body = f"""🎙️ Beer Vanon Transcription — Auto Report
-  ════════════════════════════════════════
-  📅 {datetime.utcnow().strftime('%Y-%m-%d %H:%M')} UTC  (ชั่วโมง +7 → {(datetime.utcnow().hour+7)%24:02d}:00 Bangkok)
-
-  ━━━━ YouTube: beervanon on youtube ━━━━
-  [{bar}] {pct:.0f}%
-  ✅ เสร็จแล้ว : {len(done)}/{total} วิดีโอ
-  ⏳ รอถอดเสียง: {len(pending)} วิดีโอ
-  ❌ Error      : {len(failed)} วิดีโอ
-
-  ━━━━ Knowledge Base ━━━━
-  📚 beervanon_cleaned.json : {master_count} entries
-  🧠 embeddings.npz         : {emb_shape}
-
-  ━━━━ 5 คลิปล่าสุดที่เสร็จ ━━━━
-  {done_list}
-
-  ━━━━ คิวถัดไป ━━━━
-  {pending_list}
-
-  ━━━━ Error Details ━━━━
-  {failed_list}
-
-  ────────────────────────────────────────
-  ☁️  GitHub Actions — ปิดเครื่องก็รันได้
-  """
+          now_utc = datetime.utcnow()
+          bkk_h = (now_utc.hour + 7) % 24
+          body = (
+              "🎙️ Beer Vanon Transcription — Auto Report\n"
+              "════════════════════════════════════════\n"
+              f"📅 {now_utc.strftime('%Y-%m-%d %H:%M')} UTC  (+7 → {bkk_h:02d}:{now_utc.minute:02d} Bangkok)\n"
+              "\n"
+              "━━━━ YouTube: beervanon on youtube ━━━━\n"
+              f"[{bar}] {pct:.0f}%\n"
+              f"✅ เสร็จแล้ว : {len(done)}/{total} วิดีโอ\n"
+              f"⏳ รอถอดเสียง: {len(pending)} วิดีโอ\n"
+              f"❌ Error      : {len(failed)} วิดีโอ\n"
+              "\n"
+              "━━━━ Knowledge Base ━━━━\n"
+              f"📚 beervanon_cleaned.json : {master_count} entries\n"
+              f"🧠 embeddings.npz         : {emb_shape}\n"
+              "\n"
+              "━━━━ 5 คลิปล่าสุดที่เสร็จ ━━━━\n"
+              f"{done_list}\n"
+              "\n"
+              "━━━━ คิวถัดไป ━━━━\n"
+              f"{pending_list}\n"
+              "\n"
+              "━━━━ Error Details ━━━━\n"
+              f"{failed_list}\n"
+              "\n"
+              "────────────────────────────────────────\n"
+              "☁️  GitHub Actions — ปิดเครื่องก็รันได้\n"
+          )
 
           msg = MIMEMultipart()
           msg["From"]    = os.environ["GMAIL_USER"]
