@@ -1,0 +1,66 @@
+name: Scrape Krasuang Jarusira (รันได้ปิดคอม)
+
+on:
+  workflow_dispatch:
+    inputs:
+      resume:
+        description: 'Resume จากข้อมูลที่มีอยู่ใน repo (true = ข้ามโพสต์ที่ทำแล้ว)'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ffmpeg
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-bert-scraper
+
+      - name: Install Python dependencies
+        run: pip install playwright groq python-dotenv yt-dlp
+
+      - name: Install Playwright Chromium
+        run: playwright install chromium && playwright install-deps chromium
+
+      - name: Restore Facebook cookies
+        env:
+          FB_COOKIES_B64: ${{ secrets.FB_COOKIES_B64 }}
+        run: |
+          mkdir -p krasuang_jarusira
+          echo "$FB_COOKIES_B64" | base64 --decode > krasuang_jarusira/fb_cookies.txt
+          echo "✅ Cookies restored ($(wc -l < krasuang_jarusira/fb_cookies.txt) lines)"
+
+      - name: Run Krasuang Scraper
+        env:
+          GROQ_API_KEY:        ${{ secrets.GROQ_API_KEY }}
+          GMAIL_USER:          ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
+          PLAYWRIGHT_HEADLESS: 'true'
+          USE_SAVED_COOKIES:   'true'
+        run: python scrape_krasuang_jarusira.py
+
+      - name: Commit scraped data
+        run: |
+          git config user.name  "Krasuang Scraper Bot"
+          git config user.email "actions@github.com"
+          git add krasuang_jarusira/krasuang_jarusira_page_data.json \
+                  krasuang_jarusira/krasuang_jarusira_page_data.md || true
+          git diff --staged --quiet && echo "ไม่มีข้อมูลใหม่" || \
+            git commit -m "🤖 Krasuang Jarusira scrape update — $(date +'%Y-%m-%d %H:%M') [skip ci]"
+          git push || echo "Push ล้มเหลว (อาจไม่มีการเปลี่ยนแปลง)"
