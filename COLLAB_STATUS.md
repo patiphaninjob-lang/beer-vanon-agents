@@ -1,7 +1,7 @@
 # Collaboration Status
 
 Updated by: Codex
-Updated at: 2026-05-12 18:20 Asia/Bangkok
+Updated at: 2026-05-14 22:20 Asia/Bangkok
 
 ## Rule
 
@@ -20,7 +20,7 @@ Use this file to avoid duplicate YouTube transcription work between Codex and Cl
 | International League | 11 | 11 | 0 | Complete, YouTube Thai captions |
 | Crypto Challenge | 10 | 10 | 0 | Complete, 9 captions + 1 Groq audio |
 | Future Beyond | 13 | 13 | 0 | Complete, YouTube Thai captions |
-| beervanon on youtube | 27 | 7 | 2 | **In Progress** (via Gemini CLI). 61/81 total videos synced to master. |
+| beervanon on youtube | 27 | 12 | 0 | **Paused** (2026-05-19). 15 pending. |
 
 ## New Utility Scripts
 
@@ -34,7 +34,7 @@ Use this file to avoid duplicate YouTube transcription work between Codex and Cl
 
 | Folder | Playlist | Owner | Status |
 | --- | --- | --- | --- |
-| beervanon on youtube | 27 videos | Gemini CLI | Active background transcription. 7/27 done. Merger script ready. |
+| beervanon on youtube | 27 videos | — | **Paused** (2026-05-19). 12/27 done, 15 pending, 0 failed. Transcripts committed. Resume when ready. |
 
 ## Codex Next Available Work
 

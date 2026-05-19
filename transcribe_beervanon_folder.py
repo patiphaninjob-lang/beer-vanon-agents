@@ -6,7 +6,7 @@ Transcribe Beer Vanon Folder — Gemini CLI
 import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-import json, os, platform, shutil, subprocess, tempfile, time, datetime
+import json, os, platform, re, shutil, subprocess, tempfile, time, datetime
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -16,7 +16,7 @@ BASE_DIR = Path("beervanon on youtube")
 VIDEOS_JSON = BASE_DIR / "videos.json"
 TRANSCRIPTS_DIR = BASE_DIR / "transcripts"
 GROQ_MODEL = "whisper-large-v3-turbo"
-CHUNK_MIN = 20
+CHUNK_MIN = 10
 FFMPEG = str(Path("audio") / "ffmpeg.exe") if platform.system() == "Windows" else "ffmpeg"
 
 def get_client():
@@ -66,6 +66,32 @@ def split_audio(audio_path: str, out_dir: str) -> list[str]:
     ], check=True)
     return [str(c) for c in sorted(Path(out_dir).glob("chunk_*.mp3"))]
 
+def parse_rate_limit_wait_seconds(message: str) -> int | None:
+    match = re.search(r"try again in\s+([^.]+)", message, re.IGNORECASE)
+    if not match:
+        return None
+
+    value = match.group(1)
+    compact = re.fullmatch(r"\s*(\d+)\s*m\s*(\d+)\s*", value, re.IGNORECASE)
+    if compact:
+        return int(compact.group(1)) * 60 + int(compact.group(2)) + 5
+
+    total = 0.0
+    for number, unit in re.findall(
+        r"(\d+(?:\.\d+)?)\s*(ms|s|sec|secs|second|seconds|m|min|mins|minute|minutes)",
+        value,
+        re.IGNORECASE,
+    ):
+        amount = float(number)
+        unit = unit.lower()
+        if unit == "ms":
+            total += amount / 1000
+        elif unit.startswith("m"):
+            total += amount * 60
+        else:
+            total += amount
+    return int(total + 5) if total > 0 else None
+
 def transcribe_chunk(client, audio_path: str, attempt: int = 0) -> str:
     try:
         with open(audio_path, "rb") as f:
@@ -81,9 +107,9 @@ def transcribe_chunk(client, audio_path: str, attempt: int = 0) -> str:
     except Exception as e:
         err = str(e)
         if "rate_limit" in err.lower() or "429" in err:
-            if attempt >= 3:
-                raise e # Fail after 3 attempts
-            wait = 60 * (attempt + 1)
+            if attempt >= 12:
+                raise e
+            wait = parse_rate_limit_wait_seconds(err) or min(900, 60 * (attempt + 1))
             print(f"    ⏳ Rate limit — รอ {wait}s...")
             time.sleep(wait)
             return transcribe_chunk(client, audio_path, attempt + 1)
