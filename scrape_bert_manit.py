@@ -3,7 +3,7 @@ scrape_bert_manit.py
 ดึงข้อมูลจากเพจ Bert Manit (https://www.facebook.com/bertsnipertrade)
 - Phase 1: เลื่อน feed รวบรวม URL ทั้งหมด
 - Phase 2: เปิดทีละโพสต์ → เนื้อหาเต็ม + ถอดเสียงวิดีโอทันที
-- ไม่เก็บ comment | บันทึกทุกโพสต์ | Resume ได้ | ส่ง email รายงาน
+- ไม่เก็บ comment | บันทึกทุกโพสต์ | Resume ได้
 """
 
 import asyncio
@@ -12,15 +12,12 @@ import os
 import platform
 import re
 import shutil
-import smtplib
 import subprocess
 import sys
 import tempfile
 import time
 import random
 from datetime import datetime
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -38,10 +35,6 @@ GROQ_API_KEY  = os.environ.get("GROQ_API_KEY", "")
 GROQ_MODEL    = "whisper-large-v3-turbo"
 CHUNK_MIN     = 10
 FFMPEG        = str(Path("audio") / "ffmpeg.exe") if platform.system() == "Windows" else "ffmpeg"
-# Email
-GMAIL_USER    = os.environ.get("GMAIL_USER", "patiphan.injob@gmail.com")
-GMAIL_PASS    = os.environ.get("GMAIL_APP_PASSWORD", "")
-EMAIL_MILESTONES = [30, 60, 90]  # ส่งเมื่อผ่าน 30%, 60%, 90%
 # GitHub Actions mode
 HEADLESS          = os.environ.get("PLAYWRIGHT_HEADLESS", "false").lower() == "true"
 USE_SAVED_COOKIES = os.environ.get("USE_SAVED_COOKIES", "false").lower() == "true"
@@ -143,144 +136,11 @@ EXTRACT_POST_JS = """
 """
 
 
-# ─── Email ─────────────────────────────────────────────────────────
-
-def send_email(subject: str, html: str):
-    if not GMAIL_PASS:
-        return
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"]    = GMAIL_USER
-    msg["To"]      = GMAIL_USER
-    msg.attach(MIMEText(html, "html", "utf-8"))
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
-            s.login(GMAIL_USER, GMAIL_PASS)
-            s.sendmail(GMAIL_USER, GMAIL_USER, msg.as_string())
-        print(f"  📧 ส่งอีเมลแล้ว: {subject}")
-    except Exception as e:
-        print(f"  ⚠️ ส่งอีเมลไม่ได้: {e}")
-
-
-def _post_rows(posts: list, n: int = 5) -> str:
-    rows = ""
-    for p in posts[-n:]:
-        date = _ts(p.get("timestamp", "")) or p.get("dateText", "?")
-        preview = (p.get("content", "") or "")[:120].replace("<", "&lt;").replace("\n", " ")
-        vid  = "🎬" if p.get("hasVideo") else ""
-        tx   = "📝" if p.get("transcript") and not p["transcript"].startswith("[") else ""
-        rows += (
-            f"<tr style='border-bottom:1px solid #eee'>"
-            f"<td style='padding:6px 8px;color:#666;font-size:12px'>{date}</td>"
-            f"<td style='padding:6px 8px'>{preview}…</td>"
-            f"<td style='padding:6px 8px;text-align:center'>{vid}{tx}</td>"
-            f"</tr>"
-        )
-    return rows
-
-
 def _ts(ts: str) -> str:
     try:
         return datetime.fromtimestamp(int(ts)).strftime("%Y-%m-%d %H:%M")
     except Exception:
         return ts
-
-
-def send_start_email(total_urls: int, resume_count: int):
-    html = f"""
-<div style="font-family:sans-serif;max-width:600px;margin:auto">
-  <h2 style="color:#1877f2">🚀 เริ่มเก็บข้อมูล Bert Manit</h2>
-  <table style="width:100%;border-collapse:collapse;background:#f8f9fa;border-radius:8px;padding:16px">
-    <tr><td style="padding:8px"><b>เพจ</b></td><td>{TARGET_PAGE}</td></tr>
-    <tr><td style="padding:8px"><b>URL ที่พบ</b></td><td>{total_urls} รายการ</td></tr>
-    <tr><td style="padding:8px"><b>ข้ามแล้ว (resume)</b></td><td>{resume_count} โพสต์</td></tr>
-    <tr><td style="padding:8px"><b>เหลือทำ</b></td><td>{total_urls - resume_count} โพสต์</td></tr>
-    <tr><td style="padding:8px"><b>เริ่มเมื่อ</b></td><td>{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</td></tr>
-  </table>
-  <p style="color:#888;font-size:12px">จะส่งรายงานความคืบหน้าที่ 30%, 60%, 90%</p>
-</div>"""
-    send_email("🚀 Bert Manit Scraper เริ่มทำงาน", html)
-
-
-def send_progress_email(posts: list, done: int, total: int, start_time: float):
-    elapsed  = int(time.time() - start_time)
-    per_post = elapsed / done if done else 0
-    eta_sec  = int(per_post * (total - done))
-    eta_str  = f"{eta_sec // 60} นาที {eta_sec % 60} วินาที" if eta_sec > 0 else "?"
-    pct      = int(done / total * 100) if total else 0
-    vid_done = sum(1 for p in posts if p.get("transcript") and not p["transcript"].startswith("["))
-    html = f"""
-<div style="font-family:sans-serif;max-width:600px;margin:auto">
-  <h2 style="color:#1877f2">📊 ความคืบหน้า Bert Manit Scraper</h2>
-  <div style="background:#e8f5e9;border-radius:8px;padding:16px;margin:12px 0">
-    <b style="font-size:24px">{done} / {total}</b> โพสต์ ({pct}%)
-    <div style="background:#fff;border-radius:4px;height:12px;margin-top:8px">
-      <div style="background:#1877f2;width:{pct}%;height:12px;border-radius:4px"></div>
-    </div>
-  </div>
-  <table style="width:100%;border-collapse:collapse">
-    <tr><td style="padding:6px"><b>เวลาที่ใช้ไป</b></td><td>{elapsed // 60} นาที</td></tr>
-    <tr><td style="padding:6px"><b>เฉลี่ยต่อโพสต์</b></td><td>{per_post:.1f} วินาที</td></tr>
-    <tr><td style="padding:6px"><b>คาดเสร็จอีก</b></td><td>{eta_str}</td></tr>
-    <tr><td style="padding:6px"><b>วิดีโอถอดเสียงแล้ว</b></td><td>{vid_done} คลิป</td></tr>
-  </table>
-  <h3>โพสต์ล่าสุด {min(5, len(posts))} รายการ</h3>
-  <table style="width:100%;border-collapse:collapse;font-size:13px">
-    <tr style="background:#f0f0f0"><th>วันที่</th><th>เนื้อหา</th><th></th></tr>
-    {_post_rows(posts, 5)}
-  </table>
-</div>"""
-    send_email(f"📊 Bert Manit: {done}/{total} โพสต์ ({pct}%)", html)
-
-
-def send_completion_email(posts: list, start_time: float):
-    elapsed  = int(time.time() - start_time)
-    vid_done = sum(1 for p in posts if p.get("transcript") and not p["transcript"].startswith("["))
-    vid_fail = sum(1 for p in posts if p.get("transcript", "").startswith("["))
-    err_count= sum(1 for p in posts if p.get("error"))
-    html = f"""
-<div style="font-family:sans-serif;max-width:600px;margin:auto">
-  <h2 style="color:#2e7d32">✅ Bert Manit Scraper เสร็จสมบูรณ์!</h2>
-  <div style="background:#e8f5e9;border-radius:8px;padding:20px;margin:12px 0;text-align:center">
-    <div style="font-size:48px;font-weight:bold;color:#2e7d32">{len(posts)}</div>
-    <div style="color:#666">โพสต์ทั้งหมด</div>
-  </div>
-  <table style="width:100%;border-collapse:collapse">
-    <tr style="background:#f8f9fa"><td style="padding:10px"><b>🎬 วิดีโอถอดเสียงสำเร็จ</b></td><td>{vid_done} คลิป</td></tr>
-    <tr><td style="padding:10px"><b>⚠️ วิดีโอดาวน์โหลดไม่ได้</b></td><td>{vid_fail} คลิป</td></tr>
-    <tr style="background:#f8f9fa"><td style="padding:10px"><b>❌ Error</b></td><td>{err_count} โพสต์</td></tr>
-    <tr><td style="padding:10px"><b>⏱️ เวลารวม</b></td><td>{elapsed // 3600} ชม. {(elapsed % 3600) // 60} นาที</td></tr>
-    <tr style="background:#f8f9fa"><td style="padding:10px"><b>📁 ไฟล์ผลลัพธ์</b></td><td>bert_manit/bert_manit_page_data.json + .md</td></tr>
-  </table>
-  <h3>โพสต์ล่าสุด 5 รายการ</h3>
-  <table style="width:100%;border-collapse:collapse;font-size:13px">
-    <tr style="background:#f0f0f0"><th>วันที่</th><th>เนื้อหา</th><th></th></tr>
-    {_post_rows(posts, 5)}
-  </table>
-  <p style="color:#888;font-size:12px;margin-top:20px">
-    ขั้นตอนถัดไป: รัน <code>clean_data.py</code> → <code>build_embeddings.py</code>
-    เพื่อเพิ่มข้อมูล Bert Manit เข้า knowledge base
-  </p>
-</div>"""
-    send_email(f"✅ Bert Manit Scraper เสร็จ — {len(posts)} โพสต์", html)
-
-
-def send_cookie_expired_email():
-    html = """
-<div style="font-family:sans-serif;max-width:600px;margin:auto">
-  <h2 style="color:#c62828">🔑 Facebook Cookies หมดอายุ</h2>
-  <p>Bert Manit Scraper ไม่สามารถ Login Facebook ได้ เพราะ cookies หมดอายุแล้ว</p>
-  <h3>วิธีแก้ไข:</h3>
-  <ol>
-    <li>รันสคิปต์บนเครื่องตัวเองก่อน 1 ครั้ง:<br>
-        <code>py scrape_bert_manit.py</code></li>
-    <li>หลัง Login สำเร็จ ไฟล์ <code>bert_manit/fb_cookies.txt</code> จะถูกบันทึก</li>
-    <li>แปลงเป็น base64:<br>
-        <code>certutil -encode bert_manit\\fb_cookies.txt cookie_b64.txt</code></li>
-    <li>อัปเดต GitHub Secret <b>FB_COOKIES_B64</b> ด้วยเนื้อหาในไฟล์ cookie_b64.txt</li>
-  </ol>
-</div>"""
-    send_email("🔑 Bert Manit Scraper: Cookies หมดอายุ — ต้องอัปเดต", html)
 
 
 # ─── Groq Whisper ──────────────────────────────────────────────────
@@ -629,7 +489,6 @@ async def main():
                 )
                 if url_bad or dom_bad:
                     print("❌ Cookies หมดอายุ! (URL bad:" + str(url_bad) + " DOM bad:" + str(dom_bad) + ")")
-                    send_cookie_expired_email()
                     sys.exit(1)
                 print("✅ Session ยังใช้ได้\n")
             else:
@@ -642,20 +501,11 @@ async def main():
             total    = len(new_urls)
             print(f"\n[3/3] ประมวลผล {total} โพสต์ใหม่ (ข้ามแล้ว {len(done_urls)})\n")
 
-            # ส่ง email เริ่มต้น
-            send_start_email(len(urls), len(done_urls))
-
             # Phase 2: ประมวลผลแต่ละโพสต์
             for i, url in enumerate(new_urls, 1):
                 post = await process_post(page, url, groq_client, i, total)
                 posts.append(post)
                 save_progress(posts)
-
-                if total > 0:
-                    pct = i / total * 100
-                    prev_pct = (i - 1) / total * 100
-                    if any(prev_pct < m <= pct for m in EMAIL_MILESTONES):
-                        send_progress_email(posts, i, total, start_time)
 
                 await asyncio.sleep(random.uniform(1.5, 3.0))
 
@@ -663,9 +513,6 @@ async def main():
             print(f"\n❌ Error หลัก: {e}")
         finally:
             await browser.close()
-
-    # ส่ง email สรุปสุดท้าย
-    send_completion_email(posts, start_time)
 
     vid_done = sum(1 for p in posts if p.get("transcript") and not p["transcript"].startswith("["))
     print(f"\n{'='*55}")
