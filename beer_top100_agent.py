@@ -12,6 +12,7 @@ import numpy as np
 from pathlib import Path
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
 from groq import Groq
@@ -242,10 +243,10 @@ def generate_mini_chart_b64(ticker: str) -> str:
                     pil_kwargs={"quality": 60, "optimize": True})
         plt.close(fig)
         buf.seek(0)
-        return base64.b64encode(buf.read()).decode()
+        return buf.read()   # raw bytes — ใช้กับ CID attachment
     except Exception as e:
         print(f"  chart error [{ticker}]: {e}")
-        return ""
+        return b""
 
 
 # ─── Combined Analysis ────────────────────────────────────────
@@ -331,19 +332,18 @@ def _fmt_mktcap(cap: float) -> str:
     return "N/A"
 
 
-def stock_card(stock: dict, analysis: str, chart_b64: str) -> str:
-    sparkline_svg = chart_b64  # rename internally
-    arrow  = "▲" if stock["pct_change"] >= 0 else "▼"
-    color  = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
-    pe_str = f" | P/E {stock['pe_ratio']:.1f}" if stock.get("pe_ratio") else ""
+def stock_card(stock: dict, analysis: str, chart_cid: str) -> str:
+    arrow   = "▲" if stock["pct_change"] >= 0 else "▼"
+    color   = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
+    pe_str  = f" | P/E {stock['pe_ratio']:.1f}" if stock.get("pe_ratio") else ""
     cap_str = _fmt_mktcap(stock["market_cap"])
 
     tv_url  = stock.get("tv_url", f"https://www.tradingview.com/chart/?symbol={stock['ticker']}")
     chart_block = (
         f'<a href="{tv_url}" target="_blank" title="เปิดกราฟใน TradingView" style="display:block;margin-top:10px">'
-        f'<img src="data:image/jpeg;base64,{sparkline_svg}" '
+        f'<img src="cid:{chart_cid}" '
         f'style="width:100%;border-radius:5px;display:block;cursor:pointer"></a>'
-        if sparkline_svg else
+        if chart_cid else
         f'<div style="margin-top:8px"><a href="{tv_url}" target="_blank" '
         f'style="color:#6366f1;font-size:0.82em;text-decoration:none">📊 ดูกราฟบน TradingView →</a></div>'
     )
@@ -380,7 +380,7 @@ def stock_card(stock: dict, analysis: str, chart_b64: str) -> str:
 
 def build_html_report(stocks_data: list, date_str: str) -> str:
     cards = "".join(
-        stock_card(s["stock"], s["analysis"], s.get("sparkline", ""))
+        stock_card(s["stock"], s["analysis"], s.get("chart_cid", ""))
         for s in stocks_data
     )
 
@@ -418,7 +418,8 @@ def build_html_report(stocks_data: list, date_str: str) -> str:
 
 # ─── Email ────────────────────────────────────────────────────
 
-def send_email(html: str, subject: str):
+def send_email(html: str, subject: str, images: list = None):
+    """images = list of (cid_string, jpeg_bytes) tuples"""
     user     = os.getenv("GMAIL_USER")
     password = os.getenv("GMAIL_APP_PASSWORD")
     if not user or not password or "xxxx" in (password or ""):
@@ -426,11 +427,22 @@ def send_email(html: str, subject: str):
         out.write_text(html, encoding="utf-8")
         print(f"  ยังไม่ได้ตั้ง GMAIL — บันทึกเป็น {out}")
         return
-    msg = MIMEMultipart("alternative")
+
+    # MIMEMultipart("related") keeps HTML body small — images are separate MIME parts
+    msg = MIMEMultipart("related")
     msg["Subject"] = subject
     msg["From"]    = user
     msg["To"]      = REPORT_TO
     msg.attach(MIMEText(html, "html", "utf-8"))
+
+    for cid, jpeg_bytes in (images or []):
+        if not jpeg_bytes:
+            continue
+        img_part = MIMEImage(jpeg_bytes, "jpeg")
+        img_part.add_header("Content-ID", f"<{cid}>")
+        img_part.add_header("Content-Disposition", "inline", filename=f"{cid}.jpg")
+        msg.attach(img_part)
+
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(user, password)
         server.sendmail(user, REPORT_TO, msg.as_string())
@@ -466,9 +478,10 @@ def main():
             stock     = get_stock_context(ticker, rank)
             query     = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
             ctx       = search_knowledge(query, posts, embeddings, embed_model)
-            analysis  = combined_analysis(stock, ctx)
-            chart = generate_mini_chart_b64(ticker)
-            stocks_data.append({"stock": stock, "analysis": analysis, "sparkline": chart})
+            analysis    = combined_analysis(stock, ctx)
+            chart_bytes = generate_mini_chart_b64(ticker)
+            cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
+            stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes})
             print(f"✅  {stock['pct_change']:+.1f}%")
             time.sleep(CALL_DELAY)
         except Exception as e:
@@ -481,9 +494,10 @@ def main():
     # 4. สร้างและส่ง email
     print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
     html    = build_html_report(stocks_data, date_str)
+    images  = [(s["chart_cid"], s["chart_bytes"]) for s in stocks_data if s.get("chart_bytes")]
     subject = f"🍺 Beer Top 100 Market Cap — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
     print("📧 ส่ง email...")
-    send_email(html, subject)
+    send_email(html, subject, images)
 
     print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top100)} หุ้น")
 
