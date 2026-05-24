@@ -174,12 +174,14 @@ def get_stock_context_th(ticker: str) -> dict:
 
     # ข่าว
     try:
-        news_list = tk.news[:3] if tk.news else []
+        raw_news  = tk.news[:3] if tk.news else []
+        news_list = [_parse_news(n) for n in raw_news]
         news_text = "\n".join(
-            f"- {n.get('content',{}).get('title') or n.get('title','')}"
+            f"- [{n['provider']}] {n['title']}" + (f"\n  {n['summary']}" if n['summary'] else "")
             for n in news_list
-        )
+        ) if news_list else "ไม่มีข่าวล่าสุด"
     except Exception:
+        news_list = []
         news_text = "ไม่มีข่าวล่าสุด"
 
     symbol = ticker.replace(".BK", "")
@@ -194,46 +196,168 @@ def get_stock_context_th(ticker: str) -> dict:
         "market_cap": info.get("marketCap", 0),
         "pe_ratio":   info.get("trailingPE"),
         "news":       news_text,
+        "news_list":  news_list,
+        "tv_url":     get_tradingview_url_th(symbol),
     }
+
+
+# ─── News Helper ─────────────────────────────────────────────
+
+def _parse_news(n: dict) -> dict:
+    content = n.get("content", {})
+    if content:
+        title    = content.get("title", "")
+        summary  = (content.get("summary") or "")[:220]
+        provider = (content.get("provider") or {}).get("displayName", "")
+        pub_raw  = content.get("pubDate", "")
+        date_str = pub_raw[:10] if pub_raw else ""
+        url      = ((content.get("canonicalUrl") or {}).get("url")
+                    or (content.get("clickThroughUrl") or {}).get("url", ""))
+    else:
+        title    = n.get("title", "")
+        summary  = (n.get("summary") or "")[:220]
+        provider = n.get("publisher", "")
+        ts       = n.get("providerPublishTime", 0)
+        date_str = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d") if ts else ""
+        url      = n.get("link", "")
+    return {"title": title, "summary": summary, "provider": provider, "date": date_str, "url": url}
+
+
+def _news_section_html(news_list: list) -> str:
+    if not news_list:
+        return ""
+    items = []
+    for n in news_list:
+        title = n.get("title") or "ข่าว"
+        url   = n.get("url", "")
+        src   = n.get("provider", "")
+        date  = n.get("date", "")
+        summ  = n.get("summary", "")
+        title_tag = (
+            f'<a href="{url}" style="color:#93c5fd;text-decoration:none;font-weight:500" target="_blank">{title}</a>'
+            if url else f'<span style="color:#d1d5db;font-weight:500">{title}</span>'
+        )
+        summary_row = (
+            f'<div style="color:#6b7280;font-size:0.82em;line-height:1.4;margin-top:3px">{summ}</div>'
+            if summ else ""
+        )
+        meta = " · ".join(filter(None, [src, date]))
+        items.append(
+            f'<div style="margin-bottom:10px">'
+            f'{title_tag}{summary_row}'
+            f'<div style="color:#4b5563;font-size:0.76em;margin-top:3px">{meta}</div>'
+            f'</div>'
+        )
+    return (
+        '<div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e2532">'
+        '<div style="color:#6b7280;font-size:0.75em;text-transform:uppercase;'
+        'letter-spacing:0.08em;margin-bottom:8px">📰 ข่าวล่าสุด</div>'
+        + "".join(items) + '</div>'
+    )
+
+
+def analyze_news_sentiment(news_list: list, ticker: str) -> str:
+    """Groq อธิบายว่าข่าวแต่ละชิ้นคืออะไร + ตลาดจะตีความอย่างไร"""
+    if not news_list:
+        return ""
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    news_block = "\n\n".join(
+        f"ข่าว {i+1}: {n['title']}" + (f"\n{n['summary']}" if n.get("summary") else "")
+        for i, n in enumerate(news_list)
+    )
+    prompt = f"""วิเคราะห์ข่าวของหุ้น {ticker} ต่อไปนี้:
+
+{news_block}
+
+ตอบ 2 ส่วน เป็นภาษาไทย ให้รายละเอียดเพียงพอที่จะเข้าใจว่าเกิดอะไรขึ้นจริงๆ:
+
+**เนื้อข่าวคืออะไร:**
+อธิบายแต่ละข่าวว่าพูดถึงอะไร เกิดเหตุการณ์อะไร มีตัวเลข/ข้อมูลสำคัญอะไรบ้าง (2-3 ประโยคต่อข่าว)
+
+**ตลาดจะตีความอย่างไร:**
+นักลงทุนส่วนใหญ่จะมองข่าวชุดนี้เป็น บวก/ลบ/เป็นกลาง? เพราะอะไร? อารมณ์ตลาดน่าจะเป็นอย่างไร — กลัว / โลภ / สับสน / รอดูท่าที? คาดการณ์ราคาระยะสั้นจะ react อย่างไร?"""
+
+    resp = client.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3,
+        max_tokens=400,
+    )
+    return resp.choices[0].message.content.strip()
+
+
+def _sentiment_section_html(sentiment: str) -> str:
+    if not sentiment:
+        return ""
+    body = sentiment.replace(chr(10), "<br>")
+    return (
+        '<div style="background:#12192a;border-radius:8px;padding:14px;margin-top:12px;'
+        'border-left:3px solid #6366f1">'
+        '<div style="color:#a5b4fc;font-size:0.78em;text-transform:uppercase;'
+        'letter-spacing:0.08em;margin-bottom:8px;font-weight:600">🔍 วิเคราะห์ข่าว + อารมณ์ตลาด</div>'
+        f'<div style="color:#c4c9d4;font-size:0.9em;line-height:1.7">{body}</div>'
+        '</div>'
+    )
 
 
 # ─── Chart Generator ─────────────────────────────────────────
 
-def generate_chart_b64(ticker: str) -> str:
-    """Candlestick 6 เดือน + EMA Beer (5/15/35/89) → base64 PNG ฝังใน email"""
+def get_tradingview_url_th(symbol: str) -> str:
+    return f"https://www.tradingview.com/chart/?symbol=SET:{symbol}"
+
+
+def generate_mini_chart_b64(ticker: str) -> str:
+    """Mini candlestick chart สไตล์ TradingView Screener → base64 PNG"""
     try:
-        import mplfinance as mpf
         import matplotlib
         matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        import matplotlib.patches as mpatches
         import io, base64
-
         import yfinance as yf
-        hist = yf.Ticker(ticker).history(period="6mo")
-        if len(hist) < 10:
+
+        hist = yf.Ticker(ticker).history(period="3mo")
+        if len(hist) < 5:
             return ""
 
-        mc = mpf.make_marketcolors(
-            up="#16c784", down="#ea3943",
-            wick={"up": "#16c784", "down": "#ea3943"},
-            volume={"up": "#16c784", "down": "#ea3943"},
-            edge={"up": "#16c784", "down": "#ea3943"},
-        )
-        style = mpf.make_mpf_style(
-            marketcolors=mc,
-            facecolor="#111827", edgecolor="#374151",
-            figcolor="#111827", gridcolor="#111827", gridstyle="-",
-            rc={"axes.labelcolor": "#9ca3af",
-                "xtick.color": "#6b7280", "ytick.color": "#6b7280",
-                "axes.grid": False},
-        )
+        BG    = "#131722"
+        GREEN = "#26a69a"
+        RED   = "#ef5350"
+
+        fig, ax = plt.subplots(figsize=(5.5, 1.6))
+        fig.patch.set_facecolor(BG)
+        ax.set_facecolor(BG)
+
+        opens  = hist["Open"].values
+        closes = hist["Close"].values
+        highs  = hist["High"].values
+        lows   = hist["Low"].values
+        n      = len(hist)
+
+        for i in range(n):
+            up    = closes[i] >= opens[i]
+            color = GREEN if up else RED
+            body_lo = min(opens[i], closes[i])
+            body_hi = max(opens[i], closes[i])
+            body_h  = max(body_hi - body_lo, (highs[i] - lows[i]) * 0.05)
+
+            ax.add_patch(mpatches.Rectangle(
+                (i - 0.38, body_lo), 0.76, body_h,
+                color=color, zorder=2
+            ))
+            ax.plot([i, i], [lows[i], highs[i]],
+                    color=color, linewidth=0.7, zorder=1)
+
+        pad = (highs.max() - lows.min()) * 0.04
+        ax.set_xlim(-0.8, n - 0.2)
+        ax.set_ylim(lows.min() - pad, highs.max() + pad)
+        ax.axis("off")
+        fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+
         buf = io.BytesIO()
-        mpf.plot(
-            hist, type="candle", style=style,
-            volume=True,
-            title=f"\n{ticker}  Daily · 6M",
-            figsize=(10, 5),
-            savefig=dict(fname=buf, bbox_inches="tight", dpi=110),
-        )
+        fig.savefig(buf, format="png", dpi=150,
+                    facecolor=BG, edgecolor="none", bbox_inches="tight", pad_inches=0.04)
+        plt.close(fig)
         buf.seek(0)
         return base64.b64encode(buf.read()).decode()
     except Exception as e:
@@ -292,15 +416,19 @@ def fmt_pct(pct: float) -> str:
     return f'<span style="color:{color};font-weight:bold">{sign}{pct:.2f}%</span>'
 
 
-def stock_card_th(stock: dict, analysis: str, chart_b64: str = "") -> str:
-    arrow = "▲" if stock["pct_change"] >= 0 else "▼"
-    color = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
-    pe    = f"P/E {stock['pe_ratio']:.1f}" if stock["pe_ratio"] else ""
+def stock_card_th(stock: dict, analysis: str, chart_b64: str = "", news_sentiment: str = "") -> str:
+    arrow          = "▲" if stock["pct_change"] >= 0 else "▼"
+    color          = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
+    pe             = f"P/E {stock['pe_ratio']:.1f} &nbsp;|&nbsp;" if stock["pe_ratio"] else ""
+    tv_url     = stock.get("tv_url", f"https://www.tradingview.com/chart/?symbol=SET:{stock['ticker']}")
     chart_html = (
+        f'<a href="{tv_url}" target="_blank" style="display:block;margin-top:12px" title="เปิดกราฟใน TradingView">'
         f'<img src="data:image/png;base64,{chart_b64}" '
-        f'style="width:100%;border-radius:8px;margin-top:12px;display:block">'
+        f'style="width:100%;border-radius:6px;display:block;cursor:pointer"></a>'
         if chart_b64 else ""
     )
+    news_html      = _news_section_html(stock.get("news_list", []))
+    sentiment_html = _sentiment_section_html(news_sentiment)
     return f"""
 <div style="background:#1a1f2e;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid {color}">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
@@ -316,9 +444,11 @@ def stock_card_th(stock: dict, analysis: str, chart_b64: str = "") -> str:
     </div>
   </div>
   <div style="color:#a0a6b3;font-size:0.82em;margin-bottom:12px">
-    Volume: {stock['volume']:,} &nbsp;|&nbsp; {pe}
+    {pe}Volume: {stock['volume']:,}
   </div>
-  <div style="background:#111827;border-radius:8px;padding:14px;color:#d1d5db;font-size:0.95em;line-height:1.6">
+  {news_html}
+  {sentiment_html}
+  <div style="background:#111827;border-radius:8px;padding:14px;color:#d1d5db;font-size:0.95em;line-height:1.6;margin-top:12px">
     <div style="color:#f0b90b;font-weight:bold;margin-bottom:8px">🍺 Beer มองว่า...</div>
     {analysis.replace(chr(10), '<br>')}
   </div>
@@ -339,8 +469,8 @@ def index_pill(name: str, d: dict | None) -> str:
 
 
 def build_html_report_th(gainers_data, losers_data, index_snap, date_str) -> str:
-    gainer_cards = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart","")) for s in gainers_data)
-    loser_cards  = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart","")) for s in losers_data)
+    gainer_cards = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart",""), s.get("news_sentiment","")) for s in gainers_data)
+    loser_cards  = "".join(stock_card_th(s["stock"], s["analysis"], s.get("chart",""), s.get("news_sentiment","")) for s in losers_data)
     index_row    = "".join(index_pill(k, index_snap.get(k)) for k in ["SET","SET50","mai"])
 
     return f"""<!DOCTYPE html>
@@ -425,12 +555,13 @@ def main():
         symbol = ticker.replace(".BK","")
         print(f"  [{symbol}] {pct:+.2f}%", end=" → ", flush=True)
         try:
-            stock    = get_stock_context_th(ticker)
-            query    = "หุ้นขึ้นแรง momentum FOMO วินัย trend ตลาดไทย"
-            ctx      = search_knowledge(query, posts, embeddings, embed_model)
-            analysis = beer_analysis_th(stock, ctx)
-            chart    = generate_chart_b64(ticker)
-            gainers_data.append({"stock": stock, "analysis": analysis, "chart": chart})
+            stock          = get_stock_context_th(ticker)
+            query          = "หุ้นขึ้นแรง momentum FOMO วินัย trend ตลาดไทย"
+            ctx            = search_knowledge(query, posts, embeddings, embed_model)
+            analysis       = beer_analysis_th(stock, ctx)
+            news_sentiment = analyze_news_sentiment(stock.get("news_list", []), symbol)
+            chart          = generate_mini_chart_b64(ticker)
+            gainers_data.append({"stock": stock, "analysis": analysis, "news_sentiment": news_sentiment, "chart": chart})
             print("OK")
         except Exception as e:
             print(f"Error: {e}")
@@ -440,12 +571,13 @@ def main():
         symbol = ticker.replace(".BK","")
         print(f"  [{symbol}] {pct:+.2f}%", end=" → ", flush=True)
         try:
-            stock    = get_stock_context_th(ticker)
-            query    = "หุ้นลง ตัดขาดทุน loss ยอมรับ จิตใจ อารมณ์ ตลาดไทย"
-            ctx      = search_knowledge(query, posts, embeddings, embed_model)
-            analysis = beer_analysis_th(stock, ctx)
-            chart    = generate_chart_b64(ticker)
-            losers_data.append({"stock": stock, "analysis": analysis, "chart": chart})
+            stock          = get_stock_context_th(ticker)
+            query          = "หุ้นลง ตัดขาดทุน loss ยอมรับ จิตใจ อารมณ์ ตลาดไทย"
+            ctx            = search_knowledge(query, posts, embeddings, embed_model)
+            analysis       = beer_analysis_th(stock, ctx)
+            news_sentiment = analyze_news_sentiment(stock.get("news_list", []), symbol)
+            chart          = generate_mini_chart_b64(ticker)
+            losers_data.append({"stock": stock, "analysis": analysis, "news_sentiment": news_sentiment, "chart": chart})
             print("OK")
         except Exception as e:
             print(f"Error: {e}")

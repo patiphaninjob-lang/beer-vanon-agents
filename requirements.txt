@@ -4,3 +4,5 @@ numpy
 sentence-transformers
 python-dotenv
 mplfinance
+matplotlib
+pillow
