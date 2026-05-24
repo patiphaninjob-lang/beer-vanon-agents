@@ -536,6 +536,11 @@ function renderMarketOverview() {
   const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
+  const INDEX_TV   = {
+    dji:  'https://www.tradingview.com/chart/?symbol=DJ%3ADJI',
+    spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
+    ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
+  };
 
   const indexCards = mi && Object.keys(mi).length
     ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
@@ -549,7 +554,7 @@ function renderMarketOverview() {
             <div class="index-card-name">${INDEX_META[k]}</div>
             <div class="index-card-price">${priceStr}</div>
             <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
-            ${d.chart_b64 ? `<div class="index-card-chart"><img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy"></div>` : ''}
+            ${d.chart_b64 ? `<div class="index-card-chart"><a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer"></a></div>` : ''}
           </div>`;
       }).join('')
     : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
