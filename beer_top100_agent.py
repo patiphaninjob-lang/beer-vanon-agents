@@ -275,7 +275,7 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
             f"- {n['date']} (ราคา ${n.get('price','?')}, {'+' if n.get('pct_change',0)>0 else ''}{n.get('pct_change','?')}%): {n['note']}"
             for n in user_notes[:3]
         ]
-        notes_ctx = "\n\n📌 มุมมองที่นักลงทุนเคยบันทึกไว้:\n" + "\n".join(lines)
+        notes_ctx = "\n\n🌡️ อารมณ์ตลาดที่นักลงทุนเคยจับได้:\n" + "\n".join(lines)
 
     prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 
@@ -301,8 +301,8 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
 **🍺 Beer มองว่า:**
 SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ{'''
 
-**🗒️ เทียบกับมุมมองที่เคยบันทึก:**
-ตอนนั้นคิดอย่างไร ตอนนี้เป็นไปตามที่คาดไว้ไหม ปรับมุมมองอะไรได้บ้าง''' if user_notes else ''}"""
+**🌡️ อารมณ์ตลาดเมื่อก่อน vs วันนี้:**
+ตอนนั้นจับอารมณ์ว่าอะไร (กลัว/โลภ/ไม่แน่ใจ) — ราคาที่เกิดขึ้นจริงยืนยันหรือหักล้างการอ่านอารมณ์ครั้งนั้น อารมณ์ตลาดตอนนี้เปลี่ยนไปอย่างไร''' if user_notes else ''}"""
 
     resp = client.chat.completions.create(
         model=GROQ_MODEL,
@@ -387,7 +387,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
         )
         notes_html = (
             f'<div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px">'
-            f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">🗒️ มุมมองที่ฉันเคยบันทึก</div>'
+            f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">🌡️ อารมณ์ตลาดที่ฉันเคยจับได้</div>'
             f'{items}</div>'
         )
 

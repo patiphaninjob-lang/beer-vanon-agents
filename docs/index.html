@@ -214,8 +214,9 @@
     <button class="modal-close" onclick="closeNoteModal()">✕</button>
     <h2>📝 มุมมองของฉัน — <span id="noteModalTicker" style="color:#f0b90b"></span></h2>
     <div id="existingNotesContainer"></div>
-    <div style="color:#6b7280;font-size:0.78em;margin-bottom:4px">เพิ่มมุมมองใหม่ — พิมพ์แบบไหนก็ได้</div>
-    <textarea id="noteInput" placeholder="เขียนมุมมองของคุณได้เลย ภาษาอะไรก็ได้ ไม่ต้องสวย เดี๋ยว AI ช่วยจัดให้..."></textarea>
+    <div style="color:#6b7280;font-size:0.78em;margin-bottom:6px">🌡️ บันทึกอารมณ์ตลาด — <span style="color:#f0b90b">ตลาดรู้สึกอะไรกับหุ้นตัวนี้ตอนนี้?</span></div>
+    <div style="color:#4b5563;font-size:0.73em;margin-bottom:8px;line-height:1.5">เช่น: ตลาดกลัว/โลภ · ใครกำลังซื้อ/ขาย · ข่าวสร้างอารมณ์แบบไหน · คนส่วนใหญ่คิดอะไรกับหุ้นตัวนี้ · ตัวเองรู้สึกอยากได้หรืออยากเทขาย เพราะอะไร</div>
+    <textarea id="noteInput" placeholder="เช่น: ตลาดตื่นกลัวหลังข่าว แต่ยังไม่ panic จริง... / คนส่วนใหญ่หวังว่าจะกลับขึ้น แต่ยังไม่มีใครกล้าซื้อเพิ่ม / โลภชัดเจน ทุกคนกำลัง FOMO..."></textarea>
     <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
     <div class="modal-actions" style="justify-content:space-between">
       <button class="btn-secondary" id="polishBtn" onclick="polishNote()" title="ให้ AI จัดภาษาให้อ่านง่ายขึ้น">✨ ปรับแต่งภาษา</button>
@@ -414,7 +415,7 @@ async function polishNote() {
         max_tokens: 300,
         messages: [{
           role: 'user',
-          content: `คุณช่วยเรียบเรียงมุมมองการลงทุนนี้ให้ภาษาดีขึ้น อ่านง่ายขึ้น ดูเป็นผู้เป็นคนมากขึ้น แต่ยังคงเนื้อหาและมุมมองเดิมของเจ้าของไว้ครบถ้วน อย่าเพิ่มข้อมูลใหม่ที่เจ้าของไม่ได้พูดถึง ตอบเฉพาะข้อความที่เรียบเรียงแล้ว ไม่ต้องพูดนำหรือสรุป:\n\n"${raw}"`
+          content: `คุณช่วยเรียบเรียงบันทึกอารมณ์ตลาดนี้ให้ชัดเจนขึ้น อ่านง่ายขึ้น แต่ต้องรักษาความรู้สึก/การสังเกตเดิมของเจ้าของไว้ทุกอย่าง หลักการ: บันทึกนี้คือการจับอารมณ์ตลาด (กลัว/โลภ/ไม่แน่ใจ) และพฤติกรรมนักลงทุน ตามแนวคิด Beer Vanon ที่สอนว่า "จับอารมณ์ตลาดให้ได้ก่อนทุกอย่าง" ห้ามเพิ่มการวิเคราะห์ใหม่ที่เจ้าของไม่ได้พูดถึง ตอบเฉพาะข้อความที่เรียบเรียงแล้ว ไม่ต้องพูดนำหรือสรุป:\n\n"${raw}"`
         }]
       })
     });
