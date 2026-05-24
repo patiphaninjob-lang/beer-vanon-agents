@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.5.0
+// @version      1.6.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -256,18 +256,39 @@
   // ── Pine Script Chart Markers ─────────────────────────────
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+  // ถ้า archive_date ตรงกับวันหยุด (เสาร์/อาทิตย์) ให้เลื่อนมาวันศุกร์ก่อนหน้า
+  function nearestTradingDay(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00Z');
+    const dow = d.getUTCDay(); // 0=Sun, 6=Sat
+    if (dow === 0) d.setUTCDate(d.getUTCDate() - 2); // Sun → Fri
+    if (dow === 6) d.setUTCDate(d.getUTCDate() - 1); // Sat → Fri
+    const isWeekend = (dow === 0 || dow === 6);
+    return { dateStr: d.toISOString().slice(0, 10), isWeekend };
+  }
+
   function generatePineScript(ticker, notes) {
-    const dates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
-    if (!dates.length) return null;
-    const conds = dates.map(d => {
-      const [y, m, day] = d.split('-').map(Number);
-      return `(year==${y} and month==${m} and dayofmonth==${day})`;
-    }).join(' or ');
-    return `//@version=6
-indicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=50)
-isMyTicker = syminfo.ticker == "${ticker}"
-isNoteDay = ${conds}
-plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")`;
+    const rawDates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
+    if (!rawDates.length) return null;
+
+    const conds = rawDates.map(d => {
+      const { dateStr, isWeekend } = nearestTradingDay(d);
+      const [y, m, day] = dateStr.split('-').map(Number);
+      const label = isWeekend ? '💡 วันหยุด' : '💡';
+      return { cond: `(year==${y} and month==${m} and dayofmonth==${day})`, label, isWeekend };
+    });
+
+    // Build separate plotshape for normal days and weekend notes
+    const normalConds = conds.filter(c => !c.isWeekend).map(c => c.cond).join(' or ');
+    const weekendConds = conds.filter(c => c.isWeekend).map(c => c.cond).join(' or ');
+
+    let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\n`;
+    if (normalConds) {
+      script += `isNoteDay = ${normalConds}\nplotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")\n`;
+    }
+    if (weekendConds) {
+      script += `isHolidayNote = ${weekendConds}\nplotshape(isMyTicker and isHolidayNote, style=shape.labeldown, location=location.abovebar, color=color.new(color.orange,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note (วันหยุด)")\n`;
+    }
+    return script.trim();
   }
 
   // Find the Pine Editor's .cm-content (not other CM6 instances on page)
@@ -523,7 +544,7 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
   }
 
   // ── Init ───────────────────────────────────────────────────
-  log('userscript v1.5.0 booting on', location.href);
+  log('userscript v1.6.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
