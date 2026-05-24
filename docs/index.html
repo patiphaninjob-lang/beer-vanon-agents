@@ -365,7 +365,7 @@ function fmtCap(cap) {
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-function tradingViewSymbolUrl(value) {
+function tradingViewChartUrl(value) {
   const raw = String(value || '').trim();
   if (!raw) return '#';
   let symbol = raw;
@@ -378,8 +378,12 @@ function tradingViewSymbolUrl(value) {
     }
   } catch (e) {}
   symbol = symbol.replace(/^.*\/symbols\//, '').replace(/\/.*$/, '').trim();
-  const tvSymbol = symbol.replace(/:/g, '-').replace(/\s+/g, '');
-  return tvSymbol ? `https://www.tradingview.com/symbols/${encodeURIComponent(tvSymbol).replace(/%2D/g, '-')}/` : '#';
+  if (!symbol.includes(':') && symbol.includes('-')) {
+    const parts = symbol.split('-');
+    symbol = `${parts.shift()}:${parts.join('-')}`;
+  }
+  symbol = symbol.replace(/\s+/g, '');
+  return symbol ? `chart.html?symbol=${encodeURIComponent(symbol)}` : '#';
 }
 function toBase64(str) {
   return btoa(unescape(encodeURIComponent(str)));
@@ -607,9 +611,9 @@ function renderMarketOverview() {
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
   const INDEX_TV   = {
-    dji:  'https://www.tradingview.com/symbols/DJ-DJI/',
-    spx:  'https://www.tradingview.com/symbols/SP-SPX/',
-    ixic: 'https://www.tradingview.com/symbols/NASDAQ-COMP/'
+    dji:  'chart.html?symbol=DJ%3ADJI',
+    spx:  'chart.html?symbol=SP%3ASPX',
+    ixic: 'chart.html?symbol=NASDAQ%3ACOMP'
   };
 
   const indexCards = mi && Object.keys(mi).length
@@ -902,7 +906,7 @@ function cardHTML(s) {
 
   // onclick handler stored in data attribute to avoid inline quote hell
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
-  const tvUrl = tradingViewSymbolUrl(s.tv_url || s.ticker);
+  const tvUrl = tradingViewChartUrl(s.tv_url || s.ticker);
 
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
