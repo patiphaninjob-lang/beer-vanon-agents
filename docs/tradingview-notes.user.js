@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.2.0
+// @version      1.3.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -233,98 +233,98 @@
     if (footLink && dates.length) footLink.href = `https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=${dates[0]}`;
   }
 
-  // ── Chart Markers ─────────────────────────────────────────
-  async function findTVChart(timeoutMs = 15000) {
-    const deadline = Date.now() + timeoutMs;
-    while (Date.now() < deadline) {
-      // Method 1: window.tvWidget (charting library standard)
-      if (window.tvWidget && typeof window.tvWidget.activeChart === 'function') {
-        log('found tvWidget via window.tvWidget');
-        return window.tvWidget.activeChart();
-      }
-      // Method 2: scan all window keys for chart widget
-      for (const key of Object.keys(window)) {
-        try {
-          const obj = window[key];
-          if (!obj || typeof obj !== 'object') continue;
-          if (typeof obj.activeChart === 'function') {
-            log('found widget at window.' + key);
-            return obj.activeChart();
-          }
-          // some versions expose .chart() directly
-          if (typeof obj.chart === 'function') {
-            const c = obj.chart();
-            if (c && typeof c.createShape === 'function') {
-              log('found chart at window.' + key + '.chart()');
-              return c;
-            }
-          }
-        } catch {}
-      }
-      await new Promise(r => setTimeout(r, 600));
-    }
-    log('tvWidget not found after', timeoutMs, 'ms');
-    return null;
+  // ── Pine Script Chart Markers ─────────────────────────────
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  function generatePineScript(ticker, notes) {
+    const dates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
+    if (!dates.length) return null;
+    const conds = dates.map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return `(year==${y} and month==${m} and dayofmonth==${day})`;
+    }).join(' or ');
+    return `//@version=5
+indicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=50)
+isMyTicker = syminfo.ticker == "${ticker}"
+isNoteDay = ${conds}
+plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")`;
   }
 
   async function injectChartMarkers(ticker, notes) {
-    if (markersTicker === ticker) return; // already injected this ticker
-    markersTicker = ticker; // claim it (prevent double-run)
+    if (markersTicker === ticker) return;
+    markersTicker = ticker;
 
-    const chart = await findTVChart();
-    if (!chart) {
-      log('cannot inject markers — no chart API');
+    const script = generatePineScript(ticker, notes);
+    if (!script) { log('no archive_dates to plot'); return; }
+
+    log('v1.3: Pine Script injection for', ticker);
+
+    // Step 1: Find Pine Editor button — scan DOM by data-name / title / aria-label
+    await sleep(2000); // wait for TradingView to fully load
+    const pineBtn = findByAttr([
+      '[data-name="pine-script"]', '[data-name="script"]',
+      '[data-name="pine-editor"]', '[data-tooltip*="Pine"]',
+      '[title*="Pine Editor"]', '[aria-label*="Pine Editor"]',
+    ]) || findBtnByText(['Pine Editor', 'Pine Script']);
+
+    if (!pineBtn) {
+      // Log all data-name elements so we can fix selector next time
+      const names = [...document.querySelectorAll('[data-name]')].map(e => e.getAttribute('data-name'));
+      log('Pine btn NOT found. data-names on page:', [...new Set(names)].join(', '));
       return;
     }
-    if (typeof chart.createShape !== 'function') {
-      log('createShape not available on chart object');
+    log('Pine btn found:', pineBtn.getAttribute('data-name') || pineBtn.textContent?.trim());
+    pineBtn.click();
+    await sleep(1800);
+
+    // Step 2: Find CodeMirror editor instance
+    const cmEl = document.querySelector('.tv-script-editor-container .CodeMirror')
+              || document.querySelector('.script-editor-wrapper .CodeMirror')
+              || [...document.querySelectorAll('.CodeMirror')].pop(); // last CM on page
+
+    if (!cmEl?.CodeMirror) {
+      log('CodeMirror not found after opening Pine Editor');
       return;
     }
+    const cm = cmEl.CodeMirror;
+    cm.setValue(script);
+    cm.focus();
+    log('script set in editor');
+    await sleep(600);
 
-    // group notes by archive_date
-    const groups = {};
-    for (const n of notes) {
-      const d = n.archive_date || n.date;
-      if (!d) continue;
-      (groups[d] ||= []).push(n);
+    // Step 3: Click "Add to chart"
+    const addBtn = findByAttr([
+      '[data-name="add-to-chart"]', '[data-tooltip*="Add to chart"]',
+      '[title*="Add to chart"]', '[aria-label*="Add to chart"]',
+    ]) || findBtnByText(['Add to chart', 'Add to Chart']);
+
+    if (!addBtn) {
+      log('"Add to chart" btn not found');
+      return;
     }
+    addBtn.click();
+    log('💡 Pine Script added to chart for', ticker);
+    await sleep(800);
 
-    let injected = 0;
-    for (const [dateStr, dayNotes] of Object.entries(groups)) {
-      // UTC midnight of that date as unix seconds
-      const timestamp = Math.floor(new Date(dateStr + 'T00:00:00Z').getTime() / 1000);
-      const price     = dayNotes[0]?.price || 0;
-      const text      = dayNotes.map(n =>
-        `💡 ${n.date || dateStr}${n.time ? ' · ' + n.time : ''}\n${n.note}`
-      ).join('\n\n').slice(0, 500);
+    // Step 4: Collapse/close Pine Editor so it doesn't block the chart
+    const closeBtn = findByAttr([
+      '[data-name="close"]', '[aria-label="Close"]', '[title="Close"]',
+    ]) || findBtnByText(['Close', 'ปิด']);
+    if (closeBtn) { closeBtn.click(); log('editor closed'); }
+  }
 
-      try {
-        chart.createShape(
-          { time: timestamp, price: price },
-          {
-            shape: 'note',
-            text,
-            lock: false,
-            disableSelection: false,
-            disableSave: false,
-            disableUndo: false,
-            overrides: {
-              backgroundColor: '#f0b90b',
-              backgroundTransparency: 10,
-              borderColor: '#f0b90b',
-              color: '#000000',
-              fontsize: 12,
-              bold: true,
-            }
-          }
-        );
-        injected++;
-        log('marker created at', dateStr, 'price', price);
-      } catch (e) {
-        log('createShape at', dateStr, 'failed:', e.message);
-      }
+  function findByAttr(selectors) {
+    for (const s of selectors) {
+      try { const el = document.querySelector(s); if (el) return el; } catch {}
     }
-    log('injected', injected, '/', Object.keys(groups).length, 'markers for', ticker);
+    return null;
+  }
+  function findBtnByText(texts) {
+    for (const el of document.querySelectorAll('button,[role="button"],[role="tab"]')) {
+      const t = (el.textContent || el.getAttribute('aria-label') || el.getAttribute('title') || '').trim();
+      if (texts.some(x => t.toLowerCase().includes(x.toLowerCase()))) return el;
+    }
+    return null;
   }
 
   // ── Polling: detect ticker change ──────────────────────────
@@ -344,7 +344,7 @@
     } else {
       setButton(count);
       if (panelOpen) renderPanel();
-      injectChartMarkers(t, notesCache[t]); // inject 💡 บนแท่งเทียนของวันที่มี note
+      injectChartMarkers(t, notesCache[t]).catch(e => log('injectChartMarkers error:', e.message));
     }
   }
 
