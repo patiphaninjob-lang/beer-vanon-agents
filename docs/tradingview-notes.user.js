@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.6.0
+// @version      1.7.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -283,10 +283,10 @@
 
     let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\n`;
     if (normalConds) {
-      script += `isNoteDay = ${normalConds}\nplotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")\n`;
+      script += `isNoteDay = ${normalConds}\nplotshape((isMyTicker and isNoteDay) ? close : na, style=shape.labeldown, location=location.absolute, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")\n`;
     }
     if (weekendConds) {
-      script += `isHolidayNote = ${weekendConds}\nplotshape(isMyTicker and isHolidayNote, style=shape.labeldown, location=location.abovebar, color=color.new(color.orange,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note (วันหยุด)")\n`;
+      script += `isHolidayNote = ${weekendConds}\nplotshape((isMyTicker and isHolidayNote) ? close : na, style=shape.labeldown, location=location.absolute, color=color.new(color.orange,0), textcolor=color.black, text="💡 วันหยุด", size=size.small, title="Beer Note (วันหยุด)")\n`;
     }
     return script.trim();
   }
@@ -544,7 +544,7 @@
   }
 
   // ── Init ───────────────────────────────────────────────────
-  log('userscript v1.6.0 booting on', location.href);
+  log('userscript v1.7.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
