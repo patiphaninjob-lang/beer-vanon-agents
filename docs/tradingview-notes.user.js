@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.9.0
+// @version      1.9.1
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -298,8 +298,8 @@
       const tooltip = escapePine(lines.join('\n'));
       const cond = `isMyTicker and (year==${y} and month==${m} and dayofmonth==${day})`;
 
-      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, na, "${labelText}", tooltip="${tooltip}", style=label.style_label_down, yloc=yloc.abovebar, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
-      script += `if (${cond}) and close < open\n    label.new(bar_index, na, "${labelText}", tooltip="${tooltip}", style=label.style_label_up, yloc=yloc.belowbar, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
+      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, close, "${labelText}", tooltip="${tooltip}", style=label.style_label_down, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
+      script += `if (${cond}) and close < open\n    label.new(bar_index, close, "${labelText}", tooltip="${tooltip}", style=label.style_label_up, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
     });
 
     return script.trim();
