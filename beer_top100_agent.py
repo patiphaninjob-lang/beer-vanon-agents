@@ -259,7 +259,7 @@ def combined_analysis(stock: dict, knowledge_ctx: str) -> str:
     prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 
 หลักการ Beer Vanon (อ้างอิง):
-{BEER_DNA[:1200]}
+{BEER_DNA[:2000]}
 
 เนื้อหาเพิ่มเติม:
 {knowledge_ctx}
@@ -284,7 +284,7 @@ SQ ของหุ้นนี้ น่าสนใจหรือผ่าน 
         model=GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4,
-        max_tokens=280,
+        max_tokens=400,
     )
     return resp.choices[0].message.content.strip()
 
