@@ -22,7 +22,13 @@
     }
     select:focus, input:focus { border-color: #6366f1; }
     input[type=search] { min-width: 130px; }
-    .count-badge { color: #6b7280; font-size: 0.82em; white-space: nowrap; margin-left: auto; }
+    .count-badge { color: #6b7280; font-size: 0.82em; white-space: nowrap; }
+    .settings-btn {
+      background: #21262d; border: 1px solid #30363d; color: #8a8f98;
+      border-radius: 6px; padding: 5px 9px; font-size: 14px; cursor: pointer;
+      height: 32px; display: flex; align-items: center;
+    }
+    .settings-btn:hover { border-color: #6366f1; color: #e6edf3; }
 
     /* ── Summary bar ── */
     .summary {
@@ -58,10 +64,28 @@
       display: inline-block; font-size: 0.69em; color: #6b7280;
       background: #1e2532; border-radius: 10px; padding: 1px 7px; margin-left: 6px;
     }
-
-    /* TV link */
     .tv-link { color: #6366f1; font-size: 0.79em; text-decoration: none; display: inline-block; margin-top: 2px; }
     .tv-link:hover { color: #818cf8; text-decoration: underline; }
+
+    /* ── Note button ── */
+    .note-btn {
+      font-size: 0.75em; padding: 2px 8px; border-radius: 4px; cursor: pointer;
+      border: 1px solid #30363d; background: #21262d; color: #8a8f98;
+      margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .note-btn:hover { border-color: #f0b90b; color: #f0b90b; }
+    .note-btn.has-notes { border-color: #f0b90b40; color: #f0b90b; background: #f0b90b10; }
+
+    /* ── Past notes on card ── */
+    .card-notes { margin-top: 8px; }
+    .card-note-item {
+      background: #111827; border-left: 2px solid #f0b90b; border-radius: 0 6px 6px 0;
+      padding: 7px 10px; margin-bottom: 5px; font-size: 0.82em;
+    }
+    .card-note-meta { color: #6b7280; font-size: 0.78em; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .card-note-meta a { color: #6366f1; text-decoration: none; font-size: 0.9em; }
+    .card-note-meta a:hover { text-decoration: underline; }
+    .card-note-text { color: #d1d5db; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
 
     /* ── News ── */
     .news-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2532; }
@@ -81,6 +105,68 @@
     }
     .analysis-label { color: #f0b90b; font-weight: bold; font-size: 0.8em; margin-bottom: 4px; }
 
+    /* ── Modal overlay ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999; padding: 16px;
+    }
+    .modal {
+      background: #161b22; border: 1px solid #30363d; border-radius: 12px;
+      padding: 22px; width: 100%; max-width: 520px; max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal h2 { color: #fff; font-size: 1.05em; margin-bottom: 14px; }
+    .modal p { color: #8a8f98; font-size: 0.85em; line-height: 1.6; margin-bottom: 12px; }
+    .modal input[type=password], .modal input[type=text], .modal textarea {
+      width: 100%; background: #0d1117; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 8px 10px; font-size: 13px; outline: none;
+      font-family: inherit;
+    }
+    .modal input:focus, .modal textarea:focus { border-color: #6366f1; }
+    .modal textarea { min-height: 100px; resize: vertical; line-height: 1.6; margin-top: 10px; }
+    .modal-actions { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+    .btn-primary {
+      background: #6366f1; color: #fff; border: none; border-radius: 6px;
+      padding: 7px 16px; font-size: 13px; cursor: pointer; font-weight: 500;
+    }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-primary:disabled { background: #374151; color: #6b7280; cursor: not-allowed; }
+    .btn-secondary {
+      background: transparent; color: #8a8f98; border: 1px solid #30363d;
+      border-radius: 6px; padding: 7px 16px; font-size: 13px; cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: #6b7280; color: #e6edf3; }
+    .modal-close { float: right; background: none; border: none; color: #6b7280; font-size: 1.2em; cursor: pointer; margin-left: 10px; }
+    .modal-close:hover { color: #e6edf3; }
+
+    /* ── Existing notes in modal ── */
+    .existing-notes { margin-bottom: 14px; }
+    .existing-label { color: #6b7280; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .existing-note-item {
+      background: #0d1117; border-left: 2px solid #f0b90b; border-radius: 0 5px 5px 0;
+      padding: 7px 10px; margin-bottom: 6px;
+    }
+    .existing-note-meta { color: #6b7280; font-size: 0.78em; margin-bottom: 3px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .existing-note-meta a { color: #6366f1; text-decoration: none; }
+    .existing-note-meta a:hover { text-decoration: underline; }
+    .existing-note-text { color: #d1d5db; font-size: 0.85em; line-height: 1.5; white-space: pre-wrap; }
+    .delete-note-btn { margin-left: auto; background: none; border: none; color: #4b5563; cursor: pointer; font-size: 0.85em; padding: 0 4px; }
+    .delete-note-btn:hover { color: #ea3943; }
+
+    /* ── Settings help ── */
+    .pat-help { background: #0d1117; border-radius: 6px; padding: 10px; font-size: 0.8em; color: #6b7280; line-height: 1.7; margin-top: 8px; }
+    .pat-help code { background: #21262d; padding: 1px 5px; border-radius: 3px; color: #93c5fd; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed; bottom: 20px; right: 20px; background: #1a1f2e;
+      border: 1px solid #30363d; border-radius: 8px; padding: 10px 16px;
+      color: #e6edf3; font-size: 0.87em; z-index: 9999;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
     /* ── States ── */
     .state-msg { text-align: center; padding: 60px 20px; color: #6b7280; font-size: 1em; }
 
@@ -93,20 +179,71 @@
 </head>
 <body>
 
+<!-- ── Settings Modal ── -->
+<div id="settingsOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeSettings()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSettings()">✕</button>
+    <h2>⚙️ ตั้งค่า</h2>
+
+    <div style="margin-bottom:14px">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">GitHub Personal Access Token</div>
+      <p>ใช้สำหรับบันทึกมุมมองของคุณลง GitHub repo</p>
+      <input type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+      <div class="pat-help">
+        วิธีสร้าง: GitHub → Settings → Developer settings → Personal access tokens → Fine-grained<br>
+        Repository: <code>beer-vanon-agents</code> | Permissions → Contents: <code>Read and write</code>
+      </div>
+    </div>
+
+    <div style="margin-bottom:6px">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Groq API Key <span style="color:#f0b90b;font-size:0.8em">(สำหรับปุ่ม ✨ ปรับแต่งภาษา)</span></div>
+      <p>ใช้คีย์เดิมที่มีอยู่แล้วได้เลย</p>
+      <input type="password" id="groqKeyInput" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeSettings()">ยกเลิก</button>
+      <button class="btn-primary" onclick="saveSettings()">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Note Modal ── -->
+<div id="noteOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeNoteModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeNoteModal()">✕</button>
+    <h2>📝 มุมมองของฉัน — <span id="noteModalTicker" style="color:#f0b90b"></span></h2>
+    <div id="existingNotesContainer"></div>
+    <div style="color:#6b7280;font-size:0.78em;margin-bottom:4px">เพิ่มมุมมองใหม่ — พิมพ์แบบไหนก็ได้</div>
+    <textarea id="noteInput" placeholder="เขียนมุมมองของคุณได้เลย ภาษาอะไรก็ได้ ไม่ต้องสวย เดี๋ยว AI ช่วยจัดให้..."></textarea>
+    <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
+    <div class="modal-actions" style="justify-content:space-between">
+      <button class="btn-secondary" id="polishBtn" onclick="polishNote()" title="ให้ AI จัดภาษาให้อ่านง่ายขึ้น">✨ ปรับแต่งภาษา</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn-secondary" onclick="closeNoteModal()">ยกเลิก</button>
+        <button class="btn-primary" id="saveNoteBtn" onclick="submitNote()">💾 บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Header ── -->
 <div class="header">
   <div class="logo">🍺 Beer Top 100</div>
   <div class="controls">
-    <select id="dateSel" onchange="loadDate(this.value)" title="เลือกวัน"></select>
+    <select id="dateSel" onchange="loadDate(this.value)"></select>
     <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
-    <select id="sectorSel" onchange="renderCards()" title="กรอง Sector">
+    <select id="sectorSel" onchange="renderCards()">
       <option value="">ทุก Sector</option>
     </select>
-    <select id="sortSel" onchange="renderCards()" title="เรียง">
+    <select id="sortSel" onchange="renderCards()">
       <option value="rank">Market Cap Rank</option>
-      <option value="gain">% เปลี่ยนแปลง ↑ (กำไรสุด)</option>
-      <option value="loss">% เปลี่ยนแปลง ↓ (ขาดทุนสุด)</option>
+      <option value="gain">% เปลี่ยนแปลง ↑</option>
+      <option value="loss">% เปลี่ยนแปลง ↓</option>
+      <option value="notes">มีโน้ตของฉัน</option>
     </select>
     <span class="count-badge" id="countBadge"></span>
+    <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า GitHub Token">⚙️</button>
   </div>
 </div>
 
@@ -114,50 +251,261 @@
 <div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
 
 <script>
-let currentData = null;
+const REPO       = 'patiphaninjob-lang/beer-vanon-agents';
+const NOTES_FILE = 'docs/notes/notes.json';
+const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
-const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+let currentData     = null;
+let notesCache      = {};
+let notesSha        = null;
+let activeNoteTicker = null;
+let activeNoteStock  = null;
 
+// ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
   const [y,m,day] = d.split('-');
   return `${parseInt(day)} ${MONTHS_TH[parseInt(m)]} ${y}`;
 }
-
 function fmtCap(cap) {
   if (!cap) return 'N/A';
   if (cap >= 1e12) return `$${(cap/1e12).toFixed(2)}T`;
   if (cap >= 1e9)  return `$${(cap/1e9).toFixed(1)}B`;
   return `$${(cap/1e6).toFixed(0)}M`;
 }
-
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+function toBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function showToast(msg, color='#16c784') {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.borderLeftColor = color;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
 
+// ── Notes ─────────────────────────────────────────────────────
+async function loadNotes() {
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${NOTES_FILE}?_=` + Date.now());
+    if (r.ok) notesCache = await r.json();
+    // get SHA for write operations
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`);
+    if (api.ok) notesSha = (await api.json()).sha;
+  } catch(e) { notesCache = {}; }
+}
+
+async function saveNoteToGitHub(ticker, noteText) {
+  const pat = localStorage.getItem('gh_pat');
+  if (!pat) { showSettings(); return false; }
+
+  const note = {
+    id: Date.now().toString(),
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'}),
+    note: noteText.trim(),
+    price: activeNoteStock?.price || 0,
+    pct_change: activeNoteStock?.pct_change || 0,
+    archive_date: currentData?.date || ''
+  };
+
+  if (!notesCache[ticker]) notesCache[ticker] = [];
+  notesCache[ticker].unshift(note);
+
+  const body = {
+    message: `📝 Note: ${ticker} ${note.date}`,
+    content: toBase64(JSON.stringify(notesCache, null, 2))
+  };
+  if (notesSha) body.sha = notesSha;
+
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${pat}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  if (r.ok) {
+    notesSha = (await r.json()).content.sha;
+    return true;
+  } else {
+    const err = await r.json();
+    if (r.status === 401 || r.status === 403) showSettings();
+    else showToast(`❌ ${err.message}`, '#ea3943');
+    notesCache[ticker].shift(); // rollback
+    return false;
+  }
+}
+
+async function deleteNote(ticker, noteId) {
+  const pat = localStorage.getItem('gh_pat');
+  if (!pat) { showSettings(); return; }
+  if (!notesCache[ticker]) return;
+
+  const before = [...notesCache[ticker]];
+  notesCache[ticker] = notesCache[ticker].filter(n => n.id !== noteId);
+
+  const body = {
+    message: `🗑️ Delete note: ${ticker} ${noteId}`,
+    content: toBase64(JSON.stringify(notesCache, null, 2)),
+    sha: notesSha
+  };
+
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${pat}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  if (r.ok) {
+    notesSha = (await r.json()).content.sha;
+    showNoteModal(ticker, activeNoteStock); // refresh modal
+    renderCards();
+  } else {
+    notesCache[ticker] = before; // rollback
+    showToast('❌ ลบไม่ได้', '#ea3943');
+  }
+}
+
+// ── Settings Modal ────────────────────────────────────────────
+function showSettings() {
+  document.getElementById('patInput').value    = localStorage.getItem('gh_pat')    || '';
+  document.getElementById('groqKeyInput').value = localStorage.getItem('groq_key') || '';
+  document.getElementById('settingsOverlay').style.display = 'flex';
+}
+function closeSettings() {
+  document.getElementById('settingsOverlay').style.display = 'none';
+}
+function saveSettings() {
+  const pat  = document.getElementById('patInput').value.trim();
+  const groq = document.getElementById('groqKeyInput').value.trim();
+  if (pat)  localStorage.setItem('gh_pat',   pat);
+  if (groq) localStorage.setItem('groq_key', groq);
+  showToast('✅ บันทึกการตั้งค่าแล้ว');
+  closeSettings();
+}
+
+// ── Polish Note with Groq ─────────────────────────────────────
+async function polishNote() {
+  const raw = document.getElementById('noteInput').value.trim();
+  if (!raw) { showToast('⚠️ ยังไม่ได้พิมพ์มุมมอง', '#f0b90b'); return; }
+
+  const groqKey = localStorage.getItem('groq_key');
+  if (!groqKey) {
+    showToast('⚠️ ยังไม่ได้ตั้ง Groq API Key ใน Settings', '#f0b90b');
+    showSettings();
+    return;
+  }
+
+  const btn = document.getElementById('polishBtn');
+  const status = document.getElementById('polishStatus');
+  btn.disabled = true; btn.textContent = '✨ กำลังปรับแต่ง...';
+  status.textContent = '';
+
+  try {
+    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        temperature: 0.4,
+        max_tokens: 300,
+        messages: [{
+          role: 'user',
+          content: `คุณช่วยเรียบเรียงมุมมองการลงทุนนี้ให้ภาษาดีขึ้น อ่านง่ายขึ้น ดูเป็นผู้เป็นคนมากขึ้น แต่ยังคงเนื้อหาและมุมมองเดิมของเจ้าของไว้ครบถ้วน อย่าเพิ่มข้อมูลใหม่ที่เจ้าของไม่ได้พูดถึง ตอบเฉพาะข้อความที่เรียบเรียงแล้ว ไม่ต้องพูดนำหรือสรุป:\n\n"${raw}"`
+        }]
+      })
+    });
+
+    if (!r.ok) { const e = await r.json(); throw new Error(e.error?.message || r.status); }
+    const data = await r.json();
+    const polished = data.choices[0].message.content.trim();
+    document.getElementById('noteInput').value = polished;
+    status.textContent = '✅ ปรับแต่งแล้ว — ตรวจทาน แก้ไขเพิ่มเติมได้ก่อนกด บันทึก';
+    status.style.color = '#16c784';
+  } catch(e) {
+    status.textContent = `❌ ${e.message}`;
+    status.style.color = '#ea3943';
+  } finally {
+    btn.disabled = false; btn.textContent = '✨ ปรับแต่งภาษา';
+  }
+}
+
+// ── Note Modal ────────────────────────────────────────────────
+function showNoteModal(ticker, stockData) {
+  activeNoteTicker = ticker;
+  activeNoteStock  = stockData;
+
+  document.getElementById('noteModalTicker').textContent = ticker;
+  document.getElementById('noteInput').value = '';
+  document.getElementById('saveNoteBtn').disabled = false;
+  document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
+
+  const notes = notesCache[ticker] || [];
+  const container = document.getElementById('existingNotesContainer');
+  container.innerHTML = notes.length ? `
+    <div class="existing-notes">
+      <div class="existing-label">มุมมองที่ผ่านมา (${notes.length} รายการ)</div>
+      ${notes.map(n => `
+        <div class="existing-note-item">
+          <div class="existing-note-meta">
+            <span>${n.date}${n.time ? ' '+n.time : ''}</span>
+            <span>$${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)</span>
+            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูกราฟวันนั้น →</a>` : ''}
+            <button class="delete-note-btn" onclick="deleteNote('${ticker}','${n.id}')" title="ลบโน้ตนี้">🗑️</button>
+          </div>
+          <div class="existing-note-text">${esc(n.note)}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  document.getElementById('noteOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('noteInput').focus(), 100);
+}
+function closeNoteModal() {
+  document.getElementById('noteOverlay').style.display = 'none';
+}
+async function submitNote() {
+  const text = document.getElementById('noteInput').value.trim();
+  if (!text) return;
+  const btn = document.getElementById('saveNoteBtn');
+  btn.textContent = 'กำลังบันทึก...'; btn.disabled = true;
+  const ok = await saveNoteToGitHub(activeNoteTicker, text);
+  if (ok) {
+    showToast(`✅ บันทึกมุมมอง ${activeNoteTicker} แล้ว`);
+    closeNoteModal();
+    renderCards();
+  } else {
+    btn.textContent = '💾 บันทึก'; btn.disabled = false;
+  }
+}
+
+// ── Init & Data Loading ───────────────────────────────────────
 async function init() {
+  await loadNotes();
   try {
     const r = await fetch('data/index.json?_=' + Date.now());
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
     const dates = await r.json();
-
     const sel = document.getElementById('dateSel');
     dates.forEach(d => {
-      const opt = document.createElement('option');
-      opt.value = d;
-      opt.textContent = fmtDate(d);
-      sel.appendChild(opt);
+      const o = document.createElement('option');
+      o.value = d; o.textContent = fmtDate(d);
+      sel.appendChild(o);
     });
-
     if (dates.length) {
       const urlDate = new URLSearchParams(location.search).get('date');
-      const target = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
+      const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
       sel.value = target;
       await loadDate(target);
     } else {
       document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
     }
   } catch(e) {
-    document.getElementById('grid').innerHTML = `<div class="state-msg">โหลดไม่ได้: ${e.message}<br><small>ถ้าเปิดจาก file:// ให้ deploy บน GitHub Pages ก่อน</small></div>`;
+    document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
   }
 }
 
@@ -168,7 +516,6 @@ async function loadDate(date) {
     if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
     currentData = await r.json();
 
-    // rebuild sector list
     const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
     const sectorSel = document.getElementById('sectorSel');
     const prev = sectorSel.value;
@@ -179,7 +526,6 @@ async function loadDate(date) {
       if (s === prev) o.selected = true;
       sectorSel.appendChild(o);
     });
-
     renderSummary();
     renderCards();
   } catch(e) {
@@ -189,50 +535,32 @@ async function loadDate(date) {
 
 function renderSummary() {
   const s = currentData.summary;
-  const avgUp = s.avg_change >= 0;
+  const up = s.avg_change >= 0;
   document.getElementById('summaryBar').innerHTML = `
-    <div>
-      <span class="stat-label">วันที่</span>
-      <span class="stat-val">${fmtDate(currentData.date)}</span>
-    </div>
-    <div>
-      <span class="stat-label">ขึ้น / ลง</span>
-      <span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span>
-    </div>
-    <div>
-      <span class="stat-label">avg change</span>
-      <span class="stat-val ${avgUp?'up':'down'}">${avgUp?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span>
-    </div>
-    ${s.top_gainer?.ticker ? `<div>
-      <span class="stat-label">Top Gainer</span>
-      <span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span>
-    </div>` : ''}
-    ${s.top_loser?.ticker ? `<div>
-      <span class="stat-label">Top Loser</span>
-      <span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span>
-    </div>` : ''}
+    <div><span class="stat-label">วันที่</span><span class="stat-val">${fmtDate(currentData.date)}</span></div>
+    <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span></div>
+    <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span></div>
+    ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
+    ${s.top_loser?.ticker?`<div><span class="stat-label">Top Loser</span><span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span></div>`:''}
   `;
 }
 
 function renderCards() {
   if (!currentData) return;
-
   const search = document.getElementById('searchBox').value.toLowerCase().trim();
   const sector = document.getElementById('sectorSel').value;
   const sort   = document.getElementById('sortSel').value;
 
   let stocks = [...currentData.stocks];
-  if (search) stocks = stocks.filter(s =>
-    s.ticker.toLowerCase().includes(search) || (s.name||'').toLowerCase().includes(search)
-  );
+  if (search) stocks = stocks.filter(s => s.ticker.toLowerCase().includes(search) || (s.name||'').toLowerCase().includes(search));
   if (sector) stocks = stocks.filter(s => s.sector === sector);
+  if (sort === 'notes') stocks = stocks.filter(s => (notesCache[s.ticker]||[]).length > 0);
 
-  if (sort === 'gain') stocks.sort((a,b) => b.pct_change - a.pct_change);
-  else if (sort === 'loss') stocks.sort((a,b) => a.pct_change - b.pct_change);
-  else stocks.sort((a,b) => a.rank - b.rank);
+  if (sort === 'gain')  stocks.sort((a,b) => b.pct_change - a.pct_change);
+  else if (sort === 'loss')  stocks.sort((a,b) => a.pct_change - b.pct_change);
+  else if (sort !== 'notes') stocks.sort((a,b) => a.rank - b.rank);
 
   document.getElementById('countBadge').textContent = `${stocks.length} หุ้น`;
-
   if (!stocks.length) {
     document.getElementById('grid').innerHTML = '<div class="state-msg">ไม่พบหุ้นที่ตรงกับเงื่อนไข</div>';
     return;
@@ -245,22 +573,39 @@ function cardHTML(s) {
   const color = up ? '#16c784' : '#ea3943';
   const arrow = up ? '▲' : '▼';
   const pe    = s.pe_ratio ? ` | P/E ${s.pe_ratio}` : '';
+  const myNotes = notesCache[s.ticker] || [];
 
   const newsHTML = (s.news||[]).map(n => `
     <div class="news-item">
-      ${n.url
-        ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
-        : `<span class="news-title-plain">${esc(n.title)}</span>`}
+      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
+               : `<span class="news-title-plain">${esc(n.title)}</span>`}
       ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
-      <div class="news-meta">${esc([n.provider, n.date].filter(Boolean).join(' · '))}</div>
+      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
     </div>`).join('');
 
   const analysisHTML = s.analysis
     ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์</div>${esc(s.analysis)}</div>`
     : '';
 
+  const myNotesHTML = myNotes.length ? `
+    <div class="card-notes">
+      ${myNotes.slice(0,2).map(n => `
+        <div class="card-note-item">
+          <div class="card-note-meta">
+            📝 ${n.date}${n.time?' '+n.time:''} · $${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)
+            ${n.archive_date ? `<a href="?date=${n.archive_date}">ดูกราฟวันนั้น →</a>` : ''}
+          </div>
+          <div class="card-note-text">${esc(n.note.length>120 ? n.note.slice(0,120)+'...' : n.note)}</div>
+        </div>`).join('')}
+      ${myNotes.length > 2 ? `<div style="color:#6b7280;font-size:0.75em;padding:2px 0">และอีก ${myNotes.length-2} มุมมอง...</div>` : ''}
+    </div>
+  ` : '';
+
+  // onclick handler stored in data attribute to avoid inline quote hell
+  const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
+
   return `
-  <div class="card" style="border-left-color:${color}">
+  <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
     <div class="card-head">
       <div>
         <span class="card-rank">#${s.rank}</span>
@@ -276,11 +621,29 @@ function cardHTML(s) {
     <div class="card-meta">
       Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
     </div>
-    ${s.chart_b64 ? `<a href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>` : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+    ${s.chart_b64
+      ? `<a href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>`
+      : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+    ${myNotesHTML}
+    <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${analysisHTML}
   </div>`;
 }
+
+// ── Event delegation for note buttons ────────────────────────
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-ticker]');
+  if (!btn) return;
+  const ticker = btn.dataset.ticker;
+  const stock  = currentData?.stocks?.find(s => s.ticker === ticker);
+  if (stock) showNoteModal(ticker, stock);
+});
+
+// ── keyboard shortcuts ────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); }
+});
 
 init();
 </script>

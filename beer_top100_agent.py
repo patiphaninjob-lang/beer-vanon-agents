@@ -250,12 +250,32 @@ def generate_mini_chart_b64(ticker: str) -> str:
         return b""
 
 
+# ─── User Notes ───────────────────────────────────────────────
+
+def load_user_notes() -> dict:
+    path = Path("docs/notes/notes.json")
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
 # ─── Combined Analysis ────────────────────────────────────────
 
-def combined_analysis(stock: dict, knowledge_ctx: str) -> str:
+def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) -> str:
     """ONE Groq call: ข่าวคืออะไร + Beer มองว่า (ประหยัด token สำหรับ 100 หุ้น)"""
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
+
+    notes_ctx = ""
+    if user_notes:
+        lines = [
+            f"- {n['date']} (ราคา ${n.get('price','?')}, {'+' if n.get('pct_change',0)>0 else ''}{n.get('pct_change','?')}%): {n['note']}"
+            for n in user_notes[:3]
+        ]
+        notes_ctx = "\n\n📌 มุมมองที่นักลงทุนเคยบันทึกไว้:\n" + "\n".join(lines)
 
     prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 
@@ -263,7 +283,7 @@ def combined_analysis(stock: dict, knowledge_ctx: str) -> str:
 {BEER_DNA[:2000]}
 
 เนื้อหาเพิ่มเติม:
-{knowledge_ctx}
+{knowledge_ctx}{notes_ctx}
 
 ข้อมูลหุ้น:
 - ราคา: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
@@ -273,19 +293,22 @@ def combined_analysis(stock: dict, knowledge_ctx: str) -> str:
 ข่าวล่าสุด:
 {stock['news']}
 
-ตอบ 2 ส่วน (รวมไม่เกิน 160 คำ ภาษาไทย กระชับ ตรงประเด็น):
+ตอบ {'3' if user_notes else '2'} ส่วน (รวมไม่เกิน {'200' if user_notes else '160'} คำ ภาษาไทย กระชับ ตรงประเด็น):
 
 **📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**
 อธิบายว่าข่าวพูดถึงอะไร เกิดอะไรขึ้น แล้วนักลงทุนจะมองบวก/ลบ/กลาง เพราะอะไร
 
 **🍺 Beer มองว่า:**
-SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ"""
+SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ{'''
+
+**🗒️ เทียบกับมุมมองที่เคยบันทึก:**
+ตอนนั้นคิดอย่างไร ตอนนี้เป็นไปตามที่คาดไว้ไหม ปรับมุมมองอะไรได้บ้าง''' if user_notes else ''}"""
 
     resp = client.chat.completions.create(
         model=GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4,
-        max_tokens=400,
+        max_tokens=400 if not user_notes else 500,
     )
     return resp.choices[0].message.content.strip()
 
@@ -333,7 +356,7 @@ def _fmt_mktcap(cap: float) -> str:
     return "N/A"
 
 
-def stock_card(stock: dict, analysis: str, chart_cid: str) -> str:
+def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = None) -> str:
     arrow   = "▲" if stock["pct_change"] >= 0 else "▼"
     color   = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
     pe_str  = f" | P/E {stock['pe_ratio']:.1f}" if stock.get("pe_ratio") else ""
@@ -352,6 +375,22 @@ def stock_card(stock: dict, analysis: str, chart_cid: str) -> str:
     news_html = _news_html(stock.get("news_list", []))
     analysis_body = analysis.replace(chr(10), "<br>")
 
+    # user notes section in email
+    notes_html = ""
+    if user_notes:
+        items = "".join(
+            f'<div style="border-left:2px solid #f0b90b;padding:6px 10px;margin-bottom:6px;border-radius:0 4px 4px 0;background:#0d1117">'
+            f'<div style="color:#6b7280;font-size:0.75em">📅 {n["date"]} · ${n.get("price","?")} ({("+" if n.get("pct_change",0)>0 else "")}{n.get("pct_change","?")}%)</div>'
+            f'<div style="color:#d1d5db;font-size:0.88em;margin-top:3px">{n["note"]}</div>'
+            f'</div>'
+            for n in user_notes[:3]
+        )
+        notes_html = (
+            f'<div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px">'
+            f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">🗒️ มุมมองที่ฉันเคยบันทึก</div>'
+            f'{items}</div>'
+        )
+
     return f"""
 <div style="background:#1a1f2e;border-radius:12px;padding:18px;margin-bottom:14px;border-left:4px solid {color}">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
@@ -369,6 +408,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str) -> str:
     {stock['sector']} &nbsp;|&nbsp; Mkt Cap: <strong style="color:#d1d5db">{cap_str}</strong> &nbsp;|&nbsp; Vol: {stock['volume']:,}{pe_str}
   </div>
   {chart_block}
+  {notes_html}
   {news_html}
   <div style="background:#111827;border-radius:8px;padding:12px;color:#d1d5db;font-size:0.92em;line-height:1.65;margin-top:10px">
     <div style="color:#f0b90b;font-weight:bold;margin-bottom:6px">🍺 วิเคราะห์</div>
@@ -415,6 +455,7 @@ def save_to_web(stocks_data: list, today: datetime.date) -> str:
                 "tv_url":     s["stock"]["tv_url"],
                 "news":       s["stock"]["news_list"],
                 "analysis":   s["analysis"],
+                "chart_b64":  __import__("base64").b64encode(s["chart_bytes"]).decode() if s.get("chart_bytes") else "",
             }
             for s in stocks_data
         ],
@@ -442,7 +483,7 @@ def save_to_web(stocks_data: list, today: datetime.date) -> str:
 
 def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -> str:
     cards = "".join(
-        stock_card(s["stock"], s["analysis"], s.get("chart_cid", ""))
+        stock_card(s["stock"], s["analysis"], s.get("chart_cid", ""), s.get("user_notes"))
         for s in stocks_data
     )
 
@@ -519,10 +560,13 @@ def main():
     date_str = today.strftime("%A, %d %B %Y")
     print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")
 
-    # 1. Knowledge base
+    # 1. Knowledge base + user notes
     print("\n📚 โหลด knowledge base...")
     posts, embeddings, embed_model = load_knowledge()
     print(f"   {len(posts)} โพสต์ | embeddings: {'✅' if embeddings is not None else '⚠️'}")
+    user_notes_db = load_user_notes()
+    notes_count   = sum(len(v) for v in user_notes_db.values())
+    print(f"   โน้ตของคุณ: {notes_count} รายการ ({len(user_notes_db)} หุ้น)")
 
     # 2. Market cap ranking
     print("\n📊 จัดลำดับ Market Cap...")
@@ -542,10 +586,11 @@ def main():
                 stock     = get_stock_context(ticker, rank)
                 query     = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
                 ctx       = search_knowledge(query, posts, embeddings, embed_model)
-                analysis    = combined_analysis(stock, ctx)
+                my_notes    = user_notes_db.get(ticker, [])
+                analysis    = combined_analysis(stock, ctx, my_notes if my_notes else None)
                 chart_bytes = generate_mini_chart_b64(ticker)
                 cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
-                stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes})
+                stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes, "user_notes": my_notes or None})
                 print(f"✅  {stock['pct_change']:+.1f}%")
                 time.sleep(CALL_DELAY)
                 break
