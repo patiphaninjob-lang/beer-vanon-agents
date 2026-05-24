@@ -1,18 +1,18 @@
 {
   "date": "2026-05-24",
-  "generated": "2026-05-24T12:29:32.102950",
+  "generated": "2026-05-24T13:06:51.653906",
   "summary": {
-    "total": 1,
-    "gainers": 0,
-    "losers": 1,
-    "avg_change": -1.9,
+    "total": 67,
+    "gainers": 45,
+    "losers": 22,
+    "avg_change": 0.89,
     "top_gainer": {
-      "ticker": "NVDA",
-      "pct": -1.9
+      "ticker": "QCOM",
+      "pct": 11.6
     },
     "top_loser": {
-      "ticker": "NVDA",
-      "pct": -1.9
+      "ticker": "COST",
+      "pct": -2.11
     }
   },
   "stocks": [
@@ -21,22 +21,2412 @@
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
       "sector": "Technology",
-      "price": 135.28,
+      "price": 215.33,
       "pct_change": -1.9,
-      "volume": 45000000,
-      "market_cap": 5220000000000.0,
-      "pe_ratio": 45.2,
+      "volume": 168346300,
+      "market_cap": 5215507972096,
+      "pe_ratio": 33.0,
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
       "news": [
         {
-          "title": "Test news",
-          "summary": "Summary here",
-          "provider": "Reuters",
+          "title": "3 Cryptocurrencies to Watch as the Clarity Act Heads to the Senate",
+          "summary": "Passage of major new crypto legislation could unlock value for these three cryptocurrencies.",
+          "provider": "Motley Fool",
           "date": "2026-05-24",
-          "url": "https://example.com"
+          "url": "https://www.fool.com/investing/2026/05/24/3-cryptocurrencies-to-watch-as-the-clarity-act-hea/"
+        },
+        {
+          "title": "2 Stocks With Monster Potential to Hold Through the Next Decade of Uncertainty",
+          "summary": "Alphabet and TSCM are two of the best-positioned AI stocks for the long term.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/2-stocks-with-monster-potential-to-hold-through-th/"
+        },
+        {
+          "title": "Nvidia's Board Just Authorized an Additional $80 Billion Buyback. Here's What That Really Signals to Investors.",
+          "summary": "Returning cash at this scale says a lot about the chip giant's confidence. But it doesn't erase the stock's biggest risks.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/nvidias-board-just-authorized-an-additional-80-bil/"
         }
       ],
-      "analysis": "Test analysis text"
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวล่าสุดพูดถึง:\n\n* การผ่านกฎหมายใหม่ \"Clarity Act\" ที่อาจจะช่วยให้ cryptocurrency มีความชัดเจนและปลอดภัยมากขึ้น ซึ่งอาจจะส่งผลดีต่อ cryptocurrencies เช่น NVDA\n* การซื้อหุ้นกลับของ NVDA ที่มีมูลค่า $80 billion ซึ่งแสดงถึงความมั่นใจของบริษัทในอนาคต แต่ก็ไม่ได้ลบล้างความเสี่ยงของหุ้น\n* การแนะนำหุ้น AI ที่มีศักยภาพในการเติบโตในระยะยาว เช่น Alphabet และ TSCM\n\nตลาดอาจจะตีความข่าวเหล่านี้ในหลายวิธี เช่น:\n\n* บวก: การผ่านกฎหมายใหม่และความมั่นใจของบริษัทในอนาคตอาจจะส่งผลดีต่อหุ้น NVDA\n* ลบ: ความเสี่ยงของหุ้น NVDA อาจจะเพิ่มขึ้นหลังจากการซื้อหุ้นกลับ\n* กลาง: การแนะนำหุ้น AI อาจจะช่วยให้นักลงทุนมีความมั่นใจในอนาคตของตลาด\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจ แต่ไม่ควรตั้ง Circuit Breaker เนื่องจากหุ้น NVDA มี Market Cap Rank #1 ในตลาด และมีประวัติในการเติบโตในระยะยาว นอกจากนี้ การซื้อหุ้นกลับของบริษัทแสดงถึงความมั่นใจในอนาคต แต่ก็ไม่ได้ลบล้างความเสี่ยงของหุ้น"
+    },
+    {
+      "rank": 2,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "price": 382.97,
+      "pct_change": -1.21,
+      "volume": 20401900,
+      "market_cap": 4639851282432,
+      "pe_ratio": 29.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOGL",
+      "news": [
+        {
+          "title": "2 Stocks With Monster Potential to Hold Through the Next Decade of Uncertainty",
+          "summary": "Alphabet and TSCM are two of the best-positioned AI stocks for the long term.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/2-stocks-with-monster-potential-to-hold-through-th/"
+        },
+        {
+          "title": "Google's AI Glasses Threaten Meta's 80% Market Grip, Analyst Says",
+          "summary": "Alphabet Inc. subsidiary Google unveiled its Android XR-powered AI glasses at the Google I/O 2026 conference, signaling a broader push into the fast-growing smart glasses market currently dominated by Meta Platforms Inc.",
+          "provider": "Benzinga",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/googles-ai-glasses-threaten-metas-223112687.html"
+        },
+        {
+          "title": "Trump Backs Out Of AI Executive Order Amid Fears It Could Hurt US Tech Edge— 'Don't Want To...Get In The Way Of That Lead'",
+          "summary": "President Donald Trump on Thursday canceled plans to sign a new executive order on artificial intelligence after raising concerns that stricter oversight could weaken America's lead in the global AI race. \"We're leading ",
+          "provider": "Benzinga",
+          "date": "2026-05-23",
+          "url": "https://www.yahoo.com/news/politics/articles/trump-backs-ai-executive-order-193116603.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการเปิดตัว Google AI Glasses ซึ่งเป็นนวัตกรรมใหม่ของ Google ที่มีศักยภาพในการเปลี่ยนแปลงตลาดแอปพลิเคชันสมาร์ทกラス (Smart Glasses) ที่ปัจจุบันถูกครอบงำโดย Meta Platforms Inc. นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นการแสดงถึงความสามารถของ Google ในการพัฒนาเทคโนโลยีใหม่ๆ ที่มีศักยภาพในการสร้างรายได้และเพิ่มมูลค่าหุ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น GOOGL น่าสนใจ เนื่องจากมี Market Cap Rank #2 ในตลาดและ P/E ที่ 29.23435 ซึ่งเป็นระดับที่สูง แต่ไม่สูงเกินไป นอกจากนี้ยังมี Volume ที่ 20,401,900 ซึ่งเป็นระดับที่สูง นักลงทุนอาจมองหุ้นนี้เป็นโอกาสในการลงทุนระยะยาว เนื่องจากมีศักยภาพในการเติบโตในอนาคต อย่างไรก็ตาม หากหุ้นลงต่ำกว่า $360 จะถูกตั้ง Circuit Breaker และนักลงทุนควรเตรียมพร้อมสำหรับการเปลี่ยนแปลงในตลาด"
+    },
+    {
+      "rank": 3,
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "price": 308.82,
+      "pct_change": 1.26,
+      "volume": 43627900,
+      "market_cap": 4535749181440,
+      "pe_ratio": 37.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
+      "news": [
+        {
+          "title": "5 Warren Buffett Stocks to Buy Hand Over Fist in May",
+          "summary": "Berkshire Hathaway remodeled its portfolio in the first quarter. It's time to check out what remains.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/24/5-warren-buffett-stocks-to-buy-hand-over-fist-in-m/"
+        },
+        {
+          "title": "Despite Its Recent Partnership with Apple, MP Materials Stock Is Down. Here's Why.",
+          "summary": "MP Materials is trading flat on the year. With major partnerships backing it, why isn't this rare-earth stock soaring?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/despite-its-recent-partnership-with-apple-mp-mater/"
+        },
+        {
+          "title": "CDL’s $2.29 annual dividend beats Treasury yields despite rising interest rates",
+          "summary": "Income investors holding the VictoryShares US Large Cap High Div Volatility Wtd ETF (NYSEARCA:CDL) own a fund built around one premise: large American companies with stable share prices tend to pay reliable dividends. CD",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/cdls-2-29-annual-dividend-beats-treasury-yields-despite-rising-interest-rates-5/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือ Warren Buffett Stocks to Buy Hand Over Fist in May โดย Motley Fool ซึ่ง Berkshire Hathaway ได้ปรับเปลี่ยนโครงสร้างของตัวเองในไตรมาสแรก และตอนนี้เป็นเวลาที่นักลงทุนควรตรวจสอบหุ้นที่อยู่ในโครงสร้างนี้\n\nตลาดจะตีความข่าวนี้ว่า Warren Buffett และ Berkshire Hathaway มีความเชื่อมั่นในหุ้นที่อยู่ในโครงสร้างนี้ ซึ่งอาจทำให้นักลงทุนมีความเชื่อมั่นและลงทุนในหุ้นเหล่านี้ด้วย แต่ก็อาจมีความเสี่ยงด้วย เนื่องจาก Warren Buffett และ Berkshire Hathaway มีความเชื่อมั่นในหุ้นเหล่านี้ แต่ไม่ได้หมายความว่าหุ้นเหล่านี้จะไม่มีความเสี่ยง\n\n**🍺 Beer มองว่า:**\n\nหุ้น AAPL ของ Apple Inc. น่าสนใจและไม่ได้ผ่าน Circuit Breaker แต่ควรตั้ง SQ (Stop Loss) เนื่องจากหุ้น AAPL มีความเสี่ยงสูงและอาจมีการเปลี่ยนแปลงอย่างรวดเร็วในตลาดหุ้น"
+    },
+    {
+      "rank": 4,
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "price": 418.57,
+      "pct_change": -0.12,
+      "volume": 22341900,
+      "market_cap": 3109320130560,
+      "pe_ratio": 24.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MSFT",
+      "news": [
+        {
+          "title": "2 Tech Stocks Down 25% That Smart Money Is Buying Hand Over Fist Right Now",
+          "summary": "Hedge funds were loading up on Microsoft and Uber shares in Q1.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/tech-stocks-down-25-smart-money-buy-msft-uber/"
+        },
+        {
+          "title": "GlobalFoundries (GFS) Launches Dedicated Quantum Technology Solutions Unit",
+          "summary": "GlobalFoundries Inc. (NASDAQ:GFS) is one of the best multibagger stocks to buy in 2026. On May 21, GlobalFoundries launched Quantum Technology Solutions to scale domestic manufacturing for utility-scale quantum computing",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/globalfoundries-gfs-launches-dedicated-quantum-200944118.html"
+        },
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวล่าสุดพูดถึง:\n\n* Microsoft (MSFT) และ Uber ได้รับการซื้อขายอย่างหนักโดยกองทุนป้องกันความเสี่ยง (Hedge fund) ในไตรมาส 1\n* GlobalFoundries (GFS) ได้เริ่มหน่วยงานเพื่อแก้ปัญหาควอนตัมเทคโนโลยี (Quantum Technology Solutions) เพื่อเพิ่มการผลิตในประเทศ\n* Hyperscaler Debt Flood (การกู้ยืมหนักของบริษัทเทคโนโลยีขนาดใหญ่) ทำให้ตลาดหนี้ (Derivatives) มีความน่าสนใจมากขึ้น\n\nตลาดจะตีความข่าวเหล่านี้ว่า:\n\n* ข่าวที่ 1: นักลงทุนมองว่า MSFT และ Uber เป็นหุ้นที่มีโอกาสเติบโตในอนาคต และการซื้อขายอย่างหนักโดยกองทุนป้องกันความเสี่ยงแสดงถึงความเชื่อมั่นในหุ้นเหล่านี้\n* ข่าวที่ 2: GlobalFoundries เป็นหุ้นที่มีโอกาสเติบโตในอนาคต และการเริ่มหน่วยงานเพื่อแก้ปัญหาควอนตัมเทคโนโลยีแสดงถึงความเชื่อมั่นในหุ้น\n* ข่าวที่ 3: Hyperscaler Debt Flood ทำให้ตลาดหนี้มีความน่าสนใจมากขึ้น และนักลงทุนอาจจะลงทุนในหุ้นของบริษัทเทคโนโลยีขนาดใหญ่\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น MSFT น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้"
+    },
+    {
+      "rank": 5,
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 266.32,
+      "pct_change": -0.8,
+      "volume": 27470500,
+      "market_cap": 2864833626112,
+      "pe_ratio": 31.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMZN",
+      "news": [
+        {
+          "title": "Planet Fitness Grew Revenue 22%, So Why Did One Investor Trim $20 Million?",
+          "summary": "Planet Fitness runs a franchise-based gym network across the U.S. and abroad, with shares down significantly over the past year.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/coverage/filings/2026/05/23/planet-fitness-grew-revenue-22-so-why-did-one-investor-trim-usd20-million/"
+        },
+        {
+          "title": "3 Top AI Stocks to Buy With $1,000 Right Now",
+          "summary": "Amazon, Nebius, and Microsoft all should have plenty of upside left in 2026.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/3-top-ai-stocks-to-buy-with-1000-right-now/"
+        },
+        {
+          "title": "This Payments Stock Is Down 50%. One Fund Sold a $63 Million Stake Last Quarter",
+          "summary": "Shift4 Payments delivers integrated payment and software solutions to U.S. businesses across retail, hospitality, and eCommerce sectors.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/coverage/filings/2026/05/23/this-payments-stock-is-down-50-one-fund-sold-a-usd63-million-stake-last-quarter/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Planet Fitness ซึ่งเป็นเครือข่ายฟิตเนสที่มีหุ้นในตลาดนั้น มีรายได้เพิ่มขึ้น 22% แต่หนึ่งinvestor ได้ลดการลงทุน $20 ล้าน เนื่องจากหุ้นของ Planet Fitness ลดลงอย่างมากในรอบปีที่ผ่านมา นักลงทุนอาจมองข่าวนี้เป็นข่าวลบ เนื่องจากมีการลดการลงทุน แต่ก็อาจมองเป็นโอกาสในการลงทุนในหุ้นที่มีรายได้เพิ่มขึ้น\n\nข่าวอีกสองข่าวนั้น พูดถึงหุ้น Amazon, Nebius, และ Microsoft ซึ่งเป็นหุ้นที่มีความเกี่ยวข้องกับเทคโนโลยีและ AI นักลงทุนอาจมองข่าวนี้เป็นข่าวบวก เนื่องจากหุ้นเหล่านี้มีโอกาสในการเติบโตในอนาคต\n\nข่าวสุดท้าย พูดถึงหุ้น Shift4 Payments ซึ่งเป็นหุ้นที่มีความเกี่ยวข้องกับการชำระเงิน นักลงทุนอาจมองข่าวนี้เป็นข่าวลบ เนื่องจากหุ้นลดลงอย่างมากในรอบปีที่ผ่านมา\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง\n\nตามข้อมูลที่ให้มา หุ้น Amazon มี P/E ที่ 31.629454 ซึ่งไม่สูงเกินไป และมี Market Cap Rank ที่ #5 ในตลาด นักลงทุนอาจมองหุ้"
+    },
+    {
+      "rank": 6,
+      "ticker": "AVGO",
+      "name": "Broadcom Inc.",
+      "sector": "Technology",
+      "price": 414.14,
+      "pct_change": -0.1,
+      "volume": 14062100,
+      "market_cap": 1960815624192,
+      "pe_ratio": 80.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AVGO",
+      "news": [
+        {
+          "title": "Why This Fund Sold $11 Million of BILL Stock Despite a $1 Billion Buyback Plan",
+          "summary": "This cloud-based fintech firm delivers automation solutions for back-office financial operations, targeting small and midsize businesses.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/coverage/filings/2026/05/23/why-this-fund-sold-usd11-million-of-bill-stock-despite-a-usd1-billion-buyback-plan/"
+        },
+        {
+          "title": "This Tech Stock Pays a Growing Dividend and Rides Every AI Tailwind. What's Not to Like?",
+          "summary": "Broadcom is a rare combination of a leading AI company with a long history of dividend growth.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/this-tech-stock-pays-a-growing-dividend-and-rides/"
+        },
+        {
+          "title": "Meta, Broadcom And Others Launch $125 Million UCLA AI Chip Hub",
+          "summary": "Broadcom Inc., Applied Materials Inc., GlobalFoundries Inc., Meta Platforms Inc., and Synopsys, Inc. announced on Thursday that they have partnered with the UCLA Samueli School of Engineering to launch a $125 million Sem",
+          "provider": "Benzinga",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/meta-broadcom-others-launch-125-003114962.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการลงทุนของบริษัทที่มีชื่อเสียง เช่น Broadcom, Meta, Applied Materials, GlobalFoundries, และ Synopsys ในการสร้างห้องปฏิบัติการ AI ที่ UCLA Samueli School of Engineering ด้วยงบประมาณ 125 ล้านดอลลาร์ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นการลงทุนในเทคโนโลยี AI ที่มีศักยภาพในการเติบโตในอนาคต นอกจากนี้ยังแสดงให้เห็นถึงความมั่นใจของบริษัทในด้านการลงทุนและพัฒนาเทคโนโลยี\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (Broadcom Inc.) น่าสนใจ เนื่องจากมี Market Cap Rank #6 ในตลาด และ P/E ที่ 80.57199 ซึ่งแสดงให้เห็นถึงความมั่นคงและศักยภาพในการเติบโตของบริษัท อย่างไรก็ตาม หากต้องการทราบว่าหุ้นนี้ผ่าน Circuit Breaker หรือไม่ ต้องดูข้อมูลเพิ่มเติม เช่น ปริมาณการซื้อขาย, การเปลี่ยนแปลงราคา, และอื่นๆ"
+    },
+    {
+      "rank": 7,
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 426.01,
+      "pct_change": 1.95,
+      "volume": 45944100,
+      "market_cap": 1599975981056,
+      "pe_ratio": 383.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:TSLA",
+      "news": [
+        {
+          "title": "Ten things to know about humanoids",
+          "summary": "Investing.com -- Humanoid robots could become a market worth as much as $200 billion by 2035 as advances in artificial intelligence, robotics, and battery technology accelerate adoption across industries, according to a ",
+          "provider": "Investing.com",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/ten-things-know-humanoids-043738649.html"
+        },
+        {
+          "title": "Ford Motor vs. Tesla: What Their Revenue Trends Tell Investors",
+          "summary": "Quarterly filings reveal how Ford and Tesla are managing revenue shifts amid evolving strategies and margin pressures. The latest numbers highlight key trends.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/coverage/charts/2026/05/23/ford-motor-vs-tesla-what-their-revenue-trends-tell-investors/"
+        },
+        {
+          "title": "Dow Jones Futures: Trump Says Iran Deal Near With Hormuz 'Opened'; Tesla, AI Stocks Near Buy Points",
+          "summary": "President Donald Trump said Saturday that the U.S. and Iran are close to an interim deal that will open the Strait of Hormuz.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-24",
+          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-trump-iran-deal-hormuz-tesla-stocks/?src=A00220&yptr=yahoo"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Humanoid robots และการเติบโตของตลาดนี้อาจทำให้นักลงทุนมองในแง่บวก เนื่องจากการเติบโตของเทคโนโลยีและอุตสาหกรรมใหม่ๆ อาจส่งผลกระทบเชิงบวกต่อการเติบโตของ Tesla ในระยะยาว นอกจากนี้ การเปิด Strait of Hormuz อาจส่งผลกระทบเชิงบวกต่อการเติบโตของเศรษฐกิจโลกและอุตสาหกรรมยานยนต์ ซึ่งอาจส่งผลกระทบเชิงบวกต่อการเติบโตของ Tesla\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ ($426.01) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้นยังอยู่ในระดับที่สูงและไม่มีการเปลี่ยนแปลงในระยะสั้น อย่างไรก็ตาม การติดตามข่าวและตลาดอย่างใกล้ชิดอาจช่วยให้เราได้รับข้อมูลที่เพียงพอในการตัดสินใจลงทุน"
+    },
+    {
+      "rank": 8,
+      "ticker": "META",
+      "name": "Meta Platforms, Inc.",
+      "sector": "Communication Services",
+      "price": 610.26,
+      "pct_change": 0.47,
+      "volume": 11671600,
+      "market_cap": 1549098287104,
+      "pe_ratio": 22.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:META",
+      "news": [
+        {
+          "title": "Meta, Broadcom And Others Launch $125 Million UCLA AI Chip Hub",
+          "summary": "Broadcom Inc., Applied Materials Inc., GlobalFoundries Inc., Meta Platforms Inc., and Synopsys, Inc. announced on Thursday that they have partnered with the UCLA Samueli School of Engineering to launch a $125 million Sem",
+          "provider": "Benzinga",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/meta-broadcom-others-launch-125-003114962.html"
+        },
+        {
+          "title": "Why Reddit (RDDT) Stock Is Nosediving",
+          "summary": "Shares of online community and discussion platform Reddit (NYSE:RDDT) fell 5.9% in the afternoon session after sentiment weakened following reports of a new competing app from Meta Platforms, significant insider selling,",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-reddit-rddt-stock-nosediving-002855726.html"
+        },
+        {
+          "title": "DoubleVerify (DV) Launches AI-Powered Pre-Screen Content Controls on Meta (META) Threads Feed",
+          "summary": "DoubleVerify Holdings Inc. (NYSE:DV) is one of the cheap AI stocks to buy according to analysts. On May 18, DoubleVerify launched AI-powered pre-screen content controls on Meta’s Threads feed to enhance brand protection ",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/doubleverify-dv-launches-ai-powered-235244779.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเปิดตัว UCLA AI Chip Hub โดย Meta Platforms Inc. และบริษัทอื่นๆ มูลค่า $125 ล้าน โดยเป็นการลงทุนในเทคโนโลยี AI และการผลิตชิปที่มีความสามารถสูง นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการลงทุนในเทคโนโลยี AI และการผลิตชิปที่มีความสามารถสูงเป็นหนึ่งในทิศทางที่ตลาดหุ้นกำลังเคลื่อนไหวอย่างรวดเร็ว\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ น่าสนใจ เนื่องจาก Meta Platforms Inc. เป็นหนึ่งในบริษัทที่มีความสามารถและความมุ่งมั่นที่จะลงทุนในเทคโนโลยี AI และการผลิตชิปที่มีความสามารถสูง นอกจากนี้ การเปิดตัว UCLA AI Chip Hub เป็นหนึ่งในทิศทางที่ตลาดหุ้นกำลังเคลื่อนไหวอย่างรวดเร็ว และน่าจะมีผลกระทบในระยะยาวต่อการเติบโตของหุ้น Meta Platforms Inc."
+    },
+    {
+      "rank": 9,
+      "ticker": "BRK-B",
+      "name": "Berkshire Hathaway Inc.",
+      "sector": "Financial Services",
+      "price": 486.38,
+      "pct_change": 1.33,
+      "volume": 4338200,
+      "market_cap": 1049050546176,
+      "pe_ratio": 14.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:BRK-B",
+      "news": [
+        {
+          "title": "5 Warren Buffett Stocks to Buy Hand Over Fist in May",
+          "summary": "Berkshire Hathaway remodeled its portfolio in the first quarter. It's time to check out what remains.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/24/5-warren-buffett-stocks-to-buy-hand-over-fist-in-m/"
+        },
+        {
+          "title": "37.4% of Berkshire Hathaway's $330 Billion Portfolio Is Parked in 3 Artificial Intelligence (AI) Stocks",
+          "summary": "Berkshire just tripled its stake in one of its artificial intelligence holdings.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/374-berkshire-hathaways-330-billion-3-ai-stocks/"
+        },
+        {
+          "title": "Why American Express Is Still a Top Buffett Stock After All These Years",
+          "summary": "American Express has been a staple in Berkshire Hathaway's portfolio for over three decades.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/why-american-express-is-still-a-top-buffett-stock/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Berkshire Hathaway ซึ่งเป็นบริษัทที่ Warren Buffett เป็นประธานบริษัท ได้ปรับเปลี่ยนโครงสร้างพอร์ตการลงทุนในไตรมาสแรกของปี นักลงทุนจะเห็นข่าวนี้เป็นเรื่องบวก เนื่องจาก Berkshire Hathaway เป็นบริษัทที่มีชื่อเสียงและเชื่อถือได้ และการปรับเปลี่ยนโครงสร้างพอร์ตการลงทุนอาจบ่งบอกถึงโอกาสในการเติบโตในอนาคต นักลงทุนอาจมองข่าวนี้เป็นโอกาสในการลงทุนในหุ้นของ Berkshire Hathaway\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น BRK-B (Berkshire Hathaway Inc.) น่าสนใจ เนื่องจากมี Market Cap Rank #9 ในตลาด และปริมาณการซื้อขายสูง แต่ไม่ได้ถึง Circuit Breaker ที่ควรตั้ง อย่างไรก็ตาม นักลงทุนควรตรวจสอบข้อมูลเพิ่มเติมและวิเคราะห์หุ้นอย่างรอบคอบก่อนการตัดสินใจลงทุน"
+    },
+    {
+      "rank": 10,
+      "ticker": "WMT",
+      "name": "Walmart Inc.",
+      "sector": "Consumer Defensive",
+      "price": 120.27,
+      "pct_change": -0.88,
+      "volume": 30295700,
+      "market_cap": 958671028224,
+      "pe_ratio": 42.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:WMT",
+      "news": [
+        {
+          "title": "Retailers look to bridge the K-shaped economy with dual playbooks of price cuts and premiumization",
+          "summary": "As the K-shaped economy continues to divide Americans, retailers are courting lower-income customers with lower prices while catering to more affluent customers with premium offerings.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/article/retailers-look-to-bridge-the-k-shaped-economy-with-dual-playbooks-of-price-cuts-and-premiumization-143008591.html"
+        },
+        {
+          "title": "Walmart CEO sends troubling message on economy, higher prices",
+          "summary": "A trip to Walmart is often more than a convenience. For many shoppers, the appeal is about stretching every dollar. With low prices, frequent deals, no pressure to buy in bulk, and a wide variety under one roof, Walmart ",
+          "provider": "TheStreet",
+          "date": "2026-05-24",
+          "url": "https://www.thestreet.com/retail/walmart-ceo-sends-troubling-message-on-economy-higher-prices"
+        },
+        {
+          "title": "Walmart raises the red flag on rising prices",
+          "summary": "Oil prices impact not just what you pay to gas up your car or heat your house; they impact everything you buy. \"Even modest increases in oil prices can gradually push up the cost of everyday goods and services,\" accordin",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/retail/walmart-shares-a-dire-warning-to-customers"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่อ้างถึงคือ Retailers look to bridge the K-shaped economy with dual playbooks of price cuts and premiumization ซึ่งหมายความว่าธุรกิจค้าปลีก เช่น Walmart กำลังพยายามแก้ปัญหาความไม่เท่าเทียมกันทางเศรษฐกิจ (K-shaped economy) โดยใช้กลยุทธ์ที่มี 2 ส่วน: การลดราคาสินค้าและนำเสนอผลิตภัณฑ์พรีเมียม\n\nตลาดจะตีความข่าวนี้ว่า Walmart กำลังพยายามปรับตัวให้เข้ากับสถานการณ์เศรษฐกิจที่เปลี่ยนแปลงอย่างรวดเร็ว โดยการลดราคาสินค้าเพื่อดึงดูดลูกค้าในกลุ่มรายได้น้อย และนำเสนอผลิตภัณฑ์พรีเมียมเพื่อดึงดูดลูกค้าในกลุ่มรายได้สูง นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากแสดงถึงความสามารถของ Walmart ในการปรับตัวให้เข้ากับสถานการณ์เศรษฐกิจที่เปลี่ยนแปลงอย่างรวดเร็ว\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น WMT มี P/E ที่สูง (42.34859) และมี Volume ที่ไม่มากนัก (30,295,700) ซึ่งอาจเป็นเครื่องหมายที่ว่าหุ้นนี้มีความเสี่ยงสูง และนักลงทุนควรตั้ง Circuit Breaker เพื่อป้องกันความเสียหายที่อาจเกิดขึ้"
+    },
+    {
+      "rank": 11,
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "price": 1065.0,
+      "pct_change": 2.24,
+      "volume": 3470600,
+      "market_cap": 949704589312,
+      "pe_ratio": 37.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:LLY",
+      "news": [
+        {
+          "title": "Is It Too Late To Consider Eli Lilly (LLY) After Its 7x Five Year Surge?",
+          "summary": "This breakdown considers whether Eli Lilly at around US$1,065 a share may still offer value or whether the best of the opportunity may already be behind it, with a focus on what the current price might imply. Over the sh",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/too-consider-eli-lilly-lly-161431526.html"
+        },
+        {
+          "title": "Eli Lilly (LLY) Announces Positive Phase 3 Results for Obesity Treatment Retatrutide",
+          "summary": "Eli Lilly and Company (NYSE:LLY) is one of the best low risk stocks to buy in 2026. On May 21, Lilly’s Phase 3 TRIUMPH-1 trial evaluated retatrutide, an investigational once-weekly triple hormone receptor agonist (GIP/GL",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/eli-lilly-lly-announces-positive-120123718.html"
+        },
+        {
+          "title": "3 Market-Beating Stocks with Exciting Potential",
+          "summary": "Companies that consistently increase their sales, margins, or returns on capital are usually rewarded with the best returns, and those that can do all three for years on end are almost always the legendary stocks that re",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-market-beating-stocks-exciting-114855493.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือ Eli Lilly (LLY) ประกาศผลการทดลอง Phase 3 ที่ประสบความสำเร็จสำหรับการรักษาโรคอ้วน โดยใช้ Retatrutide ซึ่งเป็นยาที่มีผลต่อฮอร์โมน GIP/GLP-1 และ GLP-2 นี่เป็นข่าวที่มีผลกระทบเชิงบวกต่อหุ้น LLY เนื่องจากแสดงให้เห็นว่า Eli Lilly มีผลิตภัณฑ์ที่มีศักยภาพในการรักษาโรคอ้วน ซึ่งเป็นตลาดที่มีการเติบโตสูง\n\nตลาดจะตีความข่าวนี้ว่าเป็นข่าวที่มีผลกระทบเชิงบวกต่อหุ้น LLY เนื่องจากแสดงให้เห็นว่า Eli Lilly มีผลิตภัณฑ์ที่มีศักยภาพในการรักษาโรคอ้วน ซึ่งเป็นตลาดที่มีการเติบโตสูง นักลงทุนอาจมองข่าวนี้เป็นโอกาสในการลงทุนในหุ้น LLY โดยเฉพาะอย่างยิ่งหากพวกเขามีความเชื่อมั่นในผลิตภัณฑ์และตลาดที่ Eli Lilly เข้ามา\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น LLY น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น LLY มีการเปลี่ยนแปลงอย่างมากในช่วงปีที่ผ่านมา และมีผลิตภัณฑ์ที่มีศักยภาพในการรักษาโรคอ้วน ซึ่งเป็นตลาดที่มีการเติบโตสูง อย่างไรก็ตาม นักลงทุนควร"
+    },
+    {
+      "rank": 12,
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "sector": "Technology",
+      "price": 751.0,
+      "pct_change": -1.46,
+      "volume": 35775900,
+      "market_cap": 846928216064,
+      "pe_ratio": 35.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MU",
+      "news": [
+        {
+          "title": "Stocks making big moves this week: Toll Brothers, Booz Allen Hamilton, Strategy, Regeneron, and Micron",
+          "summary": "Check out the companies making headlines this week:",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-making-big-moves-week-202055968.html"
+        },
+        {
+          "title": "Can Micron Stock Turn $1,000 Into $10,000?",
+          "summary": "Can the memory chip giant overcome its pattern of booms and busts?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/can-micron-stock-turn-1000-into-10000/"
+        },
+        {
+          "title": "Can Micron Stock Keep Climbing? 2 Catalysts Wall Street Is Missing.",
+          "summary": "Micron stock has gained 150% so far this year, putting the company's market cap within shouting distance of $1 trillion.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/can-micron-stock-keep-climbing-2-catalysts-wall-st/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Micron Technology, Inc. (MU) ซึ่งเป็นบริษัทที่ผลิตชิปความจำ (memory chip) ข่าวสองเรื่องที่สำคัญคือ:\n\n1. Micron stock ได้รับแรงผลักดันจากความนิยมของเทคโนโลยีความจำ (memory technology) และการเติบโตของตลาดชิปความจำ\n2. นักวิเคราะห์บางคนเชื่อว่า Micron stock อาจมีโอกาสที่จะผ่านวิกฤติ (booms and busts) และสามารถเพิ่มมูลค่าให้กับนักลงทุน\n\nตลาดจะตีความข่าวเหล่านี้ในลักษณะที่เป็นบวก เนื่องจาก Micron stock ได้รับแรงผลักดันจากความนิยมของเทคโนโลยีความจำ และการเติบโตของตลาดชิปความจำ นักลงทุนบางคนอาจมองข่าวเหล่านี้เป็นโอกาสในการลงทุนใน Micron stock\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (MU) น่าสนใจ แต่ไม่ควรตั้ง Circuit Breaker เนื่องจาก Micron stock ได้รับแรงผลักดันจากความนิยมของเทคโนโลยีความจำ และการเติบโตของตลาดชิปความจำ นอกจากนี้ นักวิเคราะห์บางคนเชื่อว่า Micron stock อาจมีโอกาสที่จะผ่านวิกฤติและเพิ่มมูลค่าให้กับนักลงทุน อย่างไรก็ตาม นักลงทุนควรระมัดระวังและทำการวิเคราะห์อย่างละเอียดถี่ถ้วนก่อนตัดสินใจลงทุน"
+    },
+    {
+      "rank": 13,
+      "ticker": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "sector": "Financial Services",
+      "price": 306.38,
+      "pct_change": 1.12,
+      "volume": 5973900,
+      "market_cap": 820948697088,
+      "pe_ratio": 14.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JPM",
+      "news": [
+        {
+          "title": "JPMorgan resets Nvidia stock price target after earnings",
+          "summary": "Nvidia just delivered what analysts are calling one of the most consequential quarters in semiconductor history. The stock was already up nearly 20% year-to-date before the results landed. And JPMorgan's Harlan Sur still",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/investing/stocks/jpmorgan-resets-nvidia-stock-price-target-after-earnings"
+        },
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        },
+        {
+          "title": "Jamie Dimon sends stark message on defense contractors",
+          "summary": "Jamie Dimon does not mince words. He never has. The JPMorgan Chasechairman and chief executive officer has spent decades writing some of the most closely read annual letters on Wall Street. His 2025 shareholder letter is",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/investing/stocks/jamie-dimon-sends-stark-message-on-defense-contractors-jpmorgan-stock"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือ:\n\n* JPMorgan resets Nvidia stock price target after earnings (TheStreet)\n* Hyperscaler Debt Flood Brings Derivatives Bonanza (Bloomberg)\n* Jamie Dimon sends stark message on defense contractors (TheStreet)\n\nข่าวเหล่านี้เกี่ยวข้องกับหุ้น JPMorgan Chase & Co. (JPM) ในหลายด้าน:\n\n* ข่าวแรกเกี่ยวข้องกับ Nvidia ซึ่งเป็นบริษัทที่ JPMorgan มีความสนใจ และ JPMorgan ได้ปรับขึ้นเป้าหมายราคาหุ้นของ Nvidia หลังจากผลการดำเนินงานที่ดี\n* ข่าวที่สองเกี่ยวข้องกับบริษัทใหญ่ๆ ที่กำลังเพิ่มหนี้เพื่อการลงทุนในเทคโนโลยี และ JPMorgan กำลังเพิ่มการซื้อขายในตลาดการเงินเพื่อปรับตัวให้เข้ากับสถานการณ์นี้\n* ข่าวที่สามเกี่ยวข้องกับ Jamie Dimon ซึ่งเป็นประธานและประธานบริหารของ JPMorgan และเขาได้ส่งสัญญาณที่ชัดเจนเกี่ยวกับบริษัทที่เกี่ยวข้องกับการป้องกันประเทศ\n\nนักลงทุนอาจมองข่าวเหล่านี้ในหลายวิธี:\n\n* บวก: นักลงทุนอาจมองข่าวเหล่านี้เป็นบวก เนื่องจาก JPMorgan กำลังปรับตัวให้เข้ากับสถานการณ์ใหม่ๆ และ Jamie Dimon มีความสามารถในการนำบริษัทไปสู่ความสำเร็จ\n* ลบ: นักลงทุนอาจมองข่าวเหล่านี้เป็นลบ เนื่องจาก JPMorgan กำ"
+    },
+    {
+      "rank": 14,
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "sector": "Technology",
+      "price": 467.51,
+      "pct_change": 3.99,
+      "volume": 34661300,
+      "market_cap": 762322092032,
+      "pe_ratio": 156.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMD",
+      "news": [
+        {
+          "title": "Why This Fund Sold $11 Million of BILL Stock Despite a $1 Billion Buyback Plan",
+          "summary": "This cloud-based fintech firm delivers automation solutions for back-office financial operations, targeting small and midsize businesses.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/coverage/filings/2026/05/23/why-this-fund-sold-usd11-million-of-bill-stock-despite-a-usd1-billion-buyback-plan/"
+        },
+        {
+          "title": "Qorvo, Allegro MicroSystems, and Lattice Semiconductor Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the broader market rallied on Iran peace progress and AI-linked growth names led the comeback in technology. Nvidia's Q1 results earlier in the week (beat-and-rais",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qorvo-allegro-microsystems-lattice-semiconductor-235655480.html"
+        },
+        {
+          "title": "AMD Taiwan Bet Links 2nm Venice CPUs To Future AI Demand",
+          "summary": "Advanced Micro Devices (NasdaqGS:AMD) is committing over $10b to expand advanced packaging capacity and AI partnerships across Taiwan. The company is aligning this investment with the production ramp of its 6th Gen EPYC ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/amd-taiwan-bet-links-2nm-221038213.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการลงทุนของ AMD ในการขยายการผลิตชิป 2nm และการลงทุนในเทคโนโลยี AI โดยการลงทุนนี้จะช่วยให้ AMD สามารถผลิตชิปที่มีคุณภาพสูงขึ้นและตอบสนองความต้องการของตลาด AI ได้ดีขึ้น นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการลงทุนนี้จะช่วยให้ AMD มีความสามารถในการผลิตชิปที่มีคุณภาพสูงขึ้นและตอบสนองความต้องการของตลาดได้ดีขึ้น นอกจากนี้ การลงทุนในเทคโนโลยี AI จะช่วยให้ AMD สามารถเข้าถึงตลาดใหม่ๆ ได้\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจ เนื่องจากการลงทุนของ AMD ในการขยายการผลิตชิป 2nm และการลงทุนในเทคโนโลยี AI จะช่วยให้ AMD มีความสามารถในการผลิตชิปที่มีคุณภาพสูงขึ้นและตอบสนองความต้องการของตลาดได้ดีขึ้น นอกจากนี้ การลงทุนในเทคโนโลยี AI จะช่วยให้ AMD สามารถเข้าถึงตลาดใหม่ๆ ได้ อย่างไรก็ตาม ผมจะไม่พูดว่าหุ้นนี้ผ่าน Circuit Breaker แต่จะแนะนำให้นักลงทุนติดตามข่าวสารและวิเคราะห์หุ้นอย่างรอบคอบก่อนตัดสินใจลงทุน"
+    },
+    {
+      "rank": 15,
+      "ticker": "XOM",
+      "name": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "price": 154.92,
+      "pct_change": -0.24,
+      "volume": 12924600,
+      "market_cap": 642135228416,
+      "pe_ratio": 26.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:XOM",
+      "news": [
+        {
+          "title": "Brent Crude Is Up 85% Since January. OXY, XOM, and CVX Are Playing It Very Differently.",
+          "summary": "Why didn't Occidental Petroleum, ExxonMobil, and Chevron do better in the first quarter?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/brent-crude-is-up-85-since-january-oxy-xom-and-cvx/"
+        },
+        {
+          "title": "Don't Expect Oil Prices to Drop Until 2027. Here Are 2 Stocks to Buy for This Exact Scenario.",
+          "summary": "Energy industry executives are warning that the Middle East supply disruption could lead to higher, for longer energy prices.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/dont-expect-oil-prices-to-drop-until-2027-here-are/"
+        },
+        {
+          "title": "Here Are My Top 3 Oil Stocks Right Now",
+          "summary": "The oil market has become headline news, suggesting that now is the time to err on the side of caution.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/here-are-my-top-3-oil-stocks-right-now/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเปลี่ยนแปลงของราคาน้ำมัน Brent Crude ที่เพิ่มขึ้น 85% ตั้งแต่เดือนมกราคม นักลงทุนอาจมองข่าวนี้ในหลายมุมมอง:\n\n* บวก: ราคาน้ำมันที่เพิ่มขึ้นจะส่งผลให้หุ้นของบริษัทในอุตสาหกรรมน้ำมัน เช่น XOM, OXY และ CVX เพิ่มขึ้น\n* ลบ: ราคาน้ำมันที่เพิ่มขึ้นจะส่งผลให้การผลิตและจำหน่ายน้ำมันของบริษัทเหล่านี้มีความเสี่ยงสูงขึ้น\n* กลาง: ราคาน้ำมันที่เพิ่มขึ้นจะส่งผลให้การลงทุนในอุตสาหกรรมน้ำมันเป็นความเสี่ยง แต่ก็อาจมีโอกาสในการทำกำไรเช่นกัน\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น XOM น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจาก:\n\n* ราคาหุ้น XOM อยู่ในระดับปานกลาง (P/E: 26.12479)\n* Volume ของหุ้น XOM ไม่มากนัก (12,924,600)\n* Market Cap Rank ของ XOM อยู่ในระดับที่ดี (#15 ในตลาด)\n\nอย่างไรก็ตาม การเปลี่ยนแปลงของราคาน้ำมันและข่าวล่าสุดอาจส่งผลกระทบต่อหุ้น XOM ในระยะยาว ดังนั้น นักลงทุนควรตั้ง Circuit Breaker เพื่อป้องกันความเสี่ยง"
+    },
+    {
+      "rank": 16,
+      "ticker": "V",
+      "name": "Visa Inc.",
+      "sector": "Financial Services",
+      "price": 328.88,
+      "pct_change": -0.68,
+      "volume": 7462100,
+      "market_cap": 625445502976,
+      "pe_ratio": 28.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:V",
+      "news": [
+        {
+          "title": "Berkshire Hathaway Energy Could Be a Quiet Star of the Greg Abel Era",
+          "summary": "In good times and bad, one of the conglomerate's often-overlooked businesses just keeps chugging along.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/berkshire-hathaway-energy-could-be-a-quiet-star-of/"
+        },
+        {
+          "title": "Visa says AI is supercharging scams: 'What once required deep technical skill can now be executed with a prompt'",
+          "summary": "Visa's chief risk officer tells Moneywise AI is transforming fraud in two major ways.",
+          "provider": "Moneywise",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/visa-says-ai-supercharging-scams-090000526.html"
+        },
+        {
+          "title": "Visa (V) Valuation Check As Recent Share Performance Sends Mixed Signals",
+          "summary": "Why Visa (V) is on investors’ radar right now Visa (V) is drawing attention after a period of mixed recent performance, including gains over the past month alongside a decline in year to date and 1 year total returns. Se",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/visa-v-valuation-check-recent-211620646.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Berkshire Hathaway Energy ที่อาจจะเป็นดาวรุ่งในช่วง Greg Abel Era นักลงทุนอาจจะมองข่าวนี้ในแง่บวก เนื่องจาก Berkshire Hathaway Energy เป็นหนึ่งในธุรกิจที่มีความมั่นคงและสามารถทำกำไรได้แม้ในช่วงเวลาที่ยากลำบาก นอกจากนี้การเปลี่ยนแปลงในผู้นำของ Berkshire Hathaway อาจจะนำไปสู่การเปลี่ยนแปลงในกลยุทธ์ธุรกิจที่อาจจะส่งผลดีต่อผลประกอบการของบริษัท\n\nข่าวอีกข้อที่พูดถึง Visa ที่ AI กำลังทำให้การฉ้อโกงง่ายขึ้น นักลงทุนอาจจะมองข่าวนี้ในแง่ลบ เนื่องจากการเพิ่มขึ้นของการฉ้อโกงอาจจะส่งผลเสียต่อผลประกอบการของ Visa อย่างไรก็ตาม Visa ก็ได้เตรียมการรับมือการฉ้อโกงด้วยการปรับปรุงระบบการตรวจสอบและป้องกันการฉ้อโกง\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น V (Visa) อยู่ที่ $328.88 และมีการเปลี่ยนแปลง 0.7% ในช่วง 24 ชั่วโมง เนื่องจากหุ้น V เป็นหนึ่งในหุ้นที่มีความมั่นคงและสามารถทำกำไรได้ Beer จึงไม่คิดว่าหุ้นนี้ผ่าน Circuit Breaker แต่ควรตั้ง SQ เพื่อเตรียมการรับมือการเปลี่ยนแปลงของตลาด"
+    },
+    {
+      "rank": 17,
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "sector": "Technology",
+      "price": 119.84,
+      "pct_change": 1.13,
+      "volume": 82206800,
+      "market_cap": 602315816960,
+      "pe_ratio": null,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:INTC",
+      "news": [
+        {
+          "title": "3 Cryptocurrencies to Watch as the Clarity Act Heads to the Senate",
+          "summary": "Passage of major new crypto legislation could unlock value for these three cryptocurrencies.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/24/3-cryptocurrencies-to-watch-as-the-clarity-act-hea/"
+        },
+        {
+          "title": "2 Stocks With Monster Potential to Hold Through the Next Decade of Uncertainty",
+          "summary": "Alphabet and TSCM are two of the best-positioned AI stocks for the long term.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/2-stocks-with-monster-potential-to-hold-through-th/"
+        },
+        {
+          "title": "This Tech Stock Pays a Growing Dividend and Rides Every AI Tailwind. What's Not to Like?",
+          "summary": "Broadcom is a rare combination of a leading AI company with a long history of dividend growth.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/investing/2026/05/23/this-tech-stock-pays-a-growing-dividend-and-rides/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการผ่านของ Cryptocurrencies Clarity Act ซึ่งอาจจะทำให้ค่าใช้จ่ายลดลงและทำให้ค่าใช้จ่ายของ cryptocurrencies เพิ่มขึ้น นักลงทุนอาจจะมองข่าวนี้ในแง่บวก เนื่องจากอาจจะทำให้ค่าใช้จ่ายของ cryptocurrencies ลดลงและทำให้การลงทุนใน cryptocurrencies มีความปลอดภัยมากขึ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น INTC (Intel Corporation) น่าสนใจ เนื่องจากมี Market Cap Rank #17 ในตลาด และมี Volume 82,206,800 ซึ่งแสดงถึงความน่าสนใจของนักลงทุน อย่างไรก็ตาม เนื่องจากข่าวล่าสุดเกี่ยวกับ cryptocurrencies ที่อาจจะทำให้ค่าใช้จ่ายลดลงและทำให้ค่าใช้จ่ายของ cryptocurrencies เพิ่มขึ้น นักลงทุนอาจจะต้องระวังและไม่ควรลงทุนในหุ้นที่มีความเสี่ยงสูง"
+    },
+    {
+      "rank": 18,
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "sector": "Healthcare",
+      "price": 234.34,
+      "pct_change": 1.13,
+      "volume": 5462300,
+      "market_cap": 564107214848,
+      "pe_ratio": 27.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JNJ",
+      "news": [
+        {
+          "title": "CDL’s $2.29 annual dividend beats Treasury yields despite rising interest rates",
+          "summary": "Income investors holding the VictoryShares US Large Cap High Div Volatility Wtd ETF (NYSEARCA:CDL) own a fund built around one premise: large American companies with stable share prices tend to pay reliable dividends. CD",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/cdls-2-29-annual-dividend-beats-treasury-yields-despite-rising-interest-rates-5/"
+        },
+        {
+          "title": "The Single Premium Immediate Annuity That Adds $3,800 a Month to a $1.2 Million Income Portfolio Without Touching a Stock",
+          "summary": "A 73-year-old retiree with a $1.2 million dividend portfolio generating $5,400 a month faces a quieter retirement problem than most. The income works, but it depends on corporations continuing to pay and raise dividends ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/personal-finance/2026/05/23/the-single-premium-immediate-annuity-that-adds-3800-a-month-to-a-1-2-million-income-portfolio-without-touching-a-stock/"
+        },
+        {
+          "title": "Johnson & Johnson (JNJ) Announces Positive Clinical Study Results for OTTAVA Robotic Surgical System",
+          "summary": "Johnson & Johnson (NYSE:JNJ) is one of the best low risk stocks to buy in 2026. On May 5, Johnson & Johnson announced positive results from the first clinical study of its investigational OTTAVA Robotic Surgical System. ",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/johnson-johnson-jnj-announces-positive-120141869.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Johnson & Johnson (JNJ) ที่ประกาศผลการวิจัยทางคลินิกที่ดีสำหรับระบบการผ่าตัด OTTAVA Robotic Surgical System นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากแสดงให้เห็นว่า JNJ มีความก้าวหน้าในด้านการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ๆ นอกจากนี้ยังอาจส่งผลดีต่อการเติบโตของกำไรในอนาคต\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (ราคา $234.34) น่าสนใจ เนื่องจากข่าวล่าสุดแสดงให้เห็นถึงความก้าวหน้าในด้านการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ๆ นอกจากนี้ JNJ ยังมีประวัติการจ่ายเงินปันผลที่ดีและเป็นหนึ่งในบริษัทที่มี Market Cap Rank #18 ในตลาด นอกจากนี้ยังมี P/E ที่ 27.185616 ซึ่งไม่สูงเกินไป ทำให้หุ้นนี้น่าสนใจสำหรับนักลงทุน"
+    },
+    {
+      "rank": 19,
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "sector": "Technology",
+      "price": 192.08,
+      "pct_change": 1.22,
+      "volume": 10844900,
+      "market_cap": 552430927872,
+      "pe_ratio": 34.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:ORCL",
+      "news": [
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        },
+        {
+          "title": "Stocks Settle Higher on Iran Peace Hopes and Tech Strength",
+          "summary": "The S&P 500 Index ($SPX ) (SPY ) on Friday closed up +0.37%, the Dow Jones Industrial Average ($DOWI ) (DIA ) closed up +0.58%, and the Nasdaq 100 Index ($IUXX ) (QQQ ) closed up +0.42%. June E-mini S&P futures (ESM26 ) ",
+          "provider": "Barchart",
+          "date": "2026-05-22",
+          "url": "https://www.barchart.com/story/news/2093234/stocks-settle-higher-on-iran-peace-hopes-and-tech-strength"
+        },
+        {
+          "title": "Nvidia Has a Plan to Get the Stock Moving Again",
+          "summary": "Nvidia is offering a peek behind the curtain of its data-center business. The new disclosure is meant to assuage investor worries about future growth.",
+          "provider": "Barrons.com",
+          "date": "2026-05-22",
+          "url": "https://www.barrons.com/articles/nvidia-nvda-stock-price-ai-chips-cfe27c9d?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการเพิ่มขึ้นของหนี้ของบริษัทเทคโนโลยี (Hyperscaler) ซึ่งทำให้ตลาดการเงินมีความเสี่ยงเพิ่มขึ้น นักลงทุนอาจมองข่าวนี้เป็นเรื่องที่มีความเสี่ยงสูง แต่บางคนอาจมองว่ามีโอกาสในการเติบโตของบริษัทเทคโนโลยีในอนาคต\n\n**🍺 Beer มองว่า:**\n\nORCL (Oracle Corporation) นั้นไม่ได้ถูกส่งผลกระทบโดยตรงจากข่าวนี้ แต่ในระยะยาวอาจมีความเสี่ยงหากบริษัทเทคโนโลยีอื่นๆ มีปัญหาในการจ่ายหนี้ น่าสนใจที่จะตาม dõi แต่ไม่ควรลงทุนมากเกินไปในขณะนี้ เนื่องจากตลาดยังไม่ชัดเจน\n\n**SQ ของหุ้นนี้:** 192.08 (ขึ้น 1.2%) นั้นไม่ได้ถูกส่งผลกระทบโดยตรงจากข่าวนี้ แต่ในระยะยาวอาจมีความเสี่ยงหากบริษัทเทคโนโลยีอื่นๆ มีปัญหาในการจ่ายหนี้\n\n**ผ่าน Circuit Breaker:** ไม่ควรตั้ง Circuit Breaker เนื่องจาก ORCL (Oracle Corporation) นั้นไม่ได้ถูกส่งผลกระทบโดยตรงจากข่าวนี้ แต่ในระยะยาวอาจมีความเสี่ยงหากบริษัทเทคโนโลยีอื่นๆ มีปัญหาในการจ่ายหนี้"
+    },
+    {
+      "rank": 20,
+      "ticker": "COST",
+      "name": "Costco Wholesale Corporation",
+      "sector": "Consumer Defensive",
+      "price": 1028.24,
+      "pct_change": -2.11,
+      "volume": 2048300,
+      "market_cap": 456181284864,
+      "pe_ratio": 53.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:COST",
+      "news": [
+        {
+          "title": "Dow Jones Futures: Trump Says Iran Deal Near With Hormuz 'Opened'; Tesla, AI Stocks Near Buy Points",
+          "summary": "President Donald Trump said Saturday that the U.S. and Iran are close to an interim deal that will open the Strait of Hormuz.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-24",
+          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-trump-iran-deal-hormuz-tesla-stocks/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "Stock Market To Close For Memorial Day. Here Are Wall Street's Holiday Hours.",
+          "summary": "The stock and bond markets shift trading hours to observe the Memorial Day holiday on Monday. The Nasdaq and S&P 500 are near record highs.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-22",
+          "url": "https://www.investors.com/news/memorial-day-stock-market-holiday-2026-wall-street-hours/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "S&P 500 Posts Eighth Consecutive Weekly Gain Led by Health Care, Utilities",
+          "summary": "The Standard & Poor's 500 index rose 0.9% this week, its eighth consecutive week of gains, amid upbe",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-posts-eighth-consecutive-204822784.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการเจรจาระหว่างสหรัฐฯ และอิหร่านเกี่ยวกับข้อตกลงระยะเวลา ซึ่งจะทำให้ข้อขัดแย้งในภูมิภาค Hormuz ลดลง นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการบรรลุข้อตกลงจะช่วยลดความเสี่ยงและความไม่แน่นอนในตลาด นอกจากนี้ ข่าวยังช่วยกระตุ้นความเชื่อมั่นในตลาดหุ้น โดยเฉพาะในกลุ่มหุ้นที่เกี่ยวข้องกับเทคโนโลยีและพลังงาน\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น COST (Costco Wholesale Corporation) น่าสนใจมาก เนื่องจากมี Market Cap Rank #20 ในตลาด และ P/E ที่ 53.47062 ซึ่งแสดงถึงความมั่นคงและความน่าเชื่อถือของบริษัท นอกจากนี้ หุ้นยังมี Volume 2,048,300 ซึ่งแสดงถึงความน่าสนใจและความเคลื่อนไหวของนักลงทุน อย่างไรก็ตาม หุ้นไม่ได้ผ่าน Circuit Breaker แต่ควรตั้งความระมัดระวัง เนื่องจากตลาดอาจมีความไม่แน่นอนและความเสี่ยงในระยะสั้น"
+    },
+    {
+      "rank": 21,
+      "ticker": "MA",
+      "name": "Mastercard Incorporated",
+      "sector": "Financial Services",
+      "price": 498.54,
+      "pct_change": -0.22,
+      "volume": 1959300,
+      "market_cap": 440501895168,
+      "pe_ratio": 28.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:MA",
+      "news": [
+        {
+          "title": "Is SoFi’s Mixed Q1 2026 Signals Altering The Investment Case For SoFi Technologies (SOFI)?",
+          "summary": "Earlier this month, SoFi Technologies reported strong Q1 2026 results, including US$1.10 billion in revenue and US$166.7 million in GAAP net income, while facing questions over unchanged full-year guidance, a short-selle",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sofi-mixed-q1-2026-signals-091231236.html"
+        },
+        {
+          "title": "Sector Update: Financial Stocks Rise Late Afternoon",
+          "summary": "Financial stocks rose in late Friday afternoon trading, with the NYSE Financial Index increasing 0.3",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-rise-afternoon-195052772.html"
+        },
+        {
+          "title": "Market Chatter: Mastercard Asks Brazil's Payment Processors to Help Pay for Banco Master Failure",
+          "summary": "Mastercard (MA) is looking to minimize its losses from Banco Master's failure by asking some of Braz",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/market-chatter-mastercard-asks-brazil-143848090.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง SoFi Technologies (SOFI) ที่รายงานผลประกอบการ Q1 2026 ที่แข็งแกร่ง แต่ยังคงไม่มีการปรับเปลี่ยนเป้าหมายรายปี นักลงทุนอาจมองว่าข่าวนี้เป็นข่าวบวกสำหรับหุ้น SOFI แต่ไม่เกี่ยวข้องโดยตรงกับหุ้น Mastercard (MA)\n\n**🍺 Beer มองว่า:**\n\nหุ้น MA ไม่น่าสนใจในขณะนี้ เนื่องจากข่าวล่าสุดไม่ได้ต่อเนื่องกับหุ้น MA และไม่มีข้อมูลที่ชัดเจนเกี่ยวกับผลกระทบต่อหุ้น MA นอกจากนี้ P/E ของหุ้น MA ยังอยู่ในระดับสูง ซึ่งอาจทำให้หุ้น MA มีความเสี่ยงสูง"
+    },
+    {
+      "rank": 22,
+      "ticker": "CAT",
+      "name": "Caterpillar Inc.",
+      "sector": "Industrials",
+      "price": 879.89,
+      "pct_change": 1.61,
+      "volume": 1987600,
+      "market_cap": 405270265856,
+      "pe_ratio": 43.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:CAT",
+      "news": [
+        {
+          "title": "Is It Too Late To Consider Caterpillar (CAT) After Its Strong Multi Year Rally?",
+          "summary": "Wondering if Caterpillar at around US$879.89 is still offering value after such a strong run, or if the easy money on this stock is already behind you? The share price has been volatile recently, with a slight 7 day decl",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/too-consider-caterpillar-cat-strong-042026966.html"
+        },
+        {
+          "title": "Novanta, WillScot Mobile Mini, and Badger Meter Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the Dow hit a fresh all-time high above 50,700 as yields cooled off. Industrials are the most direct play on physical economic activity.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/novanta-willscot-mobile-mini-badger-021255883.html"
+        },
+        {
+          "title": "Matrix Service, Hyster-Yale Materials Handling, and FTAI Aviation Shares Are Soaring, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the Dow hit a fresh all-time high above 50,700 as yields cooled off.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/matrix-hyster-yale-materials-handling-020455093.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Caterpillar (CAT) ที่มีการรैलงแรงในหลายปี นักลงทุนกำลังพิจารณาว่าหุ้นนี้ยังมีค่าหรือไม่ หลังจากที่มีการปรับตัวสูงขึ้นอย่างมาก\n\nตลาดจะตีความข่าวนี้ว่า CAT มีการรักษาความแข็งแกร่งในหลายปี แต่ขณะนี้มีการปรับตัวสูงขึ้นอย่างมาก นักลงทุนอาจจะมองว่าหุ้นนี้มีความเสี่ยงสูงในการปรับตัวลงในระยะสั้น\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (P/E: 43.862915) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีการรักษาความแข็งแกร่งในหลายปี แต่ขณะนี้มีการปรับตัวสูงขึ้นอย่างมาก นักลงทุนควรพิจารณาความเสี่ยงและเป้าหมายการลงทุนของตนเองก่อนตัดสินใจลงทุนในหุ้นนี้"
+    },
+    {
+      "rank": 23,
+      "ticker": "LRCX",
+      "name": "Lam Research Corporation",
+      "sector": "Technology",
+      "price": 305.35,
+      "pct_change": 1.03,
+      "volume": 7854700,
+      "market_cap": 381861855232,
+      "pe_ratio": 57.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:LRCX",
+      "news": [
+        {
+          "title": "Does Lam Research (LRCX) Have the Right Playbook for AI-Era Tools and Capital Returns?",
+          "summary": "Earlier this week, Lam Research Corporation confirmed a quarterly dividend of US$0.26 per share payable on July 8, 2026, to shareholders of record on June 17, 2026, reinforcing its ongoing capital-return program alongsid",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/does-lam-research-lrcx-playbook-151046844.html"
+        },
+        {
+          "title": "Morgan Stanley makes bold Lam Research stock call",
+          "summary": "The artificial intelligence buildout has already sent semiconductor demand sharply higher, and Wall Street is now looking deeper into the supply chain for the next group of companies that could benefit from the spending ",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-upgrades-lam-research-stock"
+        },
+        {
+          "title": "Is Lam Research Corporation (LRCX) One of the Best Oversold Growth Stocks to Invest in Now?",
+          "summary": "Lam Research Corporation (NASDAQ:LRCX) is one of the best oversold growth stocks to invest in now. Morgan Stanley upgraded Lam Research Corporation (NASDAQ:LRCX) to Overweight from Equal Weight on May 18, adjusting the p",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/lam-research-corporation-lrcx-one-121534572.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการปรับปรุงผลลัพธ์ของ Lam Research Corporation (LRCX) โดยมีการเพิ่มผลตอบแทนเงินปันผลและข้อสัญญาของบริษัทในการลงทุนในเทคโนโลยี AI และการเปลี่ยนแปลงในตลาดหุ้น\n\nตลาดจะตีความข่าวนี้ในแง่บวก เนื่องจากการเพิ่มผลตอบแทนเงินปันผลและข้อสัญญาของบริษัทในการลงทุนในเทคโนโลยี AI จะช่วยเพิ่มความน่าเชื่อถือและความน่าสนใจของหุ้น LRCX นอกจากนี้ การเปลี่ยนแปลงในตลาดหุ้นจะทำให้นักลงทุนมองหาหุ้นที่มีโอกาสเติบโตในอนาคต\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (P/E: 57.83144) น่าสนใจ แต่ยังไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจาก P/E ที่สูงเกินไป และต้องรอผลลัพธ์ที่ดีขึ้นและความมั่นคงในการลงทุนในอนาคต"
+    },
+    {
+      "rank": 24,
+      "ticker": "CVX",
+      "name": "Chevron Corporation",
+      "sector": "Energy",
+      "price": 191.43,
+      "pct_change": 0.22,
+      "volume": 7209600,
+      "market_cap": 381251518464,
+      "pe_ratio": 33.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:CVX",
+      "news": [
+        {
+          "title": "Brent Crude Is Up 85% Since January. OXY, XOM, and CVX Are Playing It Very Differently.",
+          "summary": "Why didn't Occidental Petroleum, ExxonMobil, and Chevron do better in the first quarter?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/brent-crude-is-up-85-since-january-oxy-xom-and-cvx/"
+        },
+        {
+          "title": "Here Are My Top 3 Oil Stocks Right Now",
+          "summary": "The oil market has become headline news, suggesting that now is the time to err on the side of caution.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/here-are-my-top-3-oil-stocks-right-now/"
+        },
+        {
+          "title": "My 2 Favorite Warren Buffett Stocks for May",
+          "summary": "One is \"magnificent\" and the other is an energy giant.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/my-2-favorite-warren-buffett-stocks-for-may/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงผลประกอบการของ OXY, XOM, และ CVX ในไตรมาสแรก ซึ่ง Brent Crude Oil เพิ่มขึ้น 85% ตั้งแต่เดือนมกราคม แต่หุ้นของ OXY, XOM, และ CVX ไม่ได้ทำผลงานดีเท่ากับตลาดน้ำมัน นักลงทุนอาจมองข่าวนี้เป็นข้อดีหรือข้อเสีย ขึ้นอยู่กับว่าพวกเขามองว่าหุ้นเหล่านี้มีศักยภาพในการเติบโตหรือไม่\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น CVX น่าสนใจเพราะมี Market Cap Rank #24 ในตลาด และ P/E ที่ 33.350174 ซึ่งไม่สูงเกินไป แต่ควรตั้ง Circuit Breaker เนื่องจากหุ้น CVX มีความเสี่ยงสูงในตลาดน้ำมัน หากมีการเปลี่ยนแปลงในตลาดน้ำมัน หุ้น CVX อาจมีการเปลี่ยนแปลงอย่างรวดเร็ว"
+    },
+    {
+      "rank": 25,
+      "ticker": "ABBV",
+      "name": "AbbVie Inc.",
+      "sector": "Healthcare",
+      "price": 215.7,
+      "pct_change": 0.56,
+      "volume": 5406100,
+      "market_cap": 381097213952,
+      "pe_ratio": 105.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:ABBV",
+      "news": [
+        {
+          "title": "AbbVie Expands European Reach As Investors Weigh Dividend Support",
+          "summary": "AbbVie received a positive opinion from the European Medicines Agency's CHMP for Boey for glabellar lines and MAVIRET for acute hepatitis C infection, supporting potential approvals in Europe. The company plans to share ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/abbvie-expands-european-reach-investors-181129250.html"
+        },
+        {
+          "title": "The Dividend Stocks That Generate $60,000 Tax-Free Inside a Roth (And What They Cost You in a Taxable Account)",
+          "summary": "Holding a high-yield dividend portfolio in a taxable account at the 24% federal bracket means writing the IRS a $14,400 check every year on $60,000 of income that should have been yours. It repeats annually, forever, on ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/the-dividend-stocks-that-generate-60000-tax-free-inside-a-roth-and-what-they-cost-you-in-a-taxable-account/"
+        },
+        {
+          "title": "AbbVie (ABBV): 10 Best Low Risk Stocks to Buy in 2026",
+          "summary": "AbbVie Inc. (NYSE:ABBV) is one of the best low risk stocks to buy in 2026. On May 5, AbbVie presented 18 abstracts at the 2026 Digestive Disease Week Annual Meeting, highlighting new real-world and clinical trial data fo",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/abbvie-abbv-10-best-low-120338950.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง AbbVie ที่ได้รับคำแนะนำเชิงบวกจาก European Medicines Agency's CHMP สำหรับ Boey และ MAVIRET ซึ่งจะสนับสนุนการอนุมัติในยุโรป นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นข่าวที่สนับสนุนการเติบโตของบริษัท และอาจทำให้ราคาหุ้นเพิ่มขึ้น\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น AbbVie น่าสนใจ เนื่องจากมี Market Cap Rank #25 ในตลาด และ P/E ที่ 105.21951 ซึ่งแสดงถึงความมั่นคงและความสามารถในการเติบโตของบริษัท อย่างไรก็ตาม ราคาหุ้น $215.70 อาจมีความเสี่ยงสูงในการลงทุน ดังนั้นควรตั้งพอร์ตลงทุนให้เหมาะสมและไม่ควรลงทุนมากกว่าที่สามารถทนได้"
+    },
+    {
+      "rank": 26,
+      "ticker": "NFLX",
+      "name": "Netflix, Inc.",
+      "sector": "Communication Services",
+      "price": 88.6,
+      "pct_change": -0.78,
+      "volume": 23790900,
+      "market_cap": 373076754432,
+      "pe_ratio": 28.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NFLX",
+      "news": [
+        {
+          "title": "Is Netflix, Inc. (NFLX) One of the Best Communication Stocks to Invest In?",
+          "summary": "Netflix, Inc. (NASDAQ:NFLX) is one of the best communication stocks to invest in. JPMorgan reiterated an Overweight rating on Netflix, Inc. (NASDAQ:NFLX) on May 14, setting a price target of $118. The rating update came ",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/netflix-inc-nflx-one-best-115513974.html"
+        },
+        {
+          "title": "Netflix Live Push And Merchandising Raise Fresh Questions For Valuation",
+          "summary": "Netflix (NasdaqGS:NFLX) is expanding into daily live programming with the launch of \"The Breakfast Club\" as its first daily live show. The company is broadening consumer engagement beyond streaming through new partnershi",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/netflix-live-push-merchandising-raise-011735994.html"
+        },
+        {
+          "title": "IMAX Potential Suitors Include Netflix, Apple, Wedbush Says",
+          "summary": "A potential sale of IMAX (IMAX) could attract a number of likely suitors including private equity fi",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/imax-potential-suitors-netflix-apple-200204119.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Netflix, Inc. (NFLX) ที่กำลังขยายการเข้าสู่ตลาดการแสดงสดผ่านการเปิดตัว \"The Breakfast Club\" เป็นรายการแรก และยังได้ประกาศความร่วมมือกับพันธมิตรใหม่ๆ เพื่อขยายการเข้าถึงผู้ชมได้กว้างขึ้น นักลงทุนอาจมองข่าวนี้เป็นเรื่องบวก เนื่องจาก Netflix กำลังขยายธุรกิจและเพิ่มโอกาสในการเติบโต นอกจากนี้ การเปิดตัวรายการใหม่และความร่วมมือกับพันธมิตรใหม่ๆ อาจช่วยเพิ่มการเข้าถึงผู้ชมและเพิ่มรายได้ให้กับ Netflix\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (NFLX) น่าสนใจ แต่ไม่ควรตั้ง Circuit Breaker เพราะมันไม่ได้แสดงถึงความเสี่ยงสูงในระยะสั้น อย่างไรก็ตาม นักลงทุนควรติดตามข่าวและพัฒนาการของ Netflix และประเมินความเสี่ยงและโอกาสในการลงทุนอย่างรอบคอบ"
+    },
+    {
+      "rank": 27,
+      "ticker": "BAC",
+      "name": "Bank of America Corporation",
+      "sector": "Financial Services",
+      "price": 51.8,
+      "pct_change": 0.6,
+      "volume": 26666900,
+      "market_cap": 367603384320,
+      "pe_ratio": 12.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:BAC",
+      "news": [
+        {
+          "title": "U.S. debt is the ‘elephant in the room’ amid bond market rout as Fed-fueled interest costs could drive even larger deficits, analysts warn",
+          "summary": "\"In our view, unsustainable fiscal dynamics are compounding with a reflation story, turning a short-term problem into a long-end selloff.\"",
+          "provider": "Fortune",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/economy/policy/articles/u-debt-elephant-room-amid-195359486.html"
+        },
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        },
+        {
+          "title": "How The Advanced Micro Devices (AMD) Story Is Shifting With AI Optimism And Valuation Concerns",
+          "summary": "The base case fair value estimate for Advanced Micro Devices has shifted from about US$289.61 to about US$472.17 per share, a material reset in how the stock is being framed in valuation models. This move lines up with S",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/advanced-micro-devices-amd-story-061431275.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการเพิ่มขึ้นของค่าใช้จ่ายดอกเบี้ยของสหรัฐฯ ซึ่งอาจทำให้ปัญหาการคลังของสหรัฐฯ กลายเป็นปัญหาใหญ่กว่า นักลงทุนอาจมองข่าวนี้เป็นข่าวลบ เนื่องจากอาจทำให้ตลาดหุ้นเสื่อมสภาพลง นอกจากนี้ ข่าวยังพูดถึงการเพิ่มขึ้นของการกู้ยืมของบริษัทไฮเปอร์สเกลาร์ ซึ่งอาจทำให้ตลาดหุ้นเสื่อมสภาพลงด้วย\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น BAC น่าสนใจ เนื่องจากมี Market Cap Rank #27 และ P/E 12.853597 ซึ่งไม่สูงมาก นอกจากนี้ หุ้น BAC ยังมี Volume 26,666,900 ซึ่งแสดงถึงความน่าสนใจของนักลงทุน อย่างไรก็ตาม หุ้น BAC ไม่ได้ถูกตั้ง Circuit Breaker ดังนั้นจึงไม่มีปัญหาเกี่ยวกับการเปลี่ยนแปลงราคาอย่างรวดเร็ว"
+    },
+    {
+      "rank": 28,
+      "ticker": "UNH",
+      "name": "UnitedHealth Group Incorporated",
+      "sector": "Healthcare",
+      "price": 388.47,
+      "pct_change": 1.57,
+      "volume": 5598600,
+      "market_cap": 352786841600,
+      "pe_ratio": 29.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:UNH",
+      "news": [
+        {
+          "title": "UnitedHealth Group (UNH) Valuation Check After Recent Share Price Momentum And Undervaluation Narrative",
+          "summary": "Recent performance snapshot UnitedHealth Group (UNH) has drawn fresh investor attention after recent price moves, with the stock up 1.6% on the day and showing mixed short term performance over the past week and month. O",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/unitedhealth-group-unh-valuation-check-081306938.html"
+        },
+        {
+          "title": "This Healthcare Giant Is Quietly Becoming an AI Powerhouse",
+          "summary": "UnitedHealth has engineered a turnaround, in part by adopting AI tools.",
+          "provider": "Motley Fool",
+          "date": "2026-05-22",
+          "url": "https://www.fool.com/investing/2026/05/22/healthcare-giant-quietly-becoming-ai-stock-unh/"
+        },
+        {
+          "title": "Congressional Joint Economic Committee Pegs Medicare Advantage Overpayments at $7 Billion Annually and Rising",
+          "summary": "According to Kiplinger, the Congressional Joint Economic Committee found Medicare Advantage is overpaying insurers by $212 per enrollee. The figure looks small until you scale it. The data, scaled Multiply $212 against r",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-22",
+          "url": "https://247wallst.com/investing/2026/05/22/congressional-joint-economic-committee-pegs-medicare-advantage-overpayments-at-7-billion-annually-and-rising/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการวิเคราะห์หุ้น UNH (UnitedHealth Group Incorporated) โดย Simply Wall St. ซึ่งระบุว่าหุ้น UNH มีการเคลื่อนไหวราคาอย่างแข็งขัน และมีความเป็นไปได้ที่จะถูกมองว่าเป็นหุ้นที่มีมูลค่าถูกกว่าปกติ นอกจากนี้ยังมีข่าวจาก Motley Fool ที่กล่าวถึงการเปลี่ยนแปลงของ UNH ในการนำเทคโนโลยี AI มาใช้ ซึ่งอาจมีผลกระทบต่อการเติบโตของหุ้นในอนาคต\n\nตลาดนักลงทุนอาจมองข่าวนี้ในหลายมุมมอง เช่น:\n\n* บวก: หุ้น UNH มีการเติบโตอย่างแข็งขัน และมีความเป็นไปได้ที่จะถูกมองว่าเป็นหุ้นที่มีมูลค่าถูกกว่าปกติ\n* ลบ: การนำเทคโนโลยี AI มาใช้อาจไม่ประสบความสำเร็จ และอาจมีผลกระทบต่อการเติบโตของหุ้นในอนาคต\n* กลาง: หุ้น UNH มีการเติบโตอย่างแข็งขัน แต่ยังไม่มีข้อมูลเพียงพอในการตัดสินใจลงทุน\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น UNH น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้นมีการเคลื่อนไหวราคาอย่างแข็งขัน และมีความเป็นไปได้ที่จะถูกมองว่าเป็นหุ้นที่ม"
+    },
+    {
+      "rank": 29,
+      "ticker": "KO",
+      "name": "The Coca-Cola Company",
+      "sector": "Consumer Defensive",
+      "price": 81.48,
+      "pct_change": 0.38,
+      "volume": 8240200,
+      "market_cap": 350566285312,
+      "pe_ratio": 25.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:KO",
+      "news": [
+        {
+          "title": "CDL’s $2.29 annual dividend beats Treasury yields despite rising interest rates",
+          "summary": "Income investors holding the VictoryShares US Large Cap High Div Volatility Wtd ETF (NYSEARCA:CDL) own a fund built around one premise: large American companies with stable share prices tend to pay reliable dividends. CD",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/cdls-2-29-annual-dividend-beats-treasury-yields-despite-rising-interest-rates-5/"
+        },
+        {
+          "title": "Why American Express Is Still a Top Buffett Stock After All These Years",
+          "summary": "American Express has been a staple in Berkshire Hathaway's portfolio for over three decades.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/why-american-express-is-still-a-top-buffett-stock/"
+        },
+        {
+          "title": "My 5 Favorite Dividend Stocks to Buy Right Now",
+          "summary": "Patient investors can turn steady, reliable dividend growers into powerful long-term income engines that outperform high-yield strategies over time.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/my-5-favorite-dividend-stocks-to-buy-right-now/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงบริษัท CDL ที่มีหุ้นใน VictoryShares US Large Cap High Div Volatility Wtd ETF (NYSEARCA:CDL) ซึ่งเป็น ETF ที่ลงทุนในบริษัทขนาดใหญ่ในอเมริกา ที่มีผลตอบแทนเงินปันผลที่น่าเชื่อถือ ข่าวระบุว่าบริษัท CDL มีผลตอบแทนเงินปันผลรายปี $2.29 ซึ่งมากกว่าผลตอบแทนเงินปันผลของกระทรวงการคลัง แม้ว่าดอกเบี้ยจะเพิ่มขึ้น นักลงทุนอาจมองข่าวนี้เป็นข่าวที่ดีสำหรับหุ้นในกลุ่ม Consumer Defensive เนื่องจากแสดงถึงความมั่นคงและความน่าเชื่อถือของบริษัท\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น KO (The Coca-Cola Company) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น KO มี P/E ที่ 25.622643 ซึ่งไม่สูงเกินไป และมีผลตอบแทนเงินปันผลที่น่าเชื่อถือ หุ้น KO มี Market Cap Rank #29 ในตลาดและ Volume ที่ 8,240,200 ซึ่งแสดงถึงความมั่นคงและความน่าเชื่อถือของหุ้น นอกจากนี้ หุ้น KO ยังมีข่าวที่ดี เช่น American Express ซึ่งเป็นบริษัทที่มีความสัมพันธ์ใกล้ชิดกับ Berkshire Hathaway และมีผลตอบแทนเง"
+    },
+    {
+      "rank": 30,
+      "ticker": "AMAT",
+      "name": "Applied Materials, Inc.",
+      "sector": "Technology",
+      "price": 432.16,
+      "pct_change": 1.12,
+      "volume": 4889300,
+      "market_cap": 343117496320,
+      "pe_ratio": 40.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMAT",
+      "news": [
+        {
+          "title": "Meta, Broadcom And Others Launch $125 Million UCLA AI Chip Hub",
+          "summary": "Broadcom Inc., Applied Materials Inc., GlobalFoundries Inc., Meta Platforms Inc., and Synopsys, Inc. announced on Thursday that they have partnered with the UCLA Samueli School of Engineering to launch a $125 million Sem",
+          "provider": "Benzinga",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/meta-broadcom-others-launch-125-003114962.html"
+        },
+        {
+          "title": "Broadcom’s AI Packaging Bet Gets Bigger. Wall Street Is Betting on More Upside for AVGO Stock.",
+          "summary": "Broadcom joining Applied Materials’ EPIC platform adds another layer to the AI infrastructure story, as advanced packaging becomes more critical for custom accelerators, networking chips, and next-generation compute syst",
+          "provider": "Barchart",
+          "date": "2026-05-23",
+          "url": "https://www.barchart.com/story/news/2102972/broadcoms-ai-packaging-bet-gets-bigger-wall-street-is-betting-on-more-upside-for-avgo-stock"
+        },
+        {
+          "title": "Morgan Stanley makes bold Lam Research stock call",
+          "summary": "The artificial intelligence buildout has already sent semiconductor demand sharply higher, and Wall Street is now looking deeper into the supply chain for the next group of companies that could benefit from the spending ",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-upgrades-lam-research-stock"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการเปิดตัวห้องปฏิบัติการ AI Chip Hub ที่มหาวิทยาลัย UCLA โดยมีบริษัทที่มีชื่อเสียงอย่าง Broadcom, Applied Materials, GlobalFoundries, Meta Platforms, และ Synopsys มาร่วมเป็นหุ้นส่วน นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการลงทุนใน AI และเทคโนโลยีใหม่ๆ จะช่วยเพิ่มความต้องการในอุตสาหกรรม半導体 ซึ่งเป็นตลาดที่ Applied Materials เป็นหนึ่งในผู้นำ\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจ เนื่องจากข่าวนี้มีผลกระทบต่ออุตสาหกรรม AI และเทคโนโลยีใหม่ๆ ซึ่งเป็นตลาดที่ Applied Materials เป็นหนึ่งในผู้นำ นอกจากนี้ การเปิดตัวห้องปฏิบัติการ AI Chip Hub จะช่วยเพิ่มความต้องการในอุตสาหกรรม半導体 ซึ่งเป็นตลาดที่ Applied Materials เป็นหนึ่งในผู้นำ แต่ควรตั้ง Circuit Breaker เพื่อไม่ให้กำไรติดๆ เกินขอบเขต"
+    },
+    {
+      "rank": 31,
+      "ticker": "PG",
+      "name": "The Procter & Gamble Company",
+      "sector": "Consumer Defensive",
+      "price": 144.44,
+      "pct_change": 0.73,
+      "volume": 4616700,
+      "market_cap": 336342843392,
+      "pe_ratio": 21.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:PG",
+      "news": [
+        {
+          "title": "The Single Premium Immediate Annuity That Adds $3,800 a Month to a $1.2 Million Income Portfolio Without Touching a Stock",
+          "summary": "A 73-year-old retiree with a $1.2 million dividend portfolio generating $5,400 a month faces a quieter retirement problem than most. The income works, but it depends on corporations continuing to pay and raise dividends ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/personal-finance/2026/05/23/the-single-premium-immediate-annuity-that-adds-3800-a-month-to-a-1-2-million-income-portfolio-without-touching-a-stock/"
+        },
+        {
+          "title": "Quitting at 59 and Bridging Eight Years to Social Security at 67? Here Is the $530,000 Income Portfolio I Would Build",
+          "summary": "For a 59-year-old hoping to leave work today, the math is unforgiving. A $530,000 brokerage account would need to generate $48,000 a year for the eight-year gap before Social Security begins at 67. That requires a yield ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/personal-finance/2026/05/23/quitting-at-59-and-bridging-eight-years-to-social-security-at-67-here-is-the-530000-income-portfolio-i-would-build/"
+        },
+        {
+          "title": "What Procter & Gamble (PG)'s Restructuring, Cost Cuts, and Cash Returns Strategy Means For Shareholders",
+          "summary": "In recent months, Procter & Gamble has launched new sensitive-skin products, advanced a major restructuring with up to 7,000 planned job cuts by fiscal 2027, and continued returning cash to shareholders through long-runn",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/procter-gamble-pg-restructuring-cost-042452424.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Procter & Gamble (PG) คือการปรับโครงสร้างองค์กร การลดต้นทุน และกลยุทธ์การย้อนเงินกลับเข้าไปในบริษัท โดยมีเป้าหมายเพื่อเพิ่มผลกำไรและเพิ่มค่าหุ้นให้กับนักลงทุน นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการปรับโครงสร้างองค์กรและการลดต้นทุนอาจช่วยเพิ่มผลกำไรและเพิ่มค่าหุ้นให้กับบริษัท นอกจากนี้ การย้อนเงินกลับเข้าไปในบริษัทอาจช่วยเพิ่มความมั่นคงทางการเงินของบริษัท\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น PG น่าสนใจ เนื่องจากบริษัทมีประวัติในการสร้างผลกำไรและเพิ่มค่าหุ้นให้กับนักลงทุน นอกจากนี้ การปรับโครงสร้างองค์กรและการลดต้นทุนอาจช่วยเพิ่มผลกำไรและเพิ่มค่าหุ้นให้กับบริษัท อย่างไรก็ตาม ตลาดอาจมีความเสี่ยงในการเปลี่ยนแปลงของบริษัทและตลาดโลก นักลงทุนควรตรวจสอบข้อมูลและวิเคราะห์หุ้นอย่างรอบคอบก่อนตัดสินใจลงทุน"
+    },
+    {
+      "rank": 32,
+      "ticker": "MS",
+      "name": "Morgan Stanley",
+      "sector": "Financial Services",
+      "price": 201.03,
+      "pct_change": 0.26,
+      "volume": 3734200,
+      "market_cap": 317081583616,
+      "pe_ratio": 18.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:MS",
+      "news": [
+        {
+          "title": "Why bonds may not save investors from the next market shock: Chart of the Day",
+          "summary": "Bonds might not be the safety net they used to be if inflation stays high.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/article/why-bonds-may-not-save-investors-from-the-next-market-shock-chart-of-the-day-155420061.html"
+        },
+        {
+          "title": "Uber Proposes Delivery Hero Takeover at €10 Billion Valuation",
+          "summary": "(Bloomberg) -- Uber Technologies Inc. has offered to take over Delivery Hero SE in a deal that would value the German delivery company at about €10 billion ($11.6 billion) as it seeks to ramp up competition with DoorDash",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/delivery-hero-says-uber-proposed-151727961.html"
+        },
+        {
+          "title": "How The Grifols (BME:GRF) Investment Story Is Shifting With New Analyst Caution",
+          "summary": "Analysts have trimmed their fair value price target for Grifols from €15.08 to €14.65, while broader published price targets now cluster in the €10 to €11 range. This reset lines up with a more cautious tone in recent re",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/grifols-bme-grf-investment-story-190859149.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวที่พูดถึงคือการเสนอราคาซื้อ Delivery Hero ของ Uber Technologies Inc. ซึ่งจะทำให้ Delivery Hero มีมูลค่าประมาณ €10 billion ($11.6 billion) นักลงทุนอาจมองข่าวนี้ในหลายมุมมอง เช่น\n\n* บวก: การเข้าซื้อของ Uber อาจทำให้ Delivery Hero มีขนาดใหญ่ขึ้นและแข่งขันกับ DoorDash ได้ดีขึ้น\n* ลบ: การเข้าซื้ออาจทำให้ตลาดหุ้นของ Delivery Hero ลดลง เนื่องจากนักลงทุนอาจมีความกังวลเกี่ยวกับผลกระทบต่อการแข่งขันในตลาด\n* กลาง: การเข้าซื้ออาจไม่ทำให้ตลาดหุ้นของ Delivery Hero ลดลง เนื่องจากนักลงทุนอาจมีความเชื่อมั่นในความสามารถของ Uber ในการนำ Delivery Hero ไปสู่ความสำเร็จ\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น MS (Morgan Stanley) น่าสนใจ แต่ไม่ได้ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจาก MS เป็นบริษัทการเงินที่มีขนาดใหญ่และมีความเสถียรในตลาดหุ้น ดังนั้นจึงไม่ควรตั้ง Circuit Breaker ที่มีความเสี่ยงสูง"
+    },
+    {
+      "rank": 33,
+      "ticker": "GE",
+      "name": "GE Aerospace",
+      "sector": "Industrials",
+      "price": 302.84,
+      "pct_change": 0.36,
+      "volume": 3502100,
+      "market_cap": 316416196608,
+      "pe_ratio": 37.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:GE",
+      "news": [
+        {
+          "title": "Rocket Lab and Redwire Shares Skyrocket, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the U.S. and Iran signaled progress toward a peace agreement, lifting both commercial and defense aerospace names.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-redwire-shares-skyrocket-224455197.html"
+        },
+        {
+          "title": "AeroVironment and KBR Shares Skyrocket, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the U.S. and Iran signaled progress toward a peace agreement, lifting both commercial and defense aerospace names.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/aerovironment-kbr-shares-skyrocket-know-222855214.html"
+        },
+        {
+          "title": "GE426 Engine Award Gives General Electric A New Defense Growth Angle",
+          "summary": "GE Aerospace, part of General Electric (NYSE:GE), has been awarded a contract for its new GE426 engine to support the U.S. Air Force’s next generation Autonomous Collaborative Platform program. The contract focuses on ad",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ge426-engine-award-gives-general-071703411.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการลงนามสัญญาระหว่าง GE Aerospace และ U.S. Air Force สำหรับการพัฒนาและใช้เครื่องยนต์ GE426 ที่มีศักยภาพในการสนับสนุนโครงการ Autonomous Collaborative Platform ของกองทัพอากาศสหรัฐฯ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากสัญญานี้แสดงถึงความมั่นใจของกองทัพอากาศสหรัฐฯ ในเทคโนโลยีของ GE Aerospace และอาจส่งผลให้ยอดขายและกำไรของบริษัทเพิ่มขึ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น GE น่าสนใจ เนื่องจากมีการเพิ่มขึ้น 0.4% ในวันนี้ และมีพื้นฐานการลงทุนที่แข็งแกร่งจากสัญญาใหม่ของ U.S. Air Force อย่างไรก็ตาม การตั้งค่า Circuit Breaker ไม่จำเป็นในขณะนี้ เนื่องจากหุ้นยังไม่ได้ถึงระดับขั้นต่ำสำหรับการตั้งค่า Circuit Breaker"
+    },
+    {
+      "rank": 34,
+      "ticker": "HD",
+      "name": "The Home Depot, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 313.07,
+      "pct_change": -0.23,
+      "volume": 2963800,
+      "market_cap": 311826382848,
+      "pe_ratio": 22.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:HD",
+      "news": [
+        {
+          "title": "Retailers look to bridge the K-shaped economy with dual playbooks of price cuts and premiumization",
+          "summary": "As the K-shaped economy continues to divide Americans, retailers are courting lower-income customers with lower prices while catering to more affluent customers with premium offerings.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/article/retailers-look-to-bridge-the-k-shaped-economy-with-dual-playbooks-of-price-cuts-and-premiumization-143008591.html"
+        },
+        {
+          "title": "Jim Cramer Shares Key Insight For Home Depot’s (HD) Shares",
+          "summary": "We recently published Jim Cramer Took A Side On Biggest AI Debate & Discussed These 13 Stocks. The Home Depot, Inc. (NYSE:HD) is one of the stocks discussed by Jim Cramer. Home improvement retailer The Home Depot, Inc. (",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-shares-key-insight-231135456.html"
+        },
+        {
+          "title": "Wall Street Analysts are Bullish on This Blue Chip Stock: Here's Why They're Wrong",
+          "summary": "Home Depot beat earnings estimates, but is that enough?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/wall-street-bullish-blue-chip-stock-home-depot/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงเรื่อง Retailers ที่พยายามสร้างกลยุทธ์เพื่อปรับตัวให้เข้ากับเศรษฐกิจที่มีความไม่เท่าเทียมกัน (K-shaped economy) โดยใช้กลยุทธ์ 2 แบบ คือ การลดราคาสินค้าเพื่อดึงดูดลูกค้าที่มีรายได้น้อย และการนำเสนอสินค้าพรีเมียมเพื่อดึงดูดลูกค้าที่มีรายได้สูง นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจาก Home Depot เป็นหนึ่งในผู้นำในอุตสาหกรรมบ้านและสวน และกลยุทธ์นี้อาจช่วยให้พวกเขาปรับตัวให้เข้ากับตลาดได้ดีขึ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (Home Depot) น่าสนใจ เนื่องจากมี Market Cap Rank #34 และ P/E Ratio 22.219305 ซึ่งไม่สูงมาก นอกจากนี้ยังมีข่าวที่ดีเกี่ยวกับผลการดำเนินงานของบริษัท และกลยุทธ์ในการปรับตัวให้เข้ากับเศรษฐกิจที่มีความไม่เท่าเทียมกัน อย่างไรก็ตาม ตลาดอาจมีความไม่แน่นอนในระยะสั้น เนื่องจากเศรษฐกิจยังไม่แน่นอน แต่ในระยะยาว หุ้นนี้อาจมีโอกาสเติบโต"
+    },
+    {
+      "rank": 35,
+      "ticker": "MRK",
+      "name": "Merck & Co., Inc.",
+      "sector": "Healthcare",
+      "price": 122.41,
+      "pct_change": 5.64,
+      "volume": 14749200,
+      "market_cap": 302331232256,
+      "pe_ratio": 34.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:MRK",
+      "news": [
+        {
+          "title": "Merck Oncology Updates Spark Interest In Sacituzumab Tirumotecan And Valuation",
+          "summary": "Merck (NYSE:MRK) reported positive Phase 3 results for its antibody drug conjugate sacituzumab tirumotecan in advanced endometrial cancer and in lung cancer combinations. The company said sacituzumab tirumotecan surpasse",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/merck-oncology-updates-spark-interest-211343055.html"
+        },
+        {
+          "title": "Merck (MRK) Phase 3 TroFuse-005 Trial for Endometrial Cancer Meets Primary Endpoints",
+          "summary": "Merck & Co. Inc. (NYSE:MRK) is one of the best low risk stocks to buy in 2026. On May 18, Merck announced that its pivotal Phase 3 TroFuse-005 trial evaluating sacituzumab tirumotecan (sac-TMT) met its dual primary endpo",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/merck-mrk-phase-3-trofuse-120155947.html"
+        },
+        {
+          "title": "U.S. halts visa issuance for travelers from Ebola-hit African nations - says WSJ",
+          "summary": "Investing.com -- The United States has suspended visa issuance for any travelers who have visited South Sudan, the Democratic Republic of Congo (DRC), or Uganda within 21 days of their planned arrival, according to an ex",
+          "provider": "Investing.com",
+          "date": "2026-05-23",
+          "url": "https://www.yahoo.com/news/us/articles/u-halts-visa-issuance-travelers-020442994.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงผลการทดลองของ Merck (MRK) ในการรักษาโรคมะเร็ง โดยเฉพาะอย่างยิ่งผลการทดลองของ Sacituzumab Tirumotecan ซึ่งเป็นยาที่มีประสิทธิภาพในการรักษาโรคมะเร็งในระยะที่ 3 ข่าวนี้มีผลกระทบต่อตลาดอย่างมาก เนื่องจากเป็นข่าวที่ดีเกี่ยวกับการรักษาโรคมะเร็ง ซึ่งเป็นหนึ่งในกลุ่มธุรกิจหลักของ Merck นักลงทุนอาจมองข่าวนี้เป็นบวก เนื่องจากเป็นข่าวที่ดีเกี่ยวกับการรักษาโรคมะเร็ง และอาจทำให้หุ้น MRK เพิ่มขึ้น\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (MRK) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น MRK มี P/E ที่สูง (34.48) และมีปริมาณการซื้อขายที่สูง (14,749,200) นอกจากนี้ หุ้น MRK ยังมีผลกำไรที่ดีในระยะยาว และมีผลิตภัณฑ์ที่มีประสิทธิภาพในการรักษาโรคมะเร็ง อย่างไรก็ตาม การซื้อขายหุ้น MRK ควรทำอย่างระมัดระวัง เนื่องจากมีความเสี่ยงในการลงทุนในหุ้น MRK"
+    },
+    {
+      "rank": 36,
+      "ticker": "PM",
+      "name": "Philip Morris International Inc.",
+      "sector": "Consumer Defensive",
+      "price": 188.99,
+      "pct_change": 0.28,
+      "volume": 2385200,
+      "market_cap": 294552043520,
+      "pe_ratio": 26.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:PM",
+      "news": [
+        {
+          "title": "Philip Morris (PM) Appoints Massimo Andolina as Group CFO",
+          "summary": "Philip Morris International Inc. (NYSE:PM) is one of the best low risk stocks to buy in 2026. On May 20, Philip Morris International appointed Massimo Andolina as Group Chief Financial Officer, effective August 1. He suc",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/philip-morris-pm-appoints-massimo-120345672.html"
+        },
+        {
+          "title": "1 S&P 500 Stock with Impressive Fundamentals and 2 We Brush Off",
+          "summary": "The S&P 500 (^GSPC) is often seen as a benchmark for strong businesses, but that doesn’t mean every stock is worth owning. Some companies face significant challenges, whether it’s stagnating growth, heavy debt, or disrup",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/1-p-500-stock-impressive-080455739.html"
+        },
+        {
+          "title": "Why Is Philip Morris (PM) Up 11.4% Since Last Earnings Report?",
+          "summary": "Philip Morris (PM) reported earnings 30 days ago. What's next for the stock? We take a look at earnings estimates for some clues.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-philip-morris-pm-11-153010831.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการแต่งตั้ง Massimo Andolina เป็น Group Chief Financial Officer (CFO) ของ Philip Morris International Inc. (PM) นี่เป็นข่าวที่มีผลกระทบต่อหุ้น PM ในระยะยาว เนื่องจาก CFO เป็นหนึ่งในผู้มีอำนาจสำคัญในการตัดสินใจเกี่ยวกับกลยุทธ์ทางการเงินและการลงทุนของบริษัท\n\nตลาดอาจจะตีความข่าวนี้ในหลายวิธี แต่โดยทั่วไปแล้ว นักลงทุนอาจจะเห็นข่าวนี้ในแง่บวก เนื่องจากการแต่งตั้ง CFO ที่มีประสบการณ์จะช่วยให้ PM มีความมั่นใจในการตัดสินใจเกี่ยวกับกลยุทธ์ทางการเงินและการลงทุนในอนาคต นอกจากนี้ยังอาจจะช่วยให้ PM มีความสามารถในการจัดการกับปัญหาที่ซับซ้อนและเพิ่มความสามารถในการแข่งขันในตลาด\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (PM) น่าสนใจ เนื่องจากมี Market Cap Rank #36 ในตลาดและ P/E ที่ 26.580872 ซึ่งถือว่าปกติ นอกจากนี้ยังมีการแต่งตั้ง CFO ที่มีประสบการณ์ ซึ่งจะช่วยให้ PM มีความมั่นใจในการตัดสินใจเกี่ยวกับกลยุทธ์ทางการเงินและการลงทุนในอนาคต\n\nอย่างไรก็ตาม ผมไม่เห็นว่า SQ ของหุ้นนี้ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากข่าวนี้ไม่ใช่"
+    },
+    {
+      "rank": 37,
+      "ticker": "GS",
+      "name": "The Goldman Sachs Group, Inc.",
+      "sector": "Financial Services",
+      "price": 996.73,
+      "pct_change": 0.87,
+      "volume": 1923500,
+      "market_cap": 294042730496,
+      "pe_ratio": 18.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:GS",
+      "news": [
+        {
+          "title": "Best CD rates today, Saturday, May 23, 2026: Best account provides 4% APY",
+          "summary": "If you're searching for today's best CD rates, Saturday, May 23, 2026, we've narrowed down some of the top offers. Learn more about the best CD rates today.",
+          "provider": "Yahoo Personal Finance",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-saturday-may-23-2026-100000807.html"
+        },
+        {
+          "title": "Is Goldman Sachs a Better Buy After Earnings Than Wall Street Thinks?",
+          "summary": "Capital markets activity is booming, and Goldman Sachs is reaping the benefits.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/is-goldman-sachs-stock-a-better-buy-after-earnings/"
+        },
+        {
+          "title": "Goldman Sachs Remains Bullish on LATAM Airlines (LTM), Lifts PT",
+          "summary": "LATAM Airlines Group S.A. (NYSE:LTM) is one of the best airline stocks to buy according to Reddit. Goldman Sachs lifted the price target on LATAM Airlines Group S.A. (NYSE:LTM) to $72.60 from $63.40 on May 12, reaffirmin",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-remains-bullish-latam-121522226.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Goldman Sachs (GS) คือเรื่องของการเติบโตของกิจกรรมทางการเงิน และ GS กำลังรับผลประโยชน์จากสิ่งนี้ นอกจากนี้ยังมีข่าวเกี่ยวกับ LATAM Airlines ที่ GS ยังคงเชื่อมั่นในความมั่งคั่งของบริษัทนี้\n\nตลาดมองว่าข่าวนี้เป็นเรื่องดีสำหรับ GS เนื่องจากกิจกรรมทางการเงินกำลังเติบโต และ GS กำลังรับผลประโยชน์จากสิ่งนี้ นอกจากนี้ LATAM Airlines ยังคงเป็นหุ้นที่น่าสนใจสำหรับนักลงทุน\n\n**🍺 Beer มองว่า:**\n\nGS ของหุ้นนี้ น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีข่าวดีเกี่ยวกับกิจกรรมทางการเงิน และ GS กำลังรับผลประโยชน์จากสิ่งนี้ อย่างไรก็ตาม นักลงทุนควรตรวจสอบข้อมูลเพิ่มเติมและประเมินความเสี่ยงก่อนตัดสินใจลงทุน"
+    },
+    {
+      "rank": 38,
+      "ticker": "TXN",
+      "name": "Texas Instruments Incorporated",
+      "sector": "Technology",
+      "price": 309.21,
+      "pct_change": 3.63,
+      "volume": 7129100,
+      "market_cap": 281409781760,
+      "pe_ratio": 52.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:TXN",
+      "news": [
+        {
+          "title": "Jim Cramer Discusses Texas Instruments’ (TXN) Market",
+          "summary": "We recently published Jim Cramer Took A Side On Biggest AI Debate & Discussed These 13 Stocks. Texas Instruments Incorporated (NASDAQ:TXN) is one of the stocks discussed by Jim Cramer. Texas Instruments Incorporated (NAS",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-texas-instruments-231545326.html"
+        },
+        {
+          "title": "NXP Semiconductors and Himax Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after risk-on sentiment returned on Iran peace progress as Treasury yields cooled.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nxp-semiconductors-himax-stocks-trade-230855630.html"
+        },
+        {
+          "title": "Universal Display and Microchip Technology Shares Are Soaring, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after risk-on sentiment returned on Iran peace progress as Treasury yields cooled.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/universal-display-microchip-technology-shares-230055577.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Texas Instruments Incorporated (TXN) ซึ่งเป็นบริษัทผลิตชิปและอุปกรณ์อิเล็กทรอนิกส์ ข่าวมาจาก Jim Cramer ที่กล่าวว่า TXN เป็นหนึ่งในหุ้นที่น่าสนใจ ข่าวนี้ทำให้นักลงทุนมองบวกต่อหุ้น TXN เนื่องจากมีการพูดถึงความมั่นใจของ Jim Cramer ต่อหุ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น TXN น่าสนใจ เนื่องจากมีการพูดถึงความมั่นใจของ Jim Cramer ต่อหุ้น แต่ควรตั้ง Circuit Breaker เพื่อป้องกันการเสียเงินหากหุ้นไม่ตามที่คาดหวัง"
+    },
+    {
+      "rank": 39,
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "sector": "Technology",
+      "price": 238.16,
+      "pct_change": 11.6,
+      "volume": 30332300,
+      "market_cap": 251020640256,
+      "pe_ratio": 25.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:QCOM",
+      "news": [
+        {
+          "title": "Qualcomm Stellantis Deal Deepens Automotive Role And AI Driving Ambitions",
+          "summary": "Qualcomm (NasdaqGS:QCOM) is expanding its automotive partnership with Stellantis to roll out Snapdragon Digital Chassis and Ride Pilot platforms across millions of vehicles. The collaboration includes integration of adva",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/qualcomm-stellantis-deal-deepens-automotive-031043940.html"
+        },
+        {
+          "title": "Qualcomm (QCOM) Shares Skyrocket, What You Need To Know",
+          "summary": "Shares of wireless chipmaker Qualcomm (NASDAQ:QCOM) jumped 12% in the afternoon session after automaker Stellantis announced an expansion of its multi-year technology collaboration with the company.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qualcomm-qcom-shares-skyrocket-know-002055615.html"
+        },
+        {
+          "title": "Qualcomm vs. Intel: What Recent Revenue Trends Tell Investors",
+          "summary": "Recent quarters reveal both companies facing notable revenue swings, even as one consistently outpaces the other in total sales volume.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/coverage/charts/2026/05/23/qualcomm-vs-intel-what-recent-revenue-trends-tell-investors/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการขยายความร่วมมือระหว่าง Qualcomm (QCOM) และ Stellantis ในด้านเทคโนโลยีสำหรับยานยนต์ โดยเฉพาะการนำ Snapdragon Digital Chassis และ Ride Pilot ไปใช้ในรถยนต์หลายล้านคัน นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการขยายความร่วมมือและความต้องการเทคโนโลยีในด้านยานยนต์จะช่วยเพิ่มรายได้ของ Qualcomm และทำให้หุ้นเพิ่มขึ้น นอกจากนี้ยังแสดงให้เห็นถึงความมุ่งมั่นของ Qualcomm ในการพัฒนาทคโนโลยีในด้านยานยนต์และ AI\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจมาก เนื่องจากมีการขยายความร่วมมือและความต้องการเทคโนโลยีในด้านยานยนต์ที่เพิ่มขึ้น นอกจากนี้ P/E ของหุ้นยังอยู่ในระดับที่ไม่สูงมาก ทำให้หุ้นนี้มีโอกาสเพิ่มขึ้นในระยะยาว อย่างไรก็ตาม ตลาดหุ้นไทยยังมีความผันผวนอยู่ และควรตั้ง Circuit Breaker เพื่อป้องกันการสูญเสียที่อาจเกิดขึ้น"
+    },
+    {
+      "rank": 40,
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "sector": "Technology",
+      "price": 1888.38,
+      "pct_change": 2.51,
+      "volume": 723100,
+      "market_cap": 246674391040,
+      "pe_ratio": 53.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:KLAC",
+      "news": [
+        {
+          "title": "Stocks Settle Higher on Iran Peace Hopes and Tech Strength",
+          "summary": "The S&P 500 Index ($SPX ) (SPY ) on Friday closed up +0.37%, the Dow Jones Industrial Average ($DOWI ) (DIA ) closed up +0.58%, and the Nasdaq 100 Index ($IUXX ) (QQQ ) closed up +0.42%. June E-mini S&P futures (ESM26 ) ",
+          "provider": "Barchart",
+          "date": "2026-05-22",
+          "url": "https://www.barchart.com/story/news/2093234/stocks-settle-higher-on-iran-peace-hopes-and-tech-strength"
+        },
+        {
+          "title": "Will ASML's High-NA Rollout Strengthen AI Chip Leadership?",
+          "summary": "ASML Holdings says first chips made with High-NA EUV tools are coming soon as $400M machines move from R&D validation into early production.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/asmls-high-na-rollout-strengthen-160200505.html"
+        },
+        {
+          "title": "How KLA's Service Business Is Becoming a Long-Term Growth Anchor",
+          "summary": "KLAC's service business generated $775M in March-quarter revenues as AI demand and longer tool lifecycles fuel durable growth.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/klas-business-becoming-long-term-153000131.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือเรื่องของ ASML Holdings ที่จะเริ่มผลิตชิป AI ที่มีคุณภาพสูงขึ้น และ KLA Corporation (KLAC) ที่มีบริการซ่อมบำรุงเครื่องมือที่มีการเติบโตอย่างมั่นคง\n\nตลาดจะตีความข่าวนี้ว่า:\n\n* ASML Holdings: ข่าวนี้แสดงถึงความแข็งแกร่งของอุตสาหกรรมชิป AI และความต้องการเครื่องมือที่มีคุณภาพสูงขึ้น นักลงทุนอาจมองข่าวนี้เป็นบวก เนื่องจากแสดงถึงโอกาสในการเติบโตของ ASML Holdings\n* KLA Corporation (KLAC): ข่าวนี้แสดงถึงความสำคัญของบริการซ่อมบำรุงเครื่องมือในอุตสาหกรรมชิป AI และความต้องการเครื่องมือที่มีคุณภาพสูงขึ้น นักลงทุนอาจมองข่าวนี้เป็นบวก เนื่องจากแสดงถึงโอกาสในการเติบโตของ KLAC\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น KLAC (KLA Corporation) น่าสนใจ เนื่องจากมีการเติบโตอย่างมั่นคงและความสำคัญของบริการซ่อมบำรุงเครื่องมือในอุตสาหกรรมชิป AI อย่างไรก็ตาม ตลาดอาจมีความเสี่ยงในระยะสั้น เนื่องจากการเปลี่ยนแปลงของตลาดและความไม่แน่นอนของเศรษฐกิจโลก\n\nดังนั้น ผมจึงแนะนำให้ตั้ง Circuit Breaker เพื่อป้องกันความเสี่ยงและร"
+    },
+    {
+      "rank": 41,
+      "ticker": "LIN",
+      "name": "Linde plc",
+      "sector": "Basic Materials",
+      "price": 517.58,
+      "pct_change": 0.6,
+      "volume": 1454000,
+      "market_cap": 239301722112,
+      "pe_ratio": 34.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:LIN",
+      "news": [
+        {
+          "title": "Linde’s New €1.6 Billion Eurobond Raise Might Change The Case For Investing In Linde (LIN)",
+          "summary": "In May 2026, Linde plc issued €600 million of floating rate notes due 2028, €500 million of 3.200% notes due 2030, and €500 million of 3.800% notes due 2036 under its updated €25.00 billion European debt issuance program",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/linde-1-6-billion-eurobond-031721657.html"
+        },
+        {
+          "title": "Top Research Reports for Texas Instruments, Linde & BHP",
+          "summary": "TXN, LIN and BHP lead Zacks' top research picks as analysts highlight AI demand, project backlogs and copper growth drivers.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/top-research-reports-texas-instruments-205100621.html"
+        },
+        {
+          "title": "3 Stocks to Buy Before SpaceX Goes Public",
+          "summary": "These space stocks are up big in 2026, but have the makings of long-term winners.",
+          "provider": "Motley Fool",
+          "date": "2026-05-22",
+          "url": "https://www.fool.com/investing/2026/05/22/3-stocks-to-buy-before-spacex-goes-public/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการออกบอนด์ใหม่ของ Linde plc จำนวน €1.6 พันล้าน ซึ่งอาจทำให้กรณีการลงทุนในหุ้น LIN เปลี่ยนแปลงไป นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการออกบอนด์ใหม่แสดงถึงความมั่นคงทางการเงินของบริษัท แต่ก็อาจมองข่าวนี้ในแง่ลบหากนักลงทุนเชื่อว่าการออกบอนด์ใหม่จะทำให้หุ้น LIN มีความเสี่ยงสูงขึ้น\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น LIN อยู่ที่ $517.58 ซึ่งไม่ได้เปลี่ยนแปลงมากนักในระยะสั้น นอกจากนี้หุ้น LIN ยังมีการซื้อขายอย่างมีประสิทธิภาพ และไม่ได้ถูกปิดการซื้อขาย (Circuit Breaker) ดังนั้น Beer จึงไม่เห็นด้วยที่จะตั้ง SQ ของหุ้น LIN อย่างมีประสิทธิภาพ"
+    },
+    {
+      "rank": 42,
+      "ticker": "IBM",
+      "name": "International Business Machines Corporation",
+      "sector": "Technology",
+      "price": 253.84,
+      "pct_change": 0.34,
+      "volume": 19025900,
+      "market_cap": 238580482048,
+      "pe_ratio": 22.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:IBM",
+      "news": [
+        {
+          "title": "International Business Machines (IBM) Is Up 15.8% After Announcing $2 Billion Anderon Quantum Chip Foundry Partnership",
+          "summary": "Earlier this week, IBM and the U.S. Department of Commerce announced a Letter of Intent to create Anderon, America’s first pure-play quantum chip foundry in Albany, New York, backed by US$1.00 billion in CHIPS incentives",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/international-business-machines-ibm-15-121410261.html"
+        },
+        {
+          "title": "Rigetti Computing (RGTI) Soars 19.9% on $100M Govt Funding",
+          "summary": "Rigetti Computing Inc. (NASDAQ:RGTI) is one of the 10 Stocks Effortlessly Climbing Double-Digits. Rigetti Computing rallied for a third consecutive day on Friday, climbing 19.87 percent to close at $26.42 apiece, as inve",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/rigetti-computing-rgti-soars-19-092138393.html"
+        },
+        {
+          "title": "The AI Stock Retirees Are Adding to Their Portfolios -- and Growth Investors Should, Too",
+          "summary": "IBM is a reliable AI compounder, pairing real enterprise AI growth with one of the strongest dividend track records in large-cap tech.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/the-ai-stock-retirees-are-adding-to-their-portfoli/"
+        }
+      ],
+      "analysis": "📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:\n\nข่าวพูดถึง IBM ที่ประกาศการสร้าง Anderon ซึ่งเป็นห้องผลิตชิปควอนตัมแห่งแรกในอเมริกา โดยมีเงินสนับสนุนจาก CHIPS incentives จำนวน 1.00 พันล้านดอลลาร์ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการลงทุนในเทคโนโลยีควอนตัมมีความสำคัญต่อการพัฒนาและนวัตกรรมในอนาคต นอกจากนี้ IBM ยังมีความสามารถในการสร้างรายได้และสร้างผลตอบแทนให้กับนักลงทุนด้วยการมีผลิตภัณฑ์และบริการที่มีคุณภาพสูง\n\n🍺 Beer มองว่า:\n\nSQ ของหุ้นนี้ (IBM) น่าสนใจ เนื่องจากมีการลงทุนในเทคโนโลยีควอนตัมที่มีอนาคตสูง และมีความสามารถในการสร้างรายได้ให้กับนักลงทุน นอกจากนี้ IBM ยังมีประวัติการลงทุนในธุรกิจที่มีความมั่นคงและผลตอบแทนอย่างต่อเนื่อง อย่างไรก็ตาม ตลาดอาจมีความเสี่ยงในการลงทุนในหุ้น IBM เนื่องจากมีความไม่แน่นอนในตลาดและความเสี่ยงในการลงทุนในเทคโนโลยีใหม่ๆ"
+    },
+    {
+      "rank": 43,
+      "ticker": "RTX",
+      "name": "RTX Corporation",
+      "sector": "Industrials",
+      "price": 177.01,
+      "pct_change": 1.0,
+      "volume": 4315400,
+      "market_cap": 238376419328,
+      "pe_ratio": 33.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:RTX",
+      "news": [
+        {
+          "title": "AeroVironment and KBR Shares Skyrocket, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the U.S. and Iran signaled progress toward a peace agreement, lifting both commercial and defense aerospace names.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/aerovironment-kbr-shares-skyrocket-know-222855214.html"
+        },
+        {
+          "title": "RTX (RTX) Demonstrates Self-Healing Combat Communications System PACE4ACE",
+          "summary": "RTX Corporation (NYSE:RTX) is one of the best low risk stocks to buy in 2026. On May 20, RTX’s BBN Technologies, funded by the Air Force Research Laboratory, demonstrated a self-healing communications system called PACE4",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/rtx-rtx-demonstrates-self-healing-120352715.html"
+        },
+        {
+          "title": "U.S. denies Taiwan arms sale pause due to Iran munition needs – Reuters",
+          "summary": "Investing.com — U.S. arms sales to Taiwan are subject to multi-year administrative processing timelines and remain entirely separate from ongoing military operations in the Middle East, according to a source familiar wit",
+          "provider": "Investing.com",
+          "date": "2026-05-23",
+          "url": "https://www.yahoo.com/news/politics/articles/u-denies-taiwan-arms-sale-071905359.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการแสดงผลของระบบสื่อสารที่สามารถฟื้นตัวได้ (self-healing) ของ RTX Corporation โดยชื่อว่า PACE4ACE ซึ่งเป็นผลงานของ BBN Technologies ที่ได้รับทุนจาก Air Force Research Laboratory นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากแสดงถึงความสามารถของ RTX ในการพัฒนาเทคโนโลยีที่มีความสำคัญต่อความปลอดภัยและความก้าวหน้า\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (RTX) น่าสนใจ เนื่องจากมี Market Cap Rank #43 ในตลาด และ P/E ที่ 33.210133 ซึ่งแสดงถึงความมั่นคงและความสามารถในการเติบโตของบริษัท อย่างไรก็ตาม ตลาดอาจมีความระมัดระวังในการลงทุนในหุ้นนี้ เนื่องจากข่าวล่าสุดเกี่ยวกับการขายอาวุธให้กับไอราน อาจส่งผลกระทบต่อความเสี่ยงของหุ้น"
+    },
+    {
+      "rank": 44,
+      "ticker": "WFC",
+      "name": "Wells Fargo & Company",
+      "sector": "Financial Services",
+      "price": 76.4,
+      "pct_change": 0.63,
+      "volume": 8728900,
+      "market_cap": 233798483968,
+      "pe_ratio": 11.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:WFC",
+      "news": [
+        {
+          "title": "3 Bank Stocks We Find Risky",
+          "summary": "Banks play a critical role in the financial system, providing everything from commercial loans to wealth management and payment processing services. Market leaders have certainly capitalized on rising interest rates and ",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-bank-stocks-risky-094055002.html"
+        },
+        {
+          "title": "Wells Fargo & Company (WFC) Launches Advisor Gateway, Here’s What You Need to Know",
+          "summary": "Wells Fargo & Company (NYSE:WFC) is one of the Most Undervalued US Stocks According to Hedge Funds. On May 7, Wells Fargo & Company (NYSE:WFC) launched Advisor Gateway, which is a desktop platform that provides access to",
+          "provider": "Insider Monkey",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/wells-fargo-company-wfc-launches-124110136.html"
+        },
+        {
+          "title": "Top US Landlords Agree to $50 Billion Real Estate Merger",
+          "summary": "(Bloomberg) -- AvalonBay Communities Inc. and Equity Residential agreed to merge in an all-stock transaction that will unite two of the biggest apartment real estate investment trusts with a combined market value of more",
+          "provider": "Bloomberg",
+          "date": "2026-05-21",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/top-us-landlords-agree-50-144728485.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึง Wells Fargo & Company (WFC) คือการเปิดตัว Advisor Gateway ซึ่งเป็นแพลตฟอร์มที่ให้เข้าถึงบริการด้านการเงินและวิเคราะห์ตลาดได้ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจาก Advisor Gateway อาจช่วยให้นักลงทุนมีข้อมูลและเครื่องมือที่ดีขึ้นในการตัดสินใจลงทุน นอกจากนี้ Wells Fargo & Company ยังเป็นหนึ่งในธนาคารที่มีขนาดใหญ่ที่สุดในโลก ซึ่งอาจทำให้นักลงทุนมีความมั่นใจในการลงทุนในหุ้นนี้\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (WFC) น่าสนใจมาก เนื่องจากมี Market Cap Rank #44 ในตลาด และ P/E ที่ 11.808347 ซึ่งถือว่า Reasonable นอกจากนี้ Wells Fargo & Company ยังมีประวัติการเงินที่ดีและเป็นหนึ่งในธนาคารที่มีขนาดใหญ่ที่สุดในโลก ดังนั้น SQ ของหุ้นนี้จึงไม่ผ่าน Circuit Breaker ที่ควรตั้ง"
+    },
+    {
+      "rank": 45,
+      "ticker": "C",
+      "name": "Citigroup Inc.",
+      "sector": "Financial Services",
+      "price": 125.09,
+      "pct_change": -0.1,
+      "volume": 6331000,
+      "market_cap": 213350612992,
+      "pe_ratio": 15.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:C",
+      "news": [
+        {
+          "title": "Citi says defense selloff creates Boeing stock opportunity",
+          "summary": "Investors have had plenty of reasons to question Boeing over the past few years, but Wall Street is starting to separate the company’s defense story from its better-known commercial aviation challenges. Citi is turning m",
+          "provider": "TheStreet",
+          "date": "2026-05-24",
+          "url": "https://www.thestreet.com/investing/stocks/citi-says-defense-selloff-creates-boeing-stock-opportunity"
+        },
+        {
+          "title": "Citi names Broadcom stock top semiconductor pick for 2026",
+          "summary": "The AI chip race has produced a handful of clear winners. Broadcom is one of them. But the question heading into its next earnings report is no longer about whether it is a top AI stock to own. The real debate now is: Ca",
+          "provider": "TheStreet",
+          "date": "2026-05-23",
+          "url": "https://www.thestreet.com/investing/stocks/citi-names-broadcom-stock-top-semiconductor-pick-for-2026"
+        },
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเปลี่ยนแปลงในธุรกิจของ Boeing โดย Citi คิดว่าปัญหาการขายของ Boeing ในด้านการป้องกัน (defense) ทำให้เกิดโอกาสในการลงทุนในหุ้น Boeing นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการเปลี่ยนแปลงนี้อาจทำให้ Boeing มีโอกาสในการเติบโตในอนาคต\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น Citi (C) น่าสนใจมาก เนื่องจากมี Market Cap Rank #45 ในตลาด และ P/E ที่ 15.462298 หุ้นนี้มีศักยภาพในการเติบโตในอนาคต นอกจากนี้ยังมีข่าวดีเกี่ยวกับธุรกิจของ Boeing ที่อาจทำให้หุ้น Citi มีโอกาสในการเติบโตในอนาคต แต่ควรตั้ง Circuit Breaker เพื่อป้องกันการลงทุนในสถานการณ์ที่ไม่คาดคิด"
+    },
+    {
+      "rank": 46,
+      "ticker": "AXP",
+      "name": "American Express Company",
+      "sector": "Financial Services",
+      "price": 311.78,
+      "pct_change": 0.67,
+      "volume": 2209200,
+      "market_cap": 212735737856,
+      "pe_ratio": 19.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:AXP",
+      "news": [
+        {
+          "title": "As Berkshire Buys Delta Airlines, This Billionaire Just Sold Off AAL and UAL Stocks",
+          "summary": "Two billionaire investors are making opposite airline bets. While Berkshire is buying Delta, let’s take a closer look at why Appaloosa dumped American and United Airlines stocks.",
+          "provider": "Barchart",
+          "date": "2026-05-23",
+          "url": "https://www.barchart.com/story/news/2102183/as-berkshire-buys-delta-airlines-this-billionaire-just-sold-off-aal-and-ual-stocks"
+        },
+        {
+          "title": "Why American Express Is Still a Top Buffett Stock After All These Years",
+          "summary": "American Express has been a staple in Berkshire Hathaway's portfolio for over three decades.",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/why-american-express-is-still-a-top-buffett-stock/"
+        },
+        {
+          "title": "Assessing American Express (NYSE:AXP) Valuation After Recent Share Price Pullback",
+          "summary": "American Express stock snapshot after recent performance American Express (AXP) stock has pulled back recently, with the price down about 6% over the past month and about 10% over the past 3 months, even as its 1 year to",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/assessing-american-express-nyse-axp-081227657.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Berkshire Hathaway ซึ่งเป็นบริษัทที่ Warren Buffett เป็น CEO ซื้อหุ้น Delta Airlines ในขณะที่ Appaloosa ซึ่งเป็นบริษัทที่ David Tepper เป็น CEO ขายหุ้น American Airlines และ United Airlines นักลงทุนอาจมองข่าวนี้เป็นบวกหรือลบขึ้นอยู่กับว่าพวกเขาเชื่อหรือไม่เชื่อในความสามารถของ Warren Buffett ในการลงทุนใน Delta Airlines นอกจากนี้ข่าวยังทำให้นักลงทุนตระหนักถึงความแตกต่างในความเชื่อมั่นของนักลงทุนในตลาดหุ้น\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น AXP (American Express Company) น่าสนใจ เนื่องจากมี Market Cap Rank #46 ในตลาด และ P/E Ratio 19.449781 ซึ่งเป็นระดับที่ปกติ นอกจากนี้หุ้น AXP ยังได้รับความนิยมจากนักลงทุนเนื่องจากเป็นบริษัทที่มีความมั่นคงและเชื่อถือได้ แต่หุ้น AXP ไม่ได้ถูกตั้ง Circuit Breaker ในขณะนี้"
+    },
+    {
+      "rank": 47,
+      "ticker": "PANW",
+      "name": "Palo Alto Networks, Inc.",
+      "sector": "Technology",
+      "price": 260.58,
+      "pct_change": 3.03,
+      "volume": 6626100,
+      "market_cap": 211330367488,
+      "pe_ratio": 144.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:PANW",
+      "news": [
+        {
+          "title": "Fortinet vs. Palo Alto Networks: What Do Their Revenue Trends Tell Investors?",
+          "summary": "Quarterly figures reveal a persistent revenue gap and distinct profit margins as both cybersecurity giants report steady sales growth over eight periods.",
+          "provider": "Motley Fool",
+          "date": "2026-05-24",
+          "url": "https://www.fool.com/coverage/charts/2026/05/23/fortinet-vs-palo-alto-networks-what-do-their-revenue-trends-tell-investors/"
+        },
+        {
+          "title": "Morgan Stanley resets PANW stock price target on demand trends",
+          "summary": "Palo Alto Networks (PANW) just picked up another vote of confidence from Wall Street, and it arrived at a busy moment for the stock. Shares closed at $247.55 on May 18, near a fresh all-time high reached days earlier. Fo",
+          "provider": "TheStreet",
+          "date": "2026-05-22",
+          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-lifts-panw-stock-target-to-253-on-demand-trends"
+        },
+        {
+          "title": "Palo Alto Networks Is Beating Palantir by 60% This Year. Is a Rebalancing Imminent?",
+          "summary": "The story for investors who own shares of both Palo Alto Networks (NASDAQ:PANW) and Palantir Technologies (NASDAQ:PLTR) this year has been a study in divergence. Palo Alto Networks stock is up 2% midday Friday, extending",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-22",
+          "url": "https://247wallst.com/investing/2026/05/22/palo-alto-networks-is-beating-palantir-by-60-this-year-is-a-rebalancing-imminent/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือ Fortinet vs. Palo Alto Networks: What Do Their Revenue Trends Tell Investors? ซึ่งหมายความว่า Fortinet และ Palo Alto Networks มีผลการขายที่แตกต่างกัน และมีรายได้ที่แตกต่างกันอย่างชัดเจน นักลงทุนอาจมองข่าวนี้ในหลายมุมมอง เช่น\n\n* บวก: Palo Alto Networks มีรายได้ที่เพิ่มขึ้นอย่างต่อเนื่อง ซึ่งอาจเป็นเครื่องบ่งชี้ถึงความแข็งแกร่งของบริษัท\n* ลบ: Fortinet มีรายได้ที่เพิ่มขึ้นอย่างรวดเร็ว ซึ่งอาจทำให้ Palo Alto Networks มองว่าเป็นบริษัทที่ช้าในการเติบโต\n* กลาง: ข่าวนี้อาจไม่ได้ผลกระทบมากนักต่อการลงทุนใน Palo Alto Networks\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (PANW) น่าสนใจ แต่ไม่ควรตั้ง Circuit Breaker เนื่องจากมี Market Cap Rank #47 ในตลาด และมี Volume 6,626,100 ซึ่งหมายความว่าหุ้นนี้มีความเสี่ยงและความผันผวน แต่ยังมีโอกาสในการเติบโตด้วย"
+    },
+    {
+      "rank": 48,
+      "ticker": "TMUS",
+      "name": "T-Mobile US, Inc.",
+      "sector": "Communication Services",
+      "price": 191.47,
+      "pct_change": 0.3,
+      "volume": 3973800,
+      "market_cap": 207209725952,
+      "pe_ratio": 20.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:TMUS",
+      "news": [
+        {
+          "title": "T-Mobile US Bets On Razr Launch And Roaming To Deepen Customer Value",
+          "summary": "T-Mobile US (NasdaqGS:TMUS) has launched the latest Motorola razr lineup, including a new razr fold with advanced 5G capabilities. The company is rolling out fresh device offers for both new and existing customers tied t",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/t-mobile-us-bets-razr-001604810.html"
+        },
+        {
+          "title": "Verizon Satellite Venture Targets Dead Zones And Raises Valuation Questions",
+          "summary": "Verizon Communications (NYSE:VZ) is joining AT&T and T-Mobile in a new joint venture focused on satellite based direct to device mobile coverage. The initiative targets mobile dead zones across the U.S., especially in ru",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/verizon-satellite-venture-targets-dead-221155958.html"
+        },
+        {
+          "title": "Here’s What the Street is Saying About T-Mobile US (TMUS)",
+          "summary": "T-Mobile US, Inc. (NASDAQ:TMUS) is one of the best communication stocks to invest in. T-Mobile US, Inc. (NASDAQ:TMUS) received several rating updates following the release of its financial results for Q1 on April 28. Sco",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/street-saying-t-mobile-us-115618879.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเปิดตัว Motorola razr fold ใหม่พร้อมกับข้อเสนอส่วนลดสำหรับลูกค้าใหม่และเก่าของ T-Mobile US นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นการเปิดตัวผลิตภัณฑ์ใหม่ที่มีความสามารถ 5G ที่ดีขึ้น นอกจากนี้ข้อเสนอส่วนลดยังอาจช่วยเพิ่มความน่าสนใจของลูกค้า\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ น่าสนใจและไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีการเปิดตัวผลิตภัณฑ์ใหม่ที่มีความสามารถ 5G ที่ดีขึ้น และข้อเสนอส่วนลดที่อาจช่วยเพิ่มความน่าสนใจของลูกค้า อย่างไรก็ตามควรตั้งด้านลบหากมีข้อมูลเพิ่มเติมที่ทำให้ไม่แน่ใจเกี่ยวกับผลกระทบของข่าวนี้ต่อหุ้น"
+    },
+    {
+      "rank": 49,
+      "ticker": "PEP",
+      "name": "PepsiCo, Inc.",
+      "sector": "Consumer Defensive",
+      "price": 150.57,
+      "pct_change": 1.16,
+      "volume": 7774400,
+      "market_cap": 205820313600,
+      "pe_ratio": 23.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:PEP",
+      "news": [
+        {
+          "title": "Will Constellation Brands’ (STZ) New McDonald’s CMO Director Reframe Its Consumer Brand Playbook?",
+          "summary": "Constellation Brands recently elected Morgan Flatley, Executive Vice President, Global Chief Marketing Officer and New Business Ventures at McDonald’s, to its Board of Directors as an independent member, restoring the Bo",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/constellation-brands-stz-mcdonald-cmo-221243734.html"
+        },
+        {
+          "title": "Is It Time To Reconsider PepsiCo (PEP) After Recent Share Price Swings?",
+          "summary": "If you are wondering whether PepsiCo at around US$150.57 is offering fair value or a potential bargain, the next sections will walk through what the current price might be telling you. The stock is up 1.0% over the last ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/time-reconsider-pepsico-pep-recent-181255413.html"
+        },
+        {
+          "title": "PepsiCo (PEP) Exceeds Market Returns: Some Facts to Consider",
+          "summary": "PepsiCo (PEP) closed the most recent trading day at $150.57, moving +1.16% from the previous trading session.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/pepsico-pep-exceeds-market-returns-214502281.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการแต่งตั้ง Morgan Flatley เป็นสมาชิกใหม่ของคณะกรรมการบริหารของ Constellation Brands ซึ่งเป็นบริษัทที่มีการร่วมมือกับ PepsiCo ในการผลิตและขายผลิตภัณฑ์ นักลงทุนอาจมองข่าวนี้เป็นข่าวบวก เนื่องจากการแต่งตั้งผู้มีประสบการณ์ใหม่ๆ อาจนำไปสู่การเปลี่ยนแปลงเชิงบวกในกลยุทธ์ทางการตลาดของบริษัท นอกจากนี้ ยังอาจส่งผลกระทบเชิงบวกต่อการเติบโตของบริษัทในอนาคต\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (PepsiCo) น่าสนใจ เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีแนวโน้มที่จะยืนอยู่บนในระยะยาว นอกจากนี้ ยังมีการมีผลิตภัณฑ์ที่หลากหลายและความสามารถในการปรับตัวเข้ากับตลาดได้ดี อย่างไรก็ตาม หากมีการเปลี่ยนแปลงเชิงลบในกลยุทธ์ทางการตลาดหรือการเติบโตของบริษัทในอนาคต นักลงทุนควรตั้งพอร์ตการลงทุนให้เหมาะสม"
+    },
+    {
+      "rank": 50,
+      "ticker": "VZ",
+      "name": "Verizon Communications Inc.",
+      "sector": "Communication Services",
+      "price": 48.35,
+      "pct_change": 0.17,
+      "volume": 14717700,
+      "market_cap": 201888268288,
+      "pe_ratio": 11.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:VZ",
+      "news": [
+        {
+          "title": "Verizon Satellite Venture Targets Dead Zones And Raises Valuation Questions",
+          "summary": "Verizon Communications (NYSE:VZ) is joining AT&T and T-Mobile in a new joint venture focused on satellite based direct to device mobile coverage. The initiative targets mobile dead zones across the U.S., especially in ru",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/verizon-satellite-venture-targets-dead-221155958.html"
+        },
+        {
+          "title": "The Dividend Stocks That Generate $60,000 Tax-Free Inside a Roth (And What They Cost You in a Taxable Account)",
+          "summary": "Holding a high-yield dividend portfolio in a taxable account at the 24% federal bracket means writing the IRS a $14,400 check every year on $60,000 of income that should have been yours. It repeats annually, forever, on ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/the-dividend-stocks-that-generate-60000-tax-free-inside-a-roth-and-what-they-cost-you-in-a-taxable-account/"
+        },
+        {
+          "title": "Verizon Communications (VZ) Announces Partnership with Anthropic",
+          "summary": "Verizon Communications Inc. (NYSE:VZ) is one of the best communication stocks to invest in. Verizon Communications Inc. (NYSE:VZ) announced on May 15 a partnership with Anthropic as a member of Project Glasswing, which i",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/verizon-communications-vz-announces-partnership-115640491.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเริ่มต้นของการร่วมมือระหว่าง Verizon Communications (VZ) กับ AT&T และ T-Mobile ในการสร้างบริการโทรศัพท์ผ่านดาวเทียม เพื่อแก้ปัญหาการไม่มีเครือข่ายโทรศัพท์ในพื้นที่ที่ไม่มีการครอบคลุมของเครือข่ายโทรศัพท์ปกติ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการร่วมมือครั้งนี้อาจช่วยให้ Verizon Communications มีโอกาสในการขยายเครือข่ายโทรศัพท์และเพิ่มรายได้\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (ราคา $48.35) น่าสนใจ เนื่องจากมีการขึ้น 0.2% และ Market Cap Rank #50 ในตลาด นอกจากนี้ P/E ของหุ้นนี้อยู่ที่ 11.792683 ซึ่งถือว่าเหมาะสม น่าสนใจกว่า Circuit Breaker ที่ควรตั้ง"
+    },
+    {
+      "rank": 51,
+      "ticker": "MCD",
+      "name": "McDonald's Corporation",
+      "sector": "Consumer Cyclical",
+      "price": 282.27,
+      "pct_change": -0.67,
+      "volume": 3056200,
+      "market_cap": 200554479616,
+      "pe_ratio": 23.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:MCD",
+      "news": [
+        {
+          "title": "Will Constellation Brands’ (STZ) New McDonald’s CMO Director Reframe Its Consumer Brand Playbook?",
+          "summary": "Constellation Brands recently elected Morgan Flatley, Executive Vice President, Global Chief Marketing Officer and New Business Ventures at McDonald’s, to its Board of Directors as an independent member, restoring the Bo",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/constellation-brands-stz-mcdonald-cmo-221243734.html"
+        },
+        {
+          "title": "The Best Blue Chip Stock to Buy After This Year's Market Pullback",
+          "summary": "Should investors sink their teeth into McDonald's?",
+          "provider": "Motley Fool",
+          "date": "2026-05-23",
+          "url": "https://www.fool.com/investing/2026/05/23/the-best-blue-chip-stock-to-buy-after-this-years-m/"
+        },
+        {
+          "title": "$8 for a dozen eggs: Billionaire Ken Griffin warns Americans are still getting hurt by ‘deeply triggering’ inflation",
+          "summary": "Not even a Coca-Cola at McDonald's is left unscathed.",
+          "provider": "Moneywise",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/economy/articles/8-dozen-eggs-billionaire-ken-104500269.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการแต่งตั้ง Morgan Flatley, Executive Vice President, Global Chief Marketing Officer and New Business Ventures ที่ McDonald's เป็นสมาชิกใหม่ของ Board of Directors ที่ Constellation Brands นี่เป็นข่าวที่น่าสนใจสำหรับนักลงทุน เนื่องจากอาจส่งผลกระทบต่อกลยุทธ์การตลาดของ Constellation Brands และที่มีต่อ McDonald's\n\nตลาดอาจจะตีความข่าวนี้ในหลายวิธี แต่โดยทั่วไปแล้ว นักลงทุนอาจจะรู้สึกว่าข่าวนี้เป็นข่าวที่ดีสำหรับ Constellation Brands เนื่องจากการแต่งตั้ง Morgan Flatley อาจจะช่วยให้ Constellation Brands มีความสามารถในการตลาดที่ดีขึ้น และอาจจะส่งผลกระทบต่อการเติบโตของรายได้\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจมาก เนื่องจากมี Market Cap Rank #51 ในตลาด และมี Volume 3,056,200 ซึ่งเป็นจำนวนมาก นอกจากนี้ P/E ของหุ้นนี้อยู่ที่ 23.251234 ซึ่งเป็นระดับที่ดี\n\nอย่างไรก็ตาม ผมไม่คิดว่าหุ้นนี้จะผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีหลายปัจจัยที่ทำให้หุ้นนี้มีความเสี่ยง เช่น การเปลี่ยนแปลงในตลาดการเงิน การเปลี่ยนแปลงในกลยุทธ์การตลาดของ Constellation Brands และอื่นๆ\n\nดังนั้น ผมจึงแนะนำให้นักลงทุนพิจารณาหุ้นนี้อย่างรอบคอบและทำ"
+    },
+    {
+      "rank": 52,
+      "ticker": "ADI",
+      "name": "Analog Devices, Inc.",
+      "sector": "Technology",
+      "price": 397.07,
+      "pct_change": 3.35,
+      "volume": 6107800,
+      "market_cap": 193407647744,
+      "pe_ratio": 59.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:ADI",
+      "news": [
+        {
+          "title": "Jim Cramer Discusses Analog Devices’ (ADI) Market",
+          "summary": "We recently published Jim Cramer Took A Side On Biggest AI Debate & Discussed These 13 Stocks. Analog Devices, Inc. (NASDAQ:ADI) is one of the stocks discussed by Jim Cramer. Analog Devices, Inc. (NASDAQ:ADI) is a semico",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-analog-devices-231629313.html"
+        },
+        {
+          "title": "NXP Semiconductors and Himax Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after risk-on sentiment returned on Iran peace progress as Treasury yields cooled.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nxp-semiconductors-himax-stocks-trade-230855630.html"
+        },
+        {
+          "title": "Universal Display and Microchip Technology Shares Are Soaring, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after risk-on sentiment returned on Iran peace progress as Treasury yields cooled.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/universal-display-microchip-technology-shares-230055577.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่กล่าวถึง Analog Devices, Inc. (ADI) เป็นข่าวที่ Jim Cramer พูดถึงในรายการของเขา โดยกล่าวว่า ADI เป็นหนึ่งในหุ้นที่น่าสนใจในตลาด นักลงทุนจะเห็นข่าวนี้ในแง่บวก เนื่องจาก Jim Cramer เป็นนักวิเคราะห์ที่มีชื่อเสียงและมีความเชี่ยวชาญในด้านการลงทุน นักลงทุนจะเชื่อมั่นในความคิดเห็นของเขาและอาจจะเข้าซื้อหุ้น ADI\n\nอย่างไรก็ตาม ตลาดหุ้นจะไม่ตีความข่าวนี้ในแง่เดียวเท่านั้น นักลงทุนจะต้องดูข้อมูลอื่นๆ เช่น การเติบโตของรายได้, การเปลี่ยนแปลงในอุตสาหกรรม, และการเปลี่ยนแปลงในตลาดหุ้น เพื่อให้ได้ข้อมูลที่ถูกต้องและเป็นกลาง\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น ADI น่าสนใจ แต่ยังไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น ADI มีการเปลี่ยนแปลงอย่างมากในช่วงหลายเดือน และยังไม่มีการแสดงออกมาในแง่ของการเปลี่ยนแปลงในอุตสาหกรรมหรือการเปลี่ยนแปลงในตลาดหุ้น นักลงทุนควรตั้งการคาดการณ์และการวิเคราะห์อย่างรอบคอบก่อนตัดสินใจลงทุนในหุ้น ADI"
+    },
+    {
+      "rank": 53,
+      "ticker": "NEE",
+      "name": "NextEra Energy, Inc.",
+      "sector": "Utilities",
+      "price": 88.55,
+      "pct_change": -1.27,
+      "volume": 10755400,
+      "market_cap": 184680366080,
+      "pe_ratio": 22.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:NEE",
+      "news": [
+        {
+          "title": "S&P 500 Posts Eighth Consecutive Weekly Gain Led by Health Care, Utilities",
+          "summary": "The Standard & Poor's 500 index rose 0.9% this week, its eighth consecutive week of gains, amid upbe",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-posts-eighth-consecutive-204822784.html"
+        },
+        {
+          "title": "Good News Is Good News. The Market Has Passed the Earnings Test.",
+          "summary": "Solid earnings and a resilient economy could keep the rally going—even if the Fed starts thinking about interest rate hikes.",
+          "provider": "Barrons.com",
+          "date": "2026-05-22",
+          "url": "https://www.barrons.com/articles/good-news-market-earnings-test-ibm-quantum-86ebfc59?siteid=yhoof2&yptr=yahoo"
+        },
+        {
+          "title": "NextEra Discusses $116 Billion Dominion Deal In Record Power Sector Push",
+          "summary": "Proposed mostly stock transaction could give NextEra deeper access to Virginia's fast-growing data center power market.",
+          "provider": "GuruFocus.com",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/sectors/energy/articles/nextera-discusses-116-billion-dominion-172648558.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงในข้อความคือ:\n\n1. S&P 500 Posts Eighth Consecutive Weekly Gain Led by Health Care, Utilities - สต็อค S&P 500 บวก 0.9% ในสัปดาห์นี้ เป็นสัปดาห์ที่ 8 ติดต่อกัน โดยมีสต็อคในกลุ่ม Health Care และ Utilities ที่บวกมากที่สุด\n2. Good News Is Good News. The Market Has Passed the Earnings Test. - ข่าวดีๆ คือข่าวดี ตลาดหุ้นได้ผ่านการทดสอบผลประกอบการของบริษัทแล้ว และอาจจะทำให้ราคาหุ้นบวกต่อไปแม้ว่าเฟดจะเริ่มคิดเรื่องการเพิ่มอัตราดอกเบี้ย\n3. NextEra Discusses $116 Billion Dominion Deal In Record Power Sector Push - NextEra Energy ได้พูดคุยเรื่องการซื้อกิจการ Dominion ในมูลค่า 116 พันล้านดอลลาร์ ซึ่งจะทำให้ NextEra มีเข้าถึงตลาดพลังงานที่เติบโตเร็วในเวอร์จิเนียมากขึ้น\n\nตลาดจะตีความข่าวเหล่านี้ว่า:\n\n* ข่าวดีๆ ที่เกิดขึ้นในตลาดหุ้นจะทำให้ราคาหุ้นบวกต่อไป\n* การซื้อกิจการของ NextEra Energy จะทำให้ตลาดพลังงานที่เติบโตเร็วในเวอร์จิเนียมีโอกาสมากขึ้น\n* นักลงทุนอาจจะมองข่าวเหล่านี้เป็นข่าวดีและบวกต่อราคาหุ้น\n\n**🍺"
+    },
+    {
+      "rank": 54,
+      "ticker": "AMGN",
+      "name": "Amgen Inc.",
+      "sector": "Healthcare",
+      "price": 339.3,
+      "pct_change": 0.56,
+      "volume": 1566200,
+      "market_cap": 183123017728,
+      "pe_ratio": 23.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMGN",
+      "news": [
+        {
+          "title": "Why Wall Street Thinks This Dividend Stock Could Jump 30%",
+          "summary": "Amgen stock could offer attractive long-term upside for investors willing to ride through near-term volatility.",
+          "provider": "Barchart",
+          "date": "2026-05-22",
+          "url": "https://www.barchart.com/story/news/2090116/why-wall-street-thinks-this-dividend-stock-could-jump-30"
+        },
+        {
+          "title": "CFOs On the Move: Week ending May 22",
+          "summary": "Amgen names a new chief financial officer, Thales hires Nissan’s former CFO and Rent the Runway’s finance chief tenders his resignation.",
+          "provider": "CFO.com",
+          "date": "2026-05-22",
+          "url": "https://www.cfo.com/news/cfos-on-the-move-may-22-Thomas-Dittrich-Amgen-Jeremie-Papin-Thales-Siddharth-Thacker-Rent-the-Runway/820899/"
+        },
+        {
+          "title": "A Look At Amgen (AMGN) Valuation As Tavneos Safety Concerns And Withdrawal Requests Escalate",
+          "summary": "Amgen (AMGN) stock is in focus after safety concerns around its rare disease therapy Tavneos, including reported patient deaths in Japan, prompted regulators and partners to restrict new prescriptions and consider withdr",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/look-amgen-amgn-valuation-tavneos-061554062.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Amgen (AMGN) ที่มีผลิตภัณฑ์ Tavneos ซึ่งมีผลกระทบต่อการรักษาโรคหายใจบาดเจ็บ (ILD) ข่าวระบุว่ามีรายงานการเสียชีวิตของผู้ป่วยในญี่ปุ่น ทำให้หน่วยงานกำกับดูแลและพันธมิตรของ Amgen ตัดสินใจจำกัดการเข้าถึง Tavneos และพิจารณาเพิกถอนการรับรอง\n\nตลาดอาจตีความข่าวนี้ในหลายวิธี:\n\n* บวก: นักลงทุนบางคนอาจมองว่า Amgen มีแนวโน้มที่จะแก้ไขปัญหาที่เกิดขึ้นและปรับปรุงผลิตภัณฑ์ Tavneos ซึ่งจะช่วยให้หุ้นปรับตัวดีขึ้น\n* ลบ: นักลงทุนอื่นๆ อาจมองว่าผลกระทบของ Tavneos ค่อนข้างรุนแรงและอาจส่งผลกระทบต่อการเติบโตของ Amgen ในระยะยาว\n* กลาง: นักลงทุนบางคนอาจมองว่าข่าวนี้เป็นปัจจัยที่ไม่สำคัญและไม่ส่งผลกระทบต่อการเติบโตของ Amgen ในระยะยาว\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น AMGN น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีข่าวล่าสุดเกี่ยวกับผลิตภัณฑ์ Tavneos ที่อาจส่งผลกระทบต่อการเติบโตของ Amgen ในระยะยาว อย่างไ"
+    },
+    {
+      "rank": 55,
+      "ticker": "DIS",
+      "name": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "price": 103.0,
+      "pct_change": -0.56,
+      "volume": 5693300,
+      "market_cap": 178860687360,
+      "pe_ratio": 16.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:DIS",
+      "news": [
+        {
+          "title": "Raymond James Lifts PT on The Walt Disney Company (DIS) on Q2 Results",
+          "summary": "The Walt Disney Company (NYSE:DIS) is one of the best communication stocks to invest in. Raymond James lifted the price target on The Walt Disney Company (NYSE:DIS) to $119 from $115 on May 7, reaffirming an Outperform r",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/raymond-james-lifts-pt-walt-115521441.html"
+        },
+        {
+          "title": "So-Young International Inc (SY) Q1 2026 Earnings Call Highlights: Revenue Surge and Strategic ...",
+          "summary": "Despite a significant revenue increase and strategic growth, So-Young International Inc (SY) faces challenges with declining service revenues and increased expenses.",
+          "provider": "GuruFocus.com",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/young-international-inc-sy-q1-190029626.html"
+        },
+        {
+          "title": "SpaceX, OpenAI, Anthropic: Investors are 'better off' waiting for IPOs",
+          "summary": "Private markets are in focus, with initial public offerings (IPOs) from Anthropic (ANTH.PVT), OpenAI (OPAI.PVT), and SpaceX (SPAX.PVT) on the horizon. Powers Advisory Group managing partner Matt Powers joins Yahoo Financ",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/video/spacex-openai-anthropic-investors-are-better-off-waiting-for-ipos-154306602.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Raymond James ที่ยกเลิกเป้าหมายราคาของ The Walt Disney Company (DIS) จาก $115 เป็น $119 และยืนยันการลงทุนในหุ้นนี้ ข่าวนี้มีผลกระทบเชิงบวกต่อหุ้น DIS เนื่องจากเป็นการยืนยันความมั่นใจของนักวิเคราะห์เกี่ยวกับผลประกอบการของบริษัท นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นการแสดงถึงความมั่นใจในอนาคตของบริษัท\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (P/E: 16.48) น่าสนใจ เนื่องจากมีความเสถียรและไม่สูงเกินไป นอกจากนี้ หุ้น DIS ยังมี Market Cap Rank #55 ในตลาด ซึ่งแสดงถึงความมั่นคงและเสถียรภาพของบริษัท ดังนั้น ไม่มีเหตุผลที่จะถือว่าหุ้นนี้ผ่าน Circuit Breaker ที่ควรตั้ง"
+    },
+    {
+      "rank": 56,
+      "ticker": "T",
+      "name": "AT&T Inc.",
+      "sector": "Communication Services",
+      "price": 25.26,
+      "pct_change": -0.32,
+      "volume": 25271100,
+      "market_cap": 175515041792,
+      "pe_ratio": 8.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:T",
+      "news": [
+        {
+          "title": "Verizon Satellite Venture Targets Dead Zones And Raises Valuation Questions",
+          "summary": "Verizon Communications (NYSE:VZ) is joining AT&T and T-Mobile in a new joint venture focused on satellite based direct to device mobile coverage. The initiative targets mobile dead zones across the U.S., especially in ru",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/verizon-satellite-venture-targets-dead-221155958.html"
+        },
+        {
+          "title": "The Dividend Stocks That Generate $60,000 Tax-Free Inside a Roth (And What They Cost You in a Taxable Account)",
+          "summary": "Holding a high-yield dividend portfolio in a taxable account at the 24% federal bracket means writing the IRS a $14,400 check every year on $60,000 of income that should have been yours. It repeats annually, forever, on ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/the-dividend-stocks-that-generate-60000-tax-free-inside-a-roth-and-what-they-cost-you-in-a-taxable-account/"
+        },
+        {
+          "title": "AT&T Inc. (T) Announces Launch of eSim for International Travelers",
+          "summary": "AT&T Inc. (NYSE:T) is one of the best communication stocks to invest in. AT&T Inc. (NYSE:T) announced on May 18 the launch of eSim for international travelers visiting the United States, Canada, and Mexico in the upcomin",
+          "provider": "Insider Monkey",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/t-inc-t-announces-launch-115605804.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเปิดตัวโครงการร่วมของ Verizon Communications, AT&T และ T-Mobile เพื่อปรับปรุงการครอบคลุมเครือข่ายโทรศัพท์มือถือในพื้นที่ที่ไม่มีการครอบคลุมอยู่ โดยเฉพาะในพื้นที่ที่มีการใช้งานเครือข่ายโทรศัพท์มือถืออย่างมาก นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการปรับปรุงการครอบคลุมเครือข่ายโทรศัพท์มือถือจะช่วยเพิ่มความน่าสนใจของบริษัทในด้านการลงทุน\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น AT&T มี P/E ที่ต่ำกว่า 10 และมี Market Cap Rank #56 ในตลาด ซึ่งอาจเป็นโอกาสในการลงทุนในระยะยาว แต่ควรตั้ง Circuit Breaker เพื่อป้องกันการเสียเงินในกรณีที่หุ้นไม่เคลื่อนไหวหรือมีการเปลี่ยนแปลงในตลาด"
+    },
+    {
+      "rank": 57,
+      "ticker": "BA",
+      "name": "The Boeing Company",
+      "sector": "Industrials",
+      "price": 219.02,
+      "pct_change": -0.27,
+      "volume": 4632400,
+      "market_cap": 172653985792,
+      "pe_ratio": 86.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:BA",
+      "news": [
+        {
+          "title": "Novanta, WillScot Mobile Mini, and Badger Meter Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the Dow hit a fresh all-time high above 50,700 as yields cooled off. Industrials are the most direct play on physical economic activity.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/novanta-willscot-mobile-mini-badger-021255883.html"
+        },
+        {
+          "title": "Matrix Service, Hyster-Yale Materials Handling, and FTAI Aviation Shares Are Soaring, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the Dow hit a fresh all-time high above 50,700 as yields cooled off.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/matrix-hyster-yale-materials-handling-020455093.html"
+        },
+        {
+          "title": "Hubbell, Rockwell Automation, and First Solar Shares Skyrocket, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the Dow hit a fresh all-time high above 50,700 as yields cooled off. Industrials are the most direct play on physical economic activity.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/hubbell-rockwell-automation-first-solar-015655592.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Dow หมายเลข 50,700 ที่ตั้งใหม่สูงสุด และยields ที่ลดลง นักลงทุนมองว่าข่าวนี้เป็นบวกสำหรับตลาดหุ้น เนื่องจาก Dow หมายเลขสูงสุดแสดงถึงความมั่นใจในตลาด และยields ที่ลดลงแสดงถึงความมั่นใจในเศรษฐกิจ\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น BA (The Boeing Company) น่าสนใจ เนื่องจากมี Market Cap Rank #57 ในตลาด และ P/E ที่สูง 86.22835 ซึ่งอาจบ่งบอกถึงความมั่นใจในหุ้นนี้ แต่ควรตั้งพอร์ตการลงทุนให้เหมาะสมและไม่เกิน 10% ของพอร์ตทั้งหมด"
+    },
+    {
+      "rank": 58,
+      "ticker": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "sector": "Technology",
+      "price": 196.33,
+      "pct_change": 2.96,
+      "volume": 19768800,
+      "market_cap": 171897356288,
+      "pe_ratio": 64.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MRVL",
+      "news": [
+        {
+          "title": "Dow Jones Futures: Trump Says Iran Deal Near With Hormuz 'Opened'; Tesla, AI Stocks Near Buy Points",
+          "summary": "President Donald Trump said Saturday that the U.S. and Iran are close to an interim deal that will open the Strait of Hormuz.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-24",
+          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-trump-iran-deal-hormuz-tesla-stocks/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "Qorvo, Allegro MicroSystems, and Lattice Semiconductor Stocks Trade Up, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after the broader market rallied on Iran peace progress and AI-linked growth names led the comeback in technology. Nvidia's Q1 results earlier in the week (beat-and-rais",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qorvo-allegro-microsystems-lattice-semiconductor-235655480.html"
+        },
+        {
+          "title": "Does Marvell (MRVL) Keeping a Combined Chairman-CEO Role Clarify or Complicate Its AI Ambitions?",
+          "summary": "In May 2026, Marvell Technology’s board reaffirmed its preference for a combined Chairman-CEO role under Matt Murphy and urged shareholders to vote against a proposal requiring an independent, non-executive board chair a",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/does-marvell-mrvl-keeping-combined-141110831.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเจรจาระหว่างสหรัฐฯ และอิหร่านเกี่ยวกับข้อตกลงระยะเวลา ซึ่งจะทำให้ข่าวกรองและนักลงทุนมองว่าตลาดอาจจะปรับตัวเพิ่มขึ้น เนื่องจากข่าวดังกล่าวอาจจะส่งผลดีต่อเศรษฐกิจโลกและความมั่นคงของโลก\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น MRVL น่าสนใจ เนื่องจากมีการปรับตัวเพิ่มขึ้นอย่างมาก (3.0%) และมีพื้นฐานที่แข็งแรงในด้านตลาดการเงินและเทคโนโลยี อย่างไรก็ตาม หากต้องการเพิ่มความปลอดภัยและหลีกเลี่ยงความเสี่ยง ควรตั้ง Circuit Breaker เพื่อป้องกันการปรับตัวที่ไม่คาดคิด"
+    },
+    {
+      "rank": 59,
+      "ticker": "CRWD",
+      "name": "CrowdStrike Holdings, Inc.",
+      "sector": "Technology",
+      "price": 663.46,
+      "pct_change": 2.35,
+      "volume": 2778400,
+      "market_cap": 168874803200,
+      "pe_ratio": null,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:CRWD",
+      "news": [
+        {
+          "title": "CrowdStrike Deepens German Reach As Falcon Ties AI Usage Monitoring",
+          "summary": "CrowdStrike Holdings (NasdaqGS:CRWD) has partnered with SVA System Vertrieb Alexander GmbH to expand its reach in German enterprise and public sector markets. SVA plans to standardize on the CrowdStrike Falcon platform, ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/crowdstrike-deepens-german-reach-falcon-231024736.html"
+        },
+        {
+          "title": "CrowdStrike Holdings (CRWD) Exceeds Market Returns: Some Facts to Consider",
+          "summary": "In the most recent trading session, CrowdStrike Holdings (CRWD) closed at $662.6, indicating a +2.22% shift from the previous trading day.",
+          "provider": "Zacks",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/crowdstrike-holdings-crwd-exceeds-market-214501234.html"
+        },
+        {
+          "title": "CrowdStrike Stock Earns Its Place Back On Elite List",
+          "summary": "CrowdStrike stock hits an all-time high nearly two years after the company's worldwide software debacle.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-22",
+          "url": "https://www.investors.com/stock-lists/ibd-50/crowdstrike-stock-crwd-cybersecurity-cyberattack/?src=A00220&yptr=yahoo"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการผนึกพันธมิตรกับ SVA System Vertrieb Alexander GmbH เพื่อขยายการเข้าถึงตลาดในประเทศเยอรมนีและตลาดสาธารณะของเยอรมนี นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการขยายตลาดและเพิ่มโอกาสการเติบโตของหุ้น CrowdStrike Holdings (CRWD)\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ น่าสนใจ เนื่องจากมีการขยายตลาดและเพิ่มโอกาสการเติบโต แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากมีการเปลี่ยนแปลงในตลาดและอาจมีความเสี่ยงในการลงทุน อย่างไรก็ตาม การตั้ง SQ นี้อาจช่วยให้นักลงทุนมีความระมัดระวังและเตรียมพร้อมสำหรับโอกาสและความเสี่ยงในตลาด"
+    },
+    {
+      "rank": 60,
+      "ticker": "GILD",
+      "name": "Gilead Sciences, Inc.",
+      "sector": "Healthcare",
+      "price": 134.36,
+      "pct_change": 2.96,
+      "volume": 5973400,
+      "market_cap": 166817333248,
+      "pe_ratio": 18.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GILD",
+      "news": [
+        {
+          "title": "Is It Time To Reassess Gilead Sciences (GILD) After Strong Multi Year Share Price Gains",
+          "summary": "If you are wondering whether Gilead Sciences at US$134.36 is still offering value, the starting point is to understand what the current market price is implying about the business. The stock has returned 3.7% over the la",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/time-reassess-gilead-sciences-gild-071852001.html"
+        },
+        {
+          "title": "Sector Update: Healthcare Stocks Gain Late Afternoon",
+          "summary": "Healthcare stocks rose late Friday afternoon, with the NYSE Healthcare Index advancing 1.1% and the",
+          "provider": "MT Newswires",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/sector-healthcare-stocks-gain-afternoon-192325167.html"
+        },
+        {
+          "title": "GILD Stock Jumps After Winning Accelerated FDA Approval For HDV Treatment",
+          "summary": "U.S. Food and Drug Administration (FDA) approved Hepcludex (bulevirtide-gmod) injection to treat chronic hepatitis delta virus.",
+          "provider": "Stocktwits",
+          "date": "2026-05-22",
+          "url": "https://stocktwits.com/news-articles/markets/equity/gild-stock-jumps-after-winning-accelerated-fda-approval-for-hdv-treatment/cZgRlDmReYE"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการรับรอง FDA สำหรับการรักษาไวรัสตับอ่อนชนิดหนึ่ง (Hepatitis Delta Virus) ของบริษัท Gilead Sciences (GILD) ข่าวนี้มีผลกระทบเชิงบวกต่อหุ้น GILD เนื่องจากแสดงให้เห็นถึงความสามารถของบริษัทในการพัฒนาและรักษาผลิตภัณฑ์ที่มีคุณภาพ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากเป็นความสำเร็จในการพัฒนาผลิตภัณฑ์ใหม่ และมีศักยภาพในการเพิ่มผลกำไรของบริษัท\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้น GILD มี Market Cap Rank #60 และ P/E 18.280272 ซึ่งไม่สูงเกินไป แต่ราคาหุ้นเพิ่มขึ้น 3.0% ในวันนี้ ซึ่งอาจทำให้หุ้นเกิดการปรับขึ้นอย่างรวดเร็ว นอกจากนี้ยังมีข่าวล่าสุดเกี่ยวกับการรับรอง FDA ซึ่งอาจทำให้หุ้นเพิ่มขึ้นอย่างมากในอนาคต แต่ควรตั้ง Circuit Breaker เพื่อป้องกันการปรับขึ้นอย่างรวดเร็วและไม่สมดุล"
+    },
+    {
+      "rank": 61,
+      "ticker": "BLK",
+      "name": "BlackRock, Inc.",
+      "sector": "Financial Services",
+      "price": 1073.0,
+      "pct_change": 0.87,
+      "volume": 450900,
+      "market_cap": 166566068224,
+      "pe_ratio": 27.0,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:BLK",
+      "news": [
+        {
+          "title": "Hyperscaler Debt Flood Brings Derivatives Bonanza",
+          "summary": "(Bloomberg) -- As big tech companies raise hundreds of billions of dollars to fund artificial intelligence investments, Wall Street banks are increasingly finding they have to trade more credit derivatives to keep doing ",
+          "provider": "Bloomberg",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/options/articles/hyperscaler-debt-flood-brings-derivatives-190000196.html"
+        },
+        {
+          "title": "2nd Princeton CorpGov Forum Video Recap",
+          "summary": "Watch Recap Video Below: CorpGov is pleased to share a recap of the second Princeton CorpGov Forum that took place on May 21, 2026, at The Nassau Inn in Princeton, […]",
+          "provider": "IPO-Edge.com",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/2nd-princeton-corpgov-forum-video-173644703.html"
+        },
+        {
+          "title": "It’s Now a Supply-Shock World. A BlackRock Leader Explains How to Invest for It.",
+          "summary": "A key investing theme this decade is increasingly severe supply chain and energy shocks, says Mike Pyle, the deputy head of BlackRock’s portfolio management group.",
+          "provider": "Barrons.com",
+          "date": "2026-05-22",
+          "url": "https://www.barrons.com/advisor/articles/investing-supply-shock-iran-war-blackrock-f358ab04?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Hyperscaler Debt Flood ซึ่งเป็นปัญหาที่เกิดขึ้นเมื่อบริษัทเทคโนโลยีขนาดใหญ่ (Hyperscaler) มีหนี้สินจำนวนมากและต้องระดมทุนเพิ่มเติมเพื่อสนับสนุนการลงทุนในเทคโนโลยีเช่น AI Wall Street banks (ธนาคารต่าง ๆ) ต้องซื้อเครดิตเดรฟเวอร์ (Credit Derivatives) เพิ่มขึ้นเพื่อช่วยเหลือบริษัทเหล่านี้ นักลงทุนอาจมองข่าวนี้เป็นข่าวที่มีผลกระทบต่อตลาดโดยรวม แต่ไม่จำเป็นต้องมีผลกระทบโดยตรงต่อหุ้น BlackRock (BLK)\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น BlackRock (BLK) น่าสนใจ เนื่องจากมี P/E ที่ 27.027708 ซึ่งถือว่าไม่สูงมาก นอกจากนี้ หุ้นยังมี Market Cap Rank #61 ในตลาด ซึ่งแสดงถึงขนาดของหุ้น นอกจากนี้ยังมีข่าวที่เกี่ยวข้องกับ BlackRock เช่น Mike Pyle ซึ่งเป็นรองหัวหน้าฝ่ายการจัดการพอร์ตโฟลิโอของ BlackRock ได้กล่าวถึงการลงทุนในตลาดที่มีการขาดแคลน (Supply-Shock) นักลงทุนอาจมองหุ้นนี้เป็นโอกาสในการลงทุนในระยะยาว"
+    },
+    {
+      "rank": 62,
+      "ticker": "UNP",
+      "name": "Union Pacific Corporation",
+      "sector": "Industrials",
+      "price": 265.88,
+      "pct_change": 0.17,
+      "volume": 2597300,
+      "market_cap": 157856464896,
+      "pe_ratio": 21.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:UNP",
+      "news": [
+        {
+          "title": "Union Pacific Offer Puts Norfolk Southern’s Rail Network Value In Focus",
+          "summary": "Union Pacific has proposed a US$85b acquisition of Norfolk Southern (NYSE:NSC). The deal gathered momentum after public comments from President Trump supporting the merger. The proposed combination would create a larger ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/union-pacific-offer-puts-norfolk-161448537.html"
+        },
+        {
+          "title": "UP CEO confident rail merger application checks all the STB’s boxes",
+          "summary": "The CEO of Union Pacific said he is confident the revised UP-Norfolk Southern merger application will be accepted by the Surface Transportation Board. The post UP CEO confident rail merger application checks all the STB’",
+          "provider": "FreightWaves",
+          "date": "2026-05-21",
+          "url": "https://finance.yahoo.com/economy/policy/articles/ceo-confident-rail-merger-application-155228483.html"
+        },
+        {
+          "title": "The U.S. freight network is broken by design. One merger could start fixing it",
+          "summary": "The Union Pacific–Norfolk Southern merger deserves scrutiny but also serious consideration, because the alternative is a system never built to work.",
+          "provider": "Fortune",
+          "date": "2026-05-21",
+          "url": "https://finance.yahoo.com/economy/policy/articles/u-freight-network-broken-design-103000929.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึงการเสนอซื้อ Norfolk Southern (NYSE:NSC) ด้วยมูลค่า US$85b โดย Union Pacific ซึ่งได้รับการสนับสนุนจากประธานาธิบดีทรัมป์ นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการควบรวมกิจการนี้อาจนำไปสู่การปรับปรุงประสิทธิภาพของเครือข่ายขนส่งทางรางของสหรัฐฯ อย่างไรก็ตาม นักลงทุนบางคนอาจมองข่าวนี้ในแง่ลบ เนื่องจากอาจนำไปสู่การลดการแข่งขันในตลาดขนส่งทางราง\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้น Union Pacific (UNP) น่าสนใจ เนื่องจากมีแนวโน้มที่จะเพิ่มขึ้นในระยะยาว อย่างไรก็ตาม หุ้นนี้อาจผ่าน Circuit Breaker ได้ เนื่องจากมีความเสี่ยงสูงในการลงทุนในหุ้นขนส่งทางราง ซึ่งอาจมีความผันผวนอย่างมาก"
+    },
+    {
+      "rank": 63,
+      "ticker": "SCHW",
+      "name": "The Charles Schwab Corporation",
+      "sector": "Financial Services",
+      "price": 90.15,
+      "pct_change": -0.29,
+      "volume": 7065600,
+      "market_cap": 156783067136,
+      "pe_ratio": 17.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:SCHW",
+      "news": [
+        {
+          "title": "Starting in 2027 the Government Will Match Up to $1,000 of Your IRA Contributions and Kiplinger Just Published the Eligibility Details",
+          "summary": "Kiplinger just laid out the eligibility rules for the federal Saver’s Match, the SECURE 2.0 provision that begins in 2027 and deposits up to $1,000 a year into the retirement account of qualifying lower- and middle-incom",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/starting-in-2027-the-government-will-match-up-to-1000-of-your-ira-contributions-and-kiplinger-just-published-the-eligibility-details/"
+        },
+        {
+          "title": "AI Could Kill the Brokerage Industry’s Cash Cow",
+          "summary": "Shares of Charles Schwab and other firms have swooned on concerns that AI tools could erode the profit they derive from cash that clients hold in so-called sweep accounts.",
+          "provider": "Barrons.com",
+          "date": "2026-05-23",
+          "url": "https://www.barrons.com/articles/ai-kill-cash-sweep-charles-schwab-f56243ec?siteid=yhoof2&yptr=yahoo"
+        },
+        {
+          "title": "Investment Banking & Brokerage Stocks Q1 Results: Benchmarking Charles Schwab (NYSE:SCHW)",
+          "summary": "Looking back on investment banking & brokerage stocks’ Q1 earnings, we examine this quarter’s best and worst performers, including Charles Schwab (NYSE:SCHW) and its peers.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/investment-banking-brokerage-stocks-q1-022055140.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวที่พูดถึงคือการมีระบบ Saver's Match ที่จะเริ่มใน 2027 ซึ่งจะช่วยให้เงินออมของนักลงทุนถึง 1,000 ดอลลาร์ ตลาดอาจมองว่าข่าวนี้เป็นข่าวดีสำหรับนักลงทุน เนื่องจากจะช่วยให้เงินออมของพวกเขามีความมั่นคงมากขึ้น นอกจากนี้ยังอาจช่วยให้หุ้นในอุตสาหกรรมบริการทางการเงิน เช่น SCHW มีโอกาสขึ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้นนี้ (SCHW) น่าสนใจ เนื่องจากมี Market Cap Rank #63 ในตลาด และ P/E ที่ 17.922464 ซึ่งถือว่าไม่แพงมาก นอกจากนี้ยังมีข่าวดีเกี่ยวกับ Saver's Match ที่จะเริ่มใน 2027 ซึ่งจะช่วยให้เงินออมของนักลงทุนมีความมั่นคงมากขึ้น อย่างไรก็ตาม ตลาดอาจมีความผันผวนในระยะสั้น เนื่องจากข่าวนี้ยังไม่เกิดขึ้นจริง แต่ในระยะยาว หุ้นนี้มีโอกาสขึ้น"
+    },
+    {
+      "rank": 64,
+      "ticker": "ISRG",
+      "name": "Intuitive Surgical, Inc.",
+      "sector": "Healthcare",
+      "price": 438.1,
+      "pct_change": -0.39,
+      "volume": 2009100,
+      "market_cap": 155158740992,
+      "pe_ratio": 53.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:ISRG",
+      "news": [
+        {
+          "title": "3 Big Reasons ISRG Should Be On Your Watchlist",
+          "summary": "Over the last six months, Intuitive Surgical’s shares have sunk to $442.32, producing a disappointing 19.9% loss - a stark contrast to the S&P 500’s 13.2% gain. This might have investors contemplating their next move.",
+          "provider": "StockStory",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-big-reasons-isrg-watchlist-042855809.html"
+        },
+        {
+          "title": "Intuitive Surgical’s Da Vinci 5 Upgrades Aim To Deepen Moat For Investors",
+          "summary": "Intuitive Surgical (NasdaqGS:ISRG) has outlined more than 100 new features coming to its da Vinci 5 surgical platform. Key additions include extended-use Force Feedback instruments, security and reliability upgrades, and",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/intuitive-surgical-da-vinci-5-031235023.html"
+        },
+        {
+          "title": "Are Wall Street Analysts Bullish on Intuitive Surgical Stock?",
+          "summary": "While Intuitive Surgical has notably underperformed the broader market over the past 52 weeks, Wall Street analysts maintain a moderately optimistic outlook about the stock’s prospects.",
+          "provider": "Barchart",
+          "date": "2026-05-21",
+          "url": "https://www.barchart.com/story/news/2075203/are-wall-street-analysts-bullish-on-intuitive-surgical-stock"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึง Intuitive Surgical (ISRG) ซึ่งเป็นบริษัทที่ผลิตเครื่องมือทางการแพทย์สำหรับการผ่าตัด โดยเฉพาะเครื่องมือ Da Vinci 5 ที่มีคุณสมบัติใหม่ๆ เช่น Force Feedback instruments, security และ reliability upgrades นักลงทุนอาจมองข่าวนี้ในแง่บวก เนื่องจากการปรับปรุงเครื่องมือเหล่านี้อาจช่วยให้บริษัทมีประโยชน์ทางการตลาดและเพิ่มผลกำไร นอกจากนี้ Wall Street Analysts ยังมีความเชื่อมั่นในหุ้น ISRG ซึ่งอาจช่วยให้นักลงทุนมีความมั่นใจในการลงทุนในหุ้นนี้\n\n**🍺 Beer มองว่า:**\n\nISRG น่าสนใจ แต่ไม่ควรตั้ง Circuit Breaker เพราะหุ้น ISRG มี Market Cap Rank #64 ในตลาด และมี P/E ที่ 53.167477 ซึ่งไม่สูงมาก นอกจากนี้ หุ้น ISRG ยังมีความเสี่ยงในการลงทุน เนื่องจากการเปลี่ยนแปลงของตลาดและความเสี่ยงของการผ่าตัด ซึ่งอาจส่งผลกระทบต่อการเติบโตของบริษัท"
+    },
+    {
+      "rank": 65,
+      "ticker": "ETN",
+      "name": "Eaton Corporation plc",
+      "sector": "Industrials",
+      "price": 391.35,
+      "pct_change": 2.58,
+      "volume": 2353500,
+      "market_cap": 151961206784,
+      "pe_ratio": 38.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:ETN",
+      "news": [
+        {
+          "title": "Is It Too Late To Add Eaton (ETN) After Its Strong Multi Year Share Price Run?",
+          "summary": "Wondering if Eaton at around US$381.51 is still a sensible entry or add to your portfolio, or if most of the value has already been recognised in the share price? The stock is down 6.5% over the last week and 6.9% over t",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-22",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/too-add-eaton-etn-strong-011541784.html"
+        },
+        {
+          "title": "Why Eaton (ETN) Is Riding Data Center Demand Across Electrical Infrastructure",
+          "summary": "Eaton Corporation plc (NYSE:ETN) is one of the best stocks to buy for global infrastructure spending. The company’s latest update tied its growth directly to electrical infrastructure demand, especially in data centers a",
+          "provider": "Insider Monkey",
+          "date": "2026-05-21",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-eaton-etn-riding-data-194151120.html"
+        },
+        {
+          "title": "Is Eaton (ETN) The Best Pick-and-Shovel AI Stock?",
+          "summary": "We just covered the 10 Best Pick and Shovel AI Stocks to Buy for the Long Term. Eaton Corp (NYSE:ETN) ranks #8 (see 5 Best Pick and Shovel AI Stocks to Buy for the Long Term). Short Interest: 2% Eaton Corp (NYSE:ETN) is ",
+          "provider": "Insider Monkey",
+          "date": "2026-05-21",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/eaton-etn-best-pick-shovel-162023879.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\n\nข่าวพูดถึงการเติบโตของหุ้น Eaton Corporation plc (ETN) ที่มีการเพิ่มขึ้นอย่างแข็งแกร่งในหลายปีที่ผ่านมา นักลงทุนอาจมองว่าข่าวนี้เป็นเรื่องที่น่าสนใจและอาจเป็นโอกาสในการลงทุน แต่ก็อาจมีความเสี่ยงด้วย เนื่องจากหุ้น ETN มีการเพิ่มขึ้นอย่างรวดเร็วในหลายปีที่ผ่านมา นักลงทุนอาจต้องประเมินความเสี่ยงและผลตอบแทนที่อาจเกิดขึ้น\n\n**🍺 Beer มองว่า:**\n\nSQ ของหุ้น ETN น่าสนใจ เนื่องจากมีการเพิ่มขึ้นอย่างแข็งแกร่งในหลายปีที่ผ่านมา แต่ Beer ยังต้องประเมินความเสี่ยงและผลตอบแทนที่อาจเกิดขึ้น หาก SQ ของหุ้น ETN ยังอยู่ในระดับที่สูง Beer อาจตั้งพอร์ตไว้เพื่อรอโอกาสในการลงทุนในอนาคต"
+    },
+    {
+      "rank": 66,
+      "ticker": "PFE",
+      "name": "Pfizer Inc.",
+      "sector": "Healthcare",
+      "price": 25.9,
+      "pct_change": -0.19,
+      "volume": 22299800,
+      "market_cap": 147615596544,
+      "pe_ratio": 19.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:PFE",
+      "news": [
+        {
+          "title": "Pfizer Oncology Partnerships Add Detail To Valuation And Earnings Concerns",
+          "summary": "Pfizer (NYSE:PFE) has entered a new alliance with Sarah Cannon Research Institute to accelerate oncology clinical trials and broaden patient access. The company has also granted Rigel Pharmaceuticals exclusive rights to ",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/pfizer-oncology-partnerships-add-detail-020827334.html"
+        },
+        {
+          "title": "2 Reasons to Watch PFE and 1 to Stay Cautious",
+          "summary": "Pfizer currently trades at $25.89 per share and has shown little upside over the past six months, posting a middling return of 2.7%. The stock also fell short of the S&P 500’s 10.8% gain during that period.",
+          "provider": "StockStory",
+          "date": "2026-05-23",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/2-reasons-watch-pfe-1-173255559.html"
+        },
+        {
+          "title": "SPHD Pays Monthly Income Without Fail Since 2012; Here’s What Could Break the Streak",
+          "summary": "The Invesco S&P 500 High Dividend Low Volatility ETF (NYSEARCA:SPHD) sends income to shareholders every month, with distributions rising roughly 23% in 2025 and 2026 monthly payouts climbing to around $0.208 per share, w",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-23",
+          "url": "https://247wallst.com/investing/2026/05/23/sphd-pays-monthly-income-without-fail-since-2012-heres-what-could-break-the-streak/"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Pfizer (PFE) ที่เข้าร่วมพันธมิตรกับ Sarah Cannon Research Institute เพื่อเร่งการพัฒนาคลินิกการวิจัยทางวิทยาการรักษาโรคมะเร็ง และเพิ่มการเข้าถึงผู้ป่วย นอกจากนี้ยังได้ให้สิทธิ์ Rigel Pharmaceuticals ในการมีสิทธิ์พิเศษในการพัฒนาและผลิตยาทางวิทยาการรักษาโรคมะเร็ง\n\nตลาดจะตีความข่าวนี้ว่า:\n\n* บวก: ข่าวนี้แสดงให้เห็นถึงความมุ่งมั่นของ Pfizer ในการพัฒนายาทางวิทยาการรักษาโรคมะเร็ง ซึ่งเป็นตลาดที่มีการเติบโตอย่างรวดเร็ว\n* ลบ: ข่าวนี้อาจทำให้นักลงทุนกลัวว่า Pfizer จะมีการลงทุนมากเกินไปในด้านการวิจัยและพัฒนายาทางวิทยาการรักษาโรคมะเร็ง ซึ่งอาจทำให้ผลกำไรของบริษัทลดลง\n* กลาง: ข่าวนี้ไม่มีผลกระทบอย่างมากต่อการลงทุนของ Pfizer แต่อาจทำให้นักลงทุนต้องรอดูผลลัพธ์ของการวิจัยและพัฒนายาทางวิทยาการรักษาโรคมะเร็ง\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (PFE) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจากหุ้นยังไม่มีการเปลี่ยนแปลงอย่างมากในรอบ 10 วัน และยังไม่มีเหตุการณ์ที่"
+    },
+    {
+      "rank": 67,
+      "ticker": "CRM",
+      "name": "Salesforce, Inc.",
+      "sector": "Technology",
+      "price": 180.07,
+      "pct_change": 2.13,
+      "volume": 10176700,
+      "market_cap": 147306938368,
+      "pe_ratio": 23.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:CRM",
+      "news": [
+        {
+          "title": "Salesforce Agent Fabric Update Highlights AI Governance And Undervalued Stock Potential",
+          "summary": "Salesforce (NYSE:CRM) has expanded its Agent Fabric AI and data platform with new tools for managing networks of autonomous agents. The update includes Agent Script for orchestrating AI reasoning with human checkpoints a",
+          "provider": "Simply Wall St.",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/salesforce-agent-fabric-highlights-ai-041940759.html"
+        },
+        {
+          "title": "Braze, GitLab, and Manhattan Associates Shares Are Soaring, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after Treasury yields cooled and risk-on rotation lifted AI-linked growth names, helping the SaaS sector recover from the previous day's Intuit-driven sell-off.",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/braze-gitlab-manhattan-associates-shares-014855414.html"
+        },
+        {
+          "title": "Why The Trade Desk (TTD) Stock Is Up Today",
+          "summary": "Shares of digital advertising platform The Trade Desk (NASDAQ:TTD) jumped 3.1% in the afternoon session after Treasury yields cooled and risk-on rotation lifted AI-linked growth names, helping the sector recover from the",
+          "provider": "StockStory",
+          "date": "2026-05-24",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-trade-desk-ttd-stock-014055692.html"
+        }
+      ],
+      "analysis": "**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**\nข่าวพูดถึง Salesforce ที่ได้ปรับปรุง Agent Fabric AI และ data platform โดยเพิ่มเครื่องมือใหม่สำหรับการจัดการเครือข่ายของแอเจนท์ (autonomous agents) นักลงทุนอาจมองบวกเพราะ:\n\n* ข่าวแสดงถึงความก้าวหน้าและนวัตกรรมของ Salesforce ในด้าน AI และ data platform\n* อาจส่งผลดีต่อการเติบโตของ Salesforce ในอนาคต\n\nแต่นักลงทุนอาจมองลบเพราะ:\n\n* ข่าวอาจไม่ส่งผลกระทบโดยตรงต่อผลประกอบการของ Salesforce ในระยะสั้น\n* อาจมีการแข่งขันจากบริษัทอื่นๆ ในด้าน AI และ data platform\n\n**🍺 Beer มองว่า:**\nSQ ของหุ้นนี้ (Salesforce) น่าสนใจ แต่ไม่ผ่าน Circuit Breaker ที่ควรตั้ง เนื่องจาก:\n\n* หุ้นได้ปรับปรุง Agent Fabric AI และ data platform ซึ่งเป็นข่าวที่ดี\n* P/E ของหุ้นอยู่ที่ 23.085897 ซึ่งไม่สูงเกินไป\n* Market Cap Rank ของหุ้นอยู่ที่ #67 ซึ่งไม่สูงเกินไป\n\nแต่ควรตั้ง Circuit Breaker เนื่องจาก:\n\n* หุ้นได้ปรับปรุง Agent Fabric AI และ data platform ซึ่งเป็นข่าวที่ดี แต่อาจไม่ส่งผลกระทบโดยตรงต่อผลประกอบการในระยะสั้น\n* อาจมีการแข่งขันจากบริษัทอื่นๆ ในด้าน AI และ data platform"
     }
   ]
 }
