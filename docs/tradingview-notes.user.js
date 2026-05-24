@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.1.0
+// @version      1.2.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -26,6 +26,7 @@
   let panelOpen   = false;
   let lastNotesLoadAt = 0;
   const NOTES_TTL = 60_000; // refresh notes ทุก 1 นาที
+  let markersTicker = null; // ticker ที่ inject markers ไปแล้ว
 
   // ── Helpers ─────────────────────────────────────────────────
   const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -232,6 +233,100 @@
     if (footLink && dates.length) footLink.href = `https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=${dates[0]}`;
   }
 
+  // ── Chart Markers ─────────────────────────────────────────
+  async function findTVChart(timeoutMs = 15000) {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      // Method 1: window.tvWidget (charting library standard)
+      if (window.tvWidget && typeof window.tvWidget.activeChart === 'function') {
+        log('found tvWidget via window.tvWidget');
+        return window.tvWidget.activeChart();
+      }
+      // Method 2: scan all window keys for chart widget
+      for (const key of Object.keys(window)) {
+        try {
+          const obj = window[key];
+          if (!obj || typeof obj !== 'object') continue;
+          if (typeof obj.activeChart === 'function') {
+            log('found widget at window.' + key);
+            return obj.activeChart();
+          }
+          // some versions expose .chart() directly
+          if (typeof obj.chart === 'function') {
+            const c = obj.chart();
+            if (c && typeof c.createShape === 'function') {
+              log('found chart at window.' + key + '.chart()');
+              return c;
+            }
+          }
+        } catch {}
+      }
+      await new Promise(r => setTimeout(r, 600));
+    }
+    log('tvWidget not found after', timeoutMs, 'ms');
+    return null;
+  }
+
+  async function injectChartMarkers(ticker, notes) {
+    if (markersTicker === ticker) return; // already injected this ticker
+    markersTicker = ticker; // claim it (prevent double-run)
+
+    const chart = await findTVChart();
+    if (!chart) {
+      log('cannot inject markers — no chart API');
+      return;
+    }
+    if (typeof chart.createShape !== 'function') {
+      log('createShape not available on chart object');
+      return;
+    }
+
+    // group notes by archive_date
+    const groups = {};
+    for (const n of notes) {
+      const d = n.archive_date || n.date;
+      if (!d) continue;
+      (groups[d] ||= []).push(n);
+    }
+
+    let injected = 0;
+    for (const [dateStr, dayNotes] of Object.entries(groups)) {
+      // UTC midnight of that date as unix seconds
+      const timestamp = Math.floor(new Date(dateStr + 'T00:00:00Z').getTime() / 1000);
+      const price     = dayNotes[0]?.price || 0;
+      const text      = dayNotes.map(n =>
+        `💡 ${n.date || dateStr}${n.time ? ' · ' + n.time : ''}\n${n.note}`
+      ).join('\n\n').slice(0, 500);
+
+      try {
+        chart.createShape(
+          { time: timestamp, price: price },
+          {
+            shape: 'note',
+            text,
+            lock: false,
+            disableSelection: false,
+            disableSave: false,
+            disableUndo: false,
+            overrides: {
+              backgroundColor: '#f0b90b',
+              backgroundTransparency: 10,
+              borderColor: '#f0b90b',
+              color: '#000000',
+              fontsize: 12,
+              bold: true,
+            }
+          }
+        );
+        injected++;
+        log('marker created at', dateStr, 'price', price);
+      } catch (e) {
+        log('createShape at', dateStr, 'failed:', e.message);
+      }
+    }
+    log('injected', injected, '/', Object.keys(groups).length, 'markers for', ticker);
+  }
+
   // ── Polling: detect ticker change ──────────────────────────
   async function tick() {
     const t = getCurrentTicker();
@@ -249,6 +344,7 @@
     } else {
       setButton(count);
       if (panelOpen) renderPanel();
+      injectChartMarkers(t, notesCache[t]); // inject 💡 บนแท่งเทียนของวันที่มี note
     }
   }
 
