@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.3.0
+// @version      1.4.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM.xmlHttpRequest
+// @grant        GM_setClipboard
 // @connect      raw.githubusercontent.com
 // @connect      githubusercontent.com
 // @run-at       document-end
@@ -250,6 +251,43 @@ isNoteDay = ${conds}
 plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")`;
   }
 
+  // Inject script text into CM6 Pine Editor — 3 strategies in order of preference
+  async function tryInjectScript(script) {
+    // Strategy 1: CM6 EditorView.dispatch (cleanest — if TV exposes .CodeMirror on .cm-editor)
+    const cmEditor = document.querySelector('.cm-editor');
+    if (cmEditor?.CodeMirror) {
+      const view = cmEditor.CodeMirror;
+      view.dispatch({ changes: { from: 0, to: view.state.doc.length, insert: script } });
+      log('injected via CM6 dispatch');
+      return true;
+    }
+
+    // Strategy 2: execCommand insertText on contenteditable .cm-content (works in Chrome CM6)
+    const cmContent = document.querySelector('.cm-content');
+    if (cmContent) {
+      cmContent.focus();
+      document.execCommand('selectAll', false, null);
+      await sleep(120);
+      const ok = document.execCommand('insertText', false, script);
+      if (ok) { log('injected via execCommand insertText'); return true; }
+    }
+
+    // Strategy 3: GM_setClipboard + Ctrl+A / Ctrl+V key simulation
+    if (typeof GM_setClipboard !== 'undefined' && cmContent) {
+      GM_setClipboard(script, 'text');
+      cmContent.focus();
+      cmContent.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', code: 'KeyA', ctrlKey: true, bubbles: true, cancelable: true }));
+      await sleep(150);
+      cmContent.dispatchEvent(new KeyboardEvent('keydown', { key: 'v', code: 'KeyV', ctrlKey: true, bubbles: true, cancelable: true }));
+      await sleep(200);
+      log('injected via GM_setClipboard + key simulation');
+      return true;
+    }
+
+    log('all injection strategies failed — cmEditor:', !!cmEditor, 'cmContent:', !!cmContent);
+    return false;
+  }
+
   async function injectChartMarkers(ticker, notes) {
     if (markersTicker === ticker) return;
     markersTicker = ticker;
@@ -257,10 +295,10 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
     const script = generatePineScript(ticker, notes);
     if (!script) { log('no archive_dates to plot'); return; }
 
-    log('v1.3: Pine Script injection for', ticker);
+    log('v1.4: Pine Script injection for', ticker);
 
-    // Step 1: Find Pine Editor button — scan DOM by data-name / title / aria-label
-    await sleep(2000); // wait for TradingView to fully load
+    // Step 1: Find Pine Editor button
+    await sleep(2000);
     const pineBtn = findByAttr([
       '[data-name="pine-script"]', '[data-name="script"]',
       '[data-name="pine-editor"]', '[data-tooltip*="Pine"]',
@@ -268,28 +306,17 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
     ]) || findBtnByText(['Pine Editor', 'Pine Script']);
 
     if (!pineBtn) {
-      // Log all data-name elements so we can fix selector next time
       const names = [...document.querySelectorAll('[data-name]')].map(e => e.getAttribute('data-name'));
-      log('Pine btn NOT found. data-names on page:', [...new Set(names)].join(', '));
+      log('Pine btn NOT found. data-names:', [...new Set(names)].join(', '));
       return;
     }
     log('Pine btn found:', pineBtn.getAttribute('data-name') || pineBtn.textContent?.trim());
     pineBtn.click();
-    await sleep(1800);
+    await sleep(2000); // wait for CM6 to initialize
 
-    // Step 2: Find CodeMirror editor instance
-    const cmEl = document.querySelector('.tv-script-editor-container .CodeMirror')
-              || document.querySelector('.script-editor-wrapper .CodeMirror')
-              || [...document.querySelectorAll('.CodeMirror')].pop(); // last CM on page
-
-    if (!cmEl?.CodeMirror) {
-      log('CodeMirror not found after opening Pine Editor');
-      return;
-    }
-    const cm = cmEl.CodeMirror;
-    cm.setValue(script);
-    cm.focus();
-    log('script set in editor');
+    // Step 2: Inject Pine Script into CM6 editor
+    const injected = await tryInjectScript(script);
+    if (!injected) { log('script injection failed'); return; }
     await sleep(600);
 
     // Step 3: Click "Add to chart"
@@ -298,15 +325,12 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
       '[title*="Add to chart"]', '[aria-label*="Add to chart"]',
     ]) || findBtnByText(['Add to chart', 'Add to Chart']);
 
-    if (!addBtn) {
-      log('"Add to chart" btn not found');
-      return;
-    }
+    if (!addBtn) { log('"Add to chart" btn not found'); return; }
     addBtn.click();
     log('💡 Pine Script added to chart for', ticker);
     await sleep(800);
 
-    // Step 4: Collapse/close Pine Editor so it doesn't block the chart
+    // Step 4: Close Pine Editor so it doesn't cover the chart
     const closeBtn = findByAttr([
       '[data-name="close"]', '[aria-label="Close"]', '[title="Close"]',
     ]) || findBtnByText(['Close', 'ปิด']);
@@ -436,7 +460,7 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
   }
 
   // ── Init ───────────────────────────────────────────────────
-  log('userscript v1.1.0 booting on', location.href);
+  log('userscript v1.4.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
