@@ -204,10 +204,46 @@
     .mkt-note-del:hover { color: #ea3943; }
     .mkt-note-text { color: #d1d5db; font-size: 0.87em; line-height: 1.55; }
 
+    /* ── Calendar Date Picker ── */
+    .date-picker-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 10px; font-size: 13px; cursor: pointer;
+      height: 32px; display: flex; align-items: center; gap: 5px; white-space: nowrap;
+      font-family: inherit; outline: none;
+    }
+    .date-picker-btn:hover, .date-picker-btn.open { border-color: #6366f1; color: #e6edf3; }
+    .cal-wrap { position: relative; }
+    .cal-popup {
+      position: absolute; top: 36px; left: 0; z-index: 500;
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+      width: 252px;
+    }
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .cal-nav-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 5px; width: 26px; height: 26px; cursor: pointer; font-size: 1em;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cal-nav-btn:hover { border-color: #6366f1; }
+    .cal-month-label { color: #e6edf3; font-weight: 600; font-size: 0.88em; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-weekday { text-align: center; color: #4b5563; font-size: 0.7em; padding: 4px 0; font-weight: 600; }
+    .cal-day {
+      text-align: center; padding: 6px 2px; border-radius: 4px;
+      font-size: 0.8em; color: #2d333b; line-height: 1;
+    }
+    .cal-day.avail {
+      color: #8b949e; cursor: pointer; background: #1e2532;
+    }
+    .cal-day.avail:hover { background: #21262d; color: #e6edf3; }
+    .cal-day.sel { background: #6366f1 !important; color: #fff !important; font-weight: bold; }
+
     @media (max-width: 560px) {
       .grid { grid-template-columns: 1fr; padding: 10px; }
       .header { padding: 8px 12px; }
       .summary { padding: 8px 12px; gap: 14px; }
+      .cal-popup { width: calc(100vw - 36px); }
     }
   </style>
 </head>
@@ -266,7 +302,10 @@
 <div class="header">
   <div class="logo">🍺 Beer Top 100</div>
   <div class="controls">
-    <select id="dateSel" onchange="loadDate(this.value)"></select>
+    <div class="cal-wrap">
+      <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
+      <div id="calPopup" class="cal-popup" style="display:none"></div>
+    </div>
     <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
     <select id="sectorSel" onchange="renderCards()">
       <option value="">ทุก Sector</option>
@@ -296,6 +335,11 @@ let notesCache      = {};
 let notesSha        = null;
 let activeNoteTicker = null;
 let activeNoteStock  = null;
+let availableDates  = [];
+let calYear  = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let selectedDate = null;
+let calOpen = false;
 
 // ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
@@ -642,16 +686,14 @@ async function init() {
     const r = await fetch('data/index.json?_=' + Date.now());
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
     const dates = await r.json();
-    const sel = document.getElementById('dateSel');
-    dates.forEach(d => {
-      const o = document.createElement('option');
-      o.value = d; o.textContent = fmtDate(d);
-      sel.appendChild(o);
-    });
+    availableDates = dates;
     if (dates.length) {
       const urlDate = new URLSearchParams(location.search).get('date');
       const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
-      sel.value = target;
+      selectedDate = target;
+      const [ty, tm] = target.split('-').map(Number);
+      calYear = ty; calMonth = tm - 1;
+      document.getElementById('dateBtnLabel').textContent = fmtDate(target);
       await loadDate(target);
     } else {
       document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
@@ -659,6 +701,75 @@ async function init() {
   } catch(e) {
     document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
   }
+}
+
+// ── Calendar ──────────────────────────────────────────────────
+function toggleCalendar() {
+  calOpen = !calOpen;
+  const popup = document.getElementById('calPopup');
+  popup.style.display = calOpen ? 'block' : 'none';
+  document.getElementById('dateBtn').classList.toggle('open', calOpen);
+  if (calOpen) renderCalendar();
+}
+
+function closeCalendar() {
+  if (!calOpen) return;
+  calOpen = false;
+  const popup = document.getElementById('calPopup');
+  if (popup) popup.style.display = 'none';
+  const btn = document.getElementById('dateBtn');
+  if (btn) btn.classList.remove('open');
+}
+
+function navMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const popup = document.getElementById('calPopup');
+  if (!popup) return;
+  const avail = new Set(availableDates);
+  const firstDay   = new Date(calYear, calMonth, 1);
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const startDow    = (firstDay.getDay() + 6) % 7; // Mon=0 … Sun=6
+  const MONTHS_LONG = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+                       'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+  const WD = ['จ','อ','พ','พฤ','ศ','ส','อา'];
+
+  let cells = '';
+  for (let i = 0; i < startDow; i++) cells += '<div class="cal-day"></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isAvail = avail.has(ds);
+    const isSel   = ds === selectedDate;
+    let cls = 'cal-day' + (isAvail ? ' avail' : '') + (isSel ? ' sel' : '');
+    const click = isAvail ? `onclick="pickDate('${ds}')"` : '';
+    cells += `<div class="${cls}" ${click}>${d}</div>`;
+  }
+
+  popup.innerHTML = `
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="navMonth(-1)">‹</button>
+      <span class="cal-month-label">${MONTHS_LONG[calMonth]} ${calYear}</span>
+      <button class="cal-nav-btn" onclick="navMonth(1)">›</button>
+    </div>
+    <div class="cal-grid">
+      ${WD.map(w => `<div class="cal-weekday">${w}</div>`).join('')}
+      ${cells}
+    </div>`;
+}
+
+function pickDate(date) {
+  selectedDate = date;
+  const [y, m] = date.split('-').map(Number);
+  calYear = y; calMonth = m - 1;
+  closeCalendar();
+  document.getElementById('dateBtnLabel').textContent = fmtDate(date);
+  history.replaceState({}, '', `?date=${date}`);
+  loadDate(date);
 }
 
 async function loadDate(date) {
@@ -784,8 +895,11 @@ function cardHTML(s) {
   </div>`;
 }
 
-// ── Event delegation for note buttons ────────────────────────
+// ── Event delegation ─────────────────────────────────────────
 document.addEventListener('click', e => {
+  if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
+    closeCalendar();
+  }
   const btn = e.target.closest('[data-ticker]');
   if (!btn) return;
   const ticker = btn.dataset.ticker;
