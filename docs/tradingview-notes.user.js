@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.8.0
+// @version      1.9.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -266,34 +266,42 @@
     return { dateStr: d.toISOString().slice(0, 10), isWeekend };
   }
 
-  function generatePineScript(ticker, notes) {
+  // Escape string for Pine Script double-quoted string
+  function escapePine(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r/g, '').replace(/\n/g, '\\n').slice(0, 500);
+  }
+
+  function generatePineScript(ticker, notes, dateFiles = {}) {
     const rawDates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
     if (!rawDates.length) return null;
 
-    const conds = rawDates.map(d => {
-      const { dateStr, isWeekend } = nearestTradingDay(d);
+    let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\n`;
+
+    rawDates.forEach((rawDate, i) => {
+      const { dateStr, isWeekend } = nearestTradingDay(rawDate);
       const [y, m, day] = dateStr.split('-').map(Number);
-      const label = isWeekend ? '💡 วันหยุด' : '💡';
-      return { cond: `(year==${y} and month==${m} and dayofmonth==${day})`, label, isWeekend };
+      const color = isWeekend ? 'color.orange' : 'color.yellow';
+      const labelText = isWeekend ? '💡 วันหยุด' : '💡';
+
+      // Build tooltip
+      const lines = [];
+      if (isWeekend) lines.push(`📅 วิเคราะห์วันหยุด (${rawDate}) → แท่ง ${dateStr}`);
+      else lines.push(`📅 ${dateStr}`);
+      const dayNotes = notes.filter(n => n.archive_date === rawDate);
+      lines.push('', '📝 มุมมองของฉัน:');
+      dayNotes.forEach(n => lines.push(`• ${n.time ? '[' + n.time + '] ' : ''}${n.note}`));
+      const daily = dateFiles[rawDate];
+      const stock = daily?.stocks?.find(s => s.ticker === ticker);
+      if (stock?.price != null) lines.push('', `💲 $${stock.price} (${stock.pct_change >= 0 ? '+' : ''}${stock.pct_change}%)`);
+      if (stock?.analysis) lines.push('', '🍺 Beer วิเคราะห์:', stock.analysis);
+
+      const tooltip = escapePine(lines.join('\n'));
+      const cond = `isMyTicker and (year==${y} and month==${m} and dayofmonth==${day})`;
+
+      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, na, "${labelText}", tooltip="${tooltip}", style=label.style_label_down, yloc=yloc.abovebar, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
+      script += `if (${cond}) and close < open\n    label.new(bar_index, na, "${labelText}", tooltip="${tooltip}", style=label.style_label_up, yloc=yloc.belowbar, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
     });
 
-    // Build separate plotshape for normal days and weekend notes
-    const normalConds = conds.filter(c => !c.isWeekend).map(c => c.cond).join(' or ');
-    const weekendConds = conds.filter(c => c.isWeekend).map(c => c.cond).join(' or ');
-
-    // helper: 2 plotshapes per condition — above for bullish, below for bearish
-    const twoShapes = (varName, condStr, color, label, title) =>
-      `${varName} = ${condStr}\n` +
-      `plotshape(${varName} and close >= open, style=shape.labeldown, location=location.abovebar, color=color.new(${color},0), textcolor=color.black, text="${label}", size=size.small, title="${title} ↑")\n` +
-      `plotshape(${varName} and close < open,  style=shape.labelup,   location=location.belowbar, color=color.new(${color},0), textcolor=color.black, text="${label}", size=size.small, title="${title} ↓")\n`;
-
-    let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\n`;
-    if (normalConds) {
-      script += twoShapes('isNoteDay', `isMyTicker and (${normalConds})`, 'color.yellow', '💡', 'Beer Note');
-    }
-    if (weekendConds) {
-      script += twoShapes('isHolidayNote', `isMyTicker and (${weekendConds})`, 'color.orange', '💡 วันหยุด', 'Beer Note (วันหยุด)');
-    }
     return script.trim();
   }
 
@@ -376,10 +384,15 @@
     if (markersTicker === ticker) return;
     markersTicker = ticker;
 
-    const script = generatePineScript(ticker, notes);
+    // Load daily data for tooltip content (Beer analysis, price)
+    const dateFiles = {};
+    const archiveDates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
+    await Promise.all(archiveDates.map(async d => { dateFiles[d] = await loadDailyFile(d); }));
+
+    const script = generatePineScript(ticker, notes, dateFiles);
     if (!script) { log('no archive_dates to plot'); return; }
 
-    log('v1.5: Pine Script injection for', ticker);
+    log('v1.9: Pine Script injection for', ticker);
 
     // Step 1: Find Pine Editor button
     await sleep(2000);
@@ -550,7 +563,7 @@
   }
 
   // ── Init ───────────────────────────────────────────────────
-  log('userscript v1.8.0 booting on', location.href);
+  log('userscript v1.9.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
