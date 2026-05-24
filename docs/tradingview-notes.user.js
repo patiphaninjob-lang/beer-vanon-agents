@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.9.2
+// @version      1.9.3
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -281,25 +281,22 @@
       const { dateStr, isWeekend } = nearestTradingDay(rawDate);
       const [y, m, day] = dateStr.split('-').map(Number);
       const color = isWeekend ? 'color.orange' : 'color.yellow';
-      const labelText = '💡';
 
-      // Build tooltip
-      const lines = [];
-      if (isWeekend) lines.push(`📅 วิเคราะห์วันหยุด (${rawDate}) → แท่ง ${dateStr}`);
-      else lines.push(`📅 ${dateStr}`);
+      // Build visible text box content
       const dayNotes = notes.filter(n => n.archive_date === rawDate);
-      lines.push('', '📝 มุมมองของฉัน:');
-      dayNotes.forEach(n => lines.push(`• ${n.time ? '[' + n.time + '] ' : ''}${n.note}`));
       const daily = dateFiles[rawDate];
       const stock = daily?.stocks?.find(s => s.ticker === ticker);
-      if (stock?.price != null) lines.push('', `💲 $${stock.price} (${stock.pct_change >= 0 ? '+' : ''}${stock.pct_change}%)`);
-      if (stock?.analysis) lines.push('', '🍺 Beer วิเคราะห์:', stock.analysis);
+      const priceStr = stock?.price != null ? ` | ${stock.price} (${stock.pct_change >= 0 ? '+' : ''}${stock.pct_change}%)` : '';
+      const header = isWeekend ? `💡 วันหยุด ${rawDate}${priceStr}` : `💡 ${dateStr}${priceStr}`;
+      const lines = [header, '─'.repeat(22)];
+      dayNotes.forEach(n => lines.push(`${n.time ? '[' + n.time + '] ' : ''}${n.note}`, ''));
+      if (stock?.analysis) lines.push('🍺 ' + stock.analysis);
 
-      const tooltip = escapePine(lines.join('\n'));
+      const txt = escapePine(lines.join('\n').trimEnd());
       const cond = `isMyTicker and (year==${y} and month==${m} and dayofmonth==${day})`;
 
-      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, close, "${labelText}", tooltip="${tooltip}", style=label.style_label_down, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
-      script += `if (${cond}) and close < open\n    label.new(bar_index, close, "${labelText}", tooltip="${tooltip}", style=label.style_label_up, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.small)\n`;
+      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, close, "${txt}", style=label.style_label_down, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.normal, textalign=text.align_left)\n`;
+      script += `if (${cond}) and close < open\n    label.new(bar_index, close, "${txt}", style=label.style_label_up, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.normal, textalign=text.align_left)\n`;
     });
 
     return script.trim();
