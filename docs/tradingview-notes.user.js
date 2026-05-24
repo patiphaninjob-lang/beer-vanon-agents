@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.9.1
+// @version      1.9.2
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -268,7 +268,7 @@
 
   // Escape string for Pine Script double-quoted string
   function escapePine(s) {
-    return (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r/g, '').replace(/\n/g, '\\n').slice(0, 500);
+    return (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r/g, '').replace(/\n/g, '\\n').slice(0, 2000);
   }
 
   function generatePineScript(ticker, notes, dateFiles = {}) {
@@ -281,7 +281,7 @@
       const { dateStr, isWeekend } = nearestTradingDay(rawDate);
       const [y, m, day] = dateStr.split('-').map(Number);
       const color = isWeekend ? 'color.orange' : 'color.yellow';
-      const labelText = isWeekend ? '💡 วันหยุด' : '💡';
+      const labelText = '💡';
 
       // Build tooltip
       const lines = [];
