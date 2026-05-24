@@ -627,6 +627,16 @@ function openMarketNote() {
 
 // ── Init & Data Loading ───────────────────────────────────────
 async function init() {
+  // Auto-setup credentials from URL hash (bookmark-friendly)
+  if (location.hash.startsWith('#config=')) {
+    try {
+      const cfg = JSON.parse(atob(location.hash.slice(8)));
+      if (cfg.gh_pat)   localStorage.setItem('gh_pat',   cfg.gh_pat);
+      if (cfg.groq_key) localStorage.setItem('groq_key', cfg.groq_key);
+      history.replaceState({}, '', location.pathname);
+      showToast('✅ ตั้งค่าเรียบร้อย — พร้อมใช้งาน');
+    } catch(e) {}
+  }
   await loadNotes();
   try {
     const r = await fetch('data/index.json?_=' + Date.now());
