@@ -170,6 +170,40 @@
     /* ── States ── */
     .state-msg { text-align: center; padding: 60px 20px; color: #6b7280; font-size: 1em; }
 
+    /* ── Market Overview ── */
+    .market-overview { background: #161b22; border-bottom: 1px solid #21262d; padding: 14px 18px; }
+    .market-overview-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .market-overview-title { color: #8b949e; font-size: 0.82em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .market-add-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 12px; font-size: 0.82em; cursor: pointer;
+    }
+    .market-add-btn:hover { border-color: #f0b90b; color: #f0b90b; }
+    .index-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .index-card {
+      background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #30363d;
+      border-radius: 8px; padding: 10px 14px; min-width: 150px; flex: 1;
+    }
+    .index-card-name { color: #8b949e; font-size: 0.76em; margin-bottom: 2px; }
+    .index-card-price { font-size: 1.08em; font-weight: bold; color: #e6edf3; }
+    .index-card-pct { font-size: 0.87em; font-weight: 600; margin-top: 2px; }
+    .index-card-chart { margin-top: 7px; }
+    .index-card-chart img { width: 100%; border-radius: 4px; display: block; }
+    .mkt-notes-head { color: #8b949e; font-size: 0.76em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .mkt-note {
+      background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #f0b90b;
+      border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
+    }
+    .mkt-note-meta {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      font-size: 0.77em; color: #6b7280; margin-bottom: 5px;
+    }
+    .mkt-note-meta a { color: #6366f1; text-decoration: none; }
+    .mkt-note-meta a:hover { text-decoration: underline; }
+    .mkt-note-del { background: none; border: none; color: #4b5563; cursor: pointer; font-size: 0.9em; margin-left: auto; padding: 0 2px; }
+    .mkt-note-del:hover { color: #ea3943; }
+    .mkt-note-text { color: #d1d5db; font-size: 0.87em; line-height: 1.55; }
+
     @media (max-width: 560px) {
       .grid { grid-template-columns: 1fr; padding: 10px; }
       .header { padding: 8px 12px; }
@@ -249,6 +283,7 @@
 </div>
 
 <div id="summaryBar" class="summary"></div>
+<div id="marketOverview"></div>
 <div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
 
 <script>
@@ -308,10 +343,17 @@ async function saveNoteToGitHub(ticker, noteText) {
     date: new Date().toISOString().split('T')[0],
     time: new Date().toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'}),
     note: noteText.trim(),
-    price: activeNoteStock?.price || 0,
-    pct_change: activeNoteStock?.pct_change || 0,
     archive_date: currentData?.date || ''
   };
+  if (ticker === '_MARKET') {
+    const mi = currentData?.market_indices || {};
+    if (mi.dji)  { note.dji_price  = mi.dji.price;  note.dji_pct  = mi.dji.pct_change;  }
+    if (mi.spx)  { note.spx_price  = mi.spx.price;  note.spx_pct  = mi.spx.pct_change;  }
+    if (mi.ixic) { note.ixic_price = mi.ixic.price; note.ixic_pct = mi.ixic.pct_change; }
+  } else {
+    note.price      = activeNoteStock?.price || 0;
+    note.pct_change = activeNoteStock?.pct_change || 0;
+  }
 
   if (!notesCache[ticker]) notesCache[ticker] = [];
   notesCache[ticker].unshift(note);
@@ -362,8 +404,8 @@ async function deleteNote(ticker, noteId) {
 
   if (r.ok) {
     notesSha = (await r.json()).content.sha;
-    showNoteModal(ticker, activeNoteStock); // refresh modal
-    renderCards();
+    if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); }
+    else { showNoteModal(ticker, activeNoteStock); renderCards(); }
   } else {
     notesCache[ticker] = before; // rollback
     showToast('❌ ลบไม่ได้', '#ea3943');
@@ -476,12 +518,106 @@ async function submitNote() {
   btn.textContent = 'กำลังบันทึก...'; btn.disabled = true;
   const ok = await saveNoteToGitHub(activeNoteTicker, text);
   if (ok) {
-    showToast(`✅ บันทึกมุมมอง ${activeNoteTicker} แล้ว`);
+    const label = activeNoteTicker === '_MARKET' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
+    showToast(`✅ บันทึก ${label} แล้ว`);
     closeNoteModal();
-    renderCards();
+    if (activeNoteTicker === '_MARKET') renderMarketOverview();
+    else renderCards();
   } else {
     btn.textContent = '💾 บันทึก'; btn.disabled = false;
   }
+}
+
+// ── Market Overview ───────────────────────────────────────────
+function renderMarketOverview() {
+  const el = document.getElementById('marketOverview');
+  if (!el) return;
+  const mi = currentData?.market_indices;
+  const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+
+  const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
+
+  const indexCards = mi && Object.keys(mi).length
+    ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
+        const d = mi[k];
+        const up = d.pct_change >= 0;
+        const color = up ? '#16c784' : '#ea3943';
+        const arrow = up ? '▲' : '▼';
+        const priceStr = d.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        return `
+          <div class="index-card" style="border-left-color:${color}">
+            <div class="index-card-name">${INDEX_META[k]}</div>
+            <div class="index-card-price">${priceStr}</div>
+            <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
+            ${d.chart_b64 ? `<div class="index-card-chart"><img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy"></div>` : ''}
+          </div>`;
+      }).join('')
+    : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
+
+  const notesHTML = marketNotes.length ? `
+    <div class="mkt-notes-head">🌡️ อารมณ์ตลาดที่เคยบันทึกไว้ (${marketNotes.length} รายการ)</div>
+    ${marketNotes.slice(0,5).map(n => {
+      const dji  = n.dji_price  ? `DJI: ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
+      const spx  = n.spx_price  ? `S&P: ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
+      return `
+        <div class="mkt-note">
+          <div class="mkt-note-meta">
+            <span>📅 ${n.date}${n.time ? ' · '+n.time : ''}</span>
+            ${dji ? `<span>${dji}</span>` : ''}
+            ${spx ? `<span>${spx}</span>` : ''}
+            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูวันนั้น →</a>` : ''}
+            <button class="mkt-note-del" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
+          </div>
+          <div class="mkt-note-text">${esc(n.note)}</div>
+        </div>`;
+    }).join('')}
+    ${marketNotes.length > 5 ? `<div style="color:#4b5563;font-size:0.75em;padding:2px 0">และอีก ${marketNotes.length-5} บันทึก — กด "บันทึกอารมณ์ตลาด" เพื่อดูทั้งหมด</div>` : ''}
+  ` : '';
+
+  el.innerHTML = `
+    <div class="market-overview">
+      <div class="market-overview-head">
+        <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date) : ''}</span>
+        <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
+      </div>
+      <div class="index-row">${indexCards}</div>
+      ${notesHTML}
+    </div>`;
+}
+
+function openMarketNote() {
+  activeNoteTicker = '_MARKET';
+  activeNoteStock  = null;
+  document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
+  document.getElementById('noteInput').value = '';
+  document.getElementById('polishStatus').textContent = '';
+  document.getElementById('saveNoteBtn').disabled = false;
+  document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
+
+  const notes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const container = document.getElementById('existingNotesContainer');
+  container.innerHTML = notes.length ? `
+    <div class="existing-notes">
+      <div class="existing-label">อารมณ์ตลาดที่เคยบันทึก (${notes.length} รายการ)</div>
+      ${notes.map(n => {
+        const dji = n.dji_price ? `DJI ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
+        const spx = n.spx_price ? `S&P ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
+        return `
+          <div class="existing-note-item">
+            <div class="existing-note-meta">
+              <span>${n.date}${n.time ? ' '+n.time : ''}</span>
+              ${dji ? `<span>${dji}</span>` : ''}
+              ${spx ? `<span>${spx}</span>` : ''}
+              ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
+              <button class="delete-note-btn" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
+            </div>
+            <div class="existing-note-text">${esc(n.note)}</div>
+          </div>`;
+      }).join('')}
+    </div>` : '';
+
+  document.getElementById('noteOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('noteInput').focus(), 100);
 }
 
 // ── Init & Data Loading ───────────────────────────────────────
@@ -528,6 +664,7 @@ async function loadDate(date) {
       sectorSel.appendChild(o);
     });
     renderSummary();
+    renderMarketOverview();
     renderCards();
   } catch(e) {
     document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;

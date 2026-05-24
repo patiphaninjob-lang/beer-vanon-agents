@@ -250,6 +250,31 @@ def generate_mini_chart_b64(ticker: str) -> str:
         return b""
 
 
+# ─── Market Indices ───────────────────────────────────────────
+
+def fetch_market_indices() -> dict:
+    """ดึง DJI, S&P500, NASDAQ พร้อม mini chart สำหรับ web archive"""
+    import yfinance as yf, base64
+    indices = {"^DJI": "dji", "^GSPC": "spx", "^IXIC": "ixic"}
+    result  = {}
+    for symbol, key in indices.items():
+        try:
+            hist = yf.Ticker(symbol).history(period="5d")
+            if len(hist) < 2:
+                continue
+            price = float(hist["Close"].iloc[-1])
+            pct   = (price - float(hist["Close"].iloc[-2])) / float(hist["Close"].iloc[-2]) * 100
+            chart = generate_mini_chart_b64(symbol)
+            result[key] = {
+                "price":      round(price, 2),
+                "pct_change": round(pct, 2),
+                "chart_b64":  base64.b64encode(chart).decode() if chart else "",
+            }
+        except Exception as e:
+            print(f"   ⚠️ {symbol}: {e}")
+    return result
+
+
 # ─── User Notes ───────────────────────────────────────────────
 
 def load_user_notes() -> dict:
@@ -419,7 +444,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
 
 # ─── Web Archive ─────────────────────────────────────────────
 
-def save_to_web(stocks_data: list, today: datetime.date) -> str:
+def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None) -> str:
     """บันทึก JSON ลง docs/data/ สำหรับ GitHub Pages web archive"""
     docs_dir = Path("docs/data")
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -433,6 +458,7 @@ def save_to_web(stocks_data: list, today: datetime.date) -> str:
     payload = {
         "date": date_key,
         "generated": datetime.datetime.now().isoformat(),
+        "market_indices": market_indices or {},
         "summary": {
             "total":       len(stocks_data),
             "gainers":     len(gainers),
@@ -606,8 +632,14 @@ def main():
 
     # 4. สร้างและส่ง email
     # 4. บันทึก web archive
+    # 4a. ดึงดัชนีตลาด
+    print(f"\n📈 ดึงดัชนีตลาด (DJI/S&P/NASDAQ)...")
+    market_indices = fetch_market_indices()
+    idx_status = " | ".join(f"{k.upper()}:✅" if k in market_indices else f"{k.upper()}:❌" for k in ["dji","spx","ixic"])
+    print(f"   {idx_status}")
+
     print(f"\n🌐 บันทึก web archive...")
-    archive_url = save_to_web(stocks_data, today)
+    archive_url = save_to_web(stocks_data, today, market_indices)
 
     # 5. สร้างและส่ง email
     print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
