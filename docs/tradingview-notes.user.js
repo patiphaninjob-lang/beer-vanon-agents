@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.4.0
+// @version      1.5.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -143,19 +143,38 @@
 
   async function renderPanel() {
     const p = ensurePanel();
+    const pineScript = notesCache?.[currentTicker]?.length
+      ? generatePineScript(currentTicker, notesCache[currentTicker]) : null;
     p.innerHTML = `
       <div class="bv-head">
         <div>
           <div class="bv-head-ticker">📊 ${esc(currentTicker)}</div>
           <div class="bv-head-sub">มุมมองของฉัน · Beer Vanon</div>
         </div>
-        <button class="bv-close-btn" title="ปิด">✕</button>
+        <div style="display:flex;gap:6px;align-items:center">
+          ${pineScript ? `<button class="bv-copy-btn" id="bv-copy-pine" title="คัดลอก Pine Script แล้ววางในตัวแก้ไข Pine Editor">📋 Pine Script</button>` : ''}
+          <button class="bv-close-btn" title="ปิด">✕</button>
+        </div>
       </div>
       <div class="bv-body" id="bv-body"><div class="bv-loading">กำลังโหลด...</div></div>
       <div class="bv-foot">
         <a href="https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=" id="bv-foot-link" target="_blank">เปิด Beer Top 100 →</a>
       </div>`;
     p.querySelector('.bv-close-btn').onclick = closePanel;
+    const copyBtn = document.getElementById('bv-copy-pine');
+    if (copyBtn && pineScript) {
+      copyBtn.onclick = async () => {
+        try {
+          if (typeof GM_setClipboard !== 'undefined') {
+            GM_setClipboard(pineScript, 'text');
+          } else {
+            await navigator.clipboard.writeText(pineScript);
+          }
+          copyBtn.textContent = '✅ คัดลอกแล้ว!';
+          setTimeout(() => { copyBtn.textContent = '📋 Pine Script'; }, 2500);
+        } catch { copyBtn.textContent = '❌ ล้มเหลว'; }
+      };
+    }
 
     const allNotes = (notesCache?.[currentTicker] || []).slice().sort((a, b) => Number(b.id) - Number(a.id));
     const body = document.getElementById('bv-body');
@@ -244,47 +263,85 @@
       const [y, m, day] = d.split('-').map(Number);
       return `(year==${y} and month==${m} and dayofmonth==${day})`;
     }).join(' or ');
-    return `//@version=5
+    return `//@version=6
 indicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=50)
 isMyTicker = syminfo.ticker == "${ticker}"
 isNoteDay = ${conds}
 plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abovebar, color=color.new(color.yellow,0), textcolor=color.black, text="💡", size=size.small, title="Beer Note")`;
   }
 
-  // Inject script text into CM6 Pine Editor — 3 strategies in order of preference
+  // Find the Pine Editor's .cm-content (not other CM6 instances on page)
+  function findPineCmContent() {
+    const containers = [
+      '.tv-script-editor-container',
+      '.script-editor-wrapper',
+      '[data-name="pine-editor"]',
+      '.pine-editor-toolbar',
+    ];
+    for (const sel of containers) {
+      const el = document.querySelector(sel);
+      if (el) {
+        const c = el.querySelector('.cm-content') || el.closest('.cm-editor')?.querySelector('.cm-content');
+        if (c) return c;
+      }
+    }
+    // Fallback: last .cm-content on page (Pine Editor opens last)
+    const all = document.querySelectorAll('.cm-content');
+    return all.length ? all[all.length - 1] : null;
+  }
+
+  // Find CM6 EditorView by scanning the .cm-editor element's own properties
+  function findCM6View(cmContent) {
+    const cmEditor = cmContent?.closest('.cm-editor') || document.querySelector('.cm-editor');
+    if (!cmEditor) return null;
+    // CM6 attaches EditorView to the DOM element under various property names
+    for (const key of Object.getOwnPropertyNames(cmEditor)) {
+      try {
+        const v = cmEditor[key];
+        if (v && typeof v === 'object' && v.state?.doc != null && typeof v.dispatch === 'function') {
+          log('CM6 view found at .cm-editor.' + key);
+          return v;
+        }
+      } catch {}
+    }
+    return null;
+  }
+
+  // Inject script text into CM6 Pine Editor — 3 strategies
   async function tryInjectScript(script) {
-    // Strategy 1: CM6 EditorView.dispatch (cleanest — if TV exposes .CodeMirror on .cm-editor)
-    const cmEditor = document.querySelector('.cm-editor');
-    if (cmEditor?.CodeMirror) {
-      const view = cmEditor.CodeMirror;
+    const cmContent = findPineCmContent();
+    if (!cmContent) { log('cm-content not found'); return false; }
+
+    // Strategy 1: CM6 EditorView.dispatch via property scan
+    const view = findCM6View(cmContent);
+    if (view) {
       view.dispatch({ changes: { from: 0, to: view.state.doc.length, insert: script } });
       log('injected via CM6 dispatch');
       return true;
     }
 
-    // Strategy 2: execCommand insertText on contenteditable .cm-content (works in Chrome CM6)
-    const cmContent = document.querySelector('.cm-content');
-    if (cmContent) {
-      cmContent.focus();
-      document.execCommand('selectAll', false, null);
-      await sleep(120);
-      const ok = document.execCommand('insertText', false, script);
-      if (ok) { log('injected via execCommand insertText'); return true; }
-    }
-
-    // Strategy 3: GM_setClipboard + Ctrl+A / Ctrl+V key simulation
-    if (typeof GM_setClipboard !== 'undefined' && cmContent) {
-      GM_setClipboard(script, 'text');
-      cmContent.focus();
-      cmContent.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', code: 'KeyA', ctrlKey: true, bubbles: true, cancelable: true }));
-      await sleep(150);
-      cmContent.dispatchEvent(new KeyboardEvent('keydown', { key: 'v', code: 'KeyV', ctrlKey: true, bubbles: true, cancelable: true }));
-      await sleep(200);
-      log('injected via GM_setClipboard + key simulation');
+    // Strategy 2: ClipboardEvent paste — CM6 listens to paste events on .cm-content
+    cmContent.focus();
+    cmContent.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'a', code: 'KeyA', ctrlKey: true, bubbles: true, cancelable: true
+    }));
+    await sleep(120);
+    try {
+      const dt = new DataTransfer();
+      dt.setData('text/plain', script);
+      const pasteEvt = new ClipboardEvent('paste', { bubbles: true, cancelable: true, clipboardData: dt });
+      cmContent.dispatchEvent(pasteEvt);
+      log('injected via ClipboardEvent paste');
       return true;
-    }
+    } catch (e) { log('ClipboardEvent failed:', e.message); }
 
-    log('all injection strategies failed — cmEditor:', !!cmEditor, 'cmContent:', !!cmContent);
+    // Strategy 3: execCommand insertText
+    document.execCommand('selectAll', false, null);
+    await sleep(100);
+    const ok = document.execCommand('insertText', false, script);
+    if (ok) { log('injected via execCommand'); return true; }
+
+    log('all strategies failed');
     return false;
   }
 
@@ -295,7 +352,7 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
     const script = generatePineScript(ticker, notes);
     if (!script) { log('no archive_dates to plot'); return; }
 
-    log('v1.4: Pine Script injection for', ticker);
+    log('v1.5: Pine Script injection for', ticker);
 
     // Step 1: Find Pine Editor button
     await sleep(2000);
@@ -408,6 +465,12 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
         cursor: pointer; padding: 4px 8px; border-radius: 4px;
       }
       .bv-close-btn:hover { color: #fff; background: #21262d; }
+      .bv-copy-btn {
+        background: #1c2233; border: 1px solid #f0b90b; color: #f0b90b;
+        border-radius: 6px; padding: 4px 10px; font-size: 0.78em;
+        cursor: pointer; font-family: inherit; white-space: nowrap;
+      }
+      .bv-copy-btn:hover { background: #252d40; }
       .bv-body { padding: 14px 18px; overflow-y: auto; flex: 1; }
       .bv-foot {
         padding: 10px 18px; border-top: 1px solid #21262d; background: #161b22;
@@ -460,7 +523,7 @@ plotshape(isMyTicker and isNoteDay, style=shape.labeldown, location=location.abo
   }
 
   // ── Init ───────────────────────────────────────────────────
-  log('userscript v1.4.0 booting on', location.href);
+  log('userscript v1.5.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
