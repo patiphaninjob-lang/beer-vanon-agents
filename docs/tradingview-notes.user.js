@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.9.3
+// @version      1.9.4
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -275,7 +275,7 @@
     const rawDates = [...new Set(notes.map(n => n.archive_date).filter(Boolean))];
     if (!rawDates.length) return null;
 
-    let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\n`;
+    let script = `//@version=6\nindicator("💡 Beer Notes · ${ticker}", overlay=true, max_labels_count=500)\nisMyTicker = syminfo.ticker == "${ticker}"\nshowFull = input.bool(true, "แสดงข้อมูลเต็ม")\n`;
 
     rawDates.forEach((rawDate, i) => {
       const { dateStr, isWeekend } = nearestTradingDay(rawDate);
@@ -295,8 +295,8 @@
       const txt = escapePine(lines.join('\n').trimEnd());
       const cond = `isMyTicker and (year==${y} and month==${m} and dayofmonth==${day})`;
 
-      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, close, "${txt}", style=label.style_label_down, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.normal, textalign=text.align_left)\n`;
-      script += `if (${cond}) and close < open\n    label.new(bar_index, close, "${txt}", style=label.style_label_up, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=size.normal, textalign=text.align_left)\n`;
+      script += `\nif (${cond}) and close >= open\n    label.new(bar_index, close, showFull ? "${txt}" : "💡", style=label.style_label_down, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=showFull ? size.normal : size.small, textalign=text.align_left)\n`;
+      script += `if (${cond}) and close < open\n    label.new(bar_index, close, showFull ? "${txt}" : "💡", style=label.style_label_up, yloc=yloc.price, color=color.new(${color},0), textcolor=color.black, size=showFull ? size.normal : size.small, textalign=text.align_left)\n`;
     });
 
     return script.trim();
