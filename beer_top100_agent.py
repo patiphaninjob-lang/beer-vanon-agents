@@ -14,6 +14,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import parse_qs, unquote, urlparse
 from dotenv import load_dotenv
 from groq import Groq
 from beer_dna import BEER_DNA
@@ -149,8 +150,28 @@ _TV_EXCHANGE = {
 
 def _tv_url(ticker: str, exchange_code: str = "") -> str:
     ex     = _TV_EXCHANGE.get(exchange_code, "")
-    symbol = f"{ex}:{ticker}" if ex else ticker
-    return f"https://www.tradingview.com/chart/?symbol={symbol}"
+    symbol = f"{ex}-{ticker}" if ex else ticker
+    return f"https://www.tradingview.com/symbols/{symbol}/"
+
+
+def _tv_symbol_url_from_value(value: str, ticker: str = "") -> str:
+    raw = (value or "").strip()
+    if not raw:
+        return _tv_url(ticker)
+
+    parsed = urlparse(raw)
+    if "tradingview.com" in parsed.netloc and parsed.path.startswith("/symbols/"):
+        return raw
+
+    symbol = parse_qs(parsed.query).get("symbol", [""])[0]
+    if not symbol and ":" in raw and "/" not in raw:
+        symbol = raw
+
+    if symbol:
+        tv_symbol = unquote(symbol).replace(":", "-").replace(" ", "")
+        return f"https://www.tradingview.com/symbols/{tv_symbol}/"
+
+    return raw
 
 
 def get_stock_context(ticker: str, rank: int) -> dict:
@@ -387,7 +408,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
     pe_str  = f" | P/E {stock['pe_ratio']:.1f}" if stock.get("pe_ratio") else ""
     cap_str = _fmt_mktcap(stock["market_cap"])
 
-    tv_url  = stock.get("tv_url", _tv_url(stock.get("ticker", "")))
+    tv_url  = _tv_symbol_url_from_value(stock.get("tv_url"), stock.get("ticker", ""))
     chart_block = (
         f'<a href="{tv_url}" target="_blank" title="เปิดกราฟใน TradingView" style="display:block;margin-top:10px">'
         f'<img src="cid:{chart_cid}" '
