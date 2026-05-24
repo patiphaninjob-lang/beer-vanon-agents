@@ -9,5 +9,20 @@
       "pct_change": -1.9,
       "archive_date": "2026-05-24"
     }
+  ],
+  "_MARKET": [
+    {
+      "id": "1779614458431",
+      "date": "2026-05-24",
+      "time": "16:20",
+      "note": "\"ตลาดกำลังกล้า เนื่องจาก DJI ได้ทำ All Time High แต่ผมยังไม่แน่ใจว่าตลาดจะ brack จริงหรือไม่\"",
+      "archive_date": "2026-05-24",
+      "dji_price": 50579.7,
+      "dji_pct": 0.58,
+      "spx_price": 7473.47,
+      "spx_pct": 0.37,
+      "ixic_price": 26343.97,
+      "ixic_pct": 0.19
+    }
   ]
 }
