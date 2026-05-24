@@ -365,22 +365,6 @@ function fmtCap(cap) {
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-function tradingViewSymbolUrl(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return '#';
-  let symbol = raw;
-  try {
-    const url = new URL(raw, window.location.href);
-    const querySymbol = url.searchParams.get('symbol');
-    if (querySymbol) symbol = querySymbol;
-    else if (url.hostname.includes('tradingview.com') && url.pathname.startsWith('/symbols/')) {
-      symbol = url.pathname.split('/').filter(Boolean)[1] || '';
-    }
-  } catch (e) {}
-  symbol = symbol.replace(/^.*\/symbols\//, '').replace(/\/.*$/, '').trim();
-  const tvSymbol = symbol.replace(/:/g, '-').replace(/\s+/g, '');
-  return tvSymbol ? `https://www.tradingview.com/symbols/${encodeURIComponent(tvSymbol).replace(/%2D/g, '-')}/` : '#';
-}
 function toBase64(str) {
   return btoa(unescape(encodeURIComponent(str)));
 }
@@ -607,9 +591,9 @@ function renderMarketOverview() {
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
   const INDEX_TV   = {
-    dji:  'https://www.tradingview.com/symbols/DJ-DJI/',
-    spx:  'https://www.tradingview.com/symbols/SP-SPX/',
-    ixic: 'https://www.tradingview.com/symbols/NASDAQ-COMP/'
+    dji:  'https://www.tradingview.com/chart/?symbol=DJ%3ADJI',
+    spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
+    ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
   };
 
   const indexCards = mi && Object.keys(mi).length
@@ -902,7 +886,6 @@ function cardHTML(s) {
 
   // onclick handler stored in data attribute to avoid inline quote hell
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
-  const tvUrl = tradingViewSymbolUrl(s.tv_url || s.ticker);
 
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
@@ -922,8 +905,8 @@ function cardHTML(s) {
       Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
     </div>
     ${s.chart_b64
-      ? `<a href="${esc(tvUrl)}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>`
-      : `<a class="tv-link" href="${esc(tvUrl)}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+      ? `<a href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>`
+      : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
     ${myNotesHTML}
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
