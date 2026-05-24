@@ -1,11 +1,14 @@
 // ==UserScript==
 // @name         🍺 Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      1.0.0
+// @version      1.1.0
 // @description  แสดงโน้ต/วิเคราะห์/ข่าว Beer Vanon ของหุ้นที่คุณเคยใส่มุมมองไว้ บนกราฟ TradingView
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
-// @grant        none
+// @grant        GM_xmlhttpRequest
+// @grant        GM.xmlHttpRequest
+// @connect      raw.githubusercontent.com
+// @connect      githubusercontent.com
 // @run-at       document-end
 // @updateURL    https://patiphaninjob-lang.github.io/beer-vanon-agents/tradingview-notes.user.js
 // @downloadURL  https://patiphaninjob-lang.github.io/beer-vanon-agents/tradingview-notes.user.js
@@ -26,6 +29,27 @@
 
   // ── Helpers ─────────────────────────────────────────────────
   const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const log = (...a) => console.log('[BeerNotes]', ...a);
+
+  // Cross-origin GET that bypasses TradingView's CSP via Tampermonkey
+  function gmGet(url) {
+    return new Promise((resolve, reject) => {
+      const gm = (typeof GM_xmlhttpRequest !== 'undefined') ? GM_xmlhttpRequest
+               : (typeof GM !== 'undefined' && GM.xmlHttpRequest) ? GM.xmlHttpRequest
+               : null;
+      if (!gm) {
+        // Fallback to plain fetch (won't work if blocked by CSP)
+        return fetch(url).then(r => r.ok ? r.text() : Promise.reject(new Error('HTTP ' + r.status)))
+                         .then(resolve, reject);
+      }
+      gm({
+        method: 'GET', url, timeout: 15000,
+        onload: r => (r.status >= 200 && r.status < 400) ? resolve(r.responseText) : reject(new Error('HTTP ' + r.status)),
+        onerror: e => reject(new Error('Network error: ' + (e.error || 'unknown'))),
+        ontimeout: () => reject(new Error('Timeout'))
+      });
+    });
+  }
 
   function getCurrentTicker() {
     // ?symbol=NASDAQ:NVDA หรือ NASDAQ%3ANVDA
@@ -50,9 +74,13 @@
   async function loadNotes(force = false) {
     if (!force && notesCache && Date.now() - lastNotesLoadAt < NOTES_TTL) return notesCache;
     try {
-      const r = await fetch(`${RAW}/notes/notes.json?_=${Date.now()}`);
-      notesCache = r.ok ? await r.json() : {};
-    } catch { notesCache = notesCache || {}; }
+      const txt = await gmGet(`${RAW}/notes/notes.json?_=${Date.now()}`);
+      notesCache = JSON.parse(txt);
+      log('notes loaded:', Object.keys(notesCache).length, 'tickers');
+    } catch (e) {
+      log('notes load failed:', e.message);
+      notesCache = notesCache || {};
+    }
     lastNotesLoadAt = Date.now();
     return notesCache;
   }
@@ -60,9 +88,12 @@
   async function loadDailyFile(date) {
     if (dailyCache[date] !== undefined) return dailyCache[date];
     try {
-      const r = await fetch(`${RAW}/data/${date}.json`);
-      dailyCache[date] = r.ok ? await r.json() : null;
-    } catch { dailyCache[date] = null; }
+      const txt = await gmGet(`${RAW}/data/${date}.json`);
+      dailyCache[date] = JSON.parse(txt);
+    } catch (e) {
+      log('daily load failed for', date, ':', e.message);
+      dailyCache[date] = null;
+    }
     return dailyCache[date];
   }
 
@@ -205,11 +236,13 @@
   async function tick() {
     const t = getCurrentTicker();
     if (t === currentTicker) return;
+    log('ticker change:', currentTicker, '→', t);
     currentTicker = t;
     if (!t) { hideButton(); if (panelOpen) closePanel(); return; }
 
     await loadNotes();
     const count = (notesCache?.[t] || []).length;
+    log('ticker', t, 'has', count, 'notes');
     if (count === 0) {
       hideButton();
       if (panelOpen) closePanel();
@@ -307,6 +340,7 @@
   }
 
   // ── Init ───────────────────────────────────────────────────
+  log('userscript v1.1.0 booting on', location.href);
   injectStyles();
   tick();
   setInterval(tick, 1500);
