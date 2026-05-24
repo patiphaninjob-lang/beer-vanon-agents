@@ -238,6 +238,8 @@
     }
     .cal-day.avail:hover { background: #21262d; color: #e6edf3; }
     .cal-day.sel { background: #6366f1 !important; color: #fff !important; font-weight: bold; }
+    .cal-day { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .cal-bulb { font-size: 0.6em; line-height: 1; }
 
     @media (max-width: 560px) {
       .grid { grid-template-columns: 1fr; padding: 10px; }
@@ -732,6 +734,13 @@ function renderCalendar() {
   const popup = document.getElementById('calPopup');
   if (!popup) return;
   const avail = new Set(availableDates);
+
+  // collect all archive_dates that have at least one note
+  const notedDates = new Set();
+  for (const notes of Object.values(notesCache)) {
+    for (const n of notes) { if (n.archive_date) notedDates.add(n.archive_date); }
+  }
+
   const firstDay   = new Date(calYear, calMonth, 1);
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const startDow    = (firstDay.getDay() + 6) % 7; // Mon=0 … Sun=6
@@ -745,9 +754,11 @@ function renderCalendar() {
     const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const isAvail = avail.has(ds);
     const isSel   = ds === selectedDate;
+    const hasNote = notedDates.has(ds);
     let cls = 'cal-day' + (isAvail ? ' avail' : '') + (isSel ? ' sel' : '');
     const click = isAvail ? `onclick="pickDate('${ds}')"` : '';
-    cells += `<div class="${cls}" ${click}>${d}</div>`;
+    const bulb  = hasNote ? '<span class="cal-bulb">💡</span>' : '';
+    cells += `<div class="${cls}" ${click}>${d}${bulb}</div>`;
   }
 
   popup.innerHTML = `
