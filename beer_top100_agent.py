@@ -25,9 +25,10 @@ KNOWLEDGE_JSON  = "beervanon_cleaned.json"
 EMBEDDINGS_FILE = "embeddings.npz"
 EMBED_MODEL     = "paraphrase-multilingual-MiniLM-L12-v2"
 GROQ_MODEL      = "llama-3.1-8b-instant"   # higher daily token limit สำหรับ 100 หุ้น
-REPORT_TO       = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
-TOP_N           = 100
-CALL_DELAY      = 1.2   # วินาที ระหว่าง Groq call (ป้องกัน rate limit)
+REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
+TOP_N            = 100
+CALL_DELAY       = 1.2   # วินาที ระหว่าง Groq call (ป้องกัน rate limit)
+GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 
 # ~140 หุ้น universe → sort by market cap → take 100
 US_UNIVERSE = [
@@ -376,9 +377,70 @@ def stock_card(stock: dict, analysis: str, chart_cid: str) -> str:
 </div>"""
 
 
+# ─── Web Archive ─────────────────────────────────────────────
+
+def save_to_web(stocks_data: list, today: datetime.date) -> str:
+    """บันทึก JSON ลง docs/data/ สำหรับ GitHub Pages web archive"""
+    docs_dir = Path("docs/data")
+    docs_dir.mkdir(parents=True, exist_ok=True)
+
+    date_key = today.strftime("%Y-%m-%d")
+    avg_chg  = float(np.mean([s["stock"]["pct_change"] for s in stocks_data])) if stocks_data else 0
+    gainers  = [s for s in stocks_data if s["stock"]["pct_change"] > 0]
+    losers   = [s for s in stocks_data if s["stock"]["pct_change"] < 0]
+    by_gain  = sorted(stocks_data, key=lambda s: s["stock"]["pct_change"], reverse=True)
+
+    payload = {
+        "date": date_key,
+        "generated": datetime.datetime.now().isoformat(),
+        "summary": {
+            "total":       len(stocks_data),
+            "gainers":     len(gainers),
+            "losers":      len(losers),
+            "avg_change":  round(avg_chg, 2),
+            "top_gainer":  {"ticker": by_gain[0]["stock"]["ticker"],  "pct": round(by_gain[0]["stock"]["pct_change"], 2)}  if by_gain else {},
+            "top_loser":   {"ticker": by_gain[-1]["stock"]["ticker"], "pct": round(by_gain[-1]["stock"]["pct_change"], 2)} if by_gain else {},
+        },
+        "stocks": [
+            {
+                "rank":       s["stock"]["rank"],
+                "ticker":     s["stock"]["ticker"],
+                "name":       s["stock"]["name"],
+                "sector":     s["stock"]["sector"],
+                "price":      round(s["stock"]["price"], 2),
+                "pct_change": round(s["stock"]["pct_change"], 2),
+                "volume":     s["stock"]["volume"],
+                "market_cap": s["stock"]["market_cap"],
+                "pe_ratio":   round(s["stock"]["pe_ratio"], 1) if s["stock"].get("pe_ratio") else None,
+                "tv_url":     s["stock"]["tv_url"],
+                "news":       s["stock"]["news_list"],
+                "analysis":   s["analysis"],
+            }
+            for s in stocks_data
+        ],
+    }
+
+    # daily file
+    (docs_dir / f"{date_key}.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    # index file (sorted newest first)
+    idx_path = docs_dir / "index.json"
+    dates    = json.loads(idx_path.read_text(encoding="utf-8")) if idx_path.exists() else []
+    if date_key not in dates:
+        dates.insert(0, date_key)
+        dates.sort(reverse=True)
+    idx_path.write_text(json.dumps(dates, ensure_ascii=False), encoding="utf-8")
+
+    url = f"{GITHUB_PAGES_URL}/?date={date_key}"
+    print(f"  ✅ บันทึก web archive: docs/data/{date_key}.json")
+    return url
+
+
 # ─── HTML Report ──────────────────────────────────────────────
 
-def build_html_report(stocks_data: list, date_str: str) -> str:
+def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -> str:
     cards = "".join(
         stock_card(s["stock"], s["analysis"], s.get("chart_cid", ""))
         for s in stocks_data
@@ -401,6 +463,7 @@ def build_html_report(stocks_data: list, date_str: str) -> str:
     <h1 style="color:#ffffff;margin:8px 0 4px;font-size:1.35em">Beer Vanon — Top 100 US Stocks</h1>
     <div style="color:#8a8f98;font-size:0.88em">{date_str} · เรียงตาม Market Cap</div>
     <div style="margin-top:10px;font-size:0.9em;color:{sentiment_color};font-weight:bold">{sentiment_label}</div>
+    {f'<div style="margin-top:8px"><a href="{archive_url}" style="color:#6366f1;font-size:0.83em;text-decoration:none">📚 ดูย้อนหลังทั้งหมดบน Web Archive →</a></div>' if archive_url else ""}
   </div>
 
   <div style="border-top:1px solid #21262d;margin:14px 0 20px"></div>
@@ -492,8 +555,13 @@ def main():
                 time.sleep(30)
 
     # 4. สร้างและส่ง email
+    # 4. บันทึก web archive
+    print(f"\n🌐 บันทึก web archive...")
+    archive_url = save_to_web(stocks_data, today)
+
+    # 5. สร้างและส่ง email
     print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
-    html    = build_html_report(stocks_data, date_str)
+    html    = build_html_report(stocks_data, date_str, archive_url)
     images  = [(s["chart_cid"], s["chart_bytes"]) for s in stocks_data if s.get("chart_bytes")]
     subject = f"🍺 Beer Top 100 Market Cap — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
     print("📧 ส่ง email...")

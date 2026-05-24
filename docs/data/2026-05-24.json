@@ -1,0 +1,42 @@
+{
+  "date": "2026-05-24",
+  "generated": "2026-05-24T12:29:32.102950",
+  "summary": {
+    "total": 1,
+    "gainers": 0,
+    "losers": 1,
+    "avg_change": -1.9,
+    "top_gainer": {
+      "ticker": "NVDA",
+      "pct": -1.9
+    },
+    "top_loser": {
+      "ticker": "NVDA",
+      "pct": -1.9
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "price": 135.28,
+      "pct_change": -1.9,
+      "volume": 45000000,
+      "market_cap": 5220000000000.0,
+      "pe_ratio": 45.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
+      "news": [
+        {
+          "title": "Test news",
+          "summary": "Summary here",
+          "provider": "Reuters",
+          "date": "2026-05-24",
+          "url": "https://example.com"
+        }
+      ],
+      "analysis": "Test analysis text"
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🍺 Beer Vanon — Top 100 Archive</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+
+    /* ── Header ── */
+    .header {
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 10px 18px; display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
+    .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+    select, input[type=search] {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 9px; font-size: 13px; outline: none; height: 32px;
+    }
+    select:focus, input:focus { border-color: #6366f1; }
+    input[type=search] { min-width: 130px; }
+    .count-badge { color: #6b7280; font-size: 0.82em; white-space: nowrap; margin-left: auto; }
+
+    /* ── Summary bar ── */
+    .summary {
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 8px 18px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.83em;
+    }
+    .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+    .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
+    .up   { color: #16c784 !important; }
+    .down { color: #ea3943 !important; }
+
+    /* ── Grid ── */
+    .grid {
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 10px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ── Card ── */
+    .card { background: #1a1f2e; border-radius: 10px; padding: 14px; border-left: 3px solid #6366f1; }
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .card-rank { font-size: 0.69em; color: #6b7280; background: #111827; border-radius: 3px; padding: 1px 5px; margin-right: 5px; }
+    .card-ticker { font-size: 1.15em; font-weight: bold; color: #fff; }
+    .card-name { color: #8a8f98; font-size: 0.8em; margin-top: 2px; }
+    .card-price { font-size: 1.1em; color: #fff; text-align: right; }
+    .card-pct { font-weight: bold; font-size: 0.95em; text-align: right; }
+    .card-meta { color: #a0a6b3; font-size: 0.77em; margin-bottom: 6px; line-height: 1.6; }
+    .card-meta strong { color: #d1d5db; }
+    .sector-badge {
+      display: inline-block; font-size: 0.69em; color: #6b7280;
+      background: #1e2532; border-radius: 10px; padding: 1px 7px; margin-left: 6px;
+    }
+
+    /* TV link */
+    .tv-link { color: #6366f1; font-size: 0.79em; text-decoration: none; display: inline-block; margin-top: 2px; }
+    .tv-link:hover { color: #818cf8; text-decoration: underline; }
+
+    /* ── News ── */
+    .news-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2532; }
+    .news-label { color: #6b7280; font-size: 0.71em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px; }
+    .news-item { margin-bottom: 7px; }
+    .news-title { color: #93c5fd; font-size: 0.82em; text-decoration: none; font-weight: 500; line-height: 1.4; display: block; }
+    .news-title:hover { text-decoration: underline; }
+    .news-title-plain { color: #d1d5db; font-size: 0.82em; font-weight: 500; line-height: 1.4; display: block; }
+    .news-summary { color: #6b7280; font-size: 0.77em; line-height: 1.4; margin-top: 2px; }
+    .news-meta { color: #4b5563; font-size: 0.72em; margin-top: 1px; }
+
+    /* ── Analysis ── */
+    .card-analysis {
+      background: #111827; border-radius: 7px; padding: 10px;
+      font-size: 0.86em; line-height: 1.65; color: #d1d5db;
+      margin-top: 8px; white-space: pre-wrap; word-break: break-word;
+    }
+    .analysis-label { color: #f0b90b; font-weight: bold; font-size: 0.8em; margin-bottom: 4px; }
+
+    /* ── States ── */
+    .state-msg { text-align: center; padding: 60px 20px; color: #6b7280; font-size: 1em; }
+
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr; padding: 10px; }
+      .header { padding: 8px 12px; }
+      .summary { padding: 8px 12px; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">🍺 Beer Top 100</div>
+  <div class="controls">
+    <select id="dateSel" onchange="loadDate(this.value)" title="เลือกวัน"></select>
+    <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
+    <select id="sectorSel" onchange="renderCards()" title="กรอง Sector">
+      <option value="">ทุก Sector</option>
+    </select>
+    <select id="sortSel" onchange="renderCards()" title="เรียง">
+      <option value="rank">Market Cap Rank</option>
+      <option value="gain">% เปลี่ยนแปลง ↑ (กำไรสุด)</option>
+      <option value="loss">% เปลี่ยนแปลง ↓ (ขาดทุนสุด)</option>
+    </select>
+    <span class="count-badge" id="countBadge"></span>
+  </div>
+</div>
+
+<div id="summaryBar" class="summary"></div>
+<div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
+
+<script>
+let currentData = null;
+
+const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+function fmtDate(d) {
+  const [y,m,day] = d.split('-');
+  return `${parseInt(day)} ${MONTHS_TH[parseInt(m)]} ${y}`;
+}
+
+function fmtCap(cap) {
+  if (!cap) return 'N/A';
+  if (cap >= 1e12) return `$${(cap/1e12).toFixed(2)}T`;
+  if (cap >= 1e9)  return `$${(cap/1e9).toFixed(1)}B`;
+  return `$${(cap/1e6).toFixed(0)}M`;
+}
+
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+async function init() {
+  try {
+    const r = await fetch('data/index.json?_=' + Date.now());
+    if (!r.ok) throw new Error('ไม่พบไฟล์ index');
+    const dates = await r.json();
+
+    const sel = document.getElementById('dateSel');
+    dates.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = fmtDate(d);
+      sel.appendChild(opt);
+    });
+
+    if (dates.length) {
+      const urlDate = new URLSearchParams(location.search).get('date');
+      const target = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
+      sel.value = target;
+      await loadDate(target);
+    } else {
+      document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
+    }
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="state-msg">โหลดไม่ได้: ${e.message}<br><small>ถ้าเปิดจาก file:// ให้ deploy บน GitHub Pages ก่อน</small></div>`;
+  }
+}
+
+async function loadDate(date) {
+  document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
+  try {
+    const r = await fetch(`data/${date}.json?_=` + Date.now());
+    if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    currentData = await r.json();
+
+    // rebuild sector list
+    const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
+    const sectorSel = document.getElementById('sectorSel');
+    const prev = sectorSel.value;
+    sectorSel.innerHTML = '<option value="">ทุก Sector</option>';
+    sectors.forEach(s => {
+      const o = document.createElement('option');
+      o.value = s; o.textContent = s;
+      if (s === prev) o.selected = true;
+      sectorSel.appendChild(o);
+    });
+
+    renderSummary();
+    renderCards();
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
+  }
+}
+
+function renderSummary() {
+  const s = currentData.summary;
+  const avgUp = s.avg_change >= 0;
+  document.getElementById('summaryBar').innerHTML = `
+    <div>
+      <span class="stat-label">วันที่</span>
+      <span class="stat-val">${fmtDate(currentData.date)}</span>
+    </div>
+    <div>
+      <span class="stat-label">ขึ้น / ลง</span>
+      <span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span>
+    </div>
+    <div>
+      <span class="stat-label">avg change</span>
+      <span class="stat-val ${avgUp?'up':'down'}">${avgUp?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span>
+    </div>
+    ${s.top_gainer?.ticker ? `<div>
+      <span class="stat-label">Top Gainer</span>
+      <span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span>
+    </div>` : ''}
+    ${s.top_loser?.ticker ? `<div>
+      <span class="stat-label">Top Loser</span>
+      <span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span>
+    </div>` : ''}
+  `;
+}
+
+function renderCards() {
+  if (!currentData) return;
+
+  const search = document.getElementById('searchBox').value.toLowerCase().trim();
+  const sector = document.getElementById('sectorSel').value;
+  const sort   = document.getElementById('sortSel').value;
+
+  let stocks = [...currentData.stocks];
+  if (search) stocks = stocks.filter(s =>
+    s.ticker.toLowerCase().includes(search) || (s.name||'').toLowerCase().includes(search)
+  );
+  if (sector) stocks = stocks.filter(s => s.sector === sector);
+
+  if (sort === 'gain') stocks.sort((a,b) => b.pct_change - a.pct_change);
+  else if (sort === 'loss') stocks.sort((a,b) => a.pct_change - b.pct_change);
+  else stocks.sort((a,b) => a.rank - b.rank);
+
+  document.getElementById('countBadge').textContent = `${stocks.length} หุ้น`;
+
+  if (!stocks.length) {
+    document.getElementById('grid').innerHTML = '<div class="state-msg">ไม่พบหุ้นที่ตรงกับเงื่อนไข</div>';
+    return;
+  }
+  document.getElementById('grid').innerHTML = stocks.map(cardHTML).join('');
+}
+
+function cardHTML(s) {
+  const up    = s.pct_change >= 0;
+  const color = up ? '#16c784' : '#ea3943';
+  const arrow = up ? '▲' : '▼';
+  const pe    = s.pe_ratio ? ` | P/E ${s.pe_ratio}` : '';
+
+  const newsHTML = (s.news||[]).map(n => `
+    <div class="news-item">
+      ${n.url
+        ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
+        : `<span class="news-title-plain">${esc(n.title)}</span>`}
+      ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
+      <div class="news-meta">${esc([n.provider, n.date].filter(Boolean).join(' · '))}</div>
+    </div>`).join('');
+
+  const analysisHTML = s.analysis
+    ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์</div>${esc(s.analysis)}</div>`
+    : '';
+
+  return `
+  <div class="card" style="border-left-color:${color}">
+    <div class="card-head">
+      <div>
+        <span class="card-rank">#${s.rank}</span>
+        <span class="card-ticker">${esc(s.ticker)}</span>
+        <span class="sector-badge">${esc(s.sector||'')}</span>
+        <div class="card-name">${esc(s.name)}</div>
+      </div>
+      <div style="flex-shrink:0;margin-left:10px">
+        <div class="card-price">$${s.price.toFixed(2)}</div>
+        <div class="card-pct" style="color:${color}">${arrow} ${Math.abs(s.pct_change).toFixed(2)}%</div>
+      </div>
+    </div>
+    <div class="card-meta">
+      Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
+      <br><a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>
+    </div>
+    ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
+    ${analysisHTML}
+  </div>`;
+}
+
+init();
+</script>
+</body>
+</html>

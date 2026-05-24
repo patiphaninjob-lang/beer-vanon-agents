@@ -5,6 +5,9 @@ on:
     - cron: '0 14 * * 1-5'    # 21:00 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์
   workflow_dispatch:            # รันมือได้จาก GitHub UI
 
+permissions:
+  contents: write               # อนุญาตให้ push docs/data/ กลับ repo
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -44,3 +47,11 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python beer_top100_agent.py
+
+      - name: Commit web archive data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/
+          git diff --cached --quiet || git commit -m "📊 Top 100 report $(date +%Y-%m-%d)"
+          git push
