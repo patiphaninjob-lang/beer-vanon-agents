@@ -537,22 +537,27 @@ def main():
     for i, ticker in enumerate(top100, 1):
         rank = i
         print(f"   [{rank:3d}] {ticker:<8}", end=" → ", flush=True)
-        try:
-            stock     = get_stock_context(ticker, rank)
-            query     = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
-            ctx       = search_knowledge(query, posts, embeddings, embed_model)
-            analysis    = combined_analysis(stock, ctx)
-            chart_bytes = generate_mini_chart_b64(ticker)
-            cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
-            stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes})
-            print(f"✅  {stock['pct_change']:+.1f}%")
-            time.sleep(CALL_DELAY)
-        except Exception as e:
-            err = str(e)[:80]
-            print(f"❌  {err}")
-            if "rate_limit" in err.lower():
-                print("      ⏳ rate limit — รอ 30 วินาที...")
-                time.sleep(30)
+        for attempt in range(3):   # retry สูงสุด 3 ครั้งถ้าชน rate limit
+            try:
+                stock     = get_stock_context(ticker, rank)
+                query     = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
+                ctx       = search_knowledge(query, posts, embeddings, embed_model)
+                analysis    = combined_analysis(stock, ctx)
+                chart_bytes = generate_mini_chart_b64(ticker)
+                cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
+                stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes})
+                print(f"✅  {stock['pct_change']:+.1f}%")
+                time.sleep(CALL_DELAY)
+                break
+            except Exception as e:
+                err = str(e)[:80]
+                if "rate_limit" in err.lower() and attempt < 2:
+                    wait = 60 * (attempt + 1)   # 60s → 120s
+                    print(f"⏳  rate limit — รอ {wait}s (attempt {attempt+1}/3)...")
+                    time.sleep(wait)
+                else:
+                    print(f"❌  {err}")
+                    break
 
     # 4. สร้างและส่ง email
     # 4. บันทึก web archive
