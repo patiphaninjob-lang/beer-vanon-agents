@@ -275,8 +275,8 @@ function cardHTML(s) {
     </div>
     <div class="card-meta">
       Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
-      <br><a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>
     </div>
+    ${s.chart_b64 ? `<a href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>` : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${analysisHTML}
   </div>`;
