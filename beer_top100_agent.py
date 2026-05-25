@@ -7,7 +7,7 @@ beer_top100_agent.py
 import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-import os, json, smtplib, datetime, time
+import os, json, smtplib, datetime, time, argparse, threading
 import numpy as np
 from pathlib import Path
 from email.mime.multipart import MIMEMultipart
@@ -25,6 +25,13 @@ from beer_homework_framework import (
 )
 
 load_dotenv()
+
+# ─── Global Lock for Output ──────────────────────────────────
+print_lock = threading.Lock()
+
+def safe_print(*args, **kwargs):
+    with print_lock:
+        print(*args, **kwargs)
 
 # ─── Config ───────────────────────────────────────────────────
 KNOWLEDGE_JSON  = "beervanon_cleaned.json"
@@ -85,10 +92,11 @@ def load_knowledge():
     return posts, embeddings, model
 
 
-def search_knowledge(query: str, posts, embeddings, embed_model, top_k=3) -> str:
+def search_knowledge(query: str, posts, embeddings, embed_model, top_k=3, query_vector=None) -> str:
     if embed_model is not None and embeddings is not None:
-        q_vec   = embed_model.encode([query], normalize_embeddings=True)[0].astype("float32")
-        scores  = embeddings @ q_vec
+        if query_vector is None:
+            query_vector = embed_model.encode([query], normalize_embeddings=True)[0].astype("float32")
+        scores  = embeddings @ query_vector
         top_idx = np.argsort(scores)[::-1][:top_k]
         relevant = [posts[i] for i in top_idx]
     else:
@@ -119,7 +127,7 @@ def fetch_market_caps(tickers: list) -> dict:
         except Exception:
             return t, 0
 
-    print(f"  ดึง market cap {len(tickers)} หุ้น (parallel)...")
+    safe_print(f"  ดึง market cap {len(tickers)} หุ้น (parallel)...")
     with ThreadPoolExecutor(max_workers=20) as ex:
         results = dict(ex.map(_get, tickers))
     return results
@@ -159,11 +167,15 @@ def _tv_url(ticker: str, exchange_code: str = "") -> str:
     return f"https://www.tradingview.com/chart/?symbol={symbol}"
 
 
-def get_stock_context(ticker: str, rank: int) -> dict:
+def get_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
     import yfinance as yf
     tk   = yf.Ticker(ticker)
     info = tk.info or {}
-    hist = tk.history(period="5d")
+    
+    if hist_df is None:
+        hist = tk.history(period="5d")
+    else:
+        hist = hist_df
 
     price_now  = float(hist["Close"].iloc[-1]) if not hist.empty else 0
     price_prev = float(hist["Close"].iloc[-2]) if len(hist) > 1 else price_now
@@ -199,7 +211,7 @@ def get_stock_context(ticker: str, rank: int) -> dict:
 
 # ─── Chart Generator ─────────────────────────────────────────
 
-def generate_mini_chart_b64(ticker: str) -> str:
+def generate_mini_chart_b64(ticker: str, hist_df=None) -> bytes:
     """Mini candlestick JPEG สไตล์ TradingView Screener — ~2.8KB ต่อรูป"""
     try:
         import matplotlib
@@ -209,9 +221,13 @@ def generate_mini_chart_b64(ticker: str) -> str:
         import io, base64
         import yfinance as yf
 
-        hist = yf.Ticker(ticker).history(period="3mo")
+        if hist_df is None:
+            hist = yf.Ticker(ticker).history(period="3mo")
+        else:
+            hist = hist_df
+
         if len(hist) < 5:
-            return ""
+            return b""
 
         BG    = "#131722"
         GREEN = "#26a69a"
@@ -252,7 +268,7 @@ def generate_mini_chart_b64(ticker: str) -> str:
         buf.seek(0)
         return buf.read()   # raw bytes — ใช้กับ CID attachment
     except Exception as e:
-        print(f"  chart error [{ticker}]: {e}")
+        safe_print(f"  chart error [{ticker}]: {e}")
         return b""
 
 
@@ -277,7 +293,7 @@ def fetch_market_indices() -> dict:
                 "chart_b64":  base64.b64encode(chart).decode() if chart else "",
             }
         except Exception as e:
-            print(f"   ⚠️ {symbol}: {e}")
+            safe_print(f"   ⚠️ {symbol}: {e}")
     return result
 
 
@@ -542,7 +558,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     idx_path.write_text(json.dumps(dates, ensure_ascii=False), encoding="utf-8")
 
     url = f"{GITHUB_PAGES_URL}/?date={date_key}"
-    print(f"  ✅ บันทึก web archive: docs/data/{date_key}.json")
+    safe_print(f"  ✅ บันทึก web archive: docs/data/{date_key}.json")
     return url
 
 
@@ -599,7 +615,7 @@ def send_email(html: str, subject: str, images: list = None):
     if not user or not password or "xxxx" in (password or ""):
         out = Path("beer_top100_report.html")
         out.write_text(html, encoding="utf-8")
-        print(f"  ยังไม่ได้ตั้ง GMAIL — บันทึกเป็น {out}")
+        safe_print(f"  ยังไม่ได้ตั้ง GMAIL — บันทึกเป็น {out}")
         return
 
     # MIMEMultipart("related") keeps HTML body small — images are separate MIME parts
@@ -620,80 +636,138 @@ def send_email(html: str, subject: str, images: list = None):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(user, password)
         server.sendmail(user, REPORT_TO, msg.as_string())
-    print(f"  ✅ ส่ง email ถึง {REPORT_TO}")
+    safe_print(f"  ✅ ส่ง email ถึง {REPORT_TO}")
+
+
+# ─── Parallel Processing ──────────────────────────────────────
+
+def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db):
+    """Worker function สำหรับ parallel processing"""
+    for attempt in range(3):
+        try:
+            stock     = get_stock_context(ticker, rank, hist_df=hist_df)
+            ctx       = search_knowledge(query, posts, embeddings, embed_model, query_vector=query_vector)
+            my_notes    = user_notes_db.get(ticker, [])
+            
+            # Groq call
+            analysis    = combined_analysis(stock, ctx, my_notes if my_notes else None)
+            
+            chart_bytes = generate_mini_chart_b64(ticker, hist_df=hist_df)
+            cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
+            
+            # log success
+            safe_print(f"   [{rank:3d}] {ticker:<8} → ✅ {stock['pct_change']:+.1f}%")
+            
+            return {"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes, "user_notes": my_notes or None}
+        except Exception as e:
+            err = str(e)
+            if "rate_limit" in err.lower() or "429" in err:
+                wait = 65 * (attempt + 1)
+                safe_print(f"   [{rank:3d}] {ticker:<8} → ⏳ rate limit — รอ {wait}s...")
+                time.sleep(wait)
+            else:
+                safe_print(f"   [{rank:3d}] {ticker:<8} → ❌ {err[:100]}")
+                return None
 
 
 # ─── Main ─────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--test", action="store_true", help="Run in test mode (5 stocks)")
+    parser.add_argument("--limit", type=int, help="Limit number of stocks to analyze")
+    parser.add_argument("--workers", type=int, default=2, help="Number of parallel workers (default 2)")
+    args = parser.parse_args()
+
     today    = datetime.date.today()
     date_str = today.strftime("%A, %d %B %Y")
-    print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")
+    safe_print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")
+
+    limit = 5 if args.test else (args.limit or TOP_N)
 
     # 1. Knowledge base + user notes
-    print("\n📚 โหลด knowledge base...")
+    safe_print("\n📚 โหลด knowledge base...")
     posts, embeddings, embed_model = load_knowledge()
-    print(f"   {len(posts)} โพสต์ | embeddings: {'✅' if embeddings is not None else '⚠️'}")
+    safe_print(f"   {len(posts)} โพสต์ | embeddings: {'✅' if embeddings is not None else '⚠️'}")
+    
+    query = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
+    query_vector = None
+    if embed_model is not None:
+        safe_print("   Pre-encoding search query...")
+        query_vector = embed_model.encode([query], normalize_embeddings=True)[0].astype("float32")
+
     user_notes_db = load_user_notes()
     notes_count   = sum(len(v) for v in user_notes_db.values())
-    print(f"   โน้ตของคุณ: {notes_count} รายการ ({len(user_notes_db)} หุ้น)")
+    safe_print(f"   โน้ตของคุณ: {notes_count} รายการ ({len(user_notes_db)} หุ้น)")
 
     # 2. Market cap ranking
-    print("\n📊 จัดลำดับ Market Cap...")
+    safe_print("\n📊 จัดลำดับ Market Cap...")
     mktcaps = fetch_market_caps(US_UNIVERSE)
     ranked  = sorted(US_UNIVERSE, key=lambda t: mktcaps.get(t, 0), reverse=True)
-    top100  = [t for t in ranked if mktcaps.get(t, 0) > 0][:TOP_N]
-    print(f"   Top {len(top100)} หุ้น | อันดับ 1: {top100[0]} ({_fmt_mktcap(mktcaps.get(top100[0],0))})")
+    top_stocks = [t for t in ranked if mktcaps.get(t, 0) > 0][:limit]
+    safe_print(f"   วิเคราะห์ {len(top_stocks)} หุ้น | อันดับ 1: {top_stocks[0]} ({_fmt_mktcap(mktcaps.get(top_stocks[0],0))})")
 
-    # 3. วิเคราะห์ทีละหุ้น
+    # 2.1 Batch fetch history
+    import yfinance as yf
+    safe_print(f"   ดึงข้อมูลราคา {len(top_stocks)} หุ้น (batch)...")
+    try:
+        all_hist = yf.download(top_stocks, period="3mo", group_by='ticker', threads=True, progress=False)
+    except Exception as e:
+        safe_print(f"   ⚠️ Batch fetch error: {e}")
+        all_hist = None
+
+    # 3. วิเคราะห์หุ้นแบบ Parallel
     stocks_data = []
-    print(f"\n🔍 วิเคราะห์ {len(top100)} หุ้น...")
-    for i, ticker in enumerate(top100, 1):
-        rank = i
-        print(f"   [{rank:3d}] {ticker:<8}", end=" → ", flush=True)
-        for attempt in range(3):   # retry สูงสุด 3 ครั้งถ้าชน rate limit
-            try:
-                stock     = get_stock_context(ticker, rank)
-                query     = "trend momentum หุ้นใหญ่ market cap SQ วินัย"
-                ctx       = search_knowledge(query, posts, embeddings, embed_model)
-                my_notes    = user_notes_db.get(ticker, [])
-                analysis    = combined_analysis(stock, ctx, my_notes if my_notes else None)
-                chart_bytes = generate_mini_chart_b64(ticker)
-                cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
-                stocks_data.append({"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes, "user_notes": my_notes or None})
-                print(f"✅  {stock['pct_change']:+.1f}%")
-                time.sleep(CALL_DELAY)
-                break
-            except Exception as e:
-                err = str(e)[:80]
-                if "rate_limit" in err.lower() and attempt < 2:
-                    wait = 60 * (attempt + 1)   # 60s → 120s
-                    print(f"⏳  rate limit — รอ {wait}s (attempt {attempt+1}/3)...")
-                    time.sleep(wait)
+    safe_print(f"\n🔍 วิเคราะห์ {len(top_stocks)} หุ้น (parallel workers={args.workers})...")
+    
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        futures = []
+        for i, ticker in enumerate(top_stocks, 1):
+            hist_df = None
+            if all_hist is not None:
+                if len(top_stocks) > 1:
+                    hist_df = all_hist[ticker]
                 else:
-                    print(f"❌  {err}")
-                    break
+                    hist_df = all_hist
+            
+            futures.append(executor.submit(
+                process_single_stock, 
+                ticker, i, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db
+            ))
+            # ใส่ delay เล็กน้อยตอนเริ่ม submit เพื่อกระจายโหลด Groq
+            time.sleep(0.5)
+            
+        for f in futures:
+            res = f.result()
+            if res:
+                stocks_data.append(res)
 
-    # 4. สร้างและส่ง email
     # 4. บันทึก web archive
+    if not stocks_data:
+        safe_print("\n❌ ไม่มีข้อมูลหุ้นที่วิเคราะห์ได้สำเร็จ")
+        return
+
     # 4a. ดึงดัชนีตลาด
-    print(f"\n📈 ดึงดัชนีตลาด (DJI/S&P/NASDAQ)...")
+    safe_print(f"\n📈 ดึงดัชนีตลาด (DJI/S&P/NASDAQ)...")
     market_indices = fetch_market_indices()
     idx_status = " | ".join(f"{k.upper()}:✅" if k in market_indices else f"{k.upper()}:❌" for k in ["dji","spx","ixic"])
-    print(f"   {idx_status}")
+    safe_print(f"   {idx_status}")
 
-    print(f"\n🌐 บันทึก web archive...")
+    safe_print(f"\n🌐 บันทึก web archive...")
     archive_url = save_to_web(stocks_data, today, market_indices)
 
     # 5. สร้างและส่ง email
-    print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
+    safe_print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
     html    = build_html_report(stocks_data, date_str, archive_url)
     images  = [(s["chart_cid"], s["chart_bytes"]) for s in stocks_data if s.get("chart_bytes")]
     subject = f"🍺 Beer Top 100 Market Cap — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
-    print("📧 ส่ง email...")
+    if args.test:
+        subject = f"[TEST] {subject}"
+
+    safe_print("📧 ส่ง email...")
     send_email(html, subject, images)
 
-    print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top100)} หุ้น")
+    safe_print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top_stocks)} หุ้น")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,27 @@
+{
+  "title": "ผู้รอด",
+  "subtitle": "บันทึกจากเส้นสมมุติของตลาด",
+  "author": "คนหลังกราฟ",
+  "created_at": "2026-05-23T13:57:41",
+  "outputs": {
+    "sales_final_pdf": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_meb_sales_final.pdf",
+    "sample_preview_pdf": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_meb_sample_preview.pdf",
+    "front_cover_png": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_cover_front.png",
+    "front_cover_jpg": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_cover_front.jpg",
+    "back_cover_png": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_cover_back.png",
+    "back_cover_jpg": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_cover_back.jpg",
+    "metadata": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\meb_metadata.md",
+    "checklist": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\meb_upload_checklist.md",
+    "zip_package": "C:\\Users\\Gazill0T\\Documents\\claude ai\\stock\\book\\meb_final\\phu-rod_meb_upload_package.zip"
+  },
+  "page_count": 264,
+  "sample_page_count": 18,
+  "front_cover_px": [
+    1600,
+    2400
+  ],
+  "back_cover_px": [
+    1600,
+    2400
+  ]
+}

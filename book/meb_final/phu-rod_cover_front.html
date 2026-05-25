@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>ผู้รอด - front cover</title>
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  color: #1f2522;
+  background: #f5f0e7;
+  font-family: "Leelawadee UI", "Tahoma", sans-serif;
+  letter-spacing: 0;
+}
+.cover-art {
+  position: relative;
+  width: 1600px;
+  height: 2400px;
+  overflow: hidden;
+  background:
+    linear-gradient(146deg, rgba(191, 136, 69, .36) 0 20%, transparent 42%),
+    linear-gradient(28deg, rgba(71, 129, 107, .40) 0 18%, transparent 47%),
+    linear-gradient(180deg, #101916 0%, #1a2822 54%, #263225 100%);
+  color: #f7efe2;
+}
+.cover-art::before {
+  content: "";
+  position: absolute;
+  left: 170px;
+  right: 150px;
+  top: 430px;
+  height: 760px;
+  border-left: 9px solid rgba(244, 224, 183, .70);
+  border-bottom: 6px solid rgba(244, 224, 183, .20);
+  transform: skewY(-13deg);
+}
+.cover-art::after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  bottom: 265px;
+  width: 1240px;
+  height: 640px;
+  background:
+    linear-gradient(137deg, transparent 0 22%, rgba(195, 142, 69, .95) 22% 23.4%, transparent 23.4% 100%),
+    linear-gradient(162deg, transparent 0 44%, rgba(246, 236, 212, .54) 44% 45.1%, transparent 45.1% 100%),
+    linear-gradient(26deg, transparent 0 61%, rgba(91, 147, 118, .86) 61% 62.4%, transparent 62.4% 100%);
+  opacity: .94;
+}
+.kicker {
+  position: relative;
+  z-index: 2;
+  margin: 205px 150px 0;
+  font-size: 50px;
+  color: #c99249;
+  font-weight: 800;
+}
+.title {
+  position: relative;
+  z-index: 2;
+  margin: 390px 150px 0;
+  font-size: 285px;
+  line-height: .9;
+  font-weight: 900;
+  color: #fff3dc;
+}
+.subtitle {
+  position: relative;
+  z-index: 2;
+  margin: 85px 150px 0;
+  max-width: 1040px;
+  font-size: 72px;
+  line-height: 1.42;
+  color: #eadcc6;
+  font-weight: 600;
+}
+.promise {
+  position: relative;
+  z-index: 2;
+  margin: 95px 150px 0;
+  max-width: 940px;
+  font-size: 45px;
+  line-height: 1.55;
+  color: #b9c9bb;
+}
+.author {
+  position: absolute;
+  z-index: 2;
+  left: 150px;
+  bottom: 150px;
+  font-size: 58px;
+  font-weight: 800;
+  color: #f7efe2;
+}
+.small-rule {
+  position: absolute;
+  z-index: 2;
+  left: 150px;
+  bottom: 247px;
+  width: 210px;
+  height: 8px;
+  background: #c99249;
+}
+</style>
+</head>
+<body>
+<section class="cover-art">
+  <div class="kicker">หนังสือหุ้นที่ไม่ขายสูตรรวย</div>
+  <div class="title">ผู้รอด</div>
+  <div class="subtitle">บันทึกจากเส้นสมมุติของตลาด</div>
+  <div class="promise">ว่าด้วยตลาด บาดแผล วินัย และคนที่ยังอยู่รอดพอจะเรียนรู้ตัวเอง</div>
+  <div class="small-rule"></div>
+  <div class="author">คนหลังกราฟ</div>
+</section>
+</body>
+</html>

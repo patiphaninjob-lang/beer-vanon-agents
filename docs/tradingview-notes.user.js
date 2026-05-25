@@ -121,7 +121,11 @@
   }
 
   function tickerNotes(ticker) {
-    return (notesCache?.[ticker] || [])
+    if (!ticker) return [];
+    // Normalize ticker: TradingView BRK.B -> Yahoo BRK-B
+    const normalized = ticker.replace('.', '-');
+    const notes = notesCache?.[normalized] || notesCache?.[ticker] || [];
+    return notes
       .filter(n => n && (n.archive_date || n.date))
       .slice()
       .sort((a, b) => String(b.id || '').localeCompare(String(a.id || '')));
@@ -259,7 +263,7 @@
       if (!y || !m || !d) continue;
 
       const daily = dailyByDate[group.date];
-      const stock = daily?.stocks?.find(s => s.ticker === ticker);
+      const stock = daily?.stocks?.find(s => s.ticker === ticker || s.ticker === ticker.replace('.', '-'));
       const tooltip = pineString(buildTooltip(ticker, group.date, markerDate, shifted, group.notes, stock));
       const color = shifted ? 'color.orange' : 'color.yellow';
       const cond = `isMyTicker and showMarkers and isFirstBarOfDay and year == ${y} and month == ${m} and dayofmonth == ${d}`;
@@ -346,7 +350,7 @@
       const stockByDate = {};
       await Promise.all(groups.map(async group => {
         const daily = await loadDailyFile(group.date);
-        stockByDate[group.date] = daily?.stocks?.find(s => s.ticker === ticker) || null;
+        stockByDate[group.date] = daily?.stocks?.find(s => s.ticker === ticker || s.ticker === ticker.replace('.', '-')) || null;
       }));
 
       if (!panelOpen || lastPanelTicker !== ticker) return;
