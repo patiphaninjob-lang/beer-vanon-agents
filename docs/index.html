@@ -78,12 +78,13 @@
     .chart-container { position: relative; margin-top: 6px; }
     .chart-img { width: 100%; border-radius: 5px; display: block; cursor: pointer; }
     .chart-marker {
-      position: absolute; bottom: 8px; width: 12px; height: 12px;
-      background: #f0b90b; border: 2px solid #1a1f2e; border-radius: 50%;
+      position: absolute; bottom: 10px; width: 14px; height: 14px;
+      background: #f0b90b; border: 2px solid #fff; border-radius: 50%;
       cursor: pointer; transform: translateX(-50%); z-index: 10;
-      box-shadow: 0 0 8px rgba(240, 185, 11, 0.6);
+      box-shadow: 0 0 10px rgba(240, 185, 11, 0.9), 0 0 20px rgba(240, 185, 11, 0.4);
+      transition: all 0.2s ease;
     }
-    .chart-marker:hover { transform: translateX(-50%) scale(1.3); background: #fff; }
+    .chart-marker:hover { transform: translateX(-50%) scale(1.4); background: #fff; box-shadow: 0 0 15px #fff; }
 
     /* ── Note button ── */
     .note-btn {
@@ -1121,7 +1122,10 @@ function cardHTML(s) {
   const color = up ? '#16c784' : '#ea3943';
   const arrow = up ? '▲' : '▼';
   const pe    = s.pe_ratio ? ` | P/E ${s.pe_ratio}` : '';
-  const myNotes = notesCache[s.ticker] || [];
+  
+  // Normalize ticker for matching notes (e.g. BRK.B -> BRK-B)
+  const normalizedTicker = (s.ticker || '').replace('.', '-');
+  const myNotes = notesCache[normalizedTicker] || notesCache[s.ticker] || [];
 
   const newsHTML = (s.news||[]).map(n => `
     <div class="news-item">
@@ -1146,21 +1150,20 @@ function cardHTML(s) {
     </div>
   ` : '';
 
-  // Calculate marker positions (approximate based on 3 months history)
+  // Calculate marker positions (90 days history)
   const chartMarkersHTML = s.chart_b64 ? myNotes.map(n => {
-    const noteDate = new Date(n.date);
-    const archiveDate = new Date(currentData.date);
-    const threeMonthsAgo = new Date(archiveDate);
-    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+    // Safe date parsing for T00:00:00
+    const noteTS = new Date(n.date + 'T12:00:00').getTime();
+    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
+    const rangeTS = 90 * 24 * 60 * 60 * 1000;
+    const startTS = archiveTS - rangeTS;
     
-    const totalDays = (archiveDate - threeMonthsAgo) / (1000 * 60 * 60 * 24);
-    const noteDaysFromStart = (noteDate - threeMonthsAgo) / (1000 * 60 * 60 * 24);
-    let leftPos = (noteDaysFromStart / totalDays) * 100;
+    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
+    leftPos = Math.max(2, Math.min(98, leftPos));
     
-    // Clamp to 0-100
-    leftPos = Math.max(5, Math.min(95, leftPos));
+    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
     
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" title="คลิกเพื่อดูโน้ตวันที่ ${n.date}"></div>`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
   }).join('') : '';
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
