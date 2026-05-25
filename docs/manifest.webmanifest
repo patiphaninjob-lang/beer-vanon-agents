@@ -1,0 +1,18 @@
+{
+  "name": "Beer Vanon Top 100 Archive",
+  "short_name": "Beer Top 100",
+  "description": "Synced Beer Top 100 homework archive with notes and TradingView markers.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

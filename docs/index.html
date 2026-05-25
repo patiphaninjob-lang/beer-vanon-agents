@@ -3,6 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Beer Top 100">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="icon.svg" type="image/svg+xml">
   <title>🍺 Beer Vanon — Top 100 Archive</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -113,7 +120,7 @@
     }
     .modal {
       background: #161b22; border: 1px solid #30363d; border-radius: 12px;
-      padding: 22px; width: 100%; max-width: 520px; max-height: 90vh;
+      padding: 22px; width: 100%; max-width: 640px; max-height: 90vh;
       overflow-y: auto;
     }
     .modal h2 { color: #fff; font-size: 1.05em; margin-bottom: 14px; }
@@ -140,6 +147,26 @@
     .modal-close { float: right; background: none; border: none; color: #6b7280; font-size: 1.2em; cursor: pointer; margin-left: 10px; }
     .modal-close:hover { color: #e6edf3; }
 
+    /* ── Homework guide ── */
+    .homework-guide {
+      background: #0d1117; border: 1px solid #30363d; border-radius: 8px;
+      padding: 11px 12px; margin: 10px 0 12px;
+    }
+    .homework-guide-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
+    .homework-guide-title { color: #f0b90b; font-size: 0.82em; font-weight: 700; }
+    .homework-guide-sub { color: #6b7280; font-size: 0.73em; margin-top: 2px; }
+    .homework-template-btn {
+      border: 1px solid #f0b90b40; background: #f0b90b10; color: #f0b90b;
+      border-radius: 6px; padding: 5px 9px; font-size: 0.76em; cursor: pointer; flex-shrink: 0;
+    }
+    .homework-template-btn:hover { border-color: #f0b90b; background: #f0b90b18; }
+    .homework-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .homework-item {
+      border-left: 2px solid #30363d; background: #111827; border-radius: 0 6px 6px 0;
+      padding: 7px 9px; color: #8b949e; font-size: 0.77em; line-height: 1.45;
+    }
+    .homework-item strong { display: block; color: #e6edf3; font-size: 1.02em; margin-bottom: 2px; }
+
     /* ── Existing notes in modal ── */
     .existing-notes { margin-bottom: 14px; }
     .existing-label { color: #6b7280; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
@@ -157,6 +184,12 @@
     /* ── Settings help ── */
     .pat-help { background: #0d1117; border-radius: 6px; padding: 10px; font-size: 0.8em; color: #6b7280; line-height: 1.7; margin-top: 8px; }
     .pat-help code { background: #21262d; padding: 1px 5px; border-radius: 3px; color: #93c5fd; }
+    .sync-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .sync-tools button {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 6px 10px; font-size: 0.8em; cursor: pointer;
+    }
+    .sync-tools button:hover { border-color: #6366f1; }
 
     /* ── Toast ── */
     .toast {
@@ -243,9 +276,25 @@
 
     @media (max-width: 560px) {
       .grid { grid-template-columns: 1fr; padding: 10px; }
-      .header { padding: 8px 12px; }
+      .header { padding: 8px 12px; align-items: flex-start; gap: 8px; }
+      .logo { width: 100%; margin-right: 0; }
+      .controls {
+        width: 100%; flex: none; display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px; align-items: center;
+      }
+      .cal-wrap, #searchBox { grid-column: 1 / -1; width: 100%; }
+      #sectorSel, #sortSel { width: 100%; min-width: 0; }
+      .date-picker-btn { width: 100%; justify-content: center; }
+      .count-badge { grid-column: 1; }
+      .settings-btn { grid-column: 2; justify-self: end; justify-content: center; width: 40px; }
       .summary { padding: 8px 12px; gap: 14px; }
+      .modal-overlay { padding: 10px; align-items: flex-start; }
+      .modal { padding: 16px; max-height: calc(100vh - 20px); }
+      .sync-tools button { flex: 1 1 100%; }
       .cal-popup { width: calc(100vw - 36px); }
+      .homework-grid { grid-template-columns: 1fr; }
+      .homework-guide-head { flex-direction: column; }
     }
   </style>
 </head>
@@ -265,6 +314,11 @@
         วิธีสร้าง: GitHub → Settings → Developer settings → Personal access tokens → Fine-grained<br>
         Repository: <code>beer-vanon-agents</code> | Permissions → Contents: <code>Read and write</code>
       </div>
+      <div class="sync-tools">
+        <button type="button" onclick="syncNow()">Sync notes now</button>
+        <button type="button" onclick="copySetupLink()">คัดลอกลิงก์ตั้งค่าเครื่องอื่น</button>
+      </div>
+      <div id="syncStatus" style="color:#6b7280;font-size:0.76em;margin-top:6px;min-height:16px"></div>
     </div>
 
     <div style="margin-bottom:14px">
@@ -274,10 +328,18 @@
     </div>
 
     <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #21262d">
-      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">TradingView Integration</div>
-      <p>ปิด Pine/marker automation บน TradingView แล้ว เพื่อไม่เด้ง Pine Editor และให้ทำการบ้านใน Beer Top 100 อย่างเดียว</p>
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Online Sync</div>
+      <p>ข้อมูลกลางอยู่บน GitHub Pages/GitHub repo เปิดจากคอม มือถือ หรือเครื่องอื่นได้ด้วย URL เดียวกัน</p>
       <div class="pat-help" style="line-height:1.8">
-        ถ้าเคยติดตั้ง userscript ไว้ เวอร์ชันใหม่ยัง update บน TradingView ได้ แต่จะไม่เปิด Pine ไม่สร้าง marker และไม่โหลดข้อมูล
+        อ่านข้อมูลได้ทุกเครื่องทันที ส่วนการบันทึกต้องตั้ง GitHub token ในแต่ละเครื่องหนึ่งครั้ง. ปุ่มคัดลอกลิงก์ตั้งค่าเครื่องอื่นจะใส่ token ใน URL hash เพื่อความสะดวก ห้ามส่งลิงก์นั้นให้คนอื่น
+      </div>
+    </div>
+
+    <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #21262d">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">TradingView Integration</div>
+      <p>เปิด marker-only integration แล้ว: Beer Top 100 ยังเป็นสมุดจดหลัก ส่วน TradingView ใช้แสดงหมุดเล็กบนแท่งเทียนตามวันที่บันทึก</p>
+      <div class="pat-help" style="line-height:1.8">
+        บน TradingView ให้กดปุ่ม Beer Notes แล้วเลือก Copy Pine markers หรือ Try place on chart. ข้อมูลใน marker จะรวมทั้งมุมมองของคุณ ข่าวที่ Beer ใช้ และบทวิเคราะห์/ความเห็นของ Beer โดยไม่กางเป็นกล่องใหญ่บนกราฟ
       </div>
     </div>
 
@@ -296,7 +358,24 @@
     <div id="existingNotesContainer"></div>
     <div style="color:#6b7280;font-size:0.78em;margin-bottom:6px">🌡️ บันทึกอารมณ์ตลาด — <span style="color:#f0b90b">ตลาดรู้สึกอะไรกับหุ้นตัวนี้ตอนนี้?</span></div>
     <div style="color:#4b5563;font-size:0.73em;margin-bottom:8px;line-height:1.5">เช่น: ตลาดกลัว/โลภ · ใครกำลังซื้อ/ขาย · ข่าวสร้างอารมณ์แบบไหน · คนส่วนใหญ่คิดอะไรกับหุ้นตัวนี้ · ตัวเองรู้สึกอยากได้หรืออยากเทขาย เพราะอะไร</div>
-    <textarea id="noteInput" placeholder="เช่น: ตลาดตื่นกลัวหลังข่าว แต่ยังไม่ panic จริง... / คนส่วนใหญ่หวังว่าจะกลับขึ้น แต่ยังไม่มีใครกล้าซื้อเพิ่ม / โลภชัดเจน ทุกคนกำลัง FOMO..."></textarea>
+    <div class="homework-guide" id="stockHomeworkGuide">
+      <div class="homework-guide-head">
+        <div>
+          <div class="homework-guide-title">บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ</div>
+          <div class="homework-guide-sub">ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว</div>
+        </div>
+        <button type="button" class="homework-template-btn" onclick="insertHomeworkTemplate()">ใส่โครงทำการบ้าน</button>
+      </div>
+      <div class="homework-grid">
+        <div class="homework-item"><strong>ธุรกิจ</strong>ขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง</div>
+        <div class="homework-item"><strong>ตัวเลข</strong>รายได้ กำไร หนี้ กระแสเงินสด ดีขึ้นหรือแย่ลง</div>
+        <div class="homework-item"><strong>การสื่อสาร</strong>ผู้บริหารอธิบายอะไร มีอะไรที่ต้องไปฟัง/อ่านเพิ่ม</div>
+        <div class="homework-item"><strong>คู่แข่ง</strong>ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบตรงไหน</div>
+        <div class="homework-item"><strong>ผู้บริหาร</strong>ประวัติ การตัดสินใจ ความน่าเชื่อถือ และความเสี่ยง</div>
+        <div class="homework-item"><strong>แผนของเรา</strong>ตามดู ถือ งด หรือรออะไร และอะไรคือจุดที่คิดผิด</div>
+      </div>
+    </div>
+    <textarea id="noteInput" placeholder="เช่น: วันนี้ตลาดรู้สึกอะไรกับหุ้นตัวนี้ / ข่าวทำให้คนตีความอย่างไร / ธุรกิจกับตัวเลขรองรับไหม / คู่แข่งหรือผู้บริหารมีอะไรน่ากังวล / ถ้าคิดผิดต้องดูจุดไหน"></textarea>
     <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
     <div class="modal-actions" style="justify-content:space-between">
       <button class="btn-secondary" id="polishBtn" onclick="polishNote()" title="ให้ AI จัดภาษาให้อ่านง่ายขึ้น">✨ ปรับแต่งภาษา</button>
@@ -368,6 +447,15 @@ function esc(s) {
 function toBase64(str) {
   return btoa(unescape(encodeURIComponent(str)));
 }
+function fromBase64(str) {
+  return decodeURIComponent(escape(atob(String(str || '').replace(/\s/g, ''))));
+}
+function githubHeaders(pat = localStorage.getItem('gh_pat'), json = false) {
+  const headers = { Accept: 'application/vnd.github+json' };
+  if (pat) headers.Authorization = `token ${pat}`;
+  if (json) headers['Content-Type'] = 'application/json';
+  return headers;
+}
 function showToast(msg, color='#16c784') {
   const t = document.createElement('div');
   t.className = 'toast';
@@ -378,19 +466,61 @@ function showToast(msg, color='#16c784') {
 }
 
 // ── Notes ─────────────────────────────────────────────────────
-async function loadNotes() {
+async function loadNotes(force = false) {
+  const pat = localStorage.getItem('gh_pat') || '';
+  const apiUrl = `https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`;
+
   try {
-    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${NOTES_FILE}?_=` + Date.now());
-    if (r.ok) notesCache = await r.json();
+    const api = await fetch(apiUrl, {
+      headers: githubHeaders(pat),
+      cache: force ? 'no-store' : 'default'
+    });
+    if (api.ok) {
+      const file = await api.json();
+      notesSha = file.sha;
+      notesCache = JSON.parse(fromBase64(file.content || 'e30='));
+      return true;
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${NOTES_FILE}?_=` + Date.now(), {
+      cache: force ? 'no-store' : 'default'
+    });
+    if (!r.ok) throw new Error(`notes HTTP ${r.status}`);
+    notesCache = await r.json();
     // get SHA for write operations
-    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`);
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+      headers: githubHeaders(pat),
+      cache: 'no-store'
+    });
     if (api.ok) notesSha = (await api.json()).sha;
-  } catch(e) { notesCache = {}; }
+    return true;
+  } catch(e) {
+    notesCache = {};
+    notesSha = null;
+    return false;
+  }
+}
+
+async function writeNotesToGitHub(message, pat) {
+  const body = {
+    message,
+    content: toBase64(JSON.stringify(notesCache, null, 2))
+  };
+  if (notesSha) body.sha = notesSha;
+
+  return fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
+    method: 'PUT',
+    headers: githubHeaders(pat, true),
+    body: JSON.stringify(body)
+  });
 }
 
 async function saveNoteToGitHub(ticker, noteText) {
   const pat = localStorage.getItem('gh_pat');
   if (!pat) { showSettings(); return false; }
+  await loadNotes(true);
 
   const note = {
     id: Date.now().toString(),
@@ -412,17 +542,13 @@ async function saveNoteToGitHub(ticker, noteText) {
   if (!notesCache[ticker]) notesCache[ticker] = [];
   notesCache[ticker].unshift(note);
 
-  const body = {
-    message: `📝 Note: ${ticker} ${note.date}`,
-    content: toBase64(JSON.stringify(notesCache, null, 2))
-  };
-  if (notesSha) body.sha = notesSha;
-
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
-    method: 'PUT',
-    headers: { Authorization: `token ${pat}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  let r = await writeNotesToGitHub(`📝 Note: ${ticker} ${note.date}`, pat);
+  if (r.status === 409) {
+    await loadNotes(true);
+    if (!notesCache[ticker]) notesCache[ticker] = [];
+    notesCache[ticker].unshift(note);
+    r = await writeNotesToGitHub(`📝 Note: ${ticker} ${note.date}`, pat);
+  }
 
   if (r.ok) {
     notesSha = (await r.json()).content.sha;
@@ -431,7 +557,7 @@ async function saveNoteToGitHub(ticker, noteText) {
     const err = await r.json();
     if (r.status === 401 || r.status === 403) showSettings();
     else showToast(`❌ ${err.message}`, '#ea3943');
-    notesCache[ticker].shift(); // rollback
+    notesCache[ticker]?.shift(); // rollback
     return false;
   }
 }
@@ -439,22 +565,18 @@ async function saveNoteToGitHub(ticker, noteText) {
 async function deleteNote(ticker, noteId) {
   const pat = localStorage.getItem('gh_pat');
   if (!pat) { showSettings(); return; }
+  await loadNotes(true);
   if (!notesCache[ticker]) return;
 
   const before = [...notesCache[ticker]];
   notesCache[ticker] = notesCache[ticker].filter(n => n.id !== noteId);
 
-  const body = {
-    message: `🗑️ Delete note: ${ticker} ${noteId}`,
-    content: toBase64(JSON.stringify(notesCache, null, 2)),
-    sha: notesSha
-  };
-
-  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
-    method: 'PUT',
-    headers: { Authorization: `token ${pat}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  let r = await writeNotesToGitHub(`🗑️ Delete note: ${ticker} ${noteId}`, pat);
+  if (r.status === 409) {
+    await loadNotes(true);
+    notesCache[ticker] = (notesCache[ticker] || []).filter(n => n.id !== noteId);
+    r = await writeNotesToGitHub(`🗑️ Delete note: ${ticker} ${noteId}`, pat);
+  }
 
   if (r.ok) {
     notesSha = (await r.json()).content.sha;
@@ -484,6 +606,71 @@ function saveSettings() {
   closeSettings();
 }
 
+async function syncNow() {
+  const status = document.getElementById('syncStatus');
+  if (status) {
+    status.style.color = '#6b7280';
+    status.textContent = 'กำลัง sync notes จาก GitHub...';
+  }
+
+  const ok = await loadNotes(true);
+  const total = Object.values(notesCache).reduce((sum, notes) => sum + (Array.isArray(notes) ? notes.length : 0), 0);
+
+  if (ok) {
+    if (status) {
+      status.style.color = '#16c784';
+      status.textContent = `Sync แล้ว: ${total} notes จาก GitHub`;
+    }
+    renderMarketOverview();
+    renderCards();
+    renderCalendar();
+    showToast('✅ Sync notes แล้ว');
+  } else {
+    if (status) {
+      status.style.color = '#ea3943';
+      status.textContent = 'Sync ไม่สำเร็จ ลองตรวจ internet หรือ GitHub token';
+    }
+    showToast('❌ Sync notes ไม่สำเร็จ', '#ea3943');
+  }
+}
+
+async function copySetupLink() {
+  const pat = document.getElementById('patInput').value.trim() || localStorage.getItem('gh_pat') || '';
+  const groq = document.getElementById('groqKeyInput').value.trim() || localStorage.getItem('groq_key') || '';
+  const status = document.getElementById('syncStatus');
+
+  if (!pat && !groq) {
+    showToast('⚠️ ยังไม่มี key/token สำหรับสร้างลิงก์ตั้งค่า', '#f0b90b');
+    if (status) {
+      status.style.color = '#f0b90b';
+      status.textContent = 'ใส่ GitHub token หรือ Groq key ก่อน แล้วค่อยคัดลอกลิงก์';
+    }
+    return;
+  }
+
+  const cfg = {};
+  if (pat) cfg.gh_pat = pat;
+  if (groq) cfg.groq_key = groq;
+
+  const baseUrl = `${location.origin}${location.pathname}${location.search}`;
+  const setupLink = `${baseUrl}#config=${toBase64(JSON.stringify(cfg))}`;
+
+  try {
+    await navigator.clipboard.writeText(setupLink);
+    if (status) {
+      status.style.color = '#16c784';
+      status.textContent = 'คัดลอกลิงก์ตั้งค่าแล้ว เปิดลิงก์นี้บนเครื่องอื่นเพื่อบันทึก token อัตโนมัติ';
+    }
+    showToast('✅ คัดลอกลิงก์ตั้งค่าแล้ว');
+  } catch(e) {
+    if (status) {
+      status.style.color = '#f0b90b';
+      status.textContent = setupLink;
+    }
+    showToast('⚠️ คัดลอกอัตโนมัติไม่ได้ ลิงก์อยู่ในช่องสถานะแล้ว', '#f0b90b');
+  }
+}
+
 // ── Polish Note with Groq ─────────────────────────────────────
 async function polishNote() {
   const raw = document.getElementById('noteInput').value.trim();
@@ -502,16 +689,19 @@ async function polishNote() {
   status.textContent = '';
 
   try {
+    const prompt = activeNoteTicker === '_MARKET'
+      ? `คุณเป็นผู้ช่วยบันทึกอารมณ์ตลาดแบบ Beer Vanon นักลงทุนเขียนโน้ตสั้นๆมาว่าตลาดรู้สึกอะไร ช่วยเปลี่ยนให้เป็นบันทึกที่มีโครงสร้างชัด 2-3 ประโยค โดย: (1) ระบุว่าตลาดอยู่ในอารมณ์อะไร เช่น โลภ / กล้า / กลัว / ลังเล (2) บอกสัญญาณที่เจ้าของสังเกตเห็นจากโน้ต (3) จบด้วยสิ่งที่ต้องจับตาต่อ ทั้งหมดต้องมาจากสิ่งที่เจ้าของเขียนเท่านั้น ห้ามเพิ่มข้อมูลใหม่ที่ไม่มีในโน้ต ตอบเป็นภาษาไทย กระชับ ตรงประเด็น ไม่ต้องพูดนำ`
+      : `คุณเป็นผู้ช่วยจัดบันทึกการบ้านหุ้นแบบ Beer Vanon โดยยึดกรอบจากหนังสือผู้รอด บทที่ 34 "การบ้านที่ไม่มีอาจารย์ตรวจ" ช่วยจัดโน้ตให้เป็นบันทึกที่อ่านย้อนหลังได้ชัด โดยครอบคลุมเท่าที่ผู้เขียนให้ข้อมูล: (1) อารมณ์ตลาดและแรงซื้อขายตอนนี้ (2) ธุรกิจขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง (3) ตัวเลขสำคัญ เช่น รายได้ กำไร หนี้ กระแสเงินสด หรือ valuation ถ้ามีในโน้ต (4) ข่าวและบทวิเคราะห์ Beer ที่ผู้เขียนอ้างถึง (5) คู่แข่งและผู้บริหาร (6) แผนของเรา สิ่งที่ต้องจับตา และจุดที่ถ้าคิดผิดต้องยอมรับ ห้ามแต่งข้อมูลใหม่ ถ้าหัวข้อไหนยังไม่มีข้อมูลให้เขียนว่า "ยังไม่รู้/ต้องไปต่อ" ตอบเป็นภาษาไทย กระชับ แต่เป็นโครงสร้าง ไม่ต้องพูดนำ`;
     const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { Authorization: `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'llama-3.1-8b-instant',
         temperature: 0.4,
-        max_tokens: 300,
+        max_tokens: activeNoteTicker === '_MARKET' ? 300 : 700,
         messages: [{
           role: 'user',
-          content: `คุณเป็นผู้ช่วยบันทึกอารมณ์ตลาดแบบ Beer Vanon นักลงทุนเขียนโน้ตสั้นๆมาว่าตลาดรู้สึกอะไร ช่วยเปลี่ยนให้เป็นบันทึกที่มีโครงสร้างชัด 2-3 ประโยค โดย: (1) ระบุว่าตลาดอยู่ในอารมณ์อะไร เช่น โลภ / กล้า / กลัว / ลังเล (2) บอกสัญญาณที่เจ้าของสังเกตเห็นจากโน้ต (3) จบด้วยสิ่งที่ต้องจับตาต่อ ทั้งหมดต้องมาจากสิ่งที่เจ้าของเขียนเท่านั้น ห้ามเพิ่มข้อมูลใหม่ที่ไม่มีในโน้ต ตอบเป็นภาษาไทย กระชับ ตรงประเด็น ไม่ต้องพูดนำ:\n\n"${raw}"`
+          content: `${prompt}:\n\n"${raw}"`
         }]
       })
     });
@@ -531,12 +721,64 @@ async function polishNote() {
 }
 
 // ── Note Modal ────────────────────────────────────────────────
+function insertHomeworkTemplate() {
+  if (activeNoteTicker === '_MARKET') return;
+
+  const s = activeNoteStock || currentData?.stocks?.find(x => x.ticker === activeNoteTicker) || {};
+  const pct = Number(s.pct_change || 0);
+  const priceLine = s.price
+    ? `$${Number(s.price).toFixed(2)} (${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%)`
+    : 'ยังไม่ระบุ';
+  const archiveDate = currentData?.date || new Date().toISOString().slice(0, 10);
+  const beerBrief = s.analysis
+    ? s.analysis.replace(/\s+/g, ' ').slice(0, 220) + (s.analysis.length > 220 ? '...' : '')
+    : 'อ่านข่าว/บทวิเคราะห์ Beer แล้วสรุปเองว่าตลาดกำลังตีความอะไร';
+  const topNews = (s.news || []).slice(0, 2).map((n, i) => `${i + 1}. ${n.title}${n.summary ? ' — ' + n.summary : ''}`).join('\n');
+
+  const template = `การบ้าน ${activeNoteTicker} · ${archiveDate}
+ราคา/แรงวันนี้: ${priceLine} · Rank #${s.rank || '-'} · ${s.sector || 'ไม่ระบุ sector'}
+
+1) อารมณ์ตลาดตอนนี้
+- ตลาดกำลังกลัว/โลภ/ลังเล/กล้า เพราะ:
+- ใครน่าจะเป็นฝ่ายซื้อ/ขาย:
+
+2) ธุรกิจ
+- บริษัทขายอะไร:
+- ลูกค้าคือใคร:
+- แข่งกับใคร:
+- ทำเงินยังไง:
+
+3) ตัวเลข
+- รายได้/กำไร:
+- หนี้/กระแสเงินสด:
+- valuation หรือความแพง/ถูก:
+
+4) ข่าว + Beer วิเคราะห์
+- Beer มองว่า: ${beerBrief}
+${topNews ? `- ข่าวที่ต้องแปลความ:\n${topNews}` : '- ข่าวที่ต้องแปลความ:'}
+
+5) คู่แข่ง + ผู้บริหาร
+- คู่แข่งที่ต้องเทียบ:
+- ผู้บริหาร/การตัดสินใจที่ต้องจับตา:
+
+6) แผนของเรา
+- ตอนนี้ควรตามดู/รอ/งด/ถือ เพราะ:
+- ถ้าคิดผิด จุดที่ต้องยอมรับคือ:`;
+
+  const input = document.getElementById('noteInput');
+  const current = input.value.trim();
+  input.value = current ? `${current}\n\n${template}` : template;
+  input.focus();
+}
+
 function showNoteModal(ticker, stockData) {
   activeNoteTicker = ticker;
   activeNoteStock  = stockData;
 
   document.getElementById('noteModalTicker').textContent = ticker;
   document.getElementById('noteInput').value = '';
+  document.getElementById('polishStatus').textContent = '';
+  document.getElementById('stockHomeworkGuide').style.display = 'block';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
@@ -650,6 +892,7 @@ function openMarketNote() {
   document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
+  document.getElementById('stockHomeworkGuide').style.display = 'none';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
@@ -684,10 +927,10 @@ async function init() {
   // Auto-setup credentials from URL hash (bookmark-friendly)
   if (location.hash.startsWith('#config=')) {
     try {
-      const cfg = JSON.parse(atob(location.hash.slice(8)));
+      const cfg = JSON.parse(fromBase64(location.hash.slice(8)));
       if (cfg.gh_pat)   localStorage.setItem('gh_pat',   cfg.gh_pat);
       if (cfg.groq_key) localStorage.setItem('groq_key', cfg.groq_key);
-      history.replaceState({}, '', location.pathname);
+      history.replaceState({}, '', location.pathname + location.search);
       showToast('✅ ตั้งค่าเรียบร้อย — พร้อมใช้งาน');
     } catch(e) {}
   }
@@ -930,6 +1173,12 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeNoteModal(); closeSettings(); }
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 
 init();
 </script>

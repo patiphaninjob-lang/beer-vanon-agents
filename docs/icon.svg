@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Beer Top 100">
+  <rect width="512" height="512" rx="96" fill="#0d1117"/>
+  <path d="M144 160h176v220a56 56 0 0 1-56 56h-64a56 56 0 0 1-56-56V160Z" fill="#f0b90b"/>
+  <path d="M320 204h36a68 68 0 0 1 0 136h-36v-42h34a26 26 0 0 0 0-52h-34v-42Z" fill="#f0b90b"/>
+  <path d="M156 160c8-48 38-76 78-76 23 0 43 9 58 25 14-11 31-17 51-17 45 0 75 29 75 68 0 24-10 42-28 55H156v-55Z" fill="#fff7d1"/>
+  <path d="M184 220h32v142h-32V220Zm64 0h32v142h-32V220Z" fill="#d99b00"/>
+  <path d="M120 436h272" stroke="#30363d" stroke-width="24" stroke-linecap="round"/>
+</svg>
