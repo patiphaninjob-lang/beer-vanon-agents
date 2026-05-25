@@ -74,6 +74,17 @@
     .tv-link { color: #6366f1; font-size: 0.79em; text-decoration: none; display: inline-block; margin-top: 2px; }
     .tv-link:hover { color: #818cf8; text-decoration: underline; }
 
+    /* ── Chart Container for Markers ── */
+    .chart-container { position: relative; margin-top: 6px; }
+    .chart-img { width: 100%; border-radius: 5px; display: block; cursor: pointer; }
+    .chart-marker {
+      position: absolute; bottom: 8px; width: 12px; height: 12px;
+      background: #f0b90b; border: 2px solid #1a1f2e; border-radius: 50%;
+      cursor: pointer; transform: translateX(-50%); z-index: 10;
+      box-shadow: 0 0 8px rgba(240, 185, 11, 0.6);
+    }
+    .chart-marker:hover { transform: translateX(-50%) scale(1.3); background: #fff; }
+
     /* ── Note button ── */
     .note-btn {
       font-size: 0.75em; padding: 2px 8px; border-radius: 4px; cursor: pointer;
@@ -1121,7 +1132,7 @@ function cardHTML(s) {
     </div>`).join('');
 
   const analysisHTML = s.analysis
-    ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์</div>${esc(s.analysis)}</div>`
+    ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์เจาะลึก</div>${esc(s.analysis).replace(/\n/g,'<br>')}</div>`
     : '';
 
   const homeworkHTML = (s.homework_checklist || []).length ? `
@@ -1135,21 +1146,23 @@ function cardHTML(s) {
     </div>
   ` : '';
 
-  const myNotesHTML = myNotes.length ? `
-    <div class="card-notes">
-      ${myNotes.slice(0,2).map(n => `
-        <div class="card-note-item">
-          <div class="card-note-meta">
-            📝 ${n.date}${n.time?' '+n.time:''} · $${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)
-            ${n.archive_date ? `<a href="?date=${n.archive_date}">ดูกราฟวันนั้น →</a>` : ''}
-          </div>
-          <div class="card-note-text">${esc(n.note.length>120 ? n.note.slice(0,120)+'...' : n.note)}</div>
-        </div>`).join('')}
-      ${myNotes.length > 2 ? `<div style="color:#6b7280;font-size:0.75em;padding:2px 0">และอีก ${myNotes.length-2} มุมมอง...</div>` : ''}
-    </div>
-  ` : '';
+  // Calculate marker positions (approximate based on 3 months history)
+  const chartMarkersHTML = s.chart_b64 ? myNotes.map(n => {
+    const noteDate = new Date(n.date);
+    const archiveDate = new Date(currentData.date);
+    const threeMonthsAgo = new Date(archiveDate);
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+    
+    const totalDays = (archiveDate - threeMonthsAgo) / (1000 * 60 * 60 * 24);
+    const noteDaysFromStart = (noteDate - threeMonthsAgo) / (1000 * 60 * 60 * 24);
+    let leftPos = (noteDaysFromStart / totalDays) * 100;
+    
+    // Clamp to 0-100
+    leftPos = Math.max(5, Math.min(95, leftPos));
+    
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" title="คลิกเพื่อดูโน้ตวันที่ ${n.date}"></div>`;
+  }).join('') : '';
 
-  // onclick handler stored in data attribute to avoid inline quote hell
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
 
   return `
@@ -1169,10 +1182,14 @@ function cardHTML(s) {
     <div class="card-meta">
       Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
     </div>
-    ${s.chart_b64
-      ? `<a href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${s.chart_b64}" style="width:100%;border-radius:5px;display:block;margin-top:6px;cursor:pointer"></a>`
-      : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
-    ${myNotesHTML}
+    
+    <div class="chart-container">
+      ${s.chart_b64
+        ? `<img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}" data-ticker="${esc(s.ticker)}">`
+        : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+      ${chartMarkersHTML}
+    </div>
+
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${homeworkHTML}
