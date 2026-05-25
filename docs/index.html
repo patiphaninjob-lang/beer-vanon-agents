@@ -1126,11 +1126,11 @@ function cardHTML(s) {
 
   const homeworkHTML = (s.homework_checklist || []).length ? `
     <div class="card-homework">
-      <div class="card-homework-label">🧭 การบ้านบทที่ 34 ที่ต้องตรวจต่อ</div>
+      <div class="card-homework-label">🧭 Beer วิเคราะห์ Ch34 เจาะลึก</div>
       ${(s.homework_checklist || []).map(item => `
         <div class="card-homework-item">
           <strong>${esc(item.topic || '')}</strong>
-          ${esc(item.prompt || '')}
+          ${esc(item.insight || item.prompt || '')}
         </div>`).join('')}
     </div>
   ` : '';
