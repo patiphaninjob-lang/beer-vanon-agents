@@ -311,8 +311,8 @@ def load_user_notes() -> dict:
 
 # ─── Combined Analysis ────────────────────────────────────────
 
-def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) -> str:
-    """ONE Groq call: ข่าวคืออะไร + Beer มองว่า (ประหยัด token สำหรับ 100 หุ้น)"""
+def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) -> dict:
+    """ONE Groq call with JSON mode: วิเคราะห์ครบทุกมิติ (News + Beer Opinion + Ch34 Homework)"""
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
 
@@ -324,48 +324,60 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         ]
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดที่นักลงทุนเคยจับได้:\n" + "\n".join(lines)
 
-    note_review_section = """
-**🌡️ อารมณ์ตลาดเมื่อก่อน vs วันนี้:**
-ตอนนั้นจับอารมณ์ว่าอะไร (กลัว/โลภ/ไม่แน่ใจ) — ราคาที่เกิดขึ้นจริงยืนยันหรือหักล้างการอ่านอารมณ์ครั้งนั้น อารมณ์ตลาดตอนนี้เปลี่ยนไปอย่างไร""" if user_notes else ""
-
     prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 
 หลักการ Beer Vanon (อ้างอิง):
-{BEER_DNA[:2000]}
+{BEER_DNA[:1500]}
 
-กรอบการบ้านที่ต้องฝังในทุกบทวิเคราะห์:
-{homework_prompt_block("หุ้น US")}
-
-เนื้อหาเพิ่มเติม:
-{knowledge_ctx}{notes_ctx}
+กรอบการบ้านบทที่ 34 (ต้องวิเคราะห์ตามนี้):
+1) ธุรกิจ — ขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง
+2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation
+3) การสื่อสาร — ผู้บริหารพูดอะไร (จากข่าว/ประวัติ)
+4) คู่แข่ง — ใครดีกว่า แย่กว่า เสียเปรียบตรงไหน
+5) ผู้บริหาร — ประวัติ การตัดสินใจ ความน่าเชื่อถือ
+6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และจุดตัดขาดทุน
 
 ข้อมูลหุ้น:
 - ราคา: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
-- Market Cap Rank: #{stock['rank']} ในตลาด | Volume: {stock['volume']:,}
-- P/E: {stock['pe_ratio'] or 'N/A'}
+- Market Cap Rank: #{stock['rank']} | Volume: {stock['volume']:,} | P/E: {stock['pe_ratio'] or 'N/A'}
 
 ข่าวล่าสุด:
 {stock['news']}
 
-ตอบ {'4' if user_notes else '3'} ส่วน (รวมไม่เกิน {'280' if user_notes else '230'} คำ ภาษาไทย กระชับ ตรงประเด็น):
+เนื้อหาเพิ่มเติม:
+{knowledge_ctx}{notes_ctx}
 
-**📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**
-อธิบายว่าข่าวพูดถึงอะไร เกิดอะไรขึ้น แล้วนักลงทุนจะมองบวก/ลบ/กลาง เพราะอะไร
+ให้ตอบเป็น JSON เท่านั้น (ภาษาไทย กระชับ ตรงประเด็น) โดยมีโครงสร้างดังนี้:
+{{
+  "interpretation": "วิเคราะห์ข่าวและการตีความของตลาด",
+  "beer_view": "ความเห็นสั้นๆ ของ Beer (ความน่าสนใจ SQ และจุด Circuit Breaker)",
+  "homework_analysis": [
+    {{ "topic": "ธุรกิจ", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }},
+    {{ "topic": "ตัวเลข", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }},
+    {{ "topic": "การสื่อสาร", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }},
+    {{ "topic": "คู่แข่ง", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }},
+    {{ "topic": "ผู้บริหาร", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }},
+    {{ "topic": "แผนของเรา", "insight": "คำวิเคราะห์สั้นๆ ของ Beer" }}
+  ],
+  "note_review": "ถ้ามี user_notes ให้เปรียบเทียบอารมณ์ตลาดอดีต vs ปัจจุบัน (ถ้าไม่มีให้เป็น null)"
+}}"""
 
-**🍺 Beer มองว่า:**
-SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ
-
-**🧭 การบ้านบทที่ 34 ที่ต้องเติม:**
-จากธุรกิจ/ตัวเลข/การสื่อสาร/คู่แข่ง/ผู้บริหาร/แผนของเรา เลือก 2-3 เรื่องที่ต้องไปตรวจต่อ ห้ามเดาข้อมูลที่ยังไม่มี
-{note_review_section}"""
-
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.4,
-        max_tokens=520 if not user_notes else 650,
-    )
-    return resp.choices[0].message.content.strip()
+    try:
+        resp = client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            response_format={"type": "json_object"},
+        )
+        return json.loads(resp.choices[0].message.content)
+    except Exception as e:
+        safe_print(f"   ⚠️ Groq Error [{stock['ticker']}]: {e}")
+        return {
+            "interpretation": "ไม่สามารถวิเคราะห์ได้",
+            "beer_view": "N/A",
+            "homework_analysis": [],
+            "note_review": None
+        }
 
 
 # ─── HTML Card ────────────────────────────────────────────────
@@ -408,16 +420,16 @@ def _homework_html(homework_items: list) -> str:
         f'<div style="border-left:2px solid #30363d;padding:7px 10px;margin-bottom:6px;'
         f'border-radius:0 5px 5px 0;background:#0d1117">'
         f'<div style="color:#f0b90b;font-size:0.76em;font-weight:bold">{item.get("topic", "")}</div>'
-        f'<div style="color:#d1d5db;font-size:0.84em;line-height:1.5;margin-top:2px">{item.get("prompt", "")}</div>'
+        f'<div style="color:#d1d5db;font-size:0.84em;line-height:1.5;margin-top:2px">{item.get("insight", "")}</div>'
         f'</div>'
         for item in homework_items
     )
     return (
         f'<div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px">'
         f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">'
-        f'🧭 {HOMEWORK_FRAMEWORK_TITLE}</div>'
+        f'🧭 {HOMEWORK_FRAMEWORK_TITLE} (Beer วิเคราะห์ให้แล้ว)</div>'
         f'<div style="color:#8a8f98;font-size:0.78em;line-height:1.5;margin-bottom:8px">'
-        f'การบ้านที่ต้องตรวจต่อ ไม่ใช่คำตอบสำเร็จรูป</div>'
+        f'ผลวิเคราะห์ 6 เสาหลักตามสไตล์ Beer Vanon</div>'
         f'{items}</div>'
     )
 
@@ -432,7 +444,7 @@ def _fmt_mktcap(cap: float) -> str:
     return "N/A"
 
 
-def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = None) -> str:
+def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: list = None) -> str:
     arrow   = "▲" if stock["pct_change"] >= 0 else "▼"
     color   = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
     pe_str  = f" | P/E {stock['pe_ratio']:.1f}" if stock.get("pe_ratio") else ""
@@ -448,10 +460,14 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
         f'style="color:#6366f1;font-size:0.82em;text-decoration:none">📊 ดูกราฟบน TradingView →</a></div>'
     )
 
-    homework_items = stock.get("homework_checklist") or build_stock_homework_checklist(stock)
-    homework_html = _homework_html(homework_items)
+    homework_html = _homework_html(analysis_data.get("homework_analysis", []))
     news_html = _news_html(stock.get("news_list", []))
-    analysis_body = analysis.replace(chr(10), "<br>")
+    
+    analysis_text = f"**📰 ข่าวและการตีความ:**<br>{analysis_data.get('interpretation','')}<br><br>**🍺 Beer มองว่า:**<br>{analysis_data.get('beer_view','')}"
+    if analysis_data.get("note_review"):
+        analysis_text += f"<br><br>**🌡️ อารมณ์ตลาด (รีวิวจากโน้ตคุณ):**<br>{analysis_data.get('note_review','')}"
+    
+    analysis_body = analysis_text.replace(chr(10), "<br>")
 
     # user notes section in email
     notes_html = ""
@@ -490,7 +506,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
   {news_html}
   {homework_html}
   <div style="background:#111827;border-radius:8px;padding:12px;color:#d1d5db;font-size:0.92em;line-height:1.65;margin-top:10px">
-    <div style="color:#f0b90b;font-weight:bold;margin-bottom:6px">🍺 วิเคราะห์</div>
+    <div style="color:#f0b90b;font-weight:bold;margin-bottom:6px">🍺 วิเคราะห์เจาะลึก</div>
     {analysis_body}
   </div>
 </div>"""
@@ -536,8 +552,8 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
                 "pe_ratio":   round(s["stock"]["pe_ratio"], 1) if s["stock"].get("pe_ratio") else None,
                 "tv_url":     s["stock"]["tv_url"],
                 "news":       s["stock"]["news_list"],
-                "analysis":   s["analysis"],
-                "homework_checklist": s["stock"].get("homework_checklist") or build_stock_homework_checklist(s["stock"]),
+                "analysis":   f"{s['analysis_data'].get('interpretation','')}\n\nBeer มองว่า: {s['analysis_data'].get('beer_view','')}",
+                "homework_checklist": s["analysis_data"].get("homework_analysis", []),
                 "chart_b64":  __import__("base64").b64encode(s["chart_bytes"]).decode() if s.get("chart_bytes") else "",
             }
             for s in stocks_data
@@ -566,7 +582,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
 
 def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -> str:
     cards = "".join(
-        stock_card(s["stock"], s["analysis"], s.get("chart_cid", ""), s.get("user_notes"))
+        stock_card(s["stock"], s["analysis_data"], s.get("chart_cid", ""), s.get("user_notes"))
         for s in stocks_data
     )
 
@@ -592,6 +608,10 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
   </div>
 
   <div style="border-top:1px solid #21262d;margin:14px 0 20px"></div>
+
+  <div style="background:#161b22;border:1px solid #f0b90b;border-radius:10px;padding:15px;margin-bottom:20px;color:#f7d774;font-size:0.9em;line-height:1.5">
+    💡 <strong>โหมดใหม่:</strong> ครั้งนี้ Beer Vanon วิเคราะห์ 6 เสาหลักของการบ้านบทที่ 34 (ธุรกิจ, ตัวเลข, ผู้บริหาร ฯลฯ) ให้ในแต่ละตัวหุ้นโดยตรง ไม่ใช่แค่หัวข้อคำถามเปล่าๆ ครับ
+  </div>
 
   {homework_guide}
 
@@ -649,8 +669,8 @@ def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_
             ctx       = search_knowledge(query, posts, embeddings, embed_model, query_vector=query_vector)
             my_notes    = user_notes_db.get(ticker, [])
             
-            # Groq call
-            analysis    = combined_analysis(stock, ctx, my_notes if my_notes else None)
+            # Groq call (JSON Mode)
+            analysis_data = combined_analysis(stock, ctx, my_notes if my_notes else None)
             
             chart_bytes = generate_mini_chart_b64(ticker, hist_df=hist_df)
             cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
@@ -658,7 +678,7 @@ def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_
             # log success
             safe_print(f"   [{rank:3d}] {ticker:<8} → ✅ {stock['pct_change']:+.1f}%")
             
-            return {"stock": stock, "analysis": analysis, "chart_cid": cid, "chart_bytes": chart_bytes, "user_notes": my_notes or None}
+            return {"stock": stock, "analysis_data": analysis_data, "chart_cid": cid, "chart_bytes": chart_bytes, "user_notes": my_notes or None}
         except Exception as e:
             err = str(e)
             if "rate_limit" in err.lower() or "429" in err:
