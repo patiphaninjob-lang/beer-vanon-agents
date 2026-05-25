@@ -24,6 +24,13 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from groq import Groq
 from beer_dna import BEER_DNA
+from beer_homework_framework import (
+    HOMEWORK_FRAMEWORK_TITLE,
+    HOMEWORK_SEARCH_QUERY,
+    build_stock_homework_checklist,
+    homework_email_guide_html,
+    homework_prompt_block,
+)
 
 load_dotenv()
 
@@ -270,6 +277,25 @@ def _sentiment_section_html(sentiment: str) -> str:
 
 # ─── Chart Generator ─────────────────────────────────────────
 
+def _homework_section_html(stock: dict) -> str:
+    items = build_stock_homework_checklist(stock)
+    body = "".join(
+        f'<div style="border-left:2px solid #30363d;padding:7px 10px;margin-bottom:6px;'
+        f'border-radius:0 5px 5px 0;background:#0d1117">'
+        f'<div style="color:#f0b90b;font-size:0.76em;font-weight:bold">{item["topic"]}</div>'
+        f'<div style="color:#d1d5db;font-size:0.84em;line-height:1.5;margin-top:2px">{item["prompt"]}</div>'
+        f'</div>'
+        for item in items
+    )
+    return (
+        '<div style="background:#111827;border-radius:8px;padding:12px;margin-top:12px">'
+        f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">🧭 {HOMEWORK_FRAMEWORK_TITLE}</div>'
+        '<div style="color:#8a8f98;font-size:0.78em;line-height:1.5;margin-bottom:8px">'
+        'โจทย์การบ้านที่ต้องตรวจต่อจากหุ้นตัวนี้</div>'
+        f'{body}</div>'
+    )
+
+
 _TV_EXCHANGE = {
     "NMS": "NASDAQ", "NGM": "NASDAQ", "NCM": "NASDAQ",
     "NYQ": "NYSE",   "PCX": "NYSE",   "BTS": "NYSE",
@@ -353,6 +379,9 @@ def beer_analysis(stock: dict, knowledge_context: str) -> str:
 หลักการและ Framework ของคุณ (ใช้อ้างอิงเสมอ):
 {BEER_DNA}
 
+กรอบการบ้านจากหนังสือผู้รอด บทที่ 34 ที่ต้องใช้เป็นแกน:
+{homework_prompt_block("หุ้น US")}
+
 เนื้อหาเพิ่มเติมที่คุณเคยแชร์ไว้:
 {knowledge_context}
 
@@ -366,12 +395,17 @@ def beer_analysis(stock: dict, knowledge_context: str) -> str:
 - ข่าวล่าสุด:
 {stock['news']}
 
+เวลาเขียนคำตอบ ต้องมีหัวข้อ "การบ้านบทที่ 34 ที่ต้องตรวจต่อ" เสมอ
+เลือก 2-3 เรื่องจาก ธุรกิจ / ตัวเลข / การสื่อสารผู้บริหาร / คู่แข่ง / ผู้บริหาร / แผนของเรา
+และห้ามเดาข้อมูลที่ยังไม่มี ให้บอกว่าต้องไปตรวจอะไรต่อ
+
 ---
-วิเคราะห์ในมุมมอง Beer Vanon 4 ข้อ (กระชับ ไม่เกิน 150 คำ):
+วิเคราะห์ในมุมมอง Beer Vanon 5 ข้อ (กระชับ ไม่เกิน 190 คำ):
 1. การเคลื่อนไหวนี้เป็น FOMO หรือมีเหตุผลชัดเจน?
 2. SQ (Stock Quadrant) ของหุ้นนี้น่าจะเป็นอะไร และ Trend ชัดเจนแค่ไหน?
 3. ถ้าเป็น Beer จะสนใจหรือผ่าน? เพราะอะไร? (อ้าง Sniper Shot / Survivor mindset)
 4. Risk ที่ต้องระวัง และ Circuit Breaker ระดับไหนที่ควรตั้ง?
+5. การบ้านบทที่ 34 ที่ต้องตรวจต่อคืออะไร?
 
 พูดตรงๆ เหมือน Beer คุยกับเพื่อนนักเทรด ไม่ต้องขึ้นต้นด้วย "ในฐานะ Beer Vanon" """
 
@@ -379,7 +413,7 @@ def beer_analysis(stock: dict, knowledge_context: str) -> str:
         model=GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.5,
-        max_tokens=400,
+        max_tokens=520,
     )
     return response.choices[0].message.content.strip()
 
@@ -405,6 +439,7 @@ def stock_card(stock: dict, analysis: str, chart_b64: str = "", news_sentiment: 
     )
     news_html      = _news_section_html(stock.get("news_list", []))
     sentiment_html = _sentiment_section_html(news_sentiment)
+    homework_html  = _homework_section_html(stock)
     return f"""
 <div style="background:#1a1f2e;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid {color}">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -422,6 +457,7 @@ def stock_card(stock: dict, analysis: str, chart_b64: str = "", news_sentiment: 
   </div>
   {news_html}
   {sentiment_html}
+  {homework_html}
   <div style="background:#111827;border-radius:8px;padding:14px;color:#d1d5db;font-size:0.95em;line-height:1.6;margin-top:12px">
     <div style="color:#f0b90b;font-weight:bold;margin-bottom:8px">🍺 Beer มองว่า...</div>
     {analysis.replace(chr(10), '<br>')}
@@ -433,6 +469,7 @@ def stock_card(stock: dict, analysis: str, chart_b64: str = "", news_sentiment: 
 def build_html_report(gainers_data: list, losers_data: list, date_str: str) -> str:
     gainer_cards = "".join(stock_card(s["stock"], s["analysis"], s.get("chart",""), s.get("news_sentiment","")) for s in gainers_data)
     loser_cards  = "".join(stock_card(s["stock"], s["analysis"], s.get("chart",""), s.get("news_sentiment","")) for s in losers_data)
+    homework_guide = homework_email_guide_html()
 
     return f"""<!DOCTYPE html>
 <html>
@@ -447,6 +484,8 @@ def build_html_report(gainers_data: list, losers_data: list, date_str: str) -> s
   </div>
 
   <div style="border-top:1px solid #21262d;margin:16px 0"></div>
+
+  {homework_guide}
 
   <h2 style="color:#16c784;font-size:1em;letter-spacing:0.05em;text-transform:uppercase">▲ Top Gainers</h2>
   {gainer_cards}
@@ -517,7 +556,7 @@ def main():
         print(f"   [{ticker}] {pct:+.2f}%", end=" → ", flush=True)
         try:
             stock         = get_stock_context(ticker)
-            query         = f"หุ้นขึ้นแรง momentum FOMO วินัย trend การเทรด"
+            query         = f"หุ้นขึ้นแรง momentum FOMO วินัย trend การเทรด {HOMEWORK_SEARCH_QUERY}"
             ctx           = search_knowledge(query, posts, embeddings, embed_model)
             analysis      = beer_analysis(stock, ctx)
             news_sentiment = analyze_news_sentiment(stock.get("news_list", []), ticker)
@@ -533,7 +572,7 @@ def main():
         print(f"   [{ticker}] {pct:+.2f}%", end=" → ", flush=True)
         try:
             stock         = get_stock_context(ticker)
-            query         = f"หุ้นลง ตัดขาดทุน loss ยอมรับ จิตใจ อารมณ์"
+            query         = f"หุ้นลง ตัดขาดทุน loss ยอมรับ จิตใจ อารมณ์ {HOMEWORK_SEARCH_QUERY}"
             ctx           = search_knowledge(query, posts, embeddings, embed_model)
             analysis      = beer_analysis(stock, ctx)
             news_sentiment = analyze_news_sentiment(stock.get("news_list", []), ticker)

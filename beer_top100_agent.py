@@ -17,6 +17,12 @@ from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
 from groq import Groq
 from beer_dna import BEER_DNA
+from beer_homework_framework import (
+    HOMEWORK_FRAMEWORK_TITLE,
+    build_stock_homework_checklist,
+    homework_email_guide_html,
+    homework_prompt_block,
+)
 
 load_dotenv()
 
@@ -302,10 +308,17 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         ]
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดที่นักลงทุนเคยจับได้:\n" + "\n".join(lines)
 
+    note_review_section = """
+**🌡️ อารมณ์ตลาดเมื่อก่อน vs วันนี้:**
+ตอนนั้นจับอารมณ์ว่าอะไร (กลัว/โลภ/ไม่แน่ใจ) — ราคาที่เกิดขึ้นจริงยืนยันหรือหักล้างการอ่านอารมณ์ครั้งนั้น อารมณ์ตลาดตอนนี้เปลี่ยนไปอย่างไร""" if user_notes else ""
+
     prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 
 หลักการ Beer Vanon (อ้างอิง):
 {BEER_DNA[:2000]}
+
+กรอบการบ้านที่ต้องฝังในทุกบทวิเคราะห์:
+{homework_prompt_block("หุ้น US")}
 
 เนื้อหาเพิ่มเติม:
 {knowledge_ctx}{notes_ctx}
@@ -318,22 +331,23 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
 ข่าวล่าสุด:
 {stock['news']}
 
-ตอบ {'3' if user_notes else '2'} ส่วน (รวมไม่เกิน {'200' if user_notes else '160'} คำ ภาษาไทย กระชับ ตรงประเด็น):
+ตอบ {'4' if user_notes else '3'} ส่วน (รวมไม่เกิน {'280' if user_notes else '230'} คำ ภาษาไทย กระชับ ตรงประเด็น):
 
 **📰 ข่าวคืออะไร + ตลาดจะตีความอย่างไร:**
 อธิบายว่าข่าวพูดถึงอะไร เกิดอะไรขึ้น แล้วนักลงทุนจะมองบวก/ลบ/กลาง เพราะอะไร
 
 **🍺 Beer มองว่า:**
-SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ{'''
+SQ ของหุ้นนี้ น่าสนใจหรือผ่าน Circuit Breaker ที่ควรตั้ง พูดตรงๆ
 
-**🌡️ อารมณ์ตลาดเมื่อก่อน vs วันนี้:**
-ตอนนั้นจับอารมณ์ว่าอะไร (กลัว/โลภ/ไม่แน่ใจ) — ราคาที่เกิดขึ้นจริงยืนยันหรือหักล้างการอ่านอารมณ์ครั้งนั้น อารมณ์ตลาดตอนนี้เปลี่ยนไปอย่างไร''' if user_notes else ''}"""
+**🧭 การบ้านบทที่ 34 ที่ต้องเติม:**
+จากธุรกิจ/ตัวเลข/การสื่อสาร/คู่แข่ง/ผู้บริหาร/แผนของเรา เลือก 2-3 เรื่องที่ต้องไปตรวจต่อ ห้ามเดาข้อมูลที่ยังไม่มี
+{note_review_section}"""
 
     resp = client.chat.completions.create(
         model=GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4,
-        max_tokens=400 if not user_notes else 500,
+        max_tokens=520 if not user_notes else 650,
     )
     return resp.choices[0].message.content.strip()
 
@@ -371,6 +385,27 @@ def _news_html(news_list: list) -> str:
     )
 
 
+def _homework_html(homework_items: list) -> str:
+    if not homework_items:
+        return ""
+    items = "".join(
+        f'<div style="border-left:2px solid #30363d;padding:7px 10px;margin-bottom:6px;'
+        f'border-radius:0 5px 5px 0;background:#0d1117">'
+        f'<div style="color:#f0b90b;font-size:0.76em;font-weight:bold">{item.get("topic", "")}</div>'
+        f'<div style="color:#d1d5db;font-size:0.84em;line-height:1.5;margin-top:2px">{item.get("prompt", "")}</div>'
+        f'</div>'
+        for item in homework_items
+    )
+    return (
+        f'<div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px">'
+        f'<div style="color:#f0b90b;font-size:0.78em;font-weight:bold;margin-bottom:7px">'
+        f'🧭 {HOMEWORK_FRAMEWORK_TITLE}</div>'
+        f'<div style="color:#8a8f98;font-size:0.78em;line-height:1.5;margin-bottom:8px">'
+        f'การบ้านที่ต้องตรวจต่อ ไม่ใช่คำตอบสำเร็จรูป</div>'
+        f'{items}</div>'
+    )
+
+
 def _fmt_mktcap(cap: float) -> str:
     if cap >= 1e12:
         return f"${cap/1e12:.2f}T"
@@ -397,6 +432,8 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
         f'style="color:#6366f1;font-size:0.82em;text-decoration:none">📊 ดูกราฟบน TradingView →</a></div>'
     )
 
+    homework_items = stock.get("homework_checklist") or build_stock_homework_checklist(stock)
+    homework_html = _homework_html(homework_items)
     news_html = _news_html(stock.get("news_list", []))
     analysis_body = analysis.replace(chr(10), "<br>")
 
@@ -435,6 +472,7 @@ def stock_card(stock: dict, analysis: str, chart_cid: str, user_notes: list = No
   {chart_block}
   {notes_html}
   {news_html}
+  {homework_html}
   <div style="background:#111827;border-radius:8px;padding:12px;color:#d1d5db;font-size:0.92em;line-height:1.65;margin-top:10px">
     <div style="color:#f0b90b;font-weight:bold;margin-bottom:6px">🍺 วิเคราะห์</div>
     {analysis_body}
@@ -458,6 +496,8 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     payload = {
         "date": date_key,
         "generated": datetime.datetime.now().isoformat(),
+        "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
+        "homework_guide": homework_prompt_block("หุ้น US"),
         "market_indices": market_indices or {},
         "summary": {
             "total":       len(stocks_data),
@@ -481,6 +521,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
                 "tv_url":     s["stock"]["tv_url"],
                 "news":       s["stock"]["news_list"],
                 "analysis":   s["analysis"],
+                "homework_checklist": s["stock"].get("homework_checklist") or build_stock_homework_checklist(s["stock"]),
                 "chart_b64":  __import__("base64").b64encode(s["chart_bytes"]).decode() if s.get("chart_bytes") else "",
             }
             for s in stocks_data
@@ -518,6 +559,7 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
     avg_chg = np.mean([s["stock"]["pct_change"] for s in stocks_data]) if stocks_data else 0
     sentiment_color = "#16c784" if avg_chg >= 0 else "#ea3943"
     sentiment_label = f"{'▲' if avg_chg >= 0 else '▼'} {abs(avg_chg):.2f}% avg · {len(gainers)} ขึ้น / {len(losers)} ลง"
+    homework_guide = homework_email_guide_html()
 
     return f"""<!DOCTYPE html>
 <html>
@@ -534,6 +576,8 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
   </div>
 
   <div style="border-top:1px solid #21262d;margin:14px 0 20px"></div>
+
+  {homework_guide}
 
   {cards}
 

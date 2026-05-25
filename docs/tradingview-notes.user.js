@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      3.1.0
+// @version      3.2.0
 // @description  Put Beer Top 100 notes, Beer analysis, and news context onto TradingView as small candle-anchored markers.
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -223,6 +223,13 @@
       lines.push(clipText(plainText(stock.analysis), 1200));
     }
 
+    if (stock?.homework_checklist?.length) {
+      lines.push('', 'Chapter 34 homework to finish:');
+      stock.homework_checklist.slice(0, 6).forEach((item, i) => {
+        lines.push(clipText(`${i + 1}. ${item.topic || ''}: ${item.prompt || ''}`, 300));
+      });
+    }
+
     if (stock?.news?.length) {
       lines.push('', 'News Beer used:');
       stock.news.slice(0, 4).forEach((news, i) => {
@@ -381,12 +388,24 @@
         <div class="bv-news-meta">${esc([n.provider, n.date].filter(Boolean).join(' · '))}</div>
       </div>
     `).join('');
+    const homework = (stock.homework_checklist || []).slice(0, 6).map(item => `
+      <div class="bv-homework-item">
+        <div class="bv-homework-topic">${esc(item.topic || '')}</div>
+        <div class="bv-homework-prompt">${esc(item.prompt || '')}</div>
+      </div>
+    `).join('');
 
     return `
       <div class="bv-stock">
         <div class="bv-stock-name">${esc(stock.name || stock.ticker || '')}</div>
         <div class="bv-pills">${pills}</div>
       </div>
+      ${homework ? `
+        <div class="bv-homework">
+          <div class="bv-section-label">🧭 Chapter 34 homework to finish</div>
+          ${homework}
+        </div>
+      ` : ''}
       ${stock.analysis ? `
         <div class="bv-analysis">
           <div class="bv-section-label">🍺 Beer analysis / opinion</div>
@@ -629,8 +648,11 @@
       .bv-pills span { color: #d1d5db; background: #111827; border: 1px solid #21262d; border-radius: 999px; padding: 3px 7px; font-size: 11px; }
       .bv-section-label { color: #f0b90b; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; margin: 10px 0 6px; }
       .bv-my-label { color: #e6edf3; }
-      .bv-analysis, .bv-news { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 9px 10px; margin-bottom: 9px; }
+      .bv-analysis, .bv-news, .bv-homework { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 9px 10px; margin-bottom: 9px; }
       .bv-analysis-text { color: #d1d5db; white-space: pre-wrap; word-break: break-word; }
+      .bv-homework-item { border-left: 2px solid #30363d; padding: 6px 8px; margin-top: 6px; background: #111827; border-radius: 0 5px 5px 0; }
+      .bv-homework-topic { color: #f0b90b; font-weight: 700; font-size: 11px; }
+      .bv-homework-prompt { color: #d1d5db; line-height: 1.45; margin-top: 2px; }
       .bv-news-item { border-top: 1px solid #21262d; padding-top: 8px; margin-top: 8px; }
       .bv-news-item:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
       .bv-news-title { color: #93c5fd; font-weight: 700; line-height: 1.35; }
