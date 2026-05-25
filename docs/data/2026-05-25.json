@@ -1,6 +1,6 @@
 {
   "date": "2026-05-25",
-  "generated": "2026-05-25T22:07:19.104169",
+  "generated": "2026-05-25T22:50:39.828442",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
@@ -48,52 +48,52 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
       "news": [
         {
-          "title": "Gain Exposure to Innovative AI Chipmaker Cerebras With Less Risk Through These ETFs",
-          "summary": "If you're feeling conflicted about buying shares of the wafer-scale engine specialist so soon after its IPO, a more diversified tech exchange-traded fund that includes the stock in its portfolio could be the right soluti",
+          "title": "Why AGNC Investment's Net Interest Spread Matters More Than Its 14% Dividend Yield",
+          "summary": "This mREIT's core business is gradually stabilizing in this choppy market.",
           "provider": "Motley Fool",
           "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/gain-exposure-to-ai-leader-cerebras-with-less-risk/"
+          "url": "https://www.fool.com/investing/2026/05/25/why-agnc-investments-net-interest-spread-matters-m/"
         },
         {
-          "title": "Here's How Much You'd Need to Invest in VIG to Generate $500 per Month in Dividends",
-          "summary": "The Vanguard Dividend Appreciation ETF (VIG) may be one of the more consistent dividend-growth funds. But it's not one of the biggest yielders.",
+          "title": "If You'd Invested Just $1,000 in SMH 5 Years Ago, Here's What You'd Have Today",
+          "summary": "Semiconductor stocks have been red hot over the past few years. Just how hot might surprise you.",
           "provider": "Motley Fool",
           "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/how-much-you-need-invest-vig-500-dividends/"
+          "url": "https://www.fool.com/investing/2026/05/25/if-you-invested-1000-smh-5-years-ago-how-much/"
         },
         {
-          "title": "IREN’s CEO Just Said 11 Words that Delivered the AI Boom a Brutal Reality Check",
-          "summary": "The artificial intelligence boom has kicked off one of the largest infrastructure races since the early internet era. Nvidia (NASDAQ:NVDA) GPUs are selling faster than they can be packaged. High-bandwidth memory has beco",
+          "title": "S&P 500 Dividends Just Hit an All-Time Low Going Back to the 1800s — Here’s What Retirees Need to Know",
+          "summary": "The host of Retire SMART Podcast opened Episode 416 with a number that should stop every income-focused retiree in their tracks. The S&P 500’s dividend yield has fallen to roughly 1.1%, an all-time low going back to the ",
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
-          "url": "https://247wallst.com/investing/2026/05/25/irens-ceo-just-said-11-words-that-delivered-the-ai-boom-a-brutal-reality-check/"
+          "url": "https://247wallst.com/personal-finance/2026/05/25/sp-500-dividends-just-hit-an-all-time-low-going-back-to-the-1800s-heres-what-retirees-need-to-know/"
         }
       ],
-      "analysis": "หุ้น NVDA มีโอกาสที่จะขึ้นไปอีกเนื่องจากเทรนโลก AI ยังไปได้ต่อ\n\nBeer มองว่า: SQ: 219-225, จุด Circuit Breaker: 235",
+      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญของหุ้น NVDA คือการเปลี่ยนแปลงของตลาดหุ้นและผลกระทบต่อราคาหุ้น', 'Sentiment': 'ตลาดตีความอย่างมีเสียงในแง่บวก เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือการเปลี่ยนแปลงของกราฟและความสามารถของตลาดในการรักษาความเคลื่อนไหวที่เพิ่มขึ้น'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'SQ: NVDA มีโอกาสขึ้นไปอีกถึง 235 ดอลลาร์', 'จุด Circuit Breaker': 'โซน 219-225 คิดว่าขึ้นแล้ว แต่ยังไม่ลงมาเคลียร์ต่ออีก'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "NVDA เป็นผู้นำในตลาด GPU และมีศักยภาพในการเติบโตในตลาด AI"
+          "insight": "NVDA มีธุรกิจหลักในด้านการผลิตชิปกราฟิกและเทคโนโลยี AI"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "รายได้ NVDA เพิ่มขึ้น 20% ในปีที่แล้ว และมีกระแสเงินสดที่ดี"
+          "insight": "รายได้ของ NVDA เพิ่มขึ้นอย่างต่อเนื่อง แต่กำไรและกระแสเงินสดอาจมีการเปลี่ยนแปลง"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหาร NVDA มีความเชื่อมั่นในตลาด AI และมีแผนการเติบโตที่ชัดเจน"
+          "insight": "ผู้บริหารของ NVDA พูดถึงการเติบโตของธุรกิจและผลกระทบต่อราคาหุ้น"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "NVDA มีคู่แข่งที่แข็งแกร่ง เช่น AMD แต่มีศักยภาพในการเติบโตในตลาด AI"
+          "insight": "NVDA มีคู่แข่งอย่าง AMD และ Intel ในด้านการผลิตชิปกราฟิก"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหาร NVDA มีความเชี่ยวชาญและประสบการณ์ในตลาด AI"
+          "insight": "ผู้บริหารของ NVDA มีประวัติในการตัดสินใจและความน่าเชื่อถือ"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ควรติดตามข่าวสารและความเคลื่อนไหวของตลาด AI และพิจารณาเข้าซื้อหุ้น NVDA เมื่อเหมาะสม"
+          "insight": "ตามดู ถือ งด รอจุด 235 ดอลลาร์ และจุดตัดขาดทุน 219-225 ดอลลาร์"
         }
       ],
       "chart_b64": "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"
@@ -111,6 +111,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOGL",
       "news": [
         {
+          "title": "Google rolls out AI-powered ad formats at Marketing Live",
+          "summary": "Alphabet Inc (NASDAQ:GOOG)'s Google unveiled a suite of artificial intelligence-driven advertising products at its annual Google Marketing Live event, targeting expanded wallet share from both offline budgets and social ",
+          "provider": "Proactive",
+          "date": "2026-05-25",
+          "url": "https://www.proactiveinvestors.com/companies/news/1092827/google-rolls-out-ai-powered-ad-formats-at-marketing-live-1092827.html"
+        },
+        {
           "title": "Billionaire Bill Ackman Sold This Stock While Warren Buffett Successor Greg Abel Bought It. Who's Right?",
           "summary": "This artificial intelligence company offers compelling value, but Ackman says there are even better opportunities.",
           "provider": "Motley Fool",
@@ -123,40 +130,33 @@
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/jepqs-distribution-looks-like-income-until-you-see-the-eln-counterparty-risk-behind-it/"
-        },
-        {
-          "title": "Your Chatbot Has a Long Memory. That Isn’t Always a Good Thing.",
-          "summary": "It may keep offering you advice based on information that may be dated—or wasn’t even about you in the first place.",
-          "provider": "The Wall Street Journal",
-          "date": "2026-05-25",
-          "url": "https://www.wsj.com/tech/ai/ai-memory-cd1de7f4?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ตลาดหุ้น GOOGL (Alphabet Inc.) มีอารมณ์ออกทรมต้มกบมากกว่า ต้องระวัง\n\nBeer มองว่า: หุ้น GOOGL มีโอกาสติดเทรนด์ แต่ต้องระวังอาการออกทรมต้มกบ",
+      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญเกี่ยวกับ Google ที่จะนำเสนอ AI-powered ad formats ที่จะช่วยให้ Google มีโอกาสขยายตลาดและเพิ่มรายได้', 'Sentiment': 'ตลาดมีความเชื่อมั่นในแง่บวกเกี่ยวกับ Google เนื่องจากการนำเสนอผลิตภัณฑ์ใหม่ที่มีศักยภาพในการขยายตลาด', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือราคาหุ้นอาจจะปรับตัวขึ้นเนื่องจากความเชื่อมั่นในแง่บวกของตลาด'}\n\nBeer มองว่า: {'SQ': 'น่าสนใจ', 'Circuit Breaker': 'ไม่ต้องตั้ง'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "GOOGL เป็นบริษัทเทคโนโลยีและดิจิทัลที่มีรายได้หลักจาก Google Ads และ YouTube"
+          "insight": "Google มีศักยภาพในการขยายตลาดและเพิ่มรายได้จากการนำเสนอ AI-powered ad formats"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "GOOGL มี Market Cap Rank #2, P/E 29.23435 และ Volume 20,401,900"
+          "insight": "รายได้ของ Google อาจจะเพิ่มขึ้นเนื่องจากการนำเสนอผลิตภัณฑ์ใหม่"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ GOOGL มีการสื่อสารที่ดี แต่ต้องระวังการเปลี่ยนแปลงในตลาด"
+          "insight": "ผู้บริหารของ Google พูดถึงแผนการขยายตลาดและเพิ่มรายได้"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "GOOGL มีคู่แข่งอย่าง Amazon, Microsoft และ Facebook"
+          "insight": "Google มีคู่แข่งที่แข็งแกร่ง แต่ผลิตภัณฑ์ใหม่สามารถช่วยให้ Google มีโอกาสขยายตลาด"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหารของ GOOGL มีประวัติการตัดสินใจที่ดี แต่ต้องระวังการเปลี่ยนแปลงในตลาด"
+          "insight": "ผู้บริหารของ Google มีความเชื่อมั่นในผลิตภัณฑ์ใหม่และแผนการขยายตลาด"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ควรติดตามข่าวและอัตราผลตอบแทนของ GOOGL และตัดสินใจตามความเหมาะสม"
+          "insight": "ตามดู Google และรอจุดตัดขาดทุน"
         }
       ],
       "chart_b64": "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"
@@ -174,6 +174,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
       "news": [
         {
+          "title": "S&P 500 Dividends Just Hit an All-Time Low Going Back to the 1800s — Here’s What Retirees Need to Know",
+          "summary": "The host of Retire SMART Podcast opened Episode 416 with a number that should stop every income-focused retiree in their tracks. The S&P 500’s dividend yield has fallen to roughly 1.1%, an all-time low going back to the ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-25",
+          "url": "https://247wallst.com/personal-finance/2026/05/25/sp-500-dividends-just-hit-an-all-time-low-going-back-to-the-1800s-heres-what-retirees-need-to-know/"
+        },
+        {
           "title": "Here's How Much You'd Need to Invest in VIG to Generate $500 per Month in Dividends",
           "summary": "The Vanguard Dividend Appreciation ETF (VIG) may be one of the more consistent dividend-growth funds. But it's not one of the biggest yielders.",
           "provider": "Motley Fool",
@@ -186,13 +193,6 @@
           "provider": "The Telegraph",
           "date": "2026-05-25",
           "url": "https://uk.finance.yahoo.com/news/meta-urges-labour-burden-apple-142724103.html"
-        },
-        {
-          "title": "JEPQ’s Distribution Looks Like Income Until You See the ELN Counterparty Risk Behind It",
-          "summary": "If you bought JPMorgan Nasdaq Equity Premium Income ETF (NASDAQ:JEPQ) for the monthly checks, you probably think you own a Nasdaq-100 portfolio with a covered-call overlay. That is mostly true. The part that gets less ai",
-          "provider": "24/7 Wall St.",
-          "date": "2026-05-25",
-          "url": "https://247wallst.com/investing/2026/05/25/jepqs-distribution-looks-like-income-until-you-see-the-eln-counterparty-risk-behind-it/"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -212,6 +212,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MSFT",
       "news": [
         {
+          "title": "S&P 500 Dividends Just Hit an All-Time Low Going Back to the 1800s — Here’s What Retirees Need to Know",
+          "summary": "The host of Retire SMART Podcast opened Episode 416 with a number that should stop every income-focused retiree in their tracks. The S&P 500’s dividend yield has fallen to roughly 1.1%, an all-time low going back to the ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-25",
+          "url": "https://247wallst.com/personal-finance/2026/05/25/sp-500-dividends-just-hit-an-all-time-low-going-back-to-the-1800s-heres-what-retirees-need-to-know/"
+        },
+        {
           "title": "Here's How Much You'd Need to Invest in VIG to Generate $500 per Month in Dividends",
           "summary": "The Vanguard Dividend Appreciation ETF (VIG) may be one of the more consistent dividend-growth funds. But it's not one of the biggest yielders.",
           "provider": "Motley Fool",
@@ -224,40 +231,33 @@
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/jepqs-distribution-looks-like-income-until-you-see-the-eln-counterparty-risk-behind-it/"
-        },
-        {
-          "title": "Your Chatbot Has a Long Memory. That Isn’t Always a Good Thing.",
-          "summary": "It may keep offering you advice based on information that may be dated—or wasn’t even about you in the first place.",
-          "provider": "The Wall Street Journal",
-          "date": "2026-05-25",
-          "url": "https://www.wsj.com/tech/ai/ai-memory-cd1de7f4?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "หุ้น MSFT มีแนวโน้มที่จะปรับตัวขึ้นในระยะสั้น เนื่องจากมีการลงทุนในด้านเทคโนโลยีและความสามารถในการแข่งขัน\n\nBeer มองว่า: ความน่าสนใจของหุ้น MSFT คือการเติบโตของรายได้และกำไรในระยะยาว แต่ควรระวังจุด Circuit Breaker ที่ $450",
+      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญเกี่ยวกับ S&P 500 Dividends ที่ตกลงถึงระดับต่ำสุดในประวัติศาสตร์', 'Sentiment': 'ตลาดตีความอย่างลบ เนื่องจากการลดลงของผลตอบแทนจากหุ้น S&P 500', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือการลดลงของราคาหุ้น MSFT เนื่องจากการลดลงของผลตอบแทนจากหุ้น S&P 500'}\n\nBeer มองว่า: {'SQ': 'MSFT มีความน่าสนใจ เนื่องจากมีผลตอบแทนจากหุ้นที่สูงกว่าตลาด', 'Circuit Breaker': 'ควรตั้ง Circuit Breaker ที่ $400 เพื่อป้องกันการลดลงของราคาหุ้น'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "MSFT มีธุรกิจหลักในด้านซอฟต์แวร์และเทคโนโลยี มีการลงทุนในด้าน AI, Cloud และ Cybersecurity"
+          "insight": "MSFT มีรายได้จากการขายซอฟต์แวร์และบริการด้านเทคโนโลยี"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "รายได้ของ MSFT เพิ่มขึ้น 10% ในปีที่แล้ว กำไรสุทธิเพิ่มขึ้น 15% ในปีที่แล้ว"
+          "insight": "MSFT มีรายได้ $230 พันล้าน กำไร $70 พันล้าน หนี้ $100 พันล้าน"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ MSFT พูดถึงการเติบโตของธุรกิจและความสามารถในการแข่งขันในตลาด"
+          "insight": "CEO ของ MSFT พูดเกี่ยวกับแผนการเติบโตของบริษัท"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "MSFT มีคู่แข่งหลักในด้านซอฟต์แวร์และเทคโนโลยี เช่น Google, Amazon และ Facebook"
+          "insight": "คู่แข่งหลักของ MSFT คือ Google, Amazon และ Facebook"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหารของ MSFT มีประสบการณ์และความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+          "insight": "CEO ของ MSFT มีประสบการณ์ในการบริหารบริษัทและตัดสินใจ"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ควรซื้อหุ้น MSFT ในระยะสั้นและรอจุด Circuit Breaker ที่ $450"
+          "insight": "ตามดู MSFT ถือหุ้น MSFT งดซื้อขายหุ้น MSFT จุดตัดขาดทุน $350"
         }
       ],
       "chart_b64": "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"
@@ -282,18 +282,18 @@
           "url": "https://www.thestreet.com/investing/stocks/who-owns-amazon-top-executives-and-institutional-investors"
         },
         {
+          "title": "AI Could Soon Let Anyone Launch A Restaurant In Under A Minute, Wonder Founder Says",
+          "summary": "AI could soon allow anyone to create and launch a virtual restaurant brand in under a minute, according to serial entrepreneur Marc Lore, founder of food-delivery startup Wonder. Lore said Wonder Create can generate a re",
+          "provider": "Benzinga",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/ai-could-soon-let-anyone-140107171.html"
+        },
+        {
           "title": "JEPQ’s Distribution Looks Like Income Until You See the ELN Counterparty Risk Behind It",
           "summary": "If you bought JPMorgan Nasdaq Equity Premium Income ETF (NASDAQ:JEPQ) for the monthly checks, you probably think you own a Nasdaq-100 portfolio with a covered-call overlay. That is mostly true. The part that gets less ai",
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/jepqs-distribution-looks-like-income-until-you-see-the-eln-counterparty-risk-behind-it/"
-        },
-        {
-          "title": "You’ve been trying to get around Amazon – but it’s not that easy",
-          "summary": "For shoppers tying to avoid Amazon, its expansion into shipping and logistics for thousands of companies makes that choice more difficult.",
-          "provider": "The Conversation",
-          "date": "2026-05-25",
-          "url": "https://theconversation.com/youve-been-trying-to-get-around-amazon-but-its-not-that-easy-283211"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -313,6 +313,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AVGO",
       "news": [
         {
+          "title": "If You'd Invested Just $1,000 in SMH 5 Years Ago, Here's What You'd Have Today",
+          "summary": "Semiconductor stocks have been red hot over the past few years. Just how hot might surprise you.",
+          "provider": "Motley Fool",
+          "date": "2026-05-25",
+          "url": "https://www.fool.com/investing/2026/05/25/if-you-invested-1000-smh-5-years-ago-how-much/"
+        },
+        {
           "title": "Here's How Much You'd Need to Invest in VIG to Generate $500 per Month in Dividends",
           "summary": "The Vanguard Dividend Appreciation ETF (VIG) may be one of the more consistent dividend-growth funds. But it's not one of the biggest yielders.",
           "provider": "Motley Fool",
@@ -325,40 +332,33 @@
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/vig-investors-watch-the-10-year-treasury-yield-this-week-4-75-is-the-danger-line/"
-        },
-        {
-          "title": "The Math That Should Terrify Index Investors: AI Chips Account for Nearly All S&P 500 Gains",
-          "summary": "Here is the data point that should make every passive index investor pause. On Retire SMART Podcast Ep 416, the host laid out the math: “If we removed the Nvidias, the AMDs, so AI chips, these are the chipmaking companie",
-          "provider": "24/7 Wall St.",
-          "date": "2026-05-25",
-          "url": "https://247wallst.com/investing/2026/05/25/the-math-that-should-terrify-index-investors-ai-chips-account-for-nearly-all-sp-500-gains/"
         }
       ],
-      "analysis": "AVGO (Broadcom Inc.) มีแนวโน้มที่จะรักษาความแข็งแกร่งของตัวเองในตลาดเทคโนโลยี\n\nBeer มองว่า: SQ: 80.57199 (สูงมาก) จุด Circuit Breaker: ไม่พบ",
+      "analysis": "{'Detail': 'ข่าวพูดถึง Semiconductor stocks ที่มีการเติบโตสูงในระยะเวลา 5 ปีที่ผ่านมา และมีการแนะนำหุ้น SMH และ VIG ที่มีผลตอบแทนสูง', 'Sentiment': 'ตลาดมีความเชื่อมั่นใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง', 'Implication': 'ราคาหุ้น AVGO อาจมีการเคลื่อนไหวสูงในระยะสั้น เนื่องจากมีการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง'}\n\nBeer มองว่า: {'SQ': 'AVGO มีความน่าสนใจเนื่องจากมีการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง', 'Circuit Breaker': 'AVGO มีความเสี่ยงสูงเนื่องจากมีการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "Broadcom Inc. เป็นบริษัทที่ผลิตชิปและอุปกรณ์สำหรับอุตสาหกรรมเทคโนโลยี มีรายได้จากการส่งออกและขายผลิตภัณฑ์ภายในประเทศ"
+          "insight": "AVGO มีการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "รายได้ของ Broadcom Inc. เพิ่มขึ้น 10% ในปีที่แล้ว กำไรสุทธิอยู่ที่ $2.5 พันล้านดอลลาร์"
+          "insight": "AVGO มีรายได้และกำไรสูงในระยะเวลา 5 ปีที่ผ่านมา"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ Broadcom Inc. พูดถึงแผนการลงทุนในเทคโนโลยี 5G และอินเทอร์เน็ตของสิ่งประดิษฐ์"
+          "insight": "ผู้บริหารของ AVGO พูดถึงการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "Broadcom Inc. มีคู่แข่งอย่าง NVIDIA และ AMD ในตลาดชิปและอุปกรณ์สำหรับอุตสาหกรรมเทคโนโลยี"
+          "insight": "AVGO มีคู่แข่งที่แข็งแกร่งใน Semiconductor stocks แต่มีการเติบโตสูง"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหารของ Broadcom Inc. มีประสบการณ์ในการนำบริษัทไปสู่ความสำเร็จและมีความน่าเชื่อถือ"
+          "insight": "ผู้บริหารของ AVGO มีความน่าเชื่อถือและมีการตัดสินใจที่ดี"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ควรติดตามข่าวและข้อมูลเกี่ยวกับ Broadcom Inc. และตลาดเทคโนโลยีเพื่อการตัดสินใจลงทุน"
+          "insight": "ตามดู AVGO ในระยะสั้น เนื่องจากมีการเติบโตสูงใน Semiconductor stocks และมีการแนะนำหุ้นที่มีผลตอบแทนสูง"
         }
       ],
       "chart_b64": "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"
@@ -435,31 +435,31 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/ai-search-startup-exa-labs-123022930.html"
         }
       ],
-      "analysis": "วิเคราะห์ข่าวและการตีความของตลาด\n\nBeer มองว่า: หุ้น META มีความน่าสนใจในระยะสั้น เนื่องจากมีการเปลี่ยนแปลงในแผนการของบริษัทและตลาดหุ้นกำลังเปลี่ยนแปลงไปด้วย",
+      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญเกี่ยวกับ Meta Platforms, Inc. (META) คือการขอให้ Labour บังคับใช้การตรวจสอบอายุบน iPhone และ Android เพื่อป้องกันการใช้งานของเด็กๆ นอกจากนี้ยังมีข่าวเกี่ยวกับ TaskUs (TASK) ที่มีการลดค่าประเมินมูลค่าของหุ้นลง', 'Sentiment': 'ตลาดมีความคิดเห็นในแง่บวกเกี่ยวกับข่าวนี้ เนื่องจากการตรวจสอบอายุบนอุปกรณ์เคลื่อนที่จะช่วยป้องกันการใช้งานของเด็กๆ และลดความเสี่ยงในการใช้งานที่ไม่เหมาะสม', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือการเพิ่มขึ้นของราคาหุ้น META เนื่องจากการตรวจสอบอายุบนอุปกรณ์เคลื่อนที่จะช่วยเพิ่มความปลอดภัยและลดความเสี่ยงในการใช้งานที่ไม่เหมาะสม'}\n\nBeer มองว่า: {'SQ': 'Meta Platforms, Inc. (META) เป็นบริษัทที่มีศักยภาพในการเติบโตในระยะยาว เนื่องจากการตรวจสอบอายุบนอุปกรณ์เคลื่อนที่จะช่วยเพิ่มความปลอดภัยและลดความเสี่ยงในการใช้งานที่ไม่เหมาะสม', 'Circuit Breaker': 'ควรตั้ง Circuit Breaker ที่ $620 เพื่อป้องกันการซื้อขายที่ไม่เหมาะสม'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "Meta Platforms, Inc. เป็นบริษัทที่ให้บริการโซเชียลมีเดียและอินเทอร์เน็ต โดยมีผลิตภัณฑ์หลักคือ Facebook, Instagram และ WhatsApp บริษัทมีรายได้หลักมาจากโฆษณาและบริการอื่นๆ"
+          "insight": "Meta Platforms, Inc. (META) มีรายได้จากการขายโฆษณาและบริการอื่นๆ ที่เกี่ยวข้องกับโซเชียลมีเดีย"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "Meta Platforms, Inc. มีรายได้ $117,929 ล้านบาทในปี 2022 และมีผลกำไร $29,151 ล้านบาท ในปี 2022 บริษัทมีหนี้สิน $73,444 ล้านบาท"
+          "insight": "Meta Platforms, Inc. (META) มีรายได้ $85.9 พันล้านดอลลาร์ในปี 2022 และมีกำไร $29.1 พันล้านดอลลาร์"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "บริษัทมีการสื่อสารกับลูกค้าและผู้ถือหุ้นผ่านการประชุมทางโทรศัพท์และการประชุมทางอินเทอร์เน็ต"
+          "insight": "ผู้บริหารของ Meta Platforms, Inc. (META) พูดเกี่ยวกับแผนการเติบโตในระยะยาวและความสำคัญของการตรวจสอบอายุบนอุปกรณ์เคลื่อนที่"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "บริษัทมีคู่แข่งหลักคือ Alphabet Inc. (Google) และ Amazon.com Inc."
+          "insight": "คู่แข่งของ Meta Platforms, Inc. (META) คือบริษัทอื่นๆ ที่ให้บริการโซเชียลมีเดีย เช่น Facebook, Instagram และ Twitter"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "บริษัทมีผู้บริหารหลักคือ Mark Zuckerberg ซึ่งเป็นประธานกรรมการและประธานเจ้าหน้าที่บริหาร"
+          "insight": "ผู้บริหารของ Meta Platforms, Inc. (META) มีประสบการณ์และความสามารถในการนำบริษัทไปสู่ความสำเร็จ"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "เราควรติดตามข่าวสารและข้อมูลเกี่ยวกับบริษัทและตลาดหุ้นเพื่อการตัดสินใจในการลงทุน"
+          "insight": "ควรตั้งเป้าหมายในการซื้อขายหุ้น META ในระยะยาวและติดตามข่าวสารเกี่ยวกับบริษัท"
         }
       ],
       "chart_b64": "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"
@@ -515,6 +515,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:WMT",
       "news": [
         {
+          "title": "AI Could Soon Let Anyone Launch A Restaurant In Under A Minute, Wonder Founder Says",
+          "summary": "AI could soon allow anyone to create and launch a virtual restaurant brand in under a minute, according to serial entrepreneur Marc Lore, founder of food-delivery startup Wonder. Lore said Wonder Create can generate a re",
+          "provider": "Benzinga",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/ai-could-soon-let-anyone-140107171.html"
+        },
+        {
           "title": "The 2 Best Dividend Stocks to Buy Now and Hold Forever",
           "summary": "It's hard to beat the reliability both Walmart and Coca-Cola have offered their shareholders.",
           "provider": "Motley Fool",
@@ -527,42 +534,10 @@
           "provider": "Motley Fool",
           "date": "2026-05-25",
           "url": "https://www.fool.com/investing/2026/05/25/walmart-stock-safe-haven-recession-pressure/"
-        },
-        {
-          "title": "Walmart vs. Costco: Which Is the Better \"Recession-Proof\" Stock to Buy Now?",
-          "summary": "These seemingly boring dividend stocks have crushed the S&P 500 and Nasdaq over the last five years.",
-          "provider": "Motley Fool",
-          "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/walmart-vs-costco-buy-recession-proof-stock/"
         }
       ],
-      "analysis": "หุ้น WMT (Walmart Inc.) มีความน่าสนใจเนื่องจากเป็นบริษัทที่มีประวัติยาวนานและมีฐานะการเงินที่ดี\n\nBeer มองว่า: SQ: 120.27, Circuit Breaker: ไม่มี",
-      "homework_checklist": [
-        {
-          "topic": "ธุรกิจ",
-          "insight": "Walmart เป็นหนึ่งในผู้นำในตลาดค้าปลีกทั่วโลก มีรายได้มากกว่า 500 พันล้านดอลลาร์"
-        },
-        {
-          "topic": "ตัวเลข",
-          "insight": "P/E: 42.35, Market Cap Rank: #10, Volume: 30,295,700"
-        },
-        {
-          "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ Walmart พูดถึงความมุ่งมั่นในการปรับปรุงประสบการณ์ของลูกค้า"
-        },
-        {
-          "topic": "คู่แข่ง",
-          "insight": "Walmart มีคู่แข่งอย่าง Costco และ Amazon แต่มีฐานะการเงินที่ดีและความสามารถในการปรับปรุงประสบการณ์ของลูกค้า"
-        },
-        {
-          "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหารของ Walmart มีประสบการณ์ในการนำบริษัทไปสู่ความสำเร็จ"
-        },
-        {
-          "topic": "แผนของเรา",
-          "insight": "ควรติดตามข่าวและประเมินสถานการณ์อย่างต่อเนื่อง"
-        }
-      ],
+      "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
+      "homework_checklist": [],
       "chart_b64": "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"
     },
     {
@@ -599,33 +574,8 @@
           "url": "https://www.fool.com/investing/2026/05/25/eli-lilly-made-game-changing-move/"
         }
       ],
-      "analysis": "หุ้น LLY มีโอกาสเติบโตในระยะยาว เนื่องจากเป็นหุ้นในกลุ่ม Healthcare ที่มีรายได้และกำไรที่ดี\n\nBeer มองว่า: SQ: 9/10 จุด Circuit Breaker: 1,100 - 1,200",
-      "homework_checklist": [
-        {
-          "topic": "ธุรกิจ",
-          "insight": "LLY เป็นบริษัทที่ผลิตและขายยาที่มีรายได้และกำไรที่ดี"
-        },
-        {
-          "topic": "ตัวเลข",
-          "insight": "LLY มีรายได้ 47.6 พันล้านดอลลาร์ และกำไร 14.3 พันล้านดอลลาร์"
-        },
-        {
-          "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ LLY พูดถึงการเติบโตในระยะยาวและความมั่นใจในผลิตภัณฑ์ใหม่"
-        },
-        {
-          "topic": "คู่แข่ง",
-          "insight": "LLY มีคู่แข่งในกลุ่ม Healthcare เช่น Pfizer และ Merck"
-        },
-        {
-          "topic": "ผู้บริหาร",
-          "insight": "ผู้บริหารของ LLY มีประสบการณ์และความเชี่ยวชาญในด้าน Healthcare"
-        },
-        {
-          "topic": "แผนของเรา",
-          "insight": "ควรติดตามหุ้น LLY และรอจุด Circuit Breaker ก่อนลงทุน"
-        }
-      ],
+      "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
+      "homework_checklist": [],
       "chart_b64": "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"
     },
     {
@@ -662,33 +612,8 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/ai-chips-ai-platform-gausspeed-113733211.html"
         }
       ],
-      "analysis": "หุ้น MU (Micron Technology, Inc.) มีแนวโน้มที่จะเพิ่มขึ้นในระยะสั้น เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ และมีการใช้งานที่เพิ่มขึ้นในด้าน AI และ Big Data\n\nBeer มองว่า: SQ: 751.00 จุด, จุด Circuit Breaker: 750.00 จุด",
-      "homework_checklist": [
-        {
-          "topic": "ธุรกิจ",
-          "insight": "Micron Technology เป็นบริษัทที่ผลิตชิปและอุปกรณ์สำหรับอุตสาหกรรมคอมพิวเตอร์และโทรคมนาคม มีการพัฒนาเทคโนโลยีใหม่ๆ ในด้าน AI และ Big Data"
-        },
-        {
-          "topic": "ตัวเลข",
-          "insight": "รายได้ของ Micron Technology เพิ่มขึ้น 10% ในไตรมาสที่ 1 ของปี 2026 และมีกระแสเงินสดที่ดี"
-        },
-        {
-          "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ Micron Technology พูดถึงการลงทุนในด้าน AI และ Big Data และมีการพัฒนาเทคโนโลยีใหม่ๆ"
-        },
-        {
-          "topic": "คู่แข่ง",
-          "insight": "Micron Technology มีคู่แข่งอย่าง Samsung และ SK Hynix แต่มีการพัฒนาเทคโนโลยีใหม่ๆ ที่ทำให้ตนเองมีความสามารถพิเศษ"
-        },
-        {
-          "topic": "ผู้บริหาร",
-          "insight": "Sanjay Mehrotra เป็นผู้บริหารของ Micron Technology และมีการพูดถึงการลงทุนในด้าน AI และ Big Data"
-        },
-        {
-          "topic": "แผนของเรา",
-          "insight": "เราควรลงทุนใน Micron Technology ในระยะสั้น เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ และมีการใช้งานที่เพิ่มขึ้นในด้าน AI และ Big Data"
-        }
-      ],
+      "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
+      "homework_checklist": [],
       "chart_b64": "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"
     },
     {
@@ -704,6 +629,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JPM",
       "news": [
         {
+          "title": "Morgan Stanley Gains 13.2% YTD: Should You Buy the Stock Now?",
+          "summary": "MS' wealth push, strong IB rebound and AI-driven optimism fuel a 13.2% YTD rally. Is MS still a buy now?",
+          "provider": "Zacks",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-gains-13-2-141900915.html"
+        },
+        {
           "title": "VIG Investors: Watch the 10-Year Treasury Yield This Week—4.75% Is the Danger Line",
           "summary": "The Vanguard Dividend Appreciation Index Fund ETF Shares (NYSEARCA:VIG) is having a quieter year than its big-cap dividend-growth reputation suggests, with shares around $229 and a 5% year-to-date gain trailing the broad",
           "provider": "24/7 Wall St.",
@@ -716,13 +648,6 @@
           "provider": "Simply Wall St.",
           "date": "2026-05-25",
           "url": "https://finance.yahoo.com/markets/stocks/articles/bright-horizons-bfam-narrative-shifting-131344001.html"
-        },
-        {
-          "title": "How The Choice Hotels (CHH) Story Is Shifting As Analysts Rework Valuation Assumptions",
-          "summary": "Choice Hotels International has seen its modeled fair value trimmed slightly to US$112.53 from US$114.13, signaling a small reset in where some analysts think the stock could reasonably trade. This shift sits alongside a",
-          "provider": "Simply Wall St.",
-          "date": "2026-05-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/choice-hotels-chh-story-shifting-131321929.html"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -856,25 +781,25 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:INTC",
       "news": [
         {
+          "title": "Why AGNC Investment's Net Interest Spread Matters More Than Its 14% Dividend Yield",
+          "summary": "This mREIT's core business is gradually stabilizing in this choppy market.",
+          "provider": "Motley Fool",
+          "date": "2026-05-25",
+          "url": "https://www.fool.com/investing/2026/05/25/why-agnc-investments-net-interest-spread-matters-m/"
+        },
+        {
+          "title": "If You'd Invested Just $1,000 in SMH 5 Years Ago, Here's What You'd Have Today",
+          "summary": "Semiconductor stocks have been red hot over the past few years. Just how hot might surprise you.",
+          "provider": "Motley Fool",
+          "date": "2026-05-25",
+          "url": "https://www.fool.com/investing/2026/05/25/if-you-invested-1000-smh-5-years-ago-how-much/"
+        },
+        {
           "title": "Gain Exposure to Innovative AI Chipmaker Cerebras With Less Risk Through These ETFs",
           "summary": "If you're feeling conflicted about buying shares of the wafer-scale engine specialist so soon after its IPO, a more diversified tech exchange-traded fund that includes the stock in its portfolio could be the right soluti",
           "provider": "Motley Fool",
           "date": "2026-05-25",
           "url": "https://www.fool.com/investing/2026/05/25/gain-exposure-to-ai-leader-cerebras-with-less-risk/"
-        },
-        {
-          "title": "Here's How Much You'd Need to Invest in VIG to Generate $500 per Month in Dividends",
-          "summary": "The Vanguard Dividend Appreciation ETF (VIG) may be one of the more consistent dividend-growth funds. But it's not one of the biggest yielders.",
-          "provider": "Motley Fool",
-          "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/how-much-you-need-invest-vig-500-dividends/"
-        },
-        {
-          "title": "Super Micro Computer's Sales More Than Doubled Last Quarter. Here's Why I'd Still Stay Far Away From the Stock",
-          "summary": "Top-line growth is important for investors, but that alone isn't enough of a reason to buy a stock.",
-          "provider": "Motley Fool",
-          "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/super-micro-computers-sales-more-than-doubled-last/"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -894,6 +819,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JNJ",
       "news": [
         {
+          "title": "What a $1 Million Dividend Portfolio Actually Pays After Federal AND State Taxes in California",
+          "summary": "A California retiree with a $1 million dividend portfolio earning a 5% blended yield grosses $50,000 in annual income. After federal qualified-dividend tax and California’s state income tax, that number drops sharply. Ca",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-25",
+          "url": "https://247wallst.com/personal-finance/2026/05/25/what-a-1-million-dividend-portfolio-actually-pays-after-federal-and-state-taxes-in-california/"
+        },
+        {
           "title": "VIG Investors: Watch the 10-Year Treasury Yield This Week—4.75% Is the Danger Line",
           "summary": "The Vanguard Dividend Appreciation Index Fund ETF Shares (NYSEARCA:VIG) is having a quieter year than its big-cap dividend-growth reputation suggests, with shares around $229 and a 5% year-to-date gain trailing the broad",
           "provider": "24/7 Wall St.",
@@ -906,13 +838,6 @@
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/kngs-8-6-percent-yield-comes-from-selling-calls-on-dividend-aristocrats-and-it-has-lagged-nobl-since-2018/"
-        },
-        {
-          "title": "Two Paths to Growth: Johnson & Johnson vs AbbVie",
-          "summary": "Johnson & Johnson (NYSE:JNJ) and AbbVie (NYSE:ABBV) both posted Q1 2026 results that beat revenue expectations and prompted raised full-year guidance. JNJ leaned on a diversified pharma plus MedTech engine. AbbVie leaned",
-          "provider": "24/7 Wall St.",
-          "date": "2026-05-25",
-          "url": "https://247wallst.com/investing/2026/05/25/two-paths-to-growth-johnson-johnson-vs-abbvie/"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1122,6 +1047,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:CVX",
       "news": [
         {
+          "title": "Chevron Begins Drilling New Well at Egypt's Narges Gas Field",
+          "summary": "CVX begins drilling at Egypt's Narges gas field, advancing plans to boost Eastern Mediterranean output and expand regional energy production.",
+          "provider": "Zacks",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/sectors/energy/articles/chevron-begins-drilling-well-egypts-143700128.html"
+        },
+        {
           "title": "If Wirth Is Right About a 1970s-Style Oil Crisis, These Retail Stocks Could Take the Biggest Hit This Summer.",
           "summary": "The CEO of Chevron is warning that the impact of the Middle East conflict could be really bad.",
           "provider": "Motley Fool",
@@ -1134,13 +1066,6 @@
           "provider": "Simply Wall St.",
           "date": "2026-05-25",
           "url": "https://finance.yahoo.com/markets/stocks/articles/chevron-insiders-sell-us-179m-130007519.html"
-        },
-        {
-          "title": "Gas Shortages Are Coming, and Chevron's CEO Says Economies Will Have to Slow. These Consumer Stocks Are Most at Risk.",
-          "summary": "You may already be factoring the impact of higher gas prices into your investment strategies, but are you prepared for the imminent global oil shortage?",
-          "provider": "Motley Fool",
-          "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/gas-shortages-are-coming-and-chevrons-ceo-says-eco/"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1312,6 +1237,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:KO",
       "news": [
         {
+          "title": "What a $1 Million Dividend Portfolio Actually Pays After Federal AND State Taxes in California",
+          "summary": "A California retiree with a $1 million dividend portfolio earning a 5% blended yield grosses $50,000 in annual income. After federal qualified-dividend tax and California’s state income tax, that number drops sharply. Ca",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-25",
+          "url": "https://247wallst.com/personal-finance/2026/05/25/what-a-1-million-dividend-portfolio-actually-pays-after-federal-and-state-taxes-in-california/"
+        },
+        {
           "title": "The 2 Best Dividend Stocks to Buy Now and Hold Forever",
           "summary": "It's hard to beat the reliability both Walmart and Coca-Cola have offered their shareholders.",
           "provider": "Motley Fool",
@@ -1324,13 +1256,6 @@
           "provider": "Zacks",
           "date": "2026-05-25",
           "url": "https://finance.yahoo.com/markets/stocks/articles/coca-colas-brand-power-still-123300988.html"
-        },
-        {
-          "title": "1 Surging  Stock with Promising Prospects and 2 We Ignore",
-          "summary": "The stocks in this article are all trading near their 52-week highs. This strength often reflects positive developments such as new product launches, favorable industry trends, or improved financial performance.",
-          "provider": "StockStory",
-          "date": "2026-05-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/1-surging-stock-promising-prospects-110751490.html"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1388,6 +1313,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:PG",
       "news": [
         {
+          "title": "What a $1 Million Dividend Portfolio Actually Pays After Federal AND State Taxes in California",
+          "summary": "A California retiree with a $1 million dividend portfolio earning a 5% blended yield grosses $50,000 in annual income. After federal qualified-dividend tax and California’s state income tax, that number drops sharply. Ca",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-25",
+          "url": "https://247wallst.com/personal-finance/2026/05/25/what-a-1-million-dividend-portfolio-actually-pays-after-federal-and-state-taxes-in-california/"
+        },
+        {
           "title": "You’ve been trying to get around Amazon – but it’s not that easy",
           "summary": "For shoppers tying to avoid Amazon, its expansion into shipping and logistics for thousands of companies makes that choice more difficult.",
           "provider": "The Conversation",
@@ -1400,13 +1332,6 @@
           "provider": "24/7 Wall St.",
           "date": "2026-05-25",
           "url": "https://247wallst.com/investing/2026/05/25/kngs-8-6-percent-yield-comes-from-selling-calls-on-dividend-aristocrats-and-it-has-lagged-nobl-since-2018/"
-        },
-        {
-          "title": "How Direct Indexing May Produce $19,000 in Annual Income on a $700,000 Portfolio",
-          "summary": "A retired couple with $700,000 in a taxable brokerage account could potentially generate close to $19,000 a year in combined dividend income and tax savings by using a direct-indexing strategy. Part of that benefit comes",
-          "provider": "24/7 Wall St.",
-          "date": "2026-05-24",
-          "url": "https://247wallst.com/personal-finance/2026/05/24/how-direct-indexing-may-produce-19000-in-annual-income-on-a-700000-portfolio/"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1426,6 +1351,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:MS",
       "news": [
         {
+          "title": "Morgan Stanley Gains 13.2% YTD: Should You Buy the Stock Now?",
+          "summary": "MS' wealth push, strong IB rebound and AI-driven optimism fuel a 13.2% YTD rally. Is MS still a buy now?",
+          "provider": "Zacks",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-gains-13-2-141900915.html"
+        },
+        {
           "title": "Is Morgan Stanley (MS) Stock Outpacing Its Finance Peers This Year?",
           "summary": "Here is how Morgan Stanley (MS) and Federal Agricultural Mortgage (AGM) have performed compared to their sector so far this year.",
           "provider": "Zacks",
@@ -1438,13 +1370,6 @@
           "provider": "Zacks",
           "date": "2026-05-25",
           "url": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-ms-trending-stock-130002896.html"
-        },
-        {
-          "title": "How The Jet2 (AIM:JET2) Investment Narrative Is Shifting With Reset Analyst Expectations",
-          "summary": "Jet2’s central fair value estimate has been cut from £16.34 to £14.45, an adjustment of about 11.6% that resets where analysts see the stock’s midpoint worth. Recent research from firms including JPMorgan, Morgan Stanley",
-          "provider": "Simply Wall St.",
-          "date": "2026-05-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/jet2-aim-jet2-investment-narrative-070606221.html"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1623,18 +1548,18 @@
           "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-monday-may-25-2026-100000678.html"
         },
         {
-          "title": "How The Bright Horizons (BFAM) Narrative Is Shifting With New Targets And Buybacks",
-          "summary": "The updated fair value estimate for Bright Horizons Family Solutions has shifted from US$97.11 to US$92.56, alongside several Street price target trims of about US$5, US$10, and US$12 at firms such as JPMorgan and Goldma",
-          "provider": "Simply Wall St.",
+          "title": "Goldman Sachs CEO says AI job fears ‘overblown’",
+          "summary": "Goldman Sachs Group Inc (NYSE:GS, XETRA:GOS) CEO David Solomon said fears of a broad “job apocalypse” driven by artificial intelligence are overblown, arguing instead that AI will reshape work rather than eliminate it. I",
+          "provider": "Proactive",
           "date": "2026-05-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/bright-horizons-bfam-narrative-shifting-131344001.html"
+          "url": "https://www.proactiveinvestors.com/companies/news/1092828/goldman-sachs-ceo-says-ai-job-fears-overblown-1092828.html"
         },
         {
-          "title": "Goldman Sachs Says ASICs Will Match GPU Demand by 2027. 2 AI Chip Stocks to Load Up on Right Now.",
-          "summary": "The next big opportunity in artificial intelligence is becoming crystal clear. It's also clear that a well-entrenched duopoly will be its biggest winners.",
-          "provider": "Motley Fool",
+          "title": "Morgan Stanley Gains 13.2% YTD: Should You Buy the Stock Now?",
+          "summary": "MS' wealth push, strong IB rebound and AI-driven optimism fuel a 13.2% YTD rally. Is MS still a buy now?",
+          "provider": "Zacks",
           "date": "2026-05-25",
-          "url": "https://www.fool.com/investing/2026/05/25/goldman-sachs-says-asics-will-match-gpu-demand-by/"
+          "url": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-gains-13-2-141900915.html"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -1706,11 +1631,11 @@
           "url": "https://www.barchart.com/story/news/2110205/qualcomm-stock-is-the-sleeping-giant-of-the-ai-revolution-its-starting-to-wake-up"
         },
         {
-          "title": "Qualcomm Stellantis Deal Deepens Automotive Role And AI Driving Ambitions",
-          "summary": "Qualcomm (NasdaqGS:QCOM) is expanding its automotive partnership with Stellantis to roll out Snapdragon Digital Chassis and Ride Pilot platforms across millions of vehicles. The collaboration includes integration of adva",
-          "provider": "Simply Wall St.",
+          "title": "Intel Just Launched Its SuperClaw AI Tool. INTC Stock Is Finally Back from the Dead.",
+          "summary": "Intel just launched a new AI tool called SuperClaw. Already surging 483% this year, will the rise continue?",
+          "provider": "Barchart",
           "date": "2026-05-24",
-          "url": "https://finance.yahoo.com/sectors/technology/articles/qualcomm-stellantis-deal-deepens-automotive-031043940.html"
+          "url": "https://www.barchart.com/story/news/2109085/intel-just-launched-its-superclaw-ai-tool-intc-stock-is-finally-back-from-the-dead"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
@@ -2756,6 +2681,13 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:CRM",
       "news": [
         {
+          "title": "SentinelOne to Report Q1 Earnings: What's in Store for the Stock?",
+          "summary": "S heads into Q1 earnings with strong AI security demand, rising ARR and expanding cloud partnerships in focus.",
+          "provider": "Zacks",
+          "date": "2026-05-25",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sentinelone-report-q1-earnings-whats-143600383.html"
+        },
+        {
           "title": "Everpure Gears Up to Report Q1 Earnings: What's in the Offing?",
           "summary": "P heads into fiscal Q1 FY2027 earnings with revenue seen up about 28%, fueled by hyperscaler and AI-driven demand amid component cost pressures.",
           "provider": "Zacks",
@@ -2768,13 +2700,6 @@
           "provider": "Zacks",
           "date": "2026-05-25",
           "url": "https://finance.yahoo.com/markets/stocks/articles/agentforce-boost-salesforces-subscription-revenue-133300660.html"
-        },
-        {
-          "title": "PDD Set to Report Q1 Earnings: What's in Store for the Stock?",
-          "summary": "PDD faces margin pressure and Temu headwinds ahead of Q1 results, despite revenue growth and stronger domestic platform activity.",
-          "provider": "Zacks",
-          "date": "2026-05-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/pdd-set-report-q1-earnings-122900983.html"
         }
       ],
       "analysis": "ไม่สามารถวิเคราะห์ได้\n\nBeer มองว่า: N/A",
