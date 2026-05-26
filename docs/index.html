@@ -775,7 +775,7 @@ async function deleteNote(ticker, noteId) {
   const ok = await persistNotes(`🗑️ Delete note: ${ticker} ${noteId}`);
 
   if (ok) {
-    if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); }
+    if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); upgradeMarketOverviewCards(); }
     else { showNoteModal(ticker, activeNoteStock); renderCards(); }
   } else {
     notesCache[ticker] = before; // rollback
@@ -823,6 +823,7 @@ async function syncNow() {
       status.textContent = `Sync แล้ว: ${total} notes จาก ${notesSyncBackend === 'firestore' ? 'cloud' : 'GitHub'}`;
     }
     renderMarketOverview();
+    upgradeMarketOverviewCards();
     renderCards();
     renderCalendar();
     showToast('✅ Sync notes แล้ว');
@@ -1018,7 +1019,10 @@ async function submitNote() {
     const label = activeNoteTicker === '_MARKET' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
     showToast(`✅ บันทึก ${label} แล้ว`);
     closeNoteModal();
-    if (activeNoteTicker === '_MARKET') renderMarketOverview();
+    if (activeNoteTicker === '_MARKET') {
+      renderMarketOverview();
+      upgradeMarketOverviewCards();
+    }
     else renderCards();
   } else {
     btn.textContent = '💾 บันทึก'; btn.disabled = false;
@@ -1051,6 +1055,7 @@ function renderMarketOverview() {
     spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
     ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
   };
+  const marketNoteCount = marketNotes.length;
 
   const indexCards = mi && Object.keys(mi).length
     ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
@@ -1101,8 +1106,56 @@ function renderMarketOverview() {
         <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
       </div>
       <div class="index-row">${indexCards}</div>
-      ${notesHTML}
+      <div id="marketNotesList">${notesHTML}</div>
     </div>`;
+}
+
+function upgradeMarketOverviewCards() {
+  const cards = document.querySelectorAll('#marketOverview .index-card');
+  if (!cards.length) return;
+  const marketNoteCount = (notesCache['_MARKET'] || []).length;
+
+  cards.forEach(card => {
+    if (card.dataset.upgraded === '1') return;
+    card.dataset.upgraded = '1';
+
+    const name = card.querySelector('.index-card-name')?.textContent?.trim() || 'Market';
+    const price = card.querySelector('.index-card-price')?.textContent?.trim() || '';
+    const pct   = card.querySelector('.index-card-pct')?.textContent?.trim() || '';
+    const chart = card.querySelector('.index-card-chart');
+    const chartHTML = chart ? chart.innerHTML : '';
+
+    card.className = 'card market-card';
+    card.innerHTML = `
+      <div class="card-head">
+        <div>
+          <span class="card-ticker">${esc(name)}</span>
+          <div class="card-name">ภาพรวมตลาด</div>
+        </div>
+        <div style="flex-shrink:0;margin-left:10px">
+          <div class="card-price">${esc(price)}</div>
+          <div class="card-pct">${esc(pct)}</div>
+        </div>
+      </div>
+      <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
+      ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
+      <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
+      <button class="history-btn" type="button" onclick="scrollToMarketNotes()">📚 ดูโน้ตตลาด</button>
+    `;
+
+    const chartContainer = card.querySelector('.chart-container');
+    if (chartContainer) {
+      const link = chartContainer.querySelector('a');
+      const img = chartContainer.querySelector('img');
+      if (link) link.classList.add('chart-link');
+      if (img) img.classList.add('chart-img');
+    }
+  });
+}
+
+function scrollToMarketNotes() {
+  const target = document.getElementById('marketNotesList');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function openMarketNote() {
@@ -1272,6 +1325,7 @@ async function loadDate(date) {
     });
     renderSummary();
     renderMarketOverview();
+    upgradeMarketOverviewCards();
     renderCards();
   } catch(e) {
     document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
