@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260526-1';
+const CACHE_NAME = 'beer-top100-v20260526-2';
 const APP_SHELL = [
   './',
   './index.html',

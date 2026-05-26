@@ -46,6 +46,14 @@
       background: #0d1117; border: 1px solid #21262d; border-radius: 8px; overflow: hidden;
     }
     canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .hover-tip {
+      position: absolute; display: none; z-index: 4; pointer-events: none;
+      background: rgba(13,17,23,0.96); border: 1px solid #30363d; border-left: 3px solid #f0b90b;
+      border-radius: 7px; padding: 8px 10px; min-width: 190px; max-width: 280px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.45); color: #d1d5db; font-size: 0.78em; line-height: 1.45;
+    }
+    .hover-date { color: #f0b90b; font-weight: 750; margin-bottom: 3px; }
+    .hover-note { color: #8b949e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .loading {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
       color: #6b7280; background: #0d1117;
@@ -72,6 +80,12 @@
     .snapshot-title { color: #8b949e; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
     .snapshot-analysis { white-space: pre-wrap; line-height: 1.55; font-size: 0.86em; max-height: 170px; overflow: auto; }
     .news-item { margin-top: 7px; color: #8b949e; font-size: 0.82em; line-height: 1.45; }
+    .homework-grid { display: grid; gap: 6px; margin-top: 8px; }
+    .homework-row {
+      background: #111827; border-left: 2px solid #30363d; border-radius: 0 5px 5px 0;
+      padding: 7px 9px; color: #d1d5db; font-size: 0.82em; line-height: 1.45;
+    }
+    .homework-topic { color: #f0b90b; font-weight: 750; margin-bottom: 2px; }
     .side-title { color: #fff; font-weight: 750; margin-bottom: 4px; }
     .side-sub { color: #6b7280; font-size: 0.78em; margin-bottom: 10px; line-height: 1.45; }
     .note-list { display: grid; gap: 8px; max-height: calc(100vh - 190px); overflow: auto; padding-right: 2px; }
@@ -132,6 +146,7 @@
         </div>
         <div class="chart-box">
           <canvas id="priceCanvas"></canvas>
+          <div class="hover-tip" id="hoverTip"></div>
           <div class="loading" id="loading">กำลังโหลดกราฟ 1D...</div>
         </div>
         <div class="legend">
@@ -170,6 +185,7 @@ const state = {
 
 const canvas = document.getElementById('priceCanvas');
 const ctx = canvas.getContext('2d');
+const hoverTip = document.getElementById('hoverTip');
 
 function normalizeTicker(value) {
   return String(value || '').trim().toUpperCase().replace('.', '-');
@@ -479,6 +495,12 @@ async function showGroup(group, candle) {
   const news = (stock?.news || []).slice(0, 3).map(n => `
     <div class="news-item">${esc(n.provider || '')}${n.date ? ' · '+esc(n.date) : ''}<br>${esc(n.title || '')}</div>
   `).join('');
+  const homework = (stock?.homework_checklist || []).slice(0, 6).map(item => `
+    <div class="homework-row">
+      <div class="homework-topic">${esc(item.topic || '')}</div>
+      <div>${esc(item.insight || item.prompt || '')}</div>
+    </div>
+  `).join('');
 
   detail.innerHTML = `
     <div class="detail-head">
@@ -498,6 +520,10 @@ async function showGroup(group, candle) {
           <span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>
         </div>
         ${stock.analysis ? `<div class="snapshot-analysis">${esc(stock.analysis)}</div>` : ''}
+        ${homework ? `
+          <div class="snapshot-title" style="margin-top:10px">Chapter 34 homework context</div>
+          <div class="homework-grid">${homework}</div>
+        ` : ''}
         ${news ? `<div style="margin-top:9px">${news}</div>` : ''}
       </div>
     ` : ''}
@@ -507,21 +533,24 @@ async function showGroup(group, candle) {
 
 function renderNoteList() {
   const list = document.getElementById('noteList');
-  const notesDesc = [...state.notes].sort((a,b) => String(noteDate(b)).localeCompare(String(noteDate(a))));
-  document.getElementById('noteSummary').textContent = notesDesc.length
-    ? `${notesDesc.length} มุมมองที่เคยบันทึกไว้ กดเพื่อกระโดดไปอ่านรายละเอียดบนกราฟ`
+  const groupsDesc = groupNotesByDate(state.notes).sort((a,b) => String(b.date).localeCompare(String(a.date)));
+  const noteCount = state.notes.length;
+  document.getElementById('noteSummary').textContent = noteCount
+    ? `${noteCount} มุมมอง · ${groupsDesc.length} วันบนกราฟ`
     : 'ยังไม่มีมุมมองของหุ้นตัวนี้';
 
-  if (!notesDesc.length) {
+  if (!groupsDesc.length) {
     list.innerHTML = `<div class="state">ยังไม่มี note ของ ${esc(state.ticker)}<br>กลับไปหน้า archive แล้วกด “เพิ่มมุมมอง” ที่หุ้นตัวนี้</div>`;
     return;
   }
-  list.innerHTML = notesDesc.map(n => {
-    const key = noteDate(n);
+  list.innerHTML = groupsDesc.map(group => {
+    const first = group.notes.slice().sort((a,b) => String(b.id || '').localeCompare(String(a.id || '')))[0] || {};
+    const titleDate = first.date || group.date;
+    const times = group.notes.map(n => n.time).filter(Boolean).join(', ');
     return `
-      <button class="note-card" data-key="${esc(key)}" onclick="selectDate('${esc(key)}')">
-        <div class="note-card-date">${fmtDate(n.date || key)}${n.time ? ' · '+esc(n.time) : ''}</div>
-        <div class="note-card-text">${esc(n.note || '')}</div>
+      <button class="note-card" data-key="${esc(group.date)}" onclick="selectDate('${esc(group.date)}')">
+        <div class="note-card-date">${fmtDate(titleDate)}${times ? ' · '+esc(times) : ''}${group.notes.length > 1 ? ` · ${group.notes.length} notes` : ''}</div>
+        <div class="note-card-text">${esc(first.note || '')}</div>
       </button>
     `;
   }).join('');
@@ -579,7 +608,27 @@ function bindEvents() {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    canvas.style.cursor = state.markers.some(m => Math.hypot(m.x - x, m.y - y) <= m.r) ? 'pointer' : 'crosshair';
+    const marker = state.markers.find(m => Math.hypot(m.x - x, m.y - y) <= m.r);
+    canvas.style.cursor = marker ? 'pointer' : 'crosshair';
+    if (marker) {
+      const first = marker.group.notes[0] || {};
+      hoverTip.innerHTML = `
+        <div class="hover-date">${fmtDate(marker.group.date)}</div>
+        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} · close ${fmtMoney(marker.candle.close)}</div>
+        <div class="hover-note">${esc(first.note || '')}</div>
+      `;
+      hoverTip.style.display = 'block';
+      const tipW = hoverTip.offsetWidth || 220;
+      const tipH = hoverTip.offsetHeight || 80;
+      hoverTip.style.left = Math.min(rect.width - tipW - 10, Math.max(10, x + 14)) + 'px';
+      hoverTip.style.top = Math.min(rect.height - tipH - 10, Math.max(10, y + 14)) + 'px';
+    } else {
+      hoverTip.style.display = 'none';
+    }
+  });
+  canvas.addEventListener('mouseleave', () => {
+    hoverTip.style.display = 'none';
+    canvas.style.cursor = 'crosshair';
   });
   window.addEventListener('resize', () => {
     clearTimeout(state.resizeTimer);
