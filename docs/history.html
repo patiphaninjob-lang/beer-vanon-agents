@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <title>Beer Top 100 - Stock Thought History</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .back-link {
+      color: #8b949e; text-decoration: none; border: 1px solid #30363d; border-radius: 6px;
+      padding: 6px 10px; background: #21262d; font-size: 0.84em; flex-shrink: 0;
+    }
+    .back-link:hover { color: #f0b90b; border-color: #f0b90b; }
+    .ticker-title { font-size: 1.35em; font-weight: 800; color: #fff; letter-spacing: 0; }
+    .ticker-sub { color: #8b949e; font-size: 0.82em; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 62vw; }
+    .range-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .range-tabs button {
+      height: 32px; min-width: 44px; border: 1px solid #30363d; border-radius: 6px;
+      background: #21262d; color: #8b949e; cursor: pointer; font-weight: 650;
+    }
+    .range-tabs button.active { background: #f0b90b; color: #111827; border-color: #f0b90b; }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 16px 18px 28px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 14px; align-items: start; }
+    .panel {
+      background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px;
+    }
+    .chart-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .chart-title { color: #fff; font-size: 1em; font-weight: 750; }
+    .chart-meta { color: #6b7280; font-size: 0.78em; line-height: 1.5; margin-top: 2px; }
+    .badge-row { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+    .badge {
+      color: #d1d5db; background: #0d1117; border: 1px solid #30363d; border-radius: 999px;
+      padding: 4px 9px; font-size: 0.78em; white-space: nowrap;
+    }
+    .chart-box {
+      position: relative; height: min(62vh, 620px); min-height: 420px;
+      background: #0d1117; border: 1px solid #21262d; border-radius: 8px; overflow: hidden;
+    }
+    canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #6b7280; background: #0d1117;
+    }
+    .legend {
+      margin-top: 9px; display: flex; gap: 10px; flex-wrap: wrap;
+      color: #6b7280; font-size: 0.8em; align-items: center;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; background: #f0b90b; box-shadow: 0 0 10px rgba(240,185,11,0.8); }
+    .detail {
+      margin-top: 12px; background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #f0b90b;
+      border-radius: 8px; padding: 12px; min-height: 96px;
+    }
+    .detail-empty { color: #6b7280; line-height: 1.6; }
+    .detail-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 9px; flex-wrap: wrap; }
+    .detail-date { color: #f0b90b; font-weight: 750; }
+    .detail-pill { color: #8b949e; font-size: 0.78em; border: 1px solid #30363d; border-radius: 999px; padding: 2px 7px; }
+    .note-block { padding: 10px 0; border-top: 1px solid #21262d; }
+    .note-block:first-of-type { border-top: 0; padding-top: 0; }
+    .note-text { color: #d1d5db; white-space: pre-wrap; line-height: 1.65; word-break: break-word; }
+    .archive-link { color: #93c5fd; text-decoration: none; font-size: 0.8em; }
+    .archive-link:hover { text-decoration: underline; }
+    .snapshot { margin-top: 10px; border-top: 1px solid #21262d; padding-top: 10px; color: #d1d5db; }
+    .snapshot-title { color: #8b949e; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .snapshot-analysis { white-space: pre-wrap; line-height: 1.55; font-size: 0.86em; max-height: 170px; overflow: auto; }
+    .news-item { margin-top: 7px; color: #8b949e; font-size: 0.82em; line-height: 1.45; }
+    .side-title { color: #fff; font-weight: 750; margin-bottom: 4px; }
+    .side-sub { color: #6b7280; font-size: 0.78em; margin-bottom: 10px; line-height: 1.45; }
+    .note-list { display: grid; gap: 8px; max-height: calc(100vh - 190px); overflow: auto; padding-right: 2px; }
+    .note-card {
+      text-align: left; border: 1px solid #21262d; border-left: 3px solid #30363d; border-radius: 7px;
+      background: #0d1117; color: #d1d5db; padding: 9px 10px; cursor: pointer; width: 100%;
+    }
+    .note-card:hover, .note-card.active { border-left-color: #f0b90b; background: #111827; }
+    .note-card-date { color: #f0b90b; font-size: 0.78em; font-weight: 750; margin-bottom: 4px; }
+    .note-card-text {
+      color: #d1d5db; font-size: 0.84em; line-height: 1.45;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .state { color: #6b7280; padding: 24px 10px; text-align: center; line-height: 1.6; }
+    .toast {
+      position: fixed; right: 16px; bottom: 16px; background: #21262d; color: #e6edf3;
+      border: 1px solid #30363d; border-radius: 8px; padding: 9px 12px; z-index: 100;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35); font-size: 0.86em;
+    }
+    @media (max-width: 860px) {
+      .topbar { padding: 10px 12px; align-items: flex-start; }
+      .ticker-sub { max-width: 78vw; white-space: normal; }
+      .wrap { padding: 12px 10px 24px; }
+      .layout { grid-template-columns: 1fr; }
+      .chart-box { height: 56vh; min-height: 360px; }
+      .badge-row { justify-content: flex-start; }
+      .note-list { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <a class="back-link" id="backLink" href="index.html">← Archive</a>
+      <div>
+        <div class="ticker-title" id="tickerTitle">Loading...</div>
+        <div class="ticker-sub" id="tickerSub">Daily chart · thoughts history</div>
+      </div>
+    </div>
+    <div class="range-tabs" id="rangeTabs">
+      <button data-range="1mo">1M</button>
+      <button data-range="6mo">6M</button>
+      <button data-range="1y" class="active">1Y</button>
+      <button data-range="5y">5Y</button>
+      <button data-range="max">ALL</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="layout">
+      <section class="panel">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title" id="chartTitle">กราฟความคิดของฉัน</div>
+            <div class="chart-meta" id="chartMeta">Timeframe: 1D · Default range: 1Y</div>
+          </div>
+          <div class="badge-row" id="badgeRow"></div>
+        </div>
+        <div class="chart-box">
+          <canvas id="priceCanvas"></canvas>
+          <div class="loading" id="loading">กำลังโหลดกราฟ 1D...</div>
+        </div>
+        <div class="legend">
+          <span><i class="dot"></i> จุดที่เคยบันทึกความคิด/อารมณ์</span>
+          <span id="visibleCount">-</span>
+        </div>
+        <div class="detail" id="detailPanel">
+          <div class="detail-empty">กดจุดสีทองบนกราฟ หรือเลือกบันทึกด้านขวา เพื่อดูว่าตอนนั้นคิดอะไรอยู่</div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="side-title">มุมมองทั้งหมด</div>
+        <div class="side-sub" id="noteSummary">กำลังโหลด notes...</div>
+        <div class="note-list" id="noteList"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+const NOTES_FILE = 'notes/notes.json';
+const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+const state = {
+  ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'NVDA'),
+  range: new URLSearchParams(location.search).get('range') || '1y',
+  notes: [],
+  allCandles: [],
+  candles: [],
+  markers: [],
+  archiveCache: {},
+  latestStock: null,
+  selectedKey: null,
+  resizeTimer: null
+};
+
+const canvas = document.getElementById('priceCanvas');
+const ctx = canvas.getContext('2d');
+
+function normalizeTicker(value) {
+  return String(value || '').trim().toUpperCase().replace('.', '-');
+}
+function esc(value) {
+  return String(value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtDate(date) {
+  if (!date) return '';
+  const [y,m,d] = date.split('-');
+  return `${parseInt(d,10)} ${MONTHS_TH[parseInt(m,10)]} ${y}`;
+}
+function fmtMoney(value) {
+  if (value == null || Number.isNaN(Number(value))) return '-';
+  return '$' + Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function setLoading(text) {
+  const el = document.getElementById('loading');
+  el.textContent = text || '';
+  el.style.display = text ? 'flex' : 'none';
+}
+function toast(text) {
+  const old = document.querySelector('.toast');
+  if (old) old.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = text;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+
+async function fetchJson(url) {
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) throw new Error(`${url} HTTP ${r.status}`);
+  return r.json();
+}
+
+async function loadNotes() {
+  const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
+  const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+  state.notes = keys.flatMap(key => db[key] || [])
+    .filter(n => n && (n.date || n.archive_date))
+    .sort((a,b) => String(a.date || '').localeCompare(String(b.date || '')));
+}
+
+async function loadLatestStock() {
+  try {
+    const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
+    const backDate = new URLSearchParams(location.search).get('date') || dates[0] || '';
+    if (backDate) document.getElementById('backLink').href = `index.html?date=${encodeURIComponent(backDate)}`;
+    for (const date of dates.slice(0, 12)) {
+      const day = await loadArchive(date);
+      const stock = findStock(day, state.ticker);
+      if (stock) {
+        state.latestStock = stock;
+        return;
+      }
+    }
+  } catch (e) {
+    console.warn('archive lookup failed', e);
+  }
+}
+
+async function loadArchive(date) {
+  if (!date) return null;
+  if (!state.archiveCache[date]) {
+    state.archiveCache[date] = await fetchJson(`data/${date}.json?nocache=${Date.now()}`);
+  }
+  return state.archiveCache[date];
+}
+function findStock(day, ticker) {
+  if (!day?.stocks) return null;
+  const wanted = normalizeTicker(ticker);
+  return day.stocks.find(s => normalizeTicker(s.ticker) === wanted || normalizeTicker(s.ticker).replace('-', '.') === wanted);
+}
+
+function parseHistoryCandles(data) {
+  return (data?.candles || []).map(row => {
+    if (Array.isArray(row)) {
+      return { date: row[0], open: row[1], high: row[2], low: row[3], close: row[4], volume: row[5] || 0 };
+    }
+    return row;
+  }).filter(c => c?.date && [c.open,c.high,c.low,c.close].every(v => Number.isFinite(Number(v))))
+    .map(c => ({
+      date: c.date,
+      open: Number(c.open),
+      high: Number(c.high),
+      low: Number(c.low),
+      close: Number(c.close),
+      volume: Number(c.volume || 0)
+    }))
+    .sort((a,b) => a.date.localeCompare(b.date));
+}
+
+async function loadHistoryCandles() {
+  if (state.allCandles.length) return state.allCandles;
+  const data = await fetchJson(`history-data/${encodeURIComponent(state.ticker)}.json?nocache=${Date.now()}`);
+  state.allCandles = parseHistoryCandles(data);
+  if (!state.allCandles.length) throw new Error('history file has no candle data');
+  return state.allCandles;
+}
+
+function filterCandlesByRange(candles, range) {
+  if (!candles.length || range === 'max') return candles;
+  const last = candles[candles.length - 1].date;
+  const start = new Date(last + 'T12:00:00');
+  const months = { '1mo': 1, '6mo': 6, '1y': 12, '5y': 60 }[range] || 12;
+  start.setMonth(start.getMonth() - months);
+  const startKey = start.toISOString().slice(0, 10);
+  return candles.filter(c => c.date >= startKey);
+}
+
+async function buildArchiveFallbackCandles() {
+  const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
+  const candles = [];
+  for (const date of dates) {
+    try {
+      const day = await loadArchive(date);
+      const stock = findStock(day, state.ticker);
+      if (!stock?.price) continue;
+      const price = Number(stock.price);
+      candles.push({
+        date,
+        open: price,
+        high: price * 1.002,
+        low: price * 0.998,
+        close: price,
+        volume: stock.volume || 0
+      });
+    } catch(e) {}
+  }
+  return candles.sort((a,b) => a.date.localeCompare(b.date));
+}
+
+async function loadCandles() {
+  setLoading('กำลังโหลดกราฟ 1D...');
+  try {
+    const allCandles = await loadHistoryCandles();
+    state.candles = filterCandlesByRange(allCandles, state.range);
+    setLoading('');
+  } catch (e) {
+    console.warn('history data fallback:', e);
+    try {
+      state.candles = await buildArchiveFallbackCandles();
+      setLoading('');
+      toast('ใช้ข้อมูลจาก archive แทน เพราะยังไม่มีไฟล์ history ของหุ้นนี้');
+    } catch(err) {
+      state.candles = [];
+      setLoading('โหลดกราฟไม่ได้ แต่ notes ยังแสดงอยู่ด้านขวา');
+    }
+  }
+}
+
+function noteDate(note) {
+  return note.archive_date || note.date || '';
+}
+function groupNotesByDate(notes) {
+  const groups = new Map();
+  notes.forEach(note => {
+    const date = noteDate(note);
+    if (!date) return;
+    if (!groups.has(date)) groups.set(date, []);
+    groups.get(date).push(note);
+  });
+  return [...groups.entries()].map(([date, notes]) => ({ date, notes }));
+}
+function nearestCandle(date) {
+  if (!state.candles.length) return null;
+  let best = null;
+  let bestDist = Infinity;
+  const target = new Date(date + 'T12:00:00').getTime();
+  for (let i = 0; i < state.candles.length; i++) {
+    const t = new Date(state.candles[i].date + 'T12:00:00').getTime();
+    const dist = Math.abs(t - target);
+    if (dist < bestDist) { best = { candle: state.candles[i], index: i }; bestDist = dist; }
+  }
+  return best;
+}
+
+function drawChart() {
+  const box = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(box.width * dpr));
+  canvas.height = Math.max(1, Math.floor(box.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const w = box.width;
+  const h = box.height;
+  const pad = { left: 56, right: 16, top: 22, bottom: 34 };
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = '#0d1117';
+  ctx.fillRect(0, 0, w, h);
+
+  if (!state.candles.length) {
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+    ctx.fillText('ไม่มีข้อมูลกราฟ', pad.left, pad.top + 20);
+    return;
+  }
+
+  const highs = state.candles.map(c => c.high);
+  const lows = state.candles.map(c => c.low);
+  let yMax = Math.max(...highs);
+  let yMin = Math.min(...lows);
+  const yPad = (yMax - yMin) * 0.08 || yMax * 0.02 || 1;
+  yMax += yPad; yMin -= yPad;
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+  const xFor = i => pad.left + (state.candles.length === 1 ? plotW / 2 : (i / (state.candles.length - 1)) * plotW);
+  const yFor = price => pad.top + ((yMax - price) / (yMax - yMin)) * plotH;
+
+  ctx.strokeStyle = '#1f2937';
+  ctx.lineWidth = 1;
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (plotH * i / 4);
+    const price = yMax - ((yMax - yMin) * i / 4);
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(w - pad.right, y);
+    ctx.stroke();
+    ctx.fillText(price.toFixed(2), pad.left - 8, y + 4);
+  }
+
+  const candleW = Math.max(2, Math.min(9, plotW / state.candles.length * 0.62));
+  state.candles.forEach((c, i) => {
+    const x = xFor(i);
+    const up = c.close >= c.open;
+    const color = up ? '#26a69a' : '#ef5350';
+    const yOpen = yFor(c.open);
+    const yClose = yFor(c.close);
+    const yHigh = yFor(c.high);
+    const yLow = yFor(c.low);
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, yHigh);
+    ctx.lineTo(x, yLow);
+    ctx.stroke();
+    const bodyTop = Math.min(yOpen, yClose);
+    const bodyH = Math.max(1, Math.abs(yClose - yOpen));
+    ctx.fillRect(x - candleW / 2, bodyTop, candleW, bodyH);
+  });
+
+  ctx.fillStyle = '#6b7280';
+  ctx.textAlign = 'center';
+  const labelIdx = [0, Math.floor(state.candles.length / 2), state.candles.length - 1];
+  labelIdx.forEach(i => {
+    const c = state.candles[i];
+    if (!c) return;
+    const [y,m,d] = c.date.split('-');
+    ctx.fillText(`${d}/${m}/${y.slice(2)}`, xFor(i), h - 12);
+  });
+
+  state.markers = [];
+  const groups = groupNotesByDate(state.notes);
+  groups.forEach(group => {
+    const match = nearestCandle(group.date);
+    if (!match) return;
+    const x = xFor(match.index);
+    const y = yFor(match.candle.close);
+    const key = group.date;
+    const active = state.selectedKey === key;
+    ctx.save();
+    ctx.strokeStyle = active ? '#ffffff' : '#fff7c2';
+    ctx.fillStyle = '#f0b90b';
+    ctx.lineWidth = active ? 3 : 2;
+    ctx.shadowColor = 'rgba(240,185,11,0.85)';
+    ctx.shadowBlur = active ? 18 : 10;
+    ctx.beginPath();
+    ctx.arc(x, y, active ? 7 : 5.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+    state.markers.push({ x, y, r: 11, key, group, candle: match.candle });
+  });
+
+  document.getElementById('visibleCount').textContent = `${state.markers.length}/${groups.length} วันมี marker ในช่วงนี้`;
+}
+
+async function showGroup(group, candle) {
+  state.selectedKey = group.date;
+  drawChart();
+  const detail = document.getElementById('detailPanel');
+  const first = group.notes[0] || {};
+  const archiveDate = first.archive_date || group.date;
+  let stock = null;
+  try {
+    const day = await loadArchive(archiveDate);
+    stock = findStock(day, state.ticker);
+  } catch(e) {}
+
+  const noteBlocks = group.notes.map(n => `
+    <div class="note-block">
+      <div class="detail-head">
+        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+esc(n.time) : ''}</div>
+        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}${n.pct_change != null ? ` · ${n.pct_change >= 0 ? '+' : ''}${Number(n.pct_change).toFixed(2)}%` : ''}</div>
+      </div>
+      <div class="note-text">${esc(n.note || '')}</div>
+      ${n.archive_date ? `<div style="margin-top:8px"><a class="archive-link" href="index.html?date=${encodeURIComponent(n.archive_date)}">เปิด archive วันที่ ${fmtDate(n.archive_date)}</a></div>` : ''}
+    </div>
+  `).join('');
+
+  const news = (stock?.news || []).slice(0, 3).map(n => `
+    <div class="news-item">${esc(n.provider || '')}${n.date ? ' · '+esc(n.date) : ''}<br>${esc(n.title || '')}</div>
+  `).join('');
+
+  detail.innerHTML = `
+    <div class="detail-head">
+      <div>
+        <div class="detail-date">${fmtDate(group.date)}</div>
+        <div class="chart-meta">ราคาปิดใกล้ marker: ${fmtMoney(candle?.close)}</div>
+      </div>
+      <span class="detail-pill">${group.notes.length} note${group.notes.length > 1 ? 's' : ''}</span>
+    </div>
+    ${noteBlocks}
+    ${stock ? `
+      <div class="snapshot">
+        <div class="snapshot-title">Beer archive context</div>
+        <div class="badge-row" style="justify-content:flex-start;margin-bottom:8px">
+          <span class="badge">Rank #${stock.rank || '-'}</span>
+          <span class="badge">${esc(stock.sector || '-')}</span>
+          <span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>
+        </div>
+        ${stock.analysis ? `<div class="snapshot-analysis">${esc(stock.analysis)}</div>` : ''}
+        ${news ? `<div style="margin-top:9px">${news}</div>` : ''}
+      </div>
+    ` : ''}
+  `;
+  document.querySelectorAll('.note-card').forEach(btn => btn.classList.toggle('active', btn.dataset.key === group.date));
+}
+
+function renderNoteList() {
+  const list = document.getElementById('noteList');
+  const notesDesc = [...state.notes].sort((a,b) => String(noteDate(b)).localeCompare(String(noteDate(a))));
+  document.getElementById('noteSummary').textContent = notesDesc.length
+    ? `${notesDesc.length} มุมมองที่เคยบันทึกไว้ กดเพื่อกระโดดไปอ่านรายละเอียดบนกราฟ`
+    : 'ยังไม่มีมุมมองของหุ้นตัวนี้';
+
+  if (!notesDesc.length) {
+    list.innerHTML = `<div class="state">ยังไม่มี note ของ ${esc(state.ticker)}<br>กลับไปหน้า archive แล้วกด “เพิ่มมุมมอง” ที่หุ้นตัวนี้</div>`;
+    return;
+  }
+  list.innerHTML = notesDesc.map(n => {
+    const key = noteDate(n);
+    return `
+      <button class="note-card" data-key="${esc(key)}" onclick="selectDate('${esc(key)}')">
+        <div class="note-card-date">${fmtDate(n.date || key)}${n.time ? ' · '+esc(n.time) : ''}</div>
+        <div class="note-card-text">${esc(n.note || '')}</div>
+      </button>
+    `;
+  }).join('');
+}
+
+window.selectDate = function(date) {
+  const group = groupNotesByDate(state.notes).find(g => g.date === date);
+  if (!group) return;
+  const match = nearestCandle(date);
+  showGroup(group, match?.candle || null);
+};
+
+function updateHeader() {
+  const stock = state.latestStock;
+  document.getElementById('tickerTitle').textContent = state.ticker;
+  document.getElementById('tickerSub').textContent = stock?.name
+    ? `${stock.name} · ${stock.sector || 'N/A'}`
+    : 'Daily chart · thoughts history';
+  document.getElementById('chartTitle').textContent = `${state.ticker} · กราฟความคิดของฉัน`;
+  document.getElementById('chartMeta').textContent = `Timeframe: 1D · Range: ${document.querySelector(`[data-range="${state.range}"]`)?.textContent || state.range}`;
+  document.getElementById('badgeRow').innerHTML = `
+    <span class="badge">${state.notes.length} notes</span>
+    ${stock?.rank ? `<span class="badge">Rank #${stock.rank}</span>` : ''}
+    ${stock?.price ? `<span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>` : ''}
+  `;
+}
+
+async function setRange(range) {
+  state.range = range;
+  document.querySelectorAll('#rangeTabs button').forEach(btn => btn.classList.toggle('active', btn.dataset.range === range));
+  history.replaceState({}, '', `history.html?ticker=${encodeURIComponent(state.ticker)}&range=${encodeURIComponent(range)}`);
+  updateHeader();
+  await loadCandles();
+  drawChart();
+  const latestGroup = groupNotesByDate(state.notes).slice(-1)[0];
+  if (latestGroup) {
+    const match = nearestCandle(latestGroup.date);
+    showGroup(latestGroup, match?.candle || null);
+  }
+}
+
+function bindEvents() {
+  document.getElementById('rangeTabs').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-range]');
+    if (btn) setRange(btn.dataset.range);
+  });
+  canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const marker = state.markers.find(m => Math.hypot(m.x - x, m.y - y) <= m.r);
+    if (marker) showGroup(marker.group, marker.candle);
+  });
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    canvas.style.cursor = state.markers.some(m => Math.hypot(m.x - x, m.y - y) <= m.r) ? 'pointer' : 'crosshair';
+  });
+  window.addEventListener('resize', () => {
+    clearTimeout(state.resizeTimer);
+    state.resizeTimer = setTimeout(drawChart, 120);
+  });
+}
+
+async function init() {
+  bindEvents();
+  document.querySelectorAll('#rangeTabs button').forEach(btn => btn.classList.toggle('active', btn.dataset.range === state.range));
+  document.getElementById('tickerTitle').textContent = state.ticker;
+  try {
+    await Promise.all([loadNotes(), loadLatestStock()]);
+    updateHeader();
+    renderNoteList();
+    await loadCandles();
+    drawChart();
+    const latestGroup = groupNotesByDate(state.notes).slice(-1)[0];
+    if (latestGroup) {
+      const match = nearestCandle(latestGroup.date);
+      await showGroup(latestGroup, match?.candle || null);
+    }
+  } catch (e) {
+    console.error(e);
+    setLoading('โหลดข้อมูลไม่สำเร็จ');
+    document.getElementById('noteList').innerHTML = `<div class="state">${esc(e.message)}</div>`;
+  }
+}
+
+init();
+  </script>
+</body>
+</html>

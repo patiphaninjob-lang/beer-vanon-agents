@@ -1,7 +1,8 @@
-const CACHE_NAME = 'beer-top100-v20260525-2';
+const CACHE_NAME = 'beer-top100-v20260526-1';
 const APP_SHELL = [
   './',
   './index.html',
+  './history.html',
   './manifest.webmanifest',
   './icon.svg',
   './tradingview-notes.user.js'

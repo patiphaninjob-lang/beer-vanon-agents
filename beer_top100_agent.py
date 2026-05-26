@@ -591,6 +591,66 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     return url
 
 
+def save_history_data(stocks_data: list, period: str = "5y") -> None:
+    """Save compact daily OHLCV files for the in-site stock thought history page."""
+    if not stocks_data:
+        return
+    import yfinance as yf
+
+    tickers = [s["stock"]["ticker"] for s in stocks_data if s.get("stock", {}).get("ticker")]
+    if not tickers:
+        return
+
+    out_dir = Path("docs/history-data")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    safe_print(f"  ดึง history 1D {period} สำหรับ {len(tickers)} หุ้น...")
+
+    try:
+        all_hist = yf.download(tickers, period=period, group_by="ticker", threads=True, progress=False)
+    except Exception as e:
+        safe_print(f"  ⚠️ history download error: {e}")
+        return
+
+    saved = 0
+    for ticker in tickers:
+        hist = extract_ticker_history(all_hist, ticker)
+        if hist is None or hist.empty:
+            continue
+
+        candles = []
+        for idx, row in hist.dropna(subset=["Open", "High", "Low", "Close"]).iterrows():
+            try:
+                date_key = idx.strftime("%Y-%m-%d")
+                candles.append([
+                    date_key,
+                    round(float(row["Open"]), 4),
+                    round(float(row["High"]), 4),
+                    round(float(row["Low"]), 4),
+                    round(float(row["Close"]), 4),
+                    int(row["Volume"]) if not np.isnan(row["Volume"]) else 0,
+                ])
+            except Exception:
+                continue
+        if not candles:
+            continue
+
+        payload = {
+            "ticker": ticker,
+            "timeframe": "1D",
+            "period": period,
+            "generated": datetime.datetime.now().isoformat(),
+            "source": "yfinance",
+            "candles": candles,
+        }
+        (out_dir / f"{ticker}.json").write_text(
+            json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        saved += 1
+
+    safe_print(f"  ✅ บันทึก history-data: {saved}/{len(tickers)} ไฟล์")
+
+
 # ─── HTML Report ──────────────────────────────────────────────
 
 def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -> str:
@@ -712,6 +772,7 @@ def main():
     parser.add_argument("--workers", type=int, default=2, help="Number of parallel workers (default 2)")
     parser.add_argument("--date", help="Archive/report date in YYYY-MM-DD format (default: today)")
     parser.add_argument("--no-web", action="store_true", help="Do not write docs/data archive")
+    parser.add_argument("--no-history", action="store_true", help="Do not write docs/history-data files")
     parser.add_argument("--no-email", action="store_true", help="Build the report without sending email")
     parser.add_argument("--out-html", help="Optional path to save the generated HTML report")
     args = parser.parse_args()
@@ -803,6 +864,8 @@ def main():
 
         safe_print(f"\n🌐 บันทึก web archive...")
         archive_url = save_to_web(stocks_data, today, market_indices, test_run=args.test)
+        if not args.no_history:
+            save_history_data(stocks_data)
 
     # 5. สร้างและส่ง email
     safe_print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
