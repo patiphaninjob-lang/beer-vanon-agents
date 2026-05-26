@@ -263,8 +263,12 @@
     .index-card-name { color: #8b949e; font-size: 0.76em; margin-bottom: 2px; }
     .index-card-price { font-size: 1.08em; font-weight: bold; color: #e6edf3; }
     .index-card-pct { font-size: 0.87em; font-weight: 600; margin-top: 2px; }
-    .index-card-chart { margin-top: 7px; }
+    .index-card-chart { margin-top: 7px; position: relative; overflow: hidden; border-radius: 4px; }
+    .index-card-chart a { display: block; position: relative; z-index: 1; }
     .index-card-chart img { width: 100%; border-radius: 4px; display: block; }
+    .index-card-chart .chart-marker { bottom: 8px; width: 13px; height: 13px; }
+    .index-card-chart .chart-marker::before { height: 62px; }
+    .index-card-chart .chart-marker:hover::before { height: 72px; }
     .mkt-notes-head { color: #8b949e; font-size: 0.76em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
     .mkt-note {
       background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #f0b90b;
@@ -873,6 +877,19 @@ function renderMarketOverview() {
   if (!el) return;
   const mi = currentData?.market_indices;
   const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const marketMarkersHTML = marketNotes.map(n => {
+    const markerDate = n.archive_date || n.date;
+    if (!markerDate || !currentData?.date) return '';
+    const noteTS = new Date(markerDate + 'T12:00:00').getTime();
+    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
+    const rangeTS = 90 * 24 * 60 * 60 * 1000;
+    const startTS = archiveTS - rangeTS;
+    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
+    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
+    leftPos = Math.max(2, Math.min(98, leftPos));
+    const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" title="${esc(label)}"></div>`;
+  }).join('');
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
   const INDEX_TV   = {
@@ -893,7 +910,12 @@ function renderMarketOverview() {
             <div class="index-card-name">${INDEX_META[k]}</div>
             <div class="index-card-price">${priceStr}</div>
             <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
-            ${d.chart_b64 ? `<div class="index-card-chart"><a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView"><img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer"></a></div>` : ''}
+            ${d.chart_b64 ? `<div class="index-card-chart">
+              <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
+                <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
+              </a>
+              ${marketMarkersHTML}
+            </div>` : ''}
           </div>`;
       }).join('')
     : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
@@ -1232,6 +1254,10 @@ document.addEventListener('click', e => {
   const noteTrigger = e.target.closest('.chart-marker, .note-btn');
   if (noteTrigger) {
     const ticker = noteTrigger.dataset.ticker;
+    if (ticker === '_MARKET') {
+      openMarketNote();
+      return;
+    }
     const stock  = currentData?.stocks?.find(s => s.ticker === ticker);
     if (stock) showNoteModal(ticker, stock);
     return;
