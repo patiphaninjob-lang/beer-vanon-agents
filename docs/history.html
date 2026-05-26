@@ -325,7 +325,7 @@ async function loadHistoryCandles() {
   if (state.allCandles.length) return state.allCandles;
   if (state.ticker === '_MARKET') {
     try {
-      const data = await fetchJson(`history-data/${encodeURIComponent(state.ticker)}.json?nocache=${Date.now()}`);
+      const data = await fetchJson(`history-data/market.json?nocache=${Date.now()}`);
       state.allCandles = parseHistoryCandles(data);
       if (state.allCandles.length) return state.allCandles;
     } catch (e) {}
