@@ -1103,7 +1103,10 @@ function renderMarketOverview() {
     <div class="market-overview">
       <div class="market-overview-head">
         <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date) : ''}</span>
-        <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="history-btn" type="button" onclick="openMarketHistory()">📈 History</button>
+          <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
+        </div>
       </div>
       <div class="index-row">${indexCards}</div>
       <div id="marketNotesList">${notesHTML}</div>
@@ -1131,16 +1134,16 @@ function upgradeMarketOverviewCards() {
         <div>
           <span class="card-ticker">${esc(name)}</span>
           <div class="card-name">ภาพรวมตลาด</div>
-        </div>
-        <div style="flex-shrink:0;margin-left:10px">
-          <div class="card-price">${esc(price)}</div>
-          <div class="card-pct">${esc(pct)}</div>
-        </div>
+      </div>
+      <div style="flex-shrink:0;margin-left:10px">
+        <div class="card-price">${esc(price)}</div>
+        <div class="card-pct">${esc(pct)}</div>
+      </div>
       </div>
       <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
       ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
       <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
-      <button class="history-btn" type="button" onclick="scrollToMarketNotes()">📚 ดูโน้ตตลาด</button>
+      <button class="history-btn" type="button" onclick="openMarketHistory()">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</button>
     `;
 
     const chartContainer = card.querySelector('.chart-container');
@@ -1156,6 +1159,12 @@ function upgradeMarketOverviewCards() {
 function scrollToMarketNotes() {
   const target = document.getElementById('marketNotesList');
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openMarketHistory() {
+  const date = currentData?.date || '';
+  const url = `history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  location.href = url;
 }
 
 function openMarketNote() {
