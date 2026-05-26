@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Beer Vanon Notes on TradingView
 // @namespace    https://patiphaninjob-lang.github.io/beer-vanon-agents/
-// @version      3.2.0
+// @version      3.2.1
 // @description  Put Beer Top 100 notes, Beer analysis, and news context onto TradingView as small candle-anchored markers.
 // @author       Patiphan
 // @match        https://*.tradingview.com/*
@@ -230,7 +230,8 @@
     if (stock?.homework_checklist?.length) {
       lines.push('', 'Chapter 34 homework to finish:');
       stock.homework_checklist.slice(0, 6).forEach((item, i) => {
-        lines.push(clipText(`${i + 1}. ${item.topic || ''}: ${item.prompt || ''}`, 300));
+        const homeworkText = item.insight || item.prompt || '';
+        lines.push(clipText(`${i + 1}. ${item.topic || ''}: ${homeworkText}`, 300));
       });
     }
 
@@ -395,7 +396,7 @@
     const homework = (stock.homework_checklist || []).slice(0, 6).map(item => `
       <div class="bv-homework-item">
         <div class="bv-homework-topic">${esc(item.topic || '')}</div>
-        <div class="bv-homework-prompt">${esc(item.prompt || '')}</div>
+        <div class="bv-homework-prompt">${esc(item.insight || item.prompt || '')}</div>
       </div>
     `).join('');
 

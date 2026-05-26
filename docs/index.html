@@ -22,6 +22,7 @@
       flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
     }
     .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
+    .version-tag { font-size: 0.6em; color: #4b5563; font-weight: normal; margin-left: 4px; vertical-align: middle; }
     .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
     select, input[type=search] {
       background: #21262d; border: 1px solid #30363d; color: #e6edf3;
@@ -75,12 +76,17 @@
     .tv-link:hover { color: #818cf8; text-decoration: underline; }
 
     /* ── Chart Container for Markers ── */
-    .chart-container { position: relative; margin-top: 6px; }
-    .chart-img { width: 100%; border-radius: 5px; display: block; cursor: pointer; }
+    .chart-container { position: relative; margin-top: 6px; overflow: hidden; border-radius: 5px; }
+    .chart-link {
+      display: block; width: 100%; border-radius: 5px;
+      transition: opacity 0.2s; position: relative; z-index: 1; cursor: pointer;
+    }
+    .chart-link:hover { opacity: 0.8; }
+    .chart-img { width: 100%; display: block; border-radius: 5px; }
     .chart-marker {
       position: absolute; bottom: 10px; width: 14px; height: 14px;
       background: #f0b90b; border: 2px solid #fff; border-radius: 50%;
-      cursor: pointer; transform: translateX(-50%); z-index: 10;
+      cursor: pointer; transform: translateX(-50%); z-index: 100;
       box-shadow: 0 0 10px rgba(240, 185, 11, 0.9), 0 0 20px rgba(240, 185, 11, 0.4);
       transition: all 0.2s ease;
     }
@@ -973,7 +979,7 @@ async function init() {
   }
   await loadNotes();
   try {
-    const r = await fetch('data/index.json?_=' + Date.now());
+    const r = await fetch('data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
     const dates = await r.json();
     availableDates = dates;
@@ -1074,7 +1080,7 @@ function pickDate(date) {
 async function loadDate(date) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
-    const r = await fetch(`data/${date}.json?_=` + Date.now());
+    const r = await fetch(`data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
     currentData = await r.json();
 
@@ -1202,7 +1208,9 @@ function cardHTML(s) {
     
     <div class="chart-container">
       ${s.chart_b64
-        ? `<img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}" data-ticker="${esc(s.ticker)}">`
+        ? `<a class="chart-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="คลิกเพื่อดูกราฟจริงบน TradingView">
+             <img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}">
+           </a>`
         : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
       ${chartMarkersHTML}
     </div>
@@ -1219,11 +1227,15 @@ document.addEventListener('click', e => {
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
   }
-  const btn = e.target.closest('[data-ticker]');
-  if (!btn) return;
-  const ticker = btn.dataset.ticker;
-  const stock  = currentData?.stocks?.find(s => s.ticker === ticker);
-  if (stock) showNoteModal(ticker, stock);
+
+  // 1. Handle Note Triggers (Markers or Note Button)
+  const noteTrigger = e.target.closest('.chart-marker, .note-btn');
+  if (noteTrigger) {
+    const ticker = noteTrigger.dataset.ticker;
+    const stock  = currentData?.stocks?.find(s => s.ticker === ticker);
+    if (stock) showNoteModal(ticker, stock);
+    return;
+  }
 });
 
 // ── keyboard shortcuts ────────────────────────────────────────
