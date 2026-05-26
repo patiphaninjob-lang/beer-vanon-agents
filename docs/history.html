@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="utf-8">
@@ -147,10 +147,10 @@
 <body>
   <div class="topbar">
     <div class="brand">
-      <a class="back-link" id="backLink" href="index.html">← Archive</a>
+      <a class="back-link" id="backLink" href="index.html">โ Archive</a>
       <div>
         <div class="ticker-title" id="tickerTitle">Loading...</div>
-        <div class="ticker-sub" id="tickerSub">Daily chart · thoughts history</div>
+        <div class="ticker-sub" id="tickerSub">Daily chart ยท thoughts history</div>
       </div>
     </div>
     <div class="range-tabs" id="rangeTabs">
@@ -167,28 +167,28 @@
       <section class="panel">
         <div class="chart-head">
           <div>
-            <div class="chart-title" id="chartTitle">กราฟความคิดของฉัน</div>
-            <div class="chart-meta" id="chartMeta">Timeframe: 1D · Default range: 1Y</div>
+            <div class="chart-title" id="chartTitle">เธเธฃเธฒเธเธเธงเธฒเธกเธเธดเธ”เธเธญเธเธเธฑเธ</div>
+            <div class="chart-meta" id="chartMeta">Timeframe: 1D ยท Default range: 1Y</div>
           </div>
           <div class="badge-row" id="badgeRow"></div>
         </div>
         <div class="chart-box">
           <canvas id="priceCanvas"></canvas>
           <div class="hover-tip" id="hoverTip"></div>
-          <div class="loading" id="loading">กำลังโหลดกราฟ 1D...</div>
+          <div class="loading" id="loading">เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธเธฃเธฒเธ 1D...</div>
         </div>
         <div class="legend">
-          <span><i class="dot"></i> จุดที่เคยบันทึกความคิด/อารมณ์</span>
+          <span><i class="dot"></i> เธเธธเธ”เธ—เธตเนเน€เธเธขเธเธฑเธเธ—เธถเธเธเธงเธฒเธกเธเธดเธ”/เธญเธฒเธฃเธกเธ“เน</span>
           <span id="visibleCount">-</span>
         </div>
         <div class="detail" id="detailPanel">
-          <div class="detail-empty">กดจุดสีทองบนกราฟ หรือเลือกบันทึกด้านขวา เพื่อดูว่าตอนนั้นคิดอะไรอยู่</div>
+          <div class="detail-empty">เธเธ”เธเธธเธ”เธชเธตเธ—เธญเธเธเธเธเธฃเธฒเธ เธซเธฃเธทเธญเน€เธฅเธทเธญเธเธเธฑเธเธ—เธถเธเธ”เนเธฒเธเธเธงเธฒ เน€เธเธทเนเธญเธ”เธนเธงเนเธฒเธ•เธญเธเธเธฑเนเธเธเธดเธ”เธญเธฐเนเธฃเธญเธขเธนเน</div>
         </div>
       </section>
 
       <aside class="panel">
-        <div class="side-title">มุมมองทั้งหมด</div>
-        <div class="side-sub" id="noteSummary">กำลังโหลด notes...</div>
+        <div class="side-title">เธกเธธเธกเธกเธญเธเธ—เธฑเนเธเธซเธกเธ”</div>
+        <div class="side-sub" id="noteSummary">เธเธณเธฅเธฑเธเนเธซเธฅเธ” notes...</div>
         <div class="note-list" id="noteList"></div>
       </aside>
     </div>
@@ -196,7 +196,7 @@
 
   <script>
 const NOTES_FILE = 'notes/notes.json';
-const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const MONTHS_TH = ['','เธก.เธ.','เธ.เธ.','เธกเธต.เธ.','เน€เธก.เธข.','เธ.เธ.','เธกเธด.เธข.','เธ.เธ.','เธช.เธ.','เธ.เธข.','เธ•.เธ.','เธ.เธข.','เธ.เธ.'];
 
 const state = {
   ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'NVDA'),
@@ -392,6 +392,11 @@ async function buildArchiveFallbackCandles() {
 async function loadCandles() {
   setLoading('กำลังโหลดกราฟ 1D...');
   try {
+    if (state.ticker === '_MARKET') {
+      state.candles = filterCandlesByRange(await buildArchiveFallbackCandles(), state.range);
+      setLoading('');
+      return;
+    }
     const allCandles = await loadHistoryCandles();
     state.candles = filterCandlesByRange(allCandles, state.range);
     setLoading('');
@@ -451,7 +456,7 @@ function drawChart() {
   if (!state.candles.length) {
     ctx.fillStyle = '#6b7280';
     ctx.font = '14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-    ctx.fillText('ไม่มีข้อมูลกราฟ', pad.left, pad.top + 20);
+    ctx.fillText('เนเธกเนเธกเธตเธเนเธญเธกเธนเธฅเธเธฃเธฒเธ', pad.left, pad.top + 20);
     return;
   }
 
@@ -535,7 +540,7 @@ function drawChart() {
     state.markers.push({ x, y, r: 11, key, group, candle: match.candle });
   });
 
-  document.getElementById('visibleCount').textContent = `${state.markers.length}/${groups.length} วันมี marker ในช่วงนี้`;
+  document.getElementById('visibleCount').textContent = `${state.markers.length}/${groups.length} เธงเธฑเธเธกเธต marker เนเธเธเนเธงเธเธเธตเน`;
 }
 
 async function showGroup(group, candle) {
@@ -555,16 +560,16 @@ async function showGroup(group, candle) {
   const noteBlocks = group.notes.map(n => `
     <div class="note-block">
       <div class="detail-head">
-        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+esc(n.time) : ''}</div>
-        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}${n.pct_change != null ? ` · ${n.pct_change >= 0 ? '+' : ''}${Number(n.pct_change).toFixed(2)}%` : ''}</div>
+        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' ยท '+esc(n.time) : ''}</div>
+        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}${n.pct_change != null ? ` ยท ${n.pct_change >= 0 ? '+' : ''}${Number(n.pct_change).toFixed(2)}%` : ''}</div>
       </div>
       <div class="note-text">${esc(n.note || '')}</div>
-      ${n.archive_date ? `<div style="margin-top:8px"><a class="archive-link" href="index.html?date=${encodeURIComponent(n.archive_date)}">เปิด archive วันที่ ${fmtDate(n.archive_date)}</a></div>` : ''}
+      ${n.archive_date ? `<div style="margin-top:8px"><a class="archive-link" href="index.html?date=${encodeURIComponent(n.archive_date)}">เน€เธเธดเธ” archive เธงเธฑเธเธ—เธตเน ${fmtDate(n.archive_date)}</a></div>` : ''}
     </div>
   `).join('');
 
   const news = (stock?.news || []).slice(0, 3).map(n => `
-    <div class="news-item">${esc(n.provider || '')}${n.date ? ' · '+esc(n.date) : ''}<br>${esc(n.title || '')}</div>
+    <div class="news-item">${esc(n.provider || '')}${n.date ? ' ยท '+esc(n.date) : ''}<br>${esc(n.title || '')}</div>
   `).join('');
   const homework = (stock?.homework_checklist || []).slice(0, 6).map(item => `
     <div class="homework-row">
@@ -598,7 +603,7 @@ async function showGroup(group, candle) {
     <div class="detail-head">
       <div>
         <div class="detail-date">${fmtDate(group.date)}</div>
-        <div class="chart-meta">ราคาปิดใกล้ marker: ${fmtMoney(candle?.close)}</div>
+        <div class="chart-meta">เธฃเธฒเธเธฒเธเธดเธ”เนเธเธฅเน marker: ${fmtMoney(candle?.close)}</div>
       </div>
       <span class="detail-pill">${group.notes.length} note${group.notes.length > 1 ? 's' : ''}</span>
     </div>
@@ -609,7 +614,7 @@ async function showGroup(group, candle) {
         <div class="badge-row" style="justify-content:flex-start;margin-bottom:8px">
           <span class="badge">Rank #${stock.rank || '-'}</span>
           <span class="badge">${esc(stock.sector || '-')}</span>
-          <span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>
+          <span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` ยท ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>
         </div>
         ${stock.analysis ? `<div class="snapshot-analysis">${esc(stock.analysis)}</div>` : ''}
         ${homework ? `
@@ -628,11 +633,11 @@ function renderNoteList() {
   const groupsDesc = groupNotesByDate(state.notes).sort((a,b) => String(b.date).localeCompare(String(a.date)));
   const noteCount = state.notes.length;
   document.getElementById('noteSummary').textContent = noteCount
-    ? `${noteCount} มุมมอง · ${groupsDesc.length} วันบนกราฟ`
-    : 'ยังไม่มีมุมมองของหุ้นตัวนี้';
+    ? `${noteCount} เธกเธธเธกเธกเธญเธ ยท ${groupsDesc.length} เธงเธฑเธเธเธเธเธฃเธฒเธ`
+    : 'เธขเธฑเธเนเธกเนเธกเธตเธกเธธเธกเธกเธญเธเธเธญเธเธซเธธเนเธเธ•เธฑเธงเธเธตเน';
 
   if (!groupsDesc.length) {
-    list.innerHTML = `<div class="state">ยังไม่มี note ของ ${esc(state.ticker)}<br>กลับไปหน้า archive แล้วกด “เพิ่มมุมมอง” ที่หุ้นตัวนี้</div>`;
+    list.innerHTML = `<div class="state">เธขเธฑเธเนเธกเนเธกเธต note เธเธญเธ ${esc(state.ticker)}<br>เธเธฅเธฑเธเนเธเธซเธเนเธฒ archive เนเธฅเนเธงเธเธ” โ€เน€เธเธดเนเธกเธกเธธเธกเธกเธญเธโ€ เธ—เธตเนเธซเธธเนเธเธ•เธฑเธงเธเธตเน</div>`;
     return;
   }
   list.innerHTML = groupsDesc.map(group => {
@@ -641,7 +646,7 @@ function renderNoteList() {
     const times = group.notes.map(n => n.time).filter(Boolean).join(', ');
     return `
       <button class="note-card" data-key="${esc(group.date)}" onclick="selectDate('${esc(group.date)}')">
-        <div class="note-card-date">${fmtDate(titleDate)}${times ? ' · '+esc(times) : ''}${group.notes.length > 1 ? ` · ${group.notes.length} notes` : ''}</div>
+        <div class="note-card-date">${fmtDate(titleDate)}${times ? ' ยท '+esc(times) : ''}${group.notes.length > 1 ? ` ยท ${group.notes.length} notes` : ''}</div>
         <div class="note-card-text">${esc(first.note || '')}</div>
       </button>
     `;
@@ -657,51 +662,33 @@ window.selectDate = function(date) {
 
 function updateHeader() {
   const stock = state.latestStock;
-  document.getElementById('tickerTitle').textContent = state.ticker;
-  document.getElementById('tickerSub').textContent = stock?.name
-    ? `${stock.name} · ${stock.sector || 'N/A'}`
-    : 'Daily chart · thoughts history';
-  document.getElementById('chartTitle').textContent = `${state.ticker} · กราฟความคิดของฉัน`;
-  document.getElementById('chartMeta').textContent = `Timeframe: 1D · Range: ${document.querySelector(`[data-range="${state.range}"]`)?.textContent || state.range}`;
-  const sideTitle = document.querySelector('.side-title');
-  const sideSub = document.querySelector('.side-sub');
-  if (sideTitle) sideTitle.textContent = isMarket ? '�Ҿ�����Ҵ��͹��ѧ' : '����ͧ������';
-  if (sideSub) sideSub.textContent = isMarket ? 'History markers + market snapshot' : '���ѧ��Ŵ notes...';  document.getElementById('badgeRow').innerHTML = `
-    <span class="badge">${state.notes.length} notes</span>
-    ${stock?.rank ? `<span class="badge">Rank #${stock.rank}</span>` : ''}
-    ${stock?.price ? `<span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-  `;
-}
-
-function updateHeader() {
-  const stock = state.latestStock;
   const isMarket = state.ticker === '_MARKET';
   const market = state.latestMarket || {};
   document.body.classList.toggle('market-mode', isMarket);
-  document.getElementById('tickerTitle').textContent = isMarket ? 'ภาพรวมตลาด' : state.ticker;
+  document.getElementById('tickerTitle').textContent = isMarket ? 'เธ เธฒเธเธฃเธงเธกเธ•เธฅเธฒเธ”' : state.ticker;
   document.getElementById('tickerSub').textContent = isMarket
-    ? 'Daily chart ยท market note history'
+    ? 'Daily chart เธขเธ— market note history'
     : stock?.name
-      ? `${stock.name} ยท ${stock.sector || 'N/A'}`
-      : 'Daily chart ยท thoughts history';
+      ? `${stock.name} เธขเธ— ${stock.sector || 'N/A'}`
+      : 'Daily chart เธขเธ— thoughts history';
   document.getElementById('chartTitle').textContent = isMarket
-    ? 'กราฟภาพรวมตลาด'
-    : `${state.ticker} ยท เธเธฃเธฒเธเธเธงเธฒเธกเธเธดเธ”เธเธญเธเธเธฑเธ`;
+    ? 'เธเธฃเธฒเธเธ เธฒเธเธฃเธงเธกเธ•เธฅเธฒเธ”'
+    : `${state.ticker} เธขเธ— เน€เธยเน€เธเธเน€เธเธ’เน€เธยเน€เธยเน€เธเธเน€เธเธ’เน€เธเธเน€เธยเน€เธเธ”เน€เธโ€เน€เธยเน€เธเธเน€เธยเน€เธยเน€เธเธ‘เน€เธย`;
   document.getElementById('chartMeta').textContent = isMarket
-    ? 'Timeframe: 1D ยท Proxy: DJI'
-    : `Timeframe: 1D ยท Range: ${document.querySelector(`[data-range="${state.range}"]`)?.textContent || state.range}`;
+    ? 'Timeframe: 1D เธขเธ— Proxy: DJI'
+    : `Timeframe: 1D เธขเธ— Range: ${document.querySelector(`[data-range="${state.range}"]`)?.textContent || state.range}`;
   const sideTitle = document.querySelector('.side-title');
   const sideSub = document.querySelector('.side-sub');
-  if (sideTitle) sideTitle.textContent = isMarket ? '�Ҿ�����Ҵ��͹��ѧ' : '����ͧ������';
-  if (sideSub) sideSub.textContent = isMarket ? 'History markers + market snapshot' : '���ѧ��Ŵ notes...';  document.getElementById('badgeRow').innerHTML = isMarket ? `
+  if (sideTitle) sideTitle.textContent = isMarket ? 'ภาพรวมตลาดย้อนหลัง' : 'มุมมองทั้งหมด';
+  if (sideSub) sideSub.textContent = isMarket ? 'History markers + market snapshot' : 'กำลังโหลด notes...';  document.getElementById('badgeRow').innerHTML = isMarket ? `
     <span class="badge">${state.notes.length} notes</span>
-    ${market.spx?.price ? `<span class="badge">S&P ${fmtMoney(market.spx.price)}${market.spx.pct_change != null ? ` ยท ${market.spx.pct_change >= 0 ? '+' : ''}${Number(market.spx.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-    ${market.dji?.price ? `<span class="badge">DJI ${fmtMoney(market.dji.price)}${market.dji.pct_change != null ? ` ยท ${market.dji.pct_change >= 0 ? '+' : ''}${Number(market.dji.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-    ${market.ixic?.price ? `<span class="badge">NASDAQ ${fmtMoney(market.ixic.price)}${market.ixic.pct_change != null ? ` ยท ${market.ixic.pct_change >= 0 ? '+' : ''}${Number(market.ixic.pct_change).toFixed(2)}%` : ''}</span>` : ''}
+    ${market.spx?.price ? `<span class="badge">S&P ${fmtMoney(market.spx.price)}${market.spx.pct_change != null ? ` เธขเธ— ${market.spx.pct_change >= 0 ? '+' : ''}${Number(market.spx.pct_change).toFixed(2)}%` : ''}</span>` : ''}
+    ${market.dji?.price ? `<span class="badge">DJI ${fmtMoney(market.dji.price)}${market.dji.pct_change != null ? ` เธขเธ— ${market.dji.pct_change >= 0 ? '+' : ''}${Number(market.dji.pct_change).toFixed(2)}%` : ''}</span>` : ''}
+    ${market.ixic?.price ? `<span class="badge">NASDAQ ${fmtMoney(market.ixic.price)}${market.ixic.pct_change != null ? ` เธขเธ— ${market.ixic.pct_change >= 0 ? '+' : ''}${Number(market.ixic.pct_change).toFixed(2)}%` : ''}</span>` : ''}
   ` : `
     <span class="badge">${state.notes.length} notes</span>
     ${stock?.rank ? `<span class="badge">Rank #${stock.rank}</span>` : ''}
-    ${stock?.price ? `<span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` ยท ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>` : ''}
+    ${stock?.price ? `<span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` เธขเธ— ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>` : ''}
   `;
 }
 
@@ -741,7 +728,7 @@ function bindEvents() {
       const first = marker.group.notes[0] || {};
       hoverTip.innerHTML = `
         <div class="hover-date">${fmtDate(marker.group.date)}</div>
-        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} · close ${fmtMoney(marker.candle.close)}</div>
+        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} ยท close ${fmtMoney(marker.candle.close)}</div>
         <div class="hover-note">${esc(first.note || '')}</div>
       `;
       hoverTip.style.display = 'block';
@@ -780,7 +767,7 @@ async function init() {
     }
   } catch (e) {
     console.error(e);
-    setLoading('โหลดข้อมูลไม่สำเร็จ');
+    setLoading('เนเธซเธฅเธ”เธเนเธญเธกเธนเธฅเนเธกเนเธชเธณเน€เธฃเนเธ');
     document.getElementById('noteList').innerHTML = `<div class="state">${esc(e.message)}</div>`;
   }
 }
@@ -789,6 +776,7 @@ init();
   </script>
 </body>
 </html>
+
 
 
 
