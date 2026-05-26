@@ -11,6 +11,8 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="shortcut icon" href="icon.svg" type="image/svg+xml">
   <title>🍺 Beer Vanon — Top 100 Archive</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
@@ -361,8 +363,8 @@
     <h2>⚙️ ตั้งค่า</h2>
 
     <div style="margin-bottom:14px">
-      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">GitHub Personal Access Token</div>
-      <p>ใช้สำหรับบันทึกมุมมองของคุณลง GitHub repo</p>
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">GitHub Personal Access Token <span style="color:#f0b90b;font-size:0.8em">(optional backup)</span></div>
+      <p>ใช้เป็นแบ็กอัพสำรองสำหรับเขียน notes กลับไปที่ GitHub repo</p>
       <input type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
       <div class="pat-help">
         วิธีสร้าง: GitHub → Settings → Developer settings → Personal access tokens → Fine-grained<br>
@@ -383,9 +385,9 @@
 
     <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #21262d">
       <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Online Sync</div>
-      <p>ข้อมูลกลางอยู่บน GitHub Pages/GitHub repo เปิดจากคอม มือถือ หรือเครื่องอื่นได้ด้วย URL เดียวกัน</p>
+      <p>ข้อมูลกลาง sync ผ่าน cloud; เปิดจากคอม มือถือ หรือเครื่องอื่นได้ด้วย URL เดียวกัน</p>
       <div class="pat-help" style="line-height:1.8">
-        อ่านข้อมูลได้ทุกเครื่องทันที ส่วนการบันทึกต้องตั้ง GitHub token ในแต่ละเครื่องหนึ่งครั้ง. ปุ่มคัดลอกลิงก์ตั้งค่าเครื่องอื่นจะใส่ token ใน URL hash เพื่อความสะดวก ห้ามส่งลิงก์นั้นให้คนอื่น
+        อ่านและบันทึกข้อมูลได้ทุกเครื่องผ่าน cloud sync. GitHub token ด้านบนเป็นแค่แบ็กอัพสำรองกรณีอยาก mirror กลับ repo. ปุ่มคัดลอกลิงก์ตั้งค่าเครื่องอื่นจะใส่ token ใน URL hash เพื่อความสะดวก ห้ามส่งลิงก์นั้นให้คนอื่น
       </div>
     </div>
 
@@ -460,7 +462,7 @@
       <option value="notes">มีโน้ตของฉัน</option>
     </select>
     <span class="count-badge" id="countBadge"></span>
-    <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า GitHub Token">⚙️</button>
+    <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า sync">⚙️</button>
   </div>
 </div>
 
@@ -471,11 +473,23 @@
 <script>
 const REPO       = 'patiphaninjob-lang/beer-vanon-agents';
 const NOTES_FILE = 'docs/notes/notes.json';
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
+  authDomain: "beam-7645f.firebaseapp.com",
+  projectId: "beam-7645f",
+  storageBucket: "beam-7645f.firebasestorage.app",
+  messagingSenderId: "645933254174",
+  appId: "1:645933254174:web:75a7e62fda923c9975500f"
+};
+const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
 const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
 let currentData     = null;
 let notesCache      = {};
 let notesSha        = null;
+let notesDocRef      = null;
+let notesSyncReady   = false;
+let notesSyncBackend = 'github';
 let activeNoteTicker = null;
 let activeNoteStock  = null;
 let availableDates  = [];
@@ -519,8 +533,119 @@ function showToast(msg, color='#16c784') {
   setTimeout(() => t.remove(), 3000);
 }
 
+function cloneNotesMap(src) {
+  const out = {};
+  if (!src || typeof src !== 'object') return out;
+  for (const [ticker, notes] of Object.entries(src)) {
+    if (!Array.isArray(notes)) continue;
+    out[ticker] = notes.map(note => ({ ...note }));
+  }
+  return out;
+}
+
+function countNotesMap(map) {
+  return Object.values(map || {}).reduce((sum, notes) => sum + (Array.isArray(notes) ? notes.length : 0), 0);
+}
+
+function withTimeout(promise, ms) {
+  let timer = null;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
+function hasFirebaseClient() {
+  return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
+}
+
+function initCloudSync() {
+  if (notesSyncReady) return true;
+  if (!hasFirebaseClient()) return false;
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+    const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
+    notesDocRef = db.collection(collectionName).doc(docName);
+    notesSyncReady = true;
+    return true;
+  } catch (e) {
+    console.warn('[cloud-sync] init failed', e);
+    notesDocRef = null;
+    notesSyncReady = false;
+    return false;
+  }
+}
+
+async function loadNotesFromFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    const snap = await notesDocRef.get();
+    if (!snap.exists) return false;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    if (!Object.keys(next).length) return false;
+    return next;
+  } catch (e) {
+    console.warn('[cloud-sync] load firestore failed', e);
+    return false;
+  }
+}
+
+async function saveNotesToFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    await notesDocRef.set({
+      notes: cloneNotesMap(notesCache),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedBy: 'beer-top100',
+      source: location.origin
+    }, { merge: true });
+    notesSyncBackend = 'firestore';
+    return true;
+  } catch (e) {
+    console.warn('[cloud-sync] save firestore failed', e);
+    return false;
+  }
+}
+
+async function refreshGithubSha(pat) {
+  try {
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+      headers: githubHeaders(pat),
+      cache: 'no-store'
+    });
+    if (!api.ok) return false;
+    const data = await api.json();
+    notesSha = data.sha || null;
+    return !!notesSha;
+  } catch (e) {
+    return false;
+  }
+}
+
 // ── Notes ─────────────────────────────────────────────────────
 async function loadNotes(force = false) {
+  if (force) {
+    const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
+    if (firestoreData) {
+      notesCache = firestoreData;
+      notesSha = null;
+      notesSyncBackend = 'firestore';
+      return true;
+    }
+  } else {
+    const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
+    if (firestoreData) {
+      notesCache = firestoreData;
+      notesSha = null;
+      notesSyncBackend = 'firestore';
+      return true;
+    }
+  }
+
   const pat = localStorage.getItem('gh_pat') || '';
   const apiUrl = `https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`;
 
@@ -533,6 +658,10 @@ async function loadNotes(force = false) {
       const file = await api.json();
       notesSha = file.sha;
       notesCache = JSON.parse(fromBase64(file.content || 'e30='));
+      notesSyncBackend = 'github';
+      if (countNotesMap(notesCache) > 0) {
+        await saveNotesToFirestore();
+      }
       return true;
     }
   } catch(e) {}
@@ -543,16 +672,21 @@ async function loadNotes(force = false) {
     });
     if (!r.ok) throw new Error(`notes HTTP ${r.status}`);
     notesCache = await r.json();
+    notesSyncBackend = 'github';
     // get SHA for write operations
     const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
       headers: githubHeaders(pat),
       cache: 'no-store'
     });
     if (api.ok) notesSha = (await api.json()).sha;
+    if (countNotesMap(notesCache) > 0) {
+      await saveNotesToFirestore();
+    }
     return true;
   } catch(e) {
     notesCache = {};
     notesSha = null;
+    notesSyncBackend = 'github';
     return false;
   }
 }
@@ -571,13 +705,39 @@ async function writeNotesToGitHub(message, pat) {
   });
 }
 
-async function saveNoteToGitHub(ticker, noteText) {
+async function persistNotes(message) {
+  const cloudOk = await withTimeout(saveNotesToFirestore(), 2500).catch(() => false);
+  let githubOk = false;
   const pat = localStorage.getItem('gh_pat');
-  if (!pat) { showSettings(); return false; }
+
+  if (pat) {
+    if (!notesSha) {
+      await refreshGithubSha(pat);
+    }
+    let r = await writeNotesToGitHub(message, pat);
+    if (r.status === 409) {
+      await loadNotes(true);
+      await refreshGithubSha(pat);
+      r = await writeNotesToGitHub(message, pat);
+    }
+    githubOk = r.ok;
+    if (githubOk) {
+      try { notesSha = (await r.json()).content.sha; } catch (e) {}
+    } else if (!cloudOk) {
+      const err = await r.json().catch(() => ({}));
+      if (r.status === 401 || r.status === 403) showSettings();
+      else showToast(`❌ ${err.message || 'sync failed'}`, '#ea3943');
+    }
+  }
+
+  return cloudOk || githubOk;
+}
+
+async function saveNoteToGitHub(ticker, noteText) {
   await loadNotes(true);
 
   const note = {
-    id: Date.now().toString(),
+    id: (crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`),
     date: new Date().toISOString().split('T')[0],
     time: new Date().toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'}),
     note: noteText.trim(),
@@ -596,44 +756,25 @@ async function saveNoteToGitHub(ticker, noteText) {
   if (!notesCache[ticker]) notesCache[ticker] = [];
   notesCache[ticker].unshift(note);
 
-  let r = await writeNotesToGitHub(`📝 Note: ${ticker} ${note.date}`, pat);
-  if (r.status === 409) {
-    await loadNotes(true);
-    if (!notesCache[ticker]) notesCache[ticker] = [];
-    notesCache[ticker].unshift(note);
-    r = await writeNotesToGitHub(`📝 Note: ${ticker} ${note.date}`, pat);
-  }
-
-  if (r.ok) {
-    notesSha = (await r.json()).content.sha;
+  const ok = await persistNotes(`📝 Note: ${ticker} ${note.date}`);
+  if (ok) {
     return true;
   } else {
-    const err = await r.json();
-    if (r.status === 401 || r.status === 403) showSettings();
-    else showToast(`❌ ${err.message}`, '#ea3943');
     notesCache[ticker]?.shift(); // rollback
     return false;
   }
 }
 
 async function deleteNote(ticker, noteId) {
-  const pat = localStorage.getItem('gh_pat');
-  if (!pat) { showSettings(); return; }
   await loadNotes(true);
   if (!notesCache[ticker]) return;
 
   const before = [...notesCache[ticker]];
   notesCache[ticker] = notesCache[ticker].filter(n => n.id !== noteId);
 
-  let r = await writeNotesToGitHub(`🗑️ Delete note: ${ticker} ${noteId}`, pat);
-  if (r.status === 409) {
-    await loadNotes(true);
-    notesCache[ticker] = (notesCache[ticker] || []).filter(n => n.id !== noteId);
-    r = await writeNotesToGitHub(`🗑️ Delete note: ${ticker} ${noteId}`, pat);
-  }
+  const ok = await persistNotes(`🗑️ Delete note: ${ticker} ${noteId}`);
 
-  if (r.ok) {
-    notesSha = (await r.json()).content.sha;
+  if (ok) {
     if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); }
     else { showNoteModal(ticker, activeNoteStock); renderCards(); }
   } else {
@@ -646,6 +787,12 @@ async function deleteNote(ticker, noteId) {
 function showSettings() {
   document.getElementById('patInput').value    = localStorage.getItem('gh_pat')    || '';
   document.getElementById('groqKeyInput').value = localStorage.getItem('groq_key') || '';
+  const status = document.getElementById('syncStatus');
+  if (status) {
+    const sourceLabel = notesSyncBackend === 'firestore' ? 'Firestore cloud' : 'GitHub backup';
+    status.style.color = '#6b7280';
+    status.textContent = `Sync source: ${sourceLabel}`;
+  }
   document.getElementById('settingsOverlay').style.display = 'flex';
 }
 function closeSettings() {
@@ -664,16 +811,16 @@ async function syncNow() {
   const status = document.getElementById('syncStatus');
   if (status) {
     status.style.color = '#6b7280';
-    status.textContent = 'กำลัง sync notes จาก GitHub...';
+    status.textContent = 'กำลัง sync notes จาก cloud...';
   }
 
   const ok = await loadNotes(true);
-  const total = Object.values(notesCache).reduce((sum, notes) => sum + (Array.isArray(notes) ? notes.length : 0), 0);
+  const total = countNotesMap(notesCache);
 
   if (ok) {
     if (status) {
       status.style.color = '#16c784';
-      status.textContent = `Sync แล้ว: ${total} notes จาก GitHub`;
+      status.textContent = `Sync แล้ว: ${total} notes จาก ${notesSyncBackend === 'firestore' ? 'cloud' : 'GitHub'}`;
     }
     renderMarketOverview();
     renderCards();
@@ -682,7 +829,7 @@ async function syncNow() {
   } else {
     if (status) {
       status.style.color = '#ea3943';
-      status.textContent = 'Sync ไม่สำเร็จ ลองตรวจ internet หรือ GitHub token';
+      status.textContent = 'Sync ไม่สำเร็จ ลองตรวจ internet หรือ token สำรอง';
     }
     showToast('❌ Sync notes ไม่สำเร็จ', '#ea3943');
   }
@@ -697,7 +844,7 @@ async function copySetupLink() {
     showToast('⚠️ ยังไม่มี key/token สำหรับสร้างลิงก์ตั้งค่า', '#f0b90b');
     if (status) {
       status.style.color = '#f0b90b';
-      status.textContent = 'ใส่ GitHub token หรือ Groq key ก่อน แล้วค่อยคัดลอกลิงก์';
+      status.textContent = 'ใส่ token สำรองหรือ Groq key ก่อน แล้วค่อยคัดลอกลิงก์';
     }
     return;
   }
@@ -713,7 +860,7 @@ async function copySetupLink() {
     await navigator.clipboard.writeText(setupLink);
     if (status) {
       status.style.color = '#16c784';
-      status.textContent = 'คัดลอกลิงก์ตั้งค่าแล้ว เปิดลิงก์นี้บนเครื่องอื่นเพื่อบันทึก token อัตโนมัติ';
+      status.textContent = 'คัดลอกลิงก์ตั้งค่าแล้ว เปิดบนเครื่องอื่นเพื่อบันทึก token อัตโนมัติ';
     }
     showToast('✅ คัดลอกลิงก์ตั้งค่าแล้ว');
   } catch(e) {
