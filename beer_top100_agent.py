@@ -42,6 +42,9 @@ REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
 CALL_DELAY       = 1.2   # วินาที ระหว่าง Groq call (ป้องกัน rate limit)
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
+RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
+RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
+RUN_REQUESTED_BY = os.getenv("RUN_REQUESTED_BY", "").strip()
 
 # ~140 หุ้น universe → sort by market cap → take 100
 US_UNIVERSE = [
@@ -112,6 +115,83 @@ def search_knowledge(query: str, posts, embeddings, embed_model, top_k=3, query_
         parts.append(chunk)
         total += len(chunk)
     return "\n\n---\n\n".join(parts) or "ไม่พบข้อมูล"
+
+
+def _fallback_homework_analysis(stock: dict, knowledge_ctx: str = "", user_notes: list = None) -> list[dict]:
+    """Build a deterministic Chapter 34 homework set when Groq output is missing."""
+    base_items = build_stock_homework_checklist(stock)
+    direction = "ขึ้น" if stock.get("pct_change", 0) > 0 else "ลง"
+    note_hint = f" คุณมีโน้ตอ้างอิง {len(user_notes)} รายการ" if user_notes else ""
+    knowledge_hint = ""
+    if knowledge_ctx:
+        knowledge_hint = knowledge_ctx.strip().splitlines()[0][:220]
+
+    insights = {
+        "ธุรกิจ": (
+            f"{stock['ticker']} อยู่ในกลุ่ม {stock.get('sector', 'N/A')} "
+            f"และราคาวันนี้{direction} {abs(stock.get('pct_change', 0)):.1f}% "
+            f"ให้โฟกัสว่าการเติบโตมาจากอะไรจริง{note_hint}"
+        ),
+        "ตัวเลข": (
+            f"ดู market cap rank #{stock.get('rank', '-')}, volume {stock.get('volume', 0):,}, "
+            f"และ P/E {stock.get('pe_ratio') or 'N/A'} ว่าราคาแพงหรือยังถูกเมื่อเทียบกับ growth"
+        ),
+        "การสื่อสาร": (
+            "เช็กว่าข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis หรือไม่ "
+            "ถ้ามีความขัดกันให้ระวังการตีความเองเกินข้อมูล"
+        ),
+        "คู่แข่ง": (
+            f"เปรียบเทียบ {stock['ticker']} กับคู่แข่งใน sector เดียวกันว่ามี moat, scale, "
+            f"หรือความเชื่อมั่นตลาดต่างกันตรงไหน"
+        ),
+        "ผู้บริหาร": (
+            "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม "
+            "แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        ),
+        "แผนของเรา": (
+            f"ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ "
+            f"โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        ),
+    }
+
+    if knowledge_hint:
+        insights["ธุรกิจ"] += f" | knowledge hint: {knowledge_hint}"
+
+    return [
+        {
+            "topic": item["topic"],
+            "insight": insights.get(item["topic"], item.get("prompt", "")),
+        }
+        for item in base_items
+    ]
+
+
+def _normalize_homework_analysis(stock: dict, homework_items, knowledge_ctx: str = "", user_notes: list = None) -> list[dict]:
+    """Guarantee a complete six-item Chapter 34 homework list."""
+    fallback_items = _fallback_homework_analysis(stock, knowledge_ctx, user_notes)
+    fallback_map = {item["topic"]: item["insight"] for item in fallback_items}
+    ordered_topics = [item["topic"] for item in fallback_items]
+
+    if not isinstance(homework_items, list):
+        return fallback_items
+
+    raw_map = {}
+    for item in homework_items:
+        if not isinstance(item, dict):
+            continue
+        topic = str(item.get("topic", "")).strip()
+        if not topic:
+            continue
+        insight = str(item.get("insight", "")).strip()
+        raw_map[topic] = insight or fallback_map.get(topic, "")
+
+    return [
+        {
+            "topic": topic,
+            "insight": raw_map.get(topic, fallback_map.get(topic, "")),
+        }
+        for topic in ordered_topics
+    ]
 
 
 # ─── Market Cap Ranking ────────────────────────────────────────
@@ -300,11 +380,24 @@ def fetch_market_indices() -> dict:
 # ─── User Notes ───────────────────────────────────────────────
 
 def load_user_notes() -> dict:
+    try:
+        from urllib.request import urlopen
+
+        url = "https://raw.githubusercontent.com/patiphaninjob-lang/beer-vanon-agents/main/docs/notes/notes.json"
+        with urlopen(url, timeout=15) as resp:
+            payload = resp.read().decode("utf-8")
+        notes = json.loads(payload)
+        if isinstance(notes, dict):
+            return notes
+    except Exception as e:
+        safe_print(f"   ⚠️ online notes fallback: {e}")
+
     path = Path("docs/notes/notes.json")
     if not path.exists():
         return {}
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        notes = json.loads(path.read_text(encoding="utf-8"))
+        return notes if isinstance(notes, dict) else {}
     except Exception:
         return {}
 
@@ -333,6 +426,20 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
     """ONE Groq call with JSON mode: วิเคราะห์ครบทุกมิติ (News + Beer Opinion + Ch34 Homework)"""
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
+    fallback  = {
+        "interpretation": (
+            f"{stock['ticker']} อยู่ในกลุ่ม {stock.get('sector', 'N/A')} "
+            f"และวันนี้{direction} {abs(stock.get('pct_change', 0)):.1f}% "
+            f"แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน"
+        ),
+        "beer_view": (
+            f"Beer view แบบสำรอง: ใช้ rank #{stock.get('rank', '-')}, volume, ข่าว และ context "
+            f"เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี"
+        ),
+        "homework_analysis": _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
+        "note_review": None,
+        "analysis_status": "fallback",
+    }
 
     notes_ctx = ""
     if user_notes:
@@ -379,15 +486,23 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
             temperature=0.3,
             response_format={"type": "json_object"},
         )
-        return json.loads(resp.choices[0].message.content)
+        data = json.loads(resp.choices[0].message.content)
+        if not isinstance(data, dict):
+            return fallback
+        data["interpretation"] = str(data.get("interpretation") or fallback["interpretation"]).strip()
+        data["beer_view"] = str(data.get("beer_view") or fallback["beer_view"]).strip()
+        data["homework_analysis"] = _normalize_homework_analysis(
+            stock,
+            data.get("homework_analysis"),
+            knowledge_ctx,
+            user_notes,
+        )
+        data["analysis_status"] = "groq"
+        return data
     except Exception as e:
         safe_print(f"   ⚠️ Groq Error [{stock['ticker']}]: {e}")
-        return {
-            "interpretation": "ไม่สามารถวิเคราะห์ได้",
-            "beer_view": "N/A",
-            "homework_analysis": [],
-            "note_review": None
-        }
+        fallback["analysis_error"] = str(e)
+        return fallback
 
 
 # ─── HTML Card ────────────────────────────────────────────────
@@ -452,6 +567,50 @@ def _fmt_mktcap(cap: float) -> str:
     if cap > 0:
         return f"${cap/1e6:.0f}M"
     return "N/A"
+
+
+def _fallback_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
+    """Return a minimal stock payload when live market data is unavailable."""
+    price_now = 0.0
+    pct_change = 0.0
+    volume = 0
+
+    try:
+        if hist_df is not None and not hist_df.empty and "Close" in hist_df.columns:
+            close = hist_df["Close"].dropna()
+            if len(close) > 0:
+                price_now = float(close.iloc[-1])
+                price_prev = float(close.iloc[-2]) if len(close) > 1 else price_now
+                pct_change = (price_now - price_prev) / price_prev * 100 if price_prev else 0.0
+            if "Volume" in hist_df.columns:
+                vol = hist_df["Volume"].dropna()
+                if len(vol) > 0:
+                    volume = int(vol.iloc[-1])
+    except Exception:
+        pass
+
+    return {
+        "ticker": ticker,
+        "name": ticker,
+        "sector": "N/A",
+        "price": price_now,
+        "pct_change": pct_change,
+        "volume": volume,
+        "market_cap": 0,
+        "pe_ratio": None,
+        "news": "ไม่มีข่าว",
+        "news_list": [],
+        "rank": rank,
+        "tv_url": _tv_url(ticker, ""),
+    }
+
+
+def _safe_get_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
+    try:
+        return get_stock_context(ticker, rank, hist_df=hist_df)
+    except Exception as e:
+        safe_print(f"   [{rank:3d}] {ticker:<8} -> ⚠️ stock context fallback: {e}")
+        return _fallback_stock_context(ticker, rank, hist_df=hist_df)
 
 
 def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: list = None) -> str:
@@ -699,6 +858,34 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
 </html>"""
 
 
+def build_completion_email(date_str: str, archive_url: str, total_stocks: int, test_run: bool = False) -> str:
+    label = "[TEST] Beer Top 100 homework completed" if test_run else "Beer Top 100 homework completed"
+    title = "การบ้าน Beer Top 100 เสร็จแล้ว"
+    note = "ระบบอัปโหลดผลลัพธ์ขึ้นเว็บ archive เรียบร้อยแล้ว"
+    return f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<div style="max-width:640px;margin:0 auto;padding:24px">
+  <div style="background:#161b22;border:1px solid #21262d;border-radius:12px;padding:20px">
+    <div style="font-size:2em;margin-bottom:6px">🍺</div>
+    <div style="color:#f0b90b;font-weight:bold;font-size:1.05em;margin-bottom:8px">{title}</div>
+    <div style="color:#e6edf3;font-size:0.95em;line-height:1.7;margin-bottom:10px">
+      {note}<br>
+      วันที่: {date_str}<br>
+      จำนวนหุ้นที่ประมวลผล: {total_stocks} ตัว
+    </div>
+    <div style="color:#8a8f98;font-size:0.86em;line-height:1.6;margin-bottom:14px">
+      อีเมลฉบับนี้เป็นเพียงรายงานสถานะ ไม่ส่งการบ้านฉบับเต็มอีกต่อไป
+    </div>
+    {f'<div style="margin:14px 0"><a href="{archive_url}" style="color:#6366f1;text-decoration:none;font-weight:bold">ดู archive บนเว็บ →</a></div>' if archive_url else ""}
+    <div style="color:#4b5563;font-size:0.76em;margin-top:16px">{label}</div>
+  </div>
+</div>
+</body>
+</html>"""
+
+
 # ─── Email ────────────────────────────────────────────────────
 
 def send_email(html: str, subject: str, images: list = None):
@@ -738,12 +925,18 @@ def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_
     """Worker function สำหรับ parallel processing"""
     for attempt in range(3):
         try:
-            stock     = get_stock_context(ticker, rank, hist_df=hist_df)
+            stock     = _safe_get_stock_context(ticker, rank, hist_df=hist_df)
             ctx       = search_knowledge(query, posts, embeddings, embed_model, query_vector=query_vector)
             my_notes    = user_notes_db.get(ticker, [])
             
             # Groq call (JSON Mode)
             analysis_data = combined_analysis(stock, ctx, my_notes if my_notes else None)
+            analysis_data["homework_analysis"] = _normalize_homework_analysis(
+                stock,
+                analysis_data.get("homework_analysis"),
+                ctx,
+                my_notes if my_notes else None,
+            )
             
             chart_bytes = generate_mini_chart_b64(ticker, hist_df=hist_df)
             cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
@@ -759,7 +952,8 @@ def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_
                 safe_print(f"   [{rank:3d}] {ticker:<8} → ⏳ rate limit — รอ {wait}s...")
                 time.sleep(wait)
             else:
-                safe_print(f"   [{rank:3d}] {ticker:<8} → ❌ {err[:100]}")
+                import traceback
+                safe_print(f"   [{rank:3d}] {ticker:<8} → ❌ FATAL ERROR:\n{traceback.format_exc()}")
                 return None
 
 
@@ -792,6 +986,10 @@ def main():
 
     date_str = today.strftime("%A, %d %B %Y")
     safe_print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")
+    if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY:
+        safe_print(
+            f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'}"
+        )
 
     limit = args.limit if args.limit is not None else (5 if args.test else TOP_N)
 
@@ -869,21 +1067,25 @@ def main():
 
     # 5. สร้างและส่ง email
     safe_print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
-    html    = build_html_report(stocks_data, date_str, archive_url)
-    images  = [(s["chart_cid"], s["chart_bytes"]) for s in stocks_data if s.get("chart_bytes")]
-    subject = f"🍺 Beer Top 100 Market Cap — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
+    homework_complete = sum(1 for s in stocks_data if len(s["analysis_data"].get("homework_analysis", [])) == 6)
+    safe_print(f"   homework completeness: {homework_complete}/{len(stocks_data)}")
+    if homework_complete != len(stocks_data):
+        safe_print(f"   ⚠️ Homework ไม่ครบทุกหุ้น: ขาด {len(stocks_data) - homework_complete} ตัว")
+    report_html = build_html_report(stocks_data, date_str, archive_url)
+    email_html   = build_completion_email(date_str, archive_url, len(stocks_data), test_run=args.test)
+    subject = f"🍺 Beer Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
     if args.test:
         subject = f"[TEST] {subject}"
 
     if args.out_html:
-        Path(args.out_html).write_text(html, encoding="utf-8")
+        Path(args.out_html).write_text(report_html, encoding="utf-8")
         safe_print(f"  ✅ บันทึก HTML preview: {args.out_html}")
 
     if args.no_email:
         safe_print("📧 ข้ามการส่ง email (--no-email)")
     else:
-        safe_print("📧 ส่ง email...")
-        send_email(html, subject, images)
+        safe_print("📧 ส่ง email แจ้งเตือน...")
+        send_email(email_html, subject, None)
 
     safe_print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top_stocks)} หุ้น")
 
