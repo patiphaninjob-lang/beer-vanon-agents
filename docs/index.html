@@ -510,7 +510,7 @@
       <div id="calPopup" class="cal-popup" style="display:none"></div>
     </div>
     <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
-    <button class="run-agent-btn" id="runAgentBtn" onclick="runAgent()" title="เริ่มทำการบ้านเดี๋ยวนี้ (On-demand)">🚀 รันการบ้านสด</button>
+    <button type="button" class="run-agent-btn" id="runAgentBtn" onclick="runAgent(event)" title="เริ่มทำการบ้านเดี๋ยวนี้ (On-demand)">🚀 รันการบ้านสด</button>
     <select id="sectorSel" onchange="renderCards()">
       <option value="">ทุก Sector</option>
     </select>
@@ -1068,7 +1068,9 @@ function showNoteModal(ticker, stockData) {
 function closeNoteModal() {
   document.getElementById('noteOverlay').style.display = 'none';
 }
-async function runAgent() {
+async function runAgent(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  
   const pat = localStorage.getItem('gh_pat');
   if (!pat) {
     showToast('⚠️ ต้องใส่ GitHub Token ใน Settings ก่อนเพื่อสั่งรัน', '#f0b90b');
@@ -1102,11 +1104,18 @@ async function runAgent() {
         btn.innerHTML = originalText;
       }, 30000); 
     } else {
-      const err = await r.json();
+      if (r.status === 401) {
+        showToast('❌ GitHub Token หมดอายุหรือผิด กรุณาเปลี่ยนใหม่', '#ea3943');
+        showSettings();
+        throw new Error('Token expired (401)');
+      }
+      const err = await r.json().catch(() => ({ message: 'Unknown error' }));
       throw new Error(err.message || 'Error triggering workflow');
     }
   } catch (e) {
-    showToast(`❌ ล้มเหลว: ${e.message}`, '#ea3943');
+    if (e.message !== 'Token expired (401)') {
+      showToast(`❌ ล้มเหลว: ${e.message}`, '#ea3943');
+    }
     btn.disabled = false;
     btn.innerHTML = originalText;
   }
