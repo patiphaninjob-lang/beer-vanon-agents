@@ -323,19 +323,68 @@ function parseHistoryCandles(data) {
 
 async function loadHistoryCandles() {
   if (state.allCandles.length) return state.allCandles;
-  if (state.ticker === '_MARKET') {
+  
+  const tryLoad = async (ticker) => {
     try {
-      const data = await fetchJson(`history-data/market.json?nocache=${Date.now()}`);
-      state.allCandles = parseHistoryCandles(data);
-      if (state.allCandles.length) return state.allCandles;
-    } catch (e) {}
-    state.allCandles = await buildArchiveFallbackCandles();
-    if (!state.allCandles.length) throw new Error('market history file has no candle data');
-    return state.allCandles;
+      const data = await fetchJson(`history-data/${encodeURIComponent(ticker)}.json?nocache=${Date.now()}`);
+      return parseHistoryCandles(data);
+    } catch (e) { return null; }
+  };
+
+  if (state.ticker === '_MARKET') {
+    let candles = await tryLoad('market');
+    if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
+    state.allCandles = candles;
+  } else {
+    // Try both - and . formats for the history file
+    let candles = await tryLoad(state.ticker);
+    if (!candles) candles = await tryLoad(state.ticker.replace('-', '.'));
+    
+    if (!candles || !candles.length) {
+      candles = await buildArchiveFallbackCandles();
+    }
+    state.allCandles = candles;
   }
-  const data = await fetchJson(`history-data/${encodeURIComponent(state.ticker)}.json?nocache=${Date.now()}`);
-  state.allCandles = parseHistoryCandles(data);
-  if (!state.allCandles.length) throw new Error('history file has no candle data');
+
+  // STITCH: Add the latest price from currentData if it's newer than the last candle
+  if (state.allCandles.length && currentData?.date) {
+    const lastCandle = state.allCandles[state.allCandles.length - 1];
+    if (currentData.date > lastCandle.date) {
+      let latestPrice = 0, latestVol = 0, latestOpen = 0;
+      
+      if (state.ticker === '_MARKET') {
+        const mi = currentData.market_indices || {};
+        const proxy = mi.dji || mi.spx || mi.ixic;
+        if (proxy?.price) {
+          latestPrice = Number(proxy.price);
+          const pct = Number(proxy.pct_change || 0);
+          latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
+        }
+      } else {
+        const stock = findStock(currentData, state.ticker);
+        if (stock?.price) {
+          latestPrice = Number(stock.price);
+          latestVol = Number(stock.volume || 0);
+          const pct = Number(stock.pct_change || 0);
+          latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
+        }
+      }
+
+      if (latestPrice > 0) {
+        state.allCandles.push({
+          date: currentData.date,
+          open: latestOpen || latestPrice,
+          high: Math.max(latestOpen, latestPrice) * 1.001,
+          low: Math.min(latestOpen, latestPrice) * 0.999,
+          close: latestPrice,
+          volume: latestVol,
+          is_stitched: true
+        });
+      }
+    }
+  }
+
+  if (!state.allCandles.length) throw new Error('ไม่พบข้อมูลกราฟของหุ้นนี้');
   return state.allCandles;
 }
 
@@ -722,9 +771,10 @@ function bindEvents() {
     canvas.style.cursor = marker ? 'pointer' : 'crosshair';
     if (marker) {
       const first = marker.group.notes[0] || {};
+      const isHoliday = marker.group.date !== marker.candle.date;
       hoverTip.innerHTML = `
-        <div class="hover-date">${fmtDate(marker.group.date)}</div>
-        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} · close ${fmtMoney(marker.candle.close)}</div>
+        <div class="hover-date">${fmtDate(marker.group.date)}${isHoliday ? ' <small style="color:#8b949e">(วันหยุด)</small>' : ''}</div>
+        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} · ${isHoliday ? 'ราคาปิดวันทำการใกล้เคียง' : 'close'} ${fmtMoney(marker.candle.close)}</div>
         <div class="hover-note">${esc(first.note || '')}</div>
       `;
       hoverTip.style.display = 'block';
