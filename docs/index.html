@@ -1443,7 +1443,7 @@ function cardHTML(s) {
 }
 
 // ── Event delegation ─────────────────────────────────────────
-document.addEventListener('click', e => {
+document.addEventListener('click', async e => {
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
   }
@@ -1459,7 +1459,25 @@ document.addEventListener('click', e => {
       const notes = notesCache[ticker] || [];
       const note = notes.find(n => n.id == noteId);
       if (note) {
-        alert(`📅 ${note.date}${note.time ? ' ' + note.time : ''}\n\n${note.note}`);
+        let msg = `📅 ${note.date}${note.time ? ' ' + note.time : ''}\n\n📝 บันทึกของคุณ:\n${note.note}`;
+        
+        if (ticker !== '_MARKET') {
+          try {
+            const fetchDate = note.archive_date || note.date;
+            // Fetch the historical data for that day to extract Beer's analysis
+            const r = await fetch(`data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            if (r.ok) {
+              const data = await r.json();
+              const stock = data.stocks?.find(s => s.ticker === ticker);
+              if (stock && stock.analysis) {
+                msg += `\n\n🍺 วิเคราะห์เจาะลึก (Beer):\n${stock.analysis.trim()}`;
+              }
+            }
+          } catch (err) {
+            // Ignore fetch errors, fallback to showing only the note
+          }
+        }
+        alert(msg);
       }
       return;
     }
