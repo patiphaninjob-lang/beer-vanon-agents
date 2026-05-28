@@ -346,33 +346,46 @@ async function loadHistoryCandles() {
     state.allCandles = candles;
   }
 
-  // STITCH: Add the latest price from currentData if it's newer than the last candle
-  if (state.allCandles.length && currentData?.date) {
+  // STITCH: Add the latest price from the most recent archive if it's newer than the last candle
+  const latestArchive = state.ticker === '_MARKET' ? state.latestMarketArchive : null;
+  const latestItem = state.ticker === '_MARKET' ? null : state.latestStock;
+  const latestDate = latestArchive?.date || (latestItem ? (state.latestMarketArchive?.date || state.allCandles[state.allCandles.length-1]?.date) : null);
+
+  // If we have latest info and it's newer than history data
+  if (state.allCandles.length) {
     const lastCandle = state.allCandles[state.allCandles.length - 1];
-    if (currentData.date > lastCandle.date) {
+    
+    // We need to know which date we are looking at. 
+    // Since loadLatestStock already ran, we can use state.latestStock/state.latestMarketArchive
+    let targetDay = latestArchive;
+    if (!targetDay && state.ticker !== '_MARKET') {
+        // Try to find which archive date the latestStock came from (usually dates[0])
+        // To be safe, we'll just use the latest stock info we have.
+    }
+
+    const todayDate = latestArchive?.date || ""; // This is populated by loadLatestStock
+    
+    if (todayDate && todayDate > lastCandle.date) {
       let latestPrice = 0, latestVol = 0, latestOpen = 0;
       
       if (state.ticker === '_MARKET') {
-        const mi = currentData.market_indices || {};
+        const mi = latestArchive.market_indices || {};
         const proxy = mi.dji || mi.spx || mi.ixic;
         if (proxy?.price) {
           latestPrice = Number(proxy.price);
           const pct = Number(proxy.pct_change || 0);
           latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
         }
-      } else {
-        const stock = findStock(currentData, state.ticker);
-        if (stock?.price) {
-          latestPrice = Number(stock.price);
-          latestVol = Number(stock.volume || 0);
-          const pct = Number(stock.pct_change || 0);
-          latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
-        }
+      } else if (state.latestStock) {
+        latestPrice = Number(state.latestStock.price);
+        latestVol = Number(state.latestStock.volume || 0);
+        const pct = Number(state.latestStock.pct_change || 0);
+        latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
       }
 
       if (latestPrice > 0) {
         state.allCandles.push({
-          date: currentData.date,
+          date: todayDate,
           open: latestOpen || latestPrice,
           high: Math.max(latestOpen, latestPrice) * 1.001,
           low: Math.min(latestOpen, latestPrice) * 0.999,
