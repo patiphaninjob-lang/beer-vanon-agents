@@ -1046,7 +1046,7 @@ function renderMarketOverview() {
     let leftPos = ((noteTS - startTS) / rangeTS) * 100;
     leftPos = Math.max(2, Math.min(98, leftPos));
     const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" title="${esc(label)}"></div>`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" data-note-id="${n.id}" title="${esc(label)}"></div>`;
   }).join('');
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
@@ -1079,26 +1079,6 @@ function renderMarketOverview() {
       }).join('')
     : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
 
-  const notesHTML = marketNotes.length ? `
-    <div class="mkt-notes-head">🌡️ อารมณ์ตลาดที่เคยบันทึกไว้ (${marketNotes.length} รายการ)</div>
-    ${marketNotes.slice(0,5).map(n => {
-      const dji  = n.dji_price  ? `DJI: ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
-      const spx  = n.spx_price  ? `S&P: ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
-      return `
-        <div class="mkt-note">
-          <div class="mkt-note-meta">
-            <span>📅 ${n.date}${n.time ? ' · '+n.time : ''}</span>
-            ${dji ? `<span>${dji}</span>` : ''}
-            ${spx ? `<span>${spx}</span>` : ''}
-            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูวันนั้น →</a>` : ''}
-            <button class="mkt-note-del" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
-          </div>
-          <div class="mkt-note-text">${esc(n.note)}</div>
-        </div>`;
-    }).join('')}
-    ${marketNotes.length > 5 ? `<div style="color:#4b5563;font-size:0.75em;padding:2px 0">และอีก ${marketNotes.length-5} บันทึก — กด "บันทึกอารมณ์ตลาด" เพื่อดูทั้งหมด</div>` : ''}
-  ` : '';
-
   el.innerHTML = `
     <div class="market-overview">
       <div class="market-overview-head">
@@ -1109,7 +1089,6 @@ function renderMarketOverview() {
         </div>
       </div>
       <div class="index-row">${indexCards}</div>
-      <div id="marketNotesList">${notesHTML}</div>
     </div>`;
 }
 
@@ -1422,7 +1401,7 @@ function cardHTML(s) {
     
     if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
     
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" data-note-id="${n.id}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
   }).join('') : '';
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
@@ -1473,6 +1452,18 @@ document.addEventListener('click', e => {
   const noteTrigger = e.target.closest('.chart-marker, .note-btn');
   if (noteTrigger) {
     const ticker = noteTrigger.dataset.ticker;
+    const noteId = noteTrigger.dataset.noteId;
+
+    if (noteId) {
+      // It's a specific marker, show a popup alert for that specific note
+      const notes = notesCache[ticker] || [];
+      const note = notes.find(n => n.id == noteId);
+      if (note) {
+        alert(`📅 ${note.date}${note.time ? ' ' + note.time : ''}\n\n${note.note}`);
+      }
+      return;
+    }
+
     if (ticker === '_MARKET') {
       openMarketNote();
       return;
