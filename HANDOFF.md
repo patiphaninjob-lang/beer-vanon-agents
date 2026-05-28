@@ -3,23 +3,20 @@
 **Date:** 2026-05-28
 
 ## Current Objective
-System is stable. Standby for the next phase of development, monitoring, or starting a new functional track.
+System architecture successfully transitioned to **On-demand** mode. The next step is to verify the manual trigger flow and possibly optimize the agent's performance (parallelism vs. rate limits) to make the on-demand run as fast as possible.
 
 ## Latest Truth
-- **Project Memory System:** Fully initialized (Policy, Context, Logs separated).
-- **API Limits:** Groq API 6000 TPM limit mitigated via prompt compression and a 10.0s delay lock in `beer_top100_agent.py`, solving the 30-minute GitHub Actions timeout.
-- **UI Marker Tooltips:** Custom HTML tooltips (`.marker-tooltip`) are fully implemented and positioned dynamically to prevent screen clipping on both desktop and mobile. 
-- **Tooltips applied globally:** The custom tooltip UI is now active on both the main dashboard (`index.html`) for stock/market cards, and the history charts (`history.html`). They dynamically load and display both user notes and Beer's "วิเคราะห์เจาะลึก" (Deep Analysis).
-- **History Page "Latest Always" Logic:** `history.html` ignores `?date=` URL parameters for initial load, prioritizing the most recent archive data.
-- **Auto-Deploy Rule:** All changes are immediately committed and pushed to GitHub Pages for multi-device testing.
+- **On-demand Trigger:** Added "🚀 รันการบ้านสด" button to `docs/index.html`. It triggers `beer_top100_agent.yml` via GitHub API.
+- **Automation Disabled:** Cron schedule commented out in `.github/workflows/beer_top100_agent.yml`.
+- **Security:** Requires GitHub Personal Access Token (PAT) stored in `localStorage` via the Settings modal.
+- **History Tooltips:** Fully functional with markers and dynamic content loading.
+- **Project Memory:** Context files updated to reflect the new manual workflow.
 
 ## Files Changed
-- `docs/index.html` (Added custom marker tooltip HTML/CSS/JS, dynamic positioning logic, mobile scroll, and removed native alerts)
-- `docs/history.html` (Integrated custom marker tooltip HTML/CSS/JS into the canvas click handler)
-- `beer_top100_agent.py`
-- `FIX_LOG.md`
-- `HANDOFF.md`
+- `docs/index.html` (Added Run Agent button, CSS, and `runAgent` JS logic)
+- `.github/workflows/beer_top100_agent.yml` (Disabled schedule, ensured `workflow_dispatch` is enabled)
 - `PROJECT_CONTEXT.md`
+- `HANDOFF.md`
 
 ## Commands or Tests Run
 - Multiple `git commit` and `git push` commands executed to deploy UI updates.
