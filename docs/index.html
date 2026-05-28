@@ -1529,13 +1529,15 @@ document.addEventListener('click', async e => {
         tooltip.classList.add('show');
         
         const positionTooltip = () => {
+          tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
+          
           const rect = e.target.getBoundingClientRect();
           let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
-          let ttTop = rect.top - tooltip.offsetHeight - 14; // gap above marker
           
           const margin = 10;
           let tailLeft = tooltip.offsetWidth / 2;
           
+          // Horizontal bounds
           if (ttLeft < margin) {
             ttLeft = margin;
             tailLeft = rect.left + rect.width / 2 - ttLeft;
@@ -1543,16 +1545,37 @@ document.addEventListener('click', async e => {
             ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
             tailLeft = rect.left + rect.width / 2 - ttLeft;
           }
-          
           tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
 
-          // Handle vertical overflow
+          // Vertical bounds and maxHeight
           let isBelow = false;
+          let spaceAbove = rect.top - margin - 14;
+          let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
+          
+          let ttTop = rect.top - tooltip.offsetHeight - 14;
+          
           if (ttTop < margin) {
-            ttTop = rect.bottom + 14; // position below the marker
-            isBelow = true;
+            // Does not fit fully above. Check if space below is larger.
+            if (spaceBelow > spaceAbove) {
+              isBelow = true;
+              ttTop = rect.bottom + 14;
+              tooltip.style.maxHeight = `${spaceBelow}px`;
+            } else {
+              // Forced to stay above but clamp to margin
+              ttTop = margin;
+              tooltip.style.maxHeight = `${spaceAbove}px`;
+            }
+          } else {
+            // Fits above, but ensure maxHeight doesn't exceed available space
+            tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
           }
           
+          // Re-measure after applying potential new maxHeight
+          if (!isBelow) {
+            ttTop = rect.top - tooltip.offsetHeight - 14;
+            if (ttTop < margin) ttTop = margin;
+          }
+
           tooltip.style.left = `${ttLeft}px`;
           tooltip.style.top = `${ttTop}px`;
           tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
