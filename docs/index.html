@@ -352,6 +352,49 @@
       .homework-grid { grid-template-columns: 1fr; }
       .homework-guide-head { flex-direction: column; }
     }
+    /* ── Marker Tooltip ── */
+    .marker-tooltip {
+      position: fixed;
+      background: #fef9c3;
+      color: #374151;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 320px;
+      width: max-content;
+      z-index: 1500;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(10px);
+    }
+    .marker-tooltip.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .marker-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--tail-left, 50%);
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: #fef9c3 transparent transparent transparent;
+    }
+    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
+    .tt-section { margin-bottom: 8px; }
+    .tt-section:last-child { margin-bottom: 0; }
+    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
+    .tt-label.beer { color: #b45309; }
+    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+
+    @media (max-width: 560px) {
+      .marker-tooltip { max-width: calc(100vw - 32px); }
+    }
   </style>
 </head>
 <body>
@@ -1448,6 +1491,12 @@ document.addEventListener('click', async e => {
     closeCalendar();
   }
 
+  // Hide tooltip if clicked outside
+  const tooltip = document.getElementById('markerTooltip');
+  if (tooltip && tooltip.classList.contains('show') && !e.target.closest('.marker-tooltip') && !e.target.closest('.chart-marker')) {
+    tooltip.classList.remove('show');
+  }
+
   // 1. Handle Note Triggers (Markers or Note Button)
   const noteTrigger = e.target.closest('.chart-marker, .note-btn');
   if (noteTrigger) {
@@ -1455,29 +1504,71 @@ document.addEventListener('click', async e => {
     const noteId = noteTrigger.dataset.noteId;
 
     if (noteId) {
-      // It's a specific marker, show a popup alert for that specific note
+      e.preventDefault();
+      e.stopPropagation();
+      
       const notes = notesCache[ticker] || [];
       const note = notes.find(n => n.id == noteId);
       if (note) {
-        let msg = `📅 ${note.date}${note.time ? ' ' + note.time : ''}\n\n📝 บันทึกของคุณ:\n${note.note}`;
+        let baseHtml = `<div class="tt-header">📅 ${note.date}${note.time ? ' ' + note.time : ''}</div>`;
+        baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
         
+        let loadingId = `ttLoad-${Date.now()}`;
+        if (ticker !== '_MARKET') {
+          baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+        }
+        
+        tooltip.innerHTML = baseHtml;
+        tooltip.classList.add('show');
+        
+        const positionTooltip = () => {
+          const rect = e.target.getBoundingClientRect();
+          let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+          let ttTop = rect.top - tooltip.offsetHeight - 14; // gap above marker
+          
+          const margin = 10;
+          let tailLeft = tooltip.offsetWidth / 2;
+          
+          if (ttLeft < margin) {
+            ttLeft = margin;
+            tailLeft = rect.left + rect.width / 2 - ttLeft;
+          } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+            ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+            tailLeft = rect.left + rect.width / 2 - ttLeft;
+          }
+          
+          tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+          
+          tooltip.style.left = `${ttLeft}px`;
+          tooltip.style.top = `${ttTop}px`;
+          tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+        };
+        
+        // Use setTimeout to allow DOM to render and calculate correct dimensions
+        setTimeout(positionTooltip, 0);
+
         if (ticker !== '_MARKET') {
           try {
             const fetchDate = note.archive_date || note.date;
-            // Fetch the historical data for that day to extract Beer's analysis
             const r = await fetch(`data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
-            if (r.ok) {
+            const loader = document.getElementById(loadingId);
+            if (r.ok && loader) {
               const data = await r.json();
               const stock = data.stocks?.find(s => s.ticker === ticker);
               if (stock && stock.analysis) {
-                msg += `\n\n🍺 วิเคราะห์เจาะลึก (Beer):\n${stock.analysis.trim()}`;
+                loader.innerHTML = `<div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div>`;
+              } else {
+                loader.remove();
               }
+              positionTooltip();
+            } else if (loader) {
+              loader.remove();
             }
           } catch (err) {
-            // Ignore fetch errors, fallback to showing only the note
+            const loader = document.getElementById(loadingId);
+            if (loader) loader.remove();
           }
         }
-        alert(msg);
       }
       return;
     }
@@ -1505,5 +1596,6 @@ if ('serviceWorker' in navigator) {
 
 init();
 </script>
+<div id="markerTooltip" class="marker-tooltip"></div>
 </body>
 </html>
