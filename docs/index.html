@@ -1036,7 +1036,7 @@ function renderMarketOverview() {
   const mi = currentData?.market_indices;
   const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
   const marketMarkersHTML = marketNotes.map(n => {
-    const markerDate = n.archive_date || n.date;
+    const markerDate = n.date || n.archive_date;
     if (!markerDate || !currentData?.date) return '';
     const noteTS = new Date(markerDate + 'T12:00:00').getTime();
     const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();

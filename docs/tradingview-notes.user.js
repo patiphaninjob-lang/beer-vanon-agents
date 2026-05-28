@@ -134,7 +134,7 @@
   function groupNotesByArchiveDate(notes) {
     const groups = {};
     for (const n of notes) {
-      const key = n.archive_date || n.date || 'unknown';
+      const key = n.date || n.archive_date || 'unknown';
       (groups[key] ||= []).push(n);
     }
     return Object.keys(groups)
