@@ -37,6 +37,7 @@ def safe_print(*args, **kwargs):
 
 # ─── Config ───────────────────────────────────────────────────
 KNOWLEDGE_JSON  = "beervanon_cleaned.json"
+DATA_DIR        = Path("docs/data")
 EMBEDDINGS_FILE = "embeddings.npz"
 EMBED_MODEL     = "paraphrase-multilingual-MiniLM-L12-v2"
 GROQ_MODEL      = "llama-3.1-8b-instant"   # higher daily token limit สำหรับ 100 หุ้น
@@ -1017,6 +1018,16 @@ def main():
             parser.error("--date must use YYYY-MM-DD format")
     else:
         today = datetime.date.today()
+
+    # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
+    is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
+    today_file_str = today.strftime("%Y-%m-%d")
+    report_path = os.path.join(DATA_DIR, f"{today_file_str}.json")
+
+    if is_scheduled and os.path.exists(report_path):
+        safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว (คุณน่าจะกดรันเองไปแล้ว)")
+        safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")
+        return
 
     date_str = today.strftime("%A, %d %B %Y")
     safe_print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")

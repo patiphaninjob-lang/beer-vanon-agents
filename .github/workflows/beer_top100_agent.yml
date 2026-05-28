@@ -1,9 +1,9 @@
 name: Beer Top 100 Market Cap (หุ้น US 100 ตัวใหญ่สุด)
 
 on:
-  # schedule:
-  #   - cron: '0 14 * * 1-5'    # 21:00 Bangkok (UTC+7) ทุกวันจันทร์-ศุกร์
-  workflow_dispatch:            # รันมือได้จาก GitHub UI
+  schedule:
+    - cron: '0 23 * * *'       # 06:00 AM Bangkok (UTC+7) ทุกวัน (Safety Net)
+  workflow_dispatch:            # รันมือได้จากหน้าเว็บ Dashboard
 
 permissions:
   contents: write               # อนุญาตให้ push docs/data/ กลับ repo
