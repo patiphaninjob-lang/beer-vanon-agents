@@ -254,21 +254,30 @@ async function fetchJson(url) {
   return r.json();
 }
 
+function noteDate(n) {
+  return n.date || n.archive_date || '';
+}
+
 async function loadNotes() {
   const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
   const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
-  state.notes = keys.flatMap(key => db[key] || [])
-    .filter(n => n && (n.date || n.archive_date))
-    .sort((a,b) => String(a.date || '').localeCompare(String(b.date || '')));
+  state.notes = [];
+  keys.forEach(key => {
+    if (db[key]) state.notes = state.notes.concat(db[key]);
+  });
+  state.notes = state.notes
+    .filter(n => n && noteDate(n))
+    .sort((a,b) => noteDate(a).localeCompare(noteDate(b)));
 }
 
 async function loadLatestStock() {
   try {
     const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
-    const backDate = new URLSearchParams(location.search).get('date') || dates[0] || '';
-    if (backDate) document.getElementById('backLink').href = `index.html?date=${encodeURIComponent(backDate)}`;
+    // "Latest Always" - we always point the back link to the newest archive
+    if (dates.length) document.getElementById('backLink').href = `index.html?date=${encodeURIComponent(dates[0])}`;
     
-    for (const date of dates.slice(0, 12)) {
+    // Always look for the very latest data, ignore URL ?date=
+    for (const date of dates.slice(0, 20)) {
       const day = await loadArchive(date);
       if (!day) continue;
       
@@ -276,14 +285,14 @@ async function loadLatestStock() {
         if (day.market_indices) {
           state.latestMarketArchive = day;
           state.latestMarket = day.market_indices;
-          state.latestDate = date;
+          if (!state.latestDate) state.latestDate = date;
           return;
         }
       } else {
         const stock = findStock(day, state.ticker);
         if (stock) {
           state.latestStock = stock;
-          state.latestDate = date;
+          if (!state.latestDate) state.latestDate = date;
           return;
         }
       }
@@ -334,59 +343,54 @@ async function loadHistoryCandles() {
     } catch (e) { return null; }
   };
 
+  let candles = [];
   if (state.ticker === '_MARKET') {
-    let candles = await tryLoad('market');
+    candles = await tryLoad('market');
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
-    state.allCandles = candles;
   } else {
-    let candles = await tryLoad(state.ticker);
+    candles = await tryLoad(state.ticker);
     if (!candles) candles = await tryLoad(state.ticker.replace('-', '.'));
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
-    state.allCandles = candles;
   }
+  state.allCandles = candles;
 
-  if (state.allCandles.length && state.latestDate) {
-    const lastCandle = state.allCandles[state.allCandles.length - 1];
-    if (state.latestDate > lastCandle.date) {
-      let latestPrice = 0, latestVol = 0, latestOpen = 0;
+  // STITCHING & PLACEHOLDERS: Guarantee space for every note and latest archive
+  const candleDates = new Set(state.allCandles.map(c => c.date));
+  const latestDate = state.latestDate || (state.allCandles.length ? state.allCandles[state.allCandles.length-1].date : null);
+  
+  // 1. Add latest archive candle if missing
+  if (latestDate && !candleDates.has(latestDate)) {
+      let lp = 0, lv = 0, lo = 0;
       if (state.ticker === '_MARKET' && state.latestMarket) {
-        const proxy = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
-        if (proxy?.price) {
-          latestPrice = Number(proxy.price);
-          const pct = Number(proxy.pct_change || 0);
-          latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
-        }
+        const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
+        lp = Number(p?.price || 0);
+        lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
       } else if (state.latestStock) {
-        latestPrice = Number(state.latestStock.price);
-        latestVol = Number(state.latestStock.volume || 0);
-        const pct = Number(state.latestStock.pct_change || 0);
-        latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
+        lp = Number(state.latestStock.price || 0);
+        lo = lp / (1 + (Number(state.latestStock.pct_change || 0) / 100));
+        lv = Number(state.latestStock.volume || 0);
       }
-      if (latestPrice > 0) {
+      if (lp > 0) {
         state.allCandles.push({
-          date: state.latestDate,
-          open: latestOpen || latestPrice,
-          high: Math.max(latestOpen, latestPrice) * 1.001,
-          low: Math.min(latestOpen, latestPrice) * 0.999,
-          close: latestPrice,
-          volume: latestVol,
-          is_stitched: true
+          date: latestDate, open: lo || lp, high: Math.max(lo, lp) * 1.001, low: Math.min(lo, lp) * 0.999, close: lp, volume: lv, is_stitched: true
         });
+        candleDates.add(latestDate);
       }
+  }
+
+  // 2. Add placeholder for every note date if missing
+  state.notes.forEach(n => {
+    const d = noteDate(n);
+    if (d && !candleDates.has(d)) {
+      const last = state.allCandles.length ? state.allCandles[state.allCandles.length-1] : { close: 100 };
+      state.allCandles.push({
+        date: d, open: last.close, high: last.close, low: last.close, close: last.close, volume: 0, is_placeholder: true
+      });
+      candleDates.add(d);
     }
-  }
+  });
 
-  const newestNoteDate = state.notes.length ? noteDate(state.notes[state.notes.length-1]) : null;
-  if (state.allCandles.length && newestNoteDate && newestNoteDate > state.allCandles[state.allCandles.length-1].date) {
-     const last = state.allCandles[state.allCandles.length-1];
-     state.allCandles.push({
-       date: newestNoteDate,
-       open: last.close, high: last.close, low: last.close, close: last.close,
-       volume: 0, is_placeholder: true
-     });
-  }
-
-  if (!state.allCandles.length) throw new Error('ไม่พบข้อมูลกราฟของหุ้นนี้');
+  state.allCandles.sort((a,b) => a.date.localeCompare(b.date));
   return state.allCandles;
 }
 
@@ -403,28 +407,25 @@ function filterCandlesByRange(candles, range) {
 async function buildArchiveFallbackCandles() {
   const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
   const candles = [];
-  for (const date of dates) {
+  for (const date of dates.slice(0, 100)) { // Limit to last 100 archives as fallback
     try {
       const day = await loadArchive(date);
       if (state.ticker === '_MARKET') {
         const mi = day?.market_indices || {};
-        const proxy = mi.dji || mi.spx || mi.ixic;
-        if (!proxy?.price) continue;
-        const close = Number(proxy.price);
-        const pct = Number(proxy.pct_change || 0);
-        const open = pct ? close / (1 + pct / 100) : close;
-        const spread = Math.max(close * 0.008, 0.5);
-        candles.push({
-          date, open, high: Math.max(open, close) + spread, low: Math.min(open, close) - spread, close, volume: 0
-        });
-        continue;
+        const p = mi.dji || mi.spx || mi.ixic;
+        if (!p?.price) continue;
+        const c = Number(p.price);
+        const pct = Number(p.pct_change || 0);
+        const o = c / (1 + pct / 100);
+        candles.push({ date, open: o, high: Math.max(o,c)*1.005, low: Math.min(o,c)*0.995, close: c, volume: 0 });
+      } else {
+        const s = findStock(day, state.ticker);
+        if (!s?.price) continue;
+        const c = Number(s.price);
+        const pct = Number(s.pct_change || 0);
+        const o = c / (1 + pct / 100);
+        candles.push({ date, open: o, high: Math.max(o,c)*1.005, low: Math.min(o,c)*0.995, close: c, volume: s.volume || 0 });
       }
-      const stock = findStock(day, state.ticker);
-      if (!stock?.price) continue;
-      const price = Number(stock.price);
-      candles.push({
-        date, open: price, high: price * 1.002, low: price * 0.998, close: price, volume: stock.volume || 0
-      });
     } catch(e) {}
   }
   return candles.sort((a,b) => a.date.localeCompare(b.date));
@@ -433,40 +434,29 @@ async function buildArchiveFallbackCandles() {
 async function loadCandles() {
   setLoading('กำลังโหลดกราฟ 1D...');
   try {
-    const allCandles = await loadHistoryCandles();
-    state.candles = filterCandlesByRange(allCandles, state.range);
+    const all = await loadHistoryCandles();
+    state.candles = filterCandlesByRange(all, state.range);
     setLoading('');
   } catch (e) {
-    console.warn('history data fallback:', e);
-    try {
-      state.candles = await buildArchiveFallbackCandles();
-      setLoading('');
-      toast('ใช้ข้อมูลจาก archive แทน เพราะยังไม่มีไฟล์ history ของหุ้นนี้');
-    } catch(err) {
-      state.candles = [];
-      setLoading('โหลดกราฟไม่ได้ แต่ notes ยังแสดงอยู่ด้านขวา');
-    }
+    console.warn(e);
+    setLoading('ไม่พบข้อมูลกราฟ');
   }
 }
 
-function noteDate(note) {
-  // IMPORTANT: Prioritize the actual writing date over archive date for "Latest Always" logic
-  return note.date || note.archive_date || '';
-}
 function groupNotesByDate(notes) {
   const groups = new Map();
   notes.forEach(note => {
-    const date = noteDate(note);
-    if (!date) return;
-    if (!groups.has(date)) groups.set(date, []);
-    groups.get(date).push(note);
+    const d = noteDate(note);
+    if (!d) return;
+    if (!groups.has(d)) groups.set(d, []);
+    groups.get(d).push(note);
   });
   return [...groups.entries()].map(([date, notes]) => ({ date, notes }));
 }
+
 function nearestCandle(date) {
   if (!state.candles.length) return null;
-  let best = null;
-  let bestDist = Infinity;
+  let best = null, bestDist = Infinity;
   const target = new Date(date + 'T12:00:00').getTime();
   for (let i = 0; i < state.candles.length; i++) {
     const t = new Date(state.candles[i].date + 'T12:00:00').getTime();
@@ -483,332 +473,133 @@ function drawChart() {
   canvas.height = Math.max(1, Math.floor(box.height * dpr));
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  const w = box.width;
-  const h = box.height;
+  const w = box.width, h = box.height;
   const pad = { left: 56, right: 16, top: 22, bottom: 34 };
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = '#0d1117';
-  ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = '#0d1117'; ctx.fillRect(0, 0, w, h);
 
-  if (!state.candles.length) {
-    ctx.fillStyle = '#6b7280';
-    ctx.font = '14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-    ctx.fillText('ไม่มีข้อมูลกราฟ', pad.left, pad.top + 20);
-    return;
-  }
+  if (!state.candles.length) return;
 
-  const highs = state.candles.map(c => c.high);
-  const lows = state.candles.map(c => c.low);
-  let yMax = Math.max(...highs);
-  let yMin = Math.min(...lows);
-  const yPad = (yMax - yMin) * 0.08 || yMax * 0.02 || 1;
-  yMax += yPad; yMin -= yPad;
-  const plotW = w - pad.left - pad.right;
-  const plotH = h - pad.top - pad.bottom;
+  const plotW = w - pad.left - pad.right, plotH = h - pad.top - pad.bottom;
+  const yMax = Math.max(...state.candles.map(c => c.high)) * 1.05;
+  const yMin = Math.min(...state.candles.map(c => c.low)) * 0.95;
+  
   const xFor = i => pad.left + (state.candles.length === 1 ? plotW / 2 : (i / (state.candles.length - 1)) * plotW);
-  const yFor = price => pad.top + ((yMax - price) / (yMax - yMin)) * plotH;
+  const yFor = p => pad.top + ((yMax - p) / (yMax - yMin)) * plotH;
 
-  ctx.strokeStyle = '#1f2937';
-  ctx.lineWidth = 1;
-  ctx.fillStyle = '#6b7280';
-  ctx.font = '11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-  ctx.textAlign = 'right';
+  // Grid
+  ctx.strokeStyle = '#1f2937'; ctx.lineWidth = 1; ctx.textAlign = 'right'; ctx.fillStyle = '#6b7280';
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + (plotH * i / 4);
-    const price = yMax - ((yMax - yMin) * i / 4);
-    ctx.beginPath();
-    ctx.moveTo(pad.left, y);
-    ctx.lineTo(w - pad.right, y);
-    ctx.stroke();
-    ctx.fillText(price.toFixed(2), pad.left - 8, y + 4);
+    const p = yMax - ((yMax - yMin) * i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke();
+    ctx.fillText(p.toFixed(2), pad.left - 8, y + 4);
   }
 
-  const candleW = Math.max(2, Math.min(9, plotW / state.candles.length * 0.62));
+  // Candles
+  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
   state.candles.forEach((c, i) => {
-    const x = xFor(i);
-    const up = c.close >= c.open;
-    const color = up ? '#26a69a' : '#ef5350';
-    const yOpen = yFor(c.open);
-    const yClose = yFor(c.close);
-    const yHigh = yFor(c.high);
-    const yLow = yFor(c.low);
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(x, yHigh);
-    ctx.lineTo(x, yLow);
-    ctx.stroke();
-    const bodyTop = Math.min(yOpen, yClose);
-    const bodyH = Math.max(1, Math.abs(yClose - yOpen));
-    ctx.fillRect(x - candleW / 2, bodyTop, candleW, bodyH);
+    const x = xFor(i), up = c.close >= c.open, col = up ? '#26a69a' : '#ef5350';
+    ctx.strokeStyle = col; ctx.fillStyle = col;
+    ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+    ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
   });
 
-  ctx.fillStyle = '#6b7280';
-  ctx.textAlign = 'center';
-  const labelIdx = [0, Math.floor(state.candles.length / 2), state.candles.length - 1];
-  labelIdx.forEach(i => {
-    const c = state.candles[i];
-    if (!c) return;
-    const [y,m,d] = c.date.split('-');
-    ctx.fillText(`${d}/${m}/${y.slice(2)}`, xFor(i), h - 12);
-  });
-
+  // Markers
   state.markers = [];
-  const groups = groupNotesByDate(state.notes);
-  groups.forEach(group => {
+  groupNotesByDate(state.notes).forEach(group => {
     const match = nearestCandle(group.date);
     if (!match) return;
-    const x = xFor(match.index);
-    const y = yFor(match.candle.close);
-    const key = group.date;
-    const active = state.selectedKey === key;
+    const x = xFor(match.index), y = yFor(match.candle.close), active = state.selectedKey === group.date;
     ctx.save();
-    ctx.strokeStyle = active ? '#ffffff' : '#fff7c2';
-    ctx.fillStyle = '#f0b90b';
-    ctx.lineWidth = active ? 3 : 2;
-    ctx.shadowColor = 'rgba(240,185,11,0.85)';
-    ctx.shadowBlur = active ? 18 : 10;
-    ctx.beginPath();
-    ctx.arc(x, y, active ? 7 : 5.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
+    ctx.strokeStyle = active ? '#fff' : '#fff7c2'; ctx.fillStyle = '#f0b90b'; ctx.lineWidth = active ? 3 : 2;
+    ctx.shadowColor = 'rgba(240,185,11,0.8)'; ctx.shadowBlur = active ? 20 : 10;
+    ctx.beginPath(); ctx.arc(x, y, active ? 8 : 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.restore();
-    state.markers.push({ x, y, r: 11, key, group, candle: match.candle });
+    state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
   });
-
-  document.getElementById('visibleCount').textContent = `${state.markers.length}/${groups.length} วันมี marker ในช่วงนี้`;
+  document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
 }
 
 async function showGroup(group, candle) {
-  state.selectedKey = group.date;
-  drawChart();
+  state.selectedKey = group.date; drawChart();
   const detail = document.getElementById('detailPanel');
-  const first = group.notes[0] || {};
-  const archiveDate = first.archive_date || group.date;
-  let stock = null;
-  let marketDay = null;
+  const archiveDate = group.notes[0]?.archive_date || group.date;
+  let stock = null, mkt = null;
   try {
     const day = await loadArchive(archiveDate);
-    if (state.ticker === '_MARKET') marketDay = day;
-    else stock = findStock(day, state.ticker);
+    if (state.ticker === '_MARKET') mkt = day; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
-  const noteBlocks = group.notes.map(n => `
+  const notesHTML = group.notes.map(n => `
     <div class="note-block">
       <div class="detail-head">
-        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+esc(n.time) : ''}</div>
-        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}${n.pct_change != null ? ` · ${n.pct_change >= 0 ? '+' : ''}${Number(n.pct_change).toFixed(2)}%` : ''}</div>
+        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
+        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}</div>
       </div>
       <div class="note-text">${esc(n.note || '')}</div>
-      ${n.archive_date ? `<div style="margin-top:8px"><a class="archive-link" href="index.html?date=${encodeURIComponent(n.archive_date)}">เปิด archive วันที่ ${fmtDate(n.archive_date)}</a></div>` : ''}
     </div>
   `).join('');
-
-  const news = (stock?.news || []).slice(0, 3).map(n => `
-    <div class="news-item">${esc(n.provider || '')}${n.date ? ' · '+esc(n.date) : ''}<br>${esc(n.title || '')}</div>
-  `).join('');
-  const homework = (stock?.homework_checklist || []).slice(0, 6).map(item => `
-    <div class="homework-row">
-      <div class="homework-topic">${esc(item.topic || '')}</div>
-      <div>${esc(item.insight || item.prompt || '')}</div>
-    </div>
-  `).join('');
-  const marketBadges = marketDay?.market_indices ? ['dji','spx','ixic'].filter(k => marketDay.market_indices[k]).map(k => {
-    const d = marketDay.market_indices[k];
-    const up = Number(d.pct_change || 0) >= 0;
-    return `<span class="badge">${k.toUpperCase()} ${fmtMoney(d.price)}${d.pct_change != null ? ` ${up ? '+' : ''}${Number(d.pct_change).toFixed(2)}%` : ''}</span>`;
-  }).join('') : '';
-  const marketSummary = marketDay?.summary || {};
-  const marketSummaryLines = [];
-  if (marketSummary.total != null) marketSummaryLines.push(`Total universe: ${marketSummary.total}`);
-  if (marketSummary.gainers != null || marketSummary.losers != null) marketSummaryLines.push(`Gainers / losers: ${marketSummary.gainers || 0} / ${marketSummary.losers || 0}`);
-  if (marketSummary.avg_change != null) marketSummaryLines.push(`Avg change: ${(marketSummary.avg_change >= 0 ? '+' : '') + Number(marketSummary.avg_change).toFixed(2)}%`);
-  if (marketSummary.top_gainer?.ticker) marketSummaryLines.push(`Top gainer: ${marketSummary.top_gainer.ticker} (${marketSummary.top_gainer.pct >= 0 ? '+' : ''}${Number(marketSummary.top_gainer.pct).toFixed(2)}%)`);
-  if (marketSummary.top_loser?.ticker) marketSummaryLines.push(`Top loser: ${marketSummary.top_loser.ticker} (${marketSummary.top_loser.pct >= 0 ? '+' : ''}${Number(marketSummary.top_loser.pct).toFixed(2)}%)`);
-  const marketSnapshot = marketDay ? `
-      <div class="snapshot">
-        <div class="snapshot-title">Market archive context</div>
-        <div class="badge-row" style="justify-content:flex-start;margin-bottom:8px">
-          ${marketBadges || '<span class="badge">No index snapshot</span>'}
-        </div>
-        ${marketSummaryLines.length ? `<div class="snapshot-analysis">${esc(marketSummaryLines.join('\n'))}</div>` : ''}
-      </div>
-    ` : '';
 
   detail.innerHTML = `
     <div class="detail-head">
-      <div>
-        <div class="detail-date">${fmtDate(group.date)}</div>
-        <div class="chart-meta">ราคาปิดใกล้ marker: ${fmtMoney(candle?.close)}</div>
-      </div>
-      <span class="detail-pill">${group.notes.length} note${group.notes.length > 1 ? 's' : ''}</span>
+      <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
     </div>
-    ${noteBlocks}
-    ${state.ticker === '_MARKET' ? marketSnapshot : stock ? `
-      <div class="snapshot">
-        <div class="snapshot-title">Beer archive context</div>
-        <div class="badge-row" style="justify-content:flex-start;margin-bottom:8px">
-          <span class="badge">Rank #${stock.rank || '-'}</span>
-          <span class="badge">${esc(stock.sector || '-')}</span>
-          <span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>
-        </div>
-        ${stock.analysis ? `<div class="snapshot-analysis">${esc(stock.analysis)}</div>` : ''}
-        ${homework ? `
-          <div class="snapshot-title" style="margin-top:10px">Chapter 34 homework context</div>
-          <div class="homework-grid">${homework}</div>
-        ` : ''}
-        ${news ? `<div style="margin-top:9px">${news}</div>` : ''}
-      </div>
-    ` : ''}
+    ${notesHTML}
+    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี')}</div></div>` : ''}
   `;
-  document.querySelectorAll('.note-card').forEach(btn => btn.classList.toggle('active', btn.dataset.key === group.date));
 }
 
 function renderNoteList() {
   const list = document.getElementById('noteList');
-  const groupsDesc = groupNotesByDate(state.notes).sort((a,b) => String(b.date).localeCompare(String(a.date)));
-  const noteCount = state.notes.length;
-  document.getElementById('noteSummary').textContent = noteCount
-    ? `${noteCount} มุมมอง · ${groupsDesc.length} วันบนกราฟ`
-    : 'ยังไม่มีมุมมองของหุ้นตัวนี้';
-
-  if (!groupsDesc.length) {
-    list.innerHTML = `<div class="state">ยังไม่มี note ของ ${esc(state.ticker)}<br>กลับไปหน้า archive แล้วกด “เพิ่มมุมมอง” ที่หุ้นตัวนี้</div>`;
-    return;
-  }
-  list.innerHTML = groupsDesc.map(group => {
-    const first = group.notes.slice().sort((a,b) => String(b.id || '').localeCompare(String(a.id || '')))[0] || {};
-    const titleDate = first.date || group.date;
-    const times = group.notes.map(n => n.time).filter(Boolean).join(', ');
-    return `
-      <button class="note-card" data-key="${esc(group.date)}" onclick="selectDate('${esc(group.date)}')">
-        <div class="note-card-date">${fmtDate(titleDate)}${times ? ' · '+esc(times) : ''}${group.notes.length > 1 ? ` · ${group.notes.length} notes` : ''}</div>
-        <div class="note-card-text">${esc(first.note || '')}</div>
-      </button>
-    `;
-  }).join('');
+  const groups = groupNotesByDate(state.notes).sort((a,b) => b.date.localeCompare(a.date));
+  document.getElementById('noteSummary').textContent = `${state.notes.length} มุมมอง · ${groups.length} วัน`;
+  list.innerHTML = groups.map(g => `
+    <button class="note-card" onclick="selectDate('${g.date}')" data-key="${g.date}">
+      <div class="note-card-date">${fmtDate(g.date)}</div>
+      <div class="note-card-text">${esc(g.notes[0]?.note)}</div>
+    </button>
+  `).join('');
 }
 
-window.selectDate = function(date) {
-  const group = groupNotesByDate(state.notes).find(g => g.date === date);
-  if (!group) return;
-  const match = nearestCandle(date);
-  showGroup(group, match?.candle || null);
+window.selectDate = (d) => {
+  const g = groupNotesByDate(state.notes).find(x => x.date === d);
+  if (g) showGroup(g, nearestCandle(d)?.candle);
 };
 
 function updateHeader() {
-  const stock = state.latestStock;
-  const isMarket = state.ticker === '_MARKET';
-  const market = state.latestMarket || {};
-  document.body.classList.toggle('market-mode', isMarket);
-  document.getElementById('tickerTitle').textContent = isMarket ? 'ภาพรวมตลาด' : state.ticker;
-  document.getElementById('tickerSub').textContent = isMarket
-    ? 'Daily chart · market note history'
-    : stock?.name
-      ? `${stock.name} · ${stock.sector || 'N/A'}`
-      : 'Daily chart · thoughts history';
-  document.getElementById('chartTitle').textContent = isMarket
-    ? 'กราฟภาพรวมตลาด'
-    : `${state.ticker} · กราฟความคิดของฉัน`;
-  document.getElementById('chartMeta').textContent = isMarket
-    ? 'Timeframe: 1D · Proxy: DJI'
-    : `Timeframe: 1D · Range: ${document.querySelector(`[data-range="${state.range}"]`)?.textContent || state.range}`;
-  const sideTitle = document.querySelector('.side-title');
-  const sideSub = document.querySelector('.side-sub');
-  if (sideTitle) sideTitle.textContent = isMarket ? 'ภาพรวมตลาดย้อนหลัง' : 'มุมมองทั้งหมด';
-  if (sideSub) sideSub.textContent = isMarket ? 'History markers + market snapshot' : 'กำลังโหลด notes...';
-  document.getElementById('badgeRow').innerHTML = isMarket ? `
-    <span class="badge">${state.notes.length} notes</span>
-    ${market.dji?.price ? `<span class="badge">DJI ${fmtMoney(market.dji.price)}${market.dji.pct_change != null ? ` · ${market.dji.pct_change >= 0 ? '+' : ''}${Number(market.dji.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-    ${market.spx?.price ? `<span class="badge">S&P ${fmtMoney(market.spx.price)}${market.spx.pct_change != null ? ` · ${market.spx.pct_change >= 0 ? '+' : ''}${Number(market.spx.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-    ${market.ixic?.price ? `<span class="badge">NASDAQ ${fmtMoney(market.ixic.price)}${market.ixic.pct_change != null ? ` · ${market.ixic.pct_change >= 0 ? '+' : ''}${Number(market.ixic.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-  ` : `
-    <span class="badge">${state.notes.length} notes</span>
-    ${stock?.rank ? `<span class="badge">Rank #${stock.rank}</span>` : ''}
-    ${stock?.price ? `<span class="badge">${fmtMoney(stock.price)}${stock.pct_change != null ? ` · ${stock.pct_change >= 0 ? '+' : ''}${Number(stock.pct_change).toFixed(2)}%` : ''}</span>` : ''}
-  `;
-}
-
-async function setRange(range) {
-  state.range = range;
-  document.querySelectorAll('#rangeTabs button').forEach(btn => btn.classList.toggle('active', btn.dataset.range === range));
-  history.replaceState({}, '', `history.html?ticker=${encodeURIComponent(state.ticker)}&range=${encodeURIComponent(range)}`);
-  updateHeader();
-  await loadCandles();
-  drawChart();
-  const latestGroup = groupNotesByDate(state.notes).slice(-1)[0];
-  if (latestGroup) {
-    const match = nearestCandle(latestGroup.date);
-    showGroup(latestGroup, match?.candle || null);
-  }
+  const s = state.latestStock;
+  document.getElementById('tickerTitle').textContent = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker;
+  document.getElementById('tickerSub').textContent = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
+  document.getElementById('badgeRow').innerHTML = `<span class="badge">${state.notes.length} notes</span>`;
 }
 
 function bindEvents() {
   document.getElementById('rangeTabs').addEventListener('click', e => {
-    const btn = e.target.closest('button[data-range]');
-    if (btn) setRange(btn.dataset.range);
+    const b = e.target.closest('button'); if (b) setRange(b.dataset.range);
   });
   canvas.addEventListener('click', e => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const marker = state.markers.find(m => Math.hypot(m.x - x, m.y - y) <= m.r);
-    if (marker) showGroup(marker.group, marker.candle);
+    const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    if (m) showGroup(m.group, m.candle);
   });
-  canvas.addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const marker = state.markers.find(m => Math.hypot(m.x - x, m.y - y) <= m.r);
-    canvas.style.cursor = marker ? 'pointer' : 'crosshair';
-    if (marker) {
-      const first = marker.group.notes[0] || {};
-      const isHoliday = marker.group.date !== marker.candle.date;
-      hoverTip.innerHTML = `
-        <div class="hover-date">${fmtDate(marker.group.date)}${isHoliday ? ' <small style="color:#8b949e">(วันหยุด)</small>' : ''}</div>
-        <div>${marker.group.notes.length} note${marker.group.notes.length > 1 ? 's' : ''} · ${isHoliday ? 'ราคาปิดวันทำการใกล้เคียง' : 'close'} ${fmtMoney(marker.candle.close)}</div>
-        <div class="hover-note">${esc(first.note || '')}</div>
-      `;
-      hoverTip.style.display = 'block';
-      const tipW = hoverTip.offsetWidth || 220;
-      const tipH = hoverTip.offsetHeight || 80;
-      hoverTip.style.left = Math.min(rect.width - tipW - 10, Math.max(10, x + 14)) + 'px';
-      hoverTip.style.top = Math.min(rect.height - tipH - 10, Math.max(10, y + 14)) + 'px';
-    } else {
-      hoverTip.style.display = 'none';
-    }
-  });
-  canvas.addEventListener('mouseleave', () => {
-    hoverTip.style.display = 'none';
-    canvas.style.cursor = 'crosshair';
-  });
-  window.addEventListener('resize', () => {
-    clearTimeout(state.resizeTimer);
-    state.resizeTimer = setTimeout(drawChart, 120);
-  });
+  window.addEventListener('resize', () => { clearTimeout(state.resizeTimer); state.resizeTimer = setTimeout(drawChart, 150); });
+}
+
+async function setRange(r) {
+  state.range = r;
+  document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b.dataset.range === r));
+  await loadCandles(); drawChart();
 }
 
 async function init() {
   bindEvents();
-  document.querySelectorAll('#rangeTabs button').forEach(btn => btn.classList.toggle('active', btn.dataset.range === state.range));
-  document.getElementById('tickerTitle').textContent = state.ticker;
-  try {
-    await Promise.all([loadNotes(), loadLatestStock()]);
-    updateHeader();
-    renderNoteList();
-    await loadCandles();
-    drawChart();
-    const latestGroup = groupNotesByDate(state.notes).slice(-1)[0];
-    if (latestGroup) {
-      const match = nearestCandle(latestGroup.date);
-      await showGroup(latestGroup, match?.candle || null);
-    }
-  } catch (e) {
-    console.error(e);
-    setLoading('โหลดข้อมูลไม่สำเร็จ');
-    document.getElementById('noteList').innerHTML = `<div class="state">${esc(e.message)}</div>`;
-  }
+  await Promise.all([loadNotes(), loadLatestStock()]);
+  updateHeader();
+  renderNoteList();
+  await loadCandles();
+  drawChart();
+  const last = groupNotesByDate(state.notes).pop();
+  if (last) selectDate(last.date);
 }
 
 init();
