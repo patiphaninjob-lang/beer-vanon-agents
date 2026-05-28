@@ -247,11 +247,37 @@ def _tv_url(ticker: str, exchange_code: str = "") -> str:
     return f"https://www.tradingview.com/chart/?symbol={symbol}"
 
 
-def get_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
+def get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -> dict:
     import yfinance as yf
-    tk   = yf.Ticker(ticker)
-    info = tk.info or {}
+    tk = yf.Ticker(ticker)
     
+    # Try to load from local cache to avoid slow tk.info
+    cache_file = Path("stock_metadata_cache.json")
+    cache = {}
+    if cache_file.exists():
+        try:
+            cache = json.loads(cache_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+            
+    stock_info = cache.get(ticker, {})
+    
+    if not stock_info:
+        # Only fetch info if not in cache (Slow network call)
+        info = tk.info or {}
+        stock_info = {
+            "name": info.get("longName") or info.get("shortName") or ticker,
+            "sector": info.get("sector", "N/A"),
+            "pe_ratio": info.get("trailingPE"),
+            "exchange": info.get("exchange", ""),
+        }
+        # Update cache safely
+        cache[ticker] = stock_info
+        try:
+            cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception:
+            pass
+
     if hist_df is None:
         hist = tk.history(period="5d")
     else:
@@ -272,20 +298,19 @@ def get_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
     except Exception:
         news_list, news_text = [], "ไม่มีข่าว"
 
-    mktcap = info.get("marketCap", 0)
     return {
         "ticker":     ticker,
-        "name":       info.get("longName") or info.get("shortName") or ticker,
-        "sector":     info.get("sector", "N/A"),
+        "name":       stock_info.get("name", ticker),
+        "sector":     stock_info.get("sector", "N/A"),
         "price":      price_now,
         "pct_change": pct_change,
         "volume":     volume,
-        "market_cap": mktcap,
-        "pe_ratio":   info.get("trailingPE"),
+        "market_cap": mktcap or stock_info.get("market_cap", 0),
+        "pe_ratio":   stock_info.get("pe_ratio"),
         "news":       news_text,
         "news_list":  news_list,
         "rank":       rank,
-        "tv_url":     _tv_url(ticker, info.get("exchange", "")),
+        "tv_url":     _tv_url(ticker, stock_info.get("exchange", "")),
     }
 
 
@@ -569,7 +594,7 @@ def _fmt_mktcap(cap: float) -> str:
     return "N/A"
 
 
-def _fallback_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
+def _fallback_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -> dict:
     """Return a minimal stock payload when live market data is unavailable."""
     price_now = 0.0
     pct_change = 0.0
@@ -584,7 +609,7 @@ def _fallback_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
                 pct_change = (price_now - price_prev) / price_prev * 100 if price_prev else 0.0
             if "Volume" in hist_df.columns:
                 vol = hist_df["Volume"].dropna()
-                if len(vol) > 0:
+                if len(vol) > 1:
                     volume = int(vol.iloc[-1])
     except Exception:
         pass
@@ -596,7 +621,7 @@ def _fallback_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
         "price": price_now,
         "pct_change": pct_change,
         "volume": volume,
-        "market_cap": 0,
+        "market_cap": mktcap,
         "pe_ratio": None,
         "news": "ไม่มีข่าว",
         "news_list": [],
@@ -605,12 +630,12 @@ def _fallback_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
     }
 
 
-def _safe_get_stock_context(ticker: str, rank: int, hist_df=None) -> dict:
+def _safe_get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -> dict:
     try:
-        return get_stock_context(ticker, rank, hist_df=hist_df)
+        return get_stock_context(ticker, rank, mktcap=mktcap, hist_df=hist_df)
     except Exception as e:
         safe_print(f"   [{rank:3d}] {ticker:<8} -> ⚠️ stock context fallback: {e}")
-        return _fallback_stock_context(ticker, rank, hist_df=hist_df)
+        return _fallback_stock_context(ticker, rank, mktcap=mktcap, hist_df=hist_df)
 
 
 def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: list = None) -> str:
@@ -921,11 +946,11 @@ def send_email(html: str, subject: str, images: list = None):
 
 # ─── Parallel Processing ──────────────────────────────────────
 
-def process_single_stock(ticker, rank, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db):
+def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db):
     """Worker function สำหรับ parallel processing"""
     for attempt in range(3):
         try:
-            stock     = _safe_get_stock_context(ticker, rank, hist_df=hist_df)
+            stock     = _safe_get_stock_context(ticker, rank, mktcap=mktcap, hist_df=hist_df)
             ctx       = search_knowledge(query, posts, embeddings, embed_model, query_vector=query_vector)
             my_notes    = user_notes_db.get(ticker, [])
             
@@ -963,7 +988,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--test", action="store_true", help="Run in test mode (5 stocks)")
     parser.add_argument("--limit", type=int, help="Limit number of stocks to analyze")
-    parser.add_argument("--workers", type=int, default=2, help="Number of parallel workers (default 2)")
+    parser.add_argument("--workers", type=int, default=5, help="Number of parallel workers (default 5)")
     parser.add_argument("--date", help="Archive/report date in YYYY-MM-DD format (default: today)")
     parser.add_argument("--no-web", action="store_true", help="Do not write docs/data archive")
     parser.add_argument("--no-history", action="store_true", help="Do not write docs/history-data files")
@@ -1035,7 +1060,7 @@ def main():
             
             futures.append(executor.submit(
                 process_single_stock, 
-                ticker, i, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db
+                ticker, i, mktcaps.get(ticker, 0), hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db
             ))
             # ใส่ delay เล็กน้อยตอนเริ่ม submit เพื่อกระจายโหลด Groq
             time.sleep(0.5)

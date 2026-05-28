@@ -1,5 +1,0 @@
-python-dotenv
-playwright
-groq
-httpx
-yt-dlp

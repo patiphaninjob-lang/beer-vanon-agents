@@ -51,12 +51,6 @@ Online/public files wired to the framework:
   - each stock card includes homework checklist
   - archive JSON writes `homework_framework`, `homework_guide`, and per-stock `homework_checklist`
 
-- `beer_us_agent.py`
-  - daily US email prompt/card/report now includes Chapter 34 homework
-
-- `beer_th_agent.py`
-  - daily TH email prompt/card/report now includes Chapter 34 homework
-
 - `docs/index.html`
   - renders per-stock `homework_checklist` as `card-homework`
   - existing note modal still has the homework guide/template button
@@ -75,7 +69,7 @@ Local ignored tools were also updated in the workspace but not committed because
 
 Syntax/checks passed:
 
-- `python -m py_compile beer_homework_framework.py beer_top100_agent.py beer_us_agent.py beer_th_agent.py beer_homework.py beer_homework_th.py homework_checker.py`
+- `python -m py_compile beer_homework_framework.py beer_top100_agent.py beer_homework.py beer_homework_th.py homework_checker.py`
 - `node --check docs/tradingview-notes.user.js`
 - HTML script parse for `docs/index.html`
 - `git diff --check`
@@ -138,10 +132,6 @@ If the user asks for a true fresh report, investigate/optimize the full Top100 r
 
 ## Current Automation Schedules
 
-Unchanged:
-
-- `beer_th_agent.yml`: Mon-Fri 17:10 Bangkok
-- `beer_us_agent.yml`: Mon-Fri 19:40 Bangkok
 - `beer_top100_agent.yml`: Mon-Fri 21:00 Bangkok
 
 ## Suggested Next Steps
@@ -150,4 +140,6 @@ Unchanged:
 2. Add a proper `--test` or `TOP_N` CLI option for fast end-to-end tests instead of creating smoke archives manually.
 3. If production freshness matters, optimize or increase GitHub Actions timeout after measuring runtime.
 4. Confirm with the user whether the smoke-test archive should remain visible online or be replaced by the next real scheduled run.
+
+remain visible online or be replaced by the next real scheduled run.
 
