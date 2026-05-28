@@ -209,6 +209,7 @@ const state = {
   latestStock: null,
   latestMarket: null,
   latestMarketArchive: null,
+  latestDate: null,
   selectedKey: null,
   resizeTimer: null
 };
@@ -266,23 +267,25 @@ async function loadLatestStock() {
     const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
     const backDate = new URLSearchParams(location.search).get('date') || dates[0] || '';
     if (backDate) document.getElementById('backLink').href = `index.html?date=${encodeURIComponent(backDate)}`;
-    if (state.ticker === '_MARKET') {
-      for (const date of dates.slice(0, 12)) {
-        const day = await loadArchive(date);
-        if (day?.market_indices) {
-          state.latestMarketArchive = day;
-          state.latestMarket = day.market_indices;
-          return;
-        }
-      }
-      return;
-    }
+    
     for (const date of dates.slice(0, 12)) {
       const day = await loadArchive(date);
-      const stock = findStock(day, state.ticker);
-      if (stock) {
-        state.latestStock = stock;
-        return;
+      if (!day) continue;
+      
+      if (state.ticker === '_MARKET') {
+        if (day.market_indices) {
+          state.latestMarketArchive = day;
+          state.latestMarket = day.market_indices;
+          state.latestDate = date;
+          return;
+        }
+      } else {
+        const stock = findStock(day, state.ticker);
+        if (stock) {
+          state.latestStock = stock;
+          state.latestDate = date;
+          return;
+        }
       }
     }
   } catch (e) {
@@ -336,41 +339,18 @@ async function loadHistoryCandles() {
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
     state.allCandles = candles;
   } else {
-    // Try both - and . formats for the history file
     let candles = await tryLoad(state.ticker);
     if (!candles) candles = await tryLoad(state.ticker.replace('-', '.'));
-    
-    if (!candles || !candles.length) {
-      candles = await buildArchiveFallbackCandles();
-    }
+    if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
     state.allCandles = candles;
   }
 
-  // STITCH: Add the latest price from the most recent archive if it's newer than the last candle
-  const latestArchive = state.ticker === '_MARKET' ? state.latestMarketArchive : null;
-  const latestItem = state.ticker === '_MARKET' ? null : state.latestStock;
-  const latestDate = latestArchive?.date || (latestItem ? (state.latestMarketArchive?.date || state.allCandles[state.allCandles.length-1]?.date) : null);
-
-  // If we have latest info and it's newer than history data
-  if (state.allCandles.length) {
+  if (state.allCandles.length && state.latestDate) {
     const lastCandle = state.allCandles[state.allCandles.length - 1];
-    
-    // We need to know which date we are looking at. 
-    // Since loadLatestStock already ran, we can use state.latestStock/state.latestMarketArchive
-    let targetDay = latestArchive;
-    if (!targetDay && state.ticker !== '_MARKET') {
-        // Try to find which archive date the latestStock came from (usually dates[0])
-        // To be safe, we'll just use the latest stock info we have.
-    }
-
-    const todayDate = latestArchive?.date || ""; // This is populated by loadLatestStock
-    
-    if (todayDate && todayDate > lastCandle.date) {
+    if (state.latestDate > lastCandle.date) {
       let latestPrice = 0, latestVol = 0, latestOpen = 0;
-      
-      if (state.ticker === '_MARKET') {
-        const mi = latestArchive.market_indices || {};
-        const proxy = mi.dji || mi.spx || mi.ixic;
+      if (state.ticker === '_MARKET' && state.latestMarket) {
+        const proxy = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
         if (proxy?.price) {
           latestPrice = Number(proxy.price);
           const pct = Number(proxy.pct_change || 0);
@@ -382,10 +362,9 @@ async function loadHistoryCandles() {
         const pct = Number(state.latestStock.pct_change || 0);
         latestOpen = pct ? latestPrice / (1 + pct / 100) : latestPrice;
       }
-
       if (latestPrice > 0) {
         state.allCandles.push({
-          date: todayDate,
+          date: state.latestDate,
           open: latestOpen || latestPrice,
           high: Math.max(latestOpen, latestPrice) * 1.001,
           low: Math.min(latestOpen, latestPrice) * 0.999,
@@ -395,6 +374,16 @@ async function loadHistoryCandles() {
         });
       }
     }
+  }
+
+  const newestNoteDate = state.notes.length ? noteDate(state.notes[state.notes.length-1]) : null;
+  if (state.allCandles.length && newestNoteDate && newestNoteDate > state.allCandles[state.allCandles.length-1].date) {
+     const last = state.allCandles[state.allCandles.length-1];
+     state.allCandles.push({
+       date: newestNoteDate,
+       open: last.close, high: last.close, low: last.close, close: last.close,
+       volume: 0, is_placeholder: true
+     });
   }
 
   if (!state.allCandles.length) throw new Error('ไม่พบข้อมูลกราฟของหุ้นนี้');
@@ -426,12 +415,7 @@ async function buildArchiveFallbackCandles() {
         const open = pct ? close / (1 + pct / 100) : close;
         const spread = Math.max(close * 0.008, 0.5);
         candles.push({
-          date,
-          open,
-          high: Math.max(open, close) + spread,
-          low: Math.min(open, close) - spread,
-          close,
-          volume: 0
+          date, open, high: Math.max(open, close) + spread, low: Math.min(open, close) - spread, close, volume: 0
         });
         continue;
       }
@@ -439,12 +423,7 @@ async function buildArchiveFallbackCandles() {
       if (!stock?.price) continue;
       const price = Number(stock.price);
       candles.push({
-        date,
-        open: price,
-        high: price * 1.002,
-        low: price * 0.998,
-        close: price,
-        volume: stock.volume || 0
+        date, open: price, high: price * 1.002, low: price * 0.998, close: price, volume: stock.volume || 0
       });
     } catch(e) {}
   }
@@ -835,6 +814,3 @@ init();
   </script>
 </body>
 </html>
-
-
-
