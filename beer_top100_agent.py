@@ -26,8 +26,10 @@ from beer_homework_framework import (
 
 load_dotenv()
 
-# ─── Global Lock for Output ──────────────────────────────────
+# ─── Global Lock for Output & Rate Limit ──────────────────────
 print_lock = threading.Lock()
+groq_lock = threading.Lock()
+last_groq_call = 0.0
 
 def safe_print(*args, **kwargs):
     with print_lock:
@@ -40,7 +42,7 @@ EMBED_MODEL     = "paraphrase-multilingual-MiniLM-L12-v2"
 GROQ_MODEL      = "llama-3.1-8b-instant"   # higher daily token limit สำหรับ 100 หุ้น
 REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
-CALL_DELAY       = 1.2   # วินาที ระหว่าง Groq call (ป้องกัน rate limit)
+CALL_DELAY       = 2.1   # วินาที ระหว่าง Groq call (ป้องกัน rate limit 30 RPM)
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
@@ -109,8 +111,8 @@ def search_knowledge(query: str, posts, embeddings, embed_model, top_k=3, query_
         relevant = [p for s,p in sorted(scored, reverse=True) if s > 0][:top_k]
     parts, total = [], 0
     for p in relevant:
-        chunk = p.get("content","")[:400]
-        if total + len(chunk) > 1500:
+        chunk = p.get("content","")[:300]
+        if total + len(chunk) > 800:
             break
         parts.append(chunk)
         total += len(chunk)
@@ -474,41 +476,48 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         ]
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดที่นักลงทุนเคยจับได้:\n" + "\n".join(lines)
 
-    prompt = f"""คุณคือ Beer Vanon วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
+    prompt = f"""วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
+ราคา: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
+Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_ratio'] or 'N/A'}
 
-หลักการ Beer Vanon (อ้างอิง):
-{BEER_DNA[:1500]}
+หลักการ Beer Vanon:
+{BEER_DNA[:250]}
 
-ข้อมูลหุ้น:
-- ราคา: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
-- Market Cap Rank: #{stock['rank']} | Volume: {stock['volume']:,} | P/E: {stock['pe_ratio'] or 'N/A'}
+ข่าว:
+{stock['news'][:400]}
 
-ข่าวล่าสุด:
-{stock['news']}
+ความรู้เพิ่มเติม:
+{knowledge_ctx[:300]}{notes_ctx}
 
-เนื้อหาเพิ่มเติมจากคลังความรู้:
-{knowledge_ctx}{notes_ctx}
-
-ให้ตอบเป็น JSON เท่านั้น (ภาษาไทย ตรงประเด็น) โดยมีโครงสร้างดังนี้:
+ให้ตอบเป็น JSON (ภาษาไทย ตรงประเด็น) โครงสร้างดังนี้:
 {{
-  "interpretation": "วิเคราะห์เจาะลึกรายละเอียดข่าว: ข่าวพูดถึงประเด็นสำคัญอะไรบ้าง (Detail), ตลาดตีความอย่างไรในแง่บวก/ลบ (Sentiment), และผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลาง (Implication) เขียนให้ละเอียดและลึกซึ้ง",
-  "beer_view": "ความเห็นสั้นๆ ของ Beer (ความน่าสนใจ SQ และจุด Circuit Breaker ที่ควรตั้ง)",
+  "interpretation": "วิเคราะห์เจาะลึกรายละเอียดข่าว (Detail, Sentiment, Implication)",
+  "beer_view": "ความเห็นสั้นๆ (ความน่าสนใจ SQ และจุด Circuit Breaker)",
   "homework_analysis": [
-    {{ "topic": "ธุรกิจ", "insight": "วิเคราะห์: ขายอะไร ลูกค้าคือใคร ทำเงินยังไง" }},
-    {{ "topic": "ตัวเลข", "insight": "วิเคราะห์: รายได้ กำไร หนี้ กระแสเงินสด valuation" }},
-    {{ "topic": "การสื่อสาร", "insight": "วิเคราะห์: ผู้บริหารพูดอะไร หรือประเด็นที่ต้องตามฟัง" }},
-    {{ "topic": "คู่แข่ง", "insight": "วิเคราะห์: ใครดีกว่า แย่กว่า เสียเปรียบตรงไหน" }},
-    {{ "topic": "ผู้บริหาร", "insight": "วิเคราะห์: ประวัติ การตัดสินใจ ความน่าเชื่อถือ" }},
-    {{ "topic": "แผนของเรา", "insight": "วิเคราะห์: ตามดู ถือ งด รอจุดไหน และจุดตัดขาดทุน" }}
+    {{ "topic": "ธุรกิจ", "insight": "ขายอะไร ลูกค้าคือใคร" }},
+    {{ "topic": "ตัวเลข", "insight": "รายได้ กำไร หนี้" }},
+    {{ "topic": "การสื่อสาร", "insight": "ผู้บริหารพูดอะไร" }},
+    {{ "topic": "คู่แข่ง", "insight": "ใครดีกว่า แย่กว่า" }},
+    {{ "topic": "ผู้บริหาร", "insight": "ประวัติ การตัดสินใจ" }},
+    {{ "topic": "แผนของเรา", "insight": "ตามดู ถือ งด จุดตัดขาดทุน" }}
   ],
-  "note_review": "ถ้ามี user_notes ให้เปรียบเทียบอารมณ์ตลาดอดีต vs ปัจจุบัน (ถ้าไม่มีให้เป็น null)"
+  "note_review": "เทียบอารมณ์ตลาดอดีต vs ปัจจุบัน (ถ้าไม่มี user_notes ให้ null)"
 }}"""
 
     try:
+        global last_groq_call
+        with groq_lock:
+            now = time.time()
+            elapsed = now - last_groq_call
+            if elapsed < CALL_DELAY:
+                time.sleep(CALL_DELAY - elapsed)
+            last_groq_call = time.time()
+
         resp = client.chat.completions.create(
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
+            max_tokens=450,
             response_format={"type": "json_object"},
         )
         data = json.loads(resp.choices[0].message.content)
