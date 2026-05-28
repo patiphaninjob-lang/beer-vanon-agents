@@ -376,18 +376,15 @@ async function loadHistoryCandles() {
     }
   }
 
-  // Ensure all notes have a candle to attach to
-  state.notes.forEach(n => {
-    const d = noteDate(n);
-    if (d && state.allCandles.length && d > state.allCandles[state.allCandles.length-1].date) {
-      const last = state.allCandles[state.allCandles.length-1];
-      state.allCandles.push({
-        date: d,
-        open: last.close, high: last.close, low: last.close, close: last.close,
-        volume: 0, is_placeholder: true
-      });
-    }
-  });
+  const newestNoteDate = state.notes.length ? noteDate(state.notes[state.notes.length-1]) : null;
+  if (state.allCandles.length && newestNoteDate && newestNoteDate > state.allCandles[state.allCandles.length-1].date) {
+     const last = state.allCandles[state.allCandles.length-1];
+     state.allCandles.push({
+       date: newestNoteDate,
+       open: last.close, high: last.close, low: last.close, close: last.close,
+       volume: 0, is_placeholder: true
+     });
+  }
 
   if (!state.allCandles.length) throw new Error('ไม่พบข้อมูลกราฟของหุ้นนี้');
   return state.allCandles;
@@ -453,7 +450,8 @@ async function loadCandles() {
 }
 
 function noteDate(note) {
-  return note.archive_date || note.date || '';
+  // IMPORTANT: Prioritize the actual writing date over archive date for "Latest Always" logic
+  return note.date || note.archive_date || '';
 }
 function groupNotesByDate(notes) {
   const groups = new Map();
