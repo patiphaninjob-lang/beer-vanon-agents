@@ -1,6 +1,6 @@
 {
   "date": "2026-05-28",
-  "generated": "2026-05-28T20:20:17.734652",
+  "generated": "2026-05-28T20:20:53.338732",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
@@ -69,31 +69,31 @@
           "url": "https://finance.yahoo.com/video/how-does-micron-stack-up-to-nvidia-after-reaching-1t-market-cap-132828977.html"
         }
       ],
-      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญเกี่ยวกับอุตสาหกรรม AI และการเติบโตของ Micron Technology และ SK Hynix', 'Sentiment': 'ตลาดมองว่าข่าวนี้เป็นเรื่องที่น่าสนใจและอาจจะมีผลกระทบในระยะยาว แต่ยังไม่มีผลกระทบในระยะสั้น', 'Implication': 'ราคาหุ้น NVDA อาจจะปรับตัวตามการเติบโตของอุตสาหกรรม AI และการเปลี่ยนแปลงของตลาด'}\n\nBeer มองว่า: หุ้น NVDA น่าสนใจในระยะยาว แต่ควรตั้งจุด Circuit Breaker ที่ 220 และ 200 เพื่อป้องกันการขาดทุน",
+      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญของ Micron Technology (MU) และ SK Hynix (000660.KS) ที่เข้าร่วมในเทรนด์ AI และมีตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ', 'Sentiment': 'ตลาดมีความเห็นในแง่บวกเกี่ยวกับข่าวนี้ เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือการเพิ่มขึ้นของราคาหุ้น เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'SQ มีความน่าสนใจ เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง', 'จุด Circuit Breaker': 'จุด Circuit Breaker คือ $235'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "NVDA มีรายได้จากการขาย GPU และ AI เทคโนโลยี มีลูกค้าหลักในอุตสาหกรรมเกมและ AI"
+          "insight": "Micron Technology (MU) และ SK Hynix (000660.KS) มีธุรกิจที่เกี่ยวข้องกับเทรนด์ AI และมีตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "รายได้ของ NVDA เพิ่มขึ้น 20% ในไตรมาสที่แล้ว กำไรสุทธิอยู่ที่ 10.5 พันล้านดอลลาร์ หนี้สินอยู่ที่ 10.2 พันล้านดอลลาร์"
+          "insight": "รายได้ กำไร หนี้ กระแสเงินสด และ valuation ของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ NVDA พูดถึงการเติบโตของอุตสาหกรรม AI และการลงทุนในเทคโนโลยีใหม่ๆ"
+          "insight": "ผู้บริหารของ Micron Technology (MU) และ SK Hynix (000660.KS) พูดอะไรเกี่ยวกับเทรนด์ AI และตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "Micron Technology และ SK Hynix เป็นคู่แข่งหลักของ NVDA ในอุตสาหกรรม AI"
+          "insight": "คู่แข่งของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตามและวิเคราะห์"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "CEO ของ NVDA มีประสบการณ์ในการบริหารธุรกิจและลงทุนในเทคโนโลยีใหม่ๆ"
+          "insight": "ประวัติ การตัดสินใจ และความน่าเชื่อถือของผู้บริหารของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ตามดูการเติบโตของอุตสาหกรรม AI และการเปลี่ยนแปลงของตลาด การลงทุนใน NVDA อาจจะดีในระยะยาว แต่ควรตั้งจุด Circuit Breaker เพื่อป้องกันการขาดทุน"
+          "insight": "ตามดู ถือ งด รอจุดไหน และจุดตัดขาดทุนของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
         }
       ],
       "chart_b64": "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"
