@@ -142,6 +142,56 @@
       .badge-row { justify-content: flex-start; }
       .note-list { max-height: none; }
     }
+    /* ── Marker Tooltip ── */
+    .marker-tooltip {
+      position: fixed;
+      background: #fef9c3;
+      color: #374151;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 320px;
+      max-height: 80vh;
+      overflow-y: auto;
+      width: max-content;
+      z-index: 1500;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(10px);
+    }
+    .marker-tooltip.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .marker-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--tail-left, 50%);
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: #fef9c3 transparent transparent transparent;
+    }
+    .marker-tooltip.tail-top::after {
+      top: auto;
+      bottom: 100%;
+      border-color: transparent transparent #fef9c3 transparent;
+    }
+    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
+    .tt-section { margin-bottom: 8px; }
+    .tt-section:last-child { margin-bottom: 0; }
+    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
+    .tt-label.beer { color: #b45309; }
+    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+
+    @media (max-width: 560px) {
+      .marker-tooltip { max-width: calc(100vw - 32px); }
+    }
   </style>
 </head>
 <body>
@@ -547,6 +597,90 @@ async function showGroup(group, candle) {
     ${notesHTML}
     ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี')}</div></div>` : ''}
   `;
+
+  // --- Show Tooltip Logic ---
+  const m = state.markers.find(x => x.key === group.date);
+  const tooltip = document.getElementById('markerTooltip');
+  if (m && tooltip) {
+    let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
+    group.notes.forEach(n => {
+      baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div><div class="tt-text">${esc(n.note || '')}</div></div>`;
+    });
+    
+    if (stock && stock.analysis) {
+      baseHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div></div>`;
+    }
+    
+    tooltip.innerHTML = baseHtml;
+    tooltip.classList.add('show');
+    
+    const positionTooltip = () => {
+      tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
+      
+      const canvasRect = canvas.getBoundingClientRect();
+      const rect = {
+        left: canvasRect.left + m.x - 8,
+        right: canvasRect.left + m.x + 8,
+        top: canvasRect.top + m.y - 8,
+        bottom: canvasRect.top + m.y + 8,
+        width: 16,
+        height: 16
+      };
+      
+      let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+      const margin = 10;
+      let tailLeft = tooltip.offsetWidth / 2;
+      
+      // Horizontal bounds
+      if (ttLeft < margin) {
+        ttLeft = margin;
+        tailLeft = rect.left + rect.width / 2 - ttLeft;
+      } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+        ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+        tailLeft = rect.left + rect.width / 2 - ttLeft;
+      }
+      tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+
+      // Vertical bounds and maxHeight
+      let isBelow = false;
+      let spaceAbove = rect.top - margin - 14;
+      let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
+      
+      let ttTop = rect.top - tooltip.offsetHeight - 14;
+      
+      if (ttTop < margin) {
+        if (spaceBelow > spaceAbove) {
+          isBelow = true;
+          ttTop = rect.bottom + 14;
+          tooltip.style.maxHeight = `${spaceBelow}px`;
+        } else {
+          ttTop = margin;
+          tooltip.style.maxHeight = `${spaceAbove}px`;
+        }
+      } else {
+        tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+      }
+      
+      if (!isBelow) {
+        ttTop = rect.top - tooltip.offsetHeight - 14;
+        if (ttTop < margin) ttTop = margin;
+      }
+
+      tooltip.style.left = `${ttLeft}px`;
+      tooltip.style.top = `${ttTop}px`;
+      tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+
+      if (isBelow) {
+        tooltip.classList.add('tail-top');
+      } else {
+        tooltip.classList.remove('tail-top');
+      }
+    };
+    
+    setTimeout(positionTooltip, 0);
+  } else if (tooltip) {
+    tooltip.classList.remove('show');
+  }
 }
 
 function renderNoteList() {
@@ -574,12 +708,25 @@ function updateHeader() {
 }
 
 function bindEvents() {
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#priceCanvas') && !e.target.closest('.note-list') && !e.target.closest('.marker-tooltip')) {
+      const tooltip = document.getElementById('markerTooltip');
+      if (tooltip) tooltip.classList.remove('show');
+    }
+  });
+
   document.getElementById('rangeTabs').addEventListener('click', e => {
     const b = e.target.closest('button'); if (b) setRange(b.dataset.range);
   });
   canvas.addEventListener('click', e => {
     const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
     const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    
+    if (!m) {
+      const tooltip = document.getElementById('markerTooltip');
+      if (tooltip) tooltip.classList.remove('show');
+    }
+
     if (m) showGroup(m.group, m.candle);
   });
   window.addEventListener('resize', () => { clearTimeout(state.resizeTimer); state.resizeTimer = setTimeout(drawChart, 150); });
@@ -604,5 +751,6 @@ async function init() {
 
 init();
   </script>
+<div id="markerTooltip" class="marker-tooltip"></div>
 </body>
 </html>
