@@ -540,7 +540,7 @@ const FIREBASE_CONFIG = {
   messagingSenderId: "645933254174",
   appId: "1:645933254174:web:75a7e62fda923c9975500f"
 };
-const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
+const FIRESTORE_DOC_PATH = 'thai-data/beer_top100_notes';
 const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
 let currentData     = null;
@@ -1254,7 +1254,7 @@ function scrollToMarketNotes() {
 
 function openMarketHistory() {
   const date = currentData?.date || '';
-  const url = `history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  const url = `thai-history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
   location.href = url;
 }
 
@@ -1308,7 +1308,7 @@ async function init() {
   }
   await loadNotes();
   try {
-    const r = await fetch('data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    const r = await fetch('thai-data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
     const dates = await r.json();
     availableDates = dates;
@@ -1547,7 +1547,7 @@ function cardHTML(s) {
     </div>
 
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
-    <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
+    <a class="history-btn" href="thai-history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}
