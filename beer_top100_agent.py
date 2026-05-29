@@ -450,6 +450,15 @@ def extract_ticker_history(all_hist, ticker: str):
 
 # ─── Combined Analysis ────────────────────────────────────────
 
+def _flatten_content(content) -> str:
+    """Ensure content is a clean string even if AI returns a dict/list."""
+    if isinstance(content, dict):
+        return "\n".join(f"• {k}: {v}" for k, v in content.items())
+    if isinstance(content, list):
+        return "\n".join(f"• {item}" for item in content)
+    return str(content or "").strip()
+
+
 def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) -> dict:
     """ONE Groq call with JSON mode: วิเคราะห์ครบทุกมิติ (News + Beer Opinion + Ch34 Homework)"""
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -492,8 +501,8 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_rati
 
 ให้ตอบเป็น JSON (ภาษาไทย ตรงประเด็น) โครงสร้างดังนี้:
 {{
-  "interpretation": "วิเคราะห์เจาะลึกรายละเอียดข่าว (Detail, Sentiment, Implication)",
-  "beer_view": "ความเห็นสั้นๆ (ความน่าสนใจ SQ และจุด Circuit Breaker)",
+  "interpretation": "สรุปเจาะลึกรายละเอียดข่าว (Detail, Sentiment, Implication) ตอบเป็นข้อความบรรยาย ไม่เอา bullet point ซ้อน",
+  "beer_view": "ความเห็นสั้นๆ (ความน่าสนใจ SQ และจุด Circuit Breaker) ตอบเป็นข้อความบรรยาย",
   "homework_analysis": [
     {{ "topic": "ธุรกิจ", "insight": "ขายอะไร ลูกค้าคือใคร" }},
     {{ "topic": "ตัวเลข", "insight": "รายได้ กำไร หนี้" }},
@@ -524,8 +533,10 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_rati
         data = json.loads(resp.choices[0].message.content)
         if not isinstance(data, dict):
             return fallback
-        data["interpretation"] = str(data.get("interpretation") or fallback["interpretation"]).strip()
-        data["beer_view"] = str(data.get("beer_view") or fallback["beer_view"]).strip()
+            
+        data["interpretation"] = _flatten_content(data.get("interpretation") or fallback["interpretation"])
+        data["beer_view"] = _flatten_content(data.get("beer_view") or fallback["beer_view"])
+        
         data["homework_analysis"] = _normalize_homework_analysis(
             stock,
             data.get("homework_analysis"),
@@ -847,11 +858,12 @@ def save_history_data(stocks_data: list, period: str = "5y") -> None:
 
 # ─── HTML Report ──────────────────────────────────────────────
 
-def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -> str:
-    cards = "".join(
-        stock_card(s["stock"], s["analysis_data"], s.get("chart_cid", ""), s.get("user_notes"))
-        for s in stocks_data
-    )
+def build_html_report(stocks_data: list, date_str: str, archive_url: str = "", image_limit: int = 20) -> str:
+    cards = ""
+    for i, s in enumerate(stocks_data):
+        # Only use CID if within image_limit to prevent broken image icons in email
+        cid = s.get("chart_cid", "") if i < image_limit else ""
+        cards += stock_card(s["stock"], s["analysis_data"], cid, s.get("user_notes"))
 
     gainers = [s for s in stocks_data if s["stock"]["pct_change"] > 0]
     losers  = [s for s in stocks_data if s["stock"]["pct_change"] < 0]
@@ -867,17 +879,17 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
 <div style="max-width:700px;margin:0 auto;padding:24px">
 
   <div style="text-align:center;padding:20px 0 14px">
-    <div style="font-size:2em">🍺</div>
-    <h1 style="color:#ffffff;margin:8px 0 4px;font-size:1.35em">Beer Vanon — Top 100 US Stocks</h1>
-    <div style="color:#8a8f98;font-size:0.88em">{date_str} · เรียงตาม Market Cap</div>
-    <div style="margin-top:10px;font-size:0.9em;color:{sentiment_color};font-weight:bold">{sentiment_label}</div>
-    {f'<div style="margin-top:8px"><a href="{archive_url}" style="color:#6366f1;font-size:0.83em;text-decoration:none">📚 ดูย้อนหลังทั้งหมดบน Web Archive →</a></div>' if archive_url else ""}
+    <div style="font-size:2.2em">🍺</div>
+    <h1 style="color:#ffffff;margin:8px 0 4px;font-size:1.45em">Beer Vanon — Top 100 US Stocks</h1>
+    <div style="color:#8a8f98;font-size:0.92em">{date_str} · เรียงตาม Market Cap</div>
+    <div style="margin-top:10px;font-size:0.95em;color:{sentiment_color};font-weight:bold">{sentiment_label}</div>
+    {f'<div style="margin-top:10px"><a href="{archive_url}" style="color:#6366f1;font-size:0.88em;text-decoration:none;border:1px solid #6366f1;padding:4px 10px;border-radius:6px">📚 ดูย้อนหลังทั้งหมดบน Web Archive →</a></div>' if archive_url else ""}
   </div>
 
-  <div style="border-top:1px solid #21262d;margin:14px 0 20px"></div>
+  <div style="border-top:1px solid #21262d;margin:18px 0 22px"></div>
 
-  <div style="background:#161b22;border:1px solid #f0b90b;border-radius:10px;padding:15px;margin-bottom:20px;color:#f7d774;font-size:0.9em;line-height:1.5">
-    💡 <strong>โหมดใหม่:</strong> ครั้งนี้ Beer Vanon วิเคราะห์ 6 เสาหลักของการบ้านบทที่ 34 (ธุรกิจ, ตัวเลข, ผู้บริหาร ฯลฯ) ให้ในแต่ละตัวหุ้นโดยตรง ไม่ใช่แค่หัวข้อคำถามเปล่าๆ ครับ
+  <div style="background:#161b22;border:1px solid #f0b90b;border-radius:10px;padding:15px;margin-bottom:20px;color:#f7d774;font-size:0.92em;line-height:1.5">
+    💡 <strong>โหมดการบ้าน 6 เสาหลัก:</strong> รายงานฉบับนี้รวมบทวิเคราะห์ตามกรอบ "การบ้านที่ไม่มีอาจารย์ตรวจ" (บทที่ 34) ครบทุกหัวข้อไว้ให้แล้วครับ
   </div>
 
   {homework_guide}
@@ -885,8 +897,9 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str = "") -
   {cards}
 
   <div style="border-top:1px solid #21262d;margin:20px 0 0"></div>
-  <div style="text-align:center;color:#484f58;font-size:0.78em;padding:14px 0">
-    Beer Vanon AI · Top 100 Market Cap · เพื่อการศึกษา ไม่ใช่คำแนะนำลงทุน
+  <div style="text-align:center;color:#484f58;font-size:0.82em;padding:20px 0">
+    Beer Vanon AI · Top 100 Market Cap · เพื่อการศึกษา ไม่ใช่คำแนะนำลงทุน<br>
+    รายงานนี้ส่งตรงจาก GitHub Actions
   </div>
 </div>
 </body>
@@ -974,6 +987,7 @@ def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings
             )
             
             chart_bytes = generate_mini_chart_b64(ticker, hist_df=hist_df)
+            # Safe CID name for email clients
             cid         = f"chart_{ticker.replace('-','_').replace('.','_')}"
             
             # log success
@@ -1002,7 +1016,7 @@ def main():
     parser.add_argument("--date", help="Archive/report date in YYYY-MM-DD format (default: today)")
     parser.add_argument("--no-web", action="store_true", help="Do not write docs/data archive")
     parser.add_argument("--no-history", action="store_true", help="Do not write docs/history-data files")
-    parser.add_argument("--no-email", action="store_true", help="Build the report without sending email")
+    parser.add_argument("--no-email", action="store_true", help="Do not write docs/data archive or send email")
     parser.add_argument("--out-html", help="Optional path to save the generated HTML report")
     args = parser.parse_args()
 
@@ -1116,20 +1130,21 @@ def main():
     safe_print(f"   homework completeness: {homework_complete}/{len(stocks_data)}")
     if homework_complete != len(stocks_data):
         safe_print(f"   ⚠️ Homework ไม่ครบทุกหุ้น: ขาด {len(stocks_data) - homework_complete} ตัว")
-    report_html = build_html_report(stocks_data, date_str, archive_url)
-    email_html   = build_completion_email(date_str, archive_url, len(stocks_data), test_run=args.test)
+    
+    email_html = build_completion_email(date_str, archive_url, len(stocks_data), test_run=args.test)
     subject = f"🍺 Beer Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')} ({len(stocks_data)} หุ้น)"
     if args.test:
         subject = f"[TEST] {subject}"
 
     if args.out_html:
+        report_html = build_html_report(stocks_data, date_str, archive_url, image_limit=0)
         Path(args.out_html).write_text(report_html, encoding="utf-8")
         safe_print(f"  ✅ บันทึก HTML preview: {args.out_html}")
 
     if args.no_email:
         safe_print("📧 ข้ามการส่ง email (--no-email)")
     else:
-        safe_print("📧 ส่ง email แจ้งเตือน...")
+        safe_print("📧 ส่ง email แจ้งเตือนสถานะ...")
         send_email(email_html, subject, None)
 
     safe_print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top_stocks)} หุ้น")
