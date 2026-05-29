@@ -1,42 +1,39 @@
 # Project Context (Stock Trading Knowledge System)
 
 ## Current Status
-- **Beer Top 100 Agent:** Transitioned to an **On-demand** model triggered via the web UI.
-- **Manual Trigger:** A "🚀 รันการบ้านสด" button in `docs/index.html` triggers the GitHub Action workflow via the API.
-- **Automation Disabled:** The automated cron schedule is disabled to prevent unnecessary runs.
-- **Requirement:** User must configure a GitHub Personal Access Token (PAT) in the settings modal of the web app.
+- **Beer Top 100 Agent:** Fully operational in **On-demand** mode triggered via the Web UI, with a **Safety Net** (6:00 AM Bangkok) for automated daily reports if manual runs are missed.
+- **Analysis Quality:** Fixed issues where AI returned raw JSON/Dictionary strings. All analysis is now sanitized into clean Thai text via `_flatten_content`.
+- **Email System:** Reverted to **Simple Notification** mode (Short message + Web link) to keep inbox clean, while providing full details on the web archive.
+- **Deployment Rule:** Every code fix or functional change MUST be followed by a `git push`. This ensures immediate verification on web/mobile (Desktop/Mobile Sync).
+- **Last Verified Run:** 2026-05-29 (Full 100 stocks analysis completed successfully with clean formatting).
 
 ## Latest Confirmed Decisions
-- **Manual Control:** The system now only runs when the user explicitly requests it, ensuring data is "fresh" at that exact moment.
-- **History Page "Latest Always" Logic:** The `history.html` page must ALWAYS display the most recent data and synchronize markers in real-time, regardless of the `?date=` URL parameter. It creates placeholder candles to ensure every note has a visible marker, making it the definitive universal history view.
-- **Auto-Deploy Rule:** Every code change must be committed and pushed to GitHub immediately for real-time testing on desktop and mobile.
+- **Safety Net Idempotency:** The agent checks for the existence of `docs/data/YYYY-MM-DD.json`. If it exists, the scheduled run is skipped to prevent duplicate emails.
+- **History Page Logic:** The `history.html` page displays the most recent data and synchronizes markers in real-time.
 - **Homework Framework:** Strictly follow Book 1, Chapter 34: "การบ้านที่ไม่มีอาจารย์ตรวจ" (6 specific angles: ธุรกิจ, ตัวเลข, การสื่อสาร, คู่แข่ง, ผู้บริหาร, แผนของเรา).
-- **User Sentiment:** Use `docs/notes/notes.json` to record market feelings/thoughts and integrate them into AI analysis.
-- **Web Dashboard:** `docs/index.html` serves as the primary view for homework and sentiment.
-- **TradingView Integration:** A userscript (`docs/tradingview-notes.user.js`) syncs notes/homework to the chart.
+- **User Sentiment:** Use `docs/notes/notes.json` to record market feelings and integrate them into AI analysis.
 
 ## Current Architecture / Workflow
-1. `beer_top100_agent.py`: Fetches market data, searches knowledge base, and uses Groq (Llama 3.1 8b) for 6-angle analysis.
-2. `docs/data/YYYY-MM-DD.json`: Stores the results for the web dashboard.
-3. `docs/notes/notes.json`: Stores manual user notes/sentiment.
-4. `beer_homework_framework.py`: Shared logic for Chapter 34 homework.
+1. `beer_top100_agent.py`: Main agent logic (Market data -> Knowledge search -> Groq 6-angle analysis -> Web/Email export).
+2. `docs/index.html`: Primary dashboard for viewing homework and triggering runs.
+3. `docs/data/`: Stores daily report JSONs for the web dashboard.
+4. `docs/notes/notes.json`: Centralized user sentiment data synced via GitHub/Firebase.
 
 ## Important Active Files and Commands
 - `beer_top100_agent.py`: The main agent script.
-- `beer_homework_framework.py`: The core homework framework.
-- `docs/notes/notes.json`: User sentiment data.
+- `beer_homework_framework.py`: Shared homework framework logic.
+- `python beer_top100_agent.py`: Run full analysis.
 - `python beer_top100_agent.py --test`: Run a 5-stock test scan.
 
 ## Known Constraints and "Do Not Do" Rules
 - Do NOT exceed the 30-minute GitHub Actions limit for the full report.
 - Do NOT bypass the 6-angle Chapter 34 framework for homework analysis.
-- Do NOT hardcode secrets; use `.env`.
+- Do NOT hardcode secrets; use GitHub Secrets or `.env`.
 
 ## Current Risks or Open Questions
-- **Timeout:** 100 stocks analysis is too slow.
-- **Rate Limit:** Groq 429 errors when increasing concurrency.
-- **Archive Status:** Should the smoke-test archive (`2026-05-25.json`) be cleaned up?
+- **Groq Rate Limits:** 429 errors may occur if concurrency (`--workers`) is too high. Current default is 5.
+- **Email Size:** Full HTML reports can be large; stick to simple notifications for reliability.
 
 ## Next Recommended Step
-1. Optimize `beer_top100_agent.py` performance (increase workers, improve rate limit handling, or batching).
-2. Verify the end-to-end flow from `notes.json` to the report.
+1. Maintain the 6-angle analysis quality and monitor for any future AI formatting regressions.
+2. Consider performance optimizations (batching) if the 100-stock run approaches the 30-minute timeout.
