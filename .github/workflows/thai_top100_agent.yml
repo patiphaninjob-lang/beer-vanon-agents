@@ -1,0 +1,57 @@
+name: Beer Thai Top 100 Market Cap (หุ้นไทย SET100)
+
+on:
+  schedule:
+    - cron: '30 10 * * *'       # 17:30 PM Bangkok (UTC+7) ทุกวัน หลังตลาดไทยปิด (Safety Net)
+  workflow_dispatch:            # รันมือได้จากหน้าเว็บ Thai Dashboard
+
+permissions:
+  contents: write               # อนุญาตให้ push docs/thai-data/ กลับ repo
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45         # SET100 อาจใช้เวลานานกว่าเล็กน้อย
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Cache HuggingFace model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/hf-thai-embeddings
+          key: ${{ runner.os }}-hf-paraphrase-multilingual-minilm
+
+      - name: Install PyTorch (CPU only)
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Beer Thai Top 100 Agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python thai_top100_agent.py
+
+      - name: Commit Thai web archive data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/thai-data/ docs/thai-history-data/ thai_metadata_cache.json
+          git diff --cached --quiet || git commit -m "📊 Thai Top 100 report $(date +%Y-%m-%d)"
+          git push

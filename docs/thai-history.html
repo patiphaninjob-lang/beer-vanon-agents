@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <title>Beer Thai Top 100 - Stock Thought History</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .back-link {
+      color: #8b949e; text-decoration: none; border: 1px solid #30363d; border-radius: 6px;
+      padding: 6px 10px; background: #21262d; font-size: 0.84em; flex-shrink: 0;
+    }
+    .back-link:hover { color: #f0b90b; border-color: #f0b90b; }
+    .ticker-title { font-size: 1.35em; font-weight: 800; color: #fff; letter-spacing: 0; }
+    .ticker-sub { color: #8b949e; font-size: 0.82em; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 62vw; }
+    .range-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .range-tabs button {
+      height: 32px; min-width: 44px; border: 1px solid #30363d; border-radius: 6px;
+      background: #21262d; color: #8b949e; cursor: pointer; font-weight: 650;
+    }
+    .range-tabs button.active { background: #f0b90b; color: #111827; border-color: #f0b90b; }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 16px 18px 28px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 14px; align-items: start; }
+    .panel {
+      background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 14px;
+    }
+    .chart-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .chart-title { color: #fff; font-size: 1em; font-weight: 750; }
+    .chart-meta { color: #6b7280; font-size: 0.78em; line-height: 1.5; margin-top: 2px; }
+    .badge-row { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+    .badge {
+      color: #d1d5db; background: #0d1117; border: 1px solid #30363d; border-radius: 999px;
+      padding: 4px 9px; font-size: 0.78em; white-space: nowrap;
+    }
+    .chart-box {
+      position: relative; height: min(62vh, 620px); min-height: 420px;
+      background: #0d1117; border: 1px solid #21262d; border-radius: 8px; overflow: hidden;
+    }
+    canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .hover-tip {
+      position: absolute; display: none; z-index: 4; pointer-events: none;
+      background: rgba(13,17,23,0.96); border: 1px solid #30363d; border-left: 3px solid #f0b90b;
+      border-radius: 7px; padding: 8px 10px; min-width: 190px; max-width: 280px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.45); color: #d1d5db; font-size: 0.78em; line-height: 1.45;
+    }
+    .hover-date { color: #f0b90b; font-weight: 750; margin-bottom: 3px; }
+    .hover-note { color: #8b949e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #6b7280; background: #0d1117;
+    }
+    .legend {
+      margin-top: 9px; display: flex; gap: 10px; flex-wrap: wrap;
+      color: #6b7280; font-size: 0.8em; align-items: center;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; background: #f0b90b; box-shadow: 0 0 10px rgba(240,185,11,0.8); }
+    .detail {
+      margin-top: 12px; background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #f0b90b;
+      border-radius: 8px; padding: 12px; min-height: 96px;
+    }
+    .detail-empty { color: #6b7280; line-height: 1.6; }
+    .detail-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 9px; flex-wrap: wrap; }
+    .detail-date { color: #f0b90b; font-weight: 750; }
+    .detail-pill { color: #8b949e; font-size: 0.78em; border: 1px solid #30363d; border-radius: 999px; padding: 2px 7px; }
+    .note-block { padding: 10px 0; border-top: 1px solid #21262d; }
+    .note-block:first-of-type { border-top: 0; padding-top: 0; }
+    .note-text { color: #d1d5db; white-space: pre-wrap; line-height: 1.65; word-break: break-word; }
+    .archive-link { color: #93c5fd; text-decoration: none; font-size: 0.8em; }
+    .archive-link:hover { text-decoration: underline; }
+    .snapshot { margin-top: 10px; border-top: 1px solid #21262d; padding-top: 10px; color: #d1d5db; }
+    .snapshot-title { color: #8b949e; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .snapshot-analysis { white-space: pre-wrap; line-height: 1.55; font-size: 0.86em; max-height: 170px; overflow: auto; }
+    .news-item { margin-top: 7px; color: #8b949e; font-size: 0.82em; line-height: 1.45; }
+    .homework-grid { display: grid; gap: 6px; margin-top: 8px; }
+    .homework-row {
+      background: #111827; border-left: 2px solid #30363d; border-radius: 0 5px 5px 0;
+      padding: 7px 9px; color: #d1d5db; font-size: 0.82em; line-height: 1.45;
+    }
+    .homework-topic { color: #f0b90b; font-weight: 750; margin-bottom: 2px; }
+    .side-title { color: #fff; font-weight: 750; margin-bottom: 4px; }
+    .side-sub { color: #6b7280; font-size: 0.78em; margin-bottom: 10px; line-height: 1.45; }
+    .note-list { display: grid; gap: 8px; max-height: calc(100vh - 190px); overflow: auto; padding-right: 2px; }
+    .note-card {
+      text-align: left; border: 1px solid #21262d; border-left: 3px solid #30363d; border-radius: 7px;
+      background: #0d1117; color: #d1d5db; padding: 9px 10px; cursor: pointer; width: 100%;
+    }
+    .note-card:hover, .note-card.active { border-left-color: #f0b90b; background: #111827; }
+    .note-card-date { color: #f0b90b; font-size: 0.78em; font-weight: 750; margin-bottom: 4px; }
+    .note-card-text {
+      color: #d1d5db; font-size: 0.84em; line-height: 1.45;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .state { color: #6b7280; padding: 24px 10px; text-align: center; line-height: 1.6; }
+    .toast {
+      position: fixed; right: 16px; bottom: 16px; background: #21262d; color: #e6edf3;
+      border: 1px solid #30363d; border-radius: 8px; padding: 9px 12px; z-index: 100;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35); font-size: 0.86em;
+    }
+    body.market-mode .topbar {
+      background: linear-gradient(180deg, #171207 0%, #161b22 100%);
+      border-bottom-color: #3a2d07;
+    }
+    body.market-mode .layout { grid-template-columns: minmax(0, 1.15fr) 390px; }
+    body.market-mode .panel {
+      border-color: #3a2d07;
+      background: linear-gradient(180deg, #161210 0%, #161b22 100%);
+    }
+    body.market-mode .chart-box {
+      border-color: #3a2d07;
+      box-shadow: 0 0 0 1px rgba(240,185,11,0.05) inset;
+    }
+    body.market-mode .badge,
+    body.market-mode .detail-pill,
+    body.market-mode .snapshot,
+    body.market-mode .homework-row,
+    body.market-mode .note-card {
+      border-color: #3a2d07;
+    }
+    body.market-mode .badge {
+      background: #1b1607;
+      color: #f7d774;
+    }
+    body.market-mode .detail,
+    body.market-mode .snapshot {
+      border-left-color: #f0b90b;
+    }
+    @media (max-width: 860px) {
+      .topbar { padding: 10px 12px; align-items: flex-start; }
+      .ticker-sub { max-width: 78vw; white-space: normal; }
+      .wrap { padding: 12px 10px 24px; }
+      .layout { grid-template-columns: 1fr; }
+      .chart-box { height: 56vh; min-height: 360px; }
+      .badge-row { justify-content: flex-start; }
+      .note-list { max-height: none; }
+    }
+    /* ── Marker Tooltip ── */
+    .marker-tooltip {
+      position: fixed;
+      background: #fef9c3;
+      color: #374151;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 320px;
+      max-height: 80vh;
+      overflow-y: auto;
+      width: max-content;
+      z-index: 1500;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(10px);
+    }
+    .marker-tooltip.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .marker-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--tail-left, 50%);
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: #fef9c3 transparent transparent transparent;
+    }
+    .marker-tooltip.tail-top::after {
+      top: auto;
+      bottom: 100%;
+      border-color: transparent transparent #fef9c3 transparent;
+    }
+    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
+    .tt-section { margin-bottom: 8px; }
+    .tt-section:last-child { margin-bottom: 0; }
+    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
+    .tt-label.beer { color: #b45309; }
+    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+
+    @media (max-width: 560px) {
+      .marker-tooltip { max-width: calc(100vw - 32px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <a class="back-link" id="backLink" href="thai.html">← Archive</a>
+      <div>
+        <div class="ticker-title" id="tickerTitle">Loading...</div>
+        <div class="ticker-sub" id="tickerSub">Daily chart · thoughts history</div>
+      </div>
+    </div>
+    <div class="range-tabs" id="rangeTabs">
+      <button data-range="1mo">1M</button>
+      <button data-range="6mo">6M</button>
+      <button data-range="1y" class="active">1Y</button>
+      <button data-range="5y">5Y</button>
+      <button data-range="max">ALL</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="layout">
+      <section class="panel">
+        <div class="chart-head">
+          <div>
+            <div class="chart-title" id="chartTitle">กราฟความคิดของฉัน</div>
+            <div class="chart-meta" id="chartMeta">Timeframe: 1D · Default range: 1Y</div>
+          </div>
+          <div class="badge-row" id="badgeRow"></div>
+        </div>
+        <div class="chart-box">
+          <canvas id="priceCanvas"></canvas>
+          <div class="hover-tip" id="hoverTip"></div>
+          <div class="loading" id="loading">กำลังโหลดกราฟ 1D...</div>
+        </div>
+        <div class="legend">
+          <span><i class="dot"></i> จุดที่เคยบันทึกความคิด/อารมณ์</span>
+          <span id="visibleCount">-</span>
+        </div>
+        <div class="detail" id="detailPanel">
+          <div class="detail-empty">กดจุดสีทองบนกราฟ หรือเลือกบันทึกด้านขวา เพื่อดูว่าตอนนั้นคิดอะไรอยู่</div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="side-title">มุมมองทั้งหมด</div>
+        <div class="side-sub" id="noteSummary">กำลังโหลด notes...</div>
+        <div class="note-list" id="noteList"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+const NOTES_FILE = 'notes/notes.json';
+const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+const state = {
+  ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'NVDA'),
+  range: new URLSearchParams(location.search).get('range') || '1y',
+  notes: [],
+  allCandles: [],
+  candles: [],
+  markers: [],
+  archiveCache: {},
+  latestStock: null,
+  latestMarket: null,
+  latestMarketArchive: null,
+  latestDate: null,
+  selectedKey: null,
+  resizeTimer: null
+};
+
+const canvas = document.getElementById('priceCanvas');
+const ctx = canvas.getContext('2d');
+const hoverTip = document.getElementById('hoverTip');
+
+function normalizeTicker(value) {
+  return String(value || '').trim().toUpperCase().replace('.', '-');
+}
+function esc(value) {
+  return String(value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtDate(date) {
+  if (!date) return '';
+  const [y,m,d] = date.split('-');
+  return `${parseInt(d,10)} ${MONTHS_TH[parseInt(m,10)]} ${y}`;
+}
+function fmtMoney(value) {
+  if (value == null || Number.isNaN(Number(value))) return '-';
+  return '$' + Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function setLoading(text) {
+  const el = document.getElementById('loading');
+  el.textContent = text || '';
+  el.style.display = text ? 'flex' : 'none';
+}
+function toast(text) {
+  const old = document.querySelector('.toast');
+  if (old) old.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = text;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+
+async function fetchJson(url) {
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) throw new Error(`${url} HTTP ${r.status}`);
+  return r.json();
+}
+
+function noteDate(n) {
+  return n.date || n.archive_date || '';
+}
+
+async function loadNotes() {
+  const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
+  const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+  state.notes = [];
+  keys.forEach(key => {
+    if (db[key]) state.notes = state.notes.concat(db[key]);
+  });
+  state.notes = state.notes
+    .filter(n => n && noteDate(n))
+    .sort((a,b) => noteDate(a).localeCompare(noteDate(b)));
+}
+
+async function loadLatestStock() {
+  try {
+    const dates = await fetchJson(`thai-data/index.json?nocache=${Date.now()}`);
+    // "Latest Always" - we always point the back link to the newest archive
+    if (dates.length) document.getElementById('backLink').href = `thai.html?date=${encodeURIComponent(dates[0])}`;
+    
+    // Always look for the very latest data, ignore URL ?date=
+    for (const date of dates.slice(0, 20)) {
+      const day = await loadArchive(date);
+      if (!day) continue;
+      
+      if (state.ticker === '_MARKET') {
+        if (day.market_indices) {
+          state.latestMarketArchive = day;
+          state.latestMarket = day.market_indices;
+          if (!state.latestDate) state.latestDate = date;
+          return;
+        }
+      } else {
+        const stock = findStock(day, state.ticker);
+        if (stock) {
+          state.latestStock = stock;
+          if (!state.latestDate) state.latestDate = date;
+          return;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('archive lookup failed', e);
+  }
+}
+
+async function loadArchive(date) {
+  if (!date) return null;
+  if (!state.archiveCache[date]) {
+    state.archiveCache[date] = await fetchJson(`thai-data/${date}.json?nocache=${Date.now()}`);
+  }
+  return state.archiveCache[date];
+}
+function findStock(day, ticker) {
+  if (!day?.stocks) return null;
+  const wanted = normalizeTicker(ticker);
+  return day.stocks.find(s => normalizeTicker(s.ticker) === wanted || normalizeTicker(s.ticker).replace('-', '.') === wanted);
+}
+
+function parseHistoryCandles(data) {
+  return (data?.candles || []).map(row => {
+    if (Array.isArray(row)) {
+      return { date: row[0], open: row[1], high: row[2], low: row[3], close: row[4], volume: row[5] || 0 };
+    }
+    return row;
+  }).filter(c => c?.date && [c.open,c.high,c.low,c.close].every(v => Number.isFinite(Number(v))))
+    .map(c => ({
+      date: c.date,
+      open: Number(c.open),
+      high: Number(c.high),
+      low: Number(c.low),
+      close: Number(c.close),
+      volume: Number(c.volume || 0)
+    }))
+    .sort((a,b) => a.date.localeCompare(b.date));
+}
+
+async function loadHistoryCandles() {
+  if (state.allCandles.length) return state.allCandles;
+  
+  const tryLoad = async (ticker) => {
+    try {
+      const data = await fetchJson(`thai-history-data/${encodeURIComponent(ticker)}.json?nocache=${Date.now()}`);
+      return parseHistoryCandles(data);
+    } catch (e) { return null; }
+  };
+
+  let candles = [];
+  if (state.ticker === '_MARKET') {
+    candles = await tryLoad('market');
+    if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
+  } else {
+    candles = await tryLoad(state.ticker);
+    if (!candles) candles = await tryLoad(state.ticker.replace('-', '.'));
+    if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
+  }
+  state.allCandles = candles;
+
+  // STITCHING & PLACEHOLDERS: Guarantee space for every note and latest archive
+  const candleDates = new Set(state.allCandles.map(c => c.date));
+  const latestDate = state.latestDate || (state.allCandles.length ? state.allCandles[state.allCandles.length-1].date : null);
+  
+  // 1. Add latest archive candle if missing
+  if (latestDate && !candleDates.has(latestDate)) {
+      let lp = 0, lv = 0, lo = 0;
+      if (state.ticker === '_MARKET' && state.latestMarket) {
+        const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
+        lp = Number(p?.price || 0);
+        lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
+      } else if (state.latestStock) {
+        lp = Number(state.latestStock.price || 0);
+        lo = lp / (1 + (Number(state.latestStock.pct_change || 0) / 100));
+        lv = Number(state.latestStock.volume || 0);
+      }
+      if (lp > 0) {
+        state.allCandles.push({
+          date: latestDate, open: lo || lp, high: Math.max(lo, lp) * 1.001, low: Math.min(lo, lp) * 0.999, close: lp, volume: lv, is_stitched: true
+        });
+        candleDates.add(latestDate);
+      }
+  }
+
+  // 2. Add placeholder for every note date if missing
+  state.notes.forEach(n => {
+    const d = noteDate(n);
+    if (d && !candleDates.has(d)) {
+      const last = state.allCandles.length ? state.allCandles[state.allCandles.length-1] : { close: 100 };
+      state.allCandles.push({
+        date: d, open: last.close, high: last.close, low: last.close, close: last.close, volume: 0, is_placeholder: true
+      });
+      candleDates.add(d);
+    }
+  });
+
+  state.allCandles.sort((a,b) => a.date.localeCompare(b.date));
+  return state.allCandles;
+}
+
+function filterCandlesByRange(candles, range) {
+  if (!candles.length || range === 'max') return candles;
+  const last = candles[candles.length - 1].date;
+  const start = new Date(last + 'T12:00:00');
+  const months = { '1mo': 1, '6mo': 6, '1y': 12, '5y': 60 }[range] || 12;
+  start.setMonth(start.getMonth() - months);
+  const startKey = start.toISOString().slice(0, 10);
+  return candles.filter(c => c.date >= startKey);
+}
+
+async function buildArchiveFallbackCandles() {
+  const dates = await fetchJson(`thai-data/index.json?nocache=${Date.now()}`);
+  const candles = [];
+  for (const date of dates.slice(0, 100)) { // Limit to last 100 archives as fallback
+    try {
+      const day = await loadArchive(date);
+      if (state.ticker === '_MARKET') {
+        const mi = day?.market_indices || {};
+        const p = mi.dji || mi.spx || mi.ixic;
+        if (!p?.price) continue;
+        const c = Number(p.price);
+        const pct = Number(p.pct_change || 0);
+        const o = c / (1 + pct / 100);
+        candles.push({ date, open: o, high: Math.max(o,c)*1.005, low: Math.min(o,c)*0.995, close: c, volume: 0 });
+      } else {
+        const s = findStock(day, state.ticker);
+        if (!s?.price) continue;
+        const c = Number(s.price);
+        const pct = Number(s.pct_change || 0);
+        const o = c / (1 + pct / 100);
+        candles.push({ date, open: o, high: Math.max(o,c)*1.005, low: Math.min(o,c)*0.995, close: c, volume: s.volume || 0 });
+      }
+    } catch(e) {}
+  }
+  return candles.sort((a,b) => a.date.localeCompare(b.date));
+}
+
+async function loadCandles() {
+  setLoading('กำลังโหลดกราฟ 1D...');
+  try {
+    const all = await loadHistoryCandles();
+    state.candles = filterCandlesByRange(all, state.range);
+    setLoading('');
+  } catch (e) {
+    console.warn(e);
+    setLoading('ไม่พบข้อมูลกราฟ');
+  }
+}
+
+function groupNotesByDate(notes) {
+  const groups = new Map();
+  notes.forEach(note => {
+    const d = noteDate(note);
+    if (!d) return;
+    if (!groups.has(d)) groups.set(d, []);
+    groups.get(d).push(note);
+  });
+  return [...groups.entries()].map(([date, notes]) => ({ date, notes }));
+}
+
+function nearestCandle(date) {
+  if (!state.candles.length) return null;
+  let best = null, bestDist = Infinity;
+  const target = new Date(date + 'T12:00:00').getTime();
+  for (let i = 0; i < state.candles.length; i++) {
+    const t = new Date(state.candles[i].date + 'T12:00:00').getTime();
+    const dist = Math.abs(t - target);
+    if (dist < bestDist) { best = { candle: state.candles[i], index: i }; bestDist = dist; }
+  }
+  return best;
+}
+
+function drawChart() {
+  const box = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(box.width * dpr));
+  canvas.height = Math.max(1, Math.floor(box.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const w = box.width, h = box.height;
+  const pad = { left: 56, right: 16, top: 22, bottom: 34 };
+  ctx.fillStyle = '#0d1117'; ctx.fillRect(0, 0, w, h);
+
+  if (!state.candles.length) return;
+
+  const plotW = w - pad.left - pad.right, plotH = h - pad.top - pad.bottom;
+  const yMax = Math.max(...state.candles.map(c => c.high)) * 1.05;
+  const yMin = Math.min(...state.candles.map(c => c.low)) * 0.95;
+  
+  const xFor = i => pad.left + (state.candles.length === 1 ? plotW / 2 : (i / (state.candles.length - 1)) * plotW);
+  const yFor = p => pad.top + ((yMax - p) / (yMax - yMin)) * plotH;
+
+  // Grid
+  ctx.strokeStyle = '#1f2937'; ctx.lineWidth = 1; ctx.textAlign = 'right'; ctx.fillStyle = '#6b7280';
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (plotH * i / 4);
+    const p = yMax - ((yMax - yMin) * i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke();
+    ctx.fillText(p.toFixed(2), pad.left - 8, y + 4);
+  }
+
+  // Candles
+  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
+  state.candles.forEach((c, i) => {
+    const x = xFor(i), up = c.close >= c.open, col = up ? '#26a69a' : '#ef5350';
+    ctx.strokeStyle = col; ctx.fillStyle = col;
+    ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+    ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
+  });
+
+  // Markers
+  state.markers = [];
+  groupNotesByDate(state.notes).forEach(group => {
+    const match = nearestCandle(group.date);
+    if (!match) return;
+    const x = xFor(match.index), y = yFor(match.candle.close), active = state.selectedKey === group.date;
+    ctx.save();
+    ctx.strokeStyle = active ? '#fff' : '#fff7c2'; ctx.fillStyle = '#f0b90b'; ctx.lineWidth = active ? 3 : 2;
+    ctx.shadowColor = 'rgba(240,185,11,0.8)'; ctx.shadowBlur = active ? 20 : 10;
+    ctx.beginPath(); ctx.arc(x, y, active ? 8 : 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
+  });
+  document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
+}
+
+async function showGroup(group, candle) {
+  state.selectedKey = group.date; drawChart();
+  const detail = document.getElementById('detailPanel');
+  const archiveDate = group.notes[0]?.archive_date || group.date;
+  let stock = null, mkt = null;
+  try {
+    const day = await loadArchive(archiveDate);
+    if (state.ticker === '_MARKET') mkt = day; else stock = findStock(day, state.ticker);
+  } catch(e) {}
+
+  const notesHTML = group.notes.map(n => `
+    <div class="note-block">
+      <div class="detail-head">
+        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
+        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}</div>
+      </div>
+      <div class="note-text">${esc(n.note || '')}</div>
+    </div>
+  `).join('');
+
+  detail.innerHTML = `
+    <div class="detail-head">
+      <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
+    </div>
+    ${notesHTML}
+    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี')}</div></div>` : ''}
+  `;
+
+  // --- Show Tooltip Logic ---
+  const m = state.markers.find(x => x.key === group.date);
+  const tooltip = document.getElementById('markerTooltip');
+  if (m && tooltip) {
+    let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
+    group.notes.forEach(n => {
+      baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div><div class="tt-text">${esc(n.note || '')}</div></div>`;
+    });
+    
+    if (stock && stock.analysis) {
+      baseHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div></div>`;
+    }
+    
+    tooltip.innerHTML = baseHtml;
+    tooltip.classList.add('show');
+    
+    const positionTooltip = () => {
+      tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
+      
+      const canvasRect = canvas.getBoundingClientRect();
+      const rect = {
+        left: canvasRect.left + m.x - 8,
+        right: canvasRect.left + m.x + 8,
+        top: canvasRect.top + m.y - 8,
+        bottom: canvasRect.top + m.y + 8,
+        width: 16,
+        height: 16
+      };
+      
+      let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+      const margin = 10;
+      let tailLeft = tooltip.offsetWidth / 2;
+      
+      // Horizontal bounds
+      if (ttLeft < margin) {
+        ttLeft = margin;
+        tailLeft = rect.left + rect.width / 2 - ttLeft;
+      } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+        ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+        tailLeft = rect.left + rect.width / 2 - ttLeft;
+      }
+      tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+
+      // Vertical bounds and maxHeight
+      let isBelow = false;
+      let spaceAbove = rect.top - margin - 14;
+      let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
+      
+      let ttTop = rect.top - tooltip.offsetHeight - 14;
+      
+      if (ttTop < margin) {
+        if (spaceBelow > spaceAbove) {
+          isBelow = true;
+          ttTop = rect.bottom + 14;
+          tooltip.style.maxHeight = `${spaceBelow}px`;
+        } else {
+          ttTop = margin;
+          tooltip.style.maxHeight = `${spaceAbove}px`;
+        }
+      } else {
+        tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+      }
+      
+      if (!isBelow) {
+        ttTop = rect.top - tooltip.offsetHeight - 14;
+        if (ttTop < margin) ttTop = margin;
+      }
+
+      tooltip.style.left = `${ttLeft}px`;
+      tooltip.style.top = `${ttTop}px`;
+      tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+
+      if (isBelow) {
+        tooltip.classList.add('tail-top');
+      } else {
+        tooltip.classList.remove('tail-top');
+      }
+    };
+    
+    setTimeout(positionTooltip, 0);
+  } else if (tooltip) {
+    tooltip.classList.remove('show');
+  }
+}
+
+function renderNoteList() {
+  const list = document.getElementById('noteList');
+  const groups = groupNotesByDate(state.notes).sort((a,b) => b.date.localeCompare(a.date));
+  document.getElementById('noteSummary').textContent = `${state.notes.length} มุมมอง · ${groups.length} วัน`;
+  list.innerHTML = groups.map(g => `
+    <button class="note-card" onclick="selectDate('${g.date}')" data-key="${g.date}">
+      <div class="note-card-date">${fmtDate(g.date)}</div>
+      <div class="note-card-text">${esc(g.notes[0]?.note)}</div>
+    </button>
+  `).join('');
+}
+
+window.selectDate = (d) => {
+  const g = groupNotesByDate(state.notes).find(x => x.date === d);
+  if (g) showGroup(g, nearestCandle(d)?.candle);
+};
+
+function updateHeader() {
+  const s = state.latestStock;
+  document.getElementById('tickerTitle').textContent = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker;
+  document.getElementById('tickerSub').textContent = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
+  document.getElementById('badgeRow').innerHTML = `<span class="badge">${state.notes.length} notes</span>`;
+}
+
+function bindEvents() {
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#priceCanvas') && !e.target.closest('.note-list') && !e.target.closest('.marker-tooltip')) {
+      const tooltip = document.getElementById('markerTooltip');
+      if (tooltip) tooltip.classList.remove('show');
+    }
+  });
+
+  document.getElementById('rangeTabs').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (b) setRange(b.dataset.range);
+  });
+  canvas.addEventListener('click', e => {
+    const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    
+    if (!m) {
+      const tooltip = document.getElementById('markerTooltip');
+      if (tooltip) tooltip.classList.remove('show');
+    }
+
+    if (m) showGroup(m.group, m.candle);
+  });
+  window.addEventListener('resize', () => { clearTimeout(state.resizeTimer); state.resizeTimer = setTimeout(drawChart, 150); });
+}
+
+async function setRange(r) {
+  state.range = r;
+  document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b.dataset.range === r));
+  await loadCandles(); drawChart();
+}
+
+async function init() {
+  bindEvents();
+  await Promise.all([loadNotes(), loadLatestStock()]);
+  updateHeader();
+  renderNoteList();
+  await loadCandles();
+  drawChart();
+  const last = groupNotesByDate(state.notes).pop();
+  if (last) selectDate(last.date);
+}
+
+init();
+  </script>
+<div id="markerTooltip" class="marker-tooltip"></div>
+</body>
+</html>

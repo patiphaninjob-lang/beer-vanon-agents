@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Beer Top 100">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="icon.svg" type="image/svg+xml">
+  <title>🍺 Beer Vanon — Top 100 Archive</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+
+    /* ── Header ── */
+    .header {
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 10px 18px; display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
+    .version-tag { font-size: 0.6em; color: #4b5563; font-weight: normal; margin-left: 4px; vertical-align: middle; }
+    .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+    select, input[type=search] {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 9px; font-size: 13px; outline: none; height: 32px;
+    }
+    select:focus, input:focus { border-color: #6366f1; }
+    input[type=search] { min-width: 130px; }
+    .count-badge { color: #6b7280; font-size: 0.82em; white-space: nowrap; }
+    .settings-btn {
+      background: #21262d; border: 1px solid #30363d; color: #8a8f98;
+      border-radius: 6px; padding: 5px 9px; font-size: 14px; cursor: pointer;
+      height: 32px; display: flex; align-items: center;
+    }
+    .settings-btn:hover { border-color: #6366f1; color: #e6edf3; }
+
+    .run-agent-btn {
+      background: #238636; border: 1px solid #2ea44f; color: #fff;
+      border-radius: 6px; padding: 5px 12px; font-size: 13px; cursor: pointer;
+      height: 32px; display: flex; align-items: center; gap: 5px; font-weight: 600;
+    }
+    .run-agent-btn:hover { background: #2ea44f; }
+    .run-agent-btn:disabled { background: #21262d; border-color: #30363d; color: #8a8f98; cursor: not-allowed; }
+
+    /* ── Summary bar ── */
+    .summary {
+      background: #161b22; border-bottom: 1px solid #21262d;
+      padding: 8px 18px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.83em;
+    }
+    .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+    .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
+    .up   { color: #16c784 !important; }
+    .down { color: #ea3943 !important; }
+
+    /* ── Grid ── */
+    .grid {
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 10px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ── Card ── */
+    .card { background: #1a1f2e; border-radius: 10px; padding: 14px; border-left: 3px solid #6366f1; }
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .card-rank { font-size: 0.69em; color: #6b7280; background: #111827; border-radius: 3px; padding: 1px 5px; margin-right: 5px; }
+    .card-ticker { font-size: 1.15em; font-weight: bold; color: #fff; }
+    .card-name { color: #8a8f98; font-size: 0.8em; margin-top: 2px; }
+    .card-price { font-size: 1.1em; color: #fff; text-align: right; }
+    .card-pct { font-weight: bold; font-size: 0.95em; text-align: right; }
+    .card-meta { color: #a0a6b3; font-size: 0.77em; margin-bottom: 6px; line-height: 1.6; }
+    .card-meta strong { color: #d1d5db; }
+    .sector-badge {
+      display: inline-block; font-size: 0.69em; color: #6b7280;
+      background: #1e2532; border-radius: 10px; padding: 1px 7px; margin-left: 6px;
+    }
+    .tv-link { color: #6366f1; font-size: 0.79em; text-decoration: none; display: inline-block; margin-top: 2px; }
+    .tv-link:hover { color: #818cf8; text-decoration: underline; }
+
+    /* ── Chart Container for Markers ── */
+    .chart-container { position: relative; margin-top: 6px; overflow: hidden; border-radius: 5px; }
+    .chart-link {
+      display: block; width: 100%; border-radius: 5px;
+      transition: opacity 0.2s; position: relative; z-index: 1; cursor: pointer;
+    }
+    .chart-link:hover { opacity: 0.8; }
+    .chart-img { width: 100%; display: block; border-radius: 5px; }
+    .chart-marker {
+      position: absolute; bottom: 10px; width: 14px; height: 14px;
+      background: #f0b90b; border: 2px solid #fff; border-radius: 50%;
+      cursor: pointer; transform: translateX(-50%); z-index: 100;
+      box-shadow: 0 0 10px rgba(240, 185, 11, 0.9), 0 0 20px rgba(240, 185, 11, 0.4);
+      transition: all 0.2s ease;
+    }
+    /* Vertical line to pinpoint the candle */
+    .chart-marker::before {
+      content: "";
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      width: 1px;
+      height: 70px;
+      background: linear-gradient(to top, rgba(240, 185, 11, 0.6), transparent);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .chart-marker:hover { transform: translateX(-50%) scale(1.4); background: #fff; box-shadow: 0 0 15px #fff; }
+    .chart-marker:hover::before { height: 80px; background: linear-gradient(to top, #fff, transparent); }
+
+    /* ── Note button ── */
+    .note-btn {
+      font-size: 0.75em; padding: 2px 8px; border-radius: 4px; cursor: pointer;
+      border: 1px solid #30363d; background: #21262d; color: #8a8f98;
+      margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .note-btn:hover { border-color: #f0b90b; color: #f0b90b; }
+    .note-btn.has-notes { border-color: #f0b90b40; color: #f0b90b; background: #f0b90b10; }
+    .history-btn {
+      font-size: 0.75em; padding: 2px 8px; border-radius: 4px;
+      border: 1px solid #30363d; background: #0d1117; color: #93c5fd;
+      margin-top: 6px; margin-left: 5px; display: inline-flex; align-items: center; gap: 4px;
+      text-decoration: none;
+    }
+    .history-btn:hover { border-color: #93c5fd; color: #bfdbfe; }
+
+    /* ── Past notes on card ── */
+    .card-notes { margin-top: 8px; }
+    .card-note-item {
+      background: #111827; border-left: 2px solid #f0b90b; border-radius: 0 6px 6px 0;
+      padding: 7px 10px; margin-bottom: 5px; font-size: 0.82em;
+    }
+    .card-note-meta { color: #6b7280; font-size: 0.78em; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .card-note-meta a { color: #6366f1; text-decoration: none; font-size: 0.9em; }
+    .card-note-meta a:hover { text-decoration: underline; }
+    .card-note-text { color: #d1d5db; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+
+    /* ── News ── */
+    .news-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2532; }
+    .news-label { color: #6b7280; font-size: 0.71em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px; }
+    .news-item { margin-bottom: 7px; }
+    .news-title { color: #93c5fd; font-size: 0.82em; text-decoration: none; font-weight: 500; line-height: 1.4; display: block; }
+    .news-title:hover { text-decoration: underline; }
+    .news-title-plain { color: #d1d5db; font-size: 0.82em; font-weight: 500; line-height: 1.4; display: block; }
+    .news-summary { color: #6b7280; font-size: 0.77em; line-height: 1.4; margin-top: 2px; }
+    .news-meta { color: #4b5563; font-size: 0.72em; margin-top: 1px; }
+
+    /* ── Analysis ── */
+    .card-analysis {
+      background: #111827; border-radius: 7px; padding: 10px;
+      font-size: 0.86em; line-height: 1.65; color: #d1d5db;
+      margin-top: 8px; white-space: pre-wrap; word-break: break-word;
+    }
+    .analysis-label { color: #f0b90b; font-weight: bold; font-size: 0.8em; margin-bottom: 4px; }
+    .card-homework {
+      background: #111827; border: 1px solid #21262d; border-radius: 7px;
+      padding: 10px; margin-top: 8px;
+    }
+    .card-homework-label { color: #f0b90b; font-weight: bold; font-size: 0.8em; margin-bottom: 6px; }
+    .card-homework-item {
+      border-left: 2px solid #30363d; padding: 6px 8px; margin-top: 5px;
+      background: #0d1117; border-radius: 0 5px 5px 0; color: #8b949e;
+      font-size: 0.78em; line-height: 1.45;
+    }
+    .card-homework-item strong { display: block; color: #e6edf3; margin-bottom: 2px; }
+
+    /* ── Modal overlay ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999; padding: 16px;
+    }
+    .modal {
+      background: #161b22; border: 1px solid #30363d; border-radius: 12px;
+      padding: 22px; width: 100%; max-width: 640px; max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal h2 { color: #fff; font-size: 1.05em; margin-bottom: 14px; }
+    .modal p { color: #8a8f98; font-size: 0.85em; line-height: 1.6; margin-bottom: 12px; }
+    .modal input[type=password], .modal input[type=text], .modal textarea {
+      width: 100%; background: #0d1117; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 8px 10px; font-size: 13px; outline: none;
+      font-family: inherit;
+    }
+    .modal input:focus, .modal textarea:focus { border-color: #6366f1; }
+    .modal textarea { min-height: 72px; resize: vertical; line-height: 1.5; margin-top: 10px; }
+    .modal-actions { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+    .btn-primary {
+      background: #6366f1; color: #fff; border: none; border-radius: 6px;
+      padding: 7px 16px; font-size: 13px; cursor: pointer; font-weight: 500;
+    }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-primary:disabled { background: #374151; color: #6b7280; cursor: not-allowed; }
+    .btn-secondary {
+      background: transparent; color: #8a8f98; border: 1px solid #30363d;
+      border-radius: 6px; padding: 7px 16px; font-size: 13px; cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: #6b7280; color: #e6edf3; }
+    .modal-close { float: right; background: none; border: none; color: #6b7280; font-size: 1.2em; cursor: pointer; margin-left: 10px; }
+    .modal-close:hover { color: #e6edf3; }
+
+    /* ── Homework guide ── */
+    .homework-guide {
+      background: #0d1117; border: 1px solid #30363d; border-radius: 8px;
+      padding: 11px 12px; margin: 10px 0 12px;
+    }
+    .homework-guide-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
+    .homework-guide-title { color: #f0b90b; font-size: 0.82em; font-weight: 700; }
+    .homework-guide-sub { color: #6b7280; font-size: 0.73em; margin-top: 2px; }
+    .homework-template-btn {
+      border: 1px solid #f0b90b40; background: #f0b90b10; color: #f0b90b;
+      border-radius: 6px; padding: 5px 9px; font-size: 0.76em; cursor: pointer; flex-shrink: 0;
+    }
+    .homework-template-btn:hover { border-color: #f0b90b; background: #f0b90b18; }
+    .homework-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .homework-item {
+      border-left: 2px solid #30363d; background: #111827; border-radius: 0 6px 6px 0;
+      padding: 7px 9px; color: #8b949e; font-size: 0.77em; line-height: 1.45;
+    }
+    .homework-item strong { display: block; color: #e6edf3; font-size: 1.02em; margin-bottom: 2px; }
+
+    /* ── Existing notes in modal ── */
+    .existing-notes { margin-bottom: 14px; }
+    .existing-label { color: #6b7280; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .existing-note-item {
+      background: #0d1117; border-left: 2px solid #f0b90b; border-radius: 0 5px 5px 0;
+      padding: 7px 10px; margin-bottom: 6px;
+    }
+    .existing-note-meta { color: #6b7280; font-size: 0.78em; margin-bottom: 3px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .existing-note-meta a { color: #6366f1; text-decoration: none; }
+    .existing-note-meta a:hover { text-decoration: underline; }
+    .existing-note-text { color: #d1d5db; font-size: 0.85em; line-height: 1.5; white-space: pre-wrap; }
+    .delete-note-btn { margin-left: auto; background: none; border: none; color: #4b5563; cursor: pointer; font-size: 0.85em; padding: 0 4px; }
+    .delete-note-btn:hover { color: #ea3943; }
+
+    /* ── Settings help ── */
+    .pat-help { background: #0d1117; border-radius: 6px; padding: 10px; font-size: 0.8em; color: #6b7280; line-height: 1.7; margin-top: 8px; }
+    .pat-help code { background: #21262d; padding: 1px 5px; border-radius: 3px; color: #93c5fd; }
+    .sync-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .sync-tools button {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 6px 10px; font-size: 0.8em; cursor: pointer;
+    }
+    .sync-tools button:hover { border-color: #6366f1; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed; bottom: 20px; right: 20px; background: #1a1f2e;
+      border: 1px solid #30363d; border-radius: 8px; padding: 10px 16px;
+      color: #e6edf3; font-size: 0.87em; z-index: 9999;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── States ── */
+    .state-msg { text-align: center; padding: 60px 20px; color: #6b7280; font-size: 1em; }
+
+    /* ── Market Overview ── */
+    .market-overview { background: #161b22; border-bottom: 1px solid #21262d; padding: 14px 18px; }
+    .market-overview-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .market-overview-title { color: #8b949e; font-size: 0.82em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .market-add-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 12px; font-size: 0.82em; cursor: pointer;
+    }
+    .market-add-btn:hover { border-color: #f0b90b; color: #f0b90b; }
+    .index-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .index-card {
+      background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #30363d;
+      border-radius: 8px; padding: 10px 14px; min-width: 150px; flex: 1;
+    }
+    .index-card-name { color: #8b949e; font-size: 0.76em; margin-bottom: 2px; }
+    .index-card-price { font-size: 1.08em; font-weight: bold; color: #e6edf3; }
+    .index-card-pct { font-size: 0.87em; font-weight: 600; margin-top: 2px; }
+    .index-card-chart { margin-top: 7px; position: relative; overflow: hidden; border-radius: 4px; }
+    .index-card-chart a { display: block; position: relative; z-index: 1; }
+    .index-card-chart img { width: 100%; border-radius: 4px; display: block; }
+    .index-card-chart .chart-marker { bottom: 8px; width: 13px; height: 13px; }
+    .index-card-chart .chart-marker::before { height: 62px; }
+    .index-card-chart .chart-marker:hover::before { height: 72px; }
+    .mkt-notes-head { color: #8b949e; font-size: 0.76em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .mkt-note {
+      background: #0d1117; border: 1px solid #21262d; border-left: 3px solid #f0b90b;
+      border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
+    }
+    .mkt-note-meta {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      font-size: 0.77em; color: #6b7280; margin-bottom: 5px;
+    }
+    .mkt-note-meta a { color: #6366f1; text-decoration: none; }
+    .mkt-note-meta a:hover { text-decoration: underline; }
+    .mkt-note-del { background: none; border: none; color: #4b5563; cursor: pointer; font-size: 0.9em; margin-left: auto; padding: 0 2px; }
+    .mkt-note-del:hover { color: #ea3943; }
+    .mkt-note-text { color: #d1d5db; font-size: 0.87em; line-height: 1.55; }
+
+    /* ── Calendar Date Picker ── */
+    .date-picker-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 6px; padding: 5px 10px; font-size: 13px; cursor: pointer;
+      height: 32px; display: flex; align-items: center; gap: 5px; white-space: nowrap;
+      font-family: inherit; outline: none;
+    }
+    .date-picker-btn:hover, .date-picker-btn.open { border-color: #6366f1; color: #e6edf3; }
+    .cal-wrap { position: relative; }
+    .cal-popup {
+      position: absolute; top: 36px; left: 0; z-index: 500;
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      padding: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+      width: 252px;
+    }
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .cal-nav-btn {
+      background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 5px; width: 26px; height: 26px; cursor: pointer; font-size: 1em;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cal-nav-btn:hover { border-color: #6366f1; }
+    .cal-month-label { color: #e6edf3; font-weight: 600; font-size: 0.88em; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-weekday { text-align: center; color: #4b5563; font-size: 0.7em; padding: 4px 0; font-weight: 600; }
+    .cal-day {
+      text-align: center; padding: 6px 2px; border-radius: 4px;
+      font-size: 0.8em; color: #2d333b; line-height: 1;
+    }
+    .cal-day.avail {
+      color: #8b949e; cursor: pointer; background: #1e2532;
+    }
+    .cal-day.avail:hover { background: #21262d; color: #e6edf3; }
+    .cal-day.sel { background: #6366f1 !important; color: #fff !important; font-weight: bold; }
+    .cal-day { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .cal-bulb { font-size: 0.6em; line-height: 1; }
+
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr; padding: 10px; }
+      .header { padding: 8px 12px; align-items: flex-start; gap: 8px; }
+      .logo { width: 100%; margin-right: 0; }
+      .controls {
+        width: 100%; flex: none; display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px; align-items: center;
+      }
+      .cal-wrap, #searchBox { grid-column: 1 / -1; width: 100%; }
+      #sectorSel, #sortSel { width: 100%; min-width: 0; }
+      .date-picker-btn { width: 100%; justify-content: center; }
+      .count-badge { grid-column: 1; }
+      .settings-btn { grid-column: 2; justify-self: end; justify-content: center; width: 40px; }
+      .summary { padding: 8px 12px; gap: 14px; }
+      .modal-overlay { padding: 10px; align-items: flex-start; }
+      .modal { padding: 16px; max-height: calc(100vh - 20px); }
+      .sync-tools button { flex: 1 1 100%; }
+      .cal-popup { width: calc(100vw - 36px); }
+      .homework-grid { grid-template-columns: 1fr; }
+      .homework-guide-head { flex-direction: column; }
+    }
+    /* ── Marker Tooltip ── */
+    .marker-tooltip {
+      position: fixed;
+      background: #fef9c3;
+      color: #374151;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 320px;
+      max-height: 80vh;
+      overflow-y: auto;
+      width: max-content;
+      z-index: 1500;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(10px);
+    }
+    .marker-tooltip.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .marker-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: var(--tail-left, 50%);
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: #fef9c3 transparent transparent transparent;
+    }
+    .marker-tooltip.tail-top::after {
+      top: auto;
+      bottom: 100%;
+      border-color: transparent transparent #fef9c3 transparent;
+    }
+    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
+    .tt-section { margin-bottom: 8px; }
+    .tt-section:last-child { margin-bottom: 0; }
+    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
+    .tt-label.beer { color: #b45309; }
+    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+
+    @media (max-width: 560px) {
+      .marker-tooltip { max-width: calc(100vw - 32px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Settings Modal ── -->
+<div id="settingsOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeSettings()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSettings()">✕</button>
+    <h2>⚙️ ตั้งค่า</h2>
+
+    <div style="margin-bottom:14px">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">GitHub Personal Access Token <span style="color:#f0b90b;font-size:0.8em">(optional backup)</span></div>
+      <p>ใช้เป็นแบ็กอัพสำรองสำหรับเขียน notes กลับไปที่ GitHub repo</p>
+      <input type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+      <div class="pat-help">
+        วิธีสร้าง: GitHub → Settings → Developer settings → Personal access tokens → Fine-grained<br>
+        Repository: <code>beer-vanon-agents</code> | Permissions → Contents: <code>Read and write</code>
+      </div>
+      <div class="sync-tools">
+        <button type="button" onclick="syncNow()">Sync notes now</button>
+        <button type="button" onclick="copySetupLink()">คัดลอกลิงก์ตั้งค่าเครื่องอื่น</button>
+      </div>
+      <div id="syncStatus" style="color:#6b7280;font-size:0.76em;margin-top:6px;min-height:16px"></div>
+    </div>
+
+    <div style="margin-bottom:14px">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Groq API Key <span style="color:#f0b90b;font-size:0.8em">(สำหรับปุ่ม ✨ ปรับแต่งภาษา)</span></div>
+      <p>ใช้คีย์เดิมที่มีอยู่แล้วได้เลย</p>
+      <input type="password" id="groqKeyInput" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    </div>
+
+    <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #21262d">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Online Sync</div>
+      <p>ข้อมูลกลาง sync ผ่าน cloud; เปิดจากคอม มือถือ หรือเครื่องอื่นได้ด้วย URL เดียวกัน</p>
+      <div class="pat-help" style="line-height:1.8">
+        อ่านและบันทึกข้อมูลได้ทุกเครื่องผ่าน cloud sync. GitHub token ด้านบนเป็นแค่แบ็กอัพสำรองกรณีอยาก mirror กลับ repo. ปุ่มคัดลอกลิงก์ตั้งค่าเครื่องอื่นจะใส่ token ใน URL hash เพื่อความสะดวก ห้ามส่งลิงก์นั้นให้คนอื่น
+      </div>
+    </div>
+
+    <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #21262d">
+      <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">TradingView Integration</div>
+      <p>เปิด marker-only integration แล้ว: Beer Top 100 ยังเป็นสมุดจดหลัก ส่วน TradingView ใช้แสดงหมุดเล็กบนแท่งเทียนตามวันที่บันทึก</p>
+      <div class="pat-help" style="line-height:1.8">
+        บน TradingView ให้กดปุ่ม Beer Notes แล้วเลือก Copy Pine markers หรือ Try place on chart. ข้อมูลใน marker จะรวมทั้งมุมมองของคุณ ข่าวที่ Beer ใช้ และบทวิเคราะห์/ความเห็นของ Beer โดยไม่กางเป็นกล่องใหญ่บนกราฟ
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeSettings()">ยกเลิก</button>
+      <button class="btn-primary" onclick="saveSettings()">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Note Modal ── -->
+<div id="noteOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeNoteModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeNoteModal()">✕</button>
+    <h2>📝 มุมมองของฉัน — <span id="noteModalTicker" style="color:#f0b90b"></span></h2>
+    <div id="existingNotesContainer"></div>
+    <div style="color:#6b7280;font-size:0.78em;margin-bottom:6px">🌡️ บันทึกอารมณ์ตลาด — <span style="color:#f0b90b">ตลาดรู้สึกอะไรกับหุ้นตัวนี้ตอนนี้?</span></div>
+    <div style="color:#4b5563;font-size:0.73em;margin-bottom:8px;line-height:1.5">เช่น: ตลาดกลัว/โลภ · ใครกำลังซื้อ/ขาย · ข่าวสร้างอารมณ์แบบไหน · คนส่วนใหญ่คิดอะไรกับหุ้นตัวนี้ · ตัวเองรู้สึกอยากได้หรืออยากเทขาย เพราะอะไร</div>
+    <div class="homework-guide" id="stockHomeworkGuide">
+      <div class="homework-guide-head">
+        <div>
+          <div class="homework-guide-title">บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ</div>
+          <div class="homework-guide-sub">ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว</div>
+        </div>
+        <button type="button" class="homework-template-btn" onclick="insertHomeworkTemplate()">ใส่โครงทำการบ้าน</button>
+      </div>
+      <div class="homework-grid">
+        <div class="homework-item"><strong>ธุรกิจ</strong>ขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง</div>
+        <div class="homework-item"><strong>ตัวเลข</strong>รายได้ กำไร หนี้ กระแสเงินสด ดีขึ้นหรือแย่ลง</div>
+        <div class="homework-item"><strong>การสื่อสาร</strong>ผู้บริหารอธิบายอะไร มีอะไรที่ต้องไปฟัง/อ่านเพิ่ม</div>
+        <div class="homework-item"><strong>คู่แข่ง</strong>ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบตรงไหน</div>
+        <div class="homework-item"><strong>ผู้บริหาร</strong>ประวัติ การตัดสินใจ ความน่าเชื่อถือ และความเสี่ยง</div>
+        <div class="homework-item"><strong>แผนของเรา</strong>ตามดู ถือ งด หรือรออะไร และอะไรคือจุดที่คิดผิด</div>
+      </div>
+    </div>
+    <textarea id="noteInput" placeholder="เช่น: วันนี้ตลาดรู้สึกอะไรกับหุ้นตัวนี้ / ข่าวทำให้คนตีความอย่างไร / ธุรกิจกับตัวเลขรองรับไหม / คู่แข่งหรือผู้บริหารมีอะไรน่ากังวล / ถ้าคิดผิดต้องดูจุดไหน"></textarea>
+    <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
+    <div class="modal-actions" style="justify-content:space-between">
+      <button class="btn-secondary" id="polishBtn" onclick="polishNote()" title="ให้ AI จัดภาษาให้อ่านง่ายขึ้น">✨ ปรับแต่งภาษา</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn-secondary" onclick="closeNoteModal()">ยกเลิก</button>
+        <button class="btn-primary" id="saveNoteBtn" onclick="submitNote()">💾 บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="logo">🍺 Beer Top 100</div>
+  <div class="controls">
+    <div class="cal-wrap">
+      <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
+      <div id="calPopup" class="cal-popup" style="display:none"></div>
+    </div>
+    <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
+    <button type="button" class="run-agent-btn" id="runAgentBtn" onclick="runAgent(event)" title="เริ่มทำการบ้านเดี๋ยวนี้ (On-demand)">🚀 รันการบ้านสด</button>
+    <select id="sectorSel" onchange="renderCards()">
+      <option value="">ทุก Sector</option>
+    </select>
+    <select id="sortSel" onchange="renderCards()">
+      <option value="rank">Market Cap Rank</option>
+      <option value="gain">% เปลี่ยนแปลง ↑</option>
+      <option value="loss">% เปลี่ยนแปลง ↓</option>
+      <option value="notes">มีโน้ตของฉัน</option>
+    </select>
+    <span class="count-badge" id="countBadge"></span>
+    <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า sync">⚙️</button>
+  </div>
+</div>
+
+<div id="summaryBar" class="summary"></div>
+<div id="marketOverview"></div>
+<div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
+
+<script>
+const REPO       = 'patiphaninjob-lang/beer-vanon-agents';
+const NOTES_FILE = 'docs/notes/notes.json';
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
+  authDomain: "beam-7645f.firebaseapp.com",
+  projectId: "beam-7645f",
+  storageBucket: "beam-7645f.firebasestorage.app",
+  messagingSenderId: "645933254174",
+  appId: "1:645933254174:web:75a7e62fda923c9975500f"
+};
+const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
+const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+let currentData     = null;
+let notesCache      = {};
+let notesSha        = null;
+let notesDocRef      = null;
+let notesSyncReady   = false;
+let notesSyncBackend = 'github';
+let activeNoteTicker = null;
+let activeNoteStock  = null;
+let availableDates  = [];
+let calYear  = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let selectedDate = null;
+let calOpen = false;
+
+// ── Helpers ──────────────────────────────────────────────────
+function fmtDate(d) {
+  const [y,m,day] = d.split('-');
+  return `${parseInt(day)} ${MONTHS_TH[parseInt(m)]} ${y}`;
+}
+function fmtCap(cap) {
+  if (!cap) return 'N/A';
+  if (cap >= 1e12) return `$${(cap/1e12).toFixed(2)}T`;
+  if (cap >= 1e9)  return `$${(cap/1e9).toFixed(1)}B`;
+  return `$${(cap/1e6).toFixed(0)}M`;
+}
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function toBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function fromBase64(str) {
+  return decodeURIComponent(escape(atob(String(str || '').replace(/\s/g, ''))));
+}
+function githubHeaders(pat = localStorage.getItem('gh_pat'), json = false) {
+  const headers = { Accept: 'application/vnd.github+json' };
+  if (pat) headers.Authorization = `token ${pat}`;
+  if (json) headers['Content-Type'] = 'application/json';
+  return headers;
+}
+function showToast(msg, color='#16c784') {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.borderLeftColor = color;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+function cloneNotesMap(src) {
+  const out = {};
+  if (!src || typeof src !== 'object') return out;
+  for (const [ticker, notes] of Object.entries(src)) {
+    if (!Array.isArray(notes)) continue;
+    out[ticker] = notes.map(note => ({ ...note }));
+  }
+  return out;
+}
+
+function countNotesMap(map) {
+  return Object.values(map || {}).reduce((sum, notes) => sum + (Array.isArray(notes) ? notes.length : 0), 0);
+}
+
+function withTimeout(promise, ms) {
+  let timer = null;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
+function hasFirebaseClient() {
+  return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
+}
+
+function initCloudSync() {
+  if (notesSyncReady) return true;
+  if (!hasFirebaseClient()) return false;
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+    const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
+    notesDocRef = db.collection(collectionName).doc(docName);
+    notesSyncReady = true;
+    return true;
+  } catch (e) {
+    console.warn('[cloud-sync] init failed', e);
+    notesDocRef = null;
+    notesSyncReady = false;
+    return false;
+  }
+}
+
+async function loadNotesFromFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    const snap = await notesDocRef.get();
+    if (!snap.exists) return false;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    if (!Object.keys(next).length) return false;
+    return next;
+  } catch (e) {
+    console.warn('[cloud-sync] load firestore failed', e);
+    return false;
+  }
+}
+
+async function saveNotesToFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    await notesDocRef.set({
+      notes: cloneNotesMap(notesCache),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedBy: 'beer-top100',
+      source: location.origin
+    }, { merge: true });
+    notesSyncBackend = 'firestore';
+    return true;
+  } catch (e) {
+    console.warn('[cloud-sync] save firestore failed', e);
+    return false;
+  }
+}
+
+async function refreshGithubSha(pat) {
+  try {
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+      headers: githubHeaders(pat),
+      cache: 'no-store'
+    });
+    if (!api.ok) return false;
+    const data = await api.json();
+    notesSha = data.sha || null;
+    return !!notesSha;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ── Notes ─────────────────────────────────────────────────────
+async function loadNotes(force = false) {
+  if (force) {
+    const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
+    if (firestoreData) {
+      notesCache = firestoreData;
+      notesSha = null;
+      notesSyncBackend = 'firestore';
+      return true;
+    }
+  } else {
+    const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
+    if (firestoreData) {
+      notesCache = firestoreData;
+      notesSha = null;
+      notesSyncBackend = 'firestore';
+      return true;
+    }
+  }
+
+  const pat = localStorage.getItem('gh_pat') || '';
+  const apiUrl = `https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`;
+
+  try {
+    const api = await fetch(apiUrl, {
+      headers: githubHeaders(pat),
+      cache: force ? 'no-store' : 'default'
+    });
+    if (api.ok) {
+      const file = await api.json();
+      notesSha = file.sha;
+      notesCache = JSON.parse(fromBase64(file.content || 'e30='));
+      notesSyncBackend = 'github';
+      if (countNotesMap(notesCache) > 0) {
+        await saveNotesToFirestore();
+      }
+      return true;
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${NOTES_FILE}?_=` + Date.now(), {
+      cache: force ? 'no-store' : 'default'
+    });
+    if (!r.ok) throw new Error(`notes HTTP ${r.status}`);
+    notesCache = await r.json();
+    notesSyncBackend = 'github';
+    // get SHA for write operations
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+      headers: githubHeaders(pat),
+      cache: 'no-store'
+    });
+    if (api.ok) notesSha = (await api.json()).sha;
+    if (countNotesMap(notesCache) > 0) {
+      await saveNotesToFirestore();
+    }
+    return true;
+  } catch(e) {
+    notesCache = {};
+    notesSha = null;
+    notesSyncBackend = 'github';
+    return false;
+  }
+}
+
+async function writeNotesToGitHub(message, pat) {
+  const body = {
+    message,
+    content: toBase64(JSON.stringify(notesCache, null, 2))
+  };
+  if (notesSha) body.sha = notesSha;
+
+  return fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
+    method: 'PUT',
+    headers: githubHeaders(pat, true),
+    body: JSON.stringify(body)
+  });
+}
+
+async function persistNotes(message) {
+  const cloudOk = await withTimeout(saveNotesToFirestore(), 2500).catch(() => false);
+  let githubOk = false;
+  const pat = localStorage.getItem('gh_pat');
+
+  if (pat) {
+    if (!notesSha) {
+      await refreshGithubSha(pat);
+    }
+    let r = await writeNotesToGitHub(message, pat);
+    if (r.status === 409) {
+      await loadNotes(true);
+      await refreshGithubSha(pat);
+      r = await writeNotesToGitHub(message, pat);
+    }
+    githubOk = r.ok;
+    if (githubOk) {
+      try { notesSha = (await r.json()).content.sha; } catch (e) {}
+    } else if (!cloudOk) {
+      const err = await r.json().catch(() => ({}));
+      if (r.status === 401 || r.status === 403) showSettings();
+      else showToast(`❌ ${err.message || 'sync failed'}`, '#ea3943');
+    }
+  }
+
+  return cloudOk || githubOk;
+}
+
+async function saveNoteToGitHub(ticker, noteText) {
+  await loadNotes(true);
+
+  const note = {
+    id: (crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`),
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'}),
+    note: noteText.trim(),
+    archive_date: currentData?.date || ''
+  };
+  if (ticker === '_MARKET') {
+    const mi = currentData?.market_indices || {};
+    if (mi.dji)  { note.dji_price  = mi.dji.price;  note.dji_pct  = mi.dji.pct_change;  }
+    if (mi.spx)  { note.spx_price  = mi.spx.price;  note.spx_pct  = mi.spx.pct_change;  }
+    if (mi.ixic) { note.ixic_price = mi.ixic.price; note.ixic_pct = mi.ixic.pct_change; }
+  } else {
+    note.price      = activeNoteStock?.price || 0;
+    note.pct_change = activeNoteStock?.pct_change || 0;
+  }
+
+  if (!notesCache[ticker]) notesCache[ticker] = [];
+  notesCache[ticker].unshift(note);
+
+  const ok = await persistNotes(`📝 Note: ${ticker} ${note.date}`);
+  if (ok) {
+    return true;
+  } else {
+    notesCache[ticker]?.shift(); // rollback
+    return false;
+  }
+}
+
+async function deleteNote(ticker, noteId) {
+  await loadNotes(true);
+  if (!notesCache[ticker]) return;
+
+  const before = [...notesCache[ticker]];
+  notesCache[ticker] = notesCache[ticker].filter(n => n.id !== noteId);
+
+  const ok = await persistNotes(`🗑️ Delete note: ${ticker} ${noteId}`);
+
+  if (ok) {
+    if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); upgradeMarketOverviewCards(); }
+    else { showNoteModal(ticker, activeNoteStock); renderCards(); }
+  } else {
+    notesCache[ticker] = before; // rollback
+    showToast('❌ ลบไม่ได้', '#ea3943');
+  }
+}
+
+// ── Settings Modal ────────────────────────────────────────────
+function showSettings() {
+  document.getElementById('patInput').value    = localStorage.getItem('gh_pat')    || '';
+  document.getElementById('groqKeyInput').value = localStorage.getItem('groq_key') || '';
+  const status = document.getElementById('syncStatus');
+  if (status) {
+    const sourceLabel = notesSyncBackend === 'firestore' ? 'Firestore cloud' : 'GitHub backup';
+    status.style.color = '#6b7280';
+    status.textContent = `Sync source: ${sourceLabel}`;
+  }
+  document.getElementById('settingsOverlay').style.display = 'flex';
+}
+function closeSettings() {
+  document.getElementById('settingsOverlay').style.display = 'none';
+}
+function saveSettings() {
+  const pat  = document.getElementById('patInput').value.trim();
+  const groq = document.getElementById('groqKeyInput').value.trim();
+  if (pat)  localStorage.setItem('gh_pat',   pat);
+  if (groq) localStorage.setItem('groq_key', groq);
+  showToast('✅ บันทึกการตั้งค่าแล้ว');
+  closeSettings();
+}
+
+async function syncNow() {
+  const status = document.getElementById('syncStatus');
+  if (status) {
+    status.style.color = '#6b7280';
+    status.textContent = 'กำลัง sync notes จาก cloud...';
+  }
+
+  const ok = await loadNotes(true);
+  const total = countNotesMap(notesCache);
+
+  if (ok) {
+    if (status) {
+      status.style.color = '#16c784';
+      status.textContent = `Sync แล้ว: ${total} notes จาก ${notesSyncBackend === 'firestore' ? 'cloud' : 'GitHub'}`;
+    }
+    renderMarketOverview();
+    upgradeMarketOverviewCards();
+    renderCards();
+    renderCalendar();
+    showToast('✅ Sync notes แล้ว');
+  } else {
+    if (status) {
+      status.style.color = '#ea3943';
+      status.textContent = 'Sync ไม่สำเร็จ ลองตรวจ internet หรือ token สำรอง';
+    }
+    showToast('❌ Sync notes ไม่สำเร็จ', '#ea3943');
+  }
+}
+
+async function copySetupLink() {
+  const pat = document.getElementById('patInput').value.trim() || localStorage.getItem('gh_pat') || '';
+  const groq = document.getElementById('groqKeyInput').value.trim() || localStorage.getItem('groq_key') || '';
+  const status = document.getElementById('syncStatus');
+
+  if (!pat && !groq) {
+    showToast('⚠️ ยังไม่มี key/token สำหรับสร้างลิงก์ตั้งค่า', '#f0b90b');
+    if (status) {
+      status.style.color = '#f0b90b';
+      status.textContent = 'ใส่ token สำรองหรือ Groq key ก่อน แล้วค่อยคัดลอกลิงก์';
+    }
+    return;
+  }
+
+  const cfg = {};
+  if (pat) cfg.gh_pat = pat;
+  if (groq) cfg.groq_key = groq;
+
+  const baseUrl = `${location.origin}${location.pathname}${location.search}`;
+  const setupLink = `${baseUrl}#config=${toBase64(JSON.stringify(cfg))}`;
+
+  try {
+    await navigator.clipboard.writeText(setupLink);
+    if (status) {
+      status.style.color = '#16c784';
+      status.textContent = 'คัดลอกลิงก์ตั้งค่าแล้ว เปิดบนเครื่องอื่นเพื่อบันทึก token อัตโนมัติ';
+    }
+    showToast('✅ คัดลอกลิงก์ตั้งค่าแล้ว');
+  } catch(e) {
+    if (status) {
+      status.style.color = '#f0b90b';
+      status.textContent = setupLink;
+    }
+    showToast('⚠️ คัดลอกอัตโนมัติไม่ได้ ลิงก์อยู่ในช่องสถานะแล้ว', '#f0b90b');
+  }
+}
+
+// ── Polish Note with Groq ─────────────────────────────────────
+async function polishNote() {
+  const raw = document.getElementById('noteInput').value.trim();
+  if (!raw) { showToast('⚠️ ยังไม่ได้พิมพ์มุมมอง', '#f0b90b'); return; }
+
+  const groqKey = localStorage.getItem('groq_key');
+  if (!groqKey) {
+    showToast('⚠️ ยังไม่ได้ตั้ง Groq API Key ใน Settings', '#f0b90b');
+    showSettings();
+    return;
+  }
+
+  const btn = document.getElementById('polishBtn');
+  const status = document.getElementById('polishStatus');
+  btn.disabled = true; btn.textContent = '✨ กำลังปรับแต่ง...';
+  status.textContent = '';
+
+  try {
+    const prompt = activeNoteTicker === '_MARKET'
+      ? `คุณเป็นผู้ช่วยบันทึกอารมณ์ตลาดแบบ Beer Vanon นักลงทุนเขียนโน้ตสั้นๆมาว่าตลาดรู้สึกอะไร ช่วยเปลี่ยนให้เป็นบันทึกที่มีโครงสร้างชัด 2-3 ประโยค โดย: (1) ระบุว่าตลาดอยู่ในอารมณ์อะไร เช่น โลภ / กล้า / กลัว / ลังเล (2) บอกสัญญาณที่เจ้าของสังเกตเห็นจากโน้ต (3) จบด้วยสิ่งที่ต้องจับตาต่อ ทั้งหมดต้องมาจากสิ่งที่เจ้าของเขียนเท่านั้น ห้ามเพิ่มข้อมูลใหม่ที่ไม่มีในโน้ต ตอบเป็นภาษาไทย กระชับ ตรงประเด็น ไม่ต้องพูดนำ`
+      : `คุณเป็นผู้ช่วยจัดบันทึกการบ้านหุ้นแบบ Beer Vanon โดยยึดกรอบจากหนังสือผู้รอด บทที่ 34 "การบ้านที่ไม่มีอาจารย์ตรวจ" ช่วยจัดโน้ตให้เป็นบันทึกที่อ่านย้อนหลังได้ชัด โดยครอบคลุมเท่าที่ผู้เขียนให้ข้อมูล: (1) อารมณ์ตลาดและแรงซื้อขายตอนนี้ (2) ธุรกิจขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง (3) ตัวเลขสำคัญ เช่น รายได้ กำไร หนี้ กระแสเงินสด หรือ valuation ถ้ามีในโน้ต (4) ข่าวและบทวิเคราะห์ Beer ที่ผู้เขียนอ้างถึง (5) คู่แข่งและผู้บริหาร (6) แผนของเรา สิ่งที่ต้องจับตา และจุดที่ถ้าคิดผิดต้องยอมรับ ห้ามแต่งข้อมูลใหม่ ถ้าหัวข้อไหนยังไม่มีข้อมูลให้เขียนว่า "ยังไม่รู้/ต้องไปต่อ" ตอบเป็นภาษาไทย กระชับ แต่เป็นโครงสร้าง ไม่ต้องพูดนำ`;
+    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        temperature: 0.4,
+        max_tokens: activeNoteTicker === '_MARKET' ? 300 : 700,
+        messages: [{
+          role: 'user',
+          content: `${prompt}:\n\n"${raw}"`
+        }]
+      })
+    });
+
+    if (!r.ok) { const e = await r.json(); throw new Error(e.error?.message || r.status); }
+    const data = await r.json();
+    const polished = data.choices[0].message.content.trim();
+    document.getElementById('noteInput').value = polished;
+    status.textContent = '✅ ปรับแต่งแล้ว — ตรวจทาน แก้ไขเพิ่มเติมได้ก่อนกด บันทึก';
+    status.style.color = '#16c784';
+  } catch(e) {
+    status.textContent = `❌ ${e.message}`;
+    status.style.color = '#ea3943';
+  } finally {
+    btn.disabled = false; btn.textContent = '✨ ปรับแต่งภาษา';
+  }
+}
+
+// ── Note Modal ────────────────────────────────────────────────
+function insertHomeworkTemplate() {
+  if (activeNoteTicker === '_MARKET') return;
+
+  const s = activeNoteStock || currentData?.stocks?.find(x => x.ticker === activeNoteTicker) || {};
+  const pct = Number(s.pct_change || 0);
+  const priceLine = s.price
+    ? `$${Number(s.price).toFixed(2)} (${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%)`
+    : 'ยังไม่ระบุ';
+  const archiveDate = currentData?.date || new Date().toISOString().slice(0, 10);
+  const beerBrief = s.analysis
+    ? s.analysis.replace(/\s+/g, ' ').slice(0, 220) + (s.analysis.length > 220 ? '...' : '')
+    : 'อ่านข่าว/บทวิเคราะห์ Beer แล้วสรุปเองว่าตลาดกำลังตีความอะไร';
+  const topNews = (s.news || []).slice(0, 2).map((n, i) => `${i + 1}. ${n.title}${n.summary ? ' — ' + n.summary : ''}`).join('\n');
+
+  const template = `การบ้าน ${activeNoteTicker} · ${archiveDate}
+ราคา/แรงวันนี้: ${priceLine} · Rank #${s.rank || '-'} · ${s.sector || 'ไม่ระบุ sector'}
+
+1) อารมณ์ตลาดตอนนี้
+- ตลาดกำลังกลัว/โลภ/ลังเล/กล้า เพราะ:
+- ใครน่าจะเป็นฝ่ายซื้อ/ขาย:
+
+2) ธุรกิจ
+- บริษัทขายอะไร:
+- ลูกค้าคือใคร:
+- แข่งกับใคร:
+- ทำเงินยังไง:
+
+3) ตัวเลข
+- รายได้/กำไร:
+- หนี้/กระแสเงินสด:
+- valuation หรือความแพง/ถูก:
+
+4) ข่าว + Beer วิเคราะห์
+- Beer มองว่า: ${beerBrief}
+${topNews ? `- ข่าวที่ต้องแปลความ:\n${topNews}` : '- ข่าวที่ต้องแปลความ:'}
+
+5) คู่แข่ง + ผู้บริหาร
+- คู่แข่งที่ต้องเทียบ:
+- ผู้บริหาร/การตัดสินใจที่ต้องจับตา:
+
+6) แผนของเรา
+- ตอนนี้ควรตามดู/รอ/งด/ถือ เพราะ:
+- ถ้าคิดผิด จุดที่ต้องยอมรับคือ:`;
+
+  const input = document.getElementById('noteInput');
+  const current = input.value.trim();
+  input.value = current ? `${current}\n\n${template}` : template;
+  input.focus();
+}
+
+function showNoteModal(ticker, stockData) {
+  activeNoteTicker = ticker;
+  activeNoteStock  = stockData;
+
+  document.getElementById('noteModalTicker').textContent = ticker;
+  document.getElementById('noteInput').value = '';
+  document.getElementById('polishStatus').textContent = '';
+  document.getElementById('stockHomeworkGuide').style.display = 'block';
+  document.getElementById('saveNoteBtn').disabled = false;
+  document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
+
+  const notes = notesCache[ticker] || [];
+  const container = document.getElementById('existingNotesContainer');
+  container.innerHTML = notes.length ? `
+    <div class="existing-notes">
+      <div class="existing-label">มุมมองที่ผ่านมา (${notes.length} รายการ)</div>
+      ${notes.map(n => `
+        <div class="existing-note-item">
+          <div class="existing-note-meta">
+            <span>${n.date}${n.time ? ' '+n.time : ''}</span>
+            <span>$${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)</span>
+            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูกราฟวันนั้น →</a>` : ''}
+            <button class="delete-note-btn" onclick="deleteNote('${ticker}','${n.id}')" title="ลบโน้ตนี้">🗑️</button>
+          </div>
+          <div class="existing-note-text">${esc(n.note)}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  document.getElementById('noteOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('noteInput').focus(), 100);
+}
+function closeNoteModal() {
+  document.getElementById('noteOverlay').style.display = 'none';
+}
+async function runAgent(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  
+  const pat = localStorage.getItem('gh_pat');
+  if (!pat) {
+    showToast('⚠️ ต้องใส่ GitHub Token ใน Settings ก่อนเพื่อสั่งรัน', '#f0b90b');
+    showSettings();
+    return;
+  }
+
+  if (!confirm('ยืนยันรันการบ้าน Top 100 ตอนนี้? (ใช้เวลาประมาณ 10-15 นาที ระบบจะอัปเดตเว็บและส่งเมลให้อัตโนมัติ)')) return;
+
+  const btn = document.getElementById('runAgentBtn');
+  btn.disabled = true;
+  const originalText = btn.innerHTML;
+  btn.textContent = '⏳ กำลังสั่งรัน...';
+
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/beer_top100_agent.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${pat}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+
+    if (r.ok) {
+      showToast('🚀 สั่งรันสำเร็จ! รอผลประมาณ 15 นาที', '#16c784');
+      btn.textContent = '✅ สั่งแล้ว';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }, 30000); 
+    } else {
+      if (r.status === 401) {
+        showToast('❌ GitHub Token หมดอายุหรือผิด กรุณาเปลี่ยนใหม่', '#ea3943');
+        showSettings();
+        throw new Error('Token expired (401)');
+      }
+      const err = await r.json().catch(() => ({ message: 'Unknown error' }));
+      throw new Error(err.message || 'Error triggering workflow');
+    }
+  } catch (e) {
+    if (e.message !== 'Token expired (401)') {
+      showToast(`❌ ล้มเหลว: ${e.message}`, '#ea3943');
+    }
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
+
+async function submitNote() {
+  const text = document.getElementById('noteInput').value.trim();
+  if (!text) return;
+  const btn = document.getElementById('saveNoteBtn');
+  btn.textContent = 'กำลังบันทึก...'; btn.disabled = true;
+  const ok = await saveNoteToGitHub(activeNoteTicker, text);
+  if (ok) {
+    const label = activeNoteTicker === '_MARKET' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
+    showToast(`✅ บันทึก ${label} แล้ว`);
+    closeNoteModal();
+    if (activeNoteTicker === '_MARKET') {
+      renderMarketOverview();
+      upgradeMarketOverviewCards();
+    }
+    else renderCards();
+  } else {
+    btn.textContent = '💾 บันทึก'; btn.disabled = false;
+  }
+}
+
+// ── Market Overview ───────────────────────────────────────────
+function renderMarketOverview() {
+  const el = document.getElementById('marketOverview');
+  if (!el) return;
+  const mi = currentData?.market_indices;
+  const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const marketMarkersHTML = marketNotes.map(n => {
+    const markerDate = n.date || n.archive_date;
+    if (!markerDate || !currentData?.date) return '';
+    const noteTS = new Date(markerDate + 'T12:00:00').getTime();
+    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
+    const rangeTS = 90 * 24 * 60 * 60 * 1000;
+    const startTS = archiveTS - rangeTS;
+    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
+    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
+    leftPos = Math.max(2, Math.min(98, leftPos));
+    const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" data-note-id="${n.id}" title="${esc(label)}"></div>`;
+  }).join('');
+
+  const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
+  const INDEX_TV   = {
+    dji:  'https://www.tradingview.com/chart/?symbol=DJ%3ADJI',
+    spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
+    ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
+  };
+  const marketNoteCount = marketNotes.length;
+
+  const indexCards = mi && Object.keys(mi).length
+    ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
+        const d = mi[k];
+        const up = d.pct_change >= 0;
+        const color = up ? '#16c784' : '#ea3943';
+        const arrow = up ? '▲' : '▼';
+        const priceStr = d.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        return `
+          <div class="index-card" style="border-left-color:${color}">
+            <div class="index-card-name">${INDEX_META[k]}</div>
+            <div class="index-card-price">${priceStr}</div>
+            <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
+            ${d.chart_b64 ? `<div class="index-card-chart">
+              <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
+                <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
+              </a>
+              ${marketMarkersHTML}
+            </div>` : ''}
+          </div>`;
+      }).join('')
+    : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
+
+  el.innerHTML = `
+    <div class="market-overview">
+      <div class="market-overview-head">
+        <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date) : ''}</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="history-btn" type="button" onclick="openMarketHistory()">📈 History</button>
+          <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
+        </div>
+      </div>
+      <div class="index-row">${indexCards}</div>
+    </div>`;
+}
+
+function upgradeMarketOverviewCards() {
+  const cards = document.querySelectorAll('#marketOverview .index-card');
+  if (!cards.length) return;
+  const marketNoteCount = (notesCache['_MARKET'] || []).length;
+
+  cards.forEach(card => {
+    if (card.dataset.upgraded === '1') return;
+    card.dataset.upgraded = '1';
+
+    const name = card.querySelector('.index-card-name')?.textContent?.trim() || 'Market';
+    const price = card.querySelector('.index-card-price')?.textContent?.trim() || '';
+    const pct   = card.querySelector('.index-card-pct')?.textContent?.trim() || '';
+    const chart = card.querySelector('.index-card-chart');
+    const chartHTML = chart ? chart.innerHTML : '';
+
+    card.className = 'card market-card';
+    card.innerHTML = `
+      <div class="card-head">
+        <div>
+          <span class="card-ticker">${esc(name)}</span>
+          <div class="card-name">ภาพรวมตลาด</div>
+      </div>
+      <div style="flex-shrink:0;margin-left:10px">
+        <div class="card-price">${esc(price)}</div>
+        <div class="card-pct">${esc(pct)}</div>
+      </div>
+      </div>
+      <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
+      ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
+      <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
+      <button class="history-btn" type="button" onclick="openMarketHistory()">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</button>
+    `;
+
+    const chartContainer = card.querySelector('.chart-container');
+    if (chartContainer) {
+      const link = chartContainer.querySelector('a');
+      const img = chartContainer.querySelector('img');
+      if (link) link.classList.add('chart-link');
+      if (img) img.classList.add('chart-img');
+    }
+  });
+}
+
+function scrollToMarketNotes() {
+  const target = document.getElementById('marketNotesList');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openMarketHistory() {
+  const date = currentData?.date || '';
+  const url = `history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  location.href = url;
+}
+
+function openMarketNote() {
+  activeNoteTicker = '_MARKET';
+  activeNoteStock  = null;
+  document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
+  document.getElementById('noteInput').value = '';
+  document.getElementById('polishStatus').textContent = '';
+  document.getElementById('stockHomeworkGuide').style.display = 'none';
+  document.getElementById('saveNoteBtn').disabled = false;
+  document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
+
+  const notes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const container = document.getElementById('existingNotesContainer');
+  container.innerHTML = notes.length ? `
+    <div class="existing-notes">
+      <div class="existing-label">อารมณ์ตลาดที่เคยบันทึก (${notes.length} รายการ)</div>
+      ${notes.map(n => {
+        const dji = n.dji_price ? `DJI ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
+        const spx = n.spx_price ? `S&P ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
+        return `
+          <div class="existing-note-item">
+            <div class="existing-note-meta">
+              <span>${n.date}${n.time ? ' '+n.time : ''}</span>
+              ${dji ? `<span>${dji}</span>` : ''}
+              ${spx ? `<span>${spx}</span>` : ''}
+              ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
+              <button class="delete-note-btn" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
+            </div>
+            <div class="existing-note-text">${esc(n.note)}</div>
+          </div>`;
+      }).join('')}
+    </div>` : '';
+
+  document.getElementById('noteOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('noteInput').focus(), 100);
+}
+
+// ── Init & Data Loading ───────────────────────────────────────
+async function init() {
+  // Auto-setup credentials from URL hash (bookmark-friendly)
+  if (location.hash.startsWith('#config=')) {
+    try {
+      const cfg = JSON.parse(fromBase64(location.hash.slice(8)));
+      if (cfg.gh_pat)   localStorage.setItem('gh_pat',   cfg.gh_pat);
+      if (cfg.groq_key) localStorage.setItem('groq_key', cfg.groq_key);
+      history.replaceState({}, '', location.pathname + location.search);
+      showToast('✅ ตั้งค่าเรียบร้อย — พร้อมใช้งาน');
+    } catch(e) {}
+  }
+  await loadNotes();
+  try {
+    const r = await fetch('data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) throw new Error('ไม่พบไฟล์ index');
+    const dates = await r.json();
+    availableDates = dates;
+    if (dates.length) {
+      const urlDate = new URLSearchParams(location.search).get('date');
+      const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
+      selectedDate = target;
+      const [ty, tm] = target.split('-').map(Number);
+      calYear = ty; calMonth = tm - 1;
+      document.getElementById('dateBtnLabel').textContent = fmtDate(target);
+      await loadDate(target);
+    } else {
+      document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
+    }
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
+  }
+}
+
+// ── Calendar ──────────────────────────────────────────────────
+function toggleCalendar() {
+  calOpen = !calOpen;
+  const popup = document.getElementById('calPopup');
+  popup.style.display = calOpen ? 'block' : 'none';
+  document.getElementById('dateBtn').classList.toggle('open', calOpen);
+  if (calOpen) renderCalendar();
+}
+
+function closeCalendar() {
+  if (!calOpen) return;
+  calOpen = false;
+  const popup = document.getElementById('calPopup');
+  if (popup) popup.style.display = 'none';
+  const btn = document.getElementById('dateBtn');
+  if (btn) btn.classList.remove('open');
+}
+
+function navMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const popup = document.getElementById('calPopup');
+  if (!popup) return;
+  const avail = new Set(availableDates);
+
+  // collect all archive_dates that have at least one note
+  const notedDates = new Set();
+  for (const notes of Object.values(notesCache)) {
+    for (const n of notes) { if (n.archive_date) notedDates.add(n.archive_date); }
+  }
+
+  const firstDay   = new Date(calYear, calMonth, 1);
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const startDow    = (firstDay.getDay() + 6) % 7; // Mon=0 … Sun=6
+  const MONTHS_LONG = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+                       'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+  const WD = ['จ','อ','พ','พฤ','ศ','ส','อา'];
+
+  let cells = '';
+  for (let i = 0; i < startDow; i++) cells += '<div class="cal-day"></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isAvail = avail.has(ds);
+    const isSel   = ds === selectedDate;
+    const hasNote = notedDates.has(ds);
+    let cls = 'cal-day' + (isAvail ? ' avail' : '') + (isSel ? ' sel' : '');
+    const click = isAvail ? `onclick="pickDate('${ds}')"` : '';
+    const bulb  = hasNote ? '<span class="cal-bulb">💡</span>' : '';
+    cells += `<div class="${cls}" ${click}>${d}${bulb}</div>`;
+  }
+
+  popup.innerHTML = `
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="navMonth(-1)">‹</button>
+      <span class="cal-month-label">${MONTHS_LONG[calMonth]} ${calYear}</span>
+      <button class="cal-nav-btn" onclick="navMonth(1)">›</button>
+    </div>
+    <div class="cal-grid">
+      ${WD.map(w => `<div class="cal-weekday">${w}</div>`).join('')}
+      ${cells}
+    </div>`;
+}
+
+function pickDate(date) {
+  selectedDate = date;
+  const [y, m] = date.split('-').map(Number);
+  calYear = y; calMonth = m - 1;
+  closeCalendar();
+  document.getElementById('dateBtnLabel').textContent = fmtDate(date);
+  history.replaceState({}, '', `?date=${date}`);
+  loadDate(date);
+}
+
+async function loadDate(date) {
+  document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
+  try {
+    const r = await fetch(`data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    currentData = await r.json();
+
+    const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
+    const sectorSel = document.getElementById('sectorSel');
+    const prev = sectorSel.value;
+    sectorSel.innerHTML = '<option value="">ทุก Sector</option>';
+    sectors.forEach(s => {
+      const o = document.createElement('option');
+      o.value = s; o.textContent = s;
+      if (s === prev) o.selected = true;
+      sectorSel.appendChild(o);
+    });
+    renderSummary();
+    renderMarketOverview();
+    upgradeMarketOverviewCards();
+    renderCards();
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
+  }
+}
+
+function renderSummary() {
+  const s = currentData.summary;
+  const up = s.avg_change >= 0;
+  document.getElementById('summaryBar').innerHTML = `
+    <div><span class="stat-label">วันที่</span><span class="stat-val">${fmtDate(currentData.date)}</span></div>
+    <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span></div>
+    <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span></div>
+    ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
+    ${s.top_loser?.ticker?`<div><span class="stat-label">Top Loser</span><span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span></div>`:''}
+  `;
+}
+
+function renderCards() {
+  if (!currentData) return;
+  const search = document.getElementById('searchBox').value.toLowerCase().trim();
+  const sector = document.getElementById('sectorSel').value;
+  const sort   = document.getElementById('sortSel').value;
+
+  let stocks = [...currentData.stocks];
+  if (search) stocks = stocks.filter(s => s.ticker.toLowerCase().includes(search) || (s.name||'').toLowerCase().includes(search));
+  if (sector) stocks = stocks.filter(s => s.sector === sector);
+  if (sort === 'notes') stocks = stocks.filter(s => (notesCache[s.ticker]||[]).length > 0);
+
+  if (sort === 'gain')  stocks.sort((a,b) => b.pct_change - a.pct_change);
+  else if (sort === 'loss')  stocks.sort((a,b) => a.pct_change - b.pct_change);
+  else if (sort !== 'notes') stocks.sort((a,b) => a.rank - b.rank);
+
+  document.getElementById('countBadge').textContent = `${stocks.length} หุ้น`;
+  if (!stocks.length) {
+    document.getElementById('grid').innerHTML = '<div class="state-msg">ไม่พบหุ้นที่ตรงกับเงื่อนไข</div>';
+    return;
+  }
+  document.getElementById('grid').innerHTML = stocks.map(cardHTML).join('');
+}
+
+function cardHTML(s) {
+  const up    = s.pct_change >= 0;
+  const color = up ? '#16c784' : '#ea3943';
+  const arrow = up ? '▲' : '▼';
+  const pe    = s.pe_ratio ? ` | P/E ${s.pe_ratio}` : '';
+  
+  // Normalize ticker for matching notes (e.g. BRK.B -> BRK-B)
+  const normalizedTicker = (s.ticker || '').replace('.', '-');
+  const myNotes = notesCache[normalizedTicker] || notesCache[s.ticker] || [];
+
+  const newsHTML = (s.news||[]).map(n => `
+    <div class="news-item">
+      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
+               : `<span class="news-title-plain">${esc(n.title)}</span>`}
+      ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
+      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
+    </div>`).join('');
+
+  const analysisHTML = s.analysis
+    ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์เจาะลึก</div>${esc(s.analysis).replace(/\n/g,'<br>')}</div>`
+    : '';
+
+  const homeworkHTML = (s.homework_checklist || []).length ? `
+    <div class="card-homework">
+      <div class="card-homework-label">🧭 Beer วิเคราะห์ Ch34 เจาะลึก</div>
+      ${(s.homework_checklist || []).map(item => `
+        <div class="card-homework-item">
+          <strong>${esc(item.topic || '')}</strong>
+          ${esc(item.insight || item.prompt || '')}
+        </div>`).join('')}
+    </div>
+  ` : '';
+
+  // Calculate marker positions (90 days history)
+  const chartMarkersHTML = s.chart_b64 ? myNotes.map(n => {
+    // Safe date parsing for T00:00:00
+    const noteTS = new Date(n.date + 'T12:00:00').getTime();
+    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
+    const rangeTS = 90 * 24 * 60 * 60 * 1000;
+    const startTS = archiveTS - rangeTS;
+    
+    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
+    leftPos = Math.max(2, Math.min(98, leftPos));
+    
+    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
+    
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" data-note-id="${n.id}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
+  }).join('') : '';
+
+  const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
+  const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
+
+  return `
+  <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
+    <div class="card-head">
+      <div>
+        <span class="card-rank">#${s.rank}</span>
+        <span class="card-ticker">${esc(s.ticker)}</span>
+        <span class="sector-badge">${esc(s.sector||'')}</span>
+        <div class="card-name">${esc(s.name)}</div>
+      </div>
+      <div style="flex-shrink:0;margin-left:10px">
+        <div class="card-price">$${s.price.toFixed(2)}</div>
+        <div class="card-pct" style="color:${color}">${arrow} ${Math.abs(s.pct_change).toFixed(2)}%</div>
+      </div>
+    </div>
+    <div class="card-meta">
+      Mkt Cap: <strong>${fmtCap(s.market_cap)}</strong> | Vol: ${(s.volume||0).toLocaleString()}${pe}
+    </div>
+    
+    <div class="chart-container">
+      ${s.chart_b64
+        ? `<a class="chart-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="คลิกเพื่อดูกราฟจริงบน TradingView">
+             <img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}">
+           </a>`
+        : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+      ${chartMarkersHTML}
+    </div>
+
+    <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
+    <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
+    ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
+    ${homeworkHTML}
+    ${analysisHTML}
+  </div>`;
+}
+
+// ── Event delegation ─────────────────────────────────────────
+document.addEventListener('click', async e => {
+  if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
+    closeCalendar();
+  }
+
+  // Hide tooltip if clicked outside
+  const tooltip = document.getElementById('markerTooltip');
+  if (tooltip && tooltip.classList.contains('show') && !e.target.closest('.marker-tooltip') && !e.target.closest('.chart-marker')) {
+    tooltip.classList.remove('show');
+  }
+
+  // 1. Handle Note Triggers (Markers or Note Button)
+  const noteTrigger = e.target.closest('.chart-marker, .note-btn');
+  if (noteTrigger) {
+    const ticker = noteTrigger.dataset.ticker;
+    const noteId = noteTrigger.dataset.noteId;
+
+    if (noteId) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const notes = notesCache[ticker] || [];
+      const note = notes.find(n => n.id == noteId);
+      if (note) {
+        let baseHtml = `<div class="tt-header">📅 ${note.date}${note.time ? ' ' + note.time : ''}</div>`;
+        baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
+        
+        let loadingId = `ttLoad-${Date.now()}`;
+        if (ticker !== '_MARKET') {
+          baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+        }
+        
+        tooltip.innerHTML = baseHtml;
+        tooltip.classList.add('show');
+        
+        const positionTooltip = () => {
+          tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
+          
+          const rect = e.target.getBoundingClientRect();
+          let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+          
+          const margin = 10;
+          let tailLeft = tooltip.offsetWidth / 2;
+          
+          // Horizontal bounds
+          if (ttLeft < margin) {
+            ttLeft = margin;
+            tailLeft = rect.left + rect.width / 2 - ttLeft;
+          } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+            ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+            tailLeft = rect.left + rect.width / 2 - ttLeft;
+          }
+          tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+
+          // Vertical bounds and maxHeight
+          let isBelow = false;
+          let spaceAbove = rect.top - margin - 14;
+          let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
+          
+          let ttTop = rect.top - tooltip.offsetHeight - 14;
+          
+          if (ttTop < margin) {
+            // Does not fit fully above. Check if space below is larger.
+            if (spaceBelow > spaceAbove) {
+              isBelow = true;
+              ttTop = rect.bottom + 14;
+              tooltip.style.maxHeight = `${spaceBelow}px`;
+            } else {
+              // Forced to stay above but clamp to margin
+              ttTop = margin;
+              tooltip.style.maxHeight = `${spaceAbove}px`;
+            }
+          } else {
+            // Fits above, but ensure maxHeight doesn't exceed available space
+            tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+          }
+          
+          // Re-measure after applying potential new maxHeight
+          if (!isBelow) {
+            ttTop = rect.top - tooltip.offsetHeight - 14;
+            if (ttTop < margin) ttTop = margin;
+          }
+
+          tooltip.style.left = `${ttLeft}px`;
+          tooltip.style.top = `${ttTop}px`;
+          tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+
+          if (isBelow) {
+            tooltip.classList.add('tail-top');
+          } else {
+            tooltip.classList.remove('tail-top');
+          }
+        };
+        
+        // Use setTimeout to allow DOM to render and calculate correct dimensions
+        setTimeout(positionTooltip, 0);
+
+        if (ticker !== '_MARKET') {
+          try {
+            const fetchDate = note.archive_date || note.date;
+            const r = await fetch(`thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            const loader = document.getElementById(loadingId);
+            if (r.ok && loader) {
+              const data = await r.json();
+              const stock = data.stocks?.find(s => s.ticker === ticker);
+              if (stock && stock.analysis) {
+                loader.innerHTML = `<div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div>`;
+              } else {
+                loader.remove();
+              }
+              positionTooltip();
+            } else if (loader) {
+              loader.remove();
+            }
+          } catch (err) {
+            const loader = document.getElementById(loadingId);
+            if (loader) loader.remove();
+          }
+        }
+      }
+      return;
+    }
+
+    if (ticker === '_MARKET') {
+      openMarketNote();
+      return;
+    }
+    const stock  = currentData?.stocks?.find(s => s.ticker === ticker);
+    if (stock) showNoteModal(ticker, stock);
+    return;
+  }
+});
+
+// ── keyboard shortcuts ────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); }
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+init();
+</script>
+<div id="markerTooltip" class="marker-tooltip"></div>
+</body>
+</html>
