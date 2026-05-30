@@ -710,8 +710,11 @@ window.selectDate = (d) => {
 
 function updateHeader() {
   const s = state.latestStock;
-  document.getElementById('tickerTitle').textContent = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker;
-  document.getElementById('tickerSub').textContent = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
+  const displayTicker = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker.replace('-BK', '').replace('.BK', '');
+  const displayName = s ? s.name.replace('.BK', '') : 'History Always Latest';
+
+  document.getElementById('tickerTitle').textContent = displayTicker;
+  document.getElementById('tickerSub').textContent = s ? `${displayName} · ${s.sector}` : displayName;
   document.getElementById('badgeRow').innerHTML = `<span class="badge">${state.notes.length} notes</span>`;
 }
 
