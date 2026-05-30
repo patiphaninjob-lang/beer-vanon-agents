@@ -4,6 +4,16 @@ on:
   schedule:
     - cron: '30 10 * * *'       # 17:30 PM Bangkok (UTC+7) ทุกวัน หลังตลาดไทยปิด (Safety Net)
   workflow_dispatch:            # รันมือได้จากหน้าเว็บ Thai Dashboard
+    inputs:
+      request_id:
+        description: 'Unique ID for this run'
+        required: false
+      request_source:
+        description: 'Where the run was triggered from'
+        required: false
+      requested_by:
+        description: 'Who triggered the run'
+        required: false
 
 permissions:
   contents: write               # อนุญาตให้ push docs/thai-data/ กลับ repo
@@ -46,6 +56,9 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RUN_REQUEST_ID: ${{ github.event.inputs.request_id }}
+          RUN_REQUEST_SOURCE: ${{ github.event.inputs.request_source }}
+          RUN_REQUESTED_BY: ${{ github.event.inputs.requested_by }}
         run: python thai_top100_agent.py
 
       - name: Commit Thai web archive data

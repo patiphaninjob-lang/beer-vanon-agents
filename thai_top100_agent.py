@@ -45,6 +45,9 @@ REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
 CALL_DELAY       = 10.0   # 10 วินาที เพื่อให้รอดจาก 6000 TPM (Token Per Minute)
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
+RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
+RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
+RUN_REQUESTED_BY = os.getenv("RUN_REQUESTED_BY", "").strip()
 
 # SET100 Tickers
 TH_UNIVERSE = [
@@ -356,7 +359,7 @@ def generate_mini_chart_b64(ticker: str, hist_df=None) -> bytes:
 
 def fetch_market_indices() -> dict:
     import yfinance as yf, base64
-    indices = {"^SET": "set", "^SET50": "set50", "^SET100": "set100"}
+    indices = {"^SET.BK": "set", "^SET50.BK": "set50", "^SET100.BK": "set100"}
     result  = {}
     for symbol, key in indices.items():
         try:
@@ -484,6 +487,16 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
 
 # ─── Presentation & Reporting ─────────────────────────────────
 
+def _fmt_mktcap(cap: float) -> str:
+    if cap >= 1e12:
+        return f"${cap/1e12:.2f}T"
+    if cap >= 1e9:
+        return f"${cap/1e9:.1f}B"
+    if cap > 0:
+        return f"${cap/1e6:.0f}M"
+    return "N/A"
+
+
 def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: list = None) -> str:
     arrow = "▲" if stock["pct_change"] >= 0 else "▼"
     color = "#16c784" if stock["pct_change"] >= 0 else "#ea3943"
@@ -584,8 +597,23 @@ def main():
     args = parser.parse_args()
 
     today = datetime.date.today()
+    
+    # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
+    is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
+    today_file_str = today.strftime("%Y-%m-%d")
+    report_path = DATA_DIR / f"{today_file_str}.json"
+
+    if is_scheduled and report_path.exists():
+        safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว (คุณน่าจะกดรันเองไปแล้ว)")
+        safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")
+        return
+
     date_str = today.strftime("%A, %d %B %Y")
     safe_print(f"\n🍺 Beer Thai Top 100 Agent — {date_str}\n{'='*55}")
+    if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY:
+        safe_print(
+            f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'}"
+        )
 
     posts, embeddings, embed_model = load_knowledge()
     user_notes_db = load_user_notes()

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0d1117">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Beer Top 100">
+  <meta name="apple-mobile-web-app-title" content="Thai Top 100">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="shortcut icon" href="icon.svg" type="image/svg+xml">
@@ -503,7 +503,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100</div>
+  <div class="logo">🍺 Thai Top 100</div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -540,7 +540,7 @@ const FIREBASE_CONFIG = {
   messagingSenderId: "645933254174",
   appId: "1:645933254174:web:75a7e62fda923c9975500f"
 };
-const FIRESTORE_DOC_PATH = 'thai-data/beer_top100_notes';
+const FIRESTORE_DOC_PATH = 'thai-data/thai_top100_notes';
 const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
 let currentData     = null;
@@ -1086,14 +1086,21 @@ async function runAgent(e) {
   btn.textContent = '⏳ กำลังสั่งรัน...';
 
   try {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/beer_top100_agent.yml/dispatches`, {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/thai_top100_agent.yml/dispatches`, {
       method: 'POST',
       headers: {
         'Authorization': `token ${pat}`,
         'Accept': 'application/vnd.github+json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ref: 'main' })
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          request_id: 'WEB_' + Date.now(),
+          request_source: 'THAI_DASHBOARD',
+          requested_by: 'USER'
+        }
+      })
     });
 
     if (r.ok) {
