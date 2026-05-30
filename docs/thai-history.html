@@ -574,21 +574,29 @@ async function showGroup(group, candle) {
   state.selectedKey = group.date; drawChart();
   const detail = document.getElementById('detailPanel');
   const archiveDate = group.notes[0]?.archive_date || group.date;
-  let stock = null, mkt = null;
+  let stock = null, mktIndices = null;
   try {
     const day = await loadArchive(archiveDate);
-    if (state.ticker === '_MARKET') mkt = day; else stock = findStock(day, state.ticker);
+    if (state.ticker === '_MARKET') mktIndices = day?.market_indices; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
-  const notesHTML = group.notes.map(n => `
-    <div class="note-block">
-      <div class="detail-head">
-        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
-        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}</div>
+  const notesHTML = group.notes.map(n => {
+    let priceInfo = n.price ? fmtMoney(n.price) : fmtMoney(candle?.close);
+    if (state.ticker === '_MARKET') {
+      const p = n.set_price || n.set50_price || n.set100_price;
+      const pct = n.set_pct || n.set50_pct || n.set100_pct;
+      if (p) priceInfo = `${fmtMoney(p)} (${pct >= 0 ? '+' : ''}${pct}%)`;
+    }
+    return `
+      <div class="note-block">
+        <div class="detail-head">
+          <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
+          <div class="detail-pill">${priceInfo}</div>
+        </div>
+        <div class="note-text">${esc(n.note || '')}</div>
       </div>
-      <div class="note-text">${esc(n.note || '')}</div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   detail.innerHTML = `
     <div class="detail-head">
