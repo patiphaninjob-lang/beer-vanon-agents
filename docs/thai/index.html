@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>SET100 — Thai Stock Intelligence</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Thai Stocks">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --primary: #eab308; /* Thai Gold */
+      --text: #f1f5f9;
+      --text-dim: #94a3b8;
+      --up: #10b981;
+      --down: #ef4444;
+      --border: #334155;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { 
+      background: var(--bg); color: var(--text); 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5; font-size: 14px;
+    }
+
+    /* ─── Layout ─── */
+    .app-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .logo-circle {
+      width: 36px; height: 36px; background: var(--primary); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000;
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
+    }
+    .app-title { font-weight: 800; font-size: 1.2em; letter-spacing: -0.02em; color: var(--text); }
+    
+    .actions { display: flex; gap: 10px; }
+    .btn-run {
+      background: var(--primary); color: #000; border: none; border-radius: 8px;
+      padding: 8px 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-run:hover { transform: scale(1.05); filter: brightness(1.1); }
+    .btn-run:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
+
+    .main-wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+    /* ─── Market Summary ─── */
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px;
+    }
+    .sum-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .sum-label { font-size: 0.75em; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+    .sum-val { font-size: 1.4em; font-weight: 800; }
+
+    /* ─── Filters & Search ─── */
+    .toolbar {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;
+    }
+    .search-box {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+      padding: 8px 14px; width: 100%; max-width: 320px; color: var(--text); outline: none;
+    }
+    .sort-tabs { display: flex; background: var(--panel); padding: 4px; border-radius: 10px; border: 1px solid var(--border); }
+    .sort-tab {
+      padding: 6px 12px; border-radius: 7px; border: none; background: transparent; color: var(--text-dim);
+      font-weight: 600; cursor: pointer; font-size: 13px;
+    }
+    .sort-tab.active { background: var(--bg); color: var(--primary); }
+
+    /* ─── Stock Grid ─── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+    
+    .card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer; position: relative; overflow: hidden;
+    }
+    .card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .ticker { font-size: 1.5em; font-weight: 900; color: var(--text); }
+    .rank-badge { font-size: 0.7em; background: var(--border); padding: 2px 6px; border-radius: 4px; color: var(--text-dim); }
+    
+    .price-area { text-align: right; }
+    .price { font-size: 1.4em; font-weight: 800; }
+    .pct { font-weight: 700; font-size: 0.9em; }
+    
+    .chart-container { margin: 15px 0; border-radius: 8px; overflow: hidden; background: #000; height: 100px; }
+    .chart-img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .info-row { display: flex; justify-content: space-between; font-size: 0.85em; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .sector { color: var(--text-dim); }
+    .pe { font-weight: 600; color: var(--primary); }
+
+    /* ─── Note UI ─── */
+    .note-preview {
+      margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 10px;
+      font-size: 0.85em; color: var(--text-dim); border-left: 3px solid var(--primary);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    /* ─── Modal ─── */
+    .modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-content {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+      width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative;
+    }
+    .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-dim); }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-circle">TH</div>
+      <div class="app-title">Intelligence SET100</div>
+    </div>
+    <div class="actions">
+      <button id="runBtn" class="btn-run" onclick="triggerAgent()">
+        <span>🚀</span> <span>Analyze Now</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <div class="summary-grid" id="summaryBar">
+      <!-- Dynamic Summary -->
+    </div>
+
+    <div class="toolbar">
+      <input type="text" class="search-box" id="searchInput" placeholder="Search Ticker, Name, Sector..." oninput="handleSearch()">
+      <div class="sort-tabs">
+        <button class="sort-tab active" data-sort="rank" onclick="setSort('rank')">RANK</button>
+        <button class="sort-tab" data-sort="gain" onclick="setSort('gain')">GAIN</button>
+        <button class="sort-tab" data-sort="loss" onclick="setSort('loss')">LOSS</button>
+      </div>
+    </div>
+
+    <div class="grid" id="mainGrid">
+      <div class="state-msg">Loading data...</div>
+    </div>
+  </main>
+
+  <script>
+    const REPO = 'patiphaninjob-lang/beer-vanon-agents';
+    const DATA_DIR = '../thai-data/';
+    const NOTES_FILE = '../notes/notes.json';
+    
+    let state = {
+      allStocks: [],
+      currentDate: '',
+      notes: {},
+      sort: 'rank',
+      search: ''
+    };
+
+    async function init() {
+      try {
+        const idx = await fetch(DATA_DIR + 'index.json?v=' + Date.now()).then(r => r.json());
+        state.currentDate = idx[0];
+        const report = await fetch(`${DATA_DIR}${state.currentDate}.json`).then(r => r.json());
+        const notes = await fetch(`${NOTES_FILE}?v=` + Date.now()).then(r => r.json()).catch(() => ({}));
+        
+        state.allStocks = report.stocks || [];
+        state.summary = report.summary || {};
+        state.notes = notes;
+        
+        renderSummary();
+        renderGrid();
+      } catch (e) {
+        document.getElementById('mainGrid').innerHTML = `<div class="state-msg">Error loading data: ${e.message}</div>`;
+      }
+    }
+
+    function renderSummary() {
+      const s = state.summary;
+      document.getElementById('summaryBar').innerHTML = `
+        <div class="sum-card">
+          <div class="sum-label">Current Date</div>
+          <div class="sum-val" style="color:var(--primary)">${state.currentDate}</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-label">Avg Change</div>
+          <div class="sum-val" style="color:${s.avg_change >= 0 ? 'var(--up)' : 'var(--down)'}">${s.avg_change}%</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-label">Market Breath</div>
+          <div class="sum-val">${s.gainers}▲ / ${s.losers}▼</div>
+        </div>
+      `;
+    }
+
+    function renderGrid() {
+      const filtered = state.allStocks.filter(s => {
+        const q = state.search.toLowerCase();
+        return s.ticker.toLowerCase().includes(q) || s.name.toLowerCase().includes(q) || s.sector.toLowerCase().includes(q);
+      });
+
+      if (state.sort === 'gain') filtered.sort((a,b) => b.pct_change - a.pct_change);
+      else if (state.sort === 'loss') filtered.sort((a,b) => a.pct_change - b.pct_change);
+      else filtered.sort((a,b) => a.rank - b.rank);
+
+      const grid = document.getElementById('mainGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="state-msg">No stocks found.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => {
+        const up = s.pct_change >= 0;
+        const color = up ? 'var(--up)' : 'var(--down)';
+        const displayTicker = s.ticker.replace('.BK','');
+        const displayName = s.name.replace('.BK','');
+        const myNotes = state.notes[s.ticker] || state.notes[s.ticker.replace('.','-')] || [];
+        const lastNote = myNotes.length > 0 ? myNotes[myNotes.length-1].note : '';
+
+        return `
+          <div class="card" onclick="location.href='history.html?ticker=${s.ticker}'">
+            <div class="card-head">
+              <div>
+                <div class="rank-badge">#${s.rank}</div>
+                <div class="ticker">${displayTicker}</div>
+                <div class="sector">${displayName}</div>
+              </div>
+              <div class="price-area">
+                <div class="price">${s.price.toFixed(2)}</div>
+                <div class="pct" style="color:${color}">${up ? '+' : ''}${s.pct_change}%</div>
+              </div>
+            </div>
+            <div class="chart-container">
+              <img src="data:image/jpeg;base64,${s.chart_b64}" class="chart-img">
+            </div>
+            <div class="info-row">
+              <div class="sector">${s.sector}</div>
+              <div class="pe">P/E ${s.pe_ratio || 'N/A'}</div>
+            </div>
+            ${lastNote ? `<div class="note-preview">📝 ${lastNote}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleSearch() {
+      state.search = document.getElementById('searchInput').value;
+      renderGrid();
+    }
+
+    function setSort(s) {
+      state.sort = s;
+      document.querySelectorAll('.sort-tab').forEach(t => t.classList.toggle('active', t.dataset.sort === s));
+      renderGrid();
+    }
+
+    async function triggerAgent() {
+      const pat = localStorage.getItem('gh_pat');
+      if (!pat) {
+        const val = prompt('กรุณาใส่ GitHub Personal Access Token (PAT) เพื่อรันการบ้านสด:');
+        if (val) localStorage.setItem('gh_pat', val); else return;
+      }
+      
+      const btn = document.getElementById('runBtn');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳</span> <span>Requesting...</span>';
+
+      try {
+        const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/thai_top100_agent.yml/dispatches`, {
+          method: 'POST',
+          headers: { 'Authorization': `token ${localStorage.getItem('gh_pat')}`, 'Accept': 'application/vnd.github+json' },
+          body: JSON.stringify({ ref: 'main', inputs: { request_id: 'WEB_' + Date.now(), request_source: 'THAI_APP' }})
+        });
+        if (r.ok) {
+          btn.innerHTML = '<span>✅</span> <span>Processing...</span>';
+          setTimeout(() => { btn.disabled = false; btn.innerHTML = original; }, 30000);
+        } else {
+          throw new Error(r.status === 401 ? 'Invalid Token' : 'Dispatch failed');
+        }
+      } catch (e) {
+        alert('Error: ' + e.message);
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
