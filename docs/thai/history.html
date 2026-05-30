@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="theme-color" content="#0f172a">
-  <title>History — Thai Stock Intelligence</title>
+  <title>SET100 History — Thai Stock Intelligence</title>
   
   <style>
     :root {
@@ -16,52 +16,64 @@
       --up: #10b981;
       --down: #ef4444;
       --border: #334155;
+      --accent: #6366f1;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; font-size: 14px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; font-size: 14px; }
     
     .top-nav {
-      background: var(--panel); border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
       padding: 12px 20px; display: flex; align-items: center; gap: 15px;
-      position: sticky; top: 0; z-index: 100;
+      position: sticky; top: 0; z-index: 1000;
     }
     .back-btn { 
-      text-decoration: none; color: var(--text-dim); background: var(--bg);
-      padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
-      font-size: 0.85em; font-weight: 600;
+      text-decoration: none; color: var(--text-dim); background: var(--panel);
+      padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border);
+      font-size: 0.85em; font-weight: 700;
     }
     .back-btn:hover { border-color: var(--primary); color: var(--primary); }
     .header-info { display: flex; flex-direction: column; }
-    .ticker-name { font-size: 1.2em; font-weight: 800; color: var(--text); }
-    .sector-info { font-size: 0.75em; color: var(--text-dim); }
+    .ticker-name { font-size: 1.35em; font-weight: 900; color: var(--text); letter-spacing: -0.01em; }
+    .sector-info { font-size: 0.8em; color: var(--text-dim); font-weight: 500; }
 
-    .content { max-width: 1400px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
+    .content-wrap { max-width: 1440px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
     
-    .chart-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
-    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .canvas-container { background: #000; border-radius: 12px; height: 500px; position: relative; overflow: hidden; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .panel-title { font-weight: 800; color: var(--text); font-size: 1em; }
+    .panel-price { font-weight: 800; color: var(--primary); font-size: 1.2em; }
+
+    .chart-box { background: #000; border-radius: 14px; height: 520px; position: relative; overflow: hidden; border: 1px solid var(--border); }
     canvas { width: 100%; height: 100%; cursor: crosshair; }
 
-    .notes-panel { display: flex; flex-direction: column; gap: 15px; }
-    .notes-list { display: flex; flex-direction: column; gap: 10px; max-height: 80vh; overflow-y: auto; padding-right: 5px; }
+    .notes-list { display: flex; flex-direction: column; gap: 10px; max-height: calc(100vh - 200px); overflow-y: auto; padding-right: 5px; }
     .note-card {
-      background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-      padding: 15px; cursor: pointer; transition: 0.2s;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px; cursor: pointer; transition: 0.2s; border-left: 3px solid var(--border);
     }
-    .note-card:hover, .note-card.active { border-color: var(--primary); background: #26324a; }
-    .note-date { font-size: 0.75em; color: var(--primary); font-weight: 700; margin-bottom: 5px; }
-    .note-text { font-size: 0.85em; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .note-card:hover, .note-card.active { border-color: var(--primary); background: rgba(234, 179, 8, 0.05); }
+    .note-date { font-size: 0.8em; color: var(--primary); font-weight: 800; margin-bottom: 6px; text-transform: uppercase; }
+    .note-text { font-size: 0.9em; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
 
-    .detail-view {
-      margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 12px;
+    .reflection-detail {
+      margin-top: 20px; padding: 18px; background: rgba(0,0,0,0.25); border-radius: 16px;
       border-left: 4px solid var(--primary);
     }
-    .detail-head { display: flex; justify-content: space-between; margin-bottom: 10px; }
-    .analysis-text { font-size: 0.9em; color: var(--text-dim); white-space: pre-wrap; }
+    .detail-top { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center; }
+    .analysis-text { font-size: 0.92em; color: var(--text-dim); white-space: pre-wrap; line-height: 1.7; }
+    .section-lbl { font-size: 0.75em; color: var(--primary); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; display: block; letter-spacing: 0.05em; }
+
+    .range-tabs { display: flex; gap: 6px; margin-bottom: 15px; }
+    .range-tab {
+      background: var(--panel); border: 1px solid var(--border); color: var(--text-dim);
+      padding: 5px 12px; border-radius: 8px; font-size: 0.8em; font-weight: 700; cursor: pointer;
+    }
+    .range-tab.active { background: var(--primary); color: #000; border-color: var(--primary); }
 
     @media (max-width: 1000px) {
-      .content { grid-template-columns: 1fr; }
+      .content-wrap { grid-template-columns: 1fr; }
       .notes-list { max-height: none; }
+      .chart-box { height: 400px; }
     }
   </style>
 </head>
@@ -71,26 +83,30 @@
     <a href="index.html" class="back-btn">← DASHBOARD</a>
     <div class="header-info">
       <div id="tickerTitle" class="ticker-name">Loading...</div>
-      <div id="sectorInfo" class="sector-info">...</div>
+      <div id="sectorInfo" class="sector-info">Reflecting on Thai Market History</div>
     </div>
   </nav>
 
-  <div class="content">
-    <div class="chart-panel">
-      <div class="chart-header">
-        <div style="font-weight: 700">Intel Chart 1D</div>
-        <div id="priceInfo" style="font-weight: 800; color: var(--primary)">$0.00</div>
+  <div class="content-wrap">
+    <div class="panel">
+      <div class="panel-head">
+        <div class="range-tabs">
+          <button class="range-tab active">1Y</button>
+          <button class="range-tab">5Y</button>
+          <button class="range-tab">ALL</button>
+        </div>
+        <div id="priceInfo" class="panel-price">$0.00</div>
       </div>
-      <div class="canvas-container">
+      <div class="chart-box">
         <canvas id="mainCanvas"></canvas>
       </div>
-      <div id="detailView" class="detail-view">
-        <div class="detail-empty">Select a note or marker to view details.</div>
+      <div id="detailView" class="reflection-detail">
+        <div style="color:var(--text-dim)">Select a golden reflection point to view depth.</div>
       </div>
     </div>
 
-    <aside class="notes-panel">
-      <div style="font-weight: 800; font-size: 1.1em">All Reflections</div>
+    <aside class="panel">
+      <div class="panel-title" style="margin-bottom:15px">Timeline of Reflections</div>
       <div id="noteList" class="notes-list"></div>
     </aside>
   </div>
@@ -109,29 +125,23 @@
       selectedDate: null
     };
 
+    function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
     async function init() {
       try {
-        const hist = await fetch(`${HIST_DIR}${ticker}.json`).then(r => r.json());
+        const hist = await fetch(`${HIST_DIR}${ticker}.json?v=${Date.now()}`).then(r => r.json());
         const db = await fetch(`${NOTES_FILE}?v=${Date.now()}`).then(r => r.json());
         
         state.candles = hist.candles.map(c => ({ date: c[0], open: c[1], high: c[2], low: c[3], close: c[4] }));
         const rawNotes = db[ticker] || db[ticker.replace('.','-')] || [];
         state.notes = rawNotes.sort((a,b) => b.date.localeCompare(a.date));
 
-        updateHeader(hist);
+        document.getElementById('tickerTitle').textContent = ticker.replace('.BK','');
         renderNoteList();
         drawChart();
         
         if (state.notes.length > 0) selectNote(state.notes[0].date);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    function updateHeader(hist) {
-      const displayTicker = ticker.replace('.BK','');
-      document.getElementById('tickerTitle').textContent = displayTicker;
-      document.getElementById('sectorInfo').textContent = `${ticker} · Historical Intelligence`;
+      } catch (e) { console.error(e); }
     }
 
     function renderNoteList() {
@@ -139,7 +149,7 @@
       list.innerHTML = state.notes.map(n => `
         <div class="note-card ${state.selectedDate === n.date ? 'active' : ''}" onclick="selectNote('${n.date}')">
           <div class="note-date">${n.date}</div>
-          <div class="note-text">${n.note}</div>
+          <div class="note-text">${esc(n.note)}</div>
         </div>
       `).join('');
     }
@@ -158,13 +168,13 @@
       const stock = day?.stocks?.find(s => s.ticker === ticker);
 
       detail.innerHTML = `
-        <div class="detail-head">
-          <div style="font-weight: 800; color: var(--primary)">${date}</div>
-          <div style="font-weight: 700; color: var(--up)">${stock ? stock.price : ''} (${stock ? stock.pct_change : ''}%)</div>
+        <div class="detail-top">
+          <div style="font-weight: 900; color: var(--primary); font-size: 1.1em">${date}</div>
+          <div style="font-weight: 800; color: var(--up)">${stock ? '$'+stock.price.toFixed(2) : ''} (${stock ? (stock.pct_change>=0?'+':'')+stock.pct_change : ''}%)</div>
         </div>
-        <div style="margin-bottom: 12px; font-weight: 600">📝 Your Note:</div>
-        <div style="margin-bottom: 15px; font-size: 0.9em">${note.note}</div>
-        ${stock ? `<div style="margin-bottom: 8px; font-weight: 600; color:var(--primary)">🍺 Beer's Analysis:</div><div class="analysis-text">${stock.analysis}</div>` : ''}
+        <span class="section-lbl">📝 Your Reflection</span>
+        <div style="margin-bottom: 20px; font-size: 1.05em; color: var(--text); white-space: pre-wrap">${esc(note.note)}</div>
+        ${stock ? `<span class="section-lbl">🍺 Beer's Analysis at the Time</span><div class="analysis-text">${esc(stock.analysis)}</div>` : ''}
       `;
       
       const candle = state.candles.find(c => c.date === date);
@@ -176,44 +186,44 @@
       const canvas = document.getElementById('mainCanvas');
       const ctx = canvas.getContext('2d');
       const box = canvas.parentNode.getBoundingClientRect();
-      canvas.width = box.width * 2; canvas.height = box.height * 2;
-      ctx.scale(2, 2);
+      const dpr = window.devicePixelRatio || 2;
+      canvas.width = box.width * dpr; canvas.height = box.height * dpr;
+      ctx.scale(dpr, dpr);
 
       const w = box.width, h = box.height;
       ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h);
 
       if (state.candles.length < 2) return;
 
-      const data = state.candles.slice(-100);
-      const min = Math.min(...data.map(c => c.low)) * 0.98;
-      const max = Math.max(...data.map(c => c.high)) * 1.02;
+      const data = state.candles.slice(-120);
+      const min = Math.min(...data.map(c => c.low)) * 0.97;
+      const max = Math.max(...data.map(c => c.high)) * 1.03;
 
       const xFor = i => (i / (data.length - 1)) * w;
       const yFor = p => h - ((p - min) / (max - min)) * h;
 
       // Line
-      ctx.strokeStyle = '#334155'; ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 1.5;
       ctx.beginPath();
-      data.forEach((c, i) => {
-        if (i===0) ctx.moveTo(xFor(i), yFor(c.close));
-        else ctx.lineTo(xFor(i), yFor(c.close));
-      });
+      data.forEach((c, i) => { if (i===0) ctx.moveTo(xFor(i), yFor(c.close)); else ctx.lineTo(xFor(i), yFor(c.close)); });
       ctx.stroke();
 
       // Markers
       data.forEach((c, i) => {
         const hasNote = state.notes.some(n => n.date === c.date);
         if (hasNote) {
-          ctx.fillStyle = c.date === state.selectedDate ? var_val('--primary') : '#ffffff33';
+          const isSel = c.date === state.selectedDate;
+          ctx.fillStyle = isSel ? '#eab308' : 'rgba(255,255,255,0.3)';
+          ctx.shadowBlur = isSel ? 15 : 0; ctx.shadowColor = '#eab308';
           ctx.beginPath();
-          ctx.arc(xFor(i), yFor(c.close), c.date === state.selectedDate ? 6 : 4, 0, Math.PI*2);
+          ctx.arc(xFor(i), yFor(c.close), isSel ? 7 : 4.5, 0, Math.PI*2);
           ctx.fill();
+          ctx.shadowBlur = 0;
         }
       });
     }
 
-    function var_val(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-
+    window.addEventListener('resize', drawChart);
     init();
   </script>
 </body>
