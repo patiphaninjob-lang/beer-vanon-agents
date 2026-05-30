@@ -416,6 +416,7 @@ async function loadHistoryCandles() {
         lp = Number(p?.price || 0);
         lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
       } else if (state.latestStock) {
+
         lp = Number(state.latestStock.price || 0);
         lo = lp / (1 + (Number(state.latestStock.pct_change || 0) / 100));
         lv = Number(state.latestStock.volume || 0);

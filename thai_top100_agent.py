@@ -595,6 +595,8 @@ def save_history_data(stocks_data: list) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     import yfinance as yf
     tickers = [s["stock"]["ticker"] for s in stocks_data]
+    
+    # 1. Save Individual Stocks
     all_hist = yf.download(tickers, period="5y", group_by="ticker", threads=True, progress=False)
     for ticker in tickers:
         hist = extract_ticker_history(all_hist, ticker)
@@ -603,6 +605,17 @@ def save_history_data(stocks_data: list) -> None:
                    for idx, row in hist.dropna(subset=["Close"]).iterrows()]
         payload = {"ticker": ticker, "timeframe": "1D", "period": "5y", "candles": candles}
         (out_dir / f"{ticker}.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+
+    # 2. Save Market Index History (SET)
+    try:
+        mkt_hist = yf.Ticker("^SET.BK").history(period="5y")
+        if not mkt_hist.empty:
+            candles = [[idx.strftime("%Y-%m-%d"), round(row["Open"],4), round(row["High"],4), round(row["Low"],4), round(row["Close"],4), 0]
+                       for idx, row in mkt_hist.dropna(subset=["Close"]).iterrows()]
+            payload = {"ticker": "market", "timeframe": "1D", "period": "5y", "candles": candles}
+            (out_dir / "market.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+    except Exception as e:
+        safe_print(f"   ⚠️ Failed to save market history: {e}")
 
 
 def main():
