@@ -804,9 +804,9 @@ async function saveNoteToGitHub(ticker, noteText) {
   };
   if (ticker === '_MARKET') {
     const mi = currentData?.market_indices || {};
-    if (mi.dji)  { note.dji_price  = mi.dji.price;  note.dji_pct  = mi.dji.pct_change;  }
-    if (mi.spx)  { note.spx_price  = mi.spx.price;  note.spx_pct  = mi.spx.pct_change;  }
-    if (mi.ixic) { note.ixic_price = mi.ixic.price; note.ixic_pct = mi.ixic.pct_change; }
+    if (mi.set)    { note.set_price    = mi.set.price;    note.set_pct    = mi.set.pct_change;    }
+    if (mi.set50)  { note.set50_price  = mi.set50.price;  note.set50_pct  = mi.set50.pct_change;  }
+    if (mi.set100) { note.set100_price = mi.set100.price; note.set100_pct = mi.set100.pct_change; }
   } else {
     note.price      = activeNoteStock?.price || 0;
     note.pct_change = activeNoteStock?.pct_change || 0;
@@ -1484,6 +1484,10 @@ function cardHTML(s) {
   const arrow = up ? '▲' : '▼';
   const pe    = s.pe_ratio ? ` | P/E ${s.pe_ratio}` : '';
   
+  // Clean ticker and name for display
+  const displayTicker = (s.ticker || '').replace('.BK', '');
+  const displayName = (s.name || '').replace('.BK', '');
+
   // Normalize ticker for matching notes (e.g. BRK.B -> BRK-B)
   const normalizedTicker = (s.ticker || '').replace('.', '-');
   const myNotes = notesCache[normalizedTicker] || notesCache[s.ticker] || [];
@@ -1535,9 +1539,9 @@ function cardHTML(s) {
     <div class="card-head">
       <div>
         <span class="card-rank">#${s.rank}</span>
-        <span class="card-ticker">${esc(s.ticker)}</span>
+        <span class="card-ticker">${esc(displayTicker)}</span>
         <span class="sector-badge">${esc(s.sector||'')}</span>
-        <div class="card-name">${esc(s.name)}</div>
+        <div class="card-name">${esc(displayName)}</div>
       </div>
       <div style="flex-shrink:0;margin-left:10px">
         <div class="card-price">$${s.price.toFixed(2)}</div>
