@@ -331,7 +331,7 @@ async function loadLatestStock() {
       const day = await loadArchive(date);
       if (!day) continue;
       
-      if (state.ticker === '_MARKET') {
+      if (state.ticker === '_MARKET_THAI') {
         if (day.market_indices) {
           state.latestMarketArchive = day;
           state.latestMarket = day.market_indices;
@@ -394,7 +394,7 @@ async function loadHistoryCandles() {
   };
 
   let candles = [];
-  if (state.ticker === '_MARKET') {
+  if (state.ticker === '_MARKET_THAI') {
     candles = await tryLoad('market');
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
   } else {
@@ -411,7 +411,7 @@ async function loadHistoryCandles() {
   // 1. Add latest archive candle if missing
   if (latestDate && !candleDates.has(latestDate)) {
       let lp = 0, lv = 0, lo = 0;
-      if (state.ticker === '_MARKET' && state.latestMarket) {
+      if (state.ticker === '_MARKET_THAI' && state.latestMarket) {
         const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
         lp = Number(p?.price || 0);
         lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
@@ -460,7 +460,7 @@ async function buildArchiveFallbackCandles() {
   for (const date of dates.slice(0, 100)) { // Limit to last 100 archives as fallback
     try {
       const day = await loadArchive(date);
-      if (state.ticker === '_MARKET') {
+      if (state.ticker === '_MARKET_THAI') {
         const mi = day?.market_indices || {};
         const p = mi.dji || mi.spx || mi.ixic;
         if (!p?.price) continue;
@@ -577,12 +577,12 @@ async function showGroup(group, candle) {
   let stock = null, mktIndices = null;
   try {
     const day = await loadArchive(archiveDate);
-    if (state.ticker === '_MARKET') mktIndices = day?.market_indices; else stock = findStock(day, state.ticker);
+    if (state.ticker === '_MARKET_THAI') mktIndices = day?.market_indices; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
   const notesHTML = group.notes.map(n => {
     let priceInfo = n.price ? fmtMoney(n.price) : fmtMoney(candle?.close);
-    if (state.ticker === '_MARKET') {
+    if (state.ticker === '_MARKET_THAI') {
       const p = n.set_price || n.set50_price || n.set100_price;
       const pct = n.set_pct || n.set50_pct || n.set100_pct;
       if (p) priceInfo = `${fmtMoney(p)} (${pct >= 0 ? '+' : ''}${pct}%)`;
@@ -710,7 +710,7 @@ window.selectDate = (d) => {
 
 function updateHeader() {
   const s = state.latestStock;
-  const displayTicker = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker.replace('-BK', '').replace('.BK', '');
+  const displayTicker = state.ticker === '_MARKET_THAI' ? 'ภาพรวมตลาด' : state.ticker.replace('-BK', '').replace('.BK', '');
   const displayName = s ? s.name.replace('.BK', '') : 'History Always Latest';
 
   document.getElementById('tickerTitle').textContent = displayTicker;

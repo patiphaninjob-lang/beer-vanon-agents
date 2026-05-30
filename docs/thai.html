@@ -802,7 +802,7 @@ async function saveNoteToGitHub(ticker, noteText) {
     note: noteText.trim(),
     archive_date: currentData?.date || ''
   };
-  if (ticker === '_MARKET') {
+  if (ticker === '_MARKET_THAI') {
     const mi = currentData?.market_indices || {};
     if (mi.set)    { note.set_price    = mi.set.price;    note.set_pct    = mi.set.pct_change;    }
     if (mi.set50)  { note.set50_price  = mi.set50.price;  note.set50_pct  = mi.set50.pct_change;  }
@@ -834,7 +834,7 @@ async function deleteNote(ticker, noteId) {
   const ok = await persistNotes(`🗑️ Delete note: ${ticker} ${noteId}`);
 
   if (ok) {
-    if (ticker === '_MARKET') { openMarketNote(); renderMarketOverview(); upgradeMarketOverviewCards(); }
+    if (ticker === '_MARKET_THAI') { openMarketNote(); renderMarketOverview(); upgradeMarketOverviewCards(); }
     else { showNoteModal(ticker, activeNoteStock); renderCards(); }
   } else {
     notesCache[ticker] = before; // rollback
@@ -950,7 +950,7 @@ async function polishNote() {
   status.textContent = '';
 
   try {
-    const prompt = activeNoteTicker === '_MARKET'
+    const prompt = activeNoteTicker === '_MARKET_THAI'
       ? `คุณเป็นผู้ช่วยบันทึกอารมณ์ตลาดแบบ Beer Vanon นักลงทุนเขียนโน้ตสั้นๆมาว่าตลาดรู้สึกอะไร ช่วยเปลี่ยนให้เป็นบันทึกที่มีโครงสร้างชัด 2-3 ประโยค โดย: (1) ระบุว่าตลาดอยู่ในอารมณ์อะไร เช่น โลภ / กล้า / กลัว / ลังเล (2) บอกสัญญาณที่เจ้าของสังเกตเห็นจากโน้ต (3) จบด้วยสิ่งที่ต้องจับตาต่อ ทั้งหมดต้องมาจากสิ่งที่เจ้าของเขียนเท่านั้น ห้ามเพิ่มข้อมูลใหม่ที่ไม่มีในโน้ต ตอบเป็นภาษาไทย กระชับ ตรงประเด็น ไม่ต้องพูดนำ`
       : `คุณเป็นผู้ช่วยจัดบันทึกการบ้านหุ้นแบบ Beer Vanon โดยยึดกรอบจากหนังสือผู้รอด บทที่ 34 "การบ้านที่ไม่มีอาจารย์ตรวจ" ช่วยจัดโน้ตให้เป็นบันทึกที่อ่านย้อนหลังได้ชัด โดยครอบคลุมเท่าที่ผู้เขียนให้ข้อมูล: (1) อารมณ์ตลาดและแรงซื้อขายตอนนี้ (2) ธุรกิจขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง (3) ตัวเลขสำคัญ เช่น รายได้ กำไร หนี้ กระแสเงินสด หรือ valuation ถ้ามีในโน้ต (4) ข่าวและบทวิเคราะห์ Beer ที่ผู้เขียนอ้างถึง (5) คู่แข่งและผู้บริหาร (6) แผนของเรา สิ่งที่ต้องจับตา และจุดที่ถ้าคิดผิดต้องยอมรับ ห้ามแต่งข้อมูลใหม่ ถ้าหัวข้อไหนยังไม่มีข้อมูลให้เขียนว่า "ยังไม่รู้/ต้องไปต่อ" ตอบเป็นภาษาไทย กระชับ แต่เป็นโครงสร้าง ไม่ต้องพูดนำ`;
     const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -959,7 +959,7 @@ async function polishNote() {
       body: JSON.stringify({
         model: 'llama-3.1-8b-instant',
         temperature: 0.4,
-        max_tokens: activeNoteTicker === '_MARKET' ? 300 : 700,
+        max_tokens: activeNoteTicker === '_MARKET_THAI' ? 300 : 700,
         messages: [{
           role: 'user',
           content: `${prompt}:\n\n"${raw}"`
@@ -983,7 +983,7 @@ async function polishNote() {
 
 // ── Note Modal ────────────────────────────────────────────────
 function insertHomeworkTemplate() {
-  if (activeNoteTicker === '_MARKET') return;
+  if (activeNoteTicker === '_MARKET_THAI') return;
 
   const s = activeNoteStock || currentData?.stocks?.find(x => x.ticker === activeNoteTicker) || {};
   const pct = Number(s.pct_change || 0);
@@ -1135,10 +1135,10 @@ async function submitNote() {
   btn.textContent = 'กำลังบันทึก...'; btn.disabled = true;
   const ok = await saveNoteToGitHub(activeNoteTicker, text);
   if (ok) {
-    const label = activeNoteTicker === '_MARKET' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
+    const label = activeNoteTicker === '_MARKET_THAI' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
     showToast(`✅ บันทึก ${label} แล้ว`);
     closeNoteModal();
-    if (activeNoteTicker === '_MARKET') {
+    if (activeNoteTicker === '_MARKET_THAI') {
       renderMarketOverview();
       upgradeMarketOverviewCards();
     }
@@ -1153,7 +1153,7 @@ function renderMarketOverview() {
   const el = document.getElementById('marketOverview');
   if (!el) return;
   const mi = currentData?.market_indices;
-  const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const marketNotes = (notesCache['_MARKET_THAI'] || []).slice().sort((a,b)=>b.id-a.id);
   const marketMarkersHTML = marketNotes.map(n => {
     const markerDate = n.date || n.archive_date;
     if (!markerDate || !currentData?.date) return '';
@@ -1165,7 +1165,7 @@ function renderMarketOverview() {
     let leftPos = ((noteTS - startTS) / rangeTS) * 100;
     leftPos = Math.max(2, Math.min(98, leftPos));
     const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" data-note-id="${n.id}" title="${esc(label)}"></div>`;
+    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET_THAI" data-note-id="${n.id}" title="${esc(label)}"></div>`;
   }).join('');
 
   const INDEX_META = { set: 'SET Index', set50: 'SET50', set100: 'SET100' };
@@ -1214,7 +1214,7 @@ function renderMarketOverview() {
 function upgradeMarketOverviewCards() {
   const cards = document.querySelectorAll('#marketOverview .index-card');
   if (!cards.length) return;
-  const marketNoteCount = (notesCache['_MARKET'] || []).length;
+  const marketNoteCount = (notesCache['_MARKET_THAI'] || []).length;
 
   cards.forEach(card => {
     if (card.dataset.upgraded === '1') return;
@@ -1261,12 +1261,12 @@ function scrollToMarketNotes() {
 
 function openMarketHistory() {
   const date = currentData?.date || '';
-  const url = `thai-history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  const url = `thai-history.html?ticker=${encodeURIComponent('_MARKET_THAI')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
   location.href = url;
 }
 
 function openMarketNote() {
-  activeNoteTicker = '_MARKET';
+  activeNoteTicker = '_MARKET_THAI';
   activeNoteStock  = null;
   document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
   document.getElementById('noteInput').value = '';
@@ -1275,7 +1275,7 @@ function openMarketNote() {
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
-  const notes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
+  const notes = (notesCache['_MARKET_THAI'] || []).slice().sort((a,b)=>b.id-a.id);
   const container = document.getElementById('existingNotesContainer');
   container.innerHTML = notes.length ? `
     <div class="existing-notes">
@@ -1290,7 +1290,7 @@ function openMarketNote() {
               ${dji ? `<span>${dji}</span>` : ''}
               ${spx ? `<span>${spx}</span>` : ''}
               ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
-              <button class="delete-note-btn" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
+              <button class="delete-note-btn" onclick="deleteNote('_MARKET_THAI','${n.id}')" title="ลบ">🗑️</button>
             </div>
             <div class="existing-note-text">${esc(n.note)}</div>
           </div>`;
@@ -1598,7 +1598,7 @@ document.addEventListener('click', async e => {
         baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
         
         let loadingId = `ttLoad-${Date.now()}`;
-        if (ticker !== '_MARKET') {
+        if (ticker !== '_MARKET_THAI') {
           baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
         }
         
@@ -1667,7 +1667,7 @@ document.addEventListener('click', async e => {
         // Use setTimeout to allow DOM to render and calculate correct dimensions
         setTimeout(positionTooltip, 0);
 
-        if (ticker !== '_MARKET') {
+        if (ticker !== '_MARKET_THAI') {
           try {
             const fetchDate = note.archive_date || note.date;
             const r = await fetch(`thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
@@ -1693,7 +1693,7 @@ document.addEventListener('click', async e => {
       return;
     }
 
-    if (ticker === '_MARKET') {
+    if (ticker === '_MARKET_THAI') {
       openMarketNote();
       return;
     }
