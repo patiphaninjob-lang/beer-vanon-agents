@@ -534,9 +534,15 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
 
 
 def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None) -> str:
-    docs_dir = Path("docs/thai-data")
+    docs_dir = DATA_DIR
     docs_dir.mkdir(parents=True, exist_ok=True)
     date_key = today.strftime("%Y-%m-%d")
+
+    import numpy as np
+    avg_chg  = float(np.mean([s["stock"]["pct_change"] for s in stocks_data])) if stocks_data else 0
+    gainers  = [s for s in stocks_data if s["stock"]["pct_change"] > 0]
+    losers   = [s for s in stocks_data if s["stock"]["pct_change"] < 0]
+    by_gain  = sorted(stocks_data, key=lambda s: s["stock"]["pct_change"], reverse=True)
 
     payload = {
         "date": date_key,
@@ -544,7 +550,16 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
         "homework_guide": homework_prompt_block("หุ้นไทย"),
         "market_indices": market_indices or {},
+        "summary": {
+            "total":       len(stocks_data),
+            "gainers":     len(gainers),
+            "losers":      len(losers),
+            "avg_change":  round(avg_chg, 2),
+            "top_gainer":  {"ticker": by_gain[0]["stock"]["ticker"],  "pct": round(by_gain[0]["stock"]["pct_change"], 2)}  if by_gain else {},
+            "top_loser":   {"ticker": by_gain[-1]["stock"]["ticker"], "pct": round(by_gain[-1]["stock"]["pct_change"], 2)} if by_gain else {},
+        },
         "stocks": [
+
             {
                 "rank": s["stock"]["rank"],
                 "ticker": s["stock"]["ticker"],

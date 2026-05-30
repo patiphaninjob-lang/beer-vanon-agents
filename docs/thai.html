@@ -1168,16 +1168,16 @@ function renderMarketOverview() {
     return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" data-note-id="${n.id}" title="${esc(label)}"></div>`;
   }).join('');
 
-  const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
+  const INDEX_META = { set: 'SET Index', set50: 'SET50', set100: 'SET100' };
   const INDEX_TV   = {
-    dji:  'https://www.tradingview.com/chart/?symbol=DJ%3ADJI',
-    spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
-    ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
+    set:   'https://www.tradingview.com/chart/?symbol=SET%3ASET',
+    set50: 'https://www.tradingview.com/chart/?symbol=SET%3ASET50',
+    set100:'https://www.tradingview.com/chart/?symbol=SET%3ASET100'
   };
   const marketNoteCount = marketNotes.length;
 
   const indexCards = mi && Object.keys(mi).length
-    ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
+    ? ['set','set50','set100'].filter(k => mi[k]).map(k => {
         const d = mi[k];
         const up = d.pct_change >= 0;
         const color = up ? '#16c784' : '#ea3943';
@@ -1440,12 +1440,16 @@ async function loadDate(date) {
 }
 
 function renderSummary() {
+  if (!currentData || !currentData.summary) {
+    document.getElementById('summaryBar').innerHTML = '<div style="color:#6b7280;font-size:0.85em">กำลังรอสรุปข้อมูล...</div>';
+    return;
+  }
   const s = currentData.summary;
-  const up = s.avg_change >= 0;
+  const up = (s.avg_change || 0) >= 0;
   document.getElementById('summaryBar').innerHTML = `
     <div><span class="stat-label">วันที่</span><span class="stat-val">${fmtDate(currentData.date)}</span></div>
-    <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span></div>
-    <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span></div>
+    <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers || 0}▲</span> / <span class="down">${s.losers || 0}▼</span></span></div>
+    <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change || 0).toFixed(2)}%</span></div>
     ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
     ${s.top_loser?.ticker?`<div><span class="stat-label">Top Loser</span><span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span></div>`:''}
   `;
