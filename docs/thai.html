@@ -1416,7 +1416,7 @@ function pickDate(date) {
 async function loadDate(date) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
-    const r = await fetch(`data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+    const r = await fetch(`thai-data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
     currentData = await r.json();
 
