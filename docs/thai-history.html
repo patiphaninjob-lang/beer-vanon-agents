@@ -412,7 +412,7 @@ async function loadHistoryCandles() {
   if (latestDate && !candleDates.has(latestDate)) {
       let lp = 0, lv = 0, lo = 0;
       if (state.ticker === '_MARKET_THAI' && state.latestMarket) {
-        const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
+        const p = state.latestMarket.set || state.latestMarket.set50 || state.latestMarket.set100;
         lp = Number(p?.price || 0);
         lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
       } else if (state.latestStock) {
@@ -462,7 +462,7 @@ async function buildArchiveFallbackCandles() {
       const day = await loadArchive(date);
       if (state.ticker === '_MARKET_THAI') {
         const mi = day?.market_indices || {};
-        const p = mi.dji || mi.spx || mi.ixic;
+        const p = mi.set || mi.set50 || mi.set100;
         if (!p?.price) continue;
         const c = Number(p.price);
         const pct = Number(p.pct_change || 0);
