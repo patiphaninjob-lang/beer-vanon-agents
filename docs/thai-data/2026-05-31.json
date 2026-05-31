@@ -1,0 +1,109 @@
+{
+  "date": "2026-05-31",
+  "generated": "2026-05-31T11:45:44.605991",
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)\nใช้กรอบนี้กับหุ้นไทยทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "set": {
+      "price": 1568.37,
+      "pct_change": -0.04,
+      "chart_b64": "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"
+    }
+  },
+  "summary": {
+    "total": 2,
+    "gainers": 0,
+    "losers": 0,
+    "avg_change": 0.0,
+    "top_gainer": {
+      "ticker": "DELTA.BK",
+      "pct": 0.0
+    },
+    "top_loser": {
+      "ticker": "ADVANC.BK",
+      "pct": 0.0
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "DELTA.BK",
+      "name": "Delta Electronics (Thailand) Public Company Limited",
+      "sector": "Industrials",
+      "price": 353.0,
+      "pct_change": 0.0,
+      "volume": 23591800,
+      "market_cap": 4403257097420.0,
+      "pe_ratio": 154.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:DELTA",
+      "analysis": "ข่าวที่เกิดขึ้นเกี่ยวกับ DELTA.BK มีความหมายเชิงบวก โดยมีการเพิ่มขึ้นของราคาหุ้น 10% และการกลายเป็นบริษัทที่มีมูลค่า 100 พันล้านบาท ขณะเดียวกันการเปลี่ยนแปลงของตลาดและความก้าวหน้าของบริษัทในด้านเทคโนโลยีและนวัตกรรม\n\nBeer มองว่า: SQ: Money Management - การจัดการเงินของเราไม่ควรเปลี่ยนแปลง เนื่องจาก DELTA.BK มีการเติบโตอย่างต่อเนื่อง Circuit Breaker: ไม่มีปัจจัยที่ทำให้เราเกิดความกังวล",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "DELTA.BK มีการเติบโตอย่างต่อเนื่องในด้านเทคโนโลยีและนวัตกรรม โดยมีการเพิ่มขึ้นของราคาหุ้น 10% และการกลายเป็นบริษัทที่มีมูลค่า 100 พันล้านบาท นอกจากนี้ยังมีการลงทุนในด้านการผลิตและจำหน่ายไฟฟ้าในประเทศเวียดนาม"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "DELTA.BK มีการเพิ่มขึ้นของราคาหุ้น 10% และมีการกลายเป็นบริษัทที่มีมูลค่า 100 พันล้านบาท นอกจากนี้ยังมีการเพิ่มขึ้นของรายได้ 20% และมีการเติบโตอย่างต่อเนื่องในด้านเทคโนโลยีและนวัตกรรม"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "เช็กว่าข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis หรือไม่ ถ้ามีความขัดกันให้ระวังการตีความเองเกินข้อมูล"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "เปรียบเทียบ DELTA.BK กับคู่แข่งหลักใน Industrials ใครโตจริง ใครแพงเกิน ใครเสียเปรียบ"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 2,
+      "ticker": "ADVANC.BK",
+      "name": "Advanced Info Service Public Company Limited",
+      "sector": "Communication Services",
+      "price": 353.0,
+      "pct_change": 0.0,
+      "volume": 13223800,
+      "market_cap": 1049896036808.0,
+      "pe_ratio": 20.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:ADVANC",
+      "analysis": "ข่าวที่เกี่ยวข้องกับหุ้น ADVANC.BK มีความสำคัญต่อการเติบโตของธุรกิจโทรคมนาคมในประเทศไทย โดยเฉพาะการลงทุนของ Microsoft ในส่วนของคลาวด์และ AI ซึ่งจะช่วยให้ธุรกิจไทยสามารถเข้าถึงเทคโนโลยีล่าสุดและพัฒนาskills ที่จำเป็นสำหรับการเติบโตในอนาคต นอกจากนี้ยังมีข่าวเกี่ยวกับ GULF โรงไฟฟ้า TTCIZ-02 ประเทศเวียดนาม และ VGI ที่ร่วมทุนกับ iCLK เพื่อเป็นตัวแทนโฆษณาออนไลน์ในประเทศจีน ซึ่งจะช่วยให้ธุรกิจไทยสามารถเข้าถึงตลาดใหม่ๆ ได้\n\nBeer มองว่า: SQ: Money Management - การลงทุนในหุ้น ADVANC.BK ควรคำนึงถึงความเสี่ยงและผลตอบแทนในระยะยาว Circuit Breaker: การลงทุนในหุ้น ADVANC.BK ควรตรวจสอบความเสี่ยงของการลงทุนในธุรกิจโทรคมนาคมในประเทศไทยและความเสี่ยงของการลงทุนในตลาดใหม่ๆ",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงทุนของ Microsoft ในส่วนของคลาวด์และ AI จะช่วยให้ธุรกิจไทยสามารถเข้าถึงเทคโนโลยีล่าสุดและพัฒนาskills ที่จำเป็นสำหรับการเติบโตในอนาคต"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การลงทุนของ Microsoft คือ $1bn ซึ่งจะช่วยให้ธุรกิจไทยสามารถเข้าถึงเทคโนโลยีล่าสุดและพัฒนาskills ที่จำเป็นสำหรับการเติบโตในอนาคต"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "เช็กว่าข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis หรือไม่ ถ้ามีความขัดกันให้ระวังการตีความเองเกินข้อมูล"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "เปรียบเทียบ ADVANC.BK กับคู่แข่งหลักใน Communication Services ใครโตจริง ใครแพงเกิน ใครเสียเปรียบ"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAMFBgQBAgf/xAA5EAACAgIABAIHBwIFBQAAAAABAgADBBEFEiExE2EGIkFRcYHBMjVzkbGy0RQVIzM2Y6FCUpLh8f/EABkBAQADAQEAAAAAAAAAAAAAAAACAwQBBf/EAC0RAAICAQMDAwMCBwAAAAAAAAABAgMRBCExEkFREyJxBdHwIzIzYWKBkbHB/9oADAMBAAIRAxEAPwD8+iIkyIiIgCIiAIiIAn3bWarnqbXMjFTryndwzDrtz8ZLxzpajMV7duYfSdXGcWivimkTQel7G6nq2mO/+BIOaUukvhQ51eovOCkid9WEH4XZf4+OG5gQC3rDQbp8T9JwSwzRkpZx2ERE4SEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAs+DcNXiDuz2cq1Fdrr7QPs8u05eIYv9FmPj8/Py69bWt7G5c+iv2cr4r9ZX8f8Avi74L+0SqMn6jXY3WVQWljYlu39ytiIlphEREAT1ftD4zySqgOM9uzzK6qPmG/idDeDTekNj1YNb1OyOLRplOiOhlTwyv+vutsys3ldayo8Q7JBUg9z7O8gzuI35ePTXZbzADbjlA9bZ+mpxBip2pIOtdJya6uCGizRFKe6zwdViLXj5NaOHVb1AYdj0frOSdPDxzZ2PW3VGtXmU9j193zmm4pwtcrGSvGrprdW3vl1069Og95lcrFFpM206SVsZTj/gyES7T0byeY89tWtHWie+uns98qLqmpvepiCyMVJHbpJRnGXBXZRZWszWCOIl5wXhePmYdllxfmLFOhHTsdjp3k0smayxVx6pHX/a8L+z+N4H+J4HPzcx78u995mJuMmsVcKtrXekoKjfksw8opbecnp66MYqDisZQiIlx54iJ9pWXWxhrSLzH8wPrAPiIiAIiIAiIgCIiAIi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"
+    }
+  ]
+}

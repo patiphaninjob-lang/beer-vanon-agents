@@ -428,6 +428,29 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         "analysis_status": "fallback",
     }
 
+    # Selective BEER_DNA context (Surgical improvement)
+    dna_blocks = BEER_DNA.split("━━━")
+    selected_dna = [dna_blocks[0]] # Title
+    
+    # Always include 7 Principles & SQ Framework
+    for b in dna_blocks:
+        if "7 หลักการ" in b or "Stock Quadrant (SQ)" in b:
+            selected_dna.append(b.strip())
+            
+    # Conditional: Survivor Mindset for red days
+    if stock["pct_change"] < -1.5:
+        for b in dna_blocks:
+            if "Survivor Mindset" in b:
+                selected_dna.append(b.strip())
+                
+    # Conditional: Time Zone for high volume/active stocks
+    if stock.get("volume", 0) > 50_000_000:
+         for b in dna_blocks:
+            if "Time Zone" in b:
+                selected_dna.append(b.strip())
+
+    dna_context = "\n\n".join(selected_dna)[:850] # Limit to ~850 chars for TPM safety
+
     notes_ctx = ""
     if user_notes:
         lines = [f"- {n['date']}: {n['note']}" for n in user_notes[:3]]
@@ -437,8 +460,8 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
 ราคา: {stock['price']:.2f} THB ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
 Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
 
-หลักการ Beer Vanon:
-{BEER_DNA[:250]}
+หลักการ Beer Vanon (คัดส่วนที่เกี่ยวข้อง):
+{dna_context}
 
 ข่าว/ความรู้:
 {stock['news'][:400]}
@@ -596,19 +619,19 @@ def save_history_data(stocks_data: list) -> None:
     import yfinance as yf
     tickers = [s["stock"]["ticker"] for s in stocks_data]
     
-    # 1. Save Individual Stocks
-    all_hist = yf.download(tickers, period="5y", group_by="ticker", threads=True, progress=False)
+    # 1. Save Individual Stocks (Reduced to 2y for performance)
+    all_hist = yf.download(tickers, period="2y", group_by="ticker", threads=True, progress=False)
     for ticker in tickers:
         hist = extract_ticker_history(all_hist, ticker)
         if hist is None or hist.empty: continue
         candles = [[idx.strftime("%Y-%m-%d"), round(row["Open"],4), round(row["High"],4), round(row["Low"],4), round(row["Close"],4), int(row["Volume"])]
                    for idx, row in hist.dropna(subset=["Close"]).iterrows()]
-        payload = {"ticker": ticker, "timeframe": "1D", "period": "5y", "candles": candles}
+        payload = {"ticker": ticker, "timeframe": "1D", "period": "2y", "candles": candles}
         (out_dir / f"{ticker}.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
     # 2. Save Market Index History (SET)
     try:
-        mkt_hist = yf.Ticker("^SET.BK").history(period="5y")
+        mkt_hist = yf.Ticker("^SET.BK").history(period="2y")
         if not mkt_hist.empty:
             candles = [[idx.strftime("%Y-%m-%d"), round(row["Open"],4), round(row["High"],4), round(row["Low"],4), round(row["Close"],4), 0]
                        for idx, row in mkt_hist.dropna(subset=["Close"]).iterrows()]
@@ -676,7 +699,9 @@ def main():
 def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings, embed_model, q_vec, notes_db):
     try:
         stock = _safe_get_stock_context(ticker, rank, mktcap, hist_df)
-        ctx = search_knowledge(query, posts, embeddings, embed_model)
+        # Surgical improvement: specific search query
+        better_query = f"{stock['ticker']} {stock['sector']} {query}"
+        ctx = search_knowledge(better_query, posts, embeddings, embed_model)
         analysis = combined_analysis(stock, ctx, notes_db.get(ticker))
         chart = generate_mini_chart_b64(ticker, hist_df)
         safe_print(f"   [{rank:3d}] {ticker:<10} → ✅")
