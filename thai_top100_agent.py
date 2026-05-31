@@ -250,6 +250,8 @@ def _safe_get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=N
             "sector": info.get("sector", "N/A"),
             "pe_ratio": info.get("trailingPE"),
             "exchange": info.get("exchange", "SET"),
+            "homework_34": None, # Initial empty homework
+            "homework_updated": None
         }
         cache[ticker] = stock_info
         try:
@@ -268,7 +270,8 @@ def _safe_get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=N
     volume     = int(hist["Volume"].iloc[-1]) if not hist.empty else 0
 
     try:
-        raw_news  = tk.news[:3] if tk.news else []
+        # Increase news count and details for deep analysis
+        raw_news  = tk.news[:5] if tk.news else []
         news_list = [_parse_news(n) for n in raw_news]
         news_text = "\n".join(
             f"- [{n['provider']}] {n['title']}" + (f"\n  {n['summary']}" if n.get("summary") else "")
@@ -290,6 +293,7 @@ def _safe_get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=N
         "news_list":  news_list,
         "rank":       rank,
         "tv_url":     _tv_url(ticker, stock_info.get("exchange", "")),
+        "cached_homework": stock_info.get("homework_34"), # Return cached homework if exists
     }
 
 
@@ -420,57 +424,59 @@ def _flatten_content(content) -> str:
 def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) -> dict:
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
+    
+    # Persistent Homework Logic: Use cached version if available
+    cached_hw = stock.get("cached_homework")
+    hw_instruction = ""
+    if cached_hw:
+        hw_ctx = "\n".join([f"- {item['topic']}: {item['insight']}" for item in cached_hw])
+        hw_instruction = f"""
+ข้อมูลการบ้านเดิม (จาก Cache):
+{hw_ctx}
+
+ไม่ต้องเขียนการบ้านใหม่ ให้ใช้ข้อมูลเดิมเป็นหลัก แต่ถ้าข่าววันนี้กระทบต่อการบ้านข้อไหน ให้ระบุในส่วน 'note_review' แทน
+"""
+    else:
+        hw_instruction = "เขียนวิเคราะห์การบ้าน 6 ด้าน (บทที่ 34) ให้ครบถ้วน"
+
     fallback  = {
         "interpretation": f"วิเคราะห์ {stock['ticker']} กลุ่ม {stock['sector']} วันนี้ {direction} {abs(stock['pct_change']):.1f}%",
         "beer_view": "ใช้ framework สำรองเนื่องจาก API ขัดข้อง",
-        "homework_analysis": _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
+        "homework_analysis": cached_hw or _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
         "note_review": None,
         "analysis_status": "fallback",
     }
 
-    # Selective BEER_DNA context (Surgical improvement)
+    # Selective BEER_DNA context (Keep it minimal to save space for News)
     dna_blocks = BEER_DNA.split("━━━")
-    selected_dna = [dna_blocks[0]] # Title
-    
-    # Always include 7 Principles & SQ Framework
+    dna_context = dna_blocks[0] # Title + Basic
     for b in dna_blocks:
         if "7 หลักการ" in b or "Stock Quadrant (SQ)" in b:
-            selected_dna.append(b.strip())
-            
-    # Conditional: Survivor Mindset for red days
-    if stock["pct_change"] < -1.5:
-        for b in dna_blocks:
-            if "Survivor Mindset" in b:
-                selected_dna.append(b.strip())
-                
-    # Conditional: Time Zone for high volume/active stocks
-    if stock.get("volume", 0) > 50_000_000:
-         for b in dna_blocks:
-            if "Time Zone" in b:
-                selected_dna.append(b.strip())
-
-    dna_context = "\n\n".join(selected_dna)[:850] # Limit to ~850 chars for TPM safety
+            dna_context += "\n" + b.strip()
 
     notes_ctx = ""
     if user_notes:
         lines = [f"- {n['date']}: {n['note']}" for n in user_notes[:3]]
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดจากโน้ต:\n" + "\n".join(lines)
 
+    # Focus PROMPT on DEEP NEWS
     prompt = f"""วิเคราะห์หุ้นไทย {stock['ticker']} ({stock['name']})
 ราคา: {stock['price']:.2f} THB ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
 Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
 
-หลักการ Beer Vanon (คัดส่วนที่เกี่ยวข้อง):
-{dna_context}
+หลักการ Beer Vanon:
+{dna_context[:400]}
 
-ข่าว/ความรู้:
-{stock['news'][:400]}
+ข่าววันนี้ (เน้นวิเคราะห์ส่วนนี้ให้ลึก):
+{stock['news'][:1500]}
 {knowledge_ctx[:300]}{notes_ctx}
+
+{hw_instruction}
 
 ให้ตอบเป็น JSON (ภาษาไทย) โครงสร้าง:
 {{
-  "interpretation": "สรุปรายละเอียดข่าว (Detail, Sentiment, Implication) บรรยายยาว",
-  "beer_view": "ความเห็นสไตล์ Beer (SQ และจุด Circuit Breaker)",
+  "interpretation": "วิเคราะห์ข่าววันนี้อย่างละเอียด (Detail, Sentiment, Implication) บรรยายยาว ขยี้เนื้อหาข่าวให้แน่น",
+  "beer_view": "ความเห็นสไตล์ Beer สั้นๆ (SQ และจุดนัยสำคัญ)",
   "homework_analysis": [
     {{ "topic": "ธุรกิจ", "insight": "..." }},
     {{ "topic": "ตัวเลข", "insight": "..." }},
@@ -479,7 +485,7 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
     {{ "topic": "ผู้บริหาร", "insight": "..." }},
     {{ "topic": "แผนของเรา", "insight": "..." }}
   ],
-  "note_review": "เทียบโน้ต (ถ้ามี)"
+  "note_review": "สรุปว่าข่าววันนี้กระทบต่อการบ้านเดิมอย่างไร หรือเทียบกับโน้ต (ถ้ามี)"
 }}"""
 
     try:
@@ -495,17 +501,41 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=450,
+            max_tokens=600, # Increased for deeper news
             response_format={"type": "json_object"},
         )
+        
         data = json.loads(resp.choices[0].message.content)
         data["interpretation"] = _flatten_content(data.get("interpretation"))
         data["beer_view"] = _flatten_content(data.get("beer_view"))
-        data["homework_analysis"] = _normalize_homework_analysis(stock, data.get("homework_analysis"), knowledge_ctx, user_notes)
+        
+        # If we had cache, preserve it unless explicitly returned new one (usually preserve)
+        if cached_hw and not data.get("homework_analysis"):
+             data["homework_analysis"] = cached_hw
+        else:
+             data["homework_analysis"] = _normalize_homework_analysis(stock, data.get("homework_analysis"), knowledge_ctx, user_notes)
+             # Surgical improvement: Save newly generated homework back to cache
+             _save_homework_to_cache(stock["ticker"], data["homework_analysis"])
+             
         return data
     except Exception as e:
         safe_print(f"   ⚠️ Groq Error [{stock['ticker']}]: {e}")
         return fallback
+
+
+def _save_homework_to_cache(ticker: str, homework: list):
+    """Saves generated Chapter 34 homework to the metadata cache."""
+    cache_file = Path("thai_metadata_cache.json")
+    if not cache_file.exists():
+        return
+    try:
+        cache = json.loads(cache_file.read_text(encoding="utf-8"))
+        if ticker in cache:
+            cache[ticker]["homework_34"] = homework
+            cache[ticker]["homework_updated"] = datetime.date.today().isoformat()
+            cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception as e:
+        safe_print(f"   ⚠️ Cache Update Error [{ticker}]: {e}")
 
 
 # ─── Presentation & Reporting ─────────────────────────────────
@@ -704,7 +734,15 @@ def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings
         ctx = search_knowledge(better_query, posts, embeddings, embed_model)
         analysis = combined_analysis(stock, ctx, notes_db.get(ticker))
         chart = generate_mini_chart_b64(ticker, hist_df)
-        safe_print(f"   [{rank:3d}] {ticker:<10} → ✅")
+        
+        # Show usage in status line
+        try:
+            from usage_tracker import get_status_line
+            status_line = get_status_line()
+            safe_print(f"   [{rank:3d}] {ticker:<10} → ✅ วิเคราะห์สำเร็จ | {status_line}")
+        except Exception:
+            safe_print(f"   [{rank:3d}] {ticker:<10} → ✅")
+            
         return {"stock": stock, "analysis_data": analysis, "chart_bytes": chart, "chart_cid": f"chart_{rank}"}
     except Exception as e:
         safe_print(f"   [{rank:3d}] {ticker:<10} → ❌ {e}")
