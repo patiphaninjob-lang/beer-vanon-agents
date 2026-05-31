@@ -1,0 +1,32 @@
+{
+  "NVDA": {
+    "name": "NVIDIA Corporation",
+    "sector": "Technology",
+    "pe_ratio": 32.558956,
+    "exchange": "NMS"
+  },
+  "GOOGL": {
+    "name": "Alphabet Inc.",
+    "sector": "Communication Services",
+    "pe_ratio": 29.801525,
+    "exchange": "NMS"
+  },
+  "AAPL": {
+    "name": "Apple Inc.",
+    "sector": "Technology",
+    "pe_ratio": 37.690445,
+    "exchange": "NMS"
+  },
+  "MSFT": {
+    "name": "Microsoft Corporation",
+    "sector": "Technology",
+    "pe_ratio": 25.305061,
+    "exchange": "NMS"
+  },
+  "AMZN": {
+    "name": "Amazon.com, Inc.",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 31.382421,
+    "exchange": "NMS"
+  }
+}

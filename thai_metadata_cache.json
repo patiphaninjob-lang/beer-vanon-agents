@@ -1,0 +1,602 @@
+{
+  "GULF.BK": {
+    "name": "Gulf Development Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 36.25731,
+    "exchange": "SET"
+  },
+  "ADVANC.BK": {
+    "name": "Advanced Info Service Public Company Limited",
+    "sector": "Communication Services",
+    "pe_ratio": 20.655354,
+    "exchange": "SET"
+  },
+  "DELTA.BK": {
+    "name": "Delta Electronics (Thailand) Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 154.14847,
+    "exchange": "SET"
+  },
+  "AOT.BK": {
+    "name": "Airports of Thailand Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 43.503937,
+    "exchange": "SET"
+  },
+  "PTT.BK": {
+    "name": "PTT Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 11.153846,
+    "exchange": "SET"
+  },
+  "PTTEP.BK": {
+    "name": "PTT Exploration and Production Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 10.1143675,
+    "exchange": "SET"
+  },
+  "KTB.BK": {
+    "name": "Krung Thai Bank Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 9.928572,
+    "exchange": "SET"
+  },
+  "TRUE.BK": {
+    "name": "True Corporation Public Company Limited",
+    "sector": "Communication Services",
+    "pe_ratio": 33.65854,
+    "exchange": "SET"
+  },
+  "KBANK.BK": {
+    "name": "Kasikornbank Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 9.476663,
+    "exchange": "SET"
+  },
+  "SCB.BK": {
+    "name": "SCB X Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 10.022355,
+    "exchange": "SET"
+  },
+  "CPALL.BK": {
+    "name": "CP ALL Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 14.405488,
+    "exchange": "SET"
+  },
+  "BBL.BK": {
+    "name": "Bangkok Bank Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 7.4408603,
+    "exchange": "SET"
+  },
+  "CPN.BK": {
+    "name": "Central Pattana Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 14.759726,
+    "exchange": "SET"
+  },
+  "BDMS.BK": {
+    "name": "Bangkok Dusit Medical Services Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 18.383839,
+    "exchange": "SET"
+  },
+  "SCC.BK": {
+    "name": "The Siam Cement Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 14.1875,
+    "exchange": "SET"
+  },
+  "TTB.BK": {
+    "name": "TMBThanachart Bank Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 9.913043,
+    "exchange": "SET"
+  },
+  "PTTGC.BK": {
+    "name": "PTT Global Chemical Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "OR.BK": {
+    "name": "PTT Oil and Retail Business Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 15.897436,
+    "exchange": "SET"
+  },
+  "CPF.BK": {
+    "name": "Charoen Pokphand Foods Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 7.1698112,
+    "exchange": "SET"
+  },
+  "BH.BK": {
+    "name": "Bumrungrad Hospital Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 20.751446,
+    "exchange": "SET"
+  },
+  "IVL.BK": {
+    "name": "Indorama Ventures Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "CRC.BK": {
+    "name": "Central Retail Corporation Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 18.03419,
+    "exchange": "SET"
+  },
+  "MINT.BK": {
+    "name": "Minor International Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 16.917294,
+    "exchange": "SET"
+  },
+  "GPSC.BK": {
+    "name": "Global Power Synergy Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 16.330645,
+    "exchange": "SET"
+  },
+  "TOP.BK": {
+    "name": "Thai Oil Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 3.3538797,
+    "exchange": "SET"
+  },
+  "TISCO.BK": {
+    "name": "TISCO Financial Group Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 13.388626,
+    "exchange": "SET"
+  },
+  "SCGP.BK": {
+    "name": "SCG Packaging Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 21.454546,
+    "exchange": "SET"
+  },
+  "HMPRO.BK": {
+    "name": "Home Product Center Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 13.750001,
+    "exchange": "SET"
+  },
+  "BEM.BK": {
+    "name": "Bangkok Expressway and Metro Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 20.8,
+    "exchange": "SET"
+  },
+  "KKP.BK": {
+    "name": "Kiatnakin Phatra Bank Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 10.615199,
+    "exchange": "SET"
+  },
+  "WHA.BK": {
+    "name": "WHA Corporation Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 15.806452,
+    "exchange": "SET"
+  },
+  "KTC.BK": {
+    "name": "Krungthai Card Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 9.55414,
+    "exchange": "SET"
+  },
+  "AWC.BK": {
+    "name": "Asset World Corp Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 11.4,
+    "exchange": "SET"
+  },
+  "RATCH.BK": {
+    "name": "Ratch Group Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 10.751749,
+    "exchange": "SET"
+  },
+  "TCAP.BK": {
+    "name": "Thanachart Capital Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 7.6898327,
+    "exchange": "SET"
+  },
+  "EGCO.BK": {
+    "name": "Electricity Generating Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 30.338543,
+    "exchange": "SET"
+  },
+  "COM7.BK": {
+    "name": "Com7 Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 14.364641,
+    "exchange": "SET"
+  },
+  "MTC.BK": {
+    "name": "Muangthai Capital Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 8.738602,
+    "exchange": "SET"
+  },
+  "BANPU.BK": {
+    "name": "Banpu Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "BJC.BK": {
+    "name": "Berli Jucker Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 14.343434,
+    "exchange": "SET"
+  },
+  "TIDLOR.BK": {
+    "name": "Tidlor Holdings Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 9.8918915,
+    "exchange": "SET"
+  },
+  "BCP.BK": {
+    "name": "Bangchak Corporation Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 15.985578,
+    "exchange": "SET"
+  },
+  "ITC.BK": {
+    "name": "i-Tail Corporation Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 15.333334,
+    "exchange": "SET"
+  },
+  "OSP.BK": {
+    "name": "Osotspa Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 12.857142,
+    "exchange": "SET"
+  },
+  "CENTEL.BK": {
+    "name": "Central Plaza Hotel Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 13.446216,
+    "exchange": "SET"
+  },
+  "KCE.BK": {
+    "name": "KCE Electronics Public Company Limited",
+    "sector": "Technology",
+    "pe_ratio": 52.816902,
+    "exchange": "SET"
+  },
+  "TU.BK": {
+    "name": "Thai Union Group Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 9.256198,
+    "exchange": "SET"
+  },
+  "LH.BK": {
+    "name": "Land and Houses Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 11.999999,
+    "exchange": "SET"
+  },
+  "GLOBAL.BK": {
+    "name": "Siam Global House Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 21.142859,
+    "exchange": "SET"
+  },
+  "CBG.BK": {
+    "name": "Carabao Group Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 18.548386,
+    "exchange": "SET"
+  },
+  "BTG.BK": {
+    "name": "Betagro Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 6.6112957,
+    "exchange": "SET"
+  },
+  "IRPC.BK": {
+    "name": "IRPC Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 6.5,
+    "exchange": "SET"
+  },
+  "BLA.BK": {
+    "name": "Bangkok Life Assurance Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 5.3146853,
+    "exchange": "SET"
+  },
+  "SAWAD.BK": {
+    "name": "Srisawad Corporation Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 6.908517,
+    "exchange": "SET"
+  },
+  "TTW.BK": {
+    "name": "TTW Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 11.341464,
+    "exchange": "SET"
+  },
+  "BGRIM.BK": {
+    "name": "B.Grimm Power Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 43.4375,
+    "exchange": "SET"
+  },
+  "GUNKUL.BK": {
+    "name": "Gunkul Engineering Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 18.09091,
+    "exchange": "SET"
+  },
+  "HANA.BK": {
+    "name": "Hana Microelectronics Public Company Limited",
+    "sector": "Technology",
+    "pe_ratio": 109.55882,
+    "exchange": "SET"
+  },
+  "BTS.BK": {
+    "name": "BTS Group Holdings Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "BA.BK": {
+    "name": "Bangkok Airways Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 8.210526,
+    "exchange": "SET"
+  },
+  "SPRC.BK": {
+    "name": "Star Petroleum Refining Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 3.4741783,
+    "exchange": "SET"
+  },
+  "STGT.BK": {
+    "name": "Sri Trang Gloves (Thailand) Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "MEGA.BK": {
+    "name": "Mega Lifesciences Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 15.254238,
+    "exchange": "SET"
+  },
+  "CK.BK": {
+    "name": "CH. Karnchang Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 8.955224,
+    "exchange": "SET"
+  },
+  "STA.BK": {
+    "name": "Sri Trang Agro-Industry Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "SPALI.BK": {
+    "name": "Supalai Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 7.4162683,
+    "exchange": "SET"
+  },
+  "AMATA.BK": {
+    "name": "Amata Corporation Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 7.6086955,
+    "exchange": "SET"
+  },
+  "MBK.BK": {
+    "name": "MBK Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 6.7391305,
+    "exchange": "SET"
+  },
+  "EA.BK": {
+    "name": "Energy Absolute Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "SIRI.BK": {
+    "name": "Sansiri Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 5.958333,
+    "exchange": "SET"
+  },
+  "BCH.BK": {
+    "name": "Bangkok Chain Hospital Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 18.529411,
+    "exchange": "SET"
+  },
+  "AEONTS.BK": {
+    "name": "AEON Thana Sinsap (Thailand) Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 7.6165595,
+    "exchange": "SET"
+  },
+  "AP.BK": {
+    "name": "AP (Thailand) Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 5.2517986,
+    "exchange": "SET"
+  },
+  "TVO.BK": {
+    "name": "Thai Vegetable Oil Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 9.398496,
+    "exchange": "SET"
+  },
+  "WHAUP.BK": {
+    "name": "WHA Utilities and Power Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 19.655172,
+    "exchange": "SET"
+  },
+  "TASCO.BK": {
+    "name": "Tipco Asphalt Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": 18.90411,
+    "exchange": "SET"
+  },
+  "BAM.BK": {
+    "name": "Bangkok Commercial Asset Management Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 11.517857,
+    "exchange": "SET"
+  },
+  "VGI.BK": {
+    "name": "VGI Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "BCPG.BK": {
+    "name": "BCPG Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 14.0625,
+    "exchange": "SET"
+  },
+  "PLANB.BK": {
+    "name": "Plan B Media Public Company Limited",
+    "sector": "Communication Services",
+    "pe_ratio": 16.076923,
+    "exchange": "SET"
+  },
+  "PRM.BK": {
+    "name": "Prima Marine Public Company Limited",
+    "sector": "Energy",
+    "pe_ratio": 9.354838,
+    "exchange": "SET"
+  },
+  "CKP.BK": {
+    "name": "CK Power Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 6.571429,
+    "exchange": "SET"
+  },
+  "ICHI.BK": {
+    "name": "Ichitan Group Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 12.285714,
+    "exchange": "SET"
+  },
+  "JMT.BK": {
+    "name": "JMT Network Services Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 17.076923,
+    "exchange": "SET"
+  },
+  "CHG.BK": {
+    "name": "Chularat Hospital Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 16.0,
+    "exchange": "SET"
+  },
+  "TPIPL.BK": {
+    "name": "TPI Polene Public Company Limited",
+    "sector": "Basic Materials",
+    "pe_ratio": 7.3636365,
+    "exchange": "SET"
+  },
+  "TPIPP.BK": {
+    "name": "TPI Polene Power Public Company Limited",
+    "sector": "Utilities",
+    "pe_ratio": 9.888888,
+    "exchange": "SET"
+  },
+  "QH.BK": {
+    "name": "Quality Houses Public Company Limited",
+    "sector": "Real Estate",
+    "pe_ratio": 7.9411764,
+    "exchange": "SET"
+  },
+  "AAV.BK": {
+    "name": "Asia Aviation Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 7.7857146,
+    "exchange": "SET"
+  },
+  "ERW.BK": {
+    "name": "The Erawan Group Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 15.888887,
+    "exchange": "SET"
+  },
+  "THG.BK": {
+    "name": "Thonburi Healthcare Group Public Company Limited",
+    "sector": "Healthcare",
+    "pe_ratio": 86.11111,
+    "exchange": "SET"
+  },
+  "JMART.BK": {
+    "name": "Jaymart Group Holdings Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": null,
+    "exchange": "SET"
+  },
+  "PTG.BK": {
+    "name": "PTG Energy Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 19.210527,
+    "exchange": "SET"
+  },
+  "DOHOME.BK": {
+    "name": "Dohome Public Company Limited",
+    "sector": "Consumer Cyclical",
+    "pe_ratio": 20.352942,
+    "exchange": "SET"
+  },
+  "TIPH.BK": {
+    "name": "Dhipaya Group Holdings Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 11.888889,
+    "exchange": "SET"
+  },
+  "PSL.BK": {
+    "name": "Precious Shipping Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 17.790697,
+    "exchange": "SET"
+  },
+  "TTA.BK": {
+    "name": "Thoresen Thai Agencies Public Company Limited",
+    "sector": "Industrials",
+    "pe_ratio": 11.382978,
+    "exchange": "SET"
+  },
+  "THANI.BK": {
+    "name": "Ratchthani Leasing Public Company Limited",
+    "sector": "Financial Services",
+    "pe_ratio": 8.684211,
+    "exchange": "SET"
+  },
+  "SISB.BK": {
+    "name": "SISB Public Company Limited",
+    "sector": "Consumer Defensive",
+    "pe_ratio": 9.9,
+    "exchange": "SET"
+  },
+  "JAS.BK": {
+    "name": "Jasmine International Public Company Limited",
+    "sector": "Communication Services",
+    "pe_ratio": null,
+    "exchange": "SET"
+  }
+}

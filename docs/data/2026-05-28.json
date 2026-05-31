@@ -1,37 +1,37 @@
 {
   "date": "2026-05-28",
-  "generated": "2026-05-28T20:20:53.338732",
+  "generated": "2026-05-28T22:59:44.796026",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
     "dji": {
-      "price": 50644.28,
-      "pct_change": 0.36,
-      "chart_b64": "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"
+      "price": 50698.46,
+      "pct_change": 0.11,
+      "chart_b64": "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"
     },
     "spx": {
-      "price": 7520.36,
-      "pct_change": 0.02,
-      "chart_b64": "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"
+      "price": 7557.63,
+      "pct_change": 0.5,
+      "chart_b64": "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"
     },
     "ixic": {
-      "price": 26674.73,
-      "pct_change": 0.07,
-      "chart_b64": "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"
+      "price": 26842.86,
+      "pct_change": 0.63,
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAMEBQIBB//EADMQAAICAgEDAQYFAwQDAAAAAAABAgMEESEFEjETFCJBUWFxMoGRodEGFbEzQsHwUlOS/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAJhEBAAICAgEDBAMBAAAAAAAAAAECAxESITEEE0EiUWHBMoGR8P/aAAwDAQACEQMRAD8A+fAA2yAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD00P7J1H/0L/wC4/wAl0za9a/ynTOBZy8G7EyHTOLb05Ra53Hnn9jR6f0yMcKHUna+6vdnZrh9rfG/roaZtmrWvLfljyjKP4otfHlHJvWZ0etuvEcYUJTUnKVnn4aXHnkrUdDvv73VfjyjCXb3KTafCfHH1M2vWs9y74cWbLWJ4soEtGPbkXqmmPdN70t6NGnoGbY36nZUkuNve/wBDWtuN8tKfynTJJa8e+2SVVNk21tKMW+PmXJYmHVj2xuy0sqEmuxQb5W1rf145PJdZz5Ovd34Gnwtd330Z3venXjqazPify7xuh5mRW5tRq09dtm0/8Ga+GSzyb7HJ2XTm5R7W5PfG96/UhL8ManlPfXwAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPj4eRkpumqcorfvKL1wt6+5UmYiNygLvS8H+4ZEqnZ6fbHu3rfxX8nkenZKjGy6qyutyalLsb7EtbbXy5/Zkrtr6bdC3p2X6rktTUq9fL5/MRMSzli8RxjqZ8LcMHpuLPIpzcmXqR1p61x7r2uHz8PsQZHXsu6qVaUK9/7obTX7mfkX2ZN0rrpd05eXrRESI1M9tWiMlKxesbj5XcbNyPaJTnk2bdc13Ob/APF6X6lb1Z+lOtvanJSbfna3/JGCpFIiXsZOMlKLaae018CxjZluPVbXC2yKnH3VGWkntc/omisCTET5dK2ms7hq05OFiY1N+OrHlxb4nrW2knvXOvOvzOcvreXkSThL0VHelBvlP5mYBHUaZyVpktFprG46eylKcnKTbk3tt+WeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAd11ztmoVwlOT8KK22WIdPypT7Z1+k9Nr1X2b18tlSbVjzKrp63oJb8GlHql+NhTwPTqaSce5PfD3vw9PyS9O6tVjWwldXwqnFuuuKbl3fl8NGbTMR123giMltXnUf6p4/TMzJhKVVLajLte2lp/mdR6bfXZW8quddTs7Jy1+FbXO/GufJdz+vWzuTwZyhX28qUF5/cqZHVsrIw/Qtsb3J9/upbXGv3TJuZiJ0vCIvetp6+Jj9rmRR0rAsri4vIVj5bt/AuOePuZ88f2lTyceFVNKaShK1bXH1+xUbcnuTbetcjb7XHb03to3t5645rHncr88OGC67r54+TW3/AKddj2/PP22TZPU7cXJtpwIrHrjNpx0pblvzyuPhwZJ7JuUnKTbbe238Rs9qJn6+/wDvstW9RzLa3CeRNptt+81vfw+30+pUAJERDvNpnyAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOq4SssjXBblJ6S+psdI6TRm4krbpWKSm46i0vgvp9Sx2xkyRjryt4e4ODZ0/0+p3SjKmMe5xj+LUlpf5I+r9UqzHU8ZTi4KSbkl4ktfyVLeo5c8b2Wdu6klHXavC8c/kUy7+Icq4Zm3PJ5/QADL0AAAAAAAAAAAAAAAAAAAAAAAAAAA2v6ew8fKV7yKlPt0ltvje9nfUOhuErr8dwhTBdyg229JcmPRk347botnX3LT7X5LX92zPZZ0StclLjulpvXO1+/7Gtxp5b48vucqz19l7L6l0qyqEY4Xfr4a7O3z8V/3kq5VHt2VkWYWPJRr3vs3NTl3ef0e/yMw6UpRTUZNJ8PT8kmZl3xYqY533P9ty7pWLj9LhlyjZKcVGcouWlLetr6fEqT6hh+10214Kiodvc5TbfGvHPw0eXdXtt6bHDcIa0ot6+C1r4+eGZpLViV9NfLjrMW+/4lq4/RsjNpWTU6a4Wbaht8c6+pSvwsjHhCd1U4xn4bi+Ht8ffgVZuVTWq68iyME99qlr/vk1Oq9ZpysaEMb1YWRmpdz41w/k/qc/ri34e3WC+OZjq0R/ss2GDdO2ytSqTrbT7ppePlv7HLwcuNXqvHs9Pl9yjta+f2+pFbbZdPvtnKcvnJ7ZuY/WVfj19P9Dtc4Knv7/G1retGrTaNcYcMNaTEzltrpgA3Mj+n5evXXj3R96Db7k140n8/LZF/ZXWro3ZWKpxjwnY12va5f5f5FrxWdSYcd81IyUjpkAnpxZ2W1wlKFSsTanN6jrn+DrOxfY8h1etXb9YPxz4fyZdxvScLceWulYAFYAT0YeRkVznTVOUYLyot78cL68ktfTcqTj6lbpg3rvtXbFff5F0zN6x5lTNvCzunU9MUbsWNl0OHuEfeb21z8iCXRmrZQjnYja35np8fNGdZD07JQ7oy7W1uL2n9jNq78t4fURG+Pe4aeX1SqUKnhY8ce1Puc4aTXnjxz8GUl1DMXdrKt97z77KwNfO2K1iteHwAAjQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALnTc+eDleqkpKS7ZJ88bW9fXgizMqeXkyyLFFSlriPjhaIATjG9t+5bhw30u5HVc3JolTdapQl5Xal/wW+g14U3e8yVaaSUe+fbw00zHBJpGtR06Uz2jJF7/Vr7p8uEI5dyp/0lNqLT2tb45LXRcOrNy5Qv7u2MO7Set8o28XqGBdg04cr9TnWqnFRe9ta+RHdRjdCj7XTCc3PVbi5/nvx9DFMvfG0N+q9Hb2rZMNon9M3JyL+k5dmJiXNVJqXvJN8pfQ0OrdSw7+mW11XqU56SWnvhpmFn5XtmZPI7Ozu17u960tFY77fMj08W42t5hJTZ6U3LW9xlH9U1/wAkYBHp18gAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHc7J2NOcttJL8ktIALtwAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9k="
     }
   },
   "summary": {
-    "total": 1,
-    "gainers": 0,
-    "losers": 1,
-    "avg_change": -1.05,
+    "total": 5,
+    "gainers": 2,
+    "losers": 3,
+    "avg_change": 0.51,
     "top_gainer": {
-      "ticker": "NVDA",
-      "pct": -1.05
+      "ticker": "MSFT",
+      "pct": 2.95
     },
     "top_loser": {
-      "ticker": "NVDA",
-      "pct": -1.05
+      "ticker": "AMZN",
+      "pct": -0.54
     }
   },
   "stocks": [
@@ -40,63 +40,317 @@
       "ticker": "NVDA",
       "name": "NVIDIA Corporation",
       "sector": "Technology",
-      "price": 212.6,
-      "pct_change": -1.05,
-      "volume": 167028500,
-      "market_cap": 5149384769536,
+      "price": 212.41,
+      "pct_change": -0.09,
+      "volume": 55946735,
+      "market_cap": 5143692798049.927,
       "pe_ratio": 32.6,
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
       "news": [
         {
-          "title": "SK Hynix and Micron lead AI boom, join trillion-dollar club",
-          "summary": "Yahoo Finance Tech Editor Dan Howley joins Host Josh Lipton on Market Domination to break down the day’s leading tech stories, including SK Hynix (000660.KS) joining the Trillion-dollar club and Micron Technology (MU) im",
+          "title": "As parts of AI trade heat up, should Wall Street be worried of a bubble?",
+          "summary": "US stocks (^DJI, ^IXIC, ^GSPC) are wavering at the start of Thursday's trading session, while Wall Street grows increasingly bullish on memory chipmaker Micron Technology (MU) after its market cap crossed above $1 trilli",
           "provider": "Yahoo Finance Video",
-          "date": "2026-05-27",
-          "url": "https://finance.yahoo.com/video/sk-hynix-and-micron-lead-ai-boom-join-trillion-dollar-club-203420020.html"
+          "date": "2026-05-28",
+          "url": "https://finance.yahoo.com/video/parts-ai-trade-heat-wall-153000559.html"
         },
         {
-          "title": "The Micron stock price bubble explained in 2 numbers",
-          "summary": "The enthusiasm for Micron persists.",
-          "provider": "Yahoo Finance",
-          "date": "2026-05-27",
-          "url": "https://finance.yahoo.com/markets/article/the-micron-stock-price-bubble-explained-in-2-numbers-134713072.html"
-        },
-        {
-          "title": "How does Micron stack up to Nvidia after reaching $1T market cap?",
-          "summary": "Memory chip maker Micron Technology (MU) and South Korean semiconductor company SK Hynix (000660.KS) both reached $1 trillion valuations in the latest phase of AI demand that is driving markets. Micron shares continue to",
+          "title": "Micron surges: Where the $1T memory chipmaker fits into AI trade",
+          "summary": "As shares of memory chipmaker Micron Technology (MU) maintains gains after its market cap crossed above $1 trillion this week, Yahoo Finance Markets and Data Editor Jared Blikre compares how the chip stock holds up to th",
           "provider": "Yahoo Finance Video",
           "date": "2026-05-27",
-          "url": "https://finance.yahoo.com/video/how-does-micron-stack-up-to-nvidia-after-reaching-1t-market-cap-132828977.html"
+          "url": "https://finance.yahoo.com/video/micron-surges-where-the-1t-memory-chipmaker-fits-into-ai-trade-195524579.html"
+        },
+        {
+          "title": "The next phase of the bull market",
+          "summary": "First-quarter earnings have delivered strong results, and it's not just the Magnificent Seven hyping Wall Street. Kenny Polcari sits down with Gina Martin Adams, Chief Market Strategist at HB Wealth, and Adam Shapiro, Ma",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-05-27",
+          "url": "https://finance.yahoo.com/video/the-next-phase-of-the-bull-market-180000042.html"
         }
       ],
-      "analysis": "{'Detail': 'ข่าวพูดถึงประเด็นสำคัญของ Micron Technology (MU) และ SK Hynix (000660.KS) ที่เข้าร่วมในเทรนด์ AI และมีตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ', 'Sentiment': 'ตลาดมีความเห็นในแง่บวกเกี่ยวกับข่าวนี้ เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง', 'Implication': 'ผลกระทบที่คาดว่าจะเกิดขึ้นกับราคาหุ้นในระยะสั้น-กลางคือการเพิ่มขึ้นของราคาหุ้น เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'SQ มีความน่าสนใจ เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง', 'จุด Circuit Breaker': 'จุด Circuit Breaker คือ $235'}",
+      "analysis": "{'Detail': 'หุ้น NVDA มีการเปลี่ยนแปลงราคาอย่างต่อเนื่อง โดยมีการลงมา 0.1% ในวันนี้', 'Sentiment': 'อารมณ์ตลาดมีการเปลี่ยนแปลงอย่างมาก โดยมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง แต่ก็มีการลงมาเครียล์อีกสักรอบ', 'Implication': 'การเปลี่ยนแปลงของหุ้น NVDA อาจบ่งบอกถึงการเปลี่ยนแปลงของตลาดที่น่าสนใจ'}\n\nBeer มองว่า: {'SQ': 'หุ้น NVDA มีโอกาสติดเทรนด์ใหม่ แต่ควรระวังการเปลี่ยนแปลงของตลาด', 'Circuit Breaker': 'ควรจับตาต่อการเปลี่ยนแปลงของกราฟและความสามารถของตลาดในการรักษาความเคลื่อนไหวที่เพิ่มขึ้น'}",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
-          "insight": "Micron Technology (MU) และ SK Hynix (000660.KS) มีธุรกิจที่เกี่ยวข้องกับเทรนด์ AI และมีตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ"
+          "insight": "หุ้น NVDA เป็นหุ้นกลุ่มเทคโนโลยี และมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง"
         },
         {
           "topic": "ตัวเลข",
-          "insight": "รายได้ กำไร หนี้ กระแสเงินสด และ valuation ของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
+          "insight": "รายได้ของหุ้น NVDA มีการเพิ่มขึ้นอย่างต่อเนื่อง แต่ก็มีการลงมาเครียล์อีกสักรอบ"
         },
         {
           "topic": "การสื่อสาร",
-          "insight": "ผู้บริหารของ Micron Technology (MU) และ SK Hynix (000660.KS) พูดอะไรเกี่ยวกับเทรนด์ AI และตลาดที่มีมูลค่ามากกว่า 1 ล้านล้านเหรียญสหรัฐ"
+          "insight": "ผู้บริหารของหุ้น NVDA พูดถึงการเปลี่ยนแปลงของตลาดและความสามารถของหุ้นในการรักษาความเคลื่อนไหวที่เพิ่มขึ้น"
         },
         {
           "topic": "คู่แข่ง",
-          "insight": "คู่แข่งของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตามและวิเคราะห์"
+          "insight": "หุ้น NVDA มีคู่แข่งอย่าง Micron Technology แต่ก็มีการเปลี่ยนแปลงของตลาดที่น่าสนใจ"
         },
         {
           "topic": "ผู้บริหาร",
-          "insight": "ประวัติ การตัดสินใจ และความน่าเชื่อถือของผู้บริหารของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
         },
         {
           "topic": "แผนของเรา",
-          "insight": "ตามดู ถือ งด รอจุดไหน และจุดตัดขาดทุนของ Micron Technology (MU) และ SK Hynix (000660.KS) ควรติดตาม"
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
         }
       ],
-      "chart_b64": "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"
+      "chart_b64": "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"
+    },
+    {
+      "rank": 2,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "price": 390.18,
+      "pct_change": 0.35,
+      "volume": 7672793,
+      "market_cap": 4727167677338.234,
+      "pe_ratio": 29.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOGL",
+      "news": [
+        {
+          "title": "Why Android takes a bigger hit than Apple from AI memory shortages",
+          "summary": "Yahoo Finance Tech Editor Dan Howley joins Josh Lipton on Market Domination to break down new data showing the steepest decline in smartphone sales on record, as soaring demand for AI memory chips reshapes the semiconduc",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-05-27",
+          "url": "https://finance.yahoo.com/video/why-android-takes-a-bigger-hit-than-apple-from-ai-memory-shortages-212846995.html"
+        },
+        {
+          "title": "The next phase of the bull market",
+          "summary": "First-quarter earnings have delivered strong results, and it's not just the Magnificent Seven hyping Wall Street. Kenny Polcari sits down with Gina Martin Adams, Chief Market Strategist at HB Wealth, and Adam Shapiro, Ma",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-05-27",
+          "url": "https://finance.yahoo.com/video/the-next-phase-of-the-bull-market-180000042.html"
+        },
+        {
+          "title": "ETFs Were Built to Make Investing Easier. They May Also Make Crashes Faster",
+          "summary": "For years, exchange-traded funds were one of Wall Street’s great success stories. ETFs gave ordinary investors cheap diversification, instant market exposure, and lower fees than traditional mutual funds. Instead of pick",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-28",
+          "url": "https://247wallst.com/investing/2026/05/28/etfs-were-built-to-make-investing-easier-they-may-also-make-crashes-faster/"
+        }
+      ],
+      "analysis": "{'Detail': 'หุ้น GOOGL (Alphabet Inc.) มีราคา $390.18 และเพิ่มขึ้น 0.3% ในตลาด Communication Services', 'Sentiment': 'อารมณ์ตลาดมีความกล้า แต่ต้องระวังหุ้น NVDA ที่กลับลงมาในจังหวะนี้', 'Implication': 'การเรื่องราวดีๆ ที่เกิดขึ้นมองแล้วดีเกินไป แต่ต้องระวังหุ้นที่มีโอกาสติดเทรนด์'}\n\nBeer มองว่า: {'SQ': 'หุ้น GOOGL มีโอกาสติดเทรนด์ แต่ต้องระวังหุ้น NVDA ที่กลับลงมา', 'Circuit Breaker': 'หุ้น NVDA มีโอกาสติดเทรนด์ แต่ต้องระวังหุ้น GOOGL ที่เพิ่มขึ้น 0.3%'}",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "GOOGL มีธุรกิจหลักในด้านเทคโนโลยีและบริการ"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "GOOGL มีรายได้ $161.85 พันล้าน และกำไร $40.28 พันล้าน"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "CEO ของ GOOGL พูดว่า \"เรามีแผนการเติบโตที่ดีในด้านเทคโนโลยีและบริการ\""
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "คู่แข่งหลักของ GOOGL คือ Apple และ Amazon"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAQADAQEBAAAAAAAAAAAAAAUBAwQCBgf/xAAxEAACAgIBAwIEBAYDAQAAAAAAAQIDBBEhBRIxE0EiUWGBFBVxoSMykbHB0QYWM2L/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQIEA//EACoRAQADAAEEAQIEBwAAAAAAAAABAhEDEiExQRMEUSJhccEUIzKBkeHw/9oADAMBAAIRAxEAPwD8+ABtkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO7peB+NynVZN1qMe98ctcf7Kza0VjZcIK8sLAxrcinKnkTnSlLdaSTT18/fbNuXDpN2K68CHfk6SgoRlt87f7bJHv8i1sikxG9X2/dDBuysezFyJ1WRktN6bWu5b8n0XTaMb8hjZdRCS7ZSn8K29N/uWvfwzz8nw+Y94+XPcK3ONklrUI9z/ql/kq3flWXZTTiwlTKU4pze0ta8e/P2NGHhxnVkay8aPcuxd0+3fMXvleOBjPyxmzGJwKN3SMinA/GSnW4dqlpN709fT6k+ScZOMk009NP2MxaJ8Om/Hak5aMYAMxTlJRim23pJe5WGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvw8aeXkxorcVKW9OXjhbLEP+Nye/UykueO2G9r+pL6ZkwxM+u+xScY732+eU0dXWs1W9Qbo7ouuLqlteeWn/AHNRmObl+WeTppORjol0jCx4+rdnRmq23KHC7teYrnz/ALOPqeRh2WVTwITrlFLuk214S17+2if3NxUW3pPaRgxXY8y6uSK3mLRGZH+WVKS3pv4lp8+Tdh5M8PJjfWouUd6UvHK0aAWY3stbTWYmPSlZnQ6hlepnVrUa2oqEu1cJv32dWP1bGq6NLFcbPU7ZRS1vzv3IYLX8MZDy5qfNbqvIACNrf53TLAhi24jnFRUZLv0mlr/Rh5HS7M25zqsra9Rd8Jpqe09vn9v1IoJWIr2g55tzzFrz3iMWq8Hpk+mWZHryU13OKlNJrW9Jr66N8reg47rtrg5yTTSg5bX1e39D54CsTGnPWvLFYjtn29/quR6l0yiNkaMFOLjv4/Mntce/Hv8AYiPyYBqZ1inHFNwABGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVOk9LWbZN2ycFW4txcf5k+TZd0rCo9SN3UHGcJJP8AhPjabRcl5Tz0i3T7Rz3bY7bZ2S13Tk5PX1KPVMKnHxKJV5cLWl2pR1ytye/P2JYns1S8XjqgABGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9dsnFyUX2rhvXAV5BmMZTkoxTlJ8JJbbNtWLkXRcqqLJxT03GLYSZyNl6xMS3LvhVXqPfvUpb1wtlOvoChJrMzKq9puPa/Olz514N9/U8ddEhXRkON6hGKUdpprWyFfk35DTvtnZ2rS7n4LaO2RLy4OS88nVav4Y9fdYnV0bHw7KZWwtvUXqaT5fOvHHubfwHSeoL0sCz07I/E2lJ8ff9UfOmyq62iXdTZOuTWtxejFqzMRk93VwXpx2t1RsWn36/Rat6V0zEm4ZeXYpNd0V4+Hevk9s8O/o9EK50VWSshYtS3y+1pt637r6Ei++3Is9S+yU5fNs1iInI30zM1i95r4t6n1+iz1nqdeRZjyxXJSq+LuevfTRHMA3M68ePjjjr0wy22km20lpfQwARsAAAAAAAAAAAAAAAAAAAFDpd2DTKx5tcpNx1Fr2WmmvPudlnSsbIw7M7FslXX2uUa2t60ntefdouPG3NFLZaP7oYO6FPT7PTi8udXwfG5VN87/AF+X9jOR02atnHD9TJjDico1talvTX1JvfHvn4OufH/enAe41WTsjXGL75aSXje/B9BkYGNjdHhkLGj61cYSfdvl7W01/gn/AJ3kxmpU10U+O5Qh/Ml4TNZnlz15p5I2kJpgtVdapeM/xWJXdc5LubS+Pzz49uF9z1nZ3S51U+lhxlz3SikoccrTa+umeXVO5ju+Kvx9fVG54/ZOxenZeXW7Meruinrfclz9zVbj20x3YtNTlBr5Na3/AHKS63+Hco4OLXXU5OWpbfPz88e3Bq/PM2Vn8WUZVN/FX2rTXy8G7fk5eGbTNvkjI9f77pgLtWX03qGbXC/FjVHt7Y//AFJ6SXHy5OTJj0t3X+jZYo9q9NRg2t8e7f6+TM2yce/HxWtxxeZiPy3umg7cjpWbjUyuup7YR8vuT1+5xFiYnwl6WpOWjAAFYAe4VynGyUfEI9z/AKpf5PVGPdkWRrpg5Sm2l7J6W3yVJmI8tRVw+szxsJYzprnFPWmvMXve/wBjZj4NOFOceqY7n3JutxlxqKbfh/oSrnXK+bpi41uT7U/KXsS1YnycX1E7PR9vKzLrVNHpzxcKmEpLc9a2lt8cL6Jnj/seVzumneuOHx+5FAyOrq9mfyvhn+nzjL5ezAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD13SUXFSfa+Wt8HkADrxeo5eJW68e3ti3vXanz9zkBUtWLRkwpZPWcnJxJY9sa9SSTkk9vRNAGpSlaRlYwABGgAADKemmYAH01/XenZFLqupvlCXlaS/wAk7Jxl1PLss6XS3CP/AKOT1uTb55ZKKXSOpx6d6qlU5qzXh61rf+zy+PojaO7+J+e0V5u0ffO7gsrlVbKuxalBtNfJmzFxbsux148O6SW2tpcfcqW9GysxTzYSqTufqRr2/D51vXnwbOm41nSMiV+fquqUO1ST7uXp64/Rm63rM5rl+o4ObjpN61ljp+dX0iqzEzK7Fap9zUdNaaX1M5HV8KOM3g0+nen8D9OK7fG391wTer315PUrbaZd0HrT1r2RxHpvpw1+nrbL28z5dOXnZOZ2/iLO7s3r4Utb/Q5gCOmKxWMgABFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB6jOcJKUZOLT2mn4Nt+Xk5EVG++ycVrSlLgAZDUWmIzWgABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q=="
+    },
+    {
+      "rank": 3,
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "price": 310.55,
+      "pct_change": -0.1,
+      "volume": 13183535,
+      "market_cap": 4560571054991.211,
+      "pe_ratio": 37.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
+      "news": [
+        {
+          "title": "Best Buy stock pops on stronger-than-expected earnings as MacBook Neo launch and higher tax refunds boost sales",
+          "summary": "This marks the first report since the company announced CEO Corie Barry is stepping down from the electronics retailer at the end of the third quarter.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-27",
+          "url": "https://finance.yahoo.com/markets/stocks/article/best-buy-stock-pops-on-stronger-than-expected-earnings-as-macbook-neo-launch-and-higher-tax-refunds-boost-sales-212025978.html"
+        },
+        {
+          "title": "ETFs Were Built to Make Investing Easier. They May Also Make Crashes Faster",
+          "summary": "For years, exchange-traded funds were one of Wall Street’s great success stories. ETFs gave ordinary investors cheap diversification, instant market exposure, and lower fees than traditional mutual funds. Instead of pick",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-28",
+          "url": "https://247wallst.com/investing/2026/05/28/etfs-were-built-to-make-investing-easier-they-may-also-make-crashes-faster/"
+        },
+        {
+          "title": "Forget Apple: This Unstoppable Digital Infrastructure Monopoly Is Begging to Be Bought Hand Over Fist Instead",
+          "summary": "Apple (NASDAQ:AAPL) is back at the top of every watchlist after another headline-friendly earnings beat, a fresh $100 billion buyback authorization, and a one-month rally that has retirement accounts feeling rich again. ",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-28",
+          "url": "https://247wallst.com/investing/2026/05/28/forget-apple-this-unstoppable-digital-infrastructure-monopoly-is-begging-to-be-bought-hand-over-fist-instead/"
+        }
+      ],
+      "analysis": "{'Detail': 'ข่าวเกี่ยวกับ Best Buy และการเปลี่ยนแปลงของ CEO Corie Barry อาจส่งผลกระทบต่อหุ้น AAPL เนื่องจากมีการซื้อขายหุ้น MacBook Neo', 'Sentiment': 'มีแนวโน้มที่จะเพิ่มขึ้น เนื่องจากข่าวดังกล่าวทำให้ตลาดมีความหวังต่อการเติบโตของหุ้น', 'Implication': 'อาจส่งผลกระทบต่อหุ้น AAPL ในระยะยาว เนื่องจากการเปลี่ยนแปลงของ CEO อาจส่งผลกระทบต่อการดำเนินธุรกิจของ Best Buy'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้น เนื่องจากข่าวดังกล่าวทำให้ตลาดมีความหวังต่อการเติบโตของหุ้น', 'จุด Circuit Breaker': 'หากหุ้น AAPL เพิ่มขึ้นเกิน 5% ในรอบ 1 วัน จะต้องจับตาต่อการเปลี่ยนแปลงของตลาด'}",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้น เนื่องจากการเปลี่ยนแปลงของ CEO Corie Barry อาจส่งผลกระทบต่อการดำเนินธุรกิจของ Best Buy"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "รายได้ของ Best Buy อาจเพิ่มขึ้น เนื่องจากการซื้อขายหุ้น MacBook Neo"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ผู้บริหารของ Best Buy พูดถึงการเปลี่ยนแปลงของ CEO Corie Barry และผลกระทบต่อการดำเนินธุรกิจ"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "เปรียบเทียบ AAPL กับคู่แข่งใน sector เดียวกันว่ามี moat, scale, หรือความเชื่อมั่นตลาดต่างกันตรงไหน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 4,
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "price": 424.83,
+      "pct_change": 2.95,
+      "volume": 20525497,
+      "market_cap": 3155673328470.413,
+      "pe_ratio": 25.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MSFT",
+      "news": [
+        {
+          "title": "ETFs Were Built to Make Investing Easier. They May Also Make Crashes Faster",
+          "summary": "For years, exchange-traded funds were one of Wall Street’s great success stories. ETFs gave ordinary investors cheap diversification, instant market exposure, and lower fees than traditional mutual funds. Instead of pick",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-28",
+          "url": "https://247wallst.com/investing/2026/05/28/etfs-were-built-to-make-investing-easier-they-may-also-make-crashes-faster/"
+        },
+        {
+          "title": "Billionaire Bill Ackman Just Loaded Up on Microsoft Stock. Should You Follow?",
+          "summary": "Microsoft looks like an absolute bargain.",
+          "provider": "Motley Fool",
+          "date": "2026-05-28",
+          "url": "https://www.fool.com/investing/2026/05/28/billionaire-bill-ackman-loaded-up-on-microsoft/"
+        },
+        {
+          "title": "Despite Hitting a $1 Trillion Valuation, Micron Remains My Favorite Stock for 2026",
+          "summary": "For years, investors treated memory-chip companies like airlines or steelmakers — cyclical businesses that boomed when supply tightened and collapsed when too many competitors flooded the market with inventory. That’s wh",
+          "provider": "24/7 Wall St.",
+          "date": "2026-05-28",
+          "url": "https://247wallst.com/investing/2026/05/28/despite-hitting-a-1-trillion-valuation-micron-remains-my-favorite-stock-for-2026/"
+        }
+      ],
+      "analysis": "{'Detail': 'หุ้น MSFT ของ Microsoft Corporation มีราคาอยู่ที่ $424.83 และมีการเพิ่มขึ้น 2.9% ในวันนี้', 'Sentiment': 'มีความหวังและความเชื่อมั่นในหุ้น MSFT เนื่องจากมีการเพิ่มขึ้นอย่างต่อเนื่อง', 'Implication': 'การเพิ่มขึ้นของหุ้น MSFT อาจบ่งบอกถึงความมั่นใจในผลประกอบการและอนาคตของบริษัท'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'หุ้น MSFT มีโอกาสที่จะเพิ่มขึ้นอย่างต่อเนื่อง เนื่องจากมีการเพิ่มขึ้นอย่างต่อเนื่อง', 'จุด Circuit Breaker': 'หากหุ้น MSFT มีการเพิ่มขึ้นอย่างรวดเร็ว อาจมีการตัดขาดทุนเพื่อป้องกันการสูญเสีย'}",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "Microsoft Corporation เป็นบริษัทที่ผลิตและขายซอฟต์แวร์ และมีการเติบโตอย่างต่อเนื่อง"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "บริษัทมีรายได้และกำไรที่เพิ่มขึ้นอย่างต่อเนื่อง และมีหนี้ที่ลดลง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ผู้บริหารของบริษัทมีการพูดและแสดงความคิดเห็นเกี่ยวกับอนาคตของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "เปรียบเทียบ MSFT กับคู่แข่งใน sector เดียวกันว่ามี moat, scale, หรือความเชื่อมั่นตลาดต่างกันตรงไหน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 5,
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 270.38,
+      "pct_change": -0.54,
+      "volume": 15406989,
+      "market_cap": 2908614977974.8853,
+      "pe_ratio": 31.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMZN",
+      "news": [
+        {
+          "title": "Snowflake stock soars on growing enterprise AI demand, AWS partnership",
+          "summary": "Snowflake stock jumped after a better than expected quarter driven by accelerating enterprise AI demand.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-28",
+          "url": "https://finance.yahoo.com/markets/article/snowflake-stock-soars-on-growing-enterprise-ai-demand-aws-partnership-125150205.html"
+        },
+        {
+          "title": "Amazon is offering its AI shopping tools to retailers",
+          "summary": "Market Domination Host Josh Lipton and Yahoo Finance Senior Reporter Brooke DiPalma track several of the day's top trending stories and stock moves, including how Amazon (AMZN) is licensing and selling its \"Alexa for Sho",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-05-27",
+          "url": "https://finance.yahoo.com/video/amazon-is-offering-its-ai-shopping-tools-to-retailers-193933639.html"
+        },
+        {
+          "title": "Standard Chartered Reaffirms $40K Ethereum Price Target Due to DeFi Dominance",
+          "summary": "Analysts compared Ethereum's current position to Amazon following the dot-com bubble burst.",
+          "provider": "decrypt",
+          "date": "2026-05-28",
+          "url": "https://decrypt.co/369305/standard-chartered-reaffirms-40k-ethereum-price-target-defi-dominance"
+        }
+      ],
+      "analysis": "{'Detail': 'หุ้น AMZN (Amazon.com, Inc.) มีราคาลดลง 0.5% ในช่วง 24 May 2026 โดยมีราคาอยู่ที่ $270.38', 'Sentiment': 'ตลาดมีความสนใจในหุ้น AMZN แต่ยังมีความเสี่ยงจากการเปลี่ยนแปลงในความต้องการและความสนใจของนักลงทุน', 'Implication': 'หุ้น AMZN อาจมีโอกาสเพิ่มขึ้นในอนาคต แต่ควรติดตามความเคลื่อนไหวในตลาดอย่างใกล้ชิด'}\n\nBeer มองว่า: {'ความน่าสนใจ': 'หุ้น AMZN มีโอกาสเพิ่มขึ้นในอนาคต แต่ควรติดตามความเคลื่อนไหวในตลาดอย่างใกล้ชิด', 'จุด Circuit Breaker': 'หากหุ้น AMZN ลดลงต่อเนื่องกัน 3 วัน ควรพิจารณา selling'}",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "Amazon.com, Inc. เป็นบริษัทที่มีธุรกิจหลักในด้านการขายสินค้าออนไลน์ และมีรายได้หลักจากการส่งมอบสินค้าและบริการ"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "รายได้ของ Amazon.com, Inc. ในช่วง 2025 คือ $478.73 พันล้านดอลลาร์ กำไรสุทธิ $18.77 พันล้านดอลลาร์ และหนี้สิน $85.19 พันล้านดอลลาร์"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "เช็กว่าข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis หรือไม่ ถ้ามีความขัดกันให้ระวังการตีความเองเกินข้อมูล"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "เปรียบเทียบ AMZN กับคู่แข่งใน sector เดียวกันว่ามี moat, scale, หรือความเชื่อมั่นตลาดต่างกันตรงไหน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
     }
-  ]
+  ],
+  "test_run": true,
+  "test_note": "Generated by beer_top100_agent.py --test; limited smoke archive, not the full daily report."
 }
