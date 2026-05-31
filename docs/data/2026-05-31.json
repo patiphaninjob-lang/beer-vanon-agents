@@ -1,6 +1,6 @@
 {
   "date": "2026-05-31",
-  "generated": "2026-05-31T12:10:52.055631",
+  "generated": "2026-05-31T20:19:38.347166",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
@@ -48,42 +48,42 @@
       "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
       "news": [
         {
-          "title": "GOP lawmakers' portfolios are migrating to Trump favorites like Intel and bitcoin",
-          "summary": "Republican lawmakers' brokerage accounts have undergone a significant shift as GOP members of Congress load up on investments into areas touted by President Trump.",
+          "title": "Big Tech companies are screwing the average investor — here's how",
+          "summary": "Time for some stock splits!",
           "provider": "Yahoo Finance",
-          "date": "2026-05-29",
-          "url": "https://finance.yahoo.com/economy/policy/article/gop-lawmakers-portfolios-are-migrating-to-trump-favorites-like-intel-and-bitcoin-100000503.html"
+          "date": "2026-05-31",
+          "url": "https://finance.yahoo.com/markets/article/big-tech-companies-are-screwing-the-average-investor--heres-how-123000495.html"
         },
         {
-          "title": "If I Could Only Buy 1 Artificial Intelligence (AI) Stock Right Now, This Would Be It.",
-          "summary": "Nvidia's upside isn't reflected in the stock price.",
+          "title": "IPOs are no longer Wall Street's starting line — they're the exit ramp: Chart of the Day",
+          "summary": "Wall Street used to get the growth story early. Now it often only gets the receipt.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-31",
+          "url": "https://finance.yahoo.com/markets/article/ipos-are-no-longer-wall-streets-starting-line--theyre-the-exit-ramp-chart-of-the-day-114434009.html"
+        },
+        {
+          "title": "2 Space Stocks to Buy Before the SpaceX IPO on June 12",
+          "summary": "The SpaceX IPO is putting the focus on the massive opportunity in space, and these two stocks stand to benefit.",
           "provider": "Motley Fool",
           "date": "2026-05-31",
-          "url": "https://www.fool.com/investing/2026/05/31/if-i-could-only-buy-1-artificial-intelligence-ai-s/"
+          "url": "https://www.fool.com/investing/2026/05/31/2-space-stocks-buy-before-spacex-ipo-june-12/"
         },
         {
-          "title": "Chevron's Earnings Dropped Year Over Year, but Production Surged. Here's What Investors Need to Know.",
-          "summary": "Chevron didn't have a great quarter on the earnings front, but that masked the business's fundamental strength.",
+          "title": "The Best Cryptocurrency to Buy With $1,000 Right Now",
+          "summary": "Despite the asset class's poor performance over the past several months, opportunistic investors should still consider allocating to this crypto.",
           "provider": "Motley Fool",
           "date": "2026-05-31",
-          "url": "https://www.fool.com/investing/2026/05/31/chevrons-earnings-dropped-year-over-year-but-produ/"
+          "url": "https://www.fool.com/investing/2026/05/31/the-best-cryptocurrency-to-buy-with-1000-right-now/"
         },
         {
-          "title": "Dow Jones Futures: Trump Makes This Iran Move; Nvidia, Tesla Lead 5 Titans Near Buy Points",
-          "summary": "The stock market hit fresh highs on Iran deal hopes. Nvidia, Tesla lead five trillion-dollar titans near buy points.",
-          "provider": "Investor's Business Daily",
-          "date": "2026-05-31",
-          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-hopes-nvidia-tesla-stocks-near-buy-points/?src=A00220&yptr=yahoo"
-        },
-        {
-          "title": "Why Did South Korea Just Order $4.2 Billion in Military Helicopters From Boeing and Lockheed?",
-          "summary": "Lockheed Martin will earn more than Boeing on its South Korean arms deal.",
+          "title": "Nvidia Recently Plowed $3.8 Billion Into These 2 Artificial Intelligence (AI) Stocks",
+          "summary": "Nvidia owns a small group of stocks.",
           "provider": "Motley Fool",
           "date": "2026-05-31",
-          "url": "https://www.fool.com/investing/2026/05/30/korea-orders-42-billion-in-military-helicopters/"
+          "url": "https://www.fool.com/investing/2026/05/31/nvidia-recently-plowed-38-billion-into-these-2-art/"
         }
       ],
-      "analysis": "วิเคราะห์ข่าววันนี้อย่างละเอียด (Detail, Sentiment, Implication) บรรยายยาว ขยี้เนื้อหาข่าวให้แน่น\n\nBeer มองว่า: หุ้น NVDA มีโอกาสดี แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น",
+      "analysis": "วิเคราะห์ข่าววันนี้อย่างละเอียด\n\nBeer มองว่า: ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก แต่หุ้น NVDA ยังคงมีโอกาสดีในระยะยาว เนื่องจากมีการลงทุนในเทคโนโลยี AI",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",

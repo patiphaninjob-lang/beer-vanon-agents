@@ -706,27 +706,59 @@ def main():
     posts, embeddings, embed_model = load_knowledge()
     user_notes_db = load_user_notes()
     
+    # ── Checkpoint / Resume Logic ──
+    report_path = DATA_DIR / f"{today_file_str}.json"
+    checkpoint_path = DATA_DIR / f"{today_file_str}.checkpoint.json"
+    
+    existing_results = {}
+    if checkpoint_path.exists():
+        try:
+            checkpoint_data = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+            existing_results = {s["stock"]["ticker"]: s for s in checkpoint_data}
+            safe_print(f"🔄 พบ Checkpoint: ข้ามหุ้นที่วิเคราะห์ไปแล้ว {len(existing_results)} ตัว")
+        except Exception as e:
+            safe_print(f"⚠️ Checkpoint error: {e}")
+
     mktcaps = fetch_market_caps(TH_UNIVERSE)
     top_stocks = sorted([t for t in TH_UNIVERSE if mktcaps.get(t, 0) > 0], key=lambda t: mktcaps[t], reverse=True)
     limit = args.limit or (5 if args.test else 100)
     top_stocks = top_stocks[:limit]
 
-    import yfinance as yf
-    all_hist = yf.download(top_stocks, period="3mo", group_by='ticker', threads=True, progress=False)
+    # Filter out already processed stocks
+    stocks_to_process = [t for t in top_stocks if t not in existing_results]
+    
+    if not stocks_to_process and not existing_results:
+        safe_print("❌ ไม่มีหุ้นที่ต้องวิเคราะห์")
+        return
 
-    stocks_data = []
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        futures = [executor.submit(process_single_stock, t, i+1, mktcaps[t], extract_ticker_history(all_hist, t), "SET100 หุ้นไทย", posts, embeddings, embed_model, None, user_notes_db) 
-                   for i, t in enumerate(top_stocks)]
-        for f in futures:
-            res = f.result()
-            if res: stocks_data.append(res)
+    import yfinance as yf
+    all_hist = None
+    if stocks_to_process:
+        all_hist = yf.download(stocks_to_process, period="3mo", group_by='ticker', threads=True, progress=False)
+
+    stocks_data = list(existing_results.values())
+    
+    if stocks_to_process:
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = [executor.submit(process_single_stock, t, i+len(existing_results)+1, mktcaps[t], extract_ticker_history(all_hist, t), "SET100 หุ้นไทย", posts, embeddings, embed_model, None, user_notes_db) 
+                       for i, t in enumerate(stocks_to_process)]
+            for f in futures:
+                res = f.result()
+                if res: 
+                    stocks_data.append(res)
+                    # Surgical improvement: Auto-save checkpoint after each stock
+                    checkpoint_path.write_text(json.dumps(stocks_data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     if stocks_data:
         market_indices = fetch_market_indices()
         archive_url = save_to_web(stocks_data, today, market_indices)
         save_history_data(stocks_data)
         
+        # Cleanup checkpoint after success
+        if checkpoint_path.exists():
+            try: checkpoint_path.unlink()
+            except: pass
+
         # Simple Notify Email
         subject = f"🍺 Beer Thai Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')}"
         email_body = f"การบ้านหุ้นไทย SET100 เสร็จแล้ว {len(stocks_data)} ตัว\nดูผลลัพธ์: {archive_url}"

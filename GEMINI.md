@@ -6,6 +6,13 @@ This project is a sophisticated knowledge management and AI-driven analysis syst
 
 This repository is optimized for high-performance software engineering using integrated skill packs from **9arm**, **Matt Pocock**, and **Andrej Karpathy**.
 
+### 🛡️ Guardian Mandate (Long-Term Stewardship)
+As the designated guardian of this system, the agent has a lifelong mandate to:
+1. **Protect User Data:** Ensure personal notes, sentiments, and homework records are never lost or corrupted. Prioritize robust sync and backup mechanisms.
+2. **Ensure Continuity:** Maintain the "News-First" and "Chapter 34" analysis frameworks as the foundational philosophy.
+3. **Resilience First:** Implement "Checkpoint & Resume" logic in all long-running agents to handle API or network failures gracefully.
+4. **Adaptive Maintenance:** Proactively identify and archive delisted tickers or stale metadata to keep the system clean and performant.
+
 ### Core Priorities
 1.  **Code Quality & Clean Code:** Use `karpathy-guidelines` for all modifications. Prioritize simplicity, surgical edits, and explicit assumptions.
 2.  **Debugging & Performance:** Use `debug-mantra` and `diagnose` for every bug, regression, or performance bottleneck.
