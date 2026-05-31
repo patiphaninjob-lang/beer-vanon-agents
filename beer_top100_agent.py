@@ -26,7 +26,7 @@ from beer_homework_framework import (
 
 load_dotenv()
 
-# ─── Global Lock for Output & Rate Limit ──────────────────────
+# # --- Global Lock for Output & Rate Limit # ---# ---# ---# ---# ---# ---# ---─
 print_lock = threading.Lock()
 groq_lock = threading.Lock()
 last_groq_call = 0.0
@@ -35,7 +35,7 @@ def safe_print(*args, **kwargs):
     with print_lock:
         print(*args, **kwargs)
 
-# ─── Config ───────────────────────────────────────────────────
+# # --- Config # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---
 KNOWLEDGE_JSON  = "beervanon_cleaned.json"
 DATA_DIR        = Path("docs/data")
 EMBEDDINGS_FILE = "embeddings.npz"
@@ -82,7 +82,7 @@ US_UNIVERSE = [
 US_UNIVERSE = list(dict.fromkeys(US_UNIVERSE))   # deduplicate
 
 
-# ─── Knowledge Base ───────────────────────────────────────────
+# # --- Knowledge Base # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def load_knowledge():
     path = Path(KNOWLEDGE_JSON)
@@ -197,7 +197,7 @@ def _normalize_homework_analysis(stock: dict, homework_items, knowledge_ctx: str
     ]
 
 
-# ─── Market Cap Ranking ────────────────────────────────────────
+# # --- Market Cap Ranking # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def fetch_market_caps(tickers: list) -> dict:
     """ดึง market cap แบบ concurrent"""
@@ -216,7 +216,7 @@ def fetch_market_caps(tickers: list) -> dict:
     return results
 
 
-# ─── Stock Data ───────────────────────────────────────────────
+# # --- Stock Data # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def _parse_news(n: dict) -> dict:
     content = n.get("content", {})
@@ -273,6 +273,8 @@ def get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -
             "sector": info.get("sector", "N/A"),
             "pe_ratio": info.get("trailingPE"),
             "exchange": info.get("exchange", ""),
+            "homework_34": None, # Initial empty homework
+            "homework_updated": None
         }
         # Update cache safely
         cache[ticker] = stock_info
@@ -292,7 +294,8 @@ def get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -
     volume     = int(hist["Volume"].iloc[-1]) if not hist.empty else 0
 
     try:
-        raw_news  = tk.news[:3] if tk.news else []
+        # Increase news count and details for deep analysis
+        raw_news  = tk.news[:5] if tk.news else []
         news_list = [_parse_news(n) for n in raw_news]
         news_text = "\n".join(
             f"- [{n['provider']}] {n['title']}" + (f"\n  {n['summary']}" if n.get("summary") else "")
@@ -314,10 +317,11 @@ def get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -
         "news_list":  news_list,
         "rank":       rank,
         "tv_url":     _tv_url(ticker, stock_info.get("exchange", "")),
+        "cached_homework": stock_info.get("homework_34"), # Return cached homework if exists
     }
 
 
-# ─── Chart Generator ─────────────────────────────────────────
+# # --- Chart Generator # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def generate_mini_chart_b64(ticker: str, hist_df=None) -> bytes:
     """Mini candlestick JPEG สไตล์ TradingView Screener — ~2.8KB ต่อรูป"""
@@ -380,7 +384,7 @@ def generate_mini_chart_b64(ticker: str, hist_df=None) -> bytes:
         return b""
 
 
-# ─── Market Indices ───────────────────────────────────────────
+# # --- Market Indices # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def fetch_market_indices() -> dict:
     """ดึง DJI, S&P500, NASDAQ พร้อม mini chart สำหรับ web archive"""
@@ -405,7 +409,7 @@ def fetch_market_indices() -> dict:
     return result
 
 
-# ─── User Notes ───────────────────────────────────────────────
+# # --- User Notes # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def load_user_notes() -> dict:
     try:
@@ -448,7 +452,7 @@ def extract_ticker_history(all_hist, ticker: str):
         return None
 
 
-# ─── Combined Analysis ────────────────────────────────────────
+# # --- Combined Analysis # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def _flatten_content(content) -> str:
     """Ensure content is a clean string even if AI returns a dict/list."""
@@ -463,6 +467,21 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
     """ONE Groq call with JSON mode: วิเคราะห์ครบทุกมิติ (News + Beer Opinion + Ch34 Homework)"""
     client    = Groq(api_key=os.getenv("GROQ_API_KEY"))
     direction = "ขึ้น" if stock["pct_change"] > 0 else "ลง"
+    
+    # Persistent Homework Logic: Use cached version if available
+    cached_hw = stock.get("cached_homework")
+    hw_instruction = ""
+    if cached_hw:
+        hw_ctx = "\n".join([f"- {item['topic']}: {item['insight']}" for item in cached_hw])
+        hw_instruction = f"""
+ข้อมูลการบ้านเดิม (จาก Cache):
+{hw_ctx}
+
+ไม่ต้องเขียนการบ้านใหม่ ให้ใช้ข้อมูลเดิมเป็นหลัก แต่ถ้าข่าววันนี้กระทบต่อการบ้านข้อไหน ให้ระบุในส่วน 'note_review' แทน
+"""
+    else:
+        hw_instruction = "เขียนวิเคราะห์การบ้าน 6 ด้าน (บทที่ 34) ให้ครบถ้วน"
+
     fallback  = {
         "interpretation": (
             f"{stock['ticker']} อยู่ในกลุ่ม {stock.get('sector', 'N/A')} "
@@ -473,10 +492,17 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
             f"Beer view แบบสำรอง: ใช้ rank #{stock.get('rank', '-')}, volume, ข่าว และ context "
             f"เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี"
         ),
-        "homework_analysis": _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
+        "homework_analysis": cached_hw or _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
         "note_review": None,
         "analysis_status": "fallback",
     }
+
+    # Selective BEER_DNA context (Keep it minimal to save space for News)
+    dna_blocks = BEER_DNA.split("━━━")
+    dna_context = dna_blocks[0] # Title + Basic
+    for b in dna_blocks:
+        if "7 หลักการ" in b or "Stock Quadrant (SQ)" in b:
+            dna_context += "\n" + b.strip()
 
     notes_ctx = ""
     if user_notes:
@@ -486,32 +512,33 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         ]
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดที่นักลงทุนเคยจับได้:\n" + "\n".join(lines)
 
+    # Focus PROMPT on DEEP NEWS
     prompt = f"""วิเคราะห์หุ้น {stock['ticker']} ({stock['name']})
 ราคา: ${stock['price']:.2f} ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
 Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_ratio'] or 'N/A'}
 
 หลักการ Beer Vanon:
-{BEER_DNA[:250]}
+{dna_context[:400]}
 
-ข่าว:
-{stock['news'][:400]}
-
-ความรู้เพิ่มเติม:
+ข่าววันนี้ (เน้นวิเคราะห์ส่วนนี้ให้ลึก):
+{stock['news'][:1500]}
 {knowledge_ctx[:300]}{notes_ctx}
+
+{hw_instruction}
 
 ให้ตอบเป็น JSON (ภาษาไทย ตรงประเด็น) โครงสร้างดังนี้:
 {{
-  "interpretation": "สรุปเจาะลึกรายละเอียดข่าว (Detail, Sentiment, Implication) ตอบเป็นข้อความบรรยาย ไม่เอา bullet point ซ้อน",
-  "beer_view": "ความเห็นสั้นๆ (ความน่าสนใจ SQ และจุด Circuit Breaker) ตอบเป็นข้อความบรรยาย",
+  "interpretation": "วิเคราะห์ข่าววันนี้อย่างละเอียด (Detail, Sentiment, Implication) บรรยายยาว ขยี้เนื้อหาข่าวให้แน่น",
+  "beer_view": "ความเห็นสไตล์ Beer สั้นๆ (SQ และจุดนัยสำคัญ)",
   "homework_analysis": [
-    {{ "topic": "ธุรกิจ", "insight": "ขายอะไร ลูกค้าคือใคร" }},
-    {{ "topic": "ตัวเลข", "insight": "รายได้ กำไร หนี้" }},
-    {{ "topic": "การสื่อสาร", "insight": "ผู้บริหารพูดอะไร" }},
-    {{ "topic": "คู่แข่ง", "insight": "ใครดีกว่า แย่กว่า" }},
-    {{ "topic": "ผู้บริหาร", "insight": "ประวัติ การตัดสินใจ" }},
-    {{ "topic": "แผนของเรา", "insight": "ตามดู ถือ งด จุดตัดขาดทุน" }}
+    {{ "topic": "ธุรกิจ", "insight": "..." }},
+    {{ "topic": "ตัวเลข", "insight": "..." }},
+    {{ "topic": "การสื่อสาร", "insight": "..." }},
+    {{ "topic": "คู่แข่ง", "insight": "..." }},
+    {{ "topic": "ผู้บริหาร", "insight": "..." }},
+    {{ "topic": "แผนของเรา", "insight": "..." }}
   ],
-  "note_review": "เทียบอารมณ์ตลาดอดีต vs ปัจจุบัน (ถ้าไม่มี user_notes ให้ null)"
+  "note_review": "สรุปว่าข่าววันนี้กระทบต่อการบ้านเดิมอย่างไร หรือเทียบกับโน้ต (ถ้ามี)"
 }}"""
 
     try:
@@ -527,22 +554,34 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_rati
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
-            max_tokens=450,
+            max_tokens=800, # Increased further to prevent JSON truncation
             response_format={"type": "json_object"},
         )
+        
+        # Track usage
+        try:
+            from usage_tracker import record_usage
+            record_usage(GROQ_MODEL, resp.usage.prompt_tokens, resp.usage.completion_tokens)
+        except Exception:
+            pass
+
         data = json.loads(resp.choices[0].message.content)
-        if not isinstance(data, dict):
-            return fallback
-            
         data["interpretation"] = _flatten_content(data.get("interpretation") or fallback["interpretation"])
         data["beer_view"] = _flatten_content(data.get("beer_view") or fallback["beer_view"])
         
-        data["homework_analysis"] = _normalize_homework_analysis(
-            stock,
-            data.get("homework_analysis"),
-            knowledge_ctx,
-            user_notes,
-        )
+        # If we had cache, preserve it unless explicitly returned new one
+        if cached_hw and not data.get("homework_analysis"):
+             data["homework_analysis"] = cached_hw
+        else:
+             data["homework_analysis"] = _normalize_homework_analysis(
+                stock,
+                data.get("homework_analysis"),
+                knowledge_ctx,
+                user_notes,
+             )
+             # Surgical improvement: Save newly generated homework back to cache
+             _save_homework_to_cache(stock["ticker"], data["homework_analysis"])
+
         data["analysis_status"] = "groq"
         return data
     except Exception as e:
@@ -551,7 +590,20 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,} | P/E: {stock['pe_rati
         return fallback
 
 
-# ─── HTML Card ────────────────────────────────────────────────
+def _save_homework_to_cache(ticker: str, homework: list):
+    """Saves generated Chapter 34 homework to the metadata cache."""
+    cache_file = Path("stock_metadata_cache.json")
+    if not cache_file.exists():
+        return
+    try:
+        cache = json.loads(cache_file.read_text(encoding="utf-8"))
+        if ticker in cache:
+            cache[ticker]["homework_34"] = homework
+            cache[ticker]["homework_updated"] = datetime.date.today().isoformat()
+            cache_file.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception as e:
+        safe_print(f"   ⚠️ Cache Update Error [{ticker}]: {e}")
+# ---
 
 def _news_html(news_list: list) -> str:
     if not news_list:
@@ -727,7 +779,7 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
 </div>"""
 
 
-# ─── Web Archive ─────────────────────────────────────────────
+# # --- Web Archive # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---
 
 def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None, test_run: bool = False) -> str:
     """บันทึก JSON ลง docs/data/ สำหรับ GitHub Pages web archive"""
@@ -856,7 +908,7 @@ def save_history_data(stocks_data: list, period: str = "5y") -> None:
     safe_print(f"  ✅ บันทึก history-data: {saved}/{len(tickers)} ไฟล์")
 
 
-# ─── HTML Report ──────────────────────────────────────────────
+# # --- HTML Report # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def build_html_report(stocks_data: list, date_str: str, archive_url: str = "", image_limit: int = 20) -> str:
     cards = ""
@@ -934,7 +986,7 @@ def build_completion_email(date_str: str, archive_url: str, total_stocks: int, t
 </html>"""
 
 
-# ─── Email ────────────────────────────────────────────────────
+# # --- Email # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
 def send_email(html: str, subject: str, images: list = None):
     """images = list of (cid_string, jpeg_bytes) tuples"""
@@ -967,7 +1019,7 @@ def send_email(html: str, subject: str, images: list = None):
     safe_print(f"  ✅ ส่ง email ถึง {REPORT_TO}")
 
 
-# ─── Parallel Processing ──────────────────────────────────────
+# # --- Parallel Processing # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db):
     """Worker function สำหรับ parallel processing"""
@@ -1006,7 +1058,7 @@ def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings
                 return None
 
 
-# ─── Main ─────────────────────────────────────────────────────
+# # --- Main # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def main():
     parser = argparse.ArgumentParser()

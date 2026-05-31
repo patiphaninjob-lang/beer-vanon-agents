@@ -1,0 +1,118 @@
+{
+  "date": "2026-05-31",
+  "generated": "2026-05-31T12:10:52.055631",
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "dji": {
+      "price": 51032.46,
+      "pct_change": 0.72,
+      "chart_b64": "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"
+    },
+    "spx": {
+      "price": 7580.06,
+      "pct_change": 0.22,
+      "chart_b64": "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"
+    },
+    "ixic": {
+      "price": 26972.62,
+      "pct_change": 0.2,
+      "chart_b64": "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"
+    }
+  },
+  "summary": {
+    "total": 1,
+    "gainers": 0,
+    "losers": 1,
+    "avg_change": -1.45,
+    "top_gainer": {
+      "ticker": "NVDA",
+      "pct": -1.45
+    },
+    "top_loser": {
+      "ticker": "NVDA",
+      "pct": -1.45
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "price": 211.14,
+      "pct_change": -1.45,
+      "volume": 288291500,
+      "market_cap": 5114021925216.675,
+      "pe_ratio": 32.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
+      "news": [
+        {
+          "title": "GOP lawmakers' portfolios are migrating to Trump favorites like Intel and bitcoin",
+          "summary": "Republican lawmakers' brokerage accounts have undergone a significant shift as GOP members of Congress load up on investments into areas touted by President Trump.",
+          "provider": "Yahoo Finance",
+          "date": "2026-05-29",
+          "url": "https://finance.yahoo.com/economy/policy/article/gop-lawmakers-portfolios-are-migrating-to-trump-favorites-like-intel-and-bitcoin-100000503.html"
+        },
+        {
+          "title": "If I Could Only Buy 1 Artificial Intelligence (AI) Stock Right Now, This Would Be It.",
+          "summary": "Nvidia's upside isn't reflected in the stock price.",
+          "provider": "Motley Fool",
+          "date": "2026-05-31",
+          "url": "https://www.fool.com/investing/2026/05/31/if-i-could-only-buy-1-artificial-intelligence-ai-s/"
+        },
+        {
+          "title": "Chevron's Earnings Dropped Year Over Year, but Production Surged. Here's What Investors Need to Know.",
+          "summary": "Chevron didn't have a great quarter on the earnings front, but that masked the business's fundamental strength.",
+          "provider": "Motley Fool",
+          "date": "2026-05-31",
+          "url": "https://www.fool.com/investing/2026/05/31/chevrons-earnings-dropped-year-over-year-but-produ/"
+        },
+        {
+          "title": "Dow Jones Futures: Trump Makes This Iran Move; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+          "summary": "The stock market hit fresh highs on Iran deal hopes. Nvidia, Tesla lead five trillion-dollar titans near buy points.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-05-31",
+          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-hopes-nvidia-tesla-stocks-near-buy-points/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "Why Did South Korea Just Order $4.2 Billion in Military Helicopters From Boeing and Lockheed?",
+          "summary": "Lockheed Martin will earn more than Boeing on its South Korean arms deal.",
+          "provider": "Motley Fool",
+          "date": "2026-05-31",
+          "url": "https://www.fool.com/investing/2026/05/30/korea-orders-42-billion-in-military-helicopters/"
+        }
+      ],
+      "analysis": "วิเคราะห์ข่าววันนี้อย่างละเอียด (Detail, Sentiment, Implication) บรรยายยาว ขยี้เนื้อหาข่าวให้แน่น\n\nBeer มองว่า: หุ้น NVDA มีโอกาสดี แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "หุ้น NVDA เป็นหนึ่งในหุ้นที่มีโอกาสดีในตลาดเทคโนโลยี แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา $211.14 ลง 1.5% แต่มีโอกาสดีในระยะยาว เนื่องจากหุ้นมี P/E 32.558956 ซึ่งเป็นระดับที่สูง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "หุ้น NVDA มีคู่แข่งอย่าง Intel และ AMD แต่หุ้นมีโอกาสดีในระยะยาว เนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับผู้บริหารของหุ้น NVDA แต่หุ้นมีโอกาสดีในระยะยาว เนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น"
+        }
+      ],
+      "chart_b64": "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"
+    }
+  ],
+  "test_run": true,
+  "test_note": "Generated by beer_top100_agent.py --test; limited smoke archive, not the full daily report."
+}
