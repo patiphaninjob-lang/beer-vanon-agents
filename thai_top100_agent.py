@@ -505,6 +505,13 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
             response_format={"type": "json_object"},
         )
         
+        # Track usage
+        try:
+            from usage_tracker import record_usage
+            record_usage(GROQ_MODEL, resp.usage.prompt_tokens, resp.usage.completion_tokens)
+        except Exception:
+            pass
+
         data = json.loads(resp.choices[0].message.content)
         data["interpretation"] = _flatten_content(data.get("interpretation"))
         data["beer_view"] = _flatten_content(data.get("beer_view"))

@@ -116,6 +116,20 @@
     .chart-marker:hover { transform: translateX(-50%) scale(1.4); background: #fff; box-shadow: 0 0 15px #fff; }
     .chart-marker:hover::before { height: 80px; background: linear-gradient(to top, #fff, transparent); }
 
+    /* ── Usage Bar ── */
+    .usage-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #161b22; border-top: 1px solid #30363d;
+      padding: 6px 18px; display: flex; align-items: center; justify-content: space-between;
+      z-index: 1000; font-size: 11px; color: #8a8f98;
+    }
+    .usage-item { display: flex; align-items: center; gap: 8px; }
+    .usage-val { color: #e6edf3; font-weight: bold; }
+    .usage-cost { color: #f0b90b; }
+    @media (max-width: 600px) {
+      .usage-bar { padding: 6px 10px; font-size: 10px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    }
+
     /* ── Note button ── */
     .note-btn {
       font-size: 0.75em; padding: 2px 8px; border-radius: 4px; cursor: pointer;
@@ -1701,6 +1715,35 @@ if ('serviceWorker' in navigator) {
 
 init();
 </script>
+<div id="usageBar" class="usage-bar" style="display:none">
+  <div class="usage-item">
+    <span>API Usage:</span>
+    <span class="usage-val" id="usageTokens">0</span>
+    <span>tokens</span>
+    <span class="usage-cost" id="usageCost">$0.00</span>
+  </div>
+  <div id="usageLastUpdate" style="opacity:0.7"></div>
+</div>
+
+<script>
+async function loadUsage() {
+  try {
+    const r = await fetch('data/usage_stats.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) return;
+    const stats = await r.json();
+    document.getElementById('usageBar').style.display = 'flex';
+    document.getElementById('usageTokens').textContent = (stats.total_prompt_tokens + stats.total_completion_tokens).toLocaleString();
+    document.getElementById('usageCost').textContent = `$${stats.total_cost.toFixed(2)}`;
+    if (stats.last_updated) {
+      const d = new Date(stats.last_updated);
+      document.getElementById('usageLastUpdate').textContent = `Last update: ${d.toLocaleTimeString()}`;
+    }
+  } catch(e) {}
+}
+setInterval(loadUsage, 30000);
+loadUsage();
+</script>
+
 <div id="markerTooltip" class="marker-tooltip"></div>
 </body>
 </html>
