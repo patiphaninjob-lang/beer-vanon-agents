@@ -2,7 +2,7 @@ name: Beer Thai Top 100 Market Cap (หุ้นไทย SET100)
 
 on:
   schedule:
-    - cron: '0 11 * * *'        # 18:00 PM Bangkok (UTC+7) ทุกวัน หลังตลาดไทยปิด (Safety Net)
+    - cron: '0 11 * * 1-5'        # 18:00 PM Bangkok (Mon-Fri) - ครอบคลุมตลาดไทย จันทร์-ศุกร์
   workflow_dispatch:            # รันมือได้จากหน้าเว็บ Thai Dashboard
     inputs:
       request_id:

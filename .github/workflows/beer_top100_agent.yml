@@ -2,7 +2,7 @@ name: Beer Top 100 Market Cap (หุ้น US 100 ตัวใหญ่สุ�
 
 on:
   schedule:
-    - cron: '0 23 * * *'       # 06:00 AM Bangkok (UTC+7) ทุกวัน (Safety Net)
+    - cron: '0 23 * * 1-5'       # 06:00 AM Bangkok (Tue-Sat) - ครอบคลุมตลาด US จันทร์-ศุกร์
   workflow_dispatch:            # รันมือได้จากหน้าเว็บ Dashboard
 
 permissions:

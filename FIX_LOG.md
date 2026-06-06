@@ -2,7 +2,31 @@
 
 *Detailed history of bug fixes, debugging sessions, and performance tuning.*
 
-## 2026-05-28: Fixed 30-minute GitHub Actions Timeout in `beer_top100_agent.py`
+## 2026-06-06: Added Resume Capability and Performance Timing
+
+**Summary.** Enhanced `beer_top100_agent.py` with a Resume/Checkpoint feature and detailed timing logs. Also created a `prefill_metadata_cache.py` utility to eliminate slow `Ticker.info` calls during the main run.
+
+**Improvement 1: Resume Capability.**
+- The agent now loads existing data for today from `docs/data/YYYY-MM-DD.json` at startup.
+- It identifies tickers already processed and skips them, only analyzing the remaining universe.
+- This ensures that if a run is interrupted (e.g., GitHub Actions timeout or network error), it can pick up from where it left off in the next run.
+
+**Improvement 2: Timing Logs.**
+- Added `time.time()` measurements for Market Cap fetching, Batch History downloading, and AI Analysis.
+- Each stock analysis block now prints its completion status.
+- Final summary shows total wall-clock time.
+
+**Improvement 3: Metadata Pre-caching.**
+- Created `prefill_metadata_cache.py` which fetches static info (Name, Sector, Exchange) for all stocks in US and Thai universes.
+- Running this once ensures `stock_metadata_cache.json` is fully populated, making `beer_top100_agent.py` runs much faster and more reliable by avoiding one-by-one network calls for `Ticker.info`.
+
+**Improvement 4: Rate Limit Alignment.**
+- Re-confirmed and set `CALL_DELAY = 10.0` in `beer_top100_agent.py` to match the previous fix for 6000 TPM limit, preventing regressions.
+
+**Validation.** 
+- Validated resume logic by running `--limit 2` (creating a partial file) followed by `--limit 3`. The second run correctly skipped the first 2 stocks.
+- Validated pre-fill script by populating 133 missing US tickers and 11 missing Thai tickers.
+- Total runtime for 3 stocks with cache and 10s delay was ~30 seconds.
 
 **Summary.** The `beer_top100_agent.py` script reliably timed out after 30 minutes in GitHub Actions during a 100-stock scan. The root cause was Groq's 6000 Tokens Per Minute (TPM) limit combined with a bloated prompt (using ~2800 tokens per request), capping throughput at 2 stocks per minute (~50 mins total). Fixed by heavily compressing the prompt to ~1000 tokens and setting a strict 10.0-second delay between API calls to fit comfortably under the TPM limit.
 

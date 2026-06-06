@@ -1,6 +1,21 @@
 # Gemini CLI Handoff: Beer Top100 Homework / Web / Email
 
-Date: 2026-05-25
+## Latest Improvements (2026-06-06)
+
+1.  **Incremental Saving:** Both US and Thai agents now save progress to the JSON web archive after *every* stock analyzed. This prevents data loss during long runs (15-30 mins) due to timeouts or crashes.
+2.  **Improved Beer Persona:** Prompts have been refined to adopt a stronger Beer Vanon persona. Instruction hints (like "summarize news here") have been removed from the output keys to prevent the AI from repeating them. Specific `BEER_DNA` blocks (SQ, Daytrade patterns, 7 Shapes) are now explicitly injected into the prompt.
+3.  **Rate Limit Compliance:** `CALL_DELAY` increased to 15.0s and `groq_lock` is strictly enforced. This aligns better with Groq's 6000 TPM limit when using multiple workers.
+4.  **Resume Capability:** Verified and improved. The agents correctly load existing JSON data and skip already processed tickers.
+
+## Current Progress (2026-06-06)
+
+*   **US Agent:** Full run in progress (PID 11676). Resumed from stock #40.
+*   **Thai Agent:** Ready for run. Improved with the same architectural patterns.
+*   **Web Dashboard:** Updated to show the new deep analysis and persona-driven comments.
+
+---
+
+Date: 2026-06-06
 Workspace: `C:\Users\Gazill0T\Documents\claude ai\stock`
 Branch: `main`
 Remote: `https://github.com/patiphaninjob-lang/beer-vanon-agents.git`

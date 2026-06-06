@@ -43,7 +43,7 @@ EMBED_MODEL     = "paraphrase-multilingual-MiniLM-L12-v2"
 GROQ_MODEL      = "llama-3.1-8b-instant"   # 6000 TPM limit
 REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
-CALL_DELAY       = 10.0   # 10 วินาที เพื่อให้รอดจาก 6000 TPM (Token Per Minute)
+CALL_DELAY       = 15.0   # 10 วินาที เพื่อให้รอดจาก 6000 TPM (Token Per Minute)
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
@@ -460,23 +460,23 @@ def combined_analysis(stock: dict, knowledge_ctx: str, user_notes: list = None) 
         notes_ctx = "\n\n🌡️ อารมณ์ตลาดจากโน้ต:\n" + "\n".join(lines)
 
     # Focus PROMPT on DEEP NEWS
-    prompt = f"""วิเคราะห์หุ้นไทย {stock['ticker']} ({stock['name']})
+    prompt = f"""คุณคือ Beer Vanon เทรดเดอร์มือโปร วิเคราะห์หุ้นไทย {stock['ticker']} ({stock['name']})
 ราคา: {stock['price']:.2f} THB ({direction} {abs(stock['pct_change']):.1f}%) | Sector: {stock['sector']}
 Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
 
-หลักการ Beer Vanon:
-{dna_context[:400]}
+DNA ของคุณ (ใช้คำศัพท์และหลักการเหล่านี้ในการวิเคราะห์):
+{dna_context[:600]}
 
-ข่าววันนี้ (เน้นวิเคราะห์ส่วนนี้ให้ลึก):
+ข่าววันนี้:
 {stock['news'][:1500]}
 {knowledge_ctx[:300]}{notes_ctx}
 
 {hw_instruction}
 
-ให้ตอบเป็น JSON (ภาษาไทย) โครงสร้าง:
+ให้ตอบเป็น JSON (ภาษาไทย) โครงสร้างดังนี้:
 {{
-  "interpretation": "วิเคราะห์ข่าววันนี้อย่างละเอียด (Detail, Sentiment, Implication) บรรยายยาว ขยี้เนื้อหาข่าวให้แน่น",
-  "beer_view": "ความเห็นสไตล์ Beer สั้นๆ (SQ และจุดนัยสำคัญ)",
+  "interpretation": "สรุปข่าวและวิเคราะห์นัยสำคัญต่อราคา (ขยี้เนื้อหาให้แน่น ห้ามคัดลอกประโยคนี้)",
+  "beer_view": "ความเห็นสไตล์ Beer (ระบุรหัส SQ และมองว่าเป็นหุ้นรูปแบบไหนใน 7 รูปแบบ เช่น 'เข็มฉีดยา' หรือรูปแบบ Daytrade)",
   "homework_analysis": [
     {{ "topic": "ธุรกิจ", "insight": "..." }},
     {{ "topic": "ตัวเลข", "insight": "..." }},
@@ -485,7 +485,7 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
     {{ "topic": "ผู้บริหาร", "insight": "..." }},
     {{ "topic": "แผนของเรา", "insight": "..." }}
   ],
-  "note_review": "สรุปว่าข่าววันนี้กระทบต่อการบ้านเดิมอย่างไร หรือเทียบกับโน้ต (ถ้ามี)"
+  "note_review": "ผลกระทบต่อการบ้านเดิม/อารมณ์ตลาด (ถ้ามี)"
 }}"""
 
     try:
@@ -498,6 +498,13 @@ Mkt Cap Rank: #{stock['rank']} | Vol: {stock['volume']:,}
             last_groq_call = time.time()
 
         resp = client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[{"role": "system", "content": "คุณคือ Beer Vanon เทรดเดอร์สาย Survivor Trade วิเคราะห์หุ้นด้วยความเฉียบคม ใช้ภาษาไทยที่เป็นกันเองแต่เป็นมืออาชีพ (ไม่ต้องทักทาย) ให้คำแนะนำตามหลักการ EMA, SQ, Bid-Offer และการบ้านบทที่ 34"},
+                      {"role": "user", "content": prompt}],
+            temperature=0.4,
+            max_tokens=1000,
+            response_format={"type": "json_object"},
+        )
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
@@ -593,7 +600,7 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
 </div>"""
 
 
-def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None) -> str:
+def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None, test_run: bool = False) -> str:
     docs_dir = DATA_DIR
     docs_dir.mkdir(parents=True, exist_ok=True)
     date_key = today.strftime("%Y-%m-%d")
@@ -607,6 +614,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     payload = {
         "date": date_key,
         "generated": datetime.datetime.now().isoformat(),
+        "test_run": test_run,
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
         "homework_guide": homework_prompt_block("หุ้นไทย"),
         "market_indices": market_indices or {},
@@ -619,7 +627,6 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
             "top_loser":   {"ticker": by_gain[-1]["stock"]["ticker"], "pct": round(by_gain[-1]["stock"]["pct_change"], 2)} if by_gain else {},
         },
         "stocks": [
-
             {
                 "rank": s["stock"]["rank"],
                 "ticker": s["stock"]["ticker"],
@@ -678,10 +685,71 @@ def save_history_data(stocks_data: list) -> None:
         safe_print(f"   ⚠️ Failed to save market history: {e}")
 
 
+def build_completion_email(date_str: str, archive_url: str, count: int, test_run: bool = False) -> str:
+    status_label = "✅ เสร็จสมบูรณ์" if count >= 100 else "⚠️ เสร็จบางส่วน"
+    if test_run: status_label = "🧪 TEST RUN"
+    
+    return f"""
+<div style="font-family:sans-serif;background:#0d1117;color:#c9d1d9;padding:20px;max-width:600px;border-radius:10px">
+  <div style="font-size:1.4em;font-weight:bold;color:#ffffff;margin-bottom:10px">🍺 Beer Thai Top 100</div>
+  <div style="font-size:1.1em;margin-bottom:20px">{date_str}</div>
+  
+  <div style="background:#161b22;padding:15px;border-radius:8px;border:1px solid #30363d;margin-bottom:20px">
+    <div style="font-size:0.9em;color:#8b949e">สถานะการทำงาน</div>
+    <div style="font-size:1.2em;font-weight:bold;color:#58a6ff">{status_label}</div>
+    <div style="margin-top:10px;font-size:0.9em">วิเคราะห์หุ้นไทยไปทั้งหมด <strong>{count}</strong> ตัว</div>
+  </div>
+
+  <div style="margin-bottom:25px">
+    <a href="{archive_url}" style="display:inline-block;background:#238636;color:#ffffff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold">
+      🌐 ดูรายงานบน Web Archive
+    </a>
+  </div>
+
+  {homework_email_guide_html()}
+
+  <div style="font-size:0.8em;color:#8b949e;border-top:1px solid #30363d;padding-top:15px;margin-top:20px">
+    ระบบอัตโนมัติ Beer Vanon Stock Trading Knowledge System<br>
+    © 2026 Beer Vanon Agent
+  </div>
+</div>
+"""
+
+def build_html_report(stocks_data: list, date_str: str, archive_url: str) -> str:
+    cards = "".join([stock_card(s["stock"], s["analysis_data"], "") for s in stocks_data])
+    return f"""
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Beer Thai Top 100 Report - {date_str}</title>
+    <style>
+        body {{ background: #0d1117; color: #c9d1d9; font-family: sans-serif; padding: 20px; }}
+        .container {{ max-width: 800px; margin: 0 auto; }}
+        a {{ color: #58a6ff; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍺 Beer Thai Top 100 Report</h1>
+        <h3>{date_str}</h3>
+        <p><a href="{archive_url}">🌐 ดูบน Web Archive</a></p>
+        <hr style="border:0;border-top:1px solid #30363d;margin:20px 0">
+        {cards}
+    </div>
+</body>
+</html>
+"""
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--test", action="store_true")
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--workers", type=int, default=5)
+    parser.add_argument("--no-web", action="store_true")
+    parser.add_argument("--no-email", action="store_true")
+    parser.add_argument("--no-history", action="store_true")
+    parser.add_argument("--out-html", type=str)
     args = parser.parse_args()
 
     today = datetime.date.today()
@@ -698,72 +766,130 @@ def main():
 
     date_str = today.strftime("%A, %d %B %Y")
     safe_print(f"\n🍺 Beer Thai Top 100 Agent — {date_str}\n{'='*55}")
+    start_all = time.time()
     if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY:
         safe_print(
             f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'}"
         )
 
-    posts, embeddings, embed_model = load_knowledge()
-    user_notes_db = load_user_notes()
-    
-    # ── Checkpoint / Resume Logic ──
+    # ── Checkpoint / Resume Logic (Unified) ──
     report_path = DATA_DIR / f"{today_file_str}.json"
-    checkpoint_path = DATA_DIR / f"{today_file_str}.checkpoint.json"
     
     existing_results = {}
-    if checkpoint_path.exists():
+    if report_path.exists():
         try:
-            checkpoint_data = json.loads(checkpoint_path.read_text(encoding="utf-8"))
-            existing_results = {s["stock"]["ticker"]: s for s in checkpoint_data}
-            safe_print(f"🔄 พบ Checkpoint: ข้ามหุ้นที่วิเคราะห์ไปแล้ว {len(existing_results)} ตัว")
+            today_data = json.loads(report_path.read_text(encoding="utf-8"))
+            # If scheduled and today's report already exists, skip
+            if os.getenv("GITHUB_EVENT_NAME") == "schedule" and not today_data.get("test_run"):
+                safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานไทยของวันนี้ ({today_file_str}) แล้ว")
+                return
+            
+            if "stocks" in today_data:
+                for s in today_data["stocks"]:
+                    # Transform back to internal format for resume
+                    existing_results[s["ticker"]] = {
+                        "stock": {
+                            "rank": s.get("rank"),
+                            "ticker": s.get("ticker"),
+                            "name": s.get("name"),
+                            "sector": s.get("sector"),
+                            "price": s.get("price"),
+                            "pct_change": s.get("pct_change"),
+                            "volume": s.get("volume"),
+                            "market_cap": s.get("market_cap"),
+                            "pe_ratio": s.get("pe_ratio"),
+                            "tv_url": s.get("tv_url"),
+                            "news_list": s.get("news", []),
+                        },
+                        "analysis_data": {
+                            "interpretation": s.get("analysis", "").split("\n\nBeer มองว่า:")[0],
+                            "beer_view": s.get("analysis", "").split("\n\nBeer มองว่า:")[1] if "\n\nBeer มองว่า:" in s.get("analysis", "") else "",
+                            "homework_analysis": s.get("homework_checklist", []),
+                        },
+                        "chart_bytes": __import__("base64").b64decode(s["chart_b64"]) if s.get("chart_b64") else b"",
+                        "chart_cid": f"chart_{s.get('ticker', '').replace('.BK','')}"
+                    }
+                safe_print(f"🔄 พบข้อมูลเดิม: ข้ามหุ้นที่วิเคราะห์ไปแล้ว {len(existing_results)} ตัว")
         except Exception as e:
-            safe_print(f"⚠️ Checkpoint error: {e}")
+            safe_print(f"⚠️ Resume error: {e}")
 
+    safe_print("\n📚 โหลด knowledge base...")
+    posts, embeddings, embed_model = load_knowledge()
+    user_notes_db = load_user_notes()
+    safe_print(f"   โน้ตของคุณ: {sum(len(v) for v in user_notes_db.values())} รายการ")
+
+    safe_print("\n📊 จัดลำดับ Market Cap...")
+    mkt_start = time.time()
     mktcaps = fetch_market_caps(TH_UNIVERSE)
-    top_stocks = sorted([t for t in TH_UNIVERSE if mktcaps.get(t, 0) > 0], key=lambda t: mktcaps[t], reverse=True)
+    ranked_universe = sorted([t for t in TH_UNIVERSE if mktcaps.get(t, 0) > 0], key=lambda t: mktcaps[t], reverse=True)
     limit = args.limit or (5 if args.test else 100)
-    top_stocks = top_stocks[:limit]
+    top_stocks = ranked_universe[:limit]
+    safe_print(f"   วิเคราะห์ {len(top_stocks)} หุ้น | อันดับ 1: {top_stocks[0]} ({_fmt_mktcap(mktcaps[top_stocks[0]])})")
+    safe_print(f"   ⏱️ Fetch market cap: {time.time() - mkt_start:.1f}s")
 
     # Filter out already processed stocks
     stocks_to_process = [t for t in top_stocks if t not in existing_results]
     
-    if not stocks_to_process and not existing_results:
-        safe_print("❌ ไม่มีหุ้นที่ต้องวิเคราะห์")
-        return
-
     import yfinance as yf
     all_hist = None
     if stocks_to_process:
+        safe_print(f"   ดึงข้อมูลราคา {len(stocks_to_process)} หุ้น (batch)...")
+        hist_start = time.time()
         all_hist = yf.download(stocks_to_process, period="3mo", group_by='ticker', threads=True, progress=False)
+        safe_print(f"   ⏱️ Batch history download: {time.time() - hist_start:.1f}s")
 
     stocks_data = list(existing_results.values())
     
+    # ดึงดัชนีตลาดก่อน (เพื่อใช้ในการ save_to_web Incremental)
+    market_indices = {}
+    if not args.no_web:
+        market_indices = fetch_market_indices()
+
     if stocks_to_process:
-        with ThreadPoolExecutor(max_workers=5) as executor:
-            futures = [executor.submit(process_single_stock, t, i+len(existing_results)+1, mktcaps[t], extract_ticker_history(all_hist, t), "SET100 หุ้นไทย", posts, embeddings, embed_model, None, user_notes_db) 
-                       for i, t in enumerate(stocks_to_process)]
+        safe_print(f"\n🔍 วิเคราะห์ {len(stocks_to_process)} หุ้นที่เหลือ (workers={args.workers})...")
+        analysis_start = time.time()
+        with ThreadPoolExecutor(max_workers=args.workers) as executor:
+            futures = []
+            for t in stocks_to_process:
+                rank = ranked_universe.index(t) + 1
+                hist_df = extract_ticker_history(all_hist, t)
+                futures.append(executor.submit(process_single_stock, t, rank, mktcaps[t], hist_df, "SET100 หุ้นไทย", posts, embeddings, embed_model, None, user_notes_db))
+                time.sleep(0.5)
             for f in futures:
                 res = f.result()
                 if res: 
                     stocks_data.append(res)
-                    # Surgical improvement: Auto-save checkpoint after each stock
-                    checkpoint_path.write_text(json.dumps(stocks_data, ensure_ascii=False, indent=2), encoding="utf-8")
+                    # Incremental Save
+                    if not args.no_web:
+                        stocks_data.sort(key=lambda x: x["stock"]["rank"])
+                        save_to_web(stocks_data, today, market_indices, test_run=args.test)
+        safe_print(f"   ⏱️ Analysis completed in: {time.time() - analysis_start:.1f}s")
+    else:
+        safe_print("\n✅ ทุกหุ้นถูกวิเคราะห์ไปแล้ว")
+
+    stocks_data.sort(key=lambda x: x["stock"]["rank"])
 
     if stocks_data:
-        market_indices = fetch_market_indices()
-        archive_url = save_to_web(stocks_data, today, market_indices)
-        save_history_data(stocks_data)
+        safe_print(f"\n🌐 บันทึก web archive (Final)...")
+        archive_url = save_to_web(stocks_data, today, market_indices, test_run=args.test)
+        if not args.no_history:
+            save_history_data(stocks_data)
         
-        # Cleanup checkpoint after success
-        if checkpoint_path.exists():
-            try: checkpoint_path.unlink()
-            except: pass
-
-        # Simple Notify Email
+        # Build Report Email
+        safe_print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
+        email_html = build_completion_email(date_str, archive_url, len(stocks_data), test_run=args.test)
         subject = f"🍺 Beer Thai Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')}"
-        email_body = f"การบ้านหุ้นไทย SET100 เสร็จแล้ว {len(stocks_data)} ตัว\nดูผลลัพธ์: {archive_url}"
-        send_email(email_body, subject, None)
-        safe_print(f"\n✅ เสร็จสิ้น! ดูผลลัพธ์ที่: {archive_url}")
+        if args.test: subject = f"[TEST] {subject}"
+
+        if args.out_html:
+            report_html = build_html_report(stocks_data, date_str, archive_url)
+            Path(args.out_html).write_text(report_html, encoding="utf-8")
+
+        if not args.no_email:
+            safe_print("📧 ส่ง email...")
+            send_email(email_html, subject, None)
+            
+        safe_print(f"\n✅ เสร็จสิ้น! ใน {time.time() - start_all:.1f}s")
 
 def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings, embed_model, q_vec, notes_db):
     try:
