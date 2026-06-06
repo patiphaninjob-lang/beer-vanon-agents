@@ -1,8 +1,8 @@
 {
-  "total_prompt_tokens": 149083,
-  "total_completion_tokens": 99339,
-  "total_cost": 0.015401270000000009,
-  "last_updated": "2026-06-05T11:11:10.276939",
+  "total_prompt_tokens": 108271,
+  "total_completion_tokens": 58034,
+  "total_cost": 0.010056269999999994,
+  "last_updated": "2026-06-06T15:42:26.407547",
   "sessions": [
     {
       "date": "2026-05-31",
@@ -11,34 +11,10 @@
       "cost": 0.00033015
     },
     {
-      "date": "2026-06-01",
-      "prompt_tokens": 31463,
-      "completion_tokens": 22549,
-      "cost": 0.0033770700000000002
-    },
-    {
-      "date": "2026-06-02",
-      "prompt_tokens": 32956,
-      "completion_tokens": 21139,
-      "cost": 0.00333892
-    },
-    {
-      "date": "2026-06-03",
-      "prompt_tokens": 22666,
-      "completion_tokens": 15074,
-      "cost": 0.0023392200000000004
-    },
-    {
-      "date": "2026-06-04",
-      "prompt_tokens": 29434,
-      "completion_tokens": 20209,
-      "cost": 0.00308842
-    },
-    {
-      "date": "2026-06-05",
-      "prompt_tokens": 28641,
-      "completion_tokens": 18693,
-      "cost": 0.0029274900000000005
+      "date": "2026-06-06",
+      "prompt_tokens": 104348,
+      "completion_tokens": 56359,
+      "cost": 0.009726119999999994
     }
   ]
 }
