@@ -1,8 +1,8 @@
 {
-  "total_prompt_tokens": 213820,
-  "total_completion_tokens": 104118,
-  "total_cost": 0.019020439999999986,
-  "last_updated": "2026-06-07T06:34:36.306175",
+  "total_prompt_tokens": 322255,
+  "total_completion_tokens": 150284,
+  "total_cost": 0.028135469999999992,
+  "last_updated": "2026-06-09T00:38:24.850643",
   "sessions": [
     {
       "date": "2026-05-31",
@@ -21,6 +21,12 @@
       "prompt_tokens": 105549,
       "completion_tokens": 46084,
       "cost": 0.008964169999999999
+    },
+    {
+      "date": "2026-06-09",
+      "prompt_tokens": 108435,
+      "completion_tokens": 46166,
+      "cost": 0.009115030000000003
     }
   ]
 }
