@@ -1093,11 +1093,30 @@ async function runAgent(e) {
     return;
   }
 
-  if (!confirm('ยืนยันรันการบ้าน Top 100 ตอนนี้? (ใช้เวลาประมาณ 10-15 นาที ระบบจะอัปเดตเว็บและส่งเมลให้อัตโนมัติ)')) return;
-
   const btn = document.getElementById('runAgentBtn');
+  if (btn.dataset.confirming !== 'true') {
+    btn.dataset.confirming = 'true';
+    const oldText = btn.innerHTML;
+    btn.dataset.originalText = oldText;
+    btn.textContent = '⚠️ กดยืนยันอีกครั้งเพื่อรัน';
+    btn.style.backgroundColor = '#ea3943';
+    btn.style.borderColor = '#b91c1c';
+    setTimeout(() => {
+      if (btn.dataset.confirming === 'true') {
+        delete btn.dataset.confirming;
+        btn.innerHTML = btn.dataset.originalText;
+        btn.style.backgroundColor = '';
+        btn.style.borderColor = '';
+      }
+    }, 4000);
+    return;
+  }
+
+  delete btn.dataset.confirming;
+  btn.style.backgroundColor = '';
+  btn.style.borderColor = '';
   btn.disabled = true;
-  const originalText = btn.innerHTML;
+  const originalText = btn.dataset.originalText || '🚀 รันการบ้านสด';
   btn.textContent = '⏳ กำลังสั่งรัน...';
 
   try {
