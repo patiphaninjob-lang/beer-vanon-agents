@@ -1,23 +1,23 @@
 {
   "date": "2026-06-11",
-  "generated": "2026-06-11T00:44:18.936203",
+  "generated": "2026-06-11T14:11:03.779447",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
     "dji": {
-      "price": 49918.78,
-      "pct_change": -1.87,
-      "chart_b64": "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"
+      "price": 50193.08,
+      "pct_change": 0.55,
+      "chart_b64": "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"
     },
     "spx": {
-      "price": 7266.99,
-      "pct_change": -1.62,
-      "chart_b64": "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"
+      "price": 7300.3,
+      "pct_change": 0.46,
+      "chart_b64": "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"
     },
     "ixic": {
-      "price": 25169.5,
-      "pct_change": -1.98,
-      "chart_b64": "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"
+      "price": 25339.26,
+      "pct_change": 0.67,
+      "chart_b64": "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"
     }
   },
   "summary": {
@@ -83,7 +83,7 @@
           "url": "https://www.fool.com/investing/2026/06/10/the-ai-trade-nobody-is-making-right-now-and-why-it/"
         }
       ],
-      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น ข่าว MANGOS ที่กล่าวถึง NVDA เป็นหนึ่งในหุ้นที่มีโอกาสดีในตลาดเทคโนโลยี แต่การลงมา 3.7% ในวันนี้อาจเป็นจังหวะที่ดีในการซื้อ\n\nBeer มองว่า: หุ้น NVDA เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้",
+      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น ข่าว MANGOS ที่กล่าวถึง NVDA เป็นหนึ่งในหุ้นที่มีโอกาสดีในตลาดเทคโนโลยี แต่การลงมา 3.7% ในวันนี้อาจเป็นจังหวะที่ดีในการซื้อ\n\nBeer มองว่า:  หุ้น NVDA เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -160,7 +160,7 @@
           "url": "https://247wallst.com/investing/2026/06/10/wall-street-cio-the-ai-trade-is-technically-unsustainable-buy-these-two-industries-instead/"
         }
       ],
-      "analysis": "GOOGL มีแนวโน้มที่จะรักษาความล้มเหลวในระยะสั้น เนื่องจากการลดลง 2.2% ในราคา และการเปลี่ยนแปลงของตลาดที่ไม่แน่นอน\n\nBeer มองว่า: รูปแบบ 'กระจายหุ้น' (Stock Quadrant: SQ) เนื่องจากการเปลี่ยนแปลงของตลาดที่ไม่แน่นอน และการลดลง 2.2% ในราคา",
+      "analysis": "GOOGL มีแนวโน้มที่จะรักษาความล้มเหลวในระยะสั้น เนื่องจากการลดลง 2.2% ในราคา และการเปลี่ยนแปลงของตลาดที่ไม่แน่นอน\n\nBeer มองว่า:  รูปแบบ 'กระจายหุ้น' (Stock Quadrant: SQ) เนื่องจากการเปลี่ยนแปลงของตลาดที่ไม่แน่นอน และการลดลง 2.2% ในราคา",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -237,7 +237,7 @@
           "url": "https://www.barrons.com/articles/apple-stock-siri-ai-e5b905d3?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "AAPL อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "AAPL อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -314,7 +314,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/oracle-beats-fourth-quarter-revenue-201213128.html"
         }
       ],
-      "analysis": "Microsoft มีการเติบโตที่น่าประทับใจในด้าน AI และ Healthcare แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' รูปแบบ Daytrade Hunter (SQ = 3) เนื่องจากมีการเติบโตที่น่าประทับใจ แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว",
+      "analysis": "Microsoft มีการเติบโตที่น่าประทับใจในด้าน AI และ Healthcare แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' รูปแบบ Daytrade Hunter (SQ = 3) เนื่องจากมีการเติบโตที่น่าประทับใจ แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -391,7 +391,7 @@
           "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-cpi-inflation-tsm-stock/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "Amazon (AMZN) กำลังเผชิญกับการเปลี่ยนแปลงในตลาดที่มีความเสี่ยงสูง เนื่องจากข่าวสารที่เกี่ยวข้องกับอุตสาหกรรมเทคโนโลยีและความต้องการที่สูงขึ้นในตลาด นอกจากนี้ ยังมีความเสี่ยงจากความไม่แน่นอนของการเปลี่ยนแปลงในความต้องการและความสนใจของนักลงทุนในตลาด\n\nBeer มองว่า: AMZN เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ เนื่องจากมีการเปลี่ยนแปลงในตลาดที่มีความเสี่ยงสูง และเป็นหุ้นที่มีโอกาสติดเทรนด์ใหม่",
+      "analysis": "Amazon (AMZN) กำลังเผชิญกับการเปลี่ยนแปลงในตลาดที่มีความเสี่ยงสูง เนื่องจากข่าวสารที่เกี่ยวข้องกับอุตสาหกรรมเทคโนโลยีและความต้องการที่สูงขึ้นในตลาด นอกจากนี้ ยังมีความเสี่ยงจากความไม่แน่นอนของการเปลี่ยนแปลงในความต้องการและความสนใจของนักลงทุนในตลาด\n\nBeer มองว่า:  AMZN เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ เนื่องจากมีการเปลี่ยนแปลงในตลาดที่มีความเสี่ยงสูง และเป็นหุ้นที่มีโอกาสติดเทรนด์ใหม่",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -468,7 +468,7 @@
           "url": "https://www.fool.com/coverage/stock-market-today/2026/06/10/stock-market-today-june-10-broadcom-falls-as-strong-ai-quarter-tests-stock-s-premium-valuation/"
         }
       ],
-      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -545,7 +545,7 @@
           "url": "https://www.investors.com/research/breakout-stocks-technical-analysis/amphenol-stock-aph-ai-data-center-demand-nvidia-microsoft-drives-growth/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -622,7 +622,7 @@
           "url": "https://www.barrons.com/articles/rivian-stock-price-r2-delivery-tesla-05c2390c?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ข่าวนี้มีผลกระทบต่อราคาหุ้น TSLA เนื่องจากข่าวสารที่เกี่ยวข้องกับอุตสาหกรรมยานยนต์ และความไม่แน่นอนในอนาคต ทำให้ราคาหุ้นตก 3.8% ในวันนี้ นัยสำคัญคือการเปลี่ยนแปลงในตลาดและความไม่มั่นคงของบริษัท TSLA\n\nBeer มองว่า: TSLA เป็น 'หุ้นเข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงอย่างรวดเร็วในตลาดและความไม่แน่นอนในอนาคต ตามหลักการ Daytrade Hunter",
+      "analysis": "ข่าวนี้มีผลกระทบต่อราคาหุ้น TSLA เนื่องจากข่าวสารที่เกี่ยวข้องกับอุตสาหกรรมยานยนต์ และความไม่แน่นอนในอนาคต ทำให้ราคาหุ้นตก 3.8% ในวันนี้ นัยสำคัญคือการเปลี่ยนแปลงในตลาดและความไม่มั่นคงของบริษัท TSLA\n\nBeer มองว่า:  TSLA เป็น 'หุ้นเข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงอย่างรวดเร็วในตลาดและความไม่แน่นอนในอนาคต ตามหลักการ Daytrade Hunter",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -699,7 +699,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/duracell-messi-tie-highlights-berkshire-071524301.html"
         }
       ],
-      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -776,7 +776,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-investment-ideas-feature-highlights-125300324.html"
         }
       ],
-      "analysis": "FDA อนุมัติ Extended once-every-eight-weeks maintenance dosing regimen สำหรับ Ebglyss (lebrikizumab-lbkz) ใน moderate-to-severe atopic dermatitis ทำให้ Eli Lilly มีโอกาสเติบโตในตลาดการผลิตยาที่มุ่งเน้นการวัคซีนและพันธุกรรม นอกจากนี้ยังมีข่าวที่บ่งบอกถึงความมั่นคงของบริษัทและศักยภาพในการเติบโต\n\nBeer มองว่า: รูปแบบ 'เข็มฉีดยา' (Medical) เนื่องจาก Eli Lilly มีผลิตภัณฑ์ที่มุ่งเน้นการวัคซีนและพันธุกรรม ซึ่งเป็นกลุ่มที่มีโอกาสเติบโตสูง",
+      "analysis": "FDA อนุมัติ Extended once-every-eight-weeks maintenance dosing regimen สำหรับ Ebglyss (lebrikizumab-lbkz) ใน moderate-to-severe atopic dermatitis ทำให้ Eli Lilly มีโอกาสเติบโตในตลาดการผลิตยาที่มุ่งเน้นการวัคซีนและพันธุกรรม นอกจากนี้ยังมีข่าวที่บ่งบอกถึงความมั่นคงของบริษัทและศักยภาพในการเติบโต\n\nBeer มองว่า:  รูปแบบ 'เข็มฉีดยา' (Medical) เนื่องจาก Eli Lilly มีผลิตภัณฑ์ที่มุ่งเน้นการวัคซีนและพันธุกรรม ซึ่งเป็นกลุ่มที่มีโอกาสเติบโตสูง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -853,7 +853,7 @@
           "url": "https://www.trefis.com/articles/602296/seagate-stocks-high-density-gamble/2026-06-10"
         }
       ],
-      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 4.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 4.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -930,7 +930,7 @@
           "url": "https://wwd.com/beauty-industry-news/beauty-features/musab-balbale-leaves-cvs-zach-dennett-interim-merchandising-1239005227/"
         }
       ],
-      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1007,7 +1007,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-stock-surges-bull-case-193621115.html"
         }
       ],
-      "analysis": "ข่าวที่เกี่ยวข้องเกี่ยวกับ JPMorgan Chase & Co. คือการรับข่าวการเพิ่มราคาเป้าหมายของ Illumina ซึ่งเป็นบริษัทที่ JPMorgan ให้การสนับสนุน นอกจากนี้ยังมีข่าวการเพิ่มการเดินเรือของสหรัฐฯ ที่จะช่วยลดราคาน้ำมัน นี่แสดงถึงความมั่นใจในตลาดและอาจส่งผลต่อราคาหุ้นของ JPMorgan Chase & Co. ในระยะยาว\n\nBeer มองว่า: JPMorgan Chase & Co. เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade Hunter) เนื่องจากมีการเคลื่อนไหวอย่างรวดเร็วและมีความเสี่ยงสูง แต่ในระยะยาวมีโอกาสที่จะเพิ่มขึ้น",
+      "analysis": "ข่าวที่เกี่ยวข้องเกี่ยวกับ JPMorgan Chase & Co. คือการรับข่าวการเพิ่มราคาเป้าหมายของ Illumina ซึ่งเป็นบริษัทที่ JPMorgan ให้การสนับสนุน นอกจากนี้ยังมีข่าวการเพิ่มการเดินเรือของสหรัฐฯ ที่จะช่วยลดราคาน้ำมัน นี่แสดงถึงความมั่นใจในตลาดและอาจส่งผลต่อราคาหุ้นของ JPMorgan Chase & Co. ในระยะยาว\n\nBeer มองว่า:  JPMorgan Chase & Co. เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade Hunter) เนื่องจากมีการเคลื่อนไหวอย่างรวดเร็วและมีความเสี่ยงสูง แต่ในระยะยาวมีโอกาสที่จะเพิ่มขึ้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1084,7 +1084,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/spill-broadcom-avgo-other-ai-214117164.html"
         }
       ],
-      "analysis": "AMD ลง 4.9% เนื่องจาก CPI print 4.2% ซึ่งทำให้ตลาดคาดหวังการเพิ่มอัตราดอกเบี้ย ซึ่งอาจส่งผลกระทบต่อผลการดำเนินงานของ AMD ในระยะสั้น แต่ในระยะยาวมีโอกาสที่จะกลับมาแรง\n\nBeer มองว่า: AMD เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ใหม่ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่ ก่อนจะเข้าเทรด",
+      "analysis": "AMD ลง 4.9% เนื่องจาก CPI print 4.2% ซึ่งทำให้ตลาดคาดหวังการเพิ่มอัตราดอกเบี้ย ซึ่งอาจส่งผลกระทบต่อผลการดำเนินงานของ AMD ในระยะสั้น แต่ในระยะยาวมีโอกาสที่จะกลับมาแรง\n\nBeer มองว่า:  AMD เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ใหม่ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่ ก่อนจะเข้าเทรด",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1161,7 +1161,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/likely-sector-etf-stock-winners-140000180.html"
         }
       ],
-      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1238,7 +1238,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/visa-ai-commerce-push-openai-221456022.html"
         }
       ],
-      "analysis": "Visa (V) กำลังเผชิญกับข่าวที่น่าสนใจเกี่ยวกับข้อตกลงการชำระเงินระหว่าง Visa และ Mastercard ที่มีมูลค่า 38 พันล้านดอลลาร์ นอกจากนี้ยังได้ประกาศความร่วมมือกับ OpenAI เพื่ออนุญาตให้ AI อาสาสมัครชำระเงินและซื้อสินค้าตามกฎที่กำหนดโดยผู้ใช้ นี่อาจส่งผลกระทบต่อราคาหุ้น V ในระยะยาว\n\nBeer มองว่า: รูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ) เนื่องจากมีการเปลี่ยนแปลงที่สำคัญในธุรกิจและผลกำไรที่อาจส่งผลกระทบต่อราคาหุ้นในระยะยาว",
+      "analysis": "Visa (V) กำลังเผชิญกับข่าวที่น่าสนใจเกี่ยวกับข้อตกลงการชำระเงินระหว่าง Visa และ Mastercard ที่มีมูลค่า 38 พันล้านดอลลาร์ นอกจากนี้ยังได้ประกาศความร่วมมือกับ OpenAI เพื่ออนุญาตให้ AI อาสาสมัครชำระเงินและซื้อสินค้าตามกฎที่กำหนดโดยผู้ใช้ นี่อาจส่งผลกระทบต่อราคาหุ้น V ในระยะยาว\n\nBeer มองว่า:  รูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ) เนื่องจากมีการเปลี่ยนแปลงที่สำคัญในธุรกิจและผลกำไรที่อาจส่งผลกระทบต่อราคาหุ้นในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1315,7 +1315,7 @@
           "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-ai-fears-trump-oracle-earnings-spacex-ipo/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "ORCL ตก 2.2% หลังรายงานผลประกอบการ Q4 ที่ไม่ถูกใจ โดยเฉพาะรายได้จากคลาวด์ ซึ่งไม่ถึงเป้าหมาย แม้ว่ารายได้รวมจะทำได้ดี แต่ตลาดก็ยังตั้งคำถามถึงความสามารถในการเติบโตของ Oracle ในอนาคต นอกจากนี้ ข่าวล่าสุดเกี่ยวกับ AI และการเปลี่ยนแปลงในตลาดเทคโนโลยียังทำให้หุ้น ORCL มีความเสี่ยงสูงขึ้น\n\nBeer มองว่า: ORCL เป็น 'เข็มฉีดยา' (รูปแบบ 4) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่แน่นอน แต่ในขณะเดียวกันก็เป็น 'หุ้นรูปแบบ 3' (รูปแบบ 3) เนื่องจากมีความเสี่ยงสูงและอาจมีการเปลี่ยนแปลงราคาอย่างมาก",
+      "analysis": "ORCL ตก 2.2% หลังรายงานผลประกอบการ Q4 ที่ไม่ถูกใจ โดยเฉพาะรายได้จากคลาวด์ ซึ่งไม่ถึงเป้าหมาย แม้ว่ารายได้รวมจะทำได้ดี แต่ตลาดก็ยังตั้งคำถามถึงความสามารถในการเติบโตของ Oracle ในอนาคต นอกจากนี้ ข่าวล่าสุดเกี่ยวกับ AI และการเปลี่ยนแปลงในตลาดเทคโนโลยียังทำให้หุ้น ORCL มีความเสี่ยงสูงขึ้น\n\nBeer มองว่า:  ORCL เป็น 'เข็มฉีดยา' (รูปแบบ 4) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่แน่นอน แต่ในขณะเดียวกันก็เป็น 'หุ้นรูปแบบ 3' (รูปแบบ 3) เนื่องจากมีความเสี่ยงสูงและอาจมีการเปลี่ยนแปลงราคาอย่างมาก",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1392,7 +1392,7 @@
           "url": "https://247wallst.com/personal-finance/2026/06/10/the-portfolio-that-gets-you-a-waterfront-condo-in-miami-beach/"
         }
       ],
-      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1469,7 +1469,7 @@
           "url": "https://www.fool.com/investing/2026/06/10/should-you-buy-the-dip-on-broadcom-stock/"
         }
       ],
-      "analysis": "ข่าวล่าสุดเกี่ยวกับ Marvell Technology และ KLA Corporation ทำให้ตลาดมีความไม่แน่นอน ซึ่งอาจส่งผลกระทบต่อราคาหุ้น INTC ในระยะสั้น แต่ข่าว SpaceX และ AMD Stock ไม่ได้กระทบต่อราคาหุ้น INTC อย่างชัดเจน\n\nBeer มองว่า: SQ 3 (Money Management) หุ้น INTC มีความเสี่ยงสูงในระยะสั้น แต่มีโอกาสเติบโตในระยะยาว ดังนั้นควรพิจารณาเทรดหุ้น INTC ในระยะสั้น โดยให้ความสำคัญกับการจัดการความเสี่ยง รูปแบบ 'เข็มฉีดยา' หุ้น INTC มีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความแน่นอนในระยะสั้น",
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ Marvell Technology และ KLA Corporation ทำให้ตลาดมีความไม่แน่นอน ซึ่งอาจส่งผลกระทบต่อราคาหุ้น INTC ในระยะสั้น แต่ข่าว SpaceX และ AMD Stock ไม่ได้กระทบต่อราคาหุ้น INTC อย่างชัดเจน\n\nBeer มองว่า:  SQ 3 (Money Management) หุ้น INTC มีความเสี่ยงสูงในระยะสั้น แต่มีโอกาสเติบโตในระยะยาว ดังนั้นควรพิจารณาเทรดหุ้น INTC ในระยะสั้น โดยให้ความสำคัญกับการจัดการความเสี่ยง รูปแบบ 'เข็มฉีดยา' หุ้น INTC มีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความแน่นอนในระยะสั้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1546,7 +1546,7 @@
           "url": "https://www.pnj.com/story/money/business/2026/06/09/pensacola-costco-opens-june-as-prices-drop-on-kirkland-signature-items/90473333007/"
         }
       ],
-      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1623,7 +1623,7 @@
           "url": "https://finance.yahoo.com/markets/crypto/articles/mastercard-inc-ma-secures-york-172447319.html"
         }
       ],
-      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1700,7 +1700,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/lam-research-corporation-lrcx-among-171445623.html"
         }
       ],
-      "analysis": "Lam Research (LRCX) มีการเคลื่อนไหวราคาอย่างมากเมื่อวานนี้ โดยมีการลง 1.64% ซึ่งอาจเป็นผลมาจากข่าวที่ว่า Applied Materials และ Nova มีการปรับปรุงผลงาน ซึ่งอาจส่งผลกระทบต่อ LRCX ในระยะยาว แต่ในระยะสั้น LRCX อาจมีโอกาสติดเทรนด์ใหม่\n\nBeer มองว่า: LRCX เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเคลื่อนไหวราคาอย่างมากและอาจมีโอกาสติดเทรนด์ใหม่",
+      "analysis": "Lam Research (LRCX) มีการเคลื่อนไหวราคาอย่างมากเมื่อวานนี้ โดยมีการลง 1.64% ซึ่งอาจเป็นผลมาจากข่าวที่ว่า Applied Materials และ Nova มีการปรับปรุงผลงาน ซึ่งอาจส่งผลกระทบต่อ LRCX ในระยะยาว แต่ในระยะสั้น LRCX อาจมีโอกาสติดเทรนด์ใหม่\n\nBeer มองว่า:  LRCX เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเคลื่อนไหวราคาอย่างมากและอาจมีโอกาสติดเทรนด์ใหม่",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1777,7 +1777,7 @@
           "url": "https://finance.yahoo.com/sectors/healthcare/articles/anip-pharmaceuticals-cortrophin-gel-drives-171800213.html"
         }
       ],
-      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1854,7 +1854,7 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/barclays-raises-price-targets-chip-145719368.html"
         }
       ],
-      "analysis": "Applied Materials, Inc. (AMAT) กำลังเผชิญกับแรงกดดันจากข่าวสารที่ดี แต่การเปลี่ยนแปลงทางเทคนิคยังไม่ชัดเจน การเพิ่มขึ้นของราคาหุ้นในระยะสั้นอาจเป็นผลมาจากความต้องการใหม่ในอุตสาหกรรมชิป แต่ความเสี่ยงของการเปลี่ยนแปลงทางเศรษฐกิจและความไม่แน่นอนในตลาดอาจทำให้ราคาหุ้นลดลง\n\nBeer มองว่า: AMAT เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงทางเทคนิคอย่างรวดเร็ว และมีความเสี่ยงสูง",
+      "analysis": "Applied Materials, Inc. (AMAT) กำลังเผชิญกับแรงกดดันจากข่าวสารที่ดี แต่การเปลี่ยนแปลงทางเทคนิคยังไม่ชัดเจน การเพิ่มขึ้นของราคาหุ้นในระยะสั้นอาจเป็นผลมาจากความต้องการใหม่ในอุตสาหกรรมชิป แต่ความเสี่ยงของการเปลี่ยนแปลงทางเศรษฐกิจและความไม่แน่นอนในตลาดอาจทำให้ราคาหุ้นลดลง\n\nBeer มองว่า:  AMAT เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงทางเทคนิคอย่างรวดเร็ว และมีความเสี่ยงสูง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1931,7 +1931,7 @@
           "url": "https://www.investors.com/research/caterpillar-cat-stock-ai/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "CAT ตก 6.4% หลังจากที่เป็นหนึ่งในหุ้นที่ได้รับผลกระทบจาก AI-Driven Rally แต่ปัจจุบันหุ้น CAT อยู่ในจังหวะที่จะรักษาตัวเองหลังจากที่ผ่านจุดต่ำสุด\n\nBeer มองว่า: CAT เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความชัดเจนเกี่ยวกับแนวโน้มในอนาคต",
+      "analysis": "CAT ตก 6.4% หลังจากที่เป็นหนึ่งในหุ้นที่ได้รับผลกระทบจาก AI-Driven Rally แต่ปัจจุบันหุ้น CAT อยู่ในจังหวะที่จะรักษาตัวเองหลังจากที่ผ่านจุดต่ำสุด\n\nBeer มองว่า:  CAT เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความชัดเจนเกี่ยวกับแนวโน้มในอนาคต",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2008,7 +2008,7 @@
           "url": "https://www.wsj.com/finance/regulation/jeanine-pirros-prosecutors-probe-big-banks-for-alleged-debanking-13568e9b?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ข่าวที่เกิดขึ้นในวันนี้มีผลกระทบต่อหุ้น BAC ในหลายด้าน โดยเฉพาะอย่างยิ่งการขยายการรับชำระเงินในเวลาจริงและการใช้การตลาดเพื่อโปรโมตผลิตภัณฑ์ใหม่ๆ นอกจากนี้ยังมีข่าวเกี่ยวกับการส่งสัญญาณต่อ DOJ และการเปลี่ยนแปลงในตลาดการเงิน ซึ่งอาจมีผลกระทบต่อความสามารถในการแข่งขันของ BAC\n\nBeer มองว่า: BAC เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงอย่างรวดเร็วในตลาดการเงินและเทคโนโลยี ซึ่งอาจมีผลกระทบต่อความสามารถในการแข่งขันของบริษัท นอกจากนี้ยังมีการใช้การตลาดเพื่อโปรโมตผลิตภัณฑ์ใหม่ๆ ซึ่งอาจมีผลกระทบต่อการเติบโตของบริษัท",
+      "analysis": "ข่าวที่เกิดขึ้นในวันนี้มีผลกระทบต่อหุ้น BAC ในหลายด้าน โดยเฉพาะอย่างยิ่งการขยายการรับชำระเงินในเวลาจริงและการใช้การตลาดเพื่อโปรโมตผลิตภัณฑ์ใหม่ๆ นอกจากนี้ยังมีข่าวเกี่ยวกับการส่งสัญญาณต่อ DOJ และการเปลี่ยนแปลงในตลาดการเงิน ซึ่งอาจมีผลกระทบต่อความสามารถในการแข่งขันของ BAC\n\nBeer มองว่า:  BAC เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงอย่างรวดเร็วในตลาดการเงินและเทคโนโลยี ซึ่งอาจมีผลกระทบต่อความสามารถในการแข่งขันของบริษัท นอกจากนี้ยังมีการใช้การตลาดเพื่อโปรโมตผลิตภัณฑ์ใหม่ๆ ซึ่งอาจมีผลกระทบต่อการเติบโตของบริษัท",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2085,7 +2085,7 @@
           "url": "https://www.barchart.com/story/news/2401843/stocks-fall-on-weakness-in-tech-and-trucking-companies"
         }
       ],
-      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2162,7 +2162,7 @@
           "url": "https://finance.yahoo.com/sectors/healthcare/articles/mizuho-boosts-unitedhealth-unh-target-033707442.html"
         }
       ],
-      "analysis": "ข่าวที่มีนัยสำคัญคือการเพิ่มขึ้นของราคาหุ้น UNH หลังจากการประกาศผลประกอบการ Q1 ที่แข็งแกร่ง และการปรับขึ้นของ Bank of America นอกจากนี้ การเพิ่มขึ้นของรายได้และการเติบโตของธุรกิจในกลุ่ม Healthcare ยังช่วยให้ราคาหุ้น UNH เพิ่มขึ้น\n\nBeer มองว่า: UNH เป็น 'เข็มฉีดยา' ที่มีโอกาสเพิ่มขึ้นในระยะสั้น เนื่องจากมีการสื่อสารที่ดี และการเติบโตของธุรกิจในกลุ่ม Healthcare SQ: 3 (Money Management) รูปแบบ: เข็มฉีดยา",
+      "analysis": "ข่าวที่มีนัยสำคัญคือการเพิ่มขึ้นของราคาหุ้น UNH หลังจากการประกาศผลประกอบการ Q1 ที่แข็งแกร่ง และการปรับขึ้นของ Bank of America นอกจากนี้ การเพิ่มขึ้นของรายได้และการเติบโตของธุรกิจในกลุ่ม Healthcare ยังช่วยให้ราคาหุ้น UNH เพิ่มขึ้น\n\nBeer มองว่า:  UNH เป็น 'เข็มฉีดยา' ที่มีโอกาสเพิ่มขึ้นในระยะสั้น เนื่องจากมีการสื่อสารที่ดี และการเติบโตของธุรกิจในกลุ่ม Healthcare SQ: 3 (Money Management) รูปแบบ: เข็มฉีดยา",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2239,7 +2239,7 @@
           "url": "https://247wallst.com/personal-finance/2026/06/10/the-dividend-growth-path-that-hauls-in-a-bigger-paycheck-than-your-hr-rep/"
         }
       ],
-      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2316,7 +2316,7 @@
           "url": "https://247wallst.com/personal-finance/2026/06/10/the-dividend-growth-path-that-hauls-in-a-bigger-paycheck-than-your-hr-rep/"
         }
       ],
-      "analysis": "PG มีโอกาสที่จะรักษาต้นทุนและผลตอบแทนให้คงที่ เนื่องจากมีประวัติและประสบการณ์ยาวนานในการผลิตผลิตภัณฑ์ Consumer Goods และมีเครือข่ายการตลาดที่กว้างขวาง แต่ P/E Ratio ที่สูงกว่าตลาดโดยเฉลี่ยอาจทำให้ราคาหุ้นปรับตัวลงในระยะสั้น\n\nBeer มองว่า: PG เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Dividend King) เนื่องจากมีประวัติในการจ่ายเงินปันผลต่อเนื่องมาอย่างยาวนาน และมี Dividend Yield ที่ดี",
+      "analysis": "PG มีโอกาสที่จะรักษาต้นทุนและผลตอบแทนให้คงที่ เนื่องจากมีประวัติและประสบการณ์ยาวนานในการผลิตผลิตภัณฑ์ Consumer Goods และมีเครือข่ายการตลาดที่กว้างขวาง แต่ P/E Ratio ที่สูงกว่าตลาดโดยเฉลี่ยอาจทำให้ราคาหุ้นปรับตัวลงในระยะสั้น\n\nBeer มองว่า:  PG เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Dividend King) เนื่องจากมีประวัติในการจ่ายเงินปันผลต่อเนื่องมาอย่างยาวนาน และมี Dividend Yield ที่ดี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2393,7 +2393,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/paramount-middle-east-billions-warner-072230643.html"
         }
       ],
-      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2470,7 +2470,7 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/rtx-expanding-global-aerospace-capabilities-133000075.html"
         }
       ],
-      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 3.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 3.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2547,7 +2547,7 @@
           "url": "https://www.investors.com/news/robinhood-stock-undewriter-hot-ipo-market/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "MS ลง 1.7% หลังข่าว PureCycle Technologies launched a dual $395-million underwritten offering of convertible senior notes and common stock to restructure debt ซึ่งอาจทำให้ตลาดมีความไม่แน่นอนเกี่ยวกับสถานะการเงินของบริษัท นอกจากนี้ MS ยังมีข่าว Apple (AAPL) ที่ Morgan Stanley reset target price หลังจาก Apple แสดงความเชื่อมั่นในเรื่อง AI ซึ่งอาจทำให้ MS มีโอกาสเพิ่มขึ้นในอนาคต\n\nBeer มองว่า: MS เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและอาจมีโอกาสเพิ่มขึ้นในอนาคต",
+      "analysis": "MS ลง 1.7% หลังข่าว PureCycle Technologies launched a dual $395-million underwritten offering of convertible senior notes and common stock to restructure debt ซึ่งอาจทำให้ตลาดมีความไม่แน่นอนเกี่ยวกับสถานะการเงินของบริษัท นอกจากนี้ MS ยังมีข่าว Apple (AAPL) ที่ Morgan Stanley reset target price หลังจาก Apple แสดงความเชื่อมั่นในเรื่อง AI ซึ่งอาจทำให้ MS มีโอกาสเพิ่มขึ้นในอนาคต\n\nBeer มองว่า:  MS เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและอาจมีโอกาสเพิ่มขึ้นในอนาคต",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2624,7 +2624,7 @@
           "url": "https://www.wsj.com/finance/stocks/inflation-is-picking-investors-pockets-fc54141c?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2701,7 +2701,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-group-inc-gs-164645545.html"
         }
       ],
-      "analysis": "ราคา GS ลง 3.0% แต่ยังมีการปรับลดราคา 4.9% ซึ่งอาจเป็นโอกาสในการซื้อในระยะยาว แต่ควรติดตามข่าวสารและความเคลื่อนไหวในตลาด\n\nBeer มองว่า: GS เป็นหุ้น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีการดำเนินธุรกิจที่หลากหลายในกลุ่มการเงิน และมีความมั่นคงและความน่าเชื่อถือ แต่ควรติดตามข่าวสารและความเคลื่อนไหวในตลาด",
+      "analysis": "ราคา GS ลง 3.0% แต่ยังมีการปรับลดราคา 4.9% ซึ่งอาจเป็นโอกาสในการซื้อในระยะยาว แต่ควรติดตามข่าวสารและความเคลื่อนไหวในตลาด\n\nBeer มองว่า:  GS เป็นหุ้น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีการดำเนินธุรกิจที่หลากหลายในกลุ่มการเงิน และมีความมั่นคงและความน่าเชื่อถือ แต่ควรติดตามข่าวสารและความเคลื่อนไหวในตลาด",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2778,7 +2778,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/merck-stock-moves-above-50-123900095.html"
         }
       ],
-      "analysis": "ข่าวที่เกี่ยวข้องเกี่ยวกับ Merck มีความน่าสนใจ เนื่องจากบริษัทมีศักยภาพในการเติบโตในอนาคต และมีการสื่อสารที่ดีเกี่ยวกับผลิตภัณฑ์และการเติบโตของธุรกิจ นอกจากนี้ยังมีข่าวเกี่ยวกับแผนการขยายตลาดในยุโรปและความร่วมมือกับ The Hashgraph Group ซึ่งอาจส่งผลกระทบต่อการเติบโตของบริษัทในอนาคต\n\nBeer มองว่า: Merck เป็นหุ้น 'เข็มฉีดยา' ที่มีโอกาสเติบโตในอนาคต เนื่องจากมีผลิตภัณฑ์ที่มีความน่าสนใจและศักยภาพในการเติบโตในตลาด",
+      "analysis": "ข่าวที่เกี่ยวข้องเกี่ยวกับ Merck มีความน่าสนใจ เนื่องจากบริษัทมีศักยภาพในการเติบโตในอนาคต และมีการสื่อสารที่ดีเกี่ยวกับผลิตภัณฑ์และการเติบโตของธุรกิจ นอกจากนี้ยังมีข่าวเกี่ยวกับแผนการขยายตลาดในยุโรปและความร่วมมือกับ The Hashgraph Group ซึ่งอาจส่งผลกระทบต่อการเติบโตของบริษัทในอนาคต\n\nBeer มองว่า:  Merck เป็นหุ้น 'เข็มฉีดยา' ที่มีโอกาสเติบโตในอนาคต เนื่องจากมีผลิตภัณฑ์ที่มีความน่าสนใจและศักยภาพในการเติบโตในตลาด",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2855,7 +2855,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/philip-morris-international-apos-us-150908325.html"
         }
       ],
-      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2932,7 +2932,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/onto-stock-grows-174-does-140500869.html"
         }
       ],
-      "analysis": "KLA Corporation (KLAC) มีข่าวดีๆ มากมายในรอบนี้ โดยมีบริษัท Barclays ที่เพิ่มเป้าหมายราคาและขึ้นราคาเป้าหมายสำหรับ KLAC และบริษัทอื่นๆ ในอุตสาหกรรมชิป ซึ่งจะช่วยให้ราคาหุ้น KLAC เพิ่มขึ้นในระยะยาว นอกจากนี้ ยังมีข่าวที่ดีๆ จาก Motley Fool ที่ว่า KLAC ได้เพิ่มขึ้นมากกว่าตลาดโดยรวมในวันนี้\n\nBeer มองว่า: KLAC เป็น 'เข็มฉีดยา' ที่มีโอกาสเพิ่มขึ้นในระยะยาว เนื่องจากมีข่าวดีๆ มากมายและบริษัท Barclays ที่เพิ่มเป้าหมายราคา",
+      "analysis": "KLA Corporation (KLAC) มีข่าวดีๆ มากมายในรอบนี้ โดยมีบริษัท Barclays ที่เพิ่มเป้าหมายราคาและขึ้นราคาเป้าหมายสำหรับ KLAC และบริษัทอื่นๆ ในอุตสาหกรรมชิป ซึ่งจะช่วยให้ราคาหุ้น KLAC เพิ่มขึ้นในระยะยาว นอกจากนี้ ยังมีข่าวที่ดีๆ จาก Motley Fool ที่ว่า KLAC ได้เพิ่มขึ้นมากกว่าตลาดโดยรวมในวันนี้\n\nBeer มองว่า:  KLAC เป็น 'เข็มฉีดยา' ที่มีโอกาสเพิ่มขึ้นในระยะยาว เนื่องจากมีข่าวดีๆ มากมายและบริษัท Barclays ที่เพิ่มเป้าหมายราคา",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3009,7 +3009,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/investors-heavily-search-texas-instruments-130003684.html"
         }
       ],
-      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3086,7 +3086,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/stx-stock-tops-industry-returns-133400460.html"
         }
       ],
-      "analysis": "IBM มีแนวโน้มที่จะรักษาความมั่นคงในการเทรดในระยะยาว เนื่องจาก P/E Ratio ยังคงอยู่ที่ 25.184792 อย่างไรก็ตาม การเปลี่ยนแปลงในตลาดอาจส่งผลกระทบต่อการเทรดหุ้น IBM\n\nBeer มองว่า: หุ้น IBM เป็น 'เข็มฉีดยา' (รูปแบบ 5) เนื่องจากมีความมั่นคงในการเทรดในระยะยาว แต่ยังมีความเสี่ยงในการเปลี่ยนแปลงในตลาด",
+      "analysis": "IBM มีแนวโน้มที่จะรักษาความมั่นคงในการเทรดในระยะยาว เนื่องจาก P/E Ratio ยังคงอยู่ที่ 25.184792 อย่างไรก็ตาม การเปลี่ยนแปลงในตลาดอาจส่งผลกระทบต่อการเทรดหุ้น IBM\n\nBeer มองว่า:  หุ้น IBM เป็น 'เข็มฉีดยา' (รูปแบบ 5) เนื่องจากมีความมั่นคงในการเทรดในระยะยาว แต่ยังมีความเสี่ยงในการเปลี่ยนแปลงในตลาด",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3163,7 +3163,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/wells-fargo-grant-highlights-community-031509525.html"
         }
       ],
-      "analysis": "Wells Fargo ได้รับข่าวที่ดีจากการรับซื้อทีมที่มีทรัพย์สินลูกค้ามากกว่า 650 ล้านดอลลาร์จาก Stifel ซึ่งจะช่วยเพิ่มความมั่นคงทางการเงินของบริษัท นอกจากนี้ Wells Fargo ยังได้รับคำพูดที่ดีจาก CFO ที่มองเห็นโอกาสในการเพิ่มผลกำไรในไตรมาสที่ 2 ของปีนี้ แต่ตลาดยังมีความไม่แน่นอนเกี่ยวกับเรื่องการ 'Debanking' ที่เกี่ยวข้องกับ Wells Fargo และธนาคารอื่นๆ\n\nBeer มองว่า: SQ 3 - หุ้นที่มีโอกาสในการเพิ่มผลกำไรในระยะสั้น (รูปแบบ 'เข็มฉีดยา') เนื่องจาก Wells Fargo มีโอกาสในการเพิ่มผลกำไรในไตรมาสที่ 2 และมีความมั่นคงทางการเงิน",
+      "analysis": "Wells Fargo ได้รับข่าวที่ดีจากการรับซื้อทีมที่มีทรัพย์สินลูกค้ามากกว่า 650 ล้านดอลลาร์จาก Stifel ซึ่งจะช่วยเพิ่มความมั่นคงทางการเงินของบริษัท นอกจากนี้ Wells Fargo ยังได้รับคำพูดที่ดีจาก CFO ที่มองเห็นโอกาสในการเพิ่มผลกำไรในไตรมาสที่ 2 ของปีนี้ แต่ตลาดยังมีความไม่แน่นอนเกี่ยวกับเรื่องการ 'Debanking' ที่เกี่ยวข้องกับ Wells Fargo และธนาคารอื่นๆ\n\nBeer มองว่า:  SQ 3 - หุ้นที่มีโอกาสในการเพิ่มผลกำไรในระยะสั้น (รูปแบบ 'เข็มฉีดยา') เนื่องจาก Wells Fargo มีโอกาสในการเพิ่มผลกำไรในไตรมาสที่ 2 และมีความมั่นคงทางการเงิน",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3240,7 +3240,7 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/rtx-expanding-global-aerospace-capabilities-133000075.html"
         }
       ],
-      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3317,7 +3317,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/linde-lin-draws-analyst-optimism-031714951.html"
         }
       ],
-      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3394,7 +3394,7 @@
           "url": "https://www.barrons.com/articles/citigroup-stock-president-donald-trump-21585d0b?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3471,7 +3471,7 @@
           "url": "https://finance.yahoo.com/sectors/technology/articles/alab-rides-strong-ai-infrastructure-171500478.html"
         }
       ],
-      "analysis": "ข่าวล่าสุดเกี่ยวกับ Marvell Technology มีผลกระทบต่อตลาดหุ้นกลุ่ม AI และชิป ซึ่งอาจทำให้ราคาหุ้น MRVL ลดลง แต่ธุรกิจของ Marvell Technology มีการลงทุนอย่างมากใน AI และมีการเป็นพันธมิตรกับ Nvidia ซึ่งอาจทำให้ผลกำไรเพิ่มขึ้นอย่างมาก\n\nBeer มองว่า: Marvell Technology เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ 3) เนื่องจากมีการลงทุนอย่างมากใน AI และมีการเป็นพันธมิตรกับ Nvidia ซึ่งอาจทำให้ผลกำไรเพิ่มขึ้นอย่างมาก แต่ตลาดหุ้นกลุ่ม AI และชิปก็ล้มลงอย่างหนักเมื่อวาน",
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ Marvell Technology มีผลกระทบต่อตลาดหุ้นกลุ่ม AI และชิป ซึ่งอาจทำให้ราคาหุ้น MRVL ลดลง แต่ธุรกิจของ Marvell Technology มีการลงทุนอย่างมากใน AI และมีการเป็นพันธมิตรกับ Nvidia ซึ่งอาจทำให้ผลกำไรเพิ่มขึ้นอย่างมาก\n\nBeer มองว่า:  Marvell Technology เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ 3) เนื่องจากมีการลงทุนอย่างมากใน AI และมีการเป็นพันธมิตรกับ Nvidia ซึ่งอาจทำให้ผลกำไรเพิ่มขึ้นอย่างมาก แต่ตลาดหุ้นกลุ่ม AI และชิปก็ล้มลงอย่างหนักเมื่อวาน",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3548,7 +3548,7 @@
           "url": "https://247wallst.com/investing/2026/06/09/palo-alto-networks-hits-10b-revenue-run-rate-beats-sp-500-across-all-timeframes/"
         }
       ],
-      "analysis": "ข่าวที่เกี่ยวข้องทำให้ราคา PANW เพิ่มขึ้น 1.0% เนื่องจากการเติบโตของ Prisma AIRS และการรักษาความปลอดภัยทางไซเบอร์ที่ดี นอกจากนี้ยังมีข่าวที่ชี้ให้เห็นว่า AI จะเป็นปัจจัยสำคัญในการรักษาความปลอดภัยในอนาคต ทำให้ PANW มีโอกาสเติบโตในระยะยาว\n\nBeer มองว่า: PANW เป็น 'เข็มฉีดยา' ที่มีโอกาสเติบโตในระยะยาว เนื่องจากมีผลงานที่ดีในด้าน AI และการรักษาความปลอดภัยทางไซเบอร์",
+      "analysis": "ข่าวที่เกี่ยวข้องทำให้ราคา PANW เพิ่มขึ้น 1.0% เนื่องจากการเติบโตของ Prisma AIRS และการรักษาความปลอดภัยทางไซเบอร์ที่ดี นอกจากนี้ยังมีข่าวที่ชี้ให้เห็นว่า AI จะเป็นปัจจัยสำคัญในการรักษาความปลอดภัยในอนาคต ทำให้ PANW มีโอกาสเติบโตในระยะยาว\n\nBeer มองว่า:  PANW เป็น 'เข็มฉีดยา' ที่มีโอกาสเติบโตในระยะยาว เนื่องจากมีผลงานที่ดีในด้าน AI และการรักษาความปลอดภัยทางไซเบอร์",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3625,7 +3625,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-market-dipped-american-express-214502520.html"
         }
       ],
-      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3702,7 +3702,7 @@
           "url": "https://cdn.jwplayer.com/previews/z2NsvQ37"
         }
       ],
-      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 6.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 6.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3779,7 +3779,7 @@
           "url": "https://www.verdict.co.uk/us-operators-account-convergence-growth/"
         }
       ],
-      "analysis": "T-Mobile US, Inc. (TMUS) มีแนวโน้มที่จะเพิ่มขึ้นเนื่องจากข่าวการเปิดตัวเทคนิคฮับในอินเดีย ซึ่งอาจช่วยเพิ่มความมั่นใจในบริษัทและทำให้ราคาหุ้นเพิ่มขึ้น นอกจากนี้ การเพิ่มขึ้นของ SpaceX ใน FCC Spectrum Auction ในปี 2027 อาจทำให้ราคาหุ้นลดลง แต่ในระยะสั้น TMUS มีโอกาสที่จะเพิ่มขึ้น\n\nBeer มองว่า: เข็มฉีดยา (รูปแบบ Daytrade) เนื่องจาก TMUS มีการเพิ่มขึ้นอย่างรวดเร็วและอาจมีโอกาสที่จะถูกขายออกมาในระยะสั้น",
+      "analysis": "T-Mobile US, Inc. (TMUS) มีแนวโน้มที่จะเพิ่มขึ้นเนื่องจากข่าวการเปิดตัวเทคนิคฮับในอินเดีย ซึ่งอาจช่วยเพิ่มความมั่นใจในบริษัทและทำให้ราคาหุ้นเพิ่มขึ้น นอกจากนี้ การเพิ่มขึ้นของ SpaceX ใน FCC Spectrum Auction ในปี 2027 อาจทำให้ราคาหุ้นลดลง แต่ในระยะสั้น TMUS มีโอกาสที่จะเพิ่มขึ้น\n\nBeer มองว่า:  เข็มฉีดยา (รูปแบบ Daytrade) เนื่องจาก TMUS มีการเพิ่มขึ้นอย่างรวดเร็วและอาจมีโอกาสที่จะถูกขายออกมาในระยะสั้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3856,7 +3856,7 @@
           "url": "https://www.fool.com/investing/2026/06/10/bargain-hunters-these-3-dividend-stocks-recently-h/"
         }
       ],
-      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3933,7 +3933,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/time-reconsider-pepsico-pep-recent-231808729.html"
         }
       ],
-      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4010,7 +4010,7 @@
           "url": "https://www.fool.com/investing/2026/06/10/better-telecom-stock-verizon-rogers-communications/"
         }
       ],
-      "analysis": "Verizon Communications (VZ) มีการเพิ่มขึ้น 2.45% หลังจากการประกาศผลกำไรที่ดี และมีการสื่อสารที่ดีเกี่ยวกับผลประกอบการ Q1 นอกจากนี้ยังมีข่าวที่ว่า Starlink ของ SpaceX อาจเป็นคู่แข่งที่สำคัญสำหรับ Verizon Communications แต่การเพิ่มขึ้นของ Starlink อาจส่งผลกระทบต่อธุรกิจของ Verizon\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเพิ่มขึ้นอย่างรวดเร็วและไม่มีการเปลี่ยนแปลงในระยะยาว",
+      "analysis": "Verizon Communications (VZ) มีการเพิ่มขึ้น 2.45% หลังจากการประกาศผลกำไรที่ดี และมีการสื่อสารที่ดีเกี่ยวกับผลประกอบการ Q1 นอกจากนี้ยังมีข่าวที่ว่า Starlink ของ SpaceX อาจเป็นคู่แข่งที่สำคัญสำหรับ Verizon Communications แต่การเพิ่มขึ้นของ Starlink อาจส่งผลกระทบต่อธุรกิจของ Verizon\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเพิ่มขึ้นอย่างรวดเร็วและไม่มีการเปลี่ยนแปลงในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4087,7 +4087,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-elbit-153800564.html"
         }
       ],
-      "analysis": "ข่าวล่าสุดเกี่ยวกับ ADI มีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจ โดยมีการปรับตัวลง 3.0% แต่ธุรกิจของ ADI ยังคงมีการพัฒนาเทคโนโลยีในด้านการประมวลผลสัญญาณและอุปกรณ์อิเล็กทรอนิกส์ที่มีความสามารถสูง นอกจากนี้ยังมีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจจากข่าวล่าสุดเกี่ยวกับบริษัทอื่นๆ ในด้านเทคโนโลยีและอุปกรณ์อิเล็กทรอนิกส์ เช่น Broadcom และ Amazon\n\nBeer มองว่า: รูปแบบ 'เข็มฉีดยา' (SQ: 2) เนื่องจาก ADI มีการพัฒนาเทคโนโลยีในด้านการประมวลผลสัญญาณและอุปกรณ์อิเล็กทรอนิกส์ที่มีความสามารถสูง และมีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจ",
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ ADI มีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจ โดยมีการปรับตัวลง 3.0% แต่ธุรกิจของ ADI ยังคงมีการพัฒนาเทคโนโลยีในด้านการประมวลผลสัญญาณและอุปกรณ์อิเล็กทรอนิกส์ที่มีความสามารถสูง นอกจากนี้ยังมีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจจากข่าวล่าสุดเกี่ยวกับบริษัทอื่นๆ ในด้านเทคโนโลยีและอุปกรณ์อิเล็กทรอนิกส์ เช่น Broadcom และ Amazon\n\nBeer มองว่า:  รูปแบบ 'เข็มฉีดยา' (SQ: 2) เนื่องจาก ADI มีการพัฒนาเทคโนโลยีในด้านการประมวลผลสัญญาณและอุปกรณ์อิเล็กทรอนิกส์ที่มีความสามารถสูง และมีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจ",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4164,7 +4164,7 @@
           "url": "https://www.marketbeat.com/instant-alerts/amgen-eyes-2026-springboard-as-growth-drugs-offset-patent-pressure-2026-06-09/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "ข่าวที่มีผลกระทบต่อราคาหุ้น AMGN คือ MariTide ที่มีโอกาสจะช่วยให้ AMGN มีส่วนแบ่งในตลาดยาที่มีประสิทธิภาพสูง และยังช่วยให้บริษัทมีโอกาสเติบโตในระยะยาว นอกจากนี้ยังมีข่าวเกี่ยวกับการเติบโตของ Biogen ที่อาจส่งผลกระทบต่อราคาหุ้น AMGN\n\nBeer มองว่า: AMGN เป็น 'เข็มฉีดยา' ที่มีโอกาสจะเติบโตในระยะยาว เนื่องจากมีแผนการเติบโตที่ชัดเจนในด้านการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ และมีส่วนแบ่งในตลาดยาที่มีประสิทธิภาพสูง",
+      "analysis": "ข่าวที่มีผลกระทบต่อราคาหุ้น AMGN คือ MariTide ที่มีโอกาสจะช่วยให้ AMGN มีส่วนแบ่งในตลาดยาที่มีประสิทธิภาพสูง และยังช่วยให้บริษัทมีโอกาสเติบโตในระยะยาว นอกจากนี้ยังมีข่าวเกี่ยวกับการเติบโตของ Biogen ที่อาจส่งผลกระทบต่อราคาหุ้น AMGN\n\nBeer มองว่า:  AMGN เป็น 'เข็มฉีดยา' ที่มีโอกาสจะเติบโตในระยะยาว เนื่องจากมีแผนการเติบโตที่ชัดเจนในด้านการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ และมีส่วนแบ่งในตลาดยาที่มีประสิทธิภาพสูง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4241,7 +4241,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/nextera-energy-nee-stock-sinks-214503018.html"
         }
       ],
-      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4318,7 +4318,7 @@
           "url": "https://247wallst.com/investing/2026/06/08/will-warren-buffett-return-as-berkshire-hathaways-ceo/"
         }
       ],
-      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ลง 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ลง 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4395,7 +4395,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-intel-133300922.html"
         }
       ],
-      "analysis": "ข่าวที่มีผลกระทบต่อราคาหุ้น CRWD คือการร่วงลงหลังจากการรายงานผลการดำเนินงานที่ไม่ตรงตามความคาดหวังของนักลงทุน แต่การเติบโตของ Falcon Flex และการขยายตัวของ ARR ทำให้ CRWD มีโอกาสที่จะกลับมาแข็งแกร่ง\n\nBeer มองว่า: หุ้น CRWD มีลักษณะเหมือน 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความชัดเจนในระยะยาว",
+      "analysis": "ข่าวที่มีผลกระทบต่อราคาหุ้น CRWD คือการร่วงลงหลังจากการรายงานผลการดำเนินงานที่ไม่ตรงตามความคาดหวังของนักลงทุน แต่การเติบโตของ Falcon Flex และการขยายตัวของ ARR ทำให้ CRWD มีโอกาสที่จะกลับมาแข็งแกร่ง\n\nBeer มองว่า:  หุ้น CRWD มีลักษณะเหมือน 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความชัดเจนในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4472,7 +4472,7 @@
           "url": "https://www.barrons.com/articles/spacex-ipo-sp500-aerospace-index-boeing-lockheed-martin-077b27ab?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "BA อยู่ในกลุ่ม Industrials และวันนี้ลง 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "BA อยู่ในกลุ่ม Industrials และวันนี้ลง 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4549,7 +4549,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/t-vs-t-mobile-communications-141500823.html"
         }
       ],
-      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4626,7 +4626,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/westinghouse-air-brake-wab-among-132348114.html"
         }
       ],
-      "analysis": "ข่าวที่เกี่ยวข้องแสดงให้เห็นว่า Union Pacific (UNP) มีโอกาสที่จะขึ้นอย่างมากในตลาด เนื่องจากมีการกล่าวถึงแผนการร่วมมือกับ Norfolk Southern และมีการกล่าวถึงความสามารถในการบริหารบริษัทในด้าน Transportation ของ CEO Jim Vena อย่างไรก็ตาม ราคาหุ้น UNP ลง 1.6% ในวันนี้ ซึ่งอาจเป็นจังหวะที่ดีในการลงทุน แต่ต้องดูสถานการณ์ในระยะยาว\n\nBeer มองว่า: หุ้น UNP มีลักษณะคล้ายกับ 'เข็มฉีดยา' เนื่องจากมีโอกาสที่จะขึ้นอย่างมากในตลาด แต่ต้องดูสถานการณ์ในระยะยาว",
+      "analysis": "ข่าวที่เกี่ยวข้องแสดงให้เห็นว่า Union Pacific (UNP) มีโอกาสที่จะขึ้นอย่างมากในตลาด เนื่องจากมีการกล่าวถึงแผนการร่วมมือกับ Norfolk Southern และมีการกล่าวถึงความสามารถในการบริหารบริษัทในด้าน Transportation ของ CEO Jim Vena อย่างไรก็ตาม ราคาหุ้น UNP ลง 1.6% ในวันนี้ ซึ่งอาจเป็นจังหวะที่ดีในการลงทุน แต่ต้องดูสถานการณ์ในระยะยาว\n\nBeer มองว่า:  หุ้น UNP มีลักษณะคล้ายกับ 'เข็มฉีดยา' เนื่องจากมีโอกาสที่จะขึ้นอย่างมากในตลาด แต่ต้องดูสถานการณ์ในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4703,7 +4703,7 @@
           "url": "https://finance.yahoo.com/economy/policy/articles/traders-fully-price-fed-rate-124726318.html"
         }
       ],
-      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4780,7 +4780,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/buy-3-investment-bank-stocks-130700134.html"
         }
       ],
-      "analysis": "ข่าวที่เกี่ยวข้องคือ SpaceX IPO ที่อาจกระทบต่อการซื้อขายหุ้นของ SCHW แต่ข่าวนี้ไม่ได้กระทบต่อธุรกิจหรือความมั่นคงของ SCHW อย่างชัดเจน\n\nBeer มองว่า: SCHW เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ 3) เนื่องจากมีการเติบโตที่ค่อยเป็นค่อยไป แต่ไม่ได้เปลี่ยนแปลงอย่างรวดเร็ว",
+      "analysis": "ข่าวที่เกี่ยวข้องคือ SpaceX IPO ที่อาจกระทบต่อการซื้อขายหุ้นของ SCHW แต่ข่าวนี้ไม่ได้กระทบต่อธุรกิจหรือความมั่นคงของ SCHW อย่างชัดเจน\n\nBeer มองว่า:  SCHW เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ 3) เนื่องจากมีการเติบโตที่ค่อยเป็นค่อยไป แต่ไม่ได้เปลี่ยนแปลงอย่างรวดเร็ว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4857,7 +4857,7 @@
           "url": "https://finance.yahoo.com/economy/policy/articles/deere-tariff-relief-reshapes-costs-220951019.html"
         }
       ],
-      "analysis": "DE (Deere & Company) มีแนวโน้มที่จะปรับตัวขึ้นหลังจากที่ได้รับการยกเว้นจากภาษีศุลกากร ซึ่งจะช่วยให้กำไรของบริษัทเพิ่มขึ้น นอกจากนี้ยังมีข่าวที่ว่า Titan Machinery Q1 Earnings Beat Estimates on Better Equipment Margins ซึ่งจะช่วยให้ DE มีโอกาสในการเติบโตในอนาคต\n\nBeer มองว่า: DE เป็นหุ้นรูปแบบ 'เข็มฉีดยา' โดยมี SQ 3 (Money Management) และเป็นหุ้นที่มีโอกาสติดเทรนด์",
+      "analysis": "DE (Deere & Company) มีแนวโน้มที่จะปรับตัวขึ้นหลังจากที่ได้รับการยกเว้นจากภาษีศุลกากร ซึ่งจะช่วยให้กำไรของบริษัทเพิ่มขึ้น นอกจากนี้ยังมีข่าวที่ว่า Titan Machinery Q1 Earnings Beat Estimates on Better Equipment Margins ซึ่งจะช่วยให้ DE มีโอกาสในการเติบโตในอนาคต\n\nBeer มองว่า:  DE เป็นหุ้นรูปแบบ 'เข็มฉีดยา' โดยมี SQ 3 (Money Management) และเป็นหุ้นที่มีโอกาสติดเทรนด์",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4934,7 +4934,7 @@
           "url": "https://www.barchart.com/story/news/2380053/stocks-climb-on-an-ai-led-rebound"
         }
       ],
-      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5011,7 +5011,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/2-wall-street-favorite-stocks-101728108.html"
         }
       ],
-      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5088,7 +5088,7 @@
           "url": "https://www.barchart.com/story/news/2377850/when-investors-finally-get-sick-of-ai-stocks-this-medical-devices-etf-could-be-a-long-term-winner"
         }
       ],
-      "analysis": "ISRG มีความน่าจะเป็นในการเติบโตในตลาดหุ่นยนต์ทางการแพทย์ แต่ยังมีความเสี่ยงจากการแข่งขันในตลาดนี้ นอกจากนี้ การเปลี่ยนแปลงผู้บริหารใหม่และแผนการเติบโตใหม่อาจส่งผลกระทบต่อการเปลี่ยนแปลงราคาในระยะสั้น\n\nBeer มองว่า: ISRG เป็น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีแนวโน้มที่จะเติบโตในตลาดหุ่นยนต์ทางการแพทย์ แต่ยังมีความเสี่ยงจากการแข่งขันในตลาดนี้",
+      "analysis": "ISRG มีความน่าจะเป็นในการเติบโตในตลาดหุ่นยนต์ทางการแพทย์ แต่ยังมีความเสี่ยงจากการแข่งขันในตลาดนี้ นอกจากนี้ การเปลี่ยนแปลงผู้บริหารใหม่และแผนการเติบโตใหม่อาจส่งผลกระทบต่อการเปลี่ยนแปลงราคาในระยะสั้น\n\nBeer มองว่า:  ISRG เป็น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีแนวโน้มที่จะเติบโตในตลาดหุ่นยนต์ทางการแพทย์ แต่ยังมีความเสี่ยงจากการแข่งขันในตลาดนี้",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5165,7 +5165,7 @@
           "url": "https://finance.yahoo.com/sectors/healthcare/articles/amgens-maritide-win-share-fast-122900919.html"
         }
       ],
-      "analysis": "Pfizer ได้รับการอัปเกรดจาก RBC Capital Markets หลังจากที่หุ้นพุ่งลงอย่างมากในปีนี้ ซึ่งแสดงให้เห็นว่าตลาดมองว่าหุ้นของ Pfizer มีโอกาสที่จะกลับมาแข็งแกร่งอีกครั้ง นอกจากนี้ยังมีข่าวที่ว่า Pfizer มีผลิตภัณฑ์ใหม่ที่จะออกมาในอนาคต ซึ่งจะช่วยให้หุ้นของ Pfizer มีโอกาสที่จะเพิ่มขึ้น\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' รูปแบบ Daytrade (SQ: 3) เนื่องจาก Pfizer เป็นบริษัทที่ผลิตยาและผลิตภัณฑ์ทางการแพทย์ ซึ่งแสดงให้เห็นว่าหุ้นของ Pfizer มีโอกาสที่จะเพิ่มขึ้นในระยะยาว",
+      "analysis": "Pfizer ได้รับการอัปเกรดจาก RBC Capital Markets หลังจากที่หุ้นพุ่งลงอย่างมากในปีนี้ ซึ่งแสดงให้เห็นว่าตลาดมองว่าหุ้นของ Pfizer มีโอกาสที่จะกลับมาแข็งแกร่งอีกครั้ง นอกจากนี้ยังมีข่าวที่ว่า Pfizer มีผลิตภัณฑ์ใหม่ที่จะออกมาในอนาคต ซึ่งจะช่วยให้หุ้นของ Pfizer มีโอกาสที่จะเพิ่มขึ้น\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' รูปแบบ Daytrade (SQ: 3) เนื่องจาก Pfizer เป็นบริษัทที่ผลิตยาและผลิตภัณฑ์ทางการแพทย์ ซึ่งแสดงให้เห็นว่าหุ้นของ Pfizer มีโอกาสที่จะเพิ่มขึ้นในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5242,7 +5242,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/data-center-power-demands-push-151500475.html"
         }
       ],
-      "analysis": "ETN อยู่ในกลุ่ม Industrials และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "ETN อยู่ในกลุ่ม Industrials และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5319,7 +5319,7 @@
           "url": "https://qz.com/salesforce-layoffs-agentforce-mulesoft-marketing-cloud-061026"
         }
       ],
-      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาหุ้น CRM คือ ข่าวเกี่ยวกับ Salesforce ลดพนักงาน 86 คน ซึ่งอาจส่งผลกระทบต่อผลประกอบการของบริษัทในระยะสั้น แต่ในระยะยาว CRM ยังคงมีโอกาสเติบโตอย่างต่อเนื่อง\n\nBeer มองว่า: CRM เป็นหุ้นที่มีโอกาสติดเทรนด์ เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีโอกาสขยายธุรกิจได้ รูปแบบของ CRM คือ 'เข็มฉีดยา' เนื่องจากมีการเติบโตอย่างรวดเร็วและไม่ช้ำ",
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาหุ้น CRM คือ ข่าวเกี่ยวกับ Salesforce ลดพนักงาน 86 คน ซึ่งอาจส่งผลกระทบต่อผลประกอบการของบริษัทในระยะสั้น แต่ในระยะยาว CRM ยังคงมีโอกาสเติบโตอย่างต่อเนื่อง\n\nBeer มองว่า:  CRM เป็นหุ้นที่มีโอกาสติดเทรนด์ เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีโอกาสขยายธุรกิจได้ รูปแบบของ CRM คือ 'เข็มฉีดยา' เนื่องจากมีการเติบโตอย่างรวดเร็วและไม่ช้ำ",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5396,7 +5396,7 @@
           "url": "https://www.barchart.com/story/news/2336395/is-public-storage-stock-underperforming-the-dow"
         }
       ],
-      "analysis": "PLD อยู่ในกลุ่ม Real Estate และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "PLD อยู่ในกลุ่ม Real Estate และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5473,7 +5473,7 @@
           "url": "https://247wallst.com/investing/2026/06/10/here-are-wednesdays-top-wall-street-analyst-research-calls-bill-holdings-cava-group-entergy-globalfoundries-hess-midstream-nike-pfizer-sharkninja-stmicroelectronics-and-more/"
         }
       ],
-      "analysis": "HON อยู่ในกลุ่ม Industrials และวันนี้ลง 4.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "HON อยู่ในกลุ่ม Industrials และวันนี้ลง 4.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5550,7 +5550,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-wall-street-sees-danaher-224355309.html"
         }
       ],
-      "analysis": "ดานาเฮอร์ (DHR) ปิดการซื้อ Masimo แล้ว แต่การเปลี่ยนแปลงราคาอย่างมากในช่วงไม่กี่วันที่ผ่านมา ทำให้หุ้นนี้มีความเสี่ยงสูง แต่ก็มีโอกาสเพิ่มขึ้นในระยะยาว นอกจากนี้ การเปลี่ยนแปลงราคาอย่างมากนี้อาจทำให้หุ้น DHR มีโอกาสเพิ่มขึ้นในระยะสั้น\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีความเสี่ยงสูง แต่ก็มีโอกาสเพิ่มขึ้นในระยะยาว",
+      "analysis": "ดานาเฮอร์ (DHR) ปิดการซื้อ Masimo แล้ว แต่การเปลี่ยนแปลงราคาอย่างมากในช่วงไม่กี่วันที่ผ่านมา ทำให้หุ้นนี้มีความเสี่ยงสูง แต่ก็มีโอกาสเพิ่มขึ้นในระยะยาว นอกจากนี้ การเปลี่ยนแปลงราคาอย่างมากนี้อาจทำให้หุ้น DHR มีโอกาสเพิ่มขึ้นในระยะสั้น\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีความเสี่ยงสูง แต่ก็มีโอกาสเพิ่มขึ้นในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5627,7 +5627,7 @@
           "url": "https://www.cnn.com/2026/06/09/investing/nasdaq-sp500-dow-drop-ai"
         }
       ],
-      "analysis": "SPGI มีโอกาสที่จะปรับตัวให้เข้ากับสถานการณ์ใหม่หลังจากที่ได้ทำการร่วมมือกับ Cohere ในการนำข้อมูลการเงินเข้าสู่ระบบ AI ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในระยะยาว แต่ในระยะสั้น ราคาหุ้นของ SPGI ยังคงอยู่ในสถานการณ์ที่ไม่แน่นอนหลังจากที่มีการเปลี่ยนแปลงในตลาดการเงิน\n\nBeer มองว่า: SPGI เป็น 'เข็มฉีดยา' ที่มีโอกาสที่จะปรับตัวให้เข้ากับสถานการณ์ใหม่ แต่ในระยะสั้น ยังคงต้องใช้การดูแลอย่างรอบคอบ",
+      "analysis": "SPGI มีโอกาสที่จะปรับตัวให้เข้ากับสถานการณ์ใหม่หลังจากที่ได้ทำการร่วมมือกับ Cohere ในการนำข้อมูลการเงินเข้าสู่ระบบ AI ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในระยะยาว แต่ในระยะสั้น ราคาหุ้นของ SPGI ยังคงอยู่ในสถานการณ์ที่ไม่แน่นอนหลังจากที่มีการเปลี่ยนแปลงในตลาดการเงิน\n\nBeer มองว่า:  SPGI เป็น 'เข็มฉีดยา' ที่มีโอกาสที่จะปรับตัวให้เข้ากับสถานการณ์ใหม่ แต่ในระยะสั้น ยังคงต้องใช้การดูแลอย่างรอบคอบ",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5704,7 +5704,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/cvs-health-cvs-one-best-161545259.html"
         }
       ],
-      "analysis": "CVS อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "CVS อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5781,7 +5781,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/booking-holdings-inc-bkng-good-152533987.html"
         }
       ],
-      "analysis": "BKNG ได้รับผลกระทบจากข่าวที่ว่าหุ้นลง 2.07% แต่ด้วย P/E ที่ 21.878628 นั้นยังไม่ถึงจุดที่ต้องกลัว ตลาดยังอยู่ในช่วงกระจายหุ้น ขึ้นๆ ลง แต่ BKNG มีโอกาสที่จะกลับมาเทรนด์อีกครั้ง\n\nBeer มองว่า: BKNG เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว แต่ไม่ควรใช้เทคนิคการเทรดแบบ 'เข็มฉีดยา' เพราะอาจทำให้เสียเงินได้",
+      "analysis": "BKNG ได้รับผลกระทบจากข่าวที่ว่าหุ้นลง 2.07% แต่ด้วย P/E ที่ 21.878628 นั้นยังไม่ถึงจุดที่ต้องกลัว ตลาดยังอยู่ในช่วงกระจายหุ้น ขึ้นๆ ลง แต่ BKNG มีโอกาสที่จะกลับมาเทรนด์อีกครั้ง\n\nBeer มองว่า:  BKNG เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว แต่ไม่ควรใช้เทคนิคการเทรดแบบ 'เข็มฉีดยา' เพราะอาจทำให้เสียเงินได้",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5858,7 +5858,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/sin-stocks-under-microscope-risks-130600055.html"
         }
       ],
-      "analysis": "ข่าวเกี่ยวกับ Altria Group (MO) มีความน่าสนใจ เนื่องจากการปรับตัวของราคาหุ้นและผลตอบแทนจากการลงทุนอยู่ในระดับสูง แต่ควรตรวจสอบความเสี่ยงและความมั่นคงทางการเงินของบริษัท\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ เนื่องจากมีการปรับตัวของราคาหุ้นและผลตอบแทนจากการลงทุนอยู่ในระดับสูง",
+      "analysis": "ข่าวเกี่ยวกับ Altria Group (MO) มีความน่าสนใจ เนื่องจากการปรับตัวของราคาหุ้นและผลตอบแทนจากการลงทุนอยู่ในระดับสูง แต่ควรตรวจสอบความเสี่ยงและความมั่นคงทางการเงินของบริษัท\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ เนื่องจากมีการปรับตัวของราคาหุ้นและผลตอบแทนจากการลงทุนอยู่ในระดับสูง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5935,7 +5935,7 @@
           "url": "https://247wallst.com/personal-finance/2026/06/08/the-dividend-growth-portfolio-that-starts-at-40000-a-year-and-ends-at-150000/"
         }
       ],
-      "analysis": "LOW อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "LOW อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6012,7 +6012,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-lockheed-martin-stock-094250738.html"
         }
       ],
-      "analysis": "LMT อยู่ในกลุ่ม Industrials และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "LMT อยู่ในกลุ่ม Industrials และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6089,7 +6089,7 @@
           "url": "https://finance.yahoo.com/sectors/healthcare/articles/heres-gmed-capitalizing-musculoskeletal-market-140100536.html"
         }
       ],
-      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาของ SYK คือการแนะนำ Pangea Plating System trauma platform ในตลาดยุโรป ซึ่งจะช่วยเพิ่มผลกำไรและเติบโตของ SYK อย่างต่อเนื่อง นอกจากนี้ ยังมีข่าวเกี่ยวกับ Abbott ที่มีการเติบโตอย่างต่อเนื่องในด้านการวินิจฉัยมะเร็ง ซึ่งจะช่วยเพิ่มความน่าสนใจใน SYK\n\nBeer มองว่า: SYK เป็นหุ้น 'เข็มฉีดยา' ที่มีโอกาสเติบโตอย่างต่อเนื่อง SQ: 4 (Money Management) เนื่องจากมีการเติบโตอย่างต่อเนื่องและผลิตภัณฑ์ที่มีประสิทธิภาพสูง",
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาของ SYK คือการแนะนำ Pangea Plating System trauma platform ในตลาดยุโรป ซึ่งจะช่วยเพิ่มผลกำไรและเติบโตของ SYK อย่างต่อเนื่อง นอกจากนี้ ยังมีข่าวเกี่ยวกับ Abbott ที่มีการเติบโตอย่างต่อเนื่องในด้านการวินิจฉัยมะเร็ง ซึ่งจะช่วยเพิ่มความน่าสนใจใน SYK\n\nBeer มองว่า:  SYK เป็นหุ้น 'เข็มฉีดยา' ที่มีโอกาสเติบโตอย่างต่อเนื่อง SQ: 4 (Money Management) เนื่องจากมีการเติบโตอย่างต่อเนื่องและผลิตภัณฑ์ที่มีประสิทธิภาพสูง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6166,7 +6166,7 @@
           "url": "https://finance.yahoo.com/sectors/healthcare/articles/sanofi-wins-eu-nod-subcutaneous-163600827.html"
         }
       ],
-      "analysis": "BMY อยู่ในกลุ่ม Healthcare และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "BMY อยู่ในกลุ่ม Healthcare และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6243,7 +6243,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-investment-ideas-feature-highlights-125300324.html"
         }
       ],
-      "analysis": "SBUX มีโอกาสที่จะรักษาความสำเร็จในการเติบโตในตลาด เนื่องจากมีการเชื่อมโยงผลตอบแทนของพนักงานกับการใช้ AI ที่จะช่วยให้ SBUX มีความสามารถในการแข่งขันสูงขึ้น นอกจากนี้ยังมีการพูดถึงการขยายตัวของธุรกิจในประเทศและต่างประเทศ ซึ่งอาจทำให้ราคาหุ้น SBUX เพิ่มขึ้นในระยะยาว\n\nBeer มองว่า: SBUX เป็น 'เข็มฉีดยา' เนื่องจากมีการเติบโตอย่างรวดเร็วและมีโอกาสที่จะรักษาความสำเร็จในระยะยาว",
+      "analysis": "SBUX มีโอกาสที่จะรักษาความสำเร็จในการเติบโตในตลาด เนื่องจากมีการเชื่อมโยงผลตอบแทนของพนักงานกับการใช้ AI ที่จะช่วยให้ SBUX มีความสามารถในการแข่งขันสูงขึ้น นอกจากนี้ยังมีการพูดถึงการขยายตัวของธุรกิจในประเทศและต่างประเทศ ซึ่งอาจทำให้ราคาหุ้น SBUX เพิ่มขึ้นในระยะยาว\n\nBeer มองว่า:  SBUX เป็น 'เข็มฉีดยา' เนื่องจากมีการเติบโตอย่างรวดเร็วและมีโอกาสที่จะรักษาความสำเร็จในระยะยาว",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6320,7 +6320,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/capital-one-financial-cof-anticipating-132345961.html"
         }
       ],
-      "analysis": "COF อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "COF อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6397,7 +6397,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/investors-heavily-search-servicenow-inc-130003519.html"
         }
       ],
-      "analysis": "ServiceNow มีข่าวดีๆ มากมายเกี่ยวกับ AI และการเติบโตในครึ่งหลังของปี 2026 แต่ Jim Cramer ก็ยังแสดงความกังวลเกี่ยวกับราคาที่สูงเกินไป นอกจากนี้ Salesforce ยังได้รับการพูดถึงในข่าวที่เกี่ยวข้องกับ AI และการเติบโตของ ARR แต่ CRM ยังอยู่ในช่วงลงต่ำ\n\nBeer มองว่า: NOW เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ แต่ราคาที่สูงเกินไปอาจเป็นปัญหา แต่ถ้าเราเห็นโอกาสในการเติบโตในครึ่งหลังของปี 2026 และราคาที่ลดลง เราอาจจะสนใจหุ้นนี้",
+      "analysis": "ServiceNow มีข่าวดีๆ มากมายเกี่ยวกับ AI และการเติบโตในครึ่งหลังของปี 2026 แต่ Jim Cramer ก็ยังแสดงความกังวลเกี่ยวกับราคาที่สูงเกินไป นอกจากนี้ Salesforce ยังได้รับการพูดถึงในข่าวที่เกี่ยวข้องกับ AI และการเติบโตของ ARR แต่ CRM ยังอยู่ในช่วงลงต่ำ\n\nBeer มองว่า:  NOW เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ แต่ราคาที่สูงเกินไปอาจเป็นปัญหา แต่ถ้าเราเห็นโอกาสในการเติบโตในครึ่งหลังของปี 2026 และราคาที่ลดลง เราอาจจะสนใจหุ้นนี้",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6474,7 +6474,7 @@
           "url": "https://www.cnn.com/2026/06/07/business/intel-ai-race-ceo"
         }
       ],
-      "analysis": "CDNS อยู่ในกลุ่ม Technology และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "CDNS อยู่ในกลุ่ม Technology และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6551,7 +6551,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-southern-company-garner-investor-055734027.html"
         }
       ],
-      "analysis": "SO อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "SO อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6628,7 +6628,7 @@
           "url": "https://247wallst.com/investing/2026/06/06/four-reits-fund-45-of-this-income-etfs-distributions-right-now/"
         }
       ],
-      "analysis": "EQIX อยู่ในกลุ่ม Real Estate และวันนี้ลง 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "EQIX อยู่ในกลุ่ม Real Estate และวันนี้ลง 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6705,7 +6705,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/marriott-resortpass-expansion-steady-travel-001822652.html"
         }
       ],
-      "analysis": "MAR ติดเทรนด์ขึ้น แต่ด้วยอัตราการเปลี่ยนแปลงที่ลดลง 1.9% ทำให้เราไม่แน่ใจว่าหุ้นจะไปในทิศทางไหนในระยะสั้น นอกจากนี้ การเปลี่ยนแปลงของ AI market sell-off อาจส่งผลกระทบต่อธุรกิจโรงแรมของ MAR\n\nBeer มองว่า: MAR เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว และมีโอกาสที่จะเปลี่ยนแปลงทิศทางในระยะสั้น",
+      "analysis": "MAR ติดเทรนด์ขึ้น แต่ด้วยอัตราการเปลี่ยนแปลงที่ลดลง 1.9% ทำให้เราไม่แน่ใจว่าหุ้นจะไปในทิศทางไหนในระยะสั้น นอกจากนี้ การเปลี่ยนแปลงของ AI market sell-off อาจส่งผลกระทบต่อธุรกิจโรงแรมของ MAR\n\nBeer มองว่า:  MAR เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว และมีโอกาสที่จะเปลี่ยนแปลงทิศทางในระยะสั้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6782,7 +6782,7 @@
           "url": "https://www.barchart.com/story/news/2358035/how-is-fortinet-s-stock-performance-compared-to-other-cybersecurity-stocks"
         }
       ],
-      "analysis": "FTNT มีการเปิดตัว FortiGate 3500G และ 400G ซึ่งเป็นไฟร์วอลล์ระดับ Enterprise ที่มีการใช้ AI เพื่อเพิ่มความสามารถในการแข่งขันในตลาด นอกจากนี้ยังมีข่าวที่ว่า FTNT มีการปรับตัวขึ้น 74% ตั้งแต่เดือนเมษายน ซึ่งอาจเป็นปัจจัยที่ทำให้ราคาหุ้นปรับตัวขึ้นในระยะสั้น แต่ Analysts ยังอยู่ในสถานการณ์ที่ระมัดระวังเกี่ยวกับหุ้นนี้\n\nBeer มองว่า: FTNT เป็นหุ้นที่มีโอกาสติดเทรนด์ก่อน โดยเฉพาะอย่างยิ่งเมื่อมีการเปิดตัวผลิตภัณฑ์ใหม่ที่มีการใช้ AI ซึ่งเป็นรูปแบบ 'เข็มฉีดยา' ใน 7 รูปแบบของหุ้น",
+      "analysis": "FTNT มีการเปิดตัว FortiGate 3500G และ 400G ซึ่งเป็นไฟร์วอลล์ระดับ Enterprise ที่มีการใช้ AI เพื่อเพิ่มความสามารถในการแข่งขันในตลาด นอกจากนี้ยังมีข่าวที่ว่า FTNT มีการปรับตัวขึ้น 74% ตั้งแต่เดือนเมษายน ซึ่งอาจเป็นปัจจัยที่ทำให้ราคาหุ้นปรับตัวขึ้นในระยะสั้น แต่ Analysts ยังอยู่ในสถานการณ์ที่ระมัดระวังเกี่ยวกับหุ้นนี้\n\nBeer มองว่า:  FTNT เป็นหุ้นที่มีโอกาสติดเทรนด์ก่อน โดยเฉพาะอย่างยิ่งเมื่อมีการเปิดตัวผลิตภัณฑ์ใหม่ที่มีการใช้ AI ซึ่งเป็นรูปแบบ 'เข็มฉีดยา' ใน 7 รูปแบบของหุ้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6859,7 +6859,7 @@
           "url": "https://www.barrons.com/articles/gold-mining-stock-price-buy-b3137aa2?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "นิวมอนต์ (NEM) มีแนวโน้มที่จะร่วงลงต่อเนื่อง เนื่องจากปัญหาการผลิตทองคำลดลงและต้นทุนที่เพิ่มขึ้น แต่การประมาณการกำไรที่เพิ่มขึ้นและราคาหุ้นที่เพิ่มขึ้นยังคงดึงดูดความสนใจจากนักลงทุน\n\nBeer มองว่า: นิวมอนต์เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความมั่นคง",
+      "analysis": "นิวมอนต์ (NEM) มีแนวโน้มที่จะร่วงลงต่อเนื่อง เนื่องจากปัญหาการผลิตทองคำลดลงและต้นทุนที่เพิ่มขึ้น แต่การประมาณการกำไรที่เพิ่มขึ้นและราคาหุ้นที่เพิ่มขึ้นยังคงดึงดูดความสนใจจากนักลงทุน\n\nBeer มองว่า:  นิวมอนต์เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีความมั่นคง",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6936,7 +6936,7 @@
           "url": "https://247wallst.com/investing/2026/06/08/3-utility-stocks-thatll-pay-your-bills-for-years/"
         }
       ],
-      "analysis": "DUK อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "DUK อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7013,7 +7013,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/bgc-global-fmx-play-electronification-133700903.html"
         }
       ],
-      "analysis": "CME อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 3.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "CME อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 3.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7090,7 +7090,7 @@
           "url": "https://www.trefis.com/articles/602275/how-will-adobe-stock-react-to-its-upcoming-earnings-3/2026-06-10"
         }
       ],
-      "analysis": "Adobe เตรียมเผยผลประกอบการทางการเงินในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาหุ้น ADBE ข่าวลือเกี่ยวกับ AI อาจทำให้ตลาดมีความกังวลเกี่ยวกับฐานลูกค้าและความสามารถในการสร้างรายได้ของ Adobe\n\nBeer มองว่า: Adbobe เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีโอกาสติดเทรนด์ใหม่ แต่ควรระวังความเสี่ยงในการตกหาก P/E ไม่สูงมาก",
+      "analysis": "Adobe เตรียมเผยผลประกอบการทางการเงินในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาหุ้น ADBE ข่าวลือเกี่ยวกับ AI อาจทำให้ตลาดมีความกังวลเกี่ยวกับฐานลูกค้าและความสามารถในการสร้างรายได้ของ Adobe\n\nBeer มองว่า:  Adbobe เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีโอกาสติดเทรนด์ใหม่ แต่ควรระวังความเสี่ยงในการตกหาก P/E ไม่สูงมาก",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7167,7 +7167,7 @@
           "url": "https://www.barchart.com/story/news/2299305/is-pnc-financial-services-stock-outperforming-the-dow"
         }
       ],
-      "analysis": "PNC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "PNC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7244,7 +7244,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/beat-market-zacks-way-extreme-124500264.html"
         }
       ],
-      "analysis": "AMT มีโอกาสที่จะเพิ่มขึ้นในระยะสั้น เนื่องจากมีการเติบโตอย่างต่อเนื่องในด้าน 5G และศูนย์ข้อมูล นอกจากนี้ยังมีการสื่อสารที่ดีกับตลาดและนักลงทุน\n\nBeer มองว่า: AMT เป็น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีโอกาสที่จะเพิ่มขึ้นในระยะสั้น",
+      "analysis": "AMT มีโอกาสที่จะเพิ่มขึ้นในระยะสั้น เนื่องจากมีการเติบโตอย่างต่อเนื่องในด้าน 5G และศูนย์ข้อมูล นอกจากนี้ยังมีการสื่อสารที่ดีกับตลาดและนักลงทุน\n\nBeer มองว่า:  AMT เป็น 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีโอกาสที่จะเพิ่มขึ้นในระยะสั้น",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7321,7 +7321,7 @@
           "url": "https://www.marketbeat.com/articles/3-multi-metal-stocks-for-income-and-long-term-growth/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "หุ้น FCX มีการเปลี่ยนแปลงราคาอย่างรวดเร็วในตลาดโลก โดยมีการประกาศผลการดำเนินงานและการเปลี่ยนแปลงในธุรกิจ ซึ่งอาจส่งผลกระทบต่อการซื้อขายหุ้นในอนาคต\n\nBeer มองว่า: หุ้น FCX เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว แต่ในขณะเดียวกันก็เป็นหุ้นที่มีโอกาสติดเทรนด์ใหม่ในตลาด",
+      "analysis": "หุ้น FCX มีการเปลี่ยนแปลงราคาอย่างรวดเร็วในตลาดโลก โดยมีการประกาศผลการดำเนินงานและการเปลี่ยนแปลงในธุรกิจ ซึ่งอาจส่งผลกระทบต่อการซื้อขายหุ้นในอนาคต\n\nBeer มองว่า:  หุ้น FCX เป็น 'เข็มฉีดยา' เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็ว แต่ในขณะเดียวกันก็เป็นหุ้นที่มีโอกาสติดเทรนด์ใหม่ในตลาด",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7398,7 +7398,7 @@
           "url": "https://www.barchart.com/story/news/2312987/stocks-rebound-on-strength-in-banks-and-managed-healthcare"
         }
       ],
-      "analysis": "หุ้น U.S. Bancorp (USB) มีโอกาสเพิ่มขึ้นในอนาคต เนื่องจากการซื้อกิจการ BTIG ซึ่งจะช่วยให้หุ้น USB มีความแข็งแกร่งในการตลาดและเพิ่มรายได้จากค่าธรรมเนียม นอกจากนี้ หุ้น USB ยังมีประวัติในการจ่ายเงินปันผลที่ดี ซึ่งเป็นข้อดีสำหรับนักลงทุน\n\nBeer มองว่า: หุ้น USB เป็น 'เข็มฉีดยา' เนื่องจากมีโอกาสเพิ่มขึ้นในอนาคต แต่ต้องระวังความเสี่ยงสูงเพราะเป็นหุ้นในกลุ่มการเงิน",
+      "analysis": "หุ้น U.S. Bancorp (USB) มีโอกาสเพิ่มขึ้นในอนาคต เนื่องจากการซื้อกิจการ BTIG ซึ่งจะช่วยให้หุ้น USB มีความแข็งแกร่งในการตลาดและเพิ่มรายได้จากค่าธรรมเนียม นอกจากนี้ หุ้น USB ยังมีประวัติในการจ่ายเงินปันผลที่ดี ซึ่งเป็นข้อดีสำหรับนักลงทุน\n\nBeer มองว่า:  หุ้น USB เป็น 'เข็มฉีดยา' เนื่องจากมีโอกาสเพิ่มขึ้นในอนาคต แต่ต้องระวังความเสี่ยงสูงเพราะเป็นหุ้นในกลุ่มการเงิน",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7475,7 +7475,7 @@
           "url": "https://247wallst.com/investing/2026/06/08/can-synopsys-stock-hit-600-by-march-2027/"
         }
       ],
-      "analysis": "SNPS อยู่ในกลุ่ม Technology และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "SNPS อยู่ในกลุ่ม Technology และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7552,7 +7552,7 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/unitedhealth-stock-jumps-20-ytd-160300930.html"
         }
       ],
-      "analysis": "ELV อยู่ในกลุ่ม Healthcare และวันนี้ลง 4.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "ELV อยู่ในกลุ่ม Healthcare และวันนี้ลง 4.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7629,7 +7629,7 @@
           "url": "https://www.kiplinger.com/investing/stocks-with-the-highest-dividend-yields-in-the-sandp-500"
         }
       ],
-      "analysis": "ข่าวที่ออกมาในวันนี้มีผลกระทบต่อ UPS อย่างมาก โดยมีการลดลง 4.3% เนื่องจาก Amazon Expands Its LTL Freight Service ซึ่งจะทำให้ UPS ต้องเผชิญกับการแข่งขันอย่างหนัก นอกจากนี้ UPS ยังมีปัญหาด้านการบริหารจัดการที่ต้องปรับปรุง\n\nBeer มองว่า: UPS เป็นหุ้นที่มีโอกาสติดเทรนด์ไม่ดี เนื่องจากมีการแข่งขันอย่างหนักจาก Amazon และปัญหาด้านการบริหารจัดการ นอกจากนี้ UPS ยังมีราคาแพงกว่าในระยะสั้น SQ: 4 (ความเสี่ยงสูง)",
+      "analysis": "ข่าวที่ออกมาในวันนี้มีผลกระทบต่อ UPS อย่างมาก โดยมีการลดลง 4.3% เนื่องจาก Amazon Expands Its LTL Freight Service ซึ่งจะทำให้ UPS ต้องเผชิญกับการแข่งขันอย่างหนัก นอกจากนี้ UPS ยังมีปัญหาด้านการบริหารจัดการที่ต้องปรับปรุง\n\nBeer มองว่า:  UPS เป็นหุ้นที่มีโอกาสติดเทรนด์ไม่ดี เนื่องจากมีการแข่งขันอย่างหนักจาก Amazon และปัญหาด้านการบริหารจัดการ นอกจากนี้ UPS ยังมีราคาแพงกว่าในระยะสั้น SQ: 4 (ความเสี่ยงสูง)",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7706,7 +7706,7 @@
           "url": "https://www.barchart.com/story/news/2276651/is-csx-corporation-stock-outperforming-the-dow"
         }
       ],
-      "analysis": "CSX อยู่ในกลุ่ม Industrials และวันนี้ลง 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis": "CSX อยู่ในกลุ่ม Industrials และวันนี้ลง 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
