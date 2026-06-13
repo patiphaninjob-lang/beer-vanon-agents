@@ -1,0 +1,230 @@
+{
+  "date": "2026-06-13",
+  "generated": "2026-06-13T16:15:51.733838",
+  "test_run": true,
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)\nใช้กรอบนี้กับหุ้นไทยทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "set": {
+      "price": 1592.41,
+      "pct_change": 1.28,
+      "chart_b64": "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"
+    }
+  },
+  "summary": {
+    "total": 5,
+    "gainers": 4,
+    "losers": 1,
+    "avg_change": 1.6,
+    "top_gainer": {
+      "ticker": "AOT.BK",
+      "pct": 4.04
+    },
+    "top_loser": {
+      "ticker": "PTT.BK",
+      "pct": -1.37
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "DELTA.BK",
+      "name": "Delta Electronics (Thailand) Public Company Limited",
+      "sector": "Industrials",
+      "price": 363.0,
+      "pct_change": 1.4,
+      "volume": 18603000,
+      "market_cap": 4527995258820.0,
+      "pe_ratio": 154.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:DELTA",
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ DELTA.BK ที่มีผลกระทบต่อธุรกิจของบริษัท เช่น การเปลี่ยนแปลงนโยบายของศาลฎีกาสหรัฐฯ ที่ช่วยให้บริษัทสามารถเติบโตและสร้างผลกำไรได้มากขึ้น นอกจากนี้ การเติบโตของรายได้ 20% และผลกำไรที่เพิ่มขึ้น 49% ในช่วงปีแรกยังแสดงให้เห็นถึงความสามารถของบริษัทในการเติบโตและสร้างผลกำไร\n\nBeer มองว่า:  DELTA.BK เป็น 'เข็มฉีดยา' (รูปแบบ Longterm) เนื่องจากมีการเติบโตที่ค่อยเป็นค่อยไป แต่ผลกำไรที่เพิ่มขึ้นอย่างมาก SQ.4: Money Management",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การเปลี่ยนแปลงนโยบายของศาลฎีกาสหรัฐฯ มีผลกระทบอย่างมากต่อธุรกิจของ DELTA.BK ในการผลิตอุปกรณ์เย็นของ AI นี่เป็นข่าวที่ดีสำหรับ DELTA.BK เนื่องจากจะช่วยให้บริษัทสามารถเติบโตและสร้างผลกำไรได้มากขึ้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การเติบโตของรายได้ 20% และผลกำไรที่เพิ่มขึ้น 49% ในช่วงปีแรกแสดงให้เห็นถึงความสามารถของบริษัทในการเติบโตและสร้างผลกำไร นี่เป็นข้อมูลที่ดีสำหรับ DELTA.BK เนื่องจากจะช่วยให้บริษัทสามารถติดตามผลการดำเนินงานได้"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ไม่มีข้อความที่แสดงถึงความขัดแย้งหรือความไม่สอดคล้องกันระหว่างข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis นี่เป็นข้อดีสำหรับ DELTA.BK เนื่องจากจะช่วยให้บริษัทสามารถสร้างความมั่นใจในผลการดำเนินงานได้"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ไม่มีข้อมูลที่แสดงถึงคู่แข่งที่โตจริงหรือแพงเกิน แต่ควรตรวจสอบข้อมูลเพิ่มเติมเพื่อเปรียบเทียบ DELTA.BK กับคู่แข่งหลักใน Industrials นี่เป็นข้อดีสำหรับ DELTA.BK เนื่องจากจะช่วยให้บริษัทสามารถประเมินความสามารถในการแข่งขันได้"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ตรวจว่าผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอไหม แล้วพฤติกรรมสอดคล้องกับ thesis หรือไม่"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 2,
+      "ticker": "ADVANC.BK",
+      "name": "Advanced Info Service Public Company Limited",
+      "sector": "Communication Services",
+      "price": 366.0,
+      "pct_change": 1.95,
+      "volume": 8451500,
+      "market_cap": 1088560763376.0,
+      "pe_ratio": 20.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:ADVANC",
+      "analysis": "Microsoft ลงทุน $1bn ในประเทศไทย อาจส่งผลกระทบต่อธุรกิจของ ADVANC.BK ในอนาคต โดยเฉพาะในด้าน 5G และอินฟราโครงสร้างทางเทคนิค แต่ผลกระทบดังกล่าวยังไม่ชัดเจน\n\nBeer มองว่า:  ADVANC.BK เป็น 'เข็มฉีดยา' (รหัส SQ: 3) ในตลาดCommunication Services เนื่องจากมีความเสี่ยงสูงและผลตอบแทนที่ไม่แน่นอน แต่ในระยะสั้น อาจมีโอกาสที่จะปรับตัวได้ดี",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ข่าว Microsoft ลงทุน $1bn ในประเทศไทย อาจส่งผลกระทบต่อธุรกิจของ ADVANC.BK ในอนาคต โดยเฉพาะในด้าน 5G และอินฟราโครงสร้างทางเทคนิค"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ข่าว Advanced Info Service PCL (AVIFY) รายงานผลประกอบการ Q4 2025 ที่แข็งแกร่ง แต่ข่าวนี้ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าว VGI ร่วมทุนกับ iCLK เพื่อเป็นตัวแทนโฆษณาออนไลน์ในประเทศจีน อาจส่งผลกระทบต่อการสื่อสารของ ADVANC.BK ในอนาคต แต่ข่าวนี้ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ข่าว GULF โรงไฟฟ้า TTCIZ-02 ประเทศเวียดนาม กำลังการผลิต 50 MW อาจเป็นคู่แข่งในตลาดพลังงานของ ADVANC.BK แต่ข่าวนี้ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับผู้บริหารของ ADVANC.BK ในข่าวนี้"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 3,
+      "ticker": "PTT.BK",
+      "name": "PTT Public Company Limited",
+      "sector": "Energy",
+      "price": 36.0,
+      "pct_change": -1.37,
+      "volume": 58422400,
+      "market_cap": 1019676090600.0,
+      "pe_ratio": 11.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:PTT",
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาของ PTT.BK คือการสร้างพันธมิตรกับ Glenfarne สำหรับโครงการ LNG ในอัลาสก้า ซึ่งจะช่วยเพิ่มความมั่นคงในการจำหน่าย LNG และอาจส่งผลดีต่อราคาหุ้นในระยะยาว นอกจากนี้การลงทุนของ FPT ใน PBAI จะช่วยเพิ่มความแข็งแกร่งของธุรกิจให้บริการระบบปฏิบัติการอัตโนมัติในประเทศสิงคโปร์\n\nBeer มองว่า:  PTT.BK เป็น 'เข็มฉีดยา' ในรูปแบบของหุ้นพลังงาน เนื่องจากมีการเติบโตอย่างต่อเนื่องและความมั่นคงในการจำหน่าย LNG ในระยะยาว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "PTT.BK มีความแข็งแกร่งในธุรกิจ LNG และการลงทุนในโครงการใหม่จะช่วยเพิ่มความมั่นคงในการจำหน่าย LNG"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น PTT.BK ลง 1.4% แต่ด้วยการลงทุนในโครงการใหม่และความมั่นคงในการจำหน่าย LNG อาจส่งผลดีต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "PTT.BK มีการสื่อสารอย่างดีในการลงทุนในโครงการใหม่และความมั่นคงในการจำหน่าย LNG"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "PTT.BK มีคู่แข่งอย่าง GULF และ FPT แต่ด้วยความแข็งแกร่งในธุรกิจ LNG และการลงทุนในโครงการใหม่จะช่วยเพิ่มความมั่นคงในการจำหน่าย LNG"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "PTT.BK มีผู้บริหารที่มีความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเรา คือการลงทุนในโครงการใหม่และความมั่นคงในการจำหน่าย LNG เพื่อเพิ่มความมั่นคงในการจำหน่าย LNG"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 4,
+      "ticker": "GULF.BK",
+      "name": "Gulf Development Public Company Limited",
+      "sector": "Utilities",
+      "price": 64.0,
+      "pct_change": 1.99,
+      "volume": 53734300,
+      "market_cap": 956149611712.0,
+      "pe_ratio": 36.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:GULF",
+      "analysis": "GULF.BK มีแนวโน้มที่จะปรับตัวขึ้นในระยะสั้น เนื่องจากข่าวที่ออกมาเกี่ยวกับการลงทุนในโครงการพลังงานที่มีศักยภาพสูง และการลงนามในข้อตกลงการซื้อขายก๊าซธรรมชาติไกล่เกลี่ย (LNG) กับ Eni ซึ่งเป็นหนึ่งในผู้ผลิตก๊าซธรรมชาติใหญ่ที่สุดในโลก นอกจากนี้ การลงทุนในโครงการพลังงานที่มีศักยภาพสูงจะช่วยให้ GULF.BK มีความมั่นคงทางการเงินและความสามารถในการเติบโตในระยะยาว\n\nBeer มองว่า:  GULF.BK เป็นหุ้นรูปแบบ 'เข็มฉีดยา' เนื่องจากมีแนวโน้มที่จะปรับตัวขึ้นอย่างรวดเร็วและแรงในระยะสั้น (SQ: 4) และมีความเสี่ยงในระยะยาว (SQ: 3)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "GULF.BK มีธุรกิจหลักในด้านการผลิตและจำหน่ายไฟฟ้าและก๊าซธรรมชาติ และมีแผนการลงทุนในโครงการพลังงานที่มีศักยภาพสูง ซึ่งจะช่วยให้ธุรกิจของบริษัทมีความมั่นคงทางการเงินและความสามารถในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "GULF.BK มีมูลค่าตลาด (Mkt Cap Rank) #4 และมีการซื้อขาย (Vol) 53,734,300 ซึ่งแสดงถึงความน่าสนใจของหุ้นในตลาด"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "GULF.BK มีการสื่อสารที่ดีในด้านการลงทุนและธุรกิจ โดยมีการออกข่าวและข้อมูลที่ชัดเจนและเป็นประโยชน์ต่อผู้ลงทุน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "GULF.BK มีคู่แข่งในด้านการผลิตและจำหน่ายไฟฟ้าและก๊าซธรรมชาติ แต่บริษัทมีแผนการลงทุนในโครงการพลังงานที่มีศักยภาพสูง ซึ่งจะช่วยให้ธุรกิจของบริษัทมีความมั่นคงทางการเงินและความสามารถในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "GULF.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำธุรกิจของบริษัทไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "GULF.BK มีแผนการลงทุนในโครงการพลังงานที่มีศักยภาพสูง ซึ่งจะช่วยให้ธุรกิจของบริษัทมีความมั่นคงทางการเงินและความสามารถในการเติบโตในระยะยาว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 5,
+      "ticker": "AOT.BK",
+      "name": "Airports of Thailand Public Company Limited",
+      "sector": "Industrials",
+      "price": 58.0,
+      "pct_change": 4.04,
+      "volume": 39920800,
+      "market_cap": 828570600000.0,
+      "pe_ratio": 43.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:AOT",
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาหุ้น AOT.BK คือการเติบโตของอุตสาหกรรมที่เกี่ยวข้องกับอวกาศและยานพาหนะ ซึ่งอาจส่งผลกระทบต่อการเติบโตของธุรกิจที่เกี่ยวข้องกับสนามบิน เช่น AOT.BK\n\nBeer มองว่า:  หุ้น AOT.BK มีลักษณะ 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีการเติบโตอย่างรวดเร็วและราคาหุ้นเพิ่มขึ้นอย่างมากในช่วงสั้นๆ ซึ่งอาจทำให้หุ้นมีความเสี่ยงสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ AOT.BK คือการให้บริการสนามบิน ซึ่งอาจได้รับผลกระทบจากความเจริญรุ่งเรืองของอุตสาหกรรมที่เกี่ยวข้องกับอวกาศและยานพาหนะ"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AOT.BK เพิ่มขึ้น 4.0% ในวันนี้ และมีการซื้อขายจำนวนมาก (39,920,800) ซึ่งอาจทำให้ราคาหุ้นมีความเสี่ยงสูง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "AOT.BK ไม่มีข้อมูลเกี่ยวกับการสื่อสารที่มีนัยสำคัญต่อราคาหุ้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "AOT.BK มีคู่แข่งหลายบริษัท เช่น DITTO และ SET ซึ่งอาจส่งผลกระทบต่อการเติบโตของธุรกิจ"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "AOT.BK ไม่มีข้อมูลเกี่ยวกับผู้บริหารที่มีนัยสำคัญต่อราคาหุ้น"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวและข้อมูลเกี่ยวกับอุตสาหกรรมที่เกี่ยวข้องกับอวกาศและยานพาหนะ และติดตามการซื้อขายของหุ้น AOT.BK เพื่อเตรียมการสำหรับการลงทุนในอนาคต"
+        }
+      ],
+      "chart_b64": "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"
+    }
+  ]
+}
