@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0d1117">
+  <meta name="theme-color" content="#0f172a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Thai Top 100 History">
@@ -11,10 +11,10 @@
   <title>📈 History — Thai Top 100</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; padding-bottom: 40px; }
+    body { background: #0f172a; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; padding-bottom: 40px; }
     
     .header {
-      background: #161b22; border-bottom: 1px solid #21262d;
+      background: #1e293b; border-bottom: 1px solid #334155;
       padding: 12px 18px; display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 100;
     }
@@ -32,11 +32,11 @@
 
     .history-list { display: flex; flex-direction: column; gap: 16px; }
     .history-item {
-      background: #161b22; border: 1px solid #30363d; border-radius: 12px;
+      background: #1e293b; border: 1px solid #475569; border-radius: 12px;
       overflow: hidden;
     }
     .item-head {
-      background: #1c2128; padding: 12px 16px; border-bottom: 1px solid #30363d;
+      background: #1c2128; padding: 12px 16px; border-bottom: 1px solid #475569;
       display: flex; justify-content: space-between; align-items: center;
     }
     .item-date { font-weight: 600; color: #fff; }
@@ -44,13 +44,13 @@
     .item-pct { font-weight: bold; }
     
     .item-body { padding: 16px; }
-    .item-chart { width: 100%; border-radius: 8px; border: 1px solid #30363d; margin-bottom: 16px; display: block; }
+    .item-chart { width: 100%; border-radius: 8px; border: 1px solid #475569; margin-bottom: 16px; display: block; }
     
     .item-analysis {
       font-size: 0.95em; line-height: 1.6; color: #d1d5db; white-space: pre-wrap;
-      background: #0d1117; padding: 14px; border-radius: 8px; border-left: 3px solid #f0b90b;
+      background: #0f172a; padding: 14px; border-radius: 8px; border-left: 3px solid #10b981;
     }
-    .analysis-label { color: #f0b90b; font-weight: bold; font-size: 0.8em; margin-bottom: 6px; text-transform: uppercase; }
+    .analysis-label { color: #10b981; font-weight: bold; font-size: 0.8em; margin-bottom: 6px; text-transform: uppercase; }
 
     .up { color: #16c784; }
     .down { color: #ea3943; }
@@ -59,7 +59,7 @@
     
     /* ── Market Index specific styles ── */
     .market-indices { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
-    .mkt-card { background: #0d1117; padding: 10px; border-radius: 8px; border: 1px solid #30363d; }
+    .mkt-card { background: #0f172a; padding: 10px; border-radius: 8px; border: 1px solid #475569; }
     .mkt-name { font-size: 0.8em; color: #8b949e; margin-bottom: 4px; }
     .mkt-val { font-weight: bold; color: #fff; }
   </style>
@@ -169,7 +169,7 @@ function renderStockHistory(meta, list) {
           ${item.chart_b64 ? `<img class="item-chart" src="data:image/jpeg;base64,${item.chart_b64}" loading="lazy">` : ''}
           ${item.analysis ? `
             <div class="item-analysis">
-              <div class="analysis-label">🍺 Beer วิเคราะห์</div>
+              <div class="analysis-label">🇹🇭 AI วิเคราะห์</div>
               ${item.analysis.trim()}
             </div>` : ''}
         </div>

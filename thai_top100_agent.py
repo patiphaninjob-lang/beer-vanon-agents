@@ -575,24 +575,24 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
     )
 
     hw_items = "".join(
-        f'<div style="border-left:2px solid #30363d;padding:5px 10px;margin-bottom:5px;background:#0d1117">'
-        f'<div style="color:#f0b90b;font-size:0.75em;font-weight:bold">{item["topic"]}</div>'
+        f'<div style="border-left:2px solid #475569;padding:5px 10px;margin-bottom:5px;background:#0f172a">'
+        f'<div style="color:#10b981;font-size:0.75em;font-weight:bold">{item["topic"]}</div>'
         f'<div style="color:#d1d5db;font-size:0.82em">{item["insight"]}</div></div>'
         for item in analysis_data.get("homework_analysis", [])
     )
 
     return f"""
-<div style="background:#1a1f2e;border-radius:12px;padding:15px;margin-bottom:12px;border-left:4px solid {color}">
+<div style="background:#1e293b;border-radius:12px;padding:15px;margin-bottom:12px;border-left:4px solid {color}">
   <div style="color:#ffffff;font-size:1.1em;font-weight:bold">#{stock['rank']} {stock['ticker']} <span style="font-size:0.75em;font-weight:normal;color:#8a8f98">{stock['name']}</span></div>
   <div style="color:{color};font-weight:bold">${stock['price']:.2f} ({arrow} {abs(stock['pct_change']):.2f}%)</div>
   <div style="color:#a0a6b3;font-size:0.78em;margin:5px 0">{stock['sector']} | Mkt Cap: {cap_str}</div>
   {chart_block}
-  <div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px">
-    <div style="color:#f0b90b;font-size:0.8em;font-weight:bold;margin-bottom:5px">🧭 {HOMEWORK_FRAMEWORK_TITLE}</div>
+  <div style="margin-top:10px;padding:10px;background:#0f172a;border-radius:8px">
+    <div style="color:#10b981;font-size:0.8em;font-weight:bold;margin-bottom:5px">🧭 {HOMEWORK_FRAMEWORK_TITLE}</div>
     {hw_items}
   </div>
-  <div style="margin-top:10px;padding:10px;background:#111827;border-radius:8px;color:#d1d5db;font-size:0.9em">
-    <div style="color:#f0b90b;font-weight:bold">🍺 วิเคราะห์</div>
+  <div style="margin-top:10px;padding:10px;background:#0f172a;border-radius:8px;color:#d1d5db;font-size:0.9em">
+    <div style="color:#10b981;font-weight:bold">🍺 วิเคราะห์</div>
     {analysis_data.get('interpretation','')}<br><br>
     <strong>Beer มองว่า:</strong> {analysis_data.get('beer_view','')}
   </div>
@@ -689,11 +689,11 @@ def build_completion_email(date_str: str, archive_url: str, count: int, test_run
     if test_run: status_label = "🧪 TEST RUN"
     
     return f"""
-<div style="font-family:sans-serif;background:#0d1117;color:#c9d1d9;padding:20px;max-width:600px;border-radius:10px">
-  <div style="font-size:1.4em;font-weight:bold;color:#ffffff;margin-bottom:10px">🍺 Beer Thai Top 100</div>
+<div style="font-family:sans-serif;background:#0f172a;color:#c9d1d9;padding:20px;max-width:600px;border-radius:10px">
+  <div style="font-size:1.4em;font-weight:bold;color:#ffffff;margin-bottom:10px">🇹🇭 Thai Top 100</div>
   <div style="font-size:1.1em;margin-bottom:20px">{date_str}</div>
   
-  <div style="background:#161b22;padding:15px;border-radius:8px;border:1px solid #30363d;margin-bottom:20px">
+  <div style="background:#1e293b;padding:15px;border-radius:8px;border:1px solid #475569;margin-bottom:20px">
     <div style="font-size:0.9em;color:#8b949e">สถานะการทำงาน</div>
     <div style="font-size:1.2em;font-weight:bold;color:#58a6ff">{status_label}</div>
     <div style="margin-top:10px;font-size:0.9em">วิเคราะห์หุ้นไทยไปทั้งหมด <strong>{count}</strong> ตัว</div>
@@ -707,7 +707,7 @@ def build_completion_email(date_str: str, archive_url: str, count: int, test_run
 
   {homework_email_guide_html()}
 
-  <div style="font-size:0.8em;color:#8b949e;border-top:1px solid #30363d;padding-top:15px;margin-top:20px">
+  <div style="font-size:0.8em;color:#8b949e;border-top:1px solid #475569;padding-top:15px;margin-top:20px">
     ระบบอัตโนมัติ Beer Vanon Stock Trading Knowledge System<br>
     © 2026 Beer Vanon Agent
   </div>
@@ -723,17 +723,17 @@ def build_html_report(stocks_data: list, date_str: str, archive_url: str) -> str
     <meta charset="UTF-8">
     <title>Beer Thai Top 100 Report - {date_str}</title>
     <style>
-        body {{ background: #0d1117; color: #c9d1d9; font-family: sans-serif; padding: 20px; }}
+        body {{ background: #0f172a; color: #c9d1d9; font-family: sans-serif; padding: 20px; }}
         .container {{ max-width: 800px; margin: 0 auto; }}
         a {{ color: #58a6ff; }}
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🍺 Beer Thai Top 100 Report</h1>
+        <h1>🇹🇭 Thai Top 100 Report</h1>
         <h3>{date_str}</h3>
         <p><a href="{archive_url}">🌐 ดูบน Web Archive</a></p>
-        <hr style="border:0;border-top:1px solid #30363d;margin:20px 0">
+        <hr style="border:0;border-top:1px solid #475569;margin:20px 0">
         {cards}
     </div>
 </body>
@@ -764,7 +764,7 @@ def main():
         return
 
     date_str = today.strftime("%A, %d %B %Y")
-    safe_print(f"\n🍺 Beer Thai Top 100 Agent — {date_str}\n{'='*55}")
+    safe_print(f"\n🇹🇭 Thai Top 100 Agent — {date_str}\n{'='*55}")
     start_all = time.time()
     if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY:
         safe_print(
@@ -877,7 +877,7 @@ def main():
         # Build Report Email
         safe_print(f"\n📄 สร้างรายงาน ({len(stocks_data)} หุ้น)...")
         email_html = build_completion_email(date_str, archive_url, len(stocks_data), test_run=args.test)
-        subject = f"🍺 Beer Thai Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')}"
+        subject = f"🇹🇭 Thai Top 100 เสร็จแล้ว — {today.strftime('%d/%m/%Y')}"
         if args.test: subject = f"[TEST] {subject}"
 
         if args.out_html:
