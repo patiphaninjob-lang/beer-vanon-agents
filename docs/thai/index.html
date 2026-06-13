@@ -10,7 +10,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="shortcut icon" href="icon.svg" type="image/svg+xml">
-  <title>🍺 Beer Vanon — Top 100 Archive</title>
+  <title>🍺 Beer Vanon — Thai Top 100 Archive</title>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <style>
@@ -546,7 +546,7 @@
 
 <script>
 const REPO       = 'patiphaninjob-lang/beer-vanon-agents';
-const NOTES_FILE = 'notes/notes.json';
+const NOTES_FILE = '../notes/notes.json';
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
   authDomain: "beam-7645f.firebaseapp.com",
@@ -1295,7 +1295,7 @@ function scrollToMarketNotes() {
 
 function openMarketHistory() {
   const date = currentData?.date || '';
-  const url = `thai-history.html?ticker=${encodeURIComponent('_MARKET_THAI')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  const url = `history.html?ticker=${encodeURIComponent('_MARKET_THAI')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
   location.href = url;
 }
 
@@ -1349,7 +1349,7 @@ async function init() {
   }
   await loadNotes();
   try {
-    const r = await fetch('thai-data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    const r = await fetch('../thai-data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
     const dates = await r.json();
     availableDates = dates;
@@ -1450,7 +1450,7 @@ function pickDate(date) {
 async function loadDate(date) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
-    const r = await fetch(`thai-data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+    const r = await fetch(`../thai-data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
     currentData = await r.json();
 
@@ -1596,7 +1596,7 @@ function cardHTML(s) {
     </div>
 
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
-    <a class="history-btn" href="thai-history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
+    <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}
@@ -1704,7 +1704,7 @@ document.addEventListener('click', async e => {
         if (ticker !== '_MARKET_THAI') {
           try {
             const fetchDate = note.archive_date || note.date;
-            const r = await fetch(`thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            const r = await fetch(`../thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
             const loader = document.getElementById(loadingId);
             if (r.ok && loader) {
               const data = await r.json();
@@ -1763,7 +1763,7 @@ init();
 <script>
 async function loadUsage() {
   try {
-    const r = await fetch('data/usage_stats.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    const r = await fetch('../data/usage_stats.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) return;
     const stats = await r.json();
     document.getElementById('usageBar').style.display = 'flex';

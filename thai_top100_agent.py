@@ -505,12 +505,6 @@ DNA ของคุณ (ใช้คำศัพท์และหลักก�
             max_tokens=1000,
             response_format={"type": "json_object"},
         )
-            model=GROQ_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.3,
-            max_tokens=600, # Increased for deeper news
-            response_format={"type": "json_object"},
-        )
         
         # Track usage
         try:
@@ -533,6 +527,11 @@ DNA ของคุณ (ใช้คำศัพท์และหลักก�
              
         return data
     except Exception as e:
+        # Let rate limit errors bubble up so process_single_stock can retry
+        err_msg = str(e).lower()
+        if "429" in err_msg or "rate_limit" in err_msg:
+            raise e
+
         safe_print(f"   ⚠️ Groq Error [{stock['ticker']}]: {e}")
         return fallback
 
@@ -654,7 +653,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         dates.sort(reverse=True)
     idx_path.write_text(json.dumps(dates, ensure_ascii=False), encoding="utf-8")
 
-    return f"{GITHUB_PAGES_URL}/thai.html?date={date_key}"
+    return f"{GITHUB_PAGES_URL}/thai/index.html?date={date_key}"
 
 
 def save_history_data(stocks_data: list) -> None:

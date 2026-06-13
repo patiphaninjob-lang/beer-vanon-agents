@@ -43,7 +43,7 @@ EMBED_MODEL     = "paraphrase-multilingual-MiniLM-L12-v2"
 GROQ_MODEL      = "llama-3.1-8b-instant"   # higher daily token limit สำหรับ 100 หุ้น
 REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
-CALL_DELAY = 10.0  # วินาที เพื่อให้รอดจาก 6000 TPM (Token Per Minute) - ตาม Fix Log 2026-06-06
+CALL_DELAY = 30.0  # เพิ่มเป็น 30 วินาที เพื่อให้รอดจาก 6000 TPM (Token Per Minute)
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
@@ -586,6 +586,11 @@ DNA ของคุณ (ใช้คำศัพท์และหลักก�
         data["analysis_status"] = "groq"
         return data
     except Exception as e:
+        # Let rate limit errors bubble up so process_single_stock can retry
+        err_msg = str(e).lower()
+        if "429" in err_msg or "rate_limit" in err_msg:
+            raise e
+
         safe_print(f"   ⚠️ Groq Error [{stock['ticker']}]: {e}")
         fallback["analysis_error"] = str(e)
         return fallback
