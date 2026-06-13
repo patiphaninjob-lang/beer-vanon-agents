@@ -1,9 +1,10 @@
 {
+  "id": "/beer-vanon-agents/thai/",
   "name": "Thai Top 100 Archive",
   "short_name": "Thai Top 100",
   "description": "Synced Thai Top 100 homework archive with notes and TradingView markers.",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/beer-vanon-agents/thai/index.html",
+  "scope": "/beer-vanon-agents/thai/",
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#0d1117",
