@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Thai Top 100">
-  <rect width="512" height="512" rx="96" fill="#0d1117"/>
-  <path d="M144 160h176v220a56 56 0 0 1-56 56h-64a56 56 0 0 1-56-56V160Z" fill="#16c784"/>
-  <path d="M320 204h36a68 68 0 0 1 0 136h-36v-42h34a26 26 0 0 0 0-52h-34v-42Z" fill="#16c784"/>
-  <path d="M156 160c8-48 38-76 78-76 23 0 43 9 58 25 14-11 31-17 51-17 45 0 75 29 75 68 0 24-10 42-28 55H156v-55Z" fill="#e6edf3"/>
-  <path d="M184 220h32v142h-32V220Zm64 0h32v142h-32V220Z" fill="#2ea44f"/>
-  <path d="M120 436h272" stroke="#e6edf3" stroke-width="24" stroke-linecap="round"/>
+  <rect width="512" height="512" rx="112" fill="#0f172a"/>
+  <polygon points="256,72 416,164 416,348 256,440 96,348 96,164" fill="#1e293b" stroke="#3b82f6" stroke-width="20" stroke-linejoin="round"/>
+  <text x="256" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="160" font-weight="800" fill="#eff6ff" text-anchor="middle">TH</text>
+  <circle cx="256" cy="140" r="24" fill="#10b981"/>
 </svg>
