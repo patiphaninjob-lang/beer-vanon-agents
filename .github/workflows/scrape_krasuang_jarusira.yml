@@ -11,6 +11,9 @@ on:
   schedule:
     - cron: "0 18 * * *"   # ทุกวัน 01:00 น. เวลาไทย (UTC+7)
 
+permissions:
+  contents: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
