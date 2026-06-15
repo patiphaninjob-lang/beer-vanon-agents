@@ -1,0 +1,824 @@
+{
+  "date": "2026-06-15",
+  "generated": "2026-06-15T22:49:33.749980",
+  "test_run": true,
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)\nใช้กรอบนี้กับหุ้นไทยทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {},
+  "summary": {
+    "total": 20,
+    "gainers": 8,
+    "losers": 8,
+    "avg_change": -0.26,
+    "top_gainer": {
+      "ticker": "BH.BK",
+      "pct": 3.93
+    },
+    "top_loser": {
+      "ticker": "PTTGC.BK",
+      "pct": -5.88
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "DELTA.BK",
+      "name": "Delta Electronics (Thailand) Public Company Limited",
+      "sector": "Industrials",
+      "price": 361.0,
+      "pct_change": -0.55,
+      "volume": 16517906,
+      "market_cap": 4503047626540.0,
+      "pe_ratio": 154.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:DELTA",
+      "analysis": "ข่าวที่ดีสำหรับ DELTA.BK เนื่องจากศาลฎีกาสหรัฐฯ มีผลกระทบอย่างมากต่อธุรกิจของบริษัท ทำให้รายได้และกำไรเพิ่มขึ้นอย่างมาก นัยสำคัญคือบริษัทมีความสามารถในการเติบโตและสร้างผลกำไรอย่างมั่นคง\n\nBeer มองว่า:     DELTA.BK เป็น 'เข็มฉีดยา' (Stock Quadrant: SQ 4) เนื่องจากมีการเติบโตอย่างรวดเร็วและผลกำไรที่เพิ่มขึ้นอย่างมาก",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ DELTA.BK มีผลกระทบอย่างมากจากศาลฎีกาสหรัฐฯ ทำให้รายได้และกำไรเพิ่มขึ้นอย่างมาก"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การเติบโตของรายได้ 20% และผลกำไรที่เพิ่มขึ้น 49% ในช่วงปีแรกแสดงให้เห็นถึงความสามารถของบริษัทในการเติบโตและสร้างผลกำไร"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ไม่มีข้อความที่แสดงถึงความขัดแย้งหรือความไม่สอดคล้องกันระหว่างข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ไม่มีข้อมูลที่แสดงถึงคู่แข่งที่โตจริงหรือแพงเกิน แต่ควรตรวจสอบข้อมูลเพิ่มเติมเพื่อเปรียบเทียบ DELTA.BK กับคู่แข่งหลักใน Industrials"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอและพฤติกรรมสอดคล้องกับ thesis"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เนื่องจาก thesis ชัดเจนและข่าวที่ดีสำหรับ DELTA.BK เราจึงควรพิจารณา 'ถือ' หุ้น DELTA.BK"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/xAA3EAACAgIBAwEFBwMCBwEAAAAAAQIDBBEhBRIxEyJBUWFxBhSBkaGxwRUyczVCIzQ2UrLR4fD/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAAoEQADAAICAgEEAAcAAAAAAAAAAQIDERIxBCFBBRNRYRQiQoGRocH/2gAMAwEAAhEDEQA/APnwALlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbroRjVQ4rTnW2/m+6S/hEhvRpBlCErJNQW2k3+CW2YkE6AMpwlCWpLTaT/Bra/RnsK3ONklrUI9z/NL+QQ/XZgAWvRenU56ud0prs1rtaXnf/olLZTJaieTKoFrb0q6GNlTrq7oQt9mTa32x7k/4NXTPu+Pl02ZsW4TXdBp67X3a2/yZV13r4N5xtud+uX5I9GHkZFc501TnGC5ai3vlcL58kc6rA6n0qmicaW6Ip9zjNPb8crycs+W2VinTe0a58MY5lzW2+zwAFzmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsoq9bIrqT13yUd63rbBKW3pGCW2kdLm9JwaMRW3SvcKY9vstbacvp8Wc14JF+dkX0wqndY4qOpJzb7uW9v9PyJ+DG5t3Ll9Mt8PN6f0vKyKoev28JuST9qO9/wVlt2NPJsyk5ubsc41yrTi+d6fJoy5xsy7rIPcZWSafybNJnMJezsy5qpKF6SfrRZZfUq75RX3PGcUovag4vfbytp+E/2I0MudatVddUY2rTTh3a+m+fcRgXlcVpGOR/crlRZ3dJtq6VDLcq/wDuem99r1pfuTvst/bk/WP8mrJ6vj3dGWHCFnq9kY8pa2tfP5ECvJyem33VY9uva7W+1c6b+JXE67on6hjx1KjE+0i9t6jiV4mTjzu1bu2Pb2vy29fuavtFfTZ0+tV21ybsTSjJPjT5OdsslbZKyb3Kbbb+LMW20k22ktL5EzKnevkpm5Zvt8v6Fo8ABJIAAAAAAAAAAAAAAAAAAAMoQlY2oLbSb/BLbAMQAAAAAAAAAZShKMYuS0prcfmttfumYgkAEvBwL85z9GO1Bcva86el+Og2ktsmZq3xlbZEN1uLkUxUrqLK4t6TlFpF1DoddfTZW5CnHIjFyaUlpa3r+CV9pv8ATYf5V+zKVXFpfk08eJyxkfTg5U2U1SuvhVBpSnJRW/HJhJOMnGSaaemn7iR07/Usb/LH9zQwp6ltFlX02rp+XR98nOcrJx9L0vG01ve/dtoj/wBJtya3fg1zdLa9NWOKbXO35+K/UsftJY6p4dkdd0JOS38tEnouTj19IpU764uO09yS1yymanC/lL/S8S8h8sr+P+nJnhstrlBQk/Ficl+bX8Fx0TpePl4srrnPu7pQ0mtePPjzyXS2Y5Ms455MiY/Rc2705uvtqnp93cnpP362TpVx+z+RC5bvVsHHT9nWtckXJ6nm487MOq5quqTri+1d2lwufwK+/JvyGnfbOztWl3PwUSbTVm9UpyRkwN6+d67JOXmUZeVbfbRYpT12qNiWtLXPHJBALJaWkVpuqdPtgAAgAAAn9EnCvqlU7JRjFd3MnpeGT/tNbVZ6Ea7ISlFy7lFp68eShBO/WjGsKeVZN9AAEGwAAAAAAAAAAAAAAAAAAAAAOh+y39uT9Y/yUNdc7ZqFcJTk/CittkurIzelWTgk6pSXKlHz5SZZemY55+5DhdnTZ2Ljfcsif3erv9OT7uxb3p87OMjGUpKMU23wkl5OzryKcvpsYSya++2pQk+5bUpL4fHzwVk8X+hOOXXZ6sZNVyjKPOny2ufkYYE3vZ6H1HJGP7cz3opacTJvhKdNFk4x8uMd/wD7yaC1h1rK3kT9SNbmk4qMdru3Fe/5JmrJxsGGJ30Zvq29z47GnLxx8tcmi3t7Oa6iZnvb7K8t+ndKc6K862UPSjJTcXz7Kb7trXyKqyEqrJQmtSi2mvmdRg/9Mv8AxWfyWSTMM+SsWmvya83+lZkMemFsKnOScHCrlrbWlxxzs19PfScfHsjO2u/tfe5ype0uF8Pj+5Rzt3Gjscoyqjrfz7m+PzNcZyipKL0prT+a2n/CK41wWjbzN+RfJvXXRuWVZGMYqNWova3VFv8AF65LjoXUa4yvWTKEJNJx7a0tpJt+Ec+ZQnKEtxem01+DWn+jFzynRpgtYciyJdFp1Tqbtuvjj32Oucodum0tKLTWvq0YZXVLupVxovdFME+7u1Lz+vxKwDivX6Dy1umvXLsv6Oj1Z88q9ZMWpWSUXGLaXKe/dv4EOOFdgZtd1sZ+hVfpz7X4TXP0ezRidTy8OqVVE0oye+Yp6fHP6FvndUxsjorq9buvlCO12tc7W/dozbub/R0zj8fJg49Ul/kjfaHMx8pULHtU+3bek+N60U6nJQcE/ZbUmvmt6/dmINn7PPxQsc8UWt/WXlKuGVjVzqi+6UYtruemvPu8nt3WJ1ZFn3BKuqUm2n7XdJ/7ufHu4KkEfOyymVj+3pa76M7LJW2Ssm9ym22/izAAEgAAAAAAAAAAAAAAAAAAAAAGc65QjXKXice5fm1/A9Oe5LsluH9y1493IC99GBO6d023qDn6c4QjBrucvn8PyIJffZm2qv142WQjKTj2qT1vz4JXZlnuoxup7KnLxLMS+dVmm4aTlHxytojndqrFyIOz06bYz5ctKW9ceTlupdJswceF0pwab7ZJP38+OPGkjJZU6cnd/CZFhnL3tbf6K0AGhzA9XL0eGUYye5Ri2o8tpeADo+n9Fuw8ym+VkGop96Tfl7XHH0If2n/5+r/Ev3Zhkdfy76HWowrbXM4bT8+7ngrb77ciz1L7JTl8WyIdcdUT5OLG/IWTF1r/AGZY17ovrs5ahNTcd63on9T6ws/GVKo9PUlLfdv3P5fMqgW2Z1jmqVPtAk9PyvueZDI7O/t37O9eVojAhra0zWactUu0dFlws63fOqpQqWLKUXKUt92/Hu+RUTyMjGruwnbLUZ6fbN642mvo9/oYYb1dL/FZ/wCDI4lKVpFct1myure+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATqum5FmBLLjXuKe17S5it7f6I1YWP94tlH2dKEn7U1HntevPzPHkZVNcsZXyVfhxjPa/T6kmdNt6l+y4xOo19UsdHUo0Rqiu6PtOPtePO/my4qswqHbGu6qLcnOxeouG/LfPBw5lGcoxkovSmtS+a2n+6Rjkx83vZ3+J5M+NHGYRIy4/eOqXRp1N2XNR0+Ht8GeTh5HTL6bLIrypRbaa2tNrh+5m99MvxcGvqEbIKUdT+iete7yRMvOyc3s+8Wd3ZvXspa39DTVJr8HPOTDlin87/sR02vDZNeS8x0U5WVZCuMX3yluS3ttPX0aRBAa2JtyWt/R7LL7P6f8A8WqMnF/7e17/ALeXzrjktn0rEj0xRur7JQrcpS232y0tvzz4I/ROpY1WNYsq9RtnZKb2nzwv/pSZ13rZl0oTbrlZKUfhy/gVx1W2qRfzfHi4m8dabftFrXV0uvqFbyMiNsXVFJSg0k0o6b+qN8es4mLGynEpUqao7g+9ru21tcrfvf5HONuT3JtvWuTwulquRhUzeFYrW9Pe/k9fL2eAAkAAAAAA9TcXuLaetcHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB6m4vcW09a4PAAAAACXZ1HLsxfu07d1aS7e1eF45IgBJEyp6QABBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//2Q=="
+    },
+    {
+      "rank": 2,
+      "ticker": "ADVANC.BK",
+      "name": "Advanced Info Service Public Company Limited",
+      "sector": "Communication Services",
+      "price": 360.0,
+      "pct_change": -1.64,
+      "volume": 12183716,
+      "market_cap": 1070715504960.0,
+      "pe_ratio": 20.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:ADVANC",
+      "analysis": "ข่าว Microsoft ลงทุน $1bn ในประเทศไทย อาจส่งผลกระทบต่อธุรกิจของ ADVANC.BK ในอนาคต โดยเฉพาะในด้าน 5G และอินฟราโครงสร้างทางเทคนิค ทำให้ราคาหุ้น ADVANC.BK อาจมีการปรับตัวสูงขึ้นในระยะยาว แต่ในระยะสั้นราคาอาจมีการปรับตัวลงเนื่องจากการเปลี่ยนแปลงอัตราผลตอบแทน\n\nBeer มองว่า:  ADVANC.BK เป็น 'เข็มฉีดยา' รูปแบบ Daytrade (รูปแบบ 2) เนื่องจากมีการเปลี่ยนแปลงอัตราผลตอบแทนอย่างรวดเร็ว และมีความเสี่ยงสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ข่าว Microsoft ลงทุน $1bn ในประเทศไทย อาจส่งผลกระทบต่อธุรกิจของ ADVANC.BK ในอนาคต โดยเฉพาะในด้าน 5G และอินฟราโครงสร้างทางเทคนิค"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ข่าว Advanced Info Service PCL (AVIFY) รายงานผลประกอบการ Q4 2025 ที่แข็งแกร่ง แต่ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าว VGI ร่วมทุนกับ iCLK เพื่อเป็นตัวแทนโฆษณาออนไลน์ในประเทศจีน อาจส่งผลกระทบต่อการสื่อสารของ ADVANC.BK ในอนาคต แต่ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ข่าว GULF โรงไฟฟ้า TTCIZ-02 ประเทศเวียดนาม กำลังการผลิต 50 MW อาจเป็นคู่แข่งในตลาดพลังงานของ ADVANC.BK แต่ไม่เกี่ยวข้องโดยตรงกับธุรกิจของ ADVANC.BK"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับผู้บริหารของ ADVANC.BK ในข่าวนี้"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 3,
+      "ticker": "PTT.BK",
+      "name": "PTT Public Company Limited",
+      "sector": "Energy",
+      "price": 35.0,
+      "pct_change": -2.78,
+      "volume": 106985331,
+      "market_cap": 991351754750.0,
+      "pe_ratio": 11.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:PTT",
+      "analysis": "PTT.BK ลง 2.8% เนื่องจากข่าวการลงนามความร่วมมือกับ Glenfarne สำหรับโครงการ LNG ในอัลาสกา ซึ่งจะส่งผลดีต่อธุรกิจของ PTT ในอนาคต แต่ในระยะสั้นราคาหุ้นอาจยังคงผันผวนตามอารมณ์ตลาด\n\nBeer มองว่า:  PTT.BK เป็น 'เข็มฉีดยา' รูปแบบ Daytrade เพราะมีแนวโน้มที่จะผันผวนอย่างรวดเร็วตามข่าวสารและอารมณ์ตลาด (รหัส SQ: 2)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงนามความร่วมมือกับ Glenfarne จะช่วยเพิ่มโอกาสในการเข้าซื้อ LNG ในอนาคต ซึ่งจะส่งผลดีต่อธุรกิจของ PTT"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น PTT.BK ลง 2.8% ในวันนี้ แต่ P/E ยังคงอยู่ที่ 11.153846 ซึ่งเป็นระดับที่สูง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "PTT.BK มีการสื่อสารที่ดีเกี่ยวกับแผนธุรกิจและโอกาสในการเติบโตในอนาคต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "PTT.BK มีคู่แข่งที่แข็งแกร่งในตลาด LNG แต่การลงนามความร่วมมือกับ Glenfarne จะช่วยเพิ่มโอกาสในการเข้าซื้อ LNG ในอนาคต"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "PTT.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวสารและอารมณ์ตลาดเพื่อปรับแผนการลงทุนของเราให้เหมาะสม"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 4,
+      "ticker": "GULF.BK",
+      "name": "Gulf Development Public Company Limited",
+      "sector": "Utilities",
+      "price": 65.0,
+      "pct_change": 1.56,
+      "volume": 82642581,
+      "market_cap": 971089449395.0,
+      "pe_ratio": 36.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:GULF",
+      "analysis": "GULF.BK มีข่าวดีๆ ที่เกี่ยวข้องกับการลงทุนในพลังงานเรนูว์ และการขยายการลงทุนในลNG ซึ่งจะช่วยสนับสนุนการเปลี่ยนแปลงพลังงานของประเทศไทย นี่เป็นข่าวที่ดีสำหรับหุ้น GULF.BK และอาจทำให้ราคาหุ้นเพิ่มขึ้นในระยะยาว\n\nBeer มองว่า:  GULF.BK เป็น 'เข็มฉีดยา' รูปแบบ Daytrade Hunter เนื่องจากมีการเปลี่ยนแปลงที่รวดเร็วและอาจทำให้ราคาหุ้นเพิ่มขึ้นอย่างรวดเร็ว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "GULF.BK มีการลงทุนในพลังงานเรนูว์และลNG ซึ่งเป็นธุรกิจที่มีความเสี่ยงต่ำและมีศักยภาพในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา GULF.BK อยู่ที่ 65.00 THB และมีการเปลี่ยนแปลง 1.6% ในช่วง 24 ชั่วโมงที่ผ่านมา"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "GULF.BK มีการรักษาความสัมพันธ์ที่ดีกับ Eni และ POSCO E&C ซึ่งเป็นบริษัทที่มีความเชี่ยวชาญในด้านพลังงาน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "GULF.BK มีคู่แข่งในด้านพลังงานเรนูว์และลNG แต่บริษัทมีความเชี่ยวชาญและความสามารถในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "GULF.BK มีผู้บริหารที่มีความสามารถและความเชี่ยวชาญในการดำเนินธุรกิจในด้านพลังงาน"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรพิจารณาการลงทุนใน GULF.BK ในระยะยาว เนื่องจากบริษัทมีศักยภาพในการเติบโตและความเสี่ยงต่ำ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 5,
+      "ticker": "AOT.BK",
+      "name": "Airports of Thailand Public Company Limited",
+      "sector": "Industrials",
+      "price": 59.0,
+      "pct_change": 1.72,
+      "volume": 38495360,
+      "market_cap": 842856300000.0,
+      "pe_ratio": 43.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:AOT",
+      "analysis": "ข่าวเกี่ยวกับอุตสาหกรรมยานยนต์และขนส่งอาจมีผลกระทบต่อราคาหุ้น AOT.BK เนื่องจาก AOT เป็นบริษัทที่ดำเนินธุรกิจในภาคส่วนนี้ แต่ไม่มีข้อมูลที่ชัดเจนว่าข่าวจะส่งผลกระทบอย่างไร\n\nBeer มองว่า:  AOT.BK เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Stock Quadrant: SQ3) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและมีความเสี่ยงสูง แต่ในขณะเดียวกันก็ยังมีโอกาสในการทำกำไรสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "AOT เป็นบริษัทที่ดำเนินธุรกิจในภาคส่วนขนส่งและที่พักผ่อน ซึ่งอาจมีผลกระทบจากข่าวเกี่ยวกับอุตสาหกรรมยานยนต์และขนส่ง"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา AOT.BK อยู่ที่ 59.00 THB และมีการเปลี่ยนแปลงราคา 1.7% ในวันนี้"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ไม่มีข้อมูลที่ชัดเจนว่า AOT จะมีการประกาศข่าวใดๆ ในวันนี้"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ไม่มีข้อมูลที่ชัดเจนว่า AOT มีคู่แข่งใดๆ ในภาคส่วนนี้"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลที่ชัดเจนว่าผู้บริหาร AOT จะมีการเปลี่ยนแปลงใดๆ ในวันนี้"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรติดตามข่าวเกี่ยวกับอุตสาหกรรมยานยนต์และขนส่งเพื่อดูว่ามีผลกระทบต่อราคาหุ้น AOT.BK หรือไม่"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 6,
+      "ticker": "PTTEP.BK",
+      "name": "PTT Exploration and Production Public Company Limited",
+      "sector": "Energy",
+      "price": 135.5,
+      "pct_change": -4.91,
+      "volume": 26736971,
+      "market_cap": 537933021700.0,
+      "pe_ratio": 10.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:PTTEP",
+      "analysis": "ข่าวเกี่ยวกับ PTTEP.BK ที่มีความสำคัญต่อราคาหุ้น คือ การประกาศ FID (Final Investment Decision) บนโครงการ SK405B ในประเทศมาเลเซีย ซึ่งจะช่วยเพิ่มการผลิตน้ำมันและก๊าซของ PTTEP.BK นอกจากนี้ยังมีข่าวเกี่ยวกับการลงทุนในโครงการใหม่ๆ เช่น โครงการ Kikeh 3B ซึ่งจะช่วยเพิ่มการผลิตน้ำมันและก๊าซของ PTTEP.BK นอกจากนี้ยังมีข่าวเกี่ยวกับการลงทุนในเทคโนโลยีใหม่ๆ เช่น โครงการ Zero Routine Flaring ซึ่งจะช่วยลดการปล่อยก๊าซเรือนกระจก\n\nBeer มองว่า:  PTTEP.BK เป็นหุ้น 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีการเปลี่ยนแปลงราคาที่รวดเร็วและชัดเจน นอกจากนี้ยังมีการเปลี่ยนแปลงในด้านธุรกิจและเทคโนโลยีที่ช่วยเพิ่มการผลิตน้ำมันและก๊าซของ PTTEP.BK",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ PTTEP.BK มีการเปลี่ยนแปลงอย่างมาก โดยมีการลงทุนในโครงการใหม่ๆ เช่น โครงการ Kikeh 3B และโครงการ SK405B ซึ่งจะช่วยเพิ่มการผลิตน้ำมันและก๊าซของ PTTEP.BK นอกจากนี้ยังมีการลงทุนในเทคโนโลยีใหม่ๆ เช่น โครงการ Zero Routine Flaring ซึ่งจะช่วยลดการปล่อยก๊าซเรือนกระจก"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น PTTEP.BK อยู่ที่ 135.50 บาท (ลง 4.9%) และมีปริมาณการซื้อขาย 26,736,971 หุ้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "PTTEP.BK มีการสื่อสารที่ดีในด้านการผลิตน้ำมันและก๊าซ และมีการลงทุนในเทคโนโลยีใหม่ๆ"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "PTTEP.BK มีคู่แข่งในด้านการผลิตน้ำมันและก๊าซ เช่น PTT, PTTGC และ others"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "PTTEP.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำธุรกิจไปข้างหน้า"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวและผลประกอบันของ PTTEP.BK และประเมินความเสี่ยงและผลตอบแทนของหุ้น"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 7,
+      "ticker": "KTB.BK",
+      "name": "Krung Thai Bank Public Company Limited",
+      "sector": "Financial Services",
+      "price": 35.75,
+      "pct_change": 1.42,
+      "volume": 90339694,
+      "market_cap": 499644189687.5,
+      "pe_ratio": 9.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:KTB",
+      "analysis": "การร่วมมือกันระหว่าง Ant International และ National ITMX จะช่วยเพิ่มความเชื่อมโยงการชำระเงินระหว่างไทยและจีน ซึ่งจะช่วยให้ KTB.BK มีโอกาสในการเติบโตในอนาคต นอกจากนี้ ราคาหุ้น KTB.BK ขึ้น 1.4% ในวันนี้ ซึ่งเป็นช่วงเวลาที่เหมาะสมในการซื้อหุ้น\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเคลื่อนไหวของราคาที่รวดเร็วและอาจมีการเปลี่ยนแปลงอย่างมากในระยะสั้น",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การร่วมมือกันระหว่าง Ant International และ National ITMX จะช่วยเพิ่มความเชื่อมโยงการชำระเงินระหว่างไทยและจีน ซึ่งจะช่วยให้ KTB.BK มีโอกาสในการเติบโตในอนาคต"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น KTB.BK ขึ้น 1.4% ในวันนี้ ซึ่งเป็นช่วงเวลาที่เหมาะสมในการซื้อหุ้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การร่วมมือกันระหว่าง Ant International และ National ITMX จะช่วยให้ KTB.BK มีโอกาสในการสื่อสารกับลูกค้าและช่วยให้ธุรกิจเติบโต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "KTB.BK มีคู่แข่งอย่าง Siam Commercial Bank (SCB.BK) และ Kasikornbank (KBANK.BK) แต่การร่วมมือกันระหว่าง Ant International และ National ITMX จะช่วยให้ KTB.BK มีโอกาสในการเติบโตและแข่งขันกับคู่แข่ง"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ KTB.BK มีความสามารถในการนำธุรกิจไปสู่ความสำเร็จและสามารถจัดการกับความท้าทายได้อย่างดี"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเราในการซื้อหุ้น KTB.BK คือการซื้อหุ้นในระยะสั้น เนื่องจากมีการเคลื่อนไหวของราคาที่รวดเร็วและอาจมีการเปลี่ยนแปลงอย่างมากในระยะสั้น"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 8,
+      "ticker": "TRUE.BK",
+      "name": "True Corporation Public Company Limited",
+      "sector": "Communication Services",
+      "price": 13.9,
+      "pct_change": -0.71,
+      "volume": 190805059,
+      "market_cap": 480274187953.3196,
+      "pe_ratio": 33.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:TRUE",
+      "analysis": "True Corp PCL มีการเติบโตที่แข็งแกร่งในธุรกิจโทรคมนาคมและเทคโนโลยี ซึ่งแสดงถึงความสามารถในการแข่งขันในตลาดและความมั่นคงทางธุรกิจ ผลกำไรสี่เท่าของ True Corp PCL แสดงถึงการเติบโตที่แข็งแกร่งและความสามารถในการแข่งขันในตลาด การลงทุนของ Microsoft ในประเทศไทยจะส่งผลกระทบต่อราคาหุ้นในอนาคต เนื่องจากจะสนับสนุนอินฟราโครงสร้างทางดิจิทัลและ AI\n\nBeer มองว่า:  True Corp PCL เป็นหุ้นรูปแบบ 'เข็มฉีดยา' เนื่องจากมีการเติบโตที่แข็งแกร่งและความสามารถในการแข่งขันในตลาด (SQ: Stock Quadrant - Money Management)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "True Corp PCL มีการเติบโตที่แข็งแกร่งในธุรกิจโทรคมนาคมและเทคโนโลยี ซึ่งแสดงถึงความสามารถในการแข่งขันในตลาดและความมั่นคงทางธุรกิจ"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ผลกำไรสี่เท่าของ True Corp PCL แสดงถึงการเติบโตที่แข็งแกร่งและความสามารถในการแข่งขันในตลาด"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การลงทุนของ Microsoft ในประเทศไทยจะส่งผลกระทบต่อราคาหุ้นในอนาคต เนื่องจากจะสนับสนุนอินฟราโครงสร้างทางดิจิทัลและ AI"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "การเติบโตของ True Corp PCL แสดงถึงความสามารถในการแข่งขันในตลาดและความมั่นคงทางธุรกิจ ซึ่งจะส่งผลกระทบต่อราคาหุ้นในอนาคต"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การเติบโตของ True Corp PCL แสดงถึงความสามารถในการนำทางธุรกิจและความสามารถในการแข่งขันในตลาด"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "การลงทุนของ Microsoft ในประเทศไทยและผลกำไรสี่เท่าของ True Corp PCL แสดงถึงความสามารถในการแข่งขันในตลาดและความมั่นคงทางธุรกิจ ซึ่งจะส่งผลกระทบต่อราคาหุ้นในอนาคต"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAQFBgMCAQf/xABBEAACAgIBAQQGCQEFBgcAAAABAgADBBESBRMhMWEUIkFRscEGIzJxc4GRodE1JDM0NrIVFiVShMJFYnKS4fDx/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QALxEAAwACAQQBAQYFBQAAAAAAAAECAxEhBBIxQVETFCNCkaHwBSIyYYGxwdHh8f/aAAwDAQACEQMRAD8A/PoiJcqIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAe7azVa9ba5IxU68p4nfO/x+R+K3xM4SSJe0mIkvH6dlZJYU1cioUn1gO4jY/acciizGuam5eLr4je4IVy3pPk5RE6rQxvep/VZAxPt71BOv2gs2kcoiJAEREAREQBERAEREAREQBERAEREAREQBERAEREAToa9UJbv7TMuvuA/mc5rvRsf/YQPYV7GPyB4jx4+P3yl326Onp+n+t3c+EZGIn2XOY+RLLM6XlUYtdr0hVRNWEMPHkfkRK90auxkcaZSQR7jIVJ+DS8dQ9UtHmIiSZiIiAIiIAiIgCIiAIifQN+EAl5NYfLzmJO62Zh/wC8D5yHLynpl2XZnujIoexqxyJ8Q4PykDEqanrFVL6LJeFOvDuMhUnTRaoqMM21xon9PzvQ80VGrl260rveteqB85Gyb8bNN2XZTaHLKoC2DXeD5f8Allr1v/G9O/F+azOo6jGdCfWNiMB5ANv4iXfHBw4VN/eJc8f6/wDRa9Y6Rj4OIttLWFi4XTEH2Hy8pzqw+2z8qz0iiv1rV4u2j3g9/wB3fLs52Nk5GIlNnJmYuBoju4sN/rKn6Q2dl1Kttb3QV/XkPnM8O+zdHd/EXK6n6eLxr0WdmFjJ0dvqaGZaD66qDs8fEGZCbP8A8B/6X/tmMmWB+Tv6+UuzXwIiJuecIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAScTDtySStVjIFb1lXfeFJA/XUtz1Zx0xMX0Vu0YNj65d+wAPDXn4ST9Gv6a/wCKfgJUD/Mn/Vf90jJCa2yOk6q1mrHPHo7YXSBZm9lkrcidkHB1rZ0ux4ewkzxldKarKyFpruaupQVbW9n1djw9xMvepZtWDkUWXBirK6+qN+1f4mfy8pcvIzb6uQRql0G8ftIIx13Qmx1eO8XVVM/08f7GqysdMrGeiwkI+tlT3+O5nup9L/4m4oS1w9bWtob03rEDw9pEqrbeddKje604n7+RPzlv0nqVNWXmM62auJsXQHcByPf3+6YKKxraPXrqMXU0pta8c/v8iuHTso0O5xr+YZQBwPeCDv4D9ZxuxcihQ11Flak62ykCanH6zjZBUIlo3Yqd4Hi29e3ynL6Tf01PxR8DNavVJfJ5/TYXlx5LrjtfBlYnSuvmlrb12a8vv7wPnOcuZa0IiIIEREAREQBLKlsnpJryFoYGysq3aKdA8j3foBK5ftD75qPpL/TU/FHwMsl7OfNeqmGuGTun5L5K3lwo7O5qxr3CZfMayjqtuSqj1chuO/AkHfzEndO6x2FWUTRy9Y3fb97Aa8POdep4NL9JbNBcOx7bWwQC/HY8JzJucjb9ns9k5ekmJ/CuSB1HqduRkY76r+p4uOPvIBIPf75WRE6NnmRChaRNqy2xXxLquLPXWQQe/wAWbx/Izxn5tmfcttqqpVeICyLEhfBNSnXfrk21VZt6MlS6BfHCjfmsy3UOm3dP7PtXRu03riT7P/2T+ndbyTbjYprq4bWvejvXh75c5mLRl5VKZCc1COQNkd+1905E6xVz4PbuMfV4tx5WkYqJN6xRVjdStqpXig1ob37BIU6k9rZ5Fw4py/QiekRnOlGyAT+QGz8J9rra2xa0G2cgAe8yxTYsrNbBW1sqG7vMA/OeJZ5vTMtXR3RFUoi7axQNhRv2+RnjF6XkZFV7JWr8RxUhxrlsefu3Ip9vkYfvuI5ZXxPRRggcj1SSAfMa38RJOP07LyXsSmrbVHTjkBo//RDaXLJmXT1PLIkTpZRZWbA667NuDd/ge/8AgyXiYRyb8Va6+QZedvfru5kH9tSVyUulHkhpWXWxhrVa8j+oHzniajpXR0TEsXOo+sc6PreK9x9h94mYPcSJSa22vg6LxduOb3xR8nZVHoVraHIWIAfyb+Jxmiw8HGs6AbXr27Kzk7PiOWpdLZyZsihLftmfZGVVLDQcbXzGyPiDLNOm3ZFucaKVKhmRO8DRDDw/Lcm9fwcbHwKnpr4srBAdk93efjOFPUrsSzPStEIWxrByB8S4HzlcdK1s163FkwV2z5/8KeytqrGrcaZCQR7jJXTMK3KyVZKw9dbqbNkeG/P7jI17vda97rrtGJ2B3b8T8ZffRcFRkhgQfUPf+cuuWYZ7qMTr2Ud+Ldjs63JxKEBu8HRI2PhOMvur2ouRlK1Fb/WVjZJ33ofcfZJ93R8BbKAuPoM+j6x7xxJ9/lKVSmlPyb4FWTDWV+JW3+RQ9O6hfihqktCVlXbRA+1xOv3AkXt7fSfSOX1vPny17d7k7ruLTiZiJjpwU1gkbJ79n3ysln8GeJy/vJWtknLzsnN4ekWcuG9eqBrf3TgrsoYKdBxo+Y2D8hPMSEkuEbVTt7p7E9I7I21OiQR+RGj+xnmIIJXT7ezzKAzBa+1Rm34dx8f3M119+DYAl1uOw8QHZT7PGYed8z++X8Kv/QJRzu1XwbLI/s94l+I1mHRh2HJNdVDoX1tVBBHFe79Zj2RgvPXqlioPmNfyJO6f1a/BpNNSVsrNy2wO/jLfq/TsSnpVjVVcSh5KeR7iSAfhKdzi3v2dM4ll6eVD5hc/v/DMvE+sCrFWBBB0QfZPk2PPEREARE+gFjpQSdb7oAX7Q++aj6S/01PxR8DM/XjO2DZkCpzxddNo61o7+Ul9T6ldl4tFdioAw7Q8QfEFhLLwc2WXeSWvTKwMQCASARo+cl2ZF7dMqRrrChsZeJY60AuhIc9mwmlau7irFh+ev4lGtnZNNJo8RESSgiIgErpv9SxvxV+M1Gfl+i5uJ6nLtS1fjrWyvfMcrMjBlJVgdgjxE62ZWRaytbfY5Q7UlidfdM7x91JnZg6r6WNyvLaL7Gw8frZtzbhZWzPxCqw7gAPKUN1QrSphv10LHf8A6iPlOuHl20V3IlzoGUcQpI9bkvyBmt6ljtlYFtFZUM+tFvDxBlNuKS9M1cxnw1kfDlNv+/71+pkun0222uaq3cCtweI3ranUYCMvU8dWUgi1QQR4d8mZQu6b1O7dxRbldxwJ9objvz3K9czKUELkWgE8iA57z750+DyE3abXho0X0l/pqfij4GV/R+qeh4d1fY8+H1m+Wt7Krrw85WW5WReoW6+x1B3pmJE5BiAQCQCNHzlbSvhmvRd/Srh88ku3HvHTqrDTYF7Rm3xOtELoy96GP7Z1L8X5tKzpnUeyfHXIyHFaM/IEkgDiOP77knrvUhzrTDyXV0LCzgSvu/8AmRkjuhpEdL1FYepl1O1yRc7Hvb051psKnI5bCnWhz2Z3wHuwL8RrcZ9WV9kSwI4kuTK4Zt3odtRyLNs4OuR7x63L9yIyMy62ugG+xii7O2Pc3I6P361LTwjPLNZKe/DZdV/SEOlrei67NeX2/HvA93nM2TskwGIBAJAI0fOfJVSk2/k6XbcTj9T4E1WD/lk/hWfOZWaHEzsZPo81TWacIyEaPieWpeTi6uW5nXyUuKcY2H0w29nru7PW9/nJPULMdMvLWkWfWAq3LX2uYJ/LulfO2U62Zdzodq1jEHyJkG7nd7LTI6V2fREyO22V+s48f+biNePlK3M2Ll8R9VX/AKBLu/quMOipVTd/aFRNDie4gjy17JUdQzrcx07SzmqKNerrRIHL95nib0+46+smFkn6fjXPJxSwChqzvk1itv7gf5m1yP73G/EP+hphZdY3WHfKxTl3/VqpNnqeDesB4D3ERUt3L+Cs5Jjp8se6R5+k/wDj6vwh8TKaWfXcqnLzEfHfmorAJ0R37PvlZNH5OPp01jSYiIkGwiIgCIiAfQdEGaqzNx+rYwxa+0Q3kqGKju46Y+2ZSSqcpseqlqH42pY58N6BCj5GVqE2m/RtGa4x3MPyiV1zA9EuFvac+3dm1x1rv385XivdD27+yyrr7wf4mm6XeOpXZRyAl1db/VckHcDvy8hI69LIa+9jUMcZHaFdHuVCwI1qRWVdzkYOky/Z5yPl6f6FDZXwSpt77ReX3d5HynOaxMvo1tiVgUsxPFR2PvPh4ec749fTsqs2Y9FDrvRPZAd/6S2/5+05nXb0316+da9mMlp0TA9Ma5+04cFK/Z3vkCJD9KsVQgWrSHu3UpP5nXfLfofUa1a8ZLIjEArxrA2ACT4CXWtmWerWN9qIGbjehpk4/PmFsr79a3tWMr5P6tlJkZ1zUPyqcqfDWyBr5mQJDNMW+1OvL/4EREg0EREAREQBERAPo7juXH+8eXr+6o/Q/wAymiQ5Te2XV0pcp8PyTur5T5We/MKOzJrGvcCZBiJYymVMpIRESCwnu2w22vY2uTsWOvOeIgCIiAIiIBJwsZ8ixgtTuFRieIPceJ1+85v2tKvj2IUJYMQw0RoHXxln0DOqxDeloclxyHEf8oJMhdTyUy8+y+sMFbWuXj3ACW9GKqnlctcESIiVNhERAEREAREQBERAEREAREQBERALLo+fbhvataoQ6Mx5e9VJE7DrGQ3Tb1KVes/HwPg/In2yniUeOW9nRHU5JntT45/U91WGq5LV1yRgw35Sx6Z1K7Exb661QhR2g5A+JKiVcTRcHLcK57a8H0953PVdhrYsutlSvf5gj5zxEFtCIiQBERAEREAREQBERAEREAREQBERAEREAREQBERAPSOyHanRII/IjR+M8xEAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQD//Z"
+    },
+    {
+      "rank": 9,
+      "ticker": "KBANK.BK",
+      "name": "Kasikornbank Public Company Limited",
+      "sector": "Financial Services",
+      "price": 202.0,
+      "pct_change": -0.49,
+      "volume": 13783028,
+      "market_cap": 478604173786.0,
+      "pe_ratio": 9.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:KBANK",
+      "analysis": "KBANK.BK มีศักยภาพในการเติบโตในระยะยาว เนื่องจากการลงทุนใน AI และการเงินเชิงปราณีต นอกจากนี้ยังมีการเปิดตัว K PLUS ใน Google Play ซึ่งอาจมีผลกระทบต่อราคาหุ้นในอนาคต\n\nBeer มองว่า:  หุ้นรูปแบบ 'เข็มฉีดยา' (SQ: 3) เนื่องจากมีการลงทุนใน AI และการเงินเชิงปราณีต ซึ่งอาจมีผลกระทบต่อราคาหุ้นในระยะยาว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงทุนใน AI และการเงินเชิงปราณีตอาจเป็นประโยชน์ต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การซื้อขายอย่างมากในวันนี้อาจเป็นเครื่องบ่งชี้ถึงความสนใจในหุ้นในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การเปิดตัว K PLUS ใน Google Play อาจมีผลกระทบต่อราคาหุ้นในอนาคต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "KBANK.BK มีคู่แข่งในตลาดการเงิน เช่น Siam Commercial Bank และ Bank of Ayudhya นี่อาจมีผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "Kattiya Indaravijaya เป็น CEO ของ KBank และมีประสบการณ์ในการนำบริษัทไปสู่ความสำเร็จ นี่อาจเป็นประโยชน์ต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรพิจารณา KBANK.BK เป็นหุ้นที่มีศักยภาพในการเติบโตในระยะยาว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 10,
+      "ticker": "SCB.BK",
+      "name": "SCB X Public Company Limited",
+      "sector": "Financial Services",
+      "price": 140.0,
+      "pct_change": 0.0,
+      "volume": 12611376,
+      "market_cap": 471395020040.0,
+      "pe_ratio": 10.0,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:SCB",
+      "analysis": "SCB.BK มีการขายหุ้นของ Bdms 23.4 ล้านหุ้น ทำให้ราคาหุ้นลง 0.0% ในวันนี้ แต่ไม่มีข่าวที่ชัดเจนว่าจะส่งผลกระทบต่อราคาหุ้นในระยะยาว\n\nBeer มองว่า:  SCB.BK เป็น 'เข็มฉีดยา' (รูปแบบ 6) เนื่องจากมีการขายหุ้นของ Bdms 23.4 ล้านหุ้น ทำให้ราคาหุ้นเปลี่ยนแปลงอย่างรวดเร็ว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การขายหุ้นของ Bdms 23.4 ล้านหุ้นอาจส่งผลกระทบต่อการดำเนินธุรกิจในระยะสั้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การขายหุ้นของ Bdms 23.4 ล้านหุ้นเป็นจำนวนมาก แต่ไม่ชัดเจนว่าจะส่งผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "SCB.BK มีการสื่อสารที่ดี แต่การขายหุ้นของ Bdms 23.4 ล้านหุ้นอาจทำให้ตลาดมีความไม่แน่นอน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "SCB.BK มีคู่แข่งหลายราย แต่การขายหุ้นของ Bdms 23.4 ล้านหุ้นอาจทำให้ตลาดมีความไม่แน่นอน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "SCB.BK มีผู้บริหารที่มีประสบการณ์และมีความสามารถ แต่การขายหุ้นของ Bdms 23.4 ล้านหุ้นอาจทำให้ตลาดมีความไม่แน่นอน"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ฉันจะให้ความสำคัญกับการจัดการความเสี่ยงและไม่ควรลงทุนมากกว่า 10% ของเงินลงทุน"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 11,
+      "ticker": "CPALL.BK",
+      "name": "CP ALL Public Company Limited",
+      "sector": "Consumer Defensive",
+      "price": 45.75,
+      "pct_change": 0.55,
+      "volume": 32610868,
+      "market_cap": 407682886671.0,
+      "pe_ratio": 14.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:CPALL",
+      "analysis": "CP ALL มีการปรับตัวขึ้น 1.7% ในวันนี้ แต่ไม่มีข่าวที่กระทบต่อการดำเนินงานของบริษัท ดังนั้นเราจึงควรติดตามการดำเนินงานและผลประกอบการของ CP ALL อย่างใกล้ชิด\n\nBeer มองว่า:  CP ALL เป็นหุ้น 'เข็มฉีดยา' ตามหลักการ Stock Quadrant (SQ) เนื่องจากมีการเติบโตอย่างต่อเนื่องและมีความแข็งแกร่งในการดำเนินงาน",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "CP ALL มีธุรกิจหลักในด้านการขายปลีกและจำหน่ายสินค้าอาหารและเครื่องดื่มในประเทศไทย มีการเติบโตอย่างต่อเนื่องและมีความแข็งแกร่งในการดำเนินงาน"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น CPALL.BK อยู่ที่ 45.50 บาท มีการปรับตัวขึ้น 1.7% ในวันนี้ มีการซื้อขายอย่างหนาแน่นในตลาด"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "CP ALL มีการสื่อสารอย่างแข็งแกร่งกับลูกค้าและผู้บริหาร โดยมีการจัดงานประชุมและงานสัมมนาที่มีผลกระทบต่อการดำเนินงานของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "CP ALL มีคู่แข่งอย่างชัดเจนในตลาด เช่น 7-Eleven และ Tesco Lotus แต่มีการแข่งขันที่สูงและต้องมีการปรับปรุงและพัฒนาผลิตภัณฑ์และบริการอย่างต่อเนื่อง"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "CP ALL มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำบริษัทไปสู่ความสำเร็จ โดยมีการวางแผนและดำเนินงานอย่างมีประสิทธิภาพ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามการดำเนินงานและผลประกอบการของ CP ALL อย่างใกล้ชิด และมีการปรับปรุงและพัฒนาแผนการลงทุนอย่างต่อเนื่อง"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 12,
+      "ticker": "BBL.BK",
+      "name": "Bangkok Bank Public Company Limited",
+      "sector": "Financial Services",
+      "price": 172.5,
+      "pct_change": 0.0,
+      "volume": 9262267,
+      "market_cap": 329275399215.0,
+      "pe_ratio": 7.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:BBL",
+      "analysis": "การเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA จะช่วยเพิ่มความมั่นใจและความเชื่อมั่นของธนาคารต่อการเติบโตของเศรษฐกิจในภูมิภาค ทำให้ราคาหุ้น BBL.BK มีโอกาสเพิ่มขึ้นในอนาคต\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีโอกาสเพิ่มขึ้นในระยะสั้น แต่ควรตรวจสอบความมั่นคงของโครงการและความสามารถในการรับผลประโยชน์",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA จะช่วยเพิ่มความมั่นใจและความเชื่อมั่นของธนาคารต่อการเติบโตของเศรษฐกิจในภูมิภาค ทำให้ BBL.BK มีโอกาสเพิ่มผลกำไรในอนาคต"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้นของ BBL.BK เพิ่มขึ้น 2.4% ในวันนี้ ซึ่งเป็นผลมาจากการเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA น่าจะช่วยเพิ่มความมั่นใจและความเชื่อมั่นของธนาคารต่อการเติบโตของเศรษฐกิจในภูมิภาค ทำให้ BBL.BK มีโอกาสเพิ่มผลกำไรในอนาคต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "BBL.BK มีคู่แข่งอย่าง OCBC, First Abu Dhabi Bank และ Qatar National Bank ที่เข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA แต่ BBL.BK ยังคงมีโอกาสเพิ่มผลกำไรในอนาคต"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ BBL.BK น่าจะมีความเชื่อมั่นและความมั่นใจในการเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA ซึ่งจะช่วยเพิ่มความมั่นใจและความเชื่อมั่นของธนาคารต่อการเติบโตของเศรษฐกิจในภูมิภาค"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเราในการลงทุนใน BBL.BK คือการลงทุนระยะยาว เนื่องจากการเข้าร่วมโครงการ US$14 billion offshore yuan scheme ของ HKMA น่าจะช่วยเพิ่มความมั่นใจและความเชื่อมั่นของธนาคารต่อการเติบโตของเศรษฐกิจในภูมิภาค"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 13,
+      "ticker": "CPN.BK",
+      "name": "Central Pattana Public Company Limited",
+      "sector": "Real Estate",
+      "price": 65.5,
+      "pct_change": 0.0,
+      "volume": 4051735,
+      "market_cap": 293964000000.0,
+      "pe_ratio": 14.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:CPN",
+      "analysis": "CPN.BK มีแผนการขยายตัวที่มีมูลค่า 3.4 พันล้านดอลลาร์ ซึ่งจะเห็นผลกระทบต่อราคาหุ้นในระยะยาว นอกจากนี้ยังมีการลงทุนในโครงการที่มีศักยภาพสูง ทำให้ราคาหุ้น CPN.BK มีโอกาสเพิ่มขึ้นในระยะยาว\n\nBeer มองว่า:  SQ 4 (Money Management) หุ้นรูปแบบ 'เข็มฉีดยา' เนื่องจากมีแผนการขยายตัวที่มีมูลค่ามากและลงทุนในโครงการที่มีศักยภาพสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "แผนการขยายตัวของ CPN.BK มีมูลค่า 3.4 พันล้านดอลลาร์ ซึ่งจะเห็นผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา CPN.BK อยู่ที่ 65.50 THB ซึ่งเพิ่มขึ้น 3.1% ในวันนี้"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "CPN.BK มีการประกาศแผนการขยายตัวที่มีมูลค่า 3.4 พันล้านดอลลาร์ ซึ่งจะเห็นผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "CPN.BK มีคู่แข่งในตลาดอสังหาริมทรัพย์ เช่น SCC และ BEC"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "CPN.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำบริษัทไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวและแผนการขยายตัวของ CPN.BK และประเมินผลกระทบต่อราคาหุ้นในระยะยาว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 14,
+      "ticker": "BDMS.BK",
+      "name": "Bangkok Dusit Medical Services Public Company Limited",
+      "sector": "Healthcare",
+      "price": 18.2,
+      "pct_change": 1.11,
+      "volume": 36900747,
+      "market_cap": 289234446613.63525,
+      "pe_ratio": 18.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:BDMS",
+      "analysis": "BDMS มีการเติบโตที่ดีในด้านธุรกิจการแพทย์ และใช้ AI เพื่อปรับปรุงความปลอดภัยของผู้ป่วย นอกจากนี้ยังมีข่าวที่ดีเกี่ยวกับการใช้ AI ในการดูแลผู้ป่วย ซึ่งอาจส่งผลดีต่อราคาหุ้น\n\nBeer มองว่า:  หุ้น 'เข็มฉีดยา' เนื่องจากมีการเติบโตที่ดีในด้านธุรกิจการแพทย์ และมีการใช้ AI เพื่อปรับปรุงความปลอดภัยของผู้ป่วย (รูปแบบ SQ: #1)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "BDMS มีการเติบโตที่ดีในด้านธุรกิจการแพทย์"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น BDMS อยู่ที่ 18.20 THB ซึ่งปรับตัวขึ้น 1.1% ในวันนี้"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวที่มีนัยสำคัญอาจทำให้ราคาหุ้นปรับตัวลง เนื่องจากการขายหุ้น 5 ล้านหุ้น แต่ข่าวที่ดีเกี่ยวกับการใช้ AI ในการดูแลผู้ป่วยอาจส่งผลดีต่อราคาหุ้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "BDMS มีคู่แข่งในกลุ่ม Healthcare เช่น BEM และ BH"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ BDMS มีประสบการณ์และความเชี่ยวชาญในด้านการแพทย์"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวและราคาอย่างใกล้ชิด และอาจพิจารณาเข้าซื้อหุ้นในระยะยาว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 15,
+      "ticker": "SCC.BK",
+      "name": "The Siam Cement Public Company Limited",
+      "sector": "Industrials",
+      "price": 241.0,
+      "pct_change": 1.69,
+      "volume": 7729591,
+      "market_cap": 289200000000.0,
+      "pe_ratio": 14.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:SCC",
+      "analysis": "SCC.BK มีการเติบโตที่แข็งแกร่งใน EBITDA 66% ในไตรมาสแรกของปี 2026 และมีแผนในการขยายธุรกิจและเพิ่มโอกาสในการเติบโตในระยะยาว ซึ่งจะช่วยให้ราคาหุ้นปรับตัวสูงขึ้นในระยะยาว แต่ในระยะสั้น อาจมีการเปลี่ยนแปลงของอารมณ์ตลาดที่กระทบต่อการซื้อขายหุ้น\n\nBeer มองว่า:  SQ 3 (Money Management) หุ้นรูปแบบ 'เข็มฉีดยา' เนื่องจากมีการเติบโตที่แข็งแกร่งและแผนในการขยายธุรกิจ",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจหลักของ SCC.BK คือการผลิตและจำหน่ายสินค้าในประเทศไทย และมีการเติบโตในธุรกิจใหม่ๆ เช่น การลงทุนในโรงไฟฟ้าและธุรกิจที่เกี่ยวข้องกับเทคโนโลยี"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "SCC.BK มีการเติบโตใน EBITDA ที่ 66% ในไตรมาสแรกของปี 2026 ซึ่งเป็นผลงานที่แข็งแกร่ง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "SCC.BK มีการร่วมทุนกับบริษัทอื่นๆ เช่น VGI และ FPT เพื่อขยายธุรกิจและเพิ่มโอกาสในการเติบโต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "SCC.BK มีคู่แข่งในด้านการผลิตและจำหน่ายสินค้าในประเทศไทย เช่น Siam Makro และ CP All แต่มีการเติบโตในธุรกิจใหม่ๆ ที่ช่วยให้ SCC.BK มีความแข็งแกร่งมากกว่า"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "SCC.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "SCC.BK มีแผนในการขยายธุรกิจและเพิ่มโอกาสในการเติบโตในระยะยาว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 16,
+      "ticker": "TTB.BK",
+      "name": "TMBThanachart Bank Public Company Limited",
+      "sector": "Financial Services",
+      "price": 2.36,
+      "pct_change": 0.0,
+      "volume": 37285360,
+      "market_cap": 223536781162.02365,
+      "pe_ratio": 9.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:TTB",
+      "analysis": "ข่าว Simply Wall St. ที่กล่าวถึง Asian Dividend Stocks Offering Up To 6% Yield อาจส่งผลให้ราคาหุ้น TTB.BK ปรับตัวขึ้นในระยะสั้น เนื่องจากธนาคารมีธุรกิจหลากหลาย เช่น ธุรกิจการเงิน, ธุรกิจประกันภัย, และธุรกิจการลงทุน ซึ่งอาจส่งผลให้ราคาหุ้นปรับตัวขึ้นในระยะยาว\n\nBeer มองว่า:  SQ: Money Management (รหัส 3) หุ้นรูปแบบ 'เข็มฉีดยา' (รูปแบบ 2) เนื่องจากมีการปรับตัวขึ้น 2.6% ในวันนี้",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจหลากหลายของ TMBThanachart Bank Public Company Limited อาจส่งผลให้ราคาหุ้นปรับตัวขึ้นในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น TTB.BK อยู่ที่ 2.36 THB และมีการปรับตัวขึ้น 2.6% ในวันนี้ ซึ่งอาจส่งผลให้ราคาหุ้นปรับตัวขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "บริษัท TMBThanachart Bank Public Company Limited มีการสื่อสารกับลูกค้าและผู้ลงทุนอย่างดี ซึ่งอาจส่งผลให้ราคาหุ้นปรับตัวขึ้นในระยะยาว"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัท TMBThanachart Bank Public Company Limited มีคู่แข่งในตลาดการเงิน เช่น ธนาคารอื่นๆ และบริษัทประกันภัย ซึ่งอาจส่งผลให้ราคาหุ้นปรับตัวลงในระยะสั้น"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "บริษัท TMBThanachart Bank Public Company Limited มีผู้บริหารที่มีประสบการณ์และมีความสามารถในการนำบริษัทไปสู่ความสำเร็จ ซึ่งอาจส่งผลให้ราคาหุ้นปรับตัวขึ้นในระยะยาว"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรจะลงทุนในหุ้น TTB.BK ในระยะสั้นเพื่อประโยชน์ระยะสั้น แต่ควรจะดูแลรักษาความเสี่ยงและไม่ควรจะลงทุนมากกว่าที่เราสามารถที่จะรับได้"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 17,
+      "ticker": "BH.BK",
+      "name": "Bumrungrad Hospital Public Company Limited",
+      "sector": "Healthcare",
+      "price": 185.0,
+      "pct_change": 3.93,
+      "volume": 11793001,
+      "market_cap": 147068819520.0,
+      "pe_ratio": 20.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:BH",
+      "analysis": "หุ้น BH.BK ปรับตัวขึ้น 3.9% ในวันนี้ ซึ่งเป็นการปรับตัวขึ้นอย่างมาก แต่ราคาหุ้นยังไม่สูงเกินไป และมีการซื้อขายอย่างมาก ทำให้เรามองว่าหุ้นนี้มีโอกาสในการปรับตัวขึ้นในระยะสั้น\n\nBeer มองว่า:  หุ้น BH.BK เป็น 'เข็มฉีดยา' รูปแบบ Daytrade ที่มีโอกาสในการปรับตัวขึ้นในระยะสั้น โดยใช้กราฟ EMA 50 และ EMA 200 เพื่อประเมินความแข็งแกร่งของหุ้น",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของบริษัทมีศักยภาพในการเติบโตในระยะยาว แต่ในระยะสั้นอาจมีความเสี่ยงจากการเปลี่ยนแปลงในอุตสาหกรรม"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น BH.BK ปรับตัวขึ้น 3.9% ในวันนี้ และมีการซื้อขายอย่างมาก ทำให้เรามองว่าหุ้นนี้มีโอกาสในการปรับตัวขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "บริษัทมีการสื่อสารอย่างดีในการเผยแพร่ข่าวสารและข้อมูลเกี่ยวกับธุรกิจและผลการดำเนินงาน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัทมีคู่แข่งในอุตสาหกรรม Healthcare เช่น Bangkok Hospital Public Company Limited (BHA.BK) และ Samitivej Public Company Limited (STA.BK)"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "บริษัทมีผู้บริหารที่มีประสบการณ์และมีความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามการข่าวและผลการดำเนินงานของบริษัทอย่างใกล้ชิด และอาจพิจารณาเพิ่มการลงทุนในหุ้น BH.BK หากมีการเติบโตอย่างต่อเนื่อง"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/xAA0EAACAgIAAwQJBAICAwAAAAABAgADBBEFEiETMUFhBhQiMlFxkbHBc4Gh0TQ1I+EkQvD/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAArEQACAgEEAgAFAwUAAAAAAAAAAQIDEQQSITETQSIyUWGBBRRCRLHB0eH/2gAMAwEAAhEDEQA/APn0REuVEREAREQBERAEREAREQBERAEREAREQBERAERM0rLrYw1pF5j9QPzAMIiIAiJm9ZRa2OtWLzD6kfiCcGEREECIiAIiIAiIgCIiAImSIztpRsgE/sBs/wACYwSIiIIMzWwpW0+6zFR+2v7mE666izI9H0ppXmdqk0N6+E5rLwcnC5PWK+Xn3r2gd6+UNpPBSiU7YOeOE8EaIiC5LxeHZeXUbMermUHW+YDr+8izqPRr/Wv+qfsJy7e8fnLNcGFVrlOUX6PIiJU3EREAREQBERAEREAREQBERAMxWTU1nTlVgp/ff9RZWa2CtrZUN08wD+ZIxqWux2qXoXurUE93UNJ+ZwPMZlevs7PZVdBtHooG+vykvhZKKebNntlLE33Yl9NtldlemqALDYOgdf2JokJ5NHFxeGIiIIEtOGcNuy8S+yt0AYdmOYnvBU/iRcDCsz7mqqZVKrzEtOk4ZSvDMVqcm+kNzF/e106Dx85ZI5dTdtWI9nMCisopOVUCToqQ21+fSS8XhD5hf1fJocJrZ9od/wAx5Sub3j85N4Xl341li0vyhq2Y9AeoUkSk87eDtoUfIvJnBZtwCqrh9ll1jm9EZvZPs7G9eEruIYGTjY2O91fKqryE8wOjzMftNjcXzLcK5bLwWZguuUA8pDb/ABMcfizKyetVnJRU5eWxtgne+br46OpklYu+TtnLTS4jlcf59kJ6HSy1CATSTzkHz19zNU7PCOJmrfYuLTrtChPKDz60d905fiNHZ5VzqoWs3OqgeGtf3LQs3PDM9RpfHFTi8pkSJPwuFZGYXCMiFApPMfBhsd3lJJ4M1dFiWZOItgdepfWho9O7x6fSXbwss5K15JuuPaKeZOjV2MjjTKSCPgZYDgmb2laOqJ2hIBLdAdE9dfKa+MYr4ue/OVPak2DXwJMN4ltLQjvrdkeVnBBiIklDNKy62MNaReY/UD8zxkZVUsNBxtfMbI+4MncOwcjIx73qr5lZeQdQNnmU/aW+bZwvLxfV8ezGS1h7DMvKF67PXXTx+vnKzltxwa6euN2/4lleim4XiX5NljUpzBa2U9QOpUgSOuNa2WMYjlsL8h33A71N9oyOF3tXVlLzEe0an2PEaPnGFnXV5VRsyLBV2gZxzEg9dkkRzyyzUVtg1znk28S4RbgVLazoyEheh67118O7YMrZ0nGs3DzcVKKspA3OG2Q2gNH4DzlfhcGszKrbK7qyFPKp2QCenl3aJlYTajmZrfTF3bKeTpcD/Bx/0l+0jcX4c/EOyCuqhA29nxI6fyJQJxnNqoSpLddn03yg9NAAd3l/MtOFcZ7ay/1y3lHvVry9wGyeoHwlblLdvj6H6X44VOi328/2/wBHPX1NRfZU5BZGKnXd0muTctq7vXLk0Q2QCra8Dz/9TzDwvWL6ke2tFsHN1bRI5taHn0msXk5bUoZfr/pJ4Zxj1DGak0dpti2+bXgPLylWTs7m7Lx/VrQnbVW7G91tsTRLMyhGKblH2IiJBcREQBERAEREAREQBET0DZAgHkS/4lwXGxcCy+t7S6a1zEa7wPhK7hmJfk2WNSnMFRgeoHUqQJODGN8JQc10i/XKoXgg5cisMtAHRxsNy9B8+kg8E4g93EGGReQpqCqrv0LdB9T1lM/NSluM66btAT17iuxr+ZqVirBlJBB2CPCRNbo4L6SC09nkXPJ3GI6WvkPWyups71OwfZWcO3vH5y24VxhcHGak0lyW5gQ2vgJa43BK6WqNlgtVHZirJ0OwB8fDU5ovxN5PZsT1kY7O139snKujV2MjjTKSCPgZjL/0npqr9XautFZi3MVGt93fKCbwlujk8++rxWOH0Ln0Y/z7f0j9xMvSV2XNUKdB6QD5jmJ/AmPox/n2/pH7iPSf/Pq/SH3M1/ieZ/VfgppkjsjbU6JBH7EaP8GYxKHcIiIIJ2FxPIw6LKqn0G6r7IOm2OvXyBljkcZxcnhwx7luLsFFhCjwI3rr85QRKOuLeTohqrIR2p8dHSYefw/HyRXR27NcK12dEDQAH/cqOJZgysu2yrmFblTph12Br8mQ1JVgykgg7BHhPJdcLByuKdrt6bJVnEMpxV/z2g1jv5z1Oz1+h1Og4FrMxHvygt1vaMvM4BOtDp8up6TlZbcK4wuBjtS1BcFi2w2vDu/iZ3Rco8dnbobIVT+LhEvO4AoXIyUv5QAzhAnQeOu+U2Atb51K275S4GuXe+vcfKXLekiNXyth73sEF+mvpK/iHEasm2mzGx1oarrzDWyemvDw1Iqc1xJFtZHTyi3TLD/Ju4fxdOH0vSlLWqXLBieU9w8OvwlSTs7nkTbJ58a4xba7Zsvs7a+y3Wudi2vhszXESDRvLyxJONmW49VtaW2KHX2QraAOx1+gIkaIaz2TGTi8oTJHZG2p0SCP2I0f4MxiCCyp4jRXw04rYSMxBBs2N766Pd4bnmZbhJVjNhNd2tY2OfR0OYnr57/iV0SuxJ5Rq7pOO2WHxgRESxiZ11m1iq62FLdfIE/ibkw7Xw3yBVYQGGiF6Eddn9tCWfo36t/5HrHZc2hy8+u7R3rfl3zziXEnrvuxMR6/VzoLyAaAI9ofuTKqeZOJrbRJUxsi1yyruxMmhFe6ixFbuLLr/wC7ponVek3+tT9UfYzlZFc98cmmqpVNmxMTJEayxUQbZiAB8TMZfejNVVnbtZWjMpXlLDeu/umiWTits8cHIoYk/jdaV8UtStFRRy6CjQ7hIEFoS3RUvqJ7ynlDaOidAzyddjV8Pu4bRU3q+3QL05d8xA3rz7pSc9uDpqpVik28YWTmPVbWt7OlHtbkV9Ku+hAP5mt0emzksRkde9WGjOspxcfB4jWwsINtXIOdh15eUDXnKbjGPflcRtuxqXtqYDTopYHQHiJDlie1kVVqzTK6Ly2+iyp4zj5VlVN9VapapLF3BCkE9D08h9Zp4hmDE4mwxLKkVqWNnKB1cBtb896nOzZfZ219lutc7FtfDZlmm57jOChHTuhLt5PLLGtsaxztnJJPxMwiJJU9X3h852t/E8OilrTej6/9UYEn9tziYmc61PGTq0+qlQntXZ02d6rxe00+sdg2MWB5wPa+OuvhqasbgmFZi9rZe5ALbdWAXQJG/wCJT4ztZlWO52zV2kn4ko01C0jHerXvMrb38Af7kwjt4M9VY7sTXDzz90dVh43DsO1GoyE5mTkG7F9oc3f5nfT9pT+kVtd2bWarFcCsAlTvxMq2dmVQx2EGl8hsn7kzGXjlRwzC2EZ3+WKxx0IiIJEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBPZ5EAm5nE8nMpSq59qvU9B1PXr9DqR8msVZNtSkkI5Ub8jLL0cqquzrBbWjgVkgMN+IkrjeCbMuxqMck9iG9he9ufy8dbmaklPYkdVkJOjzzeecHPTofRb3cn5r+ZQBGLhApLk65QOu/hJ2LfmcKtUullVdjDmDJ7wHw385qmkzgvqlZU1E6DL4Li5mQ19r2h21vlI10GvhOdyMHIVMcLjWBmQg+wdk8zfzrUt8Pj9K4QOUXa5TptAdd77vpNPDuJ35nEcWq1yQoYsOUDbabr9CJjHe5vPWT0LvBVpY4+ZR9fXjs14vo+1wsNlzV8lhUbr94Dx75Xl2wc4Vk8641xIHdsgjf2E6rJ4lRi5AosVyxQ2eyBrQBP4nIZdq35d1qghXcsN9/Uyy3b2n0ZvxT0sJR+Z9llxTifbZWKwp12PLZrm79hTrulrwXJx04TUr31qUBLAsAR7R7/AKiclM0sKLYo1qxeU/UH8RZDehorf2vEVwYt7x+c8iJcwEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQCw4NnVYGU9lwcqycvsjfiJu4nxGnMtsernUGgIOYd55wfDylTErsW7cau6Tq8XomcOrYZuJaSNNeFHx2CP7lt6Ve7i/NvxMr8WjH4FVk0py3VqlitsnTHl2f4lLmZ+RncnrDg8ncAAPn9pmvjkpL0dc8UUuqXcsMiz2eRNjzyRVdvIe25uro+zrvJUj7mR4iCc8YEREECIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAZmxzWKy3sqSQPM6/oTCIgnIiIggREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQD//2Q=="
+    },
+    {
+      "rank": 18,
+      "ticker": "OR.BK",
+      "name": "PTT Oil and Retail Business Public Company Limited",
+      "sector": "Energy",
+      "price": 12.2,
+      "pct_change": 0.83,
+      "volume": 9545320,
+      "market_cap": 146399997711.18164,
+      "pe_ratio": 15.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:OR",
+      "analysis": "OR.BK มีราคาหุ้นที่สูงกว่าในระยะสั้น แต่ไม่สูงเกินไป ความเสี่ยงจากความไม่แน่นอนของราคาน้ำมันในตลาดโลกอาจมีผลกระทบต่อธุรกิจของบริษัท\n\nBeer มองว่า:  OR.BK เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (รูปแบบ 3) เนื่องจากมีความเสี่ยงจากความไม่แน่นอนของราคาน้ำมันในตลาดโลก",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "OR.BK มีธุรกิจหลักในด้านการผลิตและขายน้ำมันและผลิตภัณฑ์จากน้ำมัน ซึ่งอาจมีความเสี่ยงจากความไม่แน่นอนของราคาน้ำมันในตลาดโลก"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น OR.BK อยู่ที่ 12.20 THB ซึ่งเป็นราคาที่สูงกว่าในระยะสั้น แต่ไม่สูงเกินไป"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "OR.BK มีการสื่อสารที่ดีในระยะสั้น แต่ไม่มีข่าวที่เกี่ยวข้องในระยะสั้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "OR.BK มีคู่แข่งหลายบริษัทในด้านการผลิตและขายน้ำมันและผลิตภัณฑ์จากน้ำมัน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "OR.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการบริหารธุรกิจ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "OR.BK ไม่มีแผนการลงทุนหรือการซื้อขายที่ชัดเจนในระยะสั้น"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAMFAgQGAQf/xABBEAABBAECAgcGAwQHCQAAAAABAAIDEQQFEiExExQiQVFhsQYycXORwTWB0SM0obI2UlNUcoOSFSQzQmJ0k6LC/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QAKhEAAgIBBAECBQUBAAAAAAAAAAECAxEEEiExQRNRIiMysdEFFDNhcfH/2gAMAwEAAhEDEQA/APnyIiuVCIiAIiIAiIgCtP8AYeT1PrXSRbej6SrN1V+CsPZ7HglwHOlhje7pCLc0E8grXMaG6bO1oAAhcAB3cFnbJwxjyb6BQ1E7ISX0o4ZFIIZDKyIN7b62i+d8vVRrQw8ZCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiL0ggAkEAix5oDqPZr8Nf80+gW7nZOO3CnBmivY5u0uHE1yWl7Nfhr/mn0CptU99//AHUv/wAqLYbkjPQXuq63C7Rv6YzHzNVBMLAI4WObtcfeAb593JVusQRY2pSxQt2sFULvuC3fZf8Af5flH1Cj1qMP1TMcb/ZxtcP/AFH3Wab9Vr+j0HCMdFF48lW5jmhpcKDxY8xZH2KxV7C3AzpMbG6o6PpIyWubKSWgF3Dj8D9VpazgxYGUyOEvLXM3do33laOSUtpy11znU7WsLOCvREUlQiIgCIiAIiIAiIgCL3aS0uANA1allxciFodNBJG0mgXNICZJSb5RCiIhBkxjpJGsYLc4gAeJW3j6Vm5MLZoYdzHcjuAv+K39H06GbIc97n3EIntojmRa6DEx2YuMyCMktZdF3PnapbJwjlG2hjXqbnU/Cz9vycIvFNPGGNicCf2jS4/6iPsvY8TJlvo8eV200aYTR8FoYOSRhHBJIYwxt9I7Y3jzPD9Qt+fRswTtjjg96MH3xzAG7v8AEq0h0yDGwYcl3S74B0+0kDtUCRy8lPh6gMzUgwR7NkG73rvdtKytcoco6dB6GpTTfOcHLZEEuNM6GZu17eYu1ErvVsOXI1LLkjikeGNbtLW2Cezw+hJVXJh5UUZfJjysYObnMIAVozTSIuplCbSXHJAiIrGARSzxiOQNaSQWNdx82g/dRKQnlZCIigBERAEREAREQBERAEREAU+R/wAHF+Uf53K10/RxlaYHmfb0rg6tt1W4ePmsDi4WY/Ex8d87HOaac8AjaC4/W1bBzu+DePYsPZr8Nf8ANPoFz+o/iWT813qrDPMumag8MyJNkzXybWmqLrA7+41xVO5znuLnElxNknmUb8FaIfG7PDLn2X/f5flH1CuMnSsfInmle6QOmaGuoiqFeXkFzujZ0WBlPkmDy1zNvZF94V23XsR7ZHBk1MbuPZHKwPHzWUI/Nbfsdussf7KMK3zu/JTaCK1mIf4vQrY9qP3+L5Q9StfQTesxH/F6FbntFEZdSjaDVQF3Lw3H7Kj/AJV/h2ReNFJv3/BQopBHcD5b91zW18Qf0W5ouL1rPb29vRVJyu6I4Lc86U1GLb8GgATyC8XZaRi9Thmg379svvVV21pXHO94/FZxnmTXsdM6lGqFiedx4iKQR3A+W/dc1tfEH9FoYN4I0U7MfdJjM3109ca93tFv2VjpGl9cw5pOm2b/ANnW26otN80XJSyxVrMinXoBPIKYMxdrd00odfaAjFD4cVa6NmYmE+ZjXTSb27rLAK2gk96rJtLKNqVGyag3jPnBliaZDJojp3OkD3AyEWKtu4D1W57TC9NZX9qPQqrz9RfksyZIJJWxOexoaTXDa6+HnSz0/WehlYcp88jREWkXfa3E3xPhwWdib2yS6NtG1W7apy4k+GU+0+BUuJEJsuGJ5Ia94aa58Su0x8lmT0hjDh0bzGbHeFz2U+CDKbMXSEszHuLQ0eLb438FtHmKbOCy3Fsqo848mWr40enZGLPEXuNiw48w0ClS2fEq31/OiyzAyIPBYNx3D+sAQqdS+xp1L005dltj4+NmT4MG2VgdG6zvB4Au8vFdJjY7MYSCMuPSPMhvxK4hkskbmuZI5rmimkGq+H1Km6/m/wB7m/1lSngxu007OE+CTU5ScqaKvdnkdd87r9Fpg1yRznPcXOJLibJPMrxVOqEdqSLbTNZ6hjOhMHSW4uvfXcPLyVkNQj1TosKSFzG5LC4uD+Iony/6Vy6zZNLG9r2SPa5gppBoj4fUrKVUXyuzuq1lkUoSeY+xZalpsOLnNhidIWmF0nEgmwHH7LQxIRPlwxOsNe8NJHmVl13L6QydZl3kVu3m68FizLyWN2snka27oOI4+KvFYXJyXPdNuCwn0XWr6diYkLMhwmfxbHtDwOAbQ7vJVUWI/JbPJBDMWNHYobuNjhdeBJWOXmS5JAdLI5ga3sudfENAJ+tpjZkuPFKxksjQ9vZDXUAbHH6Aq7ayc0IWRh3lllk6TjxaOMtrpOk2NdRIqzXl5qlAJ5BXcurYs2lNw3CZrtjWlwaDVVff5LPG1DE0/NzNxmeZJDdMAognhz80aRSE7Ixe5Zf/AAoEV+7T25enZOayUtEr3TBpbyDd3Dn5qkkj2Midd9I3d8OJH2Wakm2kehKmcIqUl2skaK20vRxn4zpjP0dOLa233Dz81VEUSFKkm2kROqcIqTXD6PERFJmEREAREQHY6H+EQfA/zFcrHlTQTskjfTowQ00OAN/qV1Wh/hEHwP8AMVx7vePxV5dI4dMk7LE/f8k2VlTZcgkyH7nAUDQHD8lAiKp2pJLCCya9zQ4NNB4o+YsH7BYooJN3R54sbUopZnbWC7NX3FWmo6r0WpO6tNTREWP7P/ON1DiPEhc8snvdJI57zbnEknxKrt+LcauzNDpa4byW0eNj5eM//fgZ5pGEgxkAPIdw/iePkt7HxG6RkHKyZY2ROjbH2QT2qF93kVzsU8kJBjdVODxw7xdepU+VqWXmRCPIl3NButoHH8lL3bk0ZxrqdM4Tzl9dFhk6w9mVlHEn/ZuaDH2ObuyDzHgCtSHCZlNiggyIXTuc4ng4cKHfXdR+qr1Ljzy40zZoXbXt5GrRrtrtkxf0Rk3tj9jc1fT34U+8lmyVziwN7hfL+Ku9GxseTSYS+CNxdZNtBsglVpfJqmbM2XJg6KHpBGHkDgQaI8aoG1Z6VkY2Pp8cUmVBuYXA9sf1ikE9nJlrJwd6VfW5G8cXGBaRjxAs907Bw7+Cgly8HT3dE9zIS4btrWHj58B5KY5uJ/eoP/IFzftFLHNmxmKRrwIwCWm+8qKG1WP1StWa1x8YXRVHiSV6x7mOtpokEfkRR/gViisXXBkHuEZYD2SQSPMXXqViiIDdg1TNgDxFNW9xe7sg2Tz7lrSzSTEmR124vPDvNX6BRopI2xzuxyZPe55txsgAfkBQ9FiiKCQiIgCIiAIiIAiIgCIiALJ73SSOe825xJJ8SsUQHQ4mo4jNC6s6Wpuje3btPM3Xqg0LI34pe+FzYgA8WePaJ8PArn2+8Piuq1jUhDiNdhZMZkLwOyQ7hR7ljjZNY8ndKTv0884TikkVhkzNFbJjGdg3s3s2i+1uA7x4AqoU2VlTZcgkyH7nAUDQHD8lAtsJPKOJTscFGb6C3otNnk05+S2KxYLTuHujdu4fRaK6vT/6N/5T/UqyWTn1FjgljyyjztNnxMeGSSLaCKedwPas/aloLqvab8NZ80ehXLOaWuLXAgg0Qe5Y1Sco5Z6OspjVZtj0eIi9aC5wa0EkmgB3rQ5S2wtXnxdNLGMjIieGiwe/cfHyVSeJtTM/cJfms9HqBS2ZwhGLk0giIoNAiIgCIiAIiIAiIgM45DG4ubVlpbx8wR91giIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgC6vT/AOjf+U/1KqdD0/rjpnmTZsaW1tu9wIWGa6XT+mwG5EjgC0gg0KINir8wojNbnEjUaScqo2eMlx7TC9NZX9qPQqmmw5sjKzXsikdte7btbdncOH0JK3vZ3JyJ82Rs08kjRGSA5xPeFNrmRNFkSCKV7AMcO7LiOPSAX9FjV8MtjPR1vzqfXhxylg5tzXMcWuBDgaIPMK30DBiypHyyF4dC5pbtPx5/RMjSNmndfkyXOLmte4FvHjXffmtZso0/Lj6CeYsOx8grbY4GufHgVvCSlyjztTVZCOx8NrJHqeMzEz5IIy4tbVbufEArUWckj5Xl8j3PceZcbJWCkRTUUn2ERFBIREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREBs4mdk4W/q8m3fV9kG6+KjyJ5cmZ00ztz3czVIijCzku5ycdrfBli5c+HIZMd+1xFE0Dw/NZZOdk5Ty6aTcS3YeAHC79URMLOSN8tu3PHsZSallyYnVXy3FQbt2jkOXFaz3uebcbIAH5AUPREUpJdCUpSeZPJiiIhUIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiID//Z"
+    },
+    {
+      "rank": 19,
+      "ticker": "PTTGC.BK",
+      "name": "PTT Global Chemical Public Company Limited",
+      "sector": "Basic Materials",
+      "price": 32.0,
+      "pct_change": -5.88,
+      "volume": 54417747,
+      "market_cap": 144283171744.0,
+      "pe_ratio": null,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:PTTGC",
+      "analysis": "ราคาหุ้น PTTGC.BK ลง 5.9% และมีการซื้อขายอย่างมาก แต่ไม่มีข่าวที่กระทบต่อการบ้านเดิม\n\nBeer มองว่า:  เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการซื้อขายอย่างมากและราคาลงอย่างรวดเร็ว (SQ: 4)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจหลักของ PTTGC.BK คือการผลิตและจำหน่ายพลังงานเคมี ซึ่งไม่มีการเปลี่ยนแปลง"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้นลง 5.9% และมีการซื้อขายอย่างมาก แต่ไม่มีข่าวที่กระทบต่อการบ้านเดิม"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "PTTGC.BK มีการสื่อสารอย่างดีในการเผยแพร่ข้อมูลและผลการดำเนินงานของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "PTTGC.BK มีคู่แข่งอย่าง BGRIM และ PTT ที่มีการดำเนินธุรกิจในด้านเดียวกัน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "PTTGC.BK มีผู้บริหารที่มีประสบการณ์และความสามารถในการนำบริษัทไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรติดตามข้อมูลและผลการดำเนินงานของ PTTGC.BK และพิจารณาการลงทุนเมื่อมีโอกาส"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 20,
+      "ticker": "CPF.BK",
+      "name": "Charoen Pokphand Foods Public Company Limited",
+      "sector": "Consumer Defensive",
+      "price": 18.9,
+      "pct_change": -1.05,
+      "volume": 22080659,
+      "market_cap": 143733789955.437,
+      "pe_ratio": 7.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:CPF",
+      "analysis": "ข่าวการก่อตั้ง JV จะช่วยเพิ่มความสามารถในการผลิตและจำหน่ายผลิตภัณฑ์หมู ซึ่งจะช่วยเพิ่มรายได้และความแข็งแกร่งของธุรกิจ CPF นอกจากนี้ยังแสดงถึงความมั่นใจและความตั้งใจในการขยายธุรกิจของ CEO และผู้บริหารระดับสูงของ CPF\n\nBeer มองว่า:  หุ้นรูปแบบ 'เข็มฉีดยา' (รูปแบบ 4) เนื่องจากมีโอกาสในการเพิ่มขึ้นในระยะสั้น หลังจากข่าวการก่อตั้ง JV",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การก่อตั้ง JV จะช่วยเพิ่มความสามารถในการผลิตและจำหน่ายผลิตภัณฑ์หมู ซึ่งจะช่วยเพิ่มรายได้และความแข็งแกร่งของธุรกิจ CPF"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น CPF เพิ่มขึ้น 2.1% ในวันนี้ ซึ่งแสดงถึงความสนใจและความเชื่อมั่นในหุ้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวการก่อตั้ง JV จะช่วยเพิ่มความตระหนักและความสนใจในหุ้น CPF"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "การก่อตั้ง JV จะช่วยเพิ่มความสามารถในการแข่งขันของ CPF ในตลาดอาหาร"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การก่อตั้ง JV แสดงถึงความมั่นใจและความตั้งใจในการขยายธุรกิจของ CEO และผู้บริหารระดับสูงของ CPF"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรพิจารณาเพิ่มการลงทุนในหุ้น CPF เนื่องจากมีโอกาสในการเพิ่มขึ้นในระยะสั้น"
+        }
+      ],
+      "chart_b64": "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"
+    }
+  ]
+}

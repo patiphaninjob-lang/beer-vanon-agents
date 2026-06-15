@@ -1,0 +1,1656 @@
+{
+  "date": "2026-06-15",
+  "generated": "2026-06-15T21:46:01.997697",
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "dji": {
+      "price": 51755.85,
+      "pct_change": 1.08,
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQMGAgf/xAA7EAACAgIBAwEFBAcGBwAAAAAAAQIDBBEhBRIxEyJBUWFxBhShsRUyNXOBkcEjNEJF0fFThJKywuHw/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAKxEAAgICAAQEBgMBAAAAAAAAAAECEQMhBBIxQRMiUWEUMoGRocEjQtFx/9oADAMBAAIRAxEAPwD58ADZkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyS8fpmZkwlKmnajLte2k0/4htLbNRjKbqKtkMF3Z9n5QxIT9b+2binFrhNtLW/lsn9K6Q8P1fvKpsctKLS3pc78r5jVpHFz/illirUdM5bT1vXBg7NwjDpGTCEUopXJJLhcyOS+7z9eunjus7dP3e0k1+ZiM+Zteh68uHw4RnfVWaQD1CDsmoRaTfxaS/mzZwJWJ03KzKpW0QUoxeuZJbfw/EiF/h5+P0lXYtqnJq2Ti4alx4W+fPBQN7bZWjjjnKUna12MAAh2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB6hCVkmoLbSb/AIJbYKlZ5ANlFFuRZ6dFcpy+CRSNpbZrBY1dFzrKHYqWnvSjJpNrnb5+i/mV5lNPoblCUUm1p9DABvw8aeXkxorcVKW9OXjhbNHNtJWzQCwzOlZNGTKqquVy13JwTelt63x54IEoyhJxknGSemn5RPYsfNFSXRmDJJw8DIzXJY8E1FrubaWtlvHAw6Ok2LKjXHKjFuW7OVLnt9/wKkcsmaMHXVkanoGTOypWJQi1uxuS458LXy0K+gZEndF21d1b7Vy9b4fw8aZBj1DNjJNZV2143Ns0WW2WTc7JylJ+W3tszvmvsdXvCo/3vr2onY/Z026jLV1dz7W/TW0+drzozm9TjlZvrKuUIqqVaW9t7TSf4kCdjnGuL1qEe1fzb/qeDT2qMRhU1N9UXGP1uzsx8e2EI1wlDumk99qa/wBCV1braXpfo7ITfPf7H015X1OdBlxuSl6HaElDFLCkqltlvjdfyKalCdcLPa25Phvbbf5kt9bpzL6KZ4ba9SLTc/Evj+Jzpsos9G+u3W+ySlr46ZFjjzc1G58RleJ4r1VFth9Kq6nCeTVL7vDv7VXru1pL37N3XcDFxsGE6KVCSmo7Tfjlkr7M/s2f71/kjT9ocii3AhGq6ucvUT1GSb8MY5NuSZy43GsawOHe76+xz99nrX2W613yctfDbNYBsiVaAAIAAAAAAAAAAAAAAAAAAAAZ7X2qWnpvSYBO6X06efKxpwUYR17Ta5aevxJVPRJQyoRvyMZxU4qcO97e/d9WbPs1fTSshW2whvt13SS35InVslrq9luPamk4STi9raSNNeU88Mk/iOXsq/RdZ3Rce6qqFEFW4SSb7n+pttpfPbKKzpWVCy6vslN1JPcItqTeuP5Pf8DN/WM66EIu6Ue3y48Nvn4fL8jXTn5EYX92TapTite0+Zbj/RM5401GpHr4ybnl5sWo61RquxMmiEZ3UWQjLw5R1/8AeDWqrH3+w/7Nbkn7udfmySuo5DlU7mro1/4LdyjLzy18eSRLrmUpzdEaqYye+2MF535+bL5q9x5PErfLXX3I3TMaGXn10WuSjLe+3zwmzpIRwOjtuVjh6yS5W99q17l8xgZODdGicVX95sT3JV6bkluXOvmQftT+rjfWX9CJeJBpqjnPJLheNhySvV/eyFkdOycud+bj199M7JSjp8yW3ykbOkP9GZkp58ZUxnXqLlF88pkjp/WsbE6ZCmUbHbBNaS4e235IHVep/pFVJU+n6e/8W971/oMbe77G+MhGTiobUlv2ZbXfaKiuU1VX6qTSi9tdy1y/HuICv6KvT768mxRg46euOW/c1zyU4LGKi213M5HLJCMJN1FUi2vycbuyvuFUY1+lz3QT2+9La34WmRFkxrxa1TCNd8ZPdkW1LWl79/UiA1ZzjiSVF10jq8ceVzzZ2zc0u2X63jfH4kxy6HkKNtiinbN8y7k+7je3/FfI5kGVFJt+p2nKU4QhdKLs7bDowqHNYfYtpOSjPu+nvOd67Y11LIrWu2ThJ/VR/wDZWqyakpKcu5a098rXgwWOo0cskFLiJZlpPt9v8MAAGwAAAAAAAADKbXhmAAAAAAAAAAAAAAAAAAAAAAWnQManJzZRvgpxjDuSfje0VbMzmoRcmR8PpuTmUztphuMeFyuXxx/Jm39B9R/4C/64/wCpcZGZj9Gk8enH4lH1Eu58vete/wBy2RsX7QznfCOVCuut77ppP4cfiSVppL6kwZFPHknO+nl9/wDv4NGDi4uJbZX1eEYzcU4KT2tc78GM3qOHLDePjYla1NqEteEte1yvfr8Dx9ob6r89elLu7IdkuPDTfBVCST+g4ac0nK/mW0SMvJeTZGXbFahFcRUeUlvx8yOAU0kkqQABCgAAGQ235ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG/FxbcqUlVCclGLbcY79zaX8daJUMDfTbbZ3UQmpJ9spanHXduOvi/h8jX0/qV3T/U9KEJd+t9yfu/3GJa7+s02zS7p3qTS8cskumi4W/FaktPSIbTXlMwdV9pv2bD96vyZypnHPnVnficHgz5LsA3XQjGqhxWnOtt/N90l/RErF6Xk315DVO3D2F7SWpprfv8Ahs6UeRzjFW2V4JM8K+GJHIlVYoNtPcXpLjT389/gRiJpnWUXHqASqcDIslByqshVJrdjg9JfH6E2/AxY52NCGVVZCxxjJR+Wl7t8vktHF5Yp0VBc/Zj+/wBn7p/mjXDG6YunWWTyJSvjxuO9b50lx79GOpS6d92qeFROuyftbbf6u2vj8URvlaNciz45pOq9f0bftP8A3+v90vzZTGW9+TBW7JjhyQUfQzJuUnKTbbe237zABDYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPddkqrY2VvUoNNP4M8AFToucHqk8nLrr6i3bDuTrUYpanvhvWvmSK+i4udD71jWTqqsXsQcd609c8/JnPFrhdbuxMT0I11tQXsNp+d755+pynBrcD24c8J+XPtevcm9angxxKnRHGnKNi9mLXjT4451srMvNvqzMmOPZKmLskmoSem9+frwQXy9mDu2fLx4FBU9nRwzauo9Or6bT3K+cFH2lwu3Tb3/BlT1Dpt3T/T9WcJepvXa37v8Ac29A/bFP0l/2sver4scmdKlbTDthZxY9b3Hyvp5PLfhz5V0PtKHxOB5JfMtL8f6e/wDIf+V/8Tk8Wca8umc3qMbItv5JlhZ1jIrxp4XbTJRj6SnHbTWtbKk9TdnwsGGUOZS7g9SnKUYqT2oLUfktt/m2eQZPUAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGT0rbFNz725NNNvne1p/mACptHgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//Z"
+    },
+    "spx": {
+      "price": 7542.03,
+      "pct_change": 1.49,
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQIDBgf/xAA0EAACAgIBAwIDBQgCAwAAAAAAAQIDBBESBSExE0EiUWEUgZGhwQYVFjJxsdHwI+ElNHP/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAApEQEAAgICAQMDAwUAAAAAAAAAAQIDESExEhNBUQQioRQyYUJxgZHh/9oADAMBAAIRAxEAPwD58AC6oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB3w8aeXkxorcVKW9OXjstkomYiNy4Al9QwZ4GQqpzjLa5Jr5b/6IgK2i0bgABCQE+rp/CUJdQlPHqkt8uDfffj6Ps2aOrBjO1PJsmopem419pePm/wCv+9hPCKWi86j/AJ/tEJmP0rMyOfp1LUJOMtyS7r2J+Z1Lp8sVrDodd704zjWouL3819P7lb+8c1TlJZVu5b38X6FuGMXyXjcRr+7tPo2dCClKpd5KOuS3ttJf3NbOkZ9bSljSe038LT8f0I9eTbC+F3JylCfNcm2m/wDUXeL+0afL7ZXrxx9JfjvbKc+UfDbfjgtM839vh5+UZQk4yTUk9NPyjB6KXTsXM6ff1DdinPnYu67ab0tHnoxcpKMU229JL3Ii0TvXs1vhvStZt7xtgAFmYCwwLemQoks3Hsss5dnF+34ogPz2JVi25mNMAAhYAAAAAAAAAAAAAAAAAAAAAAAAAAAA3qrlbJxj5UXL8E3+gTEb4hodKqbbpcaa5WSS3qK2KqbLZRjXBtykor5bfhFrhKfRMr1M6uXGyDjHg0+/Z/MmGWS/jHHftCNV0XPsq5qjS34k0n+DJ1nRcPDirM3Ll6b7LjHXf8zjl9eyZXz+yTcKnrjygtrt3/MqG2/L2VruJna+WsXpSaTMTrnr8Le7C6XOyx0Z7hGC3JcHLXfXZ/Lujo+p4tPTK1i1qGTFcVLhHs9Lb+8pYzlFSUXpTWn9VtP9Eal9sfQ3+6ZnS5weq0zssn1SCuk4pQfpp6S29fmYtr6ZkQ549eSrbpyjXFcUuXbS+i7opzaM5x48ZyXF8o6fh/P8kZTTc727qZorSMc1jUfw9B0zoij6n7woUv5eGp/j4f8AQznX9Nw6b8KOPqxLS+FPu09Pb+WyivysjIad1058Vpbfg5GlZmI57ceXBW+WbRM+PtDrblZF0VG6+ycU9pSk2jiAGsREdAAIAAAeq6bk4sOgRV1kGoxkpx5Lfdvt/Vo4UX9EuzKuNU42LjwlLetrSS8/7o84SMH/AN/H/wDrH+6MZxRG5276/WTPjXxjjUc8uuZVRZl3ywNehCKkvP0Xv9WSp9Lj06VV+e420N8ZRhve9PXyJ37O5GPV0+cbbq4S9RvUpJPWkRutdTx8zDrqpUuTlz767eV8/JpjnuJ9nF9ZS0eFq9W3vXsg9Xljyz5/ZoShptT37y29sggF2da+NYgABCwAAAAAAAAAAAAAAAAAdniZCrVjosVb18bi0u/juSiZiO3OEJWNqC20m/uS2zGn8mW2HlT6NKcLK4Wu1RkuFi7dvpv5m/8AEFzyN8eFLnFuK02oryvHuRbcRwYZi+TVuK/Paqrx77ZKNdNkm1tJRb7eNh490ZTjKuUZVrclJaaXZfqi96h1+EqIrBlONm9tyiuy79v7ECnrGXGOQ5X/ABTScfgX824r5fJMrFpmu9ct7Y61y+Pluuu4+W8+h2Uyr+05NNdc5ceSfjs376+RxyemTja44cnlQUU5SrW9PfjsQp2TmoqUtqK0vot7/UwpSimoyaT7PT8l+HJFckczb8JuFiqu6u7PpnHFbacmnreu3jv5JPVLcbGnV+67JVScfj4OS2tJxKl2SdarcvhTbS+r1/hGG3J7k23rXcca0mKW84vvpZ0dZvp6fLGjGPLulPvvT3t73520QLsi6/XrWzs4+OUm9HIFYrEdN73tfXlzroABKgAAAAAAAAAAAAAAAAZjJxkpRbTT2mvYwAAAAAAAAAAAAAAAAAAAAAGYxlKSjFNt9kkvIGAWOB0i7OolbCcIJPilLfd9v8kvBxel1ZFU5Z0LXuScJw0n2+vgTxMIi0Wraa/09uHRenUZ6u9aU1w1ri0vO/8ABnqHUrVTb05Qh6dcvTUvdqLWvv7GP2gdKz19ncP5Pj4a/m2/Ovcqi08cMKU9SYyW/wAR8MtuT3JtvWu5gAq6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABKwcC/Oc1THagtt7XnT0vv0bQxqnCdEnP7Z6ihGCitb7rW9/PRETa8M6Y1voZNV2uXpzUtb86YnrhOPi/3dO+Z0zLw61ZfBKDaW1JPvrwQz0X2+nrUoYt0VRGMlPcp75+3H287I/wDD11nxY+TTZW/5Zbff8NlItMV3fhtelL5px4NzxtSgl5eO6qcd/wDHuUHvjJNt8n8vpozXiQSyo3W1xnStLfLypJb7L7vvLzwwp986j+fwhg24yUVJxfF9k9djUJAb11ytsjXBblNpJfNk/wDcuYsmupw7TSbltdl237+2ydKWyVr+6VaSun508DIdsIRltcWn8t/9EuXSaqsSc8nLhXkRTfpbW/ft59+xwza8GFFUsX7RzmuX/JrWtte3vtDUwz9SmT7e4bZPWMy+fJWOpOPFqttLz5/qV4AaVpWsarAACFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZi3GSlFtNPaa9i76b1uOLgehKnbqi2nz1y3Lx4+v5FGCtqxaNS1w5r4beVG0bJQsU4ScZJ7TT00b5F9mTdK22TcpP8AD6HIF2Wo3t6O/Mx8nocMWibsvlXGKrjFt7WtlDdj30a9emdfLxyi1skdHvqxupVW3S4wW9vW/Znp/wDx/VJNfDf6O176W/7+DnmfSnWuHp1x/rK+UzEWjiIQ49OxIdIV8KtWqlWKak9qSjvZVdO6rZRlqzJnO2LXDcpN8U2tv8ibm9ZhVC/BhjajBSqUuft4+R586d9TDwseC33Vy/KTn5X2zMnkcOHLXw73rS0cJTlJRUntQWl9Ftv9Wagh0xWIiIj2AAQkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2hOVcm4PTaa+5rTACYnTUABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q=="
+    },
+    "ixic": {
+      "price": 26478.36,
+      "pct_change": 2.28,
+      "chart_b64": "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"
+    }
+  },
+  "summary": {
+    "total": 21,
+    "gainers": 17,
+    "losers": 4,
+    "avg_change": 2.07,
+    "top_gainer": {
+      "ticker": "MU",
+      "pct": 8.35
+    },
+    "top_loser": {
+      "ticker": "XOM",
+      "pct": -4.31
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "price": 205.19,
+      "pct_change": 0.16,
+      "volume": 112001800,
+      "market_cap": 4969907049133.301,
+      "pe_ratio": 32.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
+      "news": [
+        {
+          "title": "After Warren Buffett’s Successor’s Q1 Purge, Just 4 Stocks Make Up Over 50% of Berkshire Hathaway",
+          "summary": "Warren Buffett stepped down as CEO of Berkshire Hathaway (NYSE: BRK-B) on December 31, 2025, after six decades leading the conglomerate he transformed from a struggling textile mill into a $1 trillion empire. The “Oracle",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/after-warren-buffetts-successors-q1-purge-just-4-stocks-now-make-up-over-50-of-berkshire-hathway/"
+        },
+        {
+          "title": "Roku Stock Jumped 20% on Friday. The Index Move Coming June 22 Could Matter More Than the Buyout Buzz.",
+          "summary": "The streaming platform company's stock surge had two drivers.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/roku-stock-jumped-20-on-friday-the-index-move-comi/"
+        },
+        {
+          "title": "Prediction: Can Broadcom Shares Hit $550 in 2027?",
+          "summary": "Broadcom (NASDAQ:AVGO) is in the middle of the most aggressive AI ramp in semiconductor history, yet shares trade nowhere near their 52-week high. CEO Hock Tan told investors last quarter that “Broadcom achieved record r",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/prediction-can-broadcom-shares-hit-550-in-2027/"
+        },
+        {
+          "title": "Target Stock at All-Time High, Will The Rally Continue?",
+          "summary": "Shares of Target (NYSE:TGT) just punched through to a fresh all-time high after a remarkable six-month rebound. The stock closed at $132.64 on June 11, 2026, capping a 38.33% year-to-date surge. After a blowout Q1 report",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/target-stock-at-all-time-high-will-the-rally-continue/"
+        },
+        {
+          "title": "Warren Buffett Successor Greg Abel Pours $10 Billion More Into His Largest Bet Yet",
+          "summary": "This stock is quickly becoming one of Berkshire Hathaway's largest holdings.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/warren-buffett-successor-greg-abel-pours-10-billio/"
+        }
+      ],
+      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin\n\nBeer มองว่า:  หุ้น NVDA เป็น 'เข็มฉีดยา' รูปแบบ Daytrade เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "หุ้น NVDA เป็นหนึ่งในหุ้นที่มีโอกาสดีในตลาดเทคโนโลยี"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา $211.14 ลง 1.5% แต่มีโอกาสดีในระยะยาว เนื่องจากหุ้นมี P/E 32.558956 ซึ่งเป็นระดับที่สูง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "หุ้น NVDA มีคู่แข่งอย่าง Intel และ AMD แต่หุ้นมีโอกาสดีในระยะยาว เนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับผู้บริหารของหุ้น NVDA แต่หุ้นมีโอกาสดีในระยะยาว เนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการเรื่องราวดีๆ ที่เกิดขึ้น"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 2,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "price": 369.2,
+      "pct_change": 2.65,
+      "volume": 7066454,
+      "market_cap": 4503589428989.944,
+      "pe_ratio": 29.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOGL",
+      "news": [
+        {
+          "title": "Musk’s SpaceX $1 Trillion Revenue Goal",
+          "summary": "Elon Musk thinks SpaceX (NASDAQ: SPCX) will have $1 trillion in revenue in 2031. Its revenue last year was just shy of $19 billion. According to CNBC, Goldman Sachs forecasts $470 in 2030. Morgan Stanley’s forecast is $3",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/musks-spacex-1-trillion-revenue-goal/"
+        },
+        {
+          "title": "Musk Hits $1.05 Trillion As SpaceX Opens 11% Above IPO Price",
+          "summary": "SpaceX's $150 debut valued the company near $2 trillion, pushing Musk's fortune to almost $1.05 trillion.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/musk-hits-1-05-trillion-135256206.html"
+        },
+        {
+          "title": "Hut 8 Appoints New Board Chair",
+          "summary": "Bitcoin (CRYPTO: $BTC) miner turned data centre operator Hut 8 (NASDAQ: $HUT) has appointed a new chair to its boar...",
+          "provider": "CryptoProwl",
+          "date": "2026-06-15",
+          "url": "https://www.cryptoprowl.com/releases/hut-8-appoints-new-board-chair-5869"
+        },
+        {
+          "title": "Adobe’s Pivot: A Genius Bet Or A Costly Distraction?",
+          "summary": "The company just told Wall Street it’s trading today’s predictable profits for a massive, uncertain user-grab tomorrow, and investors are spooked.",
+          "provider": "Trefis",
+          "date": "2026-06-15",
+          "url": "https://www.trefis.com/articles/602785/adobes-pivot-a-genius-bet-or-a-costly-distraction/2026-06-15"
+        },
+        {
+          "title": "Nvidia plans to raise at least $20 billion in bond sale",
+          "summary": "Investing.com -- Nvidia Corp. is preparing to sell investment-grade bonds for the first time in approximately five years, according to Bloomberg News. The chipmaker aims to raise at least $20 billion through the offering",
+          "provider": "Investing.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-plans-raise-least-20-125218375.html"
+        }
+      ],
+      "analysis": "ข่าวที่เกิดขึ้นในวันนี้เกี่ยวกับ SpaceX และการลงทุนใน AI ของ Google อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL โดยเฉพาะอย่างยิ่งการลงทุนใน AI ของ Google อาจต้องใช้เงินจำนวนมากและอาจมีผลกระทบต่อผลกำไรของบริษัท\n\nBeer มองว่า: หุ้น GOOGL เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL และอาจมีผลกระทบต่อการลงทุนใน AI ของบริษัท"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การลงทุนใน AI ของ Google อาจต้องใช้เงินจำนวนมากและอาจมีผลกระทบต่อผลกำไรของบริษัท"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อการสื่อสารของบริษัทและอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัทอื่นๆ ที่ลงทุนใน AI อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL และอาจมีผลกระทบต่อการลงทุนใน AI ของบริษัท"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อการบริหารจัดการของบริษัทและอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อแผนการลงทุนของเราและอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAMEBQECBgf/xAAxEAACAgIBAwIEBQQCAwAAAAAAAQIDBBEhBRIxE1EUIkFhcYGh0fAGI5HBMrFC4fH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAnEQEAAgICAQMEAgMAAAAAAAAAAQIDERIhMQRBYRMyUXGRwYGhsf/aAAwDAQACEQMRAD8A/PgAbZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvdLwPjcp1WTdajHvfHLXH7lZtaKxuVEGzdhdNxPUhkTyZzrlGMnBJJ9ybWl+CGfV0/IojDpVbndF8qEZN9vPn82iRPn4atOuGu+X4/tjAmysezFyJ1WRktN6bWu5b8n0sqcKvotVmRjxlBVxk+2K3t65LXtyz5PozETHb5Q9utqqNnHbKTivy1+5oXwwMvOl8LJUVKEm+5P5mk3teePB6h031sSmuGZi97m5Jepz8yjpa9+BpYybmI95ZQL2f0u/BdSslCbtbUVDb54+33KJmJiY3DtelqW42jUgB1JtNpNpLb+xWXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPh408vJjRW4qUt6cvHC2a9f9N2Nv1cmKWlrtjv8TM6ZkwxM+u+xScY732+eU0X+t9RhfOlUd8ZRg220vE4r/TNRrTzZZyzkitOoK+lYddc7r8yMvSm1KC0m0m+PPl6K3U8jDssqngQnXKKXdJtrwlr6/TRn9z7XHb03to4Zjcbem8VtNZiNTEfy73S01t6b21vyWcDOtwLpW1RhJyj2tS/n2KoExExqWq2msxNfLSvzq89225lX9yFaUOyfav+S997fLLOT1XHt6KsWKs9XsjHlcLWjEBY6jUOWWn1b87zud7CXGt9DJqu7e705KWt+dMiBHSJmJ3Dfn1nFy8mj1sTiEl2zlZrsb1tlSVnTLMO3truqnKSagpJpPUteede/wCJlgViKxqGcsTlyTktPc/0+keB0TH9OVlympLS3ZtPnzx/j2KqyOjU2XwVFk4TaScd67dJ65fujFArusansz1rlvyjqPxE9NyWTR1OMMPGw6a7bI8TfHp6bevHsv1M3PwbcC6NVsoSco9ycf59iCuydU1OqcoSXiUXpovUdQok5S6hjyyrHvU3N8LXjX4/9mbTbe/Z1wY8NacPE78z4ZwJroRcPXguyE7JJQ89qWn5/P8AQn6f027qHqelOEezW+5v6/8Aw1HbneYp3aVIE9uNZU7VLT9KfZLXvz+xHVW7boVR13Tkorf3BWeXh4AAAE9GHkZFc501TlGC8qLe/HC+/JAVImJ6gABFAAAAAAAAAAAAAAAAAAAAAAAAAWsHDllZddEm61Ym1Jx9t/saOT0jCotsVua6/l71H02+1N6/P2LpytmpW3GfLEPdljskpS1tRUePskv9Gnl4ONV0uNlWbCztk5RSWnLfatefoZInpql4vG4AARsAAAAAAAAAAAAAAABuyyMC/pVGOqlVOclX6jgvla7e6WzRwKsTBnYo5dMnOEOE0vEfPn6+T5EGa14zuJdPU3j1GOaWjvrv9Na/q1td19Casx3a+FrmLb2t/ffkmxs7p8c6lUdPinJxj3Oe+1vX0a8p/UwwW1eXlMF/ofbEfxD6TAw8XqdeRk+nKlWP0+yDWkl2v290ZNXTrfXrhld2NVPf9ycdJef2IKcvJohKFN9kIy8qMtfzwS5mRdbj40bLpzTg21KTfPdJb/wZrSY326Zs0W4ar+/lY6jKfT8uyrDy36dm5ONb0oPfjj68Iyz1OcrLJTm9yk22/dnk1G4jUuV+M3m1Y1sABWQAAAAAAAAAAADsYynJRinKT4SS22BwHWteT3Cm2xxVdU5OTaWot7A8xjKT1GLb1vhGkui3LHryLbqoVT7W3t7im1z+pZ6JdDp8r4Z26JTScVOLW0tmfn511910I3zlQ7G4x29a3wa104RkvbJqI6j/AG04YfSMGT+KyYXd8V2rl6458e++D0qug3r0aWlbZ8sH8/Dfg+dOxlKElKLcZJ7TXlHOazNdbeulq0zTkiOp9p7iP18t+zoeHiqM8vLmoSfbvWvm/XS0QUy6LU7ozhZcovuhJvW1wteVztszbsvJyIRhdfZOMfClLf8APJASKzNdWlq16Rm544614nuG51nqmPmYdddKn3OSnzrjytefJi2TlZZKc3uUntv7nkHSZ28uPFXHGod2+1R29J7SOAEdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALdfTcuzF+JhVurTe+5eF54GDfi0ufxWL6+18vza1w/59izV1u+ih0Y9VcK032b23FN7/PyVyva+9VhnW1Sqkoy+sVL/KT/ANng1sfrl3qp50VfWuUu1LtfuuPJcpn0TKqlddTGqaW5wXd8q3r6cexibTWu5h6qY4yZZpSdRre56/x7vnQXPhqsiVNWC52XST7oyj288vzv2IsrEvw7FXkQ7ZNbS2nx+RYtHhJx2iN+359kAAK5gBJOmcLI163KSi0l9dpNf9lNoy50zOlgZXqqKkpLtltfTa3r78CvpuVZiPKjWnUk3/yW2lvb/Qn6lLpzxqvg6J12T+bbf/jtr390Sa7jUs1z8Lxw8/8AFmHWq742TzMKidkY/K/flLXO/ds8v+o8rtSVNO98vT/cxQTjHXw6Re0c+/u8/K31DOnn5CtnCMdLtSXtv/2VADTFaxWNQAAigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAt9LyYYefXfapOMd77fPKaNi/qvScmU5X0XSbh28rW1veuH78nzgMWxxadvRi9TfHXhGtfK5Z03LrxfipVapaUt9y8PxwUzdr6g+o4VfS6qlCyUVHvlLjUUnvx9iG7+ns2E9Vuuxc8p6/Dz7kjJrq/Td/T8tWw7mPf9osTp+XTOnNnTumDVrakt9q58b9jRn1rAty6Z2VTcYJrcoJ9rbWn5+zJbOoYlXTJYtlur4Uutw7XxLWtf5PlztvXh8iuOc0zOSNTHX4aeZ1e2crKsR+niyWlDsitJrn/AGZgBNvVSlaRqIAARoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHSWjKyMdt03Th3LT0/IAmNrEzE7hFKUpycpNyk3tt+WcACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2Q=="
+    },
+    {
+      "rank": 3,
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "price": 296.0,
+      "pct_change": 1.67,
+      "volume": 9892941,
+      "market_cap": 4349146278508.789,
+      "pe_ratio": 37.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
+      "news": [
+        {
+          "title": "Why the biggest \"Magnificent 7\" stocks have one giant headwind coming right at them",
+          "summary": "Watch this one key metric on the \"Magnificent Seven\" names.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/article/why-the-biggest-magnificent-7-stocks-have-one-giant-headwind-coming-right-at-them-142228430.html"
+        },
+        {
+          "title": "SpaceX Extends Its Record IPO Gains",
+          "summary": "SpaceX was the largest IPO in history surpassing $2.1 trillion market cap",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-extends-record-ipo-gains-142801514.html"
+        },
+        {
+          "title": "Apple supplier Jabil, Adani partner to build AI data center infra platform in India ",
+          "summary": "June 15 (Reuters) - Electronics manufacturer Jabil and India's Adani Enterprises on Monday announced a partnership to build an integrated AI and data center infrastructure manufacturing platform in",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://sg.finance.yahoo.com/news/apple-supplier-jabil-adani-partner-135529027.html"
+        },
+        {
+          "title": "Apple (AAPL) Stock Fair Value Edges Higher As AI And Siri Plans Draw Split Views",
+          "summary": "The updated fair value estimate for Apple now sits at US$312.72, a small move from US$310.51 that reflects only modest shifts in the underlying model. This adjustment comes as analysts debate how quickly Apple can conver",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/apple-aapl-stock-fair-value-131337952.html"
+        },
+        {
+          "title": "After Warren Buffett’s Successor’s Q1 Purge, Just 4 Stocks Make Up Over 50% of Berkshire Hathaway",
+          "summary": "Warren Buffett stepped down as CEO of Berkshire Hathaway (NYSE: BRK-B) on December 31, 2025, after six decades leading the conglomerate he transformed from a struggling textile mill into a $1 trillion empire. The “Oracle",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/after-warren-buffetts-successors-q1-purge-just-4-stocks-now-make-up-over-50-of-berkshire-hathway/"
+        }
+      ],
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาหุ้น AAPL คือ การพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้นหลังจาก WWDC แต่ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น 'โลภ' นอกจากนี้ การเป็นหุ้นของ Apple ซึ่งเป็นบริษัทที่มีชื่อเสียงและมีเทคโนโลยีที่ล้ำสมัย ทำให้หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นในระยะยาว\n\nBeer มองว่า: หุ้น AAPL เป็น 'เข็มฉีดยา' (รูปแบบ 1) เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น แต่ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น 'โลภ'",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AAPL ลง 1.2% แต่มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "หุ้น AAPL มีโอกาสที่จะเพิ่มขึ้นหลังจาก WWDC เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ ที่จะช่วยให้หุ้นเพิ่มขึ้น"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQIDBgf/xAA4EAACAgIBAgUBBgMGBwAAAAAAAQIDBBEhBRIiMUFRYRMUcYGhscEVc5EGIyQystEzNDVCQ1Lh/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAJREBAAICAgICAgIDAAAAAAAAAAECAxESMQQhE0EiUWFxFDKR/9oADAMBAAIRAxEAPwD58ADbIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJVOFZdbRCCk/qrbajvsXc1v8iXhdGvyKrZTSrkvCoz2mnw9/02O50l7RSnOeulUC3ysXpFdClXlXOcknHje1vT40vZ+pwyMK3Izsh4tdk4Kc9y7ONrba42WfXbOO/wAk6rE/8Qe2SipOL7XwnrgzZW6pKMtbcVLj5Sf7nrpRjHpNEb0lFKpTU1wuY72aZcOjznFXqly7W12f+qW/+348jnkvwmI09Hh4/wDJx2tuI1OvbyJvZW6pKMtbcVLj5Sf7l+umYlnSr76ZWdsnKyGnx4e5R8+fIpc1NXR2v/FX/oQreLT6by+PbFWJn7RwAbecAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL2vo2LDCqycrIlGGlObjH0aWl6+T+PUfW2ZtWLRWZ7nSjScnqKbet8GD0NGD0v7dfGGRKKhFx05JabUlLzXOkbPo/Sp1JV5fik2oy+pF7fHGvX/AOmZvERE/t1rjm2S9N/69vPRjKclGMXJvhJLZPp6RfZgPMU4KKTl2ve9Le/0LrHqxOiOX1b9K5LW4vziuff3IHUeuTlO6jHVc6ZR7VJp75XJ01EdvB8+TJOscev21zevTvqhHHhOmakpOSl9/HyvIrVnZacmsm5OT2/G+SOCfe3qrSK04R0Fv0jq8cHHlTOruTbn3d3rrheXx+ZUAzasWjUu2LLbFblTtaZvW78uiyh1Vxrm/Te0t7KxycnuTbetcmAVyisV3r7XPSerX1yx8JQrdbmo7ae9N/f8lj/ab/psP5q/RnmK7JVWxsrepQaafsy56dbd1m94+da5VQX1FGKUdtPXovlnC9NW5w+lg8ib45wT7mfUKMEvqmNDDz7KKnJxjrXd58pMiuMlrafiW1x5neJ3G3gvWaWms9wwDaUJRk4yi01w015GoZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6U1/Vm471qMpf0Tf7FJnXtzBmMZTkoxTcm9JLzZZ9M6VK/KdeZXdVHsclx275XuvkRG2L5K0jcq6NblVKxNajJRf3vf+xdZfRMbGqhO7M+nH/K5fTb2+X7+36HS7Kwumd+H9jja63Hmety2m9vj03r8Skuysi+PbbdZOKe0pSbRKzO5iYay05VpbHfvtaL+D4Urabo2ZMu5ruUddvx5rnjzOd/WFd0z7GqNeGMe7v8AbXpr4KkGtuUYK73ady2nOVlkpze5Sbbfuw5ydahvwxbaXy9b/RGoMu+5bSlKT3KTb1rlmoAQAAAAAAAALr+y/wDz9v8AKf6opTpRb9HIrtS32SUtb1vTM3ryrMOuDJ8eSLz9LvqPT7svqOZZXUpqMYqL7kvF4f22dcfqGNPLwv8ADVY6alLv2l2rxLXl78nn67XCFsfP6ke3e/LlP9jRttJNtpLS+C8fw4uc2mfI+afqdw9T1Lq7xr7K6XTPtrT5e/F3a15+x5Z8sSk5ScpNtt7bfqYFY1WIXJMWyWyRGtgAKyAAAAAAAAAAAAAAAAAAADKTk9RTb1vgmV9MybMKWVGG4LlcrlLe3+Gipa1a9yhAmYfTr8yxQh2w3DvTk/Nb1+pOo6dgU/Xq6hfJXV6fg3pRetPy93ozadRtvHEXv8cTET37UoJeX03Lw61ZfV2wb0n3J8/gZxOmZeZVK2iCcYvXMktvjj8xyrre2vhycuPGdoZO6XjfXtsf1qq+2Elqctb3Fr8vUiWVzqtlXNanFtNfJvk1qu1KK0nCD/FxTf5mo/bjeJn8epW3TejXfUqyldU4wt3w29pPl7/An9Zzp4F2NbCEZbUotP28P+xR4/VsvGxfoVWaSfhelwudry+fyOOXnZOZ2/aLO7s3rwpa39xKTaN7TyMOPJelq9RHv+2uZkzy8mV9iipS1tR8uFo4AFaiIiNQAAigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6xrTxp287jOMV7cqX+xpXCVlkYQW5SekvkqbhqCZi9NysuqVlNacYvXMktv2/M2j026yqr6XZKycpLtVkXwkn7/eOvaRes24xPtBJ0Ok5s4V2fTShY46k5L1fHz6j+FZkb3VOmSkoOfhXd6PXl7taPQZM543QoWKOp1QrepL1TXmSJiYnSZpvitSLR6mdIuFh0dJc/wCIzobtXgem+EnteXz+JwfVnHqkKsW2EMLvitKCSS436cepC6r1GefKtNQUYRT8Ka5aW/P5K8lZtNNWdMuHFXyJyU9x67e1yup4mNCE5WxkpvS7GpPXv93B5XqeTDLz7L6lJRlrXd58JIiAlK8a8Ws9ozZpza1OtJ1V1vULacfKy3CtJ+Kctr1e3t+foSbci7o8p4uLlRtjJd21FeCW+ff0X5lQZk3KTlJttvbb9S8a61pmL5Yyc4tL0N3U8RdPVlE61m6T39Pnueu5+WvcqM/OtzZQ+pLahFaWkudLfl8oiA1txphrWeXcgAI6gAAAAAAAAAAAAAAAAAAAAAAAAAA60Y1+Q2qKp2dq2+1eROq6Lk24byE4prf920+7je19/BDxcq3FlJ1TnFSi01GWvRpP8N7FGTOrJhdJynqxTknL/M0y/TGrzbW9QzkYeRjJO6qcYvXicXrbW9fecC9v6vj9QsopuqddasjJybUk/hr258yshjVWQtshlRiq1tKcWm+UudbXr7mKTae4enyK46Tuk7hnL6bl4dUbb61GMnriSenzx+RvR0nLvV304p/Sk4cNeKSa2uf6mZ9YyrXX9f6dsYPfbOC1J88v+pi/quTZbOVL+zxl5xret872/n5H58f5JnFGX1E8dfxvbFfTcm7HqdWPPvnKXLWlrS158e5pnYF+DNK6Phk2oS2vEl+h36d1WzHupV9lkqa9+FPfmtJefki6/wAD11tf3uqNr23v1/Ize81t/Dp43j1y45iZ/Pfr+lLR0bKsqjbNKuuXa+5tcRfnLz9OCR/DOn1ZdVVua5xsjwoa33ca9+Htllk5uHV0+/Hjdt1QdOmnvemkvL4PLVWOq2Fkdd0JKS38Hb0+XX5bzaLTrXpc2dVx8fFngYtcrKu1xjY5a8/jXyMvHw+mRpysLJlOzvXhVi8Ued+X3aKMkZH/AAcX+U/9cjFtzMTt68NMdKXrx3v7Y+1Wy+q7ZyslZBR7pS21yn+xxMA0zERHSTDOyK77bq7HCVrbkotpc7/TfBizNyravpWZFk4b205N7I4JERDVpm3YAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZTaTSbSa0/kADAAAG0Jyrk3B6bTX4NaYAWJ01AAQMuTaSbbSWl8AAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q=="
+    },
+    {
+      "rank": 4,
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "price": 397.5,
+      "pct_change": 1.73,
+      "volume": 8500513,
+      "market_cap": 2954362702652.446,
+      "pe_ratio": 25.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MSFT",
+      "news": [
+        {
+          "title": "SpaceX Extends Its Record IPO Gains",
+          "summary": "SpaceX was the largest IPO in history surpassing $2.1 trillion market cap",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-extends-record-ipo-gains-142801514.html"
+        },
+        {
+          "title": "Microsoft CEO sends a blunt warning on AI and the tech ecosystem",
+          "summary": "For most of the past three years, the AI investment story has been simple. Build the biggest model, train it on the most data, and the market rewards you. On June 14, Microsoft CEO Satya Nadellapublished a lengthy post a",
+          "provider": "TheStreet",
+          "date": "2026-06-15",
+          "url": "https://www.thestreet.com/technology/microsoft-ceo-sends-a-blunt-warning-on-ai-and-the-tech-ecosystem"
+        },
+        {
+          "title": "Microsoft's Xbox Business Faces a Cost Shock",
+          "summary": "Wedbush says AI demand is reshaping hardware economics",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/microsofts-xbox-business-faces-cost-133444306.html"
+        },
+        {
+          "title": "Adobe’s Pivot: A Genius Bet Or A Costly Distraction?",
+          "summary": "The company just told Wall Street it’s trading today’s predictable profits for a massive, uncertain user-grab tomorrow, and investors are spooked.",
+          "provider": "Trefis",
+          "date": "2026-06-15",
+          "url": "https://www.trefis.com/articles/602785/adobes-pivot-a-genius-bet-or-a-costly-distraction/2026-06-15"
+        },
+        {
+          "title": "Microsoft: Falling Knife or Once-in-a-Decade Buying Opportunity?",
+          "summary": "Microsoft stock has dropped 15% in June.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/microsoft-falling-knife-or-once-in-a-decade-buying/"
+        }
+      ],
+      "analysis": "ข่าวที่มีนัยสำคัญต่อราคาหุ้น MSFT คือการเติบโตของ SpaceX และการเติบโตของ AI ซึ่งอาจส่งผลกระทบต่อการเติบโตของบริษัท Microsoft นอกจากนี้ การเติบโตของ Apple และการเปลี่ยนแปลงในระยะยาวควรระวัง\n\nBeer มองว่า: MSFT เป็นหุ้น 'เข็มฉีดยา' เนื่องจากมีการเติบโตอย่างรวดเร็ว แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การเติบโตของ AI และ Healthcare อาจส่งผลกระทบต่อการเติบโตของบริษัท Microsoft"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "Meta ลดลง 6% ในขณะที่ Apple มีการเติบโตที่น่าประทับใจ แต่ควรระวังเนื่องจากมีการเปลี่ยนแปลงในระยะยาว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การออกจากคณะกรรมการของ Reid Hoffman อาจส่งผลกระทบต่อการดำเนินงานของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Oracle มีการกลับมาที่ดีหลังจากการซื้อหุ้นกลับมาและจ่ายเงินให้กับนักลงทุน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การออกจากคณะกรรมการของ Reid Hoffman อาจส่งผลกระทบต่อการดำเนินงานของบริษัท"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรเลือกหุ้นที่มีโอกาสติดเทรนด์ก่อน และไม่ควรเลือกหุ้นที่มีการเปลี่ยนแปลงมากเกินไป"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 5,
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 245.71,
+      "pct_change": 3.0,
+      "volume": 12600723,
+      "market_cap": 2643075593669.236,
+      "pe_ratio": 31.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMZN",
+      "news": [
+        {
+          "title": "Update: Market Chatter: Amazon CEO Raised Concerns About Anthropic Models Before Trump Export Restrictions",
+          "summary": "(Update with Amazon's response to a request for comment in the final paragraph.) Amazon (AMZN) Ch",
+          "provider": "MT Newswires",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/market-chatter-amazon-ceo-raised-143051077.html"
+        },
+        {
+          "title": "Stock Market Today: Dow Jumps 600 Points On U.S.-Iran Deal; Chip Companies, Boeing Take Off (Live Coverage)",
+          "summary": "Stock Market Today: The Dow Jones index rallied 600 points Monday on the U.S.-Iran deal. Oil prices dived below $80 a barrel.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-06-15",
+          "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-us-iran-deal-oil-prices/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "Nvidia plans to raise at least $20 billion in bond sale",
+          "summary": "Investing.com -- Nvidia Corp. is preparing to sell investment-grade bonds for the first time in approximately five years, according to Bloomberg News. The chipmaker aims to raise at least $20 billion through the offering",
+          "provider": "Investing.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-plans-raise-least-20-125218375.html"
+        },
+        {
+          "title": "Update: US-Iran Peace Deal Announcement Lifts US Equity Futures Pre-Bell",
+          "summary": "(Updates with economic data, recent oil price movement, world markets' overview and corporate stock",
+          "provider": "MT Newswires",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/us-iran-peace-deal-announcement-125218975.html"
+        },
+        {
+          "title": "Corning Lands Multibillion-Dollar Amazon AI Deal. Why Fiber Optics Are Suddenly in Spotlight",
+          "summary": "AI Needs More Than Chips. Amazon's Corning Deal Shows What Comes Next",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/corning-lands-multibillion-dollar-amazon-124157077.html"
+        }
+      ],
+      "analysis": "ข่าวที่เกิดขึ้นในวันนี้มีผลกระทบต่อราคาหุ้น AMZN โดยเฉพาะข่าวเกี่ยวกับ Anthropic Models ที่ Amazon CEO ได้แสดงความกังวลก่อนที่จะมีการจำกัดการส่งออกของสหรัฐฯ นอกจากนี้ยังมีข่าวเกี่ยวกับ Nvidia ที่กำลังจะขายบอนด์ 20 พันล้านดอลลาร์ ซึ่งอาจมีผลกระทบต่อราคาหุ้น AMZN ในระยะยาว\n\nBeer มองว่า: AMZN เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและไม่มีการเปลี่ยนแปลงในระยะยาว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "Amazon มีการลงทุนใน Anthropic Models ซึ่งเป็นเทคโนโลยีที่มีศักยภาพในการเปลี่ยนแปลงธุรกิจของ Amazon ในอนาคต นอกจากนี้ยังมีการลงทุนใน Nvidia ซึ่งเป็นบริษัทที่มีผลิตภัณฑ์ที่เกี่ยวข้องกับ Amazon"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AMZN อยู่ที่ $245.71 ซึ่งเป็นการเพิ่มขึ้น 3.0% เมื่อเทียบกับวันที่แล้ว นอกจากนี้ยังมีการเพิ่มขึ้นของมูลค่าตลาดของ AMZN ซึ่งเป็นหนึ่งในหุ้นที่มีมูลค่าตลาดสูงสุด"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "Amazon มีการสื่อสารกับนักลงทุนผ่านข่าวประชาสัมพันธ์และการนำเสนอผลประกอบการ ซึ่งแสดงให้เห็นถึงความมุ่งมั่นของบริษัทในการสื่อสารกับนักลงทุน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Nvidia เป็นคู่แข่งที่สำคัญของ Amazon ในด้านเทคโนโลยีและผลิตภัณฑ์ นอกจากนี้ยังมีการแข่งขันในด้านธุรกิจและตลาด"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "Amazon CEO ได้แสดงความกังวลเกี่ยวกับ Anthropic Models ซึ่งแสดงให้เห็นถึงความมุ่งมั่นของบริษัทในการลงทุนในเทคโนโลยีที่มีศักยภาพ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเราในการลงทุนใน AMZN คือการลงทุนในระยะยาวและติดตามผลประกอบการของบริษัทอย่างใกล้ชิด"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 6,
+      "ticker": "AVGO",
+      "name": "Broadcom Inc.",
+      "sector": "Technology",
+      "price": 389.71,
+      "pct_change": 2.0,
+      "volume": 6340711,
+      "market_cap": 1855694098153.9697,
+      "pe_ratio": 64.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AVGO",
+      "news": [
+        {
+          "title": "Forget Buying Nvidia. This Overlooked ETF Beat the Nasdaq by Owning the AI Stocks You Can’t",
+          "summary": "Here is a fact that will annoy anyone who has been told NVIDIA is the only way to play artificial intelligence. Over the past year, the Global X Artificial Intelligence & Technology ETF (NASDAQ:AIQ) returned 52%, while t",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/forget-buying-nvidia-this-overlooked-etf-beat-the-nasdaq-by-owning-the-ai-stocks-you-cant/"
+        },
+        {
+          "title": "Chip startup Tensordyne expects $200 million in orders for AI system to rival Nvidia",
+          "summary": "June 15 (Reuters) - Tensordyne said on Monday it expects more than $200 million in orders for its new inference system, as the AI chip startup positions itself as a direct challenger to Nvidia in a",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/chip-startup-tensordyne-expects-200-140157037.html"
+        },
+        {
+          "title": "This Under-the-Radar AI Chip Leader Just Became a No-Brainer Buy This Week",
+          "summary": "Broadcom's share of the chip market is about to explode.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/this-under-the-radar-ai-chip-leader-just-became-a/"
+        },
+        {
+          "title": "MaxLinear's Panther Momentum Builds on Growing Tier 1 Design Wins",
+          "summary": "MXL's Panther storage accelerator gains Tier 1 design wins, delivers major efficiency gains and targets revenues to at least double in 2026 vs. 2025.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/maxlinears-panther-momentum-builds-growing-125400689.html"
+        },
+        {
+          "title": "Prediction: Can Broadcom Shares Hit $550 in 2027?",
+          "summary": "Broadcom (NASDAQ:AVGO) is in the middle of the most aggressive AI ramp in semiconductor history, yet shares trade nowhere near their 52-week high. CEO Hock Tan told investors last quarter that “Broadcom achieved record r",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/prediction-can-broadcom-shares-hit-550-in-2027/"
+        }
+      ],
+      "analysis": "หุ้น Broadcom (AVGO) มีโอกาสเพิ่มขึ้นหลังจากข่าวที่ดีเกี่ยวกับ AI และการเติบโตของธุรกิจ แต่ต้องดูว่าตลาดหุ้นจะร่วงลงต่อเนื่องหรือไม่\n\nBeer มองว่า: หุ้น AVGO เป็น 'เข็มฉีดยา' ที่มีโอกาสเพิ่มขึ้น แต่ต้องดูว่าตลาดหุ้นจะร่วงลงต่อเนื่องหรือไม่ (รูปแบบ Daytrade Hunter)",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "Broadcom มีโอกาสเพิ่มขึ้นหลังจากข่าวที่ดีเกี่ยวกับ AI และการเติบโตของธุรกิจ"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "หุ้น Broadcom ตกลง 7.9% ในวันนี้ แต่โอกาสเพิ่มขึ้นยังคงอยู่"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ตลาดหุ้น Nasdaq ตกลง 1,100 คะแนน เนื่องจากความกังวลเกี่ยวกับการเพิ่มอัตราดอกเบี้ย"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Broadcom มีความเชื่อมั่นตลาดที่ดีและโอกาสเพิ่มขึ้น แต่ต้องดูว่าตลาดหุ้นจะร่วงลงต่อเนื่องหรือไม่"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ Broadcom พูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 7,
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
+      "sector": "Consumer Cyclical",
+      "price": 410.79,
+      "pct_change": 1.07,
+      "volume": 11950242,
+      "market_cap": 1543061296133.6226,
+      "pe_ratio": 358.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:TSLA",
+      "news": [
+        {
+          "title": "SpaceX stock gains: What its IPO signals about its future success",
+          "summary": "SpaceX stock (SPCX) continues rising in Monday's pre-market trading (maintaining gains at the session open at the time of this video's posting) ahead of the space company's first full day of trading since its historic IP",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/video/spacex-stock-gains-what-its-ipo-signals-about-its-future-success-135149957.html"
+        },
+        {
+          "title": "Tech stocks today: SpaceX becomes more valuable than Tesla",
+          "summary": "What to watch from SpaceX and other tech stocks during the holiday-shortened week.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/live/tech-stocks-today-spacex-becomes-more-valuable-than-tesla-100000563.html"
+        },
+        {
+          "title": "Musk Hits $1.05 Trillion As SpaceX Opens 11% Above IPO Price",
+          "summary": "SpaceX's $150 debut valued the company near $2 trillion, pushing Musk's fortune to almost $1.05 trillion.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/musk-hits-1-05-trillion-135256206.html"
+        },
+        {
+          "title": "Sequoia’s Sean Maguire Compares SpaceX to ‘Nvidia Three Years Ago’ and Plans to Hold Forever",
+          "summary": "Sequoia Capital partner Shaun Maguire went on CNBC last week and said SpaceX (NASDAQ:SPCX), freshly trading, looks to him “more like Nvidia three years ago” than Tesla (NASDAQ:TSLA). He also said he plans to hold his sha",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/sequoias-sean-maguire-compares-spacex-to-nvidia-three-years-ago-and-plans-to-hold-forever/"
+        },
+        {
+          "title": "Tesla’s “Misleading” Numbers",
+          "summary": "Regulators in Sweden and the Netherlands say Tesla (NASDAQ: TSLA) has provided them with “misleading data,” according to Reuters. This data involved Tesla’s “Full Self-Driving” (FSD) system. The regulators said that Tesl",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/teslas-misleading-numbers/"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับ SpaceX ที่เพิ่งเริ่มเทรดและได้รับการตอบรับอย่างดี ทำให้ราคาของ TSLA ตก 6.6% แต่ในขณะเดียวกันก็มีการเติบโตของบริษัทอื่นๆ เช่น UMAC และ SPAX.PVT นอกจากนี้ ยังมีข้อความที่ไม่ชัดเจนจากบริษัท TSLA เกี่ยวกับแผนการและผลการดำเนินงาน ซึ่งอาจส่งผลกระทบต่อการลงทุนในหุ้น TSLA\n\nBeer มองว่า: รูปแบบ 'เข็มฉีดยา' (SQ: 3) เนื่องจากบริษัท TSLA มีความไม่มั่นคงและความไม่แน่นอนในอนาคต เนื่องจากการเปลี่ยนแปลงในตลาดและความไม่มั่นคงของบริษัท แต่ในขณะเดียวกันก็มีความสามารถของผู้บริหารที่มีความสามารถ",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "บริษัท TSLA มีความไม่มั่นคงและความไม่แน่นอนในอนาคต เนื่องจากการเปลี่ยนแปลงในตลาดและความไม่มั่นคงของบริษัท"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา TSLA ตก 6.6% แต่ในขณะเดียวกันก็มีการเติบโตของบริษัทอื่นๆ เช่น UMAC และ SPAX.PVT"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "บริษัท TSLA มีการสื่อสารที่ไม่ชัดเจนเกี่ยวกับแผนการและผลการดำเนินงาน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัท TSLA มีคู่แข่งที่แข็งแกร่ง เช่น UMAC และ SPAX.PVT"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "บริษัท TSLA มีผู้บริหารที่มีความสามารถ แต่ในขณะเดียวกันก็มีความไม่มั่นคงและความไม่แน่นอนในอนาคต"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "นักลงทุนควรต้องมีการจัดการความเสี่ยงและติดตามข่าวสารอย่างใกล้ชิดเพื่อเพิ่มโอกาสในการลงทุนในหุ้น TSLA"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 8,
+      "ticker": "META",
+      "name": "Meta Platforms, Inc.",
+      "sector": "Communication Services",
+      "price": 591.62,
+      "pct_change": 4.35,
+      "volume": 4972022,
+      "market_cap": 1501528202360.6602,
+      "pe_ratio": 21.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:META",
+      "news": [
+        {
+          "title": "SpaceX stock gains: What its IPO signals about its future success",
+          "summary": "SpaceX stock (SPCX) continues rising in Monday's pre-market trading (maintaining gains at the session open at the time of this video's posting) ahead of the space company's first full day of trading since its historic IP",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/video/spacex-stock-gains-what-its-ipo-signals-about-its-future-success-135149957.html"
+        },
+        {
+          "title": "Madison Large Cap Fund Sees Long-Term Value Creation in Meta Platforms’ (META) Huge Capex",
+          "summary": "Madison Investments, an investment advisor, released its first-quarter 2026 investor letter for the “Madison Large Cap Fund”. A copy of the letter is available to download here. The Madison Large Cap Fund (Class I) decli",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/madison-large-cap-fund-sees-140759511.html"
+        },
+        {
+          "title": "Is AMD the Next $1 Trillion Chip Stock, or Just the Next AI Trap?",
+          "summary": "A trillion-dollar market cap used to be a club reserved for software empires and one graphics chip company that surprised the world. Advanced Micro Devices (NASDAQ:AMD) now sits at $834 billion, which puts the question r",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/is-amd-the-next-1-trillion-chip-stock-or-just-the-next-ai-trap/"
+        },
+        {
+          "title": "Meta's $14B AI Push Faces Growing Pressure to Deliver Results",
+          "summary": "Investors want proof AI can drive growth beyond advertising.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/metas-14b-ai-push-faces-124148942.html"
+        },
+        {
+          "title": "SpaceX's $75 Billion IPO Fuels $1.5 Trillion Equity Supply Wave",
+          "summary": "JPMorgan sees IPOs and share sales adding roughly $1.5 trillion of net stock supply over two years.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/spacexs-75-billion-ipo-fuels-124117485.html"
+        }
+      ],
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ SpaceX และการเพิ่มขึ้นของอัตราดอกเบี้ยอาจส่งผลกระทบต่อการเพิ่มขึ้นของหุ้น META แต่ในระยะยาวยังมีโอกาสที่จะเพิ่มขึ้น เนื่องจากบริษัทมีการพัฒนาเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว\n\nBeer มองว่า: หุ้น META เป็น 'เข็มฉีดยา' รูปแบบ Daytrade Hunter เนื่องจากมีโอกาสที่จะเพิ่มขึ้นในระยะยาว แต่ต้องระวังการปรับลดลง 5.5% ที่เกิดขึ้นในระยะสั้น",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ META สอดคล้องกับข่าว/เทรนด์ปัจจุบัน เนื่องจากบริษัทมีการพัฒนาเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "P/E ของ META อยู่ที่ 21.547964 ซึ่งไม่สูงเกินไป แต่ในระยะยาวอาจจะมีการเพิ่มขึ้น เนื่องจากบริษัทมีการพัฒนาเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "นัยสำคัญจากการสื่อสาร/ข่าวล่าสุดคือการปรับลดลง 5.5% เนื่องจากความกังวลเกี่ยวกับการเพิ่มขึ้นของอัตราดอกเบี้ยและความผันผวนของตลาดหุ้น แต่ในระยะยาวยังมีโอกาสที่จะเพิ่มขึ้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Oklo เป็นบริษัทที่มีความสามารถในการแข่งขันกับ META ในด้านเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ META มีความสามารถในการนำบริษัทไปสู่ความสำเร็จในระยะยาว เนื่องจากมีการพัฒนาเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเราคือการลงทุนในหุ้น META ในระยะยาว เนื่องจากบริษัทมีการพัฒนาเทคโนโลยีใหม่ๆ และมีความสามารถในการปรับตัวเข้ากับตลาดหุ้นที่เปลี่ยนแปลงอย่างรวดเร็ว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 9,
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "sector": "Technology",
+      "price": 1063.6,
+      "pct_change": 8.35,
+      "volume": 14502829,
+      "market_cap": 1199085806432.8257,
+      "pe_ratio": 40.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MU",
+      "news": [
+        {
+          "title": "United, Delta and Southwest Rally as Iran Deal Lifts Travel Stocks",
+          "summary": "Stocks Soar on U.S.-Iran Breakthrough and Oil Price Drop",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/airline-stocks-soar-u-iran-141527515.html"
+        },
+        {
+          "title": "Nvidia, Micron, Intel Lead Chip Stock Rally After Breakthrough U.S.-Iran Agreement",
+          "summary": "Nvidia, Micron and AMD Gain as Markets Embrace U.S.-Iran Truce",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-micron-intel-lead-chip-141246902.html"
+        },
+        {
+          "title": "AI Memory Bottleneck: This Sizzling ETF Lets You Buy Micron, Sandisk, SK Hynix, and Samsung for Less Than $100",
+          "summary": "The DRAM ETF has jumped impressively in just over two months, and it can soar higher thanks to the favorable demand-supply dynamics in the memory market.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/ai-memory-bottleneck-this-sizzling-etf-lets-you-bu/"
+        },
+        {
+          "title": "Tech Stocks Are Rallying Once Again",
+          "summary": "Tech stocks have driven the market in recent weeks, and shares in companies tied to the AI-buildout are among the biggest winners this morning. Shares of Micron Technology, Super Micro Computer and Marvell Technology all",
+          "provider": "The Wall Street Journal",
+          "date": "2026-06-15",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-06-15-2026/card/tech-stocks-set-to-start-the-week-higher-axPaOCuQsz9sQNCSofxZ?siteid=yhoof2&yptr=yahoo"
+        },
+        {
+          "title": "Stocks to Watch: SpaceX, Micron Technology, Remy Cointreau",
+          "summary": "↗️ SpaceX (SPCX): Shares of Elon Musk’s rocket company rose nearly 8%, putting the stock on track to extend the 19% gain recorded on its trading debut. ↗️ Micron Technology (MU), Super Micro Computer (SMCI), Marvell Tech",
+          "provider": "The Wall Street Journal",
+          "date": "2026-06-15",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-06-15-2026/card/stocks-to-watch-spacex-micron-technology-remy-cointreau-I52ZlHTefBMgyZlLA2cF?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "Micron Technology มีการปรับตัวขึ้นอย่างรวดเร็วหลังจากข่าวการบรรลุข้อตกลง U.S.-Iran ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในอนาคต ข่าวนี้มีผลกระทบต่อการเปลี่ยนแปลงราคาอย่างรวดเร็วและอาจส่งผลกระทบต่อการลงทุนในระยะสั้น\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการปรับตัวขึ้นอย่างรวดเร็วและอาจมีการเปลี่ยนแปลงราคาอย่างรวดเร็วในอนาคต",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ Micron Technology มีการลงทุนอย่างมากในเทคโนโลยี AI และ 5G ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในอนาคต"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น MU ลง 13.3% ในวันนี้ ซึ่งเป็นการเปลี่ยนแปลงอย่างรวดเร็วและอาจส่งผลกระทบต่อการลงทุนในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "Micron Technology มีการสื่อสารอย่างดีเกี่ยวกับผลการดำเนินงานและแผนการในอนาคต ซึ่งอาจช่วยในการปรับปรุงภาพลักษณ์ของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Micron Technology มีคู่แข่งอย่าง Intel และ Nvidia ซึ่งเป็นผู้ผลิตชิปที่ใหญ่ที่สุดในโลก และอาจส่งผลกระทบต่อราคาหุ้นในอนาคต"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "Micron Technology มีผู้บริหารที่มีประสบการณ์และมีความสามารถในการนำบริษัทไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามการเปลี่ยนแปลงราคาอย่างใกล้ชิดและเตรียมพร้อมสำหรับการเปลี่ยนแปลงในอนาคต"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 10,
+      "ticker": "BRK-B",
+      "name": "Berkshire Hathaway Inc.",
+      "sector": "Financial Services",
+      "price": 494.14,
+      "pct_change": 1.0,
+      "volume": 1277710,
+      "market_cap": 1065906378005.6841,
+      "pe_ratio": 14.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:BRK-B",
+      "news": [
+        {
+          "title": "SpaceX stock jumps for 2nd day, now up over 25% since debut",
+          "summary": "SpaceX stock jumped nearly 8% in early trade, giving the shares a two day pop of over 25% since the rocket company's market debut on Friday.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/article/spacex-stock-jumps-for-2nd-day-now-up-over-25-since-debut-143317402.html"
+        },
+        {
+          "title": "Greenskeeper Asset Management Views Berkshire Hathaway (BRK.B) as Resilient Against AI Disruption",
+          "summary": "Greenskeeper Asset Management, an independent firm that specializes in disciplined value investing, recently released its Q1 2026 scorecard. A copy is available to download here. The Middle East conflict triggered a shar",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/greenskeeper-asset-management-views-berkshire-133213904.html"
+        },
+        {
+          "title": "1 Unstoppable Vanguard ETF to Buy and Hold for the Next Decade",
+          "summary": "Value stocks are having their moment again, and Vanguard Mega Cap Value Index Fund ETF Shares (NYSEARCA:MGV) is the cleanest way to own that rotation without overpaying for it. MGV returned 28% over the past year, a numb",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/1-unstoppable-vanguard-etf-to-buy-and-hold-for-the-next-decade/"
+        },
+        {
+          "title": "After Warren Buffett’s Successor’s Q1 Purge, Just 4 Stocks Make Up Over 50% of Berkshire Hathaway",
+          "summary": "Warren Buffett stepped down as CEO of Berkshire Hathaway (NYSE: BRK-B) on December 31, 2025, after six decades leading the conglomerate he transformed from a struggling textile mill into a $1 trillion empire. The “Oracle",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/after-warren-buffetts-successors-q1-purge-just-4-stocks-now-make-up-over-50-of-berkshire-hathway/"
+        },
+        {
+          "title": "Warren Buffett Successor Greg Abel Pours $10 Billion More Into His Largest Bet Yet",
+          "summary": "This stock is quickly becoming one of Berkshire Hathaway's largest holdings.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/warren-buffett-successor-greg-abel-pours-10-billio/"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับ SpaceX และ Berkshire Hathaway ทำให้ราคาหุ้นของ Berkshire Hathaway ปรับตัวขึ้น 1.0% ในวันนี้ นัยสำคัญคือ Warren Buffett Successor Greg Abel จะลงทุนเพิ่มอีก $10 พันล้านในธุรกิจที่มีโอกาสเติบโตในระยะยาว นอกจากนี้ Greenskeeper Asset Management ยังเห็นว่า Berkshire Hathaway มีความสามารถในการรับมือกับภัยคุกคามจาก AI\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' เนื่องจากมีโอกาสเติบโตในระยะยาว และมีความสามารถในการรับมือกับภัยคุกคามจาก AI",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้ธุรกิจของ Alphabet เติบโตได้อย่างรวดเร็ว และจะช่วยให้ Berkshire Hathaway มีโอกาสในการลงทุนในธุรกิจที่มีโอกาสเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้ Alphabet มีโอกาสเพิ่มขึ้น 10-20% ในระยะสั้น เนื่องจากการลงทุนครั้งนี้จะช่วยให้ธุรกิจของ Alphabet เติบโตได้อย่างรวดเร็ว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้ Berkshire Hathaway มีโอกาสในการสื่อสารกับ Alphabet ได้อย่างใกล้ชิด และจะช่วยให้ธุรกิจของทั้งสองฝ่ายเติบโตได้อย่างรวดเร็ว"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้ Berkshire Hathaway มีโอกาสในการแข่งขันกับคู่แข่งได้อย่างดีขึ้น และจะช่วยให้ธุรกิจของทั้งสองฝ่ายเติบโตได้อย่างรวดเร็ว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้ Warren Buffett มีโอกาสในการลงทุนในธุรกิจที่มีโอกาสเติบโตในระยะยาว และจะช่วยให้ธุรกิจของ Berkshire Hathaway เติบโตได้อย่างรวดเร็ว"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "การลงทุนครั้งนี้จะช่วยให้เราได้แผนการลงทุนในธุรกิจที่มีโอกาสเติบโตในระยะยาว และจะช่วยให้ธุรกิจของเราเติบโตได้อย่างรวดเร็ว"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 11,
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "price": 1129.85,
+      "pct_change": -0.28,
+      "volume": 647815,
+      "market_cap": 1007534005798.0696,
+      "pe_ratio": 40.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:LLY",
+      "news": [
+        {
+          "title": "These Are 5 Of The Best Stocks To Buy Or Watch Now",
+          "summary": "Buying a stock is easy, but buying the right stock without a good strategy is incredibly hard. Here are five top-performing stocks to buy now or put on a watchlist.",
+          "provider": "Investor's Business Daily",
+          "date": "2026-06-15",
+          "url": "https://www.investors.com/research/best-stocks-to-buy-now/?src=A00220&yptr=yahoo"
+        },
+        {
+          "title": "Factbox-Global drugmakers rush to boost US presence as tariff threat looms",
+          "summary": "June 15 () - Global drugmakers have been ramping up U. manufacturing and stockpiling inventory as the Trump administration moves to impose 100% tariffs on branded drugs unless companies cut prices or make medicines domes",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/news/factbox-global-drugmakers-rush-boost-174250083.html"
+        },
+        {
+          "title": "India's Electronics Mart eyes new markets as tech hubs fear job losses",
+          "summary": "Hyderabad-based Electronics Mart India is looking to diversify away from the technology hub as concerns grow that potential AI-triggered ‌job losses could hurt consumer spending, a top executive said.  The retailer gets ",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/indias-electronics-mart-eyes-markets-053150240.html"
+        },
+        {
+          "title": "Eli Lilly JAK2 Data Highlights Pipeline Beyond Obesity And Valuation Upside",
+          "summary": "Eli Lilly (NYSE:LLY) reported Phase 1 data for AJ1-11095, a first-in-class type II JAK2 inhibitor, in myelofibrosis patients. The AJX-101 study focused on individuals whose disease continued after prior type I JAK2 inhib",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/eli-lilly-jak2-data-highlights-031037073.html"
+        },
+        {
+          "title": "3 Reasons to Buy Eli Lilly Stock Like There's No Tomorrow",
+          "summary": "Eli Lilly is winning the GLP-1 race right now, but it isn't resting on its laurels.",
+          "provider": "Motley Fool",
+          "date": "2026-06-14",
+          "url": "https://www.fool.com/investing/2026/06/14/3-reasons-to-buy-eli-lilly-stock-like-theres-no-to/"
+        }
+      ],
+      "analysis": "ข่าวที่มีนัยสำคัญคือเรื่องราวของ Eli Lilly ที่กำลังพัฒนาสินค้าใหม่ๆ ที่มีศักยภาพสูง เช่น AJ1-11095 ซึ่งเป็น JAK2 inhibitor ที่มีผลลัพธ์ที่ดีในผู้ป่วยมायलออฟิบรอสิส นอกจากนี้ยังมีข่าวที่กล่าวถึงการซื้อกิจการ 3 บริษัทที่มุ่งเน้นการวัคซีน ซึ่งจะช่วยให้ Eli Lilly มีความมั่นคงและศักยภาพในการเติบโตในระยะยาว\n\nBeer มองว่า: รหัส SQ: 4 (Money Management) หุ้นรูปแบบ: 'เข็มฉีดยา' (Healthcare) เนื่องจาก Eli Lilly เป็นบริษัทที่มุ่งเน้นการผลิตยาที่มีศักยภาพสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การซื้อกิจการ 3 บริษัทที่มุ่งเน้นการวัคซีน จะช่วยให้ Eli Lilly มีความมั่นคงและศักยภาพในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น LLY อยู่ที่ $1129.85 (ลง 0.3%) และมี P/E ที่ 40.164005 นี่แสดงถึงความมั่นคงของบริษัทและศักยภาพในการเติบโต"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "บริษัทมีการสื่อสารที่ดีเกี่ยวกับแผนธุรกิจและพัฒนาสินค้าใหม่ๆ นี่แสดงถึงความมุ่งมั่นของบริษัทในการสื่อสารกับตลาดและผู้ลงทุน"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Eli Lilly มีคู่แข่งที่แข็งแกร่งในตลาดการผลิตยาที่มุ่งเน้นการวัคซีนและพันธุกรรม แต่บริษัทมีความมุ่งมั่นในการขยายธุรกิจและพัฒนาสินค้าใหม่ๆ ที่มีศักยภาพสูง"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ Eli Lilly มีความมุ่งมั่นในการขยายธุรกิจและพัฒนาสินค้าใหม่ๆ ที่มีศักยภาพสูง นี่แสดงถึงความมั่นใจและความมุ่งมั่นของบริษัทในการเติบโต"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรพิจารณาเพิ่มการลงทุนในหุ้น LLY เนื่องจากมีโอกาสติดเทรนด์และมีความมั่นคงของบริษัทและศักยภาพในการเติบโต"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 12,
+      "ticker": "WMT",
+      "name": "Walmart Inc.",
+      "sector": "Consumer Defensive",
+      "price": 120.35,
+      "pct_change": -0.57,
+      "volume": 4511460,
+      "market_cap": 957396715170.8881,
+      "pe_ratio": 41.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:WMT",
+      "news": [
+        {
+          "title": "Canada's Nuvei to buy Payoneer for $2.75 billion in cross-border payments push",
+          "summary": "Nuvei will buy cross-border payments firm Payoneer for about $2.75 billion in cash, the companies said on Monday, as ‌the Canadian fintech aims to expand its global business.  Nuvei will buy ‌all shares of Payoneer for $",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/canadas-nuvei-buy-payoneer-2-120127235.html"
+        },
+        {
+          "title": "Walmart and McDonald's chase $7.5B World Cup boom",
+          "summary": "For two weeks every four years, Americans embrace soccer and may even remember that the rest of the world calls it football. This year, however, football-mania will be running even more wild than during a typical World C",
+          "provider": "TheStreet",
+          "date": "2026-06-15",
+          "url": "https://www.thestreet.com/retail/walmart-and-mcdonalds-chase-7-5b-world-cup-boom"
+        },
+        {
+          "title": "How ‘agentic’ is AI shopping today",
+          "summary": "Investing.com -- Agentic shopping is the use of AI agents to carry out parts of the shopping process on behalf of the customer instead of merely providing recommendations. Google’s agentic shopping protocol, for instance",
+          "provider": "Investing.com",
+          "date": "2026-06-14",
+          "url": "https://tech.yahoo.com/ai/chatgpt/articles/agentic-ai-shopping-today-210416599.html"
+        },
+        {
+          "title": "Walmart Inc. (WMT) Shows How Faster Delivery and Cross-Border Access Can Lift Online Retail",
+          "summary": "Walmart Inc. (NASDAQ:WMT) is one of the best e-commerce stocks to buy as global sales hit records. The company’s online retail story is no longer limited to U.S. pickup and delivery, as Walmart is now pushing its marketp",
+          "provider": "Insider Monkey",
+          "date": "2026-06-14",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/walmart-inc-wmt-shows-faster-195924966.html"
+        },
+        {
+          "title": "Symbotic (SYM) Is Down 5.4% After Q3 Outlook And Walmart Robotics Deal - Has The Bull Case Changed?",
+          "summary": "In recent weeks, Symbotic Inc. reported strong revenue growth, provided guidance for Q3 revenue of US$700 million to US$720 million and adjusted EBITDA of US$80 million to US$85 million, and completed the acquisition of ",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-14",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/symbotic-sym-down-5-4-141207155.html"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับ Nuvei ที่ซื้อ Payoneer มีผลกระทบต่อตลาดการชำระเงิน แต่ไม่เกี่ยวข้องกับ WMT ข่าวเกี่ยวกับ World Cup และการเติบโตของการซื้อขายออนไลน์ของ WMT มีผลกระทบต่อธุรกิจของ WMT ข่าวเกี่ยวกับ Symbotic และการเปลี่ยนแปลงในตลาดอาจส่งผลกระทบต่อ WMT แต่ไม่ชัดเจน\n\nBeer มองว่า: WMT เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงราคาอย่างรวดเร็วและความเสี่ยงสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "WMT กำลังทดสอบการรับคำสั่งซื้อ Subway ผ่านแอปพลิเคชัน Express Delivery ซึ่งอาจส่งผลกระทบต่อธุรกิจของบริษัทในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "P/E ของ WMT อยู่ที่ 41.859154 ซึ่งหมายความว่าราคาหุ้นมีความเสถียรและความมั่นคง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "CEO ของ WMT เตือนเกี่ยวกับราคาน้ำมัน ซึ่งอาจส่งผลกระทบต่อธุรกิจของบริษัท"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "WMT มีคู่แข่งอย่าง Coca-Cola และ Kimberly-Clark ซึ่งอาจส่งผลกระทบต่อธุรกิจของบริษัท"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "CEO ของ WMT กำลังนำบริษัทไปสู่การเปลี่ยนแปลงใหม่ โดยมีเป้าหมายที่จะเพิ่มความติดใจและความถี่ในการสั่งซื้อ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามการเปลี่ยนแปลงราคาและความเสี่ยงสูงของ WMT และเตรียมตัวสำหรับการเปลี่ยนแปลงในตลาด"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/xAA1EAACAgIBAwEFBwIGAwAAAAAAAQIDBBEFEiExE0FRYXHBBiKBkaGx0RQyFSM1QnOyFjTx/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QALREAAgIBBAIBAgMJAAAAAAAAAAECAxEEEiExE0FRImEjcaEFFDKBkcHR8PH/2gAMAwEAAhEDEQA/APnwALlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ11u2TjHW1Fy7/BN/QEpZ4MAACAAAAAegHgLfheMpzHeslWJ16XSnru9+fyJsfs/VTerpZG64S6nGcFrS9jeyE8ycV6Ju/BrjZLp9HPWVuuSjLW3FS7fFJ/UwOm5LArzrsdYkanGLXqutxTUXrX6eDnsii3GulTdHpnHyt7JbWcFa1OdSsawmagACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRj4d+RVZZVXOSgu3TFvb2u367NLhJRUnFpN63okhNPOPRiACCQAbqMed7Sg4rdka+/vlvX7EkNpLLNJecLxePmYVllzn1OTh2128Pa7eTD/CJYV+PZkuFsJ2Rg4xeu7fxXdEOjksjFUoYk3XU5dSjJKT/AD0E8PDM5p21bq5eyfzPE42FhwtpdnV1qL6nvfllGX+XmvmY4+HTXGE7H1tue1HXV28fj+JHs+z+ZCU1DpsSW4tPW+/jv47dzCE9qxN8np6inyT3URzH7EPjMaGXn10WOSjLe+nz2TZc5OBx+FdGU/X3OqaSjrWlDT/HX6ldwtcqubhXYtSg5Jr3PTJ32p/txvnL6G7WYnk+WVerivXx/UpJ1wcLbanLojYoxUl3ae9b/IyWHdO9U0wlZJxjLsvG0n9SRjcm8fD9GGPT6iknGbht+3v81taJGHzlyzI2Zepw6ejstdO2tvx38FMvDO1Ri7Ipvh9/YqrK51TcLYShJeYyWmj2yp1wqk3v1I9Xjx3a+hbXchh5MLcm7j1KfXFN+q9vs9fsb+Gy7uRyp1ZvRbXGHUoyguz2l7viS5bY7mUhF23+OHWe3/v+ChhW5xsktahHqf5pfU6DExK+Pw6M+y2Uo1p2OKj3++ktefYXEsTGbk3j1bn/AHfcXf5lNm52NPgFVGzc3GMEtPzHp2i0HmO449U5K50r08M318zi/wBfdpWNdGtpLT6epv2+7wa8nncS3EthGNvVOMopOK7dvmc0CqWJOXydM4qdUKn1Ho6H7OZMHK/1bIQlJVxim9b0tdv0K7nLIW8rbOucZxfTpxe14RBhOVdkZwepRaafuZiVUMTcjplfmiNOOgAC5zgAAAAAAAAAAAAAAA96X0uWnpPTZacHkYtE7lk09cpRbi+lPSSbfn4FlDDwr+HvyIUa6+uxd2tacunt8EZys2vDR11aXyxzGS98fkcwADQ5AAAAAZQhKctRW2k3+CW3+iBJiD3pbi5JPSetk7j+NlmZUqZz9Jqvr3re09a/ckpKaisshdMnFyUX0rs3rsbcXFuy7HXjw6pJba2l2/EvrcrH4/At46UpTshFw2klvqTe/JOwuLx8Gz1KXPqcel9T3vvshtKST9lYuydM7YriP6mvhMW7EwpV5EemTsb1tPtpGfO/6Pf8l/2RT/aWUo51ajJpOpJ6fnuzXxl9udl1YmXZOyluTknN/e7dt9/gUujlp/Bv+y54jNPuzH8u1/cqQXHM8b6eZGGDjTcfTTkoJy09v+CqlXZD++Eo6bXda7ryi0XuWULIeObg3yiVx/G3ch6npThHo1vqb9v/AMJ1cMLjd15UrZX1WQnJQa033a1v2afclfZyp1PIi3vca5ePfHf1Kvnv9Xu+Uf8AqjTpZODe7bXW3x/wl8vy1GXi1wx/UU1NT21rWt/qUYBVvJ011quO2JN4e+rG5Kq26XTBb29b9jOnXLYD69ZCfprcmovXnXu97RxZ6pNJpNpNafxMp1Kbyzv0+snRHakjqLsfGw+vl6/Usk/vqLlpPq/D4lPyvJ/4iqkqfT9Pf+7e96/g128lkWYEcWVjcV2f3V3itaX6MhGucLCPMhU3N2WcyyAAQbnu30uO3pvbRP4bOqwMqdlym4yh0/dW/aivBEkpLDL1zdclKPaOjz+flVkzqx6k1DcW5r/cn38Pwc6+72eznKyyU5vcpNtv3sxEVhJETxKyVmOWAASVABtjWnjTt29xnGK/FS/gEpZNQABAAAAAAAAAAAAAAABlCcoS3F6bTX4Naf6MlYV19llWH69kaLJqLjGXsb7/ALkM34Vkas6iyx6jCyLb9y2RJcGlcmpLngtea4rGwsSN1Ds6nNRak9rw/wCCjOwnZx/MJY6tc+h+o1FNeO3tXxOc5LDWNnXU09UoVJSbk+6T19WZVTf8Muzs1tCT8leNv2IRLng3yuvjj02WQqm47S34evzPeNxY5WdVTd1RhNN7Xbek/H4on8rKXHZVsKLroq+HXpS8Scu7/JHQkeTOzE1CPZGu4e+rj1mOyDi0pOK3vT1r9zGmiEeRya/UjVGCtjHq341JfoTqftDGrFqq/pnKUIqLfX27Jd/BD5fk48g61GpwVbem3tvev4M4qTi9x13SjC6PiWY45/Mtsavi6MGF3VW5QUZy1Z3c0nrtvz57ELl+SqtycSdUZ7pasafbaemkUu30uO3pvbR4aZOGOmSnubyZR/uXzO/Z8/XZ7L2v7Q3TuohKFUYtpWNprXfyu/u0ZSi3OL+Du3r92tr9tLBq+0//AL9X/Ev3ZV499uNdG6mXTOPh62bc/Nsz7o22xjFxj0pRIpo+TmoUq4Je0dVwuZPNyMu2cm0nFQTSWo7lpdiByHJZVcmlNOMcma6XFd1FxaRTQnKttwem01+DWmYhcLCKyp33O2fOS7fPZFtv3XCqCrk/HmXT8fj4KnIvsybpXXS6py8vWjUA3ktCqEHmKAAINAAAAAAAAAAAAAAAAAAAdPhY9Mvs3KUqa3J1zk24re11aZzB0eHnY0fs9KmVmrFCUGtPzLq0jK7OFj5O3QuKnLd8M5wFnn8Nfh0V2OUZuT6XGO2+p78dvdorTSMlLlHNZXKt4ksHgAJMwAAAD3T6XLT0nps8AAMlGUk3GLaXd6Xg2vHm1QqoTnO2Dl0pb79TXb8ECfTfwaAbsrHni3yqsjJab02tdS35NJJCaaygACASuNsnXn0enOUeqyMXp62trsdNxNVeRxldt9cLLLE+uU4puXf2t/JfkchGTjJSi2mntNewk4+dfRRZVG62KcdQUZPUX1J/tv8AMysg5dHZpdRGp/Usrkl5PJWQjjTppopmouSlCHdd5LXyIOZl3Zl3q3yTklpaWkl7jS5NpJtvS0t+w8NsnBGuMeUgACC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMlOSg4J/dbUmvit6/dmIBOcHW8XyV2ZdCFkIJSpdj6U/PW4/Qpucrc+VypLWoRjJ/lFfUiYOZbhZCtqfwkvet+CRXy1q9WV1FF87PMpw7+zt8uxlCvbPPo69Rq3ZQo9yyRbcTJqqVttE4wktqTXY0yi4ycZJpp6afsLHDprzsrDx7JvpdcurpfdPqk/4PefxYY2f/luT9Veo9+9tllP6trM5U/h+SPXBWFtwnG0Z6ud8pro1rpaXnf8ABUlzwmZXx0roZMZRdkVNa14Sb/XaFmdr2jS7PKlZ0YLjbZSux64Wem8mMVNx32XUm/wLbC4SjGyHZJxti4KPRKG+/bb7/J/mVn/kF1bsjTVBxc5Si5J702337/E1X83fkOr1K61GuxWajtb17CzWYY9nJXKyGqU8fSn+hbvOxcDIy6fScVBqzUIrWmor92UuXyuVfXQle04rbcV0tS215XwaIlU4xrvUn3nBJfF9UX9GaRt4WfRonidko8KT5Rf43I4c/wCqllVO9xm5xlKCl9xtJJb+fgoX5PYzlFSUXpTWn8VtP6IxLN5Mq6lBvAABBoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS+LyYYefXfapOMd76fPdNE3l7a8/k3GCmlTXOL7f7oqT/Ipyfg8nkYvXFXahLqk9xTbl09n+eiko87l2dNVq2+KXWcmnjv9Sxv+WP7lx9qf7cb5y+hlVxv+XjZ07lKyVsbZfc1vqce34d/zMftT/bjfOX0LwkpReDg1NUqtTBS9rJzwABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZuybrVbl92LbS+L1/CPJSlJ7lJt613YAHZiAAAAAAAAD//2Q=="
+    },
+    {
+      "rank": 13,
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "sector": "Technology",
+      "price": 548.61,
+      "pct_change": 7.24,
+      "volume": 10659641,
+      "market_cap": 894319262294.5674,
+      "pe_ratio": 156.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMD",
+      "news": [
+        {
+          "title": "AMD's AI Chip Roadmap Keeps Bulls Interested Despite Valuation Concerns",
+          "summary": "AI chip roadmap keeps analysts constructive despite valuation concerns.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/amds-ai-chip-roadmap-keeps-142518870.html"
+        },
+        {
+          "title": "Nvidia, Micron, Intel Lead Chip Stock Rally After Breakthrough U.S.-Iran Agreement",
+          "summary": "Nvidia, Micron and AMD Gain as Markets Embrace U.S.-Iran Truce",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-micron-intel-lead-chip-141246902.html"
+        },
+        {
+          "title": "Is AMD the Next $1 Trillion Chip Stock, or Just the Next AI Trap?",
+          "summary": "A trillion-dollar market cap used to be a club reserved for software empires and one graphics chip company that surprised the world. Advanced Micro Devices (NASDAQ:AMD) now sits at $834 billion, which puts the question r",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/is-amd-the-next-1-trillion-chip-stock-or-just-the-next-ai-trap/"
+        },
+        {
+          "title": "This Under-the-Radar AI Chip Leader Just Became a No-Brainer Buy This Week",
+          "summary": "Broadcom's share of the chip market is about to explode.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/this-under-the-radar-ai-chip-leader-just-became-a/"
+        },
+        {
+          "title": "Investor Cathie Wood Buys More Than $500 Million Of SpaceX Stock",
+          "summary": "Closely followed investor Cathie Wood bought more than $500 million U.S. of SpaceX (NASDAQ: $SPCX) stock on the day...",
+          "provider": "CryptoProwl",
+          "date": "2026-06-15",
+          "url": "https://www.cryptoprowl.com/releases/investor-cathie-wood-buys-more-than-500-million-of-spacex-stock-5868"
+        }
+      ],
+      "analysis": "AMD มีโอกาสที่จะกลับมาแรงในระยะยาว เนื่องจากมีผลิตภัณฑ์ที่มีความน่าสนใจในตลาดชิป และการเปลี่ยนแปลงของตลาดชิปอาจส่งผลกระทบต่อผลการดำเนินงานของบริษัท แต่ในระยะสั้น ราคาหุ้นอาจมีการเคลื่อนไหวที่ไม่แน่นอน\n\nBeer มองว่า: AMD เป็น 'เข็มฉีดยา' ที่มีโอกาสที่จะกลับมาแรงในระยะยาว แต่ในระยะสั้นควรใช้ Daytrade Hunter รูปแบบ 'รับ-ขาย' เพื่อหากำไร",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "AMD มีผลิตภัณฑ์ที่มีความน่าสนใจในตลาดชิป แต่การเปลี่ยนแปลงของตลาดชิปอาจส่งผลกระทบต่อผลการดำเนินงานของบริษัท"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AMD ลง 10.9% ในวันนี้ แต่ในระยะยาวมีโอกาสที่จะกลับมาแรง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การเปลี่ยนแปลงของตลาดชิปอาจส่งผลกระทบต่อการรับรู้ของตลาดเกี่ยวกับผลิตภัณฑ์ของ AMD"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Nvidia และ Broadcom เป็นคู่แข่งหลักของ AMD ในตลาดชิป"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ AMD ไม่ได้แสดงความคิดเห็นเกี่ยวกับการเปลี่ยนแปลงของตลาดชิป"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรพิจารณาซื้อหุ้น AMD ในระยะยาว เนื่องจากมีโอกาสที่จะกลับมาแรง"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 14,
+      "ticker": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "sector": "Financial Services",
+      "price": 321.58,
+      "pct_change": 0.27,
+      "volume": 1476071,
+      "market_cap": 861677245820.6724,
+      "pe_ratio": 14.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JPM",
+      "news": [
+        {
+          "title": "US Bonds Rally as Traders Trim Fed Rate-Hike Bets on Iran Deal",
+          "summary": "(Bloomberg) -- Treasuries advanced as investors dialed back expectations for Federal Reserve interest-rate hikes following news of a deal to halt the Iran war.Most Read from BloombergIran’s Deputy Foreign Minister Confir",
+          "provider": "Bloomberg",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/economy/policy/articles/treasuries-rally-traders-trim-fed-020747498.html"
+        },
+        {
+          "title": "Singapore Lines Up JPMorgan, Deutsche Bank For Gold-Clearing Push",
+          "summary": "Singapore's SGX plans a gold-clearing system by end-2026 as banks join its bullion market expansion.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/singapore-lines-jpmorgan-deutsche-bank-132417069.html"
+        },
+        {
+          "title": "Which is the Better Bank Stock to Buy: JPMorgan or Citigroup?",
+          "summary": "C's lower valuation, improving turnaround and stronger sentiment test whether investors should favor value over JPM's quality premium.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/better-bank-stock-buy-jpmorgan-130300113.html"
+        },
+        {
+          "title": "Exchange-Traded Funds, Equity Futures Higher Pre-Bell Monday Amid US-Iran Ceasefire",
+          "summary": "The broad market exchange-traded fund SPDR S&P 500 ETF Trust (SPY) was up 1.3%, and the actively tra",
+          "provider": "MT Newswires",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-125654489.html"
+        },
+        {
+          "title": "1 Unstoppable Vanguard ETF to Buy and Hold for the Next Decade",
+          "summary": "Value stocks are having their moment again, and Vanguard Mega Cap Value Index Fund ETF Shares (NYSEARCA:MGV) is the cleanest way to own that rotation without overpaying for it. MGV returned 28% over the past year, a numb",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/1-unstoppable-vanguard-etf-to-buy-and-hold-for-the-next-decade/"
+        }
+      ],
+      "analysis": "ข่าวที่เกี่ยวข้องทำให้ตลาดมีความหวังว่าเฟดจะไม่ปรับขึ้นอัตราดอกเบี้ย ทำให้หุ้นในกลุ่มการเงินมีโอกาสปรับตัวขึ้น แต่ JPMorgan Chase & Co. (JPM) ยังไม่ผ่านจุดเริ่มต้นเทรนด์ใหม่ จึงไม่ควรลงทุนในขณะนี้\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' ที่มีโอกาสปรับตัวขึ้นในระยะสั้น แต่ควรระวังการถอยหลัง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "JPM เป็นหนึ่งในธนาคารที่มีประสิทธิภาพสูง และมีโอกาสที่จะปรับตัวขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "P/E ของ JPM อยู่ที่ 14.945933 ซึ่งไม่สูงมากนัก แต่ราคาหุ้นอยู่ที่ $321.58 ซึ่งไม่สูงมากนักเช่นกัน"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวที่เกี่ยวข้องทำให้ตลาดมีความหวังว่าเฟดจะไม่ปรับขึ้นอัตราดอกเบี้ย ทำให้หุ้นในกลุ่มการเงินมีโอกาสปรับตัวขึ้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Citigroup (C) เป็นหนึ่งในคู่แข่งของ JPM แต่ C มีโอกาสที่จะปรับตัวขึ้นในระยะสั้นมากกว่า JPM"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ JPM มีประสบการณ์และความสามารถในการนำธุรกิจไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรระวังการถอยหลังของ JPM และไม่ควรลงทุนในขณะนี้"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 15,
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "sector": "Technology",
+      "price": 127.75,
+      "pct_change": 2.55,
+      "volume": 45015350,
+      "market_cap": 642599246871.9482,
+      "pe_ratio": null,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:INTC",
+      "news": [
+        {
+          "title": "Is SpaceX Stock Headed Higher After a Strong Start on Day One?",
+          "summary": "Investors don't appear to be overly concerned about SpaceX's high valuation -- at least not yet, anyway.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/is-spacex-stock-headed-higher-after-rising-nearly/"
+        },
+        {
+          "title": "Nvidia, Micron, Intel Lead Chip Stock Rally After Breakthrough U.S.-Iran Agreement",
+          "summary": "Nvidia, Micron and AMD Gain as Markets Embrace U.S.-Iran Truce",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/nvidia-micron-intel-lead-chip-141246902.html"
+        },
+        {
+          "title": "Social Security Just Updated the Timeline Until Its Insolvency. Here's What Changed.",
+          "summary": "Without changes, Social Security will be forced to cut benefits across the board.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/retirement/2026/06/15/social-security-updated-timeline-until-insolvency/"
+        },
+        {
+          "title": "AI Memory Bottleneck: This Sizzling ETF Lets You Buy Micron, Sandisk, SK Hynix, and Samsung for Less Than $100",
+          "summary": "The DRAM ETF has jumped impressively in just over two months, and it can soar higher thanks to the favorable demand-supply dynamics in the memory market.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/ai-memory-bottleneck-this-sizzling-etf-lets-you-bu/"
+        },
+        {
+          "title": "Trading Near Its 52-Week Low, Is Palantir Technologies Stock a Buy?",
+          "summary": "This once-hot artificial intelligence stock is down 28% this year.",
+          "provider": "Motley Fool",
+          "date": "2026-06-15",
+          "url": "https://www.fool.com/investing/2026/06/15/trading-near-its-52-week-low-is-palantir-technolog/"
+        }
+      ],
+      "analysis": "ข่าวล่าสุดเกี่ยวกับ Nasdaq และหุ้น NVDA ทำให้ตลาดมีความไม่แน่นอน ซึ่งอาจส่งผลกระทบต่อราคาหุ้น INTC ในระยะสั้น ขณะเดียวกันข่าวเกี่ยวกับ SpaceX และหุ้นในกลุ่มเทคโนโลยี เช่น Nvidia, Micron และ AMD ก็ทำให้ตลาดมีความหวังว่าหุ้นในกลุ่มเทคโนโลยีจะปรับตัวขึ้นในระยะสั้น\n\nBeer มองว่า: INTEC เป็นหุ้นรูปแบบ 'เข็มฉีดยา' (Daytrade Hunter) เนื่องจากมีความเสี่ยงสูงในระยะสั้น แต่มีโอกาสเติบโตในระยะยาว",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "INTC เป็นหุ้นในกลุ่มเทคโนโลยี ซึ่งเป็นกลุ่มที่มีความเสี่ยงสูงในระยะสั้น แต่มีโอกาสเติบโตในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น INTC ลง 11.3% ในวันนี้ ซึ่งเป็นราคาอย่างรวดเร็วและไม่มีความแน่นอนในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวล่าสุดเกี่ยวกับ Nasdaq และหุ้น NVDA ทำให้ตลาดมีความไม่แน่นอน ซึ่งอาจส่งผลกระทบต่อราคาหุ้น INTC ในระยะสั้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "INTC มีคู่แข่งอย่าง AMD ซึ่งเป็นหุ้นในกลุ่มเทคโนโลยีเช่นกัน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "CEO ของ INTC คือ Pat Gelsinger ซึ่งมีประสบการณ์ในการนำบริษัทในกลุ่มเทคโนโลยี"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรพิจารณาเทรดหุ้น INTC ในระยะสั้น โดยให้ความสำคัญกับการจัดการความเสี่ยง"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 16,
+      "ticker": "V",
+      "name": "Visa Inc.",
+      "sector": "Financial Services",
+      "price": 325.1,
+      "pct_change": 0.84,
+      "volume": 1525181,
+      "market_cap": 618247402982.4646,
+      "pe_ratio": 28.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:V",
+      "news": [
+        {
+          "title": "Visa (V) Holds Steady Amid Macro Concerns",
+          "summary": "Greenskeeper Asset Management, an independent firm that specializes in disciplined value investing, recently released its Q1 2026 scorecard. A copy is available to download here. The Middle East conflict triggered a shar",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/visa-v-holds-steady-amid-132753140.html"
+        },
+        {
+          "title": "Digital Payment Update - Greece's Social Commerce Set For Major Growth By 2026",
+          "summary": "The Greek social commerce market is on track for impressive growth, anticipated to expand at an annual rate of 12.4% to exceed USD 7 billion by 2026. This sector demonstrates significant potential across a variety of seg",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/digital-payment-greeces-social-commerce-124533246.html"
+        },
+        {
+          "title": "AI Is Reshaping FIFA World Cup 2026: 5 Stocks Likely to Gain",
+          "summary": "FIFA World Cup 2026 showcases AI across matches and operations, putting LNVGY, GOOGL, CRM, V and NVDA in focus for potential gains.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ai-reshaping-fifa-world-cup-121200690.html"
+        },
+        {
+          "title": "EA rolls out advertising platform with enhanced offerings for brands",
+          "summary": "The video game company is enabling brands, including initial partners Coach and Visa, to create, launch and measure campaigns across its library.",
+          "provider": "Marketing Dive",
+          "date": "2026-06-15",
+          "url": "https://www.marketingdive.com/news/ea-rolls-out-advertising-platform-with-enhanced-offerings-for-brands/822833/"
+        },
+        {
+          "title": "Visa World Cup Gift Card Ties Sports Partnership To Undervalued Stock Story",
+          "summary": "Visa and Blackhawk Network are launching a limited-edition digital FIFA World Cup 2026 Activ Visa Gift Card. The product ties Visa's brand to FIFA World Cup 2026 and targets both fan engagement and business incentive pro",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/visa-world-cup-gift-card-010922979.html"
+        }
+      ],
+      "analysis": "Visa (V) มีความมั่นคงและยังคงอยู่ในตลาดแม้จะมีความกังวลเกี่ยวกับปัจจัยพื้นฐาน แต่ข่าวล่าสุดเกี่ยวกับ FIFA World Cup 2026 และการเติบโตของตลาดการชำระเงินดิจิทัลในกรีซทำให้หุ้น V มีโอกาสที่จะเพิ่มขึ้นในระยะยาว\n\nBeer มองว่า: V เป็น 'เข็มฉีดยา' ที่มีโอกาสที่จะเพิ่มขึ้นในระยะยาว เนื่องจากมีความมั่นคงและโอกาสในการเติบโตในตลาดการชำระเงินดิจิทัล",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "Visa มีความสามารถในการเติบโตในตลาดการชำระเงินดิจิทัลที่มีการเติบโตอย่างรวดเร็ว และมีโอกาสที่จะเพิ่มขึ้นในระยะยาว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "P/E ของ V อยู่ที่ 28.25939 ซึ่งเป็นระดับปานกลาง แต่หากพิจารณาถึงโอกาสในการเติบโตในระยะยาว P/E นี้อาจจะถูกต้อง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "Visa มีการสื่อสารที่ดีในตลาด โดยมีการประกาศข่าวที่มีความสำคัญ เช่น การเป็นสปอนเซอร์ของ FIFA World Cup 2026"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Visa มีคู่แข่งในตลาดการชำระเงินดิจิทัล เช่น Mastercard และ American Express แต่มีความสามารถในการเติบโตและโอกาสที่จะเพิ่มขึ้นในระยะยาว"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "Visa มีผู้บริหารที่มีความสามารถในการนำธุรกิจไปสู่ความสำเร็จ และมีการสื่อสารที่ดีในตลาด"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "หากต้องการเพิ่มผลกำไรจากหุ้น V เราควรตั้งเป้าหมายในการซื้อหุ้นในระยะยาว และติดตามข่าวที่มีความสำคัญในตลาดการชำระเงินดิจิทัล"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 17,
+      "ticker": "XOM",
+      "name": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "price": 140.68,
+      "pct_change": -4.31,
+      "volume": 6953753,
+      "market_cap": 582862449681.4402,
+      "pe_ratio": 25.2,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:XOM",
+      "news": [
+        {
+          "title": "Dow hits record high on Iran deal optimism, lower oil prices",
+          "summary": "By Twesha Dikshit and Joel Jose June 15 (Reuters) - Wall Street's main indexes rose on Monday, with the Dow touching an intraday high after the United States and Iran struck a preliminary agreement to",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-advance-over-083347369.html"
+        },
+        {
+          "title": "1 Unstoppable Vanguard ETF to Buy and Hold for the Next Decade",
+          "summary": "Value stocks are having their moment again, and Vanguard Mega Cap Value Index Fund ETF Shares (NYSEARCA:MGV) is the cleanest way to own that rotation without overpaying for it. MGV returned 28% over the past year, a numb",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/1-unstoppable-vanguard-etf-to-buy-and-hold-for-the-next-decade/"
+        },
+        {
+          "title": "Update: US-Iran Peace Deal Announcement Lifts US Equity Futures Pre-Bell",
+          "summary": "(Updates with economic data, recent oil price movement, world markets' overview and corporate stock",
+          "provider": "MT Newswires",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/us-iran-peace-deal-announcement-125218975.html"
+        },
+        {
+          "title": "Will Strong Oil Prices Boost ExxonMobil's Energy Business?",
+          "summary": "XOM's low-cost assets in the Permian Basin and Guyana position it to capitalize on elevated crude prices and a favorable 2026 oil market outlook.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/energy/articles/strong-oil-prices-boost-exxonmobils-124500728.html"
+        },
+        {
+          "title": "Oil Prices Slump, Exxon and Chevron Stocks Drop After Trump Iran Deal",
+          "summary": "Oil prices slumped to three-month lows of just above $80 a barrel early Monday after the U.S. and Iran reached an interim deal that includes plans to reopen the Strait of Hormuz.  Exxon Mobil Chevron  and other energy st",
+          "provider": "Barrons.com",
+          "date": "2026-06-15",
+          "url": "https://www.barrons.com/articles/oil-prices-exxon-chevron-stock-trump-iran-8f14bc75?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับข้อตกลงระหว่างสหรัฐฯ และอิหร่านทำให้ราคาน้ำมันลดลง ซึ่งอาจส่งผลกระทบต่อหุ้น XOM แต่ XOM ยังมีทรัพย์สินที่มีประโยชน์และการเติบโตของผลตอบแทนเงินปันผลที่จะช่วยให้หุ้นได้รับแรงบันดาลใจในการขยายการผลิตและเพิ่มความแข็งแกร่งในการไหลเวียนเงินสด\n\nBeer มองว่า: XOM เป็น 'เข็มฉีดยา' เนื่องจากมีการเติบโตของผลตอบแทนเงินปันผลและทรัพย์สินที่มีประโยชน์ แต่ในขณะเดียวกันก็เป็น 'หุ้นกระจาย' เนื่องจากมีการเปลี่ยนแปลงของราคาน้ำมัน",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "XOM มีทรัพย์สินที่มีประโยชน์และการเติบโตของผลตอบแทนเงินปันผล ซึ่งจะช่วยให้หุ้นได้รับแรงบันดาลใจในการขยายการผลิตและเพิ่มความแข็งแกร่งในการไหลเวียนเงินสด"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา XOM อยู่ที่ $140.68 (ลง 4.3%) และมี P/E ที่ 25.239058 ซึ่งแสดงถึงความสามารถในการผลิตกำไรของหุ้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "XOM มีการสื่อสารที่ดีในการขยายการผลิตและเพิ่มความแข็งแกร่งในการไหลเวียนเงินสด ซึ่งจะช่วยให้หุ้นได้รับแรงบันดาลใจในการเติบโต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "XOM มีคู่แข่งที่แข็งแกร่ง เช่น Chevron ซึ่งมีการเติบโตของผลตอบแทนเงินปันผลและทรัพย์สินที่มีความแข็งแกร่งในการปรับตัวในราคาน้ำมันที่สูงขึ้น"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "XOM มีผู้บริหารที่มีความสามารถในการขยายการผลิตและเพิ่มความแข็งแกร่งในการไหลเวียนเงินสด ซึ่งจะช่วยให้หุ้นได้รับแรงบันดาลใจในการเติบโต"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "แผนของเราคือการซื้อหุ้น XOM ในราคาที่เหมาะสมและรอการเติบโตของหุ้น"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 18,
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "sector": "Healthcare",
+      "price": 236.93,
+      "pct_change": -1.64,
+      "volume": 1365326,
+      "market_cap": 570137306434.9923,
+      "pe_ratio": 26.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:JNJ",
+      "news": [
+        {
+          "title": "AstraZeneca's Truqap Wins FDA Nod for Prostate Cancer Indication",
+          "summary": "AZN wins FDA approval to expand Truqap's use in PTEN-deficient prostate cancer, backed by phase III data showing improved outcomes and broader use.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/astrazenecas-truqap-wins-fda-nod-125900625.html"
+        },
+        {
+          "title": "Factbox-Global drugmakers rush to boost US presence as tariff threat looms",
+          "summary": "June 15 () - Global drugmakers have been ramping up U. manufacturing and stockpiling inventory as the Trump administration moves to impose 100% tariffs on branded drugs unless companies cut prices or make medicines domes",
+          "provider": "Reuters",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/news/factbox-global-drugmakers-rush-boost-174250083.html"
+        },
+        {
+          "title": "Today’s AI market hits all 5 warning signs that preceded 2000 Nasdaq crash.",
+          "summary": "Although Wall Street has spent the better part of two years cheering an artificial intelligence buildout that has dragged the Nasdaq 100 up roughly 30% over the past year, the technology-packed Nasdaq Composite is starti",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/todays-ai-market-hits-all-5-warning-signs-that-preceded-2000-nasdaq-crash/"
+        },
+        {
+          "title": "IMAAVY Breakthrough And Priority Review Reframe Johnson And Johnson Growth Story",
+          "summary": "Johnson & Johnson (NYSE:JNJ) reported breakthrough Phase 2/3 ENERGY trial results for IMAAVY (nipocalimab) in warm autoimmune hemolytic anemia, a rare anemia with no current FDA approved therapies. The drug significantly",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-14",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/imaavy-breakthrough-priority-review-reframe-231644407.html"
+        },
+        {
+          "title": "Jim Cramer Explains Johnson & Johnson’s (JNJ) Shares Have Gained",
+          "summary": "We recently published Jim Cramer Didn’t Hold Back On SpaceX’s IPO & Discussed These 12 Stocks. Johnson & Johnson (NYSE:JNJ) is one of the stocks discussed by Jim Cramer. Johnson & Johnson (NYSE:JNJ)’s shares are up by 53",
+          "provider": "Insider Monkey",
+          "date": "2026-06-14",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-explains-johnson-johnson-190809661.html"
+        }
+      ],
+      "analysis": "ข่าวล่าสุดเกี่ยวกับอัตราเงินเฟ้อและผลประกอบการของ Amgen อาจส่งผลกระทบต่อราคาหุ้น JNJ แต่ข่าวเกี่ยวกับ IMAAVY ของ JNJ ที่ได้รับการรับรองจาก FDA อาจช่วยเพิ่มความมั่นใจในหุ้น\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' (รูปแบบ 6: หุ้นที่มีความเสี่ยงต่ำและผลตอบแทนที่คงที่) เนื่องจาก JNJ มีประสบการณ์ยาวนานในด้านการผลิตผลิตภัณฑ์ทางการแพทย์และมีความสามารถในการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ๆ",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "JNJ มีประสบการณ์ยาวนานในด้านการผลิตผลิตภัณฑ์ทางการแพทย์และมีความสามารถในการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ๆ ซึ่งจะช่วยให้บริษัทสามารถแข่งขันกับคู่แข่งได้"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น JNJ อยู่ในระดับสูง (P/E: 26.940971) ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "JNJ มีการสื่อสารที่ดีในด้านการวิจัยและพัฒนาผลิตภัณฑ์ใหม่ๆ และมีความสามารถในการสร้างความตระหนักในหมู่ผู้บริโภค"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "JNJ มีคู่แข่งที่แข็งแกร่งในด้านการผลิตผลิตภัณฑ์ทางการแพทย์ เช่น Amgen และ Medtronic"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "JNJ มีผู้บริหารที่มีประสบการณ์และมีความสามารถในการนำบริษัทไปสู่ความสำเร็จ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "เราควรติดตามข่าวล่าสุดเกี่ยวกับอัตราเงินเฟ้อและผลประกอบการของ Amgen และพิจารณาเทรดหุ้น JNJ เมื่อราคาหุ้นอยู่ในระดับเหมาะสม"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQMGAgf/xAA7EAABBAECAgcFBgUEAwAAAAABAAIDEQQFEiExExQiQVFhsQYycYHBNXORobLRIzM0UvAVNkLhQ2Jj/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QALREAAgMAAQMCBAYCAwAAAAAAAAECAxEhBBIxE0EiUXHwBRRCYYGRMqGxweH/2gAMAwEAAhEDEQA/APnyLZDEZXloNU1zuXgCfovG07S6jQNEq5GPNMIiIQEREARFkNLjTQSavggMLcMd5yI4bbuk214doAj1Vhg6NPIIpZYrjc9hrcOLDdn0VtkaVA7UMV0P8IsG48zuDdoA5qk5qDxnR01HrxcoPcaRyaKTqGL1LMfj79+2u1VXYtRldPVqMZRcW4vygiyASCQCQBZ8lhCoREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQFroeeMN8zTFv3tLr3VW0Eq2jZBk6HNkGCMOkbJIeyCbt1cfJcqHFptpINVwXVYP+2D9zJ9Vz3RS5R6fQ2OSdb8JM5RERdB5gRFPwdPnyseeSKIPG3a0kj3rafS1JWUlFayArnSo8GHKyosw25m5rTx4gB27l5LbjYPU8ODMyxHJCwukcwCzTg0DgeHNa9WzMR2XUMJY9glZIQ0DcSCPnxWLl3/AAo9CFXo5ZPN44f7/f8Ao2ZGuQ9WlxYYDs2mNjt3DbRF8vgomj5zoNRa57ekMgbFzqhYA9FWItJLuWM4qcpn3Q4506HIw26lhTajuEbnjeG7boNBFX5rnlZwavLFppwgxlEbQa7jd9/PiFeY2i4eNIXhrpLFVJTh6LODcX2v+Dq6lxnU7oey+L6s5jHBMOVQ/wDEP1tSTCyooullx5GM8S0iv8tXmqZj9OyehxQ2Jr4wQGsFbt3P8Ap2u/Y+R8B+oK1k+ySXzMeiq/MVzsfGcr+v/Dj2Mc800WQCfkBZ9F5VjpGDLlvldG5gDGOad3i5pAWMrSMvFx3TSNG1riHURy4Ufnau2l5MobOTUec8leiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgPTWOc1xaLDBbvIWB6kLezEfM7HjgBdJKwuokDkXD0CkadidPj5DusQR23bT30R2mm/h3K51vbhYkM+KyOORklNc1g4Ag2Fm7EpKJ1LppOmVi9kc5lYs2JII8hm1xFgWDw+S0Loxp7tWkyZp56LJHRRjb7oBv594XOkUSFdSTbS9jnVdka4zn7mF0On50TtHGGA/pHfwQa4W/dXyXPIonBSWGlNzqk2vfg6SHRWwZsc2TLGxjQwMDXVbwB4jvIKqcrEgZk5Lcd5kjiYHMcCDZJaDxHxK1SZFZUU0Z3GNsZF8rDR9Qr/R9Rw4dLZHJLtdE0l42ngN3/YWT74c+Tsj6NzcOI+Xv3n1/gpc3TcjDgjllYWhwp3aBp1nhw8gFd+zX2a/70+gXjV54tRxocfDf0ksjt7W1VgbgTx+Cq5us6XJPj75WNeLjp//ALDjw8gVrVJtbI838Spr7vSrl8mRZMvJfF0Dp5DED7pdw/zgtDnFzi5xJJNknvWEVsSJcm/LCIiEGQaIK7DB1PrsjGdDs3RGS91/8i2uXkuOU/T8yWPMxWxHbyid37gX39VHanJP5Cc5ejOCflEv2mNahEf/AJj1K3T6zBn43VpW9AJDTn2XbQKINVxvkqbKypsuQSZD9zgKBoDh8loSUVJ6x087KanWn5WM6rRYIcfIy4oJjK1paCS2qNu4eaiann5GQx2GyNh6Sd0Q8eyW13+akaE5rsvUHNIIMtgjvFuVZvcfaBrL7IyyQPMuF+gU2JNJ/Iw6Kco3zjvlJf8ABGzsCfBLOmbQeOBsc6Fj5Woi6X2mjMvVmtqwJHcfIA/RULcTJfAZ2wSGIf8AIN4f5wWdc+6KbPR6mj07XGC4NCIi0OUIiIAiIgCIiAIiIAiIgCIiAIiIAi9vjLGxuNU9u4fiR9F4QBERAEREAVloeJFl5pbNZaxu+h30RwPkobWjqUrqG4SMAPyd+yuNBY2PVHhooHHafmQ0n8ypXkyvbVUmvYr8+JmBmZONFuc1zGtBceI9130UIknmVYa99rzfBv6Qq5GuS1UnKuLfyLvS9Xdj42QHxdI4Eyl26rJLR4eapSbJK3Y/8nK+6H62rQqRik2zpsslKEYvwkERFYxCyHEAgEgEUfNYRASMXMlxp4pm7XGIFrQ4cKN/uVu1fKfk5794aOiJjFeAJUFZcS5xc4kkmyT3qSrgnPv9zCIigsEREAXuKQxSskbW5jg4X5LwiDyEREBuxpBHK4uNAsePmWkD81ra5zHBzXEOBsEHiCvKIMx6W3W5zmdt+8dWsbwHUeivv8SrfEeZPZtz3AAmKQ8AAO/uC5Vsj2u3BxvaW2ePCqr8Ff4mdjM9nnROkp4Y5hFHm7dQWFsOFh6XSXbKXc/Z/wDRzqIrHT9Jlzsd8rHsbR2tBPfw58OVFdGHlznGC2RXIsngaXuOPeyV110bd3x4gfVCzeGtFle5ojE8NJu2tdy8QD9UG84a0RFACIiAIisI9Km6JmRkuEOO4WX+8QO40PG0GrUm/JXoryHSmyZ+QMOdjmRtc0hwI2lwcAPOvFU88ToJ3wuouY4tNeSrGabxG1lMq1rNayOYtXmhadBK+brUQkLAxzbJoWL/AGU/L0nBjwp3MxwCGFwO42CAfNIyTk4/Izuj6VMbn4k8+/6N2LJpmTI1uOyF72N3NqP3Rfw4cVT6jhOdnZvV8YlgY0N2M4B1tuvOrUXRsxuFmhzmgtkGwkurbZHFWEOvtByHnHqyHgb+futrl81CTdrb8YTNqvolXXzLuKUY0zjGGML3SN3Na0EnmR9CvM8EuPJ0c8bmO8CF02BrbczLjgGOWFwNkuuqB8lX+1H9fF90PUo5ZPtLU1OXTO2axp5hSoiK5kdJp2Fhu0QTTwl1gvfTjZ235+FrLM/T4M2IY2M/pZQxhJNANIFd58lDx9U6PRH4/Q2W/wAO939243y8lVtne2dk1guYW1Y/tqvRGuUzKpy9Oyua3WbM/K65mPyNmzdXZu6oUoyIpNIpRWIIiKCQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAKTgjpMqHHfxiklbub4931KjLfhSNizoJJDTWSNJPgLUS8F6/wDJaXWvafiY2CySCEMcHhtgnlxKkezX2a/70+gWzLy8HLOKwZW0mVsjOwTuokV5cVRNz5tPMkGDkiSEmw4srjw48fwWdEnmM1/FunVnNeZx8idrmmwYuFFJG55LXbO0RyO4+qrcTGnfFlBkMjiGBpAaee9vD8iglzdRdFjb3yEA00u58zZvvW3UGSYmZltmaWmeyyiDw3g3+RVobH4ZPkdSlYvUrji4NmhxFuo48jjxLpG7SOVN/wC10eVhRZbmGUuBY1zRtP8AcKKrcyCFvs417YmBwjY4ODRdmrKo8PUMnCL+geBv5gi/h6q9ifbiOHo3CXUK6fiOrPv6mvLibBlzRNJLWPLRfPgVpU3q+Rk40uUYZHvdIDvDTRHa3fnS8yYT2ZkMDmvZ0uzi5veQL/AkqE+DpmviSXv4IiLKwpKBdVnf7ZH3Uf0XOY/8nK+6H62q/wAzIhd7ONY2WMuMbGgBwuxVhWRydRrlD6j2ck6aXOlqt7w6vC7W/I03Gic/N7Zkjc6bmOJ51y5cPzVJpGpt07pQ6IvElcjVVf7qdka+2XCc0QU6UOZW/wB3gOPLz/JZVxybbO7rrJWdPXCD516Mn2ika9ox4Y62gkuN8wDXCuXJaZNbyZ8CfdHELIj4A8nB19/kqVeg9wjLAeySCR5i69Sr4t7vcycdqjV+lco8oiIWLLQPtiH4O/SVI9qP6+L7oepVdp+V1LMZkbN+2+zdXYpSNXyv9QzyYmCo2loIde4Czf4LJxfqJnZG2K6Vwb50rlcaBLiRmcZQZuItu5t8ADu/JVjowMZktm3Pc0/IN/dCH48nAiyzu8HN/YrZcHn2RVkXHTOW6N2XM6GujLyW0KFXwWlEQ0SxYERFACIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAkY84GTiukoMhcOIHduv6lR0RMLOTaw9xyPieHxPcxw5OaaIXvKyJMrIfLI5xsmgTe0XyWlExbo7nnb7HovcYxGT2QSQPM1+wXlEQqXOPq7YtGfi9EC4AsB38927jXl9VG0rNlh1GN3ZcZNsR3DkLA+ir1lri1wc0kEGwR3KvYsf7m/5iblFv8ASdlgthz8OPKyMaAySXuOwHka7/guPkjcyi5tBwtvmLI+isMTUsvH05zY5abHI1reyDQO4n0VlrWXiZmHFHHksaXO3gua6qFjw8VlFShLPZnXdKu+lS3HFf394R9G0yLJw5nTGRry4xkDhVEHw52FRkUSFY5GVJi5WZHFkPp7iRsJAa7cD+NAhVq6WePUpa5N8MIiKpsEREAREQBWGmZfQ7o+rwP7L3bnss8Gnh8OH5qvWyGTonl1XbXN/EEfVSis4qUWizLMF2PBNLkNp0xc6NsZA47dzR8AvGt9R3Q9T97aN3PlQ28/JVpe4xhhPZBJA8zV+gXlNM41ZJPXxoREUGwREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREBncdpbZomyFhEQHp73SSOe825xJJ8SvKIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiID//Z"
+    },
+    {
+      "rank": 19,
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "sector": "Technology",
+      "price": 193.32,
+      "pct_change": 4.99,
+      "volume": 7473563,
+      "market_cap": 556141000976.8066,
+      "pe_ratio": 38.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NYSE:ORCL",
+      "news": [
+        {
+          "title": "Understanding Oracle (ORCL) Reliance on International Revenue",
+          "summary": "Evaluate Oracle's (ORCL) reliance on international revenue to better understand the company's financial stability, growth prospects and potential stock price performance.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/understanding-oracle-orcl-reliance-international-131501874.html"
+        },
+        {
+          "title": "Adobe’s Pivot: A Genius Bet Or A Costly Distraction?",
+          "summary": "The company just told Wall Street it’s trading today’s predictable profits for a massive, uncertain user-grab tomorrow, and investors are spooked.",
+          "provider": "Trefis",
+          "date": "2026-06-15",
+          "url": "https://www.trefis.com/articles/602785/adobes-pivot-a-genius-bet-or-a-costly-distraction/2026-06-15"
+        },
+        {
+          "title": "SpaceX's $75 Billion IPO Fuels $1.5 Trillion Equity Supply Wave",
+          "summary": "JPMorgan sees IPOs and share sales adding roughly $1.5 trillion of net stock supply over two years.",
+          "provider": "GuruFocus.com",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/spacexs-75-billion-ipo-fuels-124117485.html"
+        },
+        {
+          "title": "Beat the Market Like Zacks: FirstCash, Cisco, Bread Financial in Focus",
+          "summary": "FCFS, CSCO and BFH led standout gains as Zacks highlighted top-performing portfolios amid volatile markets and inflation worries.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/beat-market-zacks-firstcash-cisco-123600066.html"
+        },
+        {
+          "title": "Brookfield Corporation (BN) Is A Cheap Stock In Bill Ackman’s Portfolio",
+          "summary": "Brookfield Corporation (NYSE:BN) is one of the 6 Cheap Stocks to Buy According to Bill Ackman. Brookfield Corporation (NYSE:BN) is one of the largest asset management firms in the world, courtesy of its more than a trill",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/brookfield-corporation-bn-cheap-stock-122442445.html"
+        }
+      ],
+      "analysis": "ORCL มีความเสี่ยงต่อการเปลี่ยนแปลงของตลาดโลก เนื่องจากขึ้นอยู่กับรายได้จากต่างประเทศ แต่ในขณะเดียวกันก็มีโอกาสเติบโตในอนาคต\n\nBeer มองว่า: ORCL เป็น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีการเปลี่ยนแปลงอย่างรวดเร็วและอาจมีความเสี่ยงสูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ORCL มีความแข็งแกร่งในด้านเทคโนโลยีและบริการ ซึ่งเป็นตลาดที่เติบโตอย่างรวดเร็ว"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ORCL มี P/E ที่สูง (38.293907) ซึ่งอาจบ่งบอกถึงความเสี่ยงของการลงทุน"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ORCL มีการสื่อสารที่ดีในด้านการตลาดและการขาย"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ORCL มีคู่แข่งที่แข็งแกร่ง เช่น Microsoft และ SAP"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ORCL มีผู้บริหารที่มีประสบการณ์และความสามารถ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ORCL มีแผนการเติบโตในอนาคต เช่น การขยายตลาดในเอเชียและยุโรป"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 20,
+      "ticker": "LRCX",
+      "name": "Lam Research Corporation",
+      "sector": "Technology",
+      "price": 384.2,
+      "pct_change": 4.74,
+      "volume": 2972645,
+      "market_cap": 480744698610.7788,
+      "pe_ratio": 57.4,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:LRCX",
+      "news": [
+        {
+          "title": "Chips Up 8.8% in One Week: 5 Semiconductor Names Breaking Into New Highs",
+          "summary": "The semiconductor sector ripped 8.8% in a single week, with the SMH ETF closing at $619.96 on June 12, 2026, reclaiming levels above both Tuesday’s and Friday’s highs after getting hard hit last Friday. The host of Stock",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/chips-up-8-8-in-one-week-5-semiconductor-names-breaking-into-new-highs/"
+        },
+        {
+          "title": "If You Invested $1000 in Lam Research 10 Years Ago, This Is How Much You'd Have Now",
+          "summary": "Why investing for the long run, especially if you buy certain popular stocks, could reap huge rewards.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/invested-1000-lam-research-10-123003176.html"
+        },
+        {
+          "title": "The Zacks Analyst Blog Highlights Costco, Lam Research, KLA, Blue Ridge and AXIL",
+          "summary": "COST, LRCX and KLAC are highlighted for growth drivers ranging from membership strength to AI-fueled semiconductor demand and cash generation.",
+          "provider": "Zacks",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-costco-082700959.html"
+        },
+        {
+          "title": "Lam Research (LRCX) Stock Fair Value Edges Higher After Analyst Target Increases",
+          "summary": "Lam Research’s updated intrinsic value has shifted from US$313.69 to US$323.38, giving you a fresh reference point for how analysts are framing the stock right now. This change sits against a backdrop of broadly construc",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-13",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/lam-research-lrcx-stock-fair-221059616.html"
+        },
+        {
+          "title": "Lam Research and Applied Materials Shares Skyrocket, What You Need To Know",
+          "summary": "A number of stocks jumped in the afternoon session after President Trump canceled planned military strikes on Iran and signaled a peace deal could be signed over the weekend.",
+          "provider": "StockStory",
+          "date": "2026-06-13",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/lam-research-applied-materials-shares-000520752.html"
+        }
+      ],
+      "analysis": "LRCX มีโอกาสติดเทรนด์ใหม่หลังจากที่ตลาดมีหุ้นกลุ่มมาให้เทรดอีกแล้ว ตัวผมเน้นเทรดตัวที่มีโอกาสติดเทรนด์ก่อน ในจังหวะตลาดเริ่มเทรนด์ใหม่ แต่เมื่อผ่านจุด ตัวไหนติดเทรนด์ไม่ติดเทรนด์แล้ว ค่อยมาเทรดแบบปกติ ตัวที่เพิ่งเริ่มต้นสด และไม่ช้ำ ... หากรอบต่อไปเรื่อยๆ จนกว่าจะจบเทรนด์สั้นๆ\n\nBeer มองว่า: LRCX เป็นหุ้น 'เข็มฉีดยา' (รูปแบบ Daytrade) เนื่องจากมีโอกาสติดเทรนด์ใหม่และตลาดยังไม่ชัดเจน",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "LRCX เป็นบริษัทที่ผลิตอุปกรณ์สำหรับอุตสาหกรรมชิป ซึ่งอาจได้รับผลกระทบจากงานที่ดีขึ้นและ AVGO earnings overhang"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "P/E ของ LRCX อยู่ที่ 57.439392 ซึ่งอาจสูงเกินไป แต่ตลาดยังซบเซา"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "LRCX มีผลงานที่ดี แต่ต้องรอผลงานที่ดีขึ้นเพื่อให้ตลาดมั่นใจ"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "LRCX มีคู่แข่งที่แข็งแกร่ง เช่น Applied Materials และ Nova"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "LRCX มีผู้บริหารที่มีประสบการณ์ แต่ต้องรอผลงานที่ดีขึ้นเพื่อให้ตลาดมั่นใจ"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "LRCX อาจมีโอกาสติดเทรนด์ใหม่ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 21,
+      "ticker": "AMAT",
+      "name": "Applied Materials, Inc.",
+      "sector": "Technology",
+      "price": 587.58,
+      "pct_change": 3.58,
+      "volume": 2620999,
+      "market_cap": 466681395914.30237,
+      "pe_ratio": 42.5,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AMAT",
+      "news": [
+        {
+          "title": "Buy, Hold, or Sell: Applied Materials Surged Right Back Toward $500 Following a Brutal June Flush. Here’s Where I’d Buy",
+          "summary": "At $567.25, Applied Materials (NASDAQ:AMAT) looks extended for fresh capital, with the setup improving meaningfully on any retest of structural support near $460. After a brutal June flush, the stock surged 25.22% in a s",
+          "provider": "24/7 Wall St.",
+          "date": "2026-06-15",
+          "url": "https://247wallst.com/investing/2026/06/15/buy-hold-or-sell-applied-materials-surged-right-back-toward-500-following-a-brutal-june-flush-heres-where-id-buy/"
+        },
+        {
+          "title": "Applied Materials Tampines Campus Expansion Tests AI Growth And Rich Valuation",
+          "summary": "Applied Materials has launched a new $500 million Tampines Campus in Singapore, expanding global manufacturing and R&D capacity. The facility more than doubles the company’s advanced cleanroom space to support rising AI ",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-materials-tampines-campus-expansion-110919314.html"
+        },
+        {
+          "title": "Jim Cramer Calls KLA Corporation “Too Risky”",
+          "summary": "KLA Corporation (NASDAQ:KLAC) was among the stocks Jim Cramer highlighted during Mad Money, as he noted the rotation into defensive sectors. Cramer discussed the stock during the episode, as he commented: Then we go back",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-calls-kla-corporation-080509834.html"
+        },
+        {
+          "title": "Jim Cramer Says “I’ll Go for AMAT”",
+          "summary": "Applied Materials, Inc. (NASDAQ:AMAT) was among the stocks Jim Cramer highlighted during Mad Money, as he noted the rotation into defensive sectors. Cramer started the list with the stock, as he stated: I want to study w",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-ll-amat-080453938.html"
+        },
+        {
+          "title": "Applied Materials (AMAT) Gets Higher Price Targets from Barclays and Cantor Fitzgerald",
+          "summary": "Applied Materials, Inc. (NASDAQ:AMAT) is included among Billionaire Larry Robbins’ 10 Dividend Stock Picks. On June 11, Barclays raised the firm’s price recommendation on Applied Materials, Inc. (NASDAQ:AMAT) to $590 fro",
+          "provider": "Insider Monkey",
+          "date": "2026-06-15",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-materials-amat-gets-higher-051655860.html"
+        }
+      ],
+      "analysis": "Applied Materials (AMAT) มีแนวโน้มที่จะรักษาความแข็งแกร่งของราคาต่อไป เนื่องจากการขยายการผลิตและการวิจัยและพัฒนาในประเทศสิงคโปร์ นอกจากนี้ Jim Cramer ยังแนะนำหุ้นนี้ในรายการของเขา ซึ่งแสดงให้เห็นถึงความมั่นใจในอนาคตของหุ้นนี้\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' (SQ: 3) เนื่องจากมีการขยายการผลิตและการวิจัยและพัฒนาในประเทศสิงคโปร์ ซึ่งจะช่วยให้หุ้นแข็งแกร่งมากขึ้น",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การขยายการผลิตและการวิจัยและพัฒนาในประเทศสิงคโปร์จะช่วยให้หุ้น AMAT มีความแข็งแกร่งมากขึ้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AMAT อยู่ที่ $587.58 และมีการขึ้น 3.6% ในช่วง 1 วัน"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "Jim Cramer ยังแนะนำหุ้นนี้ในรายการของเขา ซึ่งแสดงให้เห็นถึงความมั่นใจในอนาคตของหุ้นนี้"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "หุ้น KLA Corporation (KLAC) ถือเป็นคู่แข่งหลักของหุ้น AMAT เนื่องจากมีการแข่งขันในตลาดอุปกรณ์ผลิต"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลที่ชัดเจนเกี่ยวกับผู้บริหารของหุ้น AMAT แต่การขยายการผลิตและการวิจัยและพัฒนาในประเทศสิงคโปร์แสดงให้เห็นถึงความมุ่งมั่นของผู้บริหารในการพัฒนาบริษัท"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรพิจารณาเทรดหุ้น AMAT ในช่วงเวลาที่ราคาต่ำกว่า $500 เพื่อประโยชน์ที่ดีที่สุด"
+        }
+      ],
+      "chart_b64": "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"
+    }
+  ]
+}
