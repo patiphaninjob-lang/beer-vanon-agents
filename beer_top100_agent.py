@@ -288,10 +288,13 @@ def get_stock_context(ticker: str, rank: int, mktcap: float = 0, hist_df=None) -
     else:
         hist = hist_df
 
-    price_now  = float(hist["Close"].iloc[-1]) if not hist.empty else 0
-    price_prev = float(hist["Close"].iloc[-2]) if len(hist) > 1 else price_now
+    # FIX: Drop NaNs from history to avoid +nan%
+    clean_hist = hist.dropna(subset=["Close"])
+    
+    price_now  = float(clean_hist["Close"].iloc[-1]) if not hist.empty else 0
+    price_prev = float(clean_hist["Close"].iloc[-2]) if len(clean_hist) > 1 else price_now
     pct_change = (price_now - price_prev) / price_prev * 100 if price_prev else 0
-    volume     = int(hist["Volume"].iloc[-1]) if not hist.empty else 0
+    volume     = int(clean_hist["Volume"].iloc[-1]) if not clean_hist.empty else 0
 
     try:
         # Increase news count and details for deep analysis
@@ -337,6 +340,9 @@ def generate_mini_chart_b64(ticker: str, hist_df=None) -> bytes:
             hist = yf.Ticker(ticker).history(period="3mo")
         else:
             hist = hist_df
+
+        # FIX: Drop NaNs to avoid chart errors
+        hist = hist.dropna(subset=["Open", "High", "Low", "Close"])
 
         if len(hist) < 5:
             return b""
@@ -393,7 +399,7 @@ def fetch_market_indices() -> dict:
     result  = {}
     for symbol, key in indices.items():
         try:
-            hist = yf.Ticker(symbol).history(period="5d")
+            hist = yf.Ticker(symbol).history(period="5d").dropna(subset=["Close"])
             if len(hist) < 2:
                 continue
             price = float(hist["Close"].iloc[-1])
