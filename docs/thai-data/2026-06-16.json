@@ -1,0 +1,70 @@
+{
+  "date": "2026-06-16",
+  "generated": "2026-06-16T20:36:59.309261",
+  "test_run": false,
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ (Thai Market)\nใช้กรอบนี้กับหุ้นไทยทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "set": {
+      "price": 1588.05,
+      "pct_change": -0.27,
+      "chart_b64": "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"
+    }
+  },
+  "summary": {
+    "total": 1,
+    "gainers": 0,
+    "losers": 1,
+    "avg_change": -2.49,
+    "top_gainer": {
+      "ticker": "DELTA.BK",
+      "pct": -2.49
+    },
+    "top_loser": {
+      "ticker": "DELTA.BK",
+      "pct": -2.49
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "DELTA.BK",
+      "name": "Delta Electronics (Thailand) Public Company Limited",
+      "sector": "Industrials",
+      "price": 352.0,
+      "pct_change": -2.49,
+      "volume": 16230581,
+      "market_cap": 4390783281280.0,
+      "pe_ratio": 154.1,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=SET:DELTA",
+      "analysis": "ข่าวล่าสุดของ DELTA.BK มีผลกระทบเชิงบวกต่อราคา เนื่องจากการเปลี่ยนแปลงนโยบายของศาลฎีกาสหรัฐฯ มีผลกระทบอย่างมากต่อธุรกิจของ DELTA.BK ในการผลิตอุปกรณ์เย็นของ AI นอกจากนี้ การเติบโตของรายได้ 20% และผลกำไรที่เพิ่มขึ้น 49% ในช่วงปีแรกแสดงให้เห็นถึงความสามารถของบริษัทในการเติบโตและสร้างผลกำไร\n\nBeer มองว่า: DELTA.BK เป็น 'เข็มฉีดยา' ที่มีศักยภาพในการเติบโตสูง รูปแบบนี้เหมาะสำหรับผู้ที่มีความกล้าในการลงทุนและสามารถรับผลตอบแทนที่สูง",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การเปลี่ยนแปลงนโยบายของศาลฎีกาสหรัฐฯ มีผลกระทบเชิงบวกต่อธุรกิจของ DELTA.BK ในการผลิตอุปกรณ์เย็นของ AI"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การเติบโตของรายได้ 20% และผลกำไรที่เพิ่มขึ้น 49% ในช่วงปีแรกแสดงให้เห็นถึงความสามารถของบริษัทในการเติบโตและสร้างผลกำไร"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ไม่มีข้อความที่แสดงถึงความขัดแย้งหรือความไม่สอดคล้องกันระหว่างข่าวล่าสุดหรือข้อมูลผู้บริหารเล่า story เดียวกับ thesis"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "ไม่มีข้อมูลที่แสดงถึงคู่แข่งที่โตจริงหรือแพงเกิน แต่ควรตรวจสอบข้อมูลเพิ่มเติมเพื่อเปรียบเทียบ DELTA.BK กับคู่แข่งหลักใน Industrials"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารพูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอและพฤติกรรมสอดคล้องกับ thesis"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAUGAgMEAQf/xAA6EAACAgIBAgMFBAgFBQAAAAAAAQIDBBEFEiExUWETIkGhsQYUcYEVIzI1kcHR8BYzQlJzQ4KDsuH/xAAYAQEAAwEAAAAAAAAAAAAAAAAAAQIDBP/EACkRAAICAQQBBAEEAwAAAAAAAAABAhEDBBIhMUETIlFhwQUUUoGR4fD/2gAMAwEAAhEDEQA/APnwALlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADdjQjO1qS2lXN/motr6GkkXzQBlOEq5JTWm0n+TW0IwlKMnFbUFuXotpfVogmn0YgGdtbqtnXLXVCTi9egIMAbsSqN+XTVJtRnNRevHuycu4FV5ONLFjKyHWnapyWktr/wCh8K2RF7sixLtldNlVNt8ummudkkt6itmy7Dux3NXR6XXKMZLe/FNr6E/ichxFE4SrjKp+zaTe3pdT7Pu+++5Sc2laVnTgwxnJqcttfJXcnHtxbnVdBxkvNeK816GosnI4T5i9X4d9ThWvZttvxT35epXH2ehCe5fY1GF4pcdeGeAAuc4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANkqmseFu/2pSjrXkl/UEpWSnAYNWW752uacF0rpf+5NM9rr43DtnZP7y7Ma/p7dOn3evlEjcXKtxZSdU5xUotNRlr4NJ/lvY9r1Y1qnJuydkZd++9KW380RJWqIwboZnN8quCS5fkMPkJ0RUrYxgm3LoTffXbWznxM6rFqvrjTTamtwlbX3l3XZ9/DxZHAhQSjtNpZ5yyPJfLN8siO4OvHqhKPfaTe/xTbRI4mBfy0rMubpSblHSXT72uz7erRDk3w3LY+DiSqujY5Obl7qTXgvX0IyOW32k6WGJ5F6nRw4lUqOYpqm05QvUXrw7MtmTm4+H0/eLOjr3rs3vX4FSyLG8h59Lceu+TjteGtNfUwy87JzOn7xZ1dG9e6lrf4Fmt0NrOeLePUxzY+lf5RaMnNxbuNyJ131tOuSW3p709LT/Apx7t9Ljt6b20eE9JIqoVOU/wCTssHBcjiYmDKvIt6Je0b10t9tLyIB922eArGCTb+TpyZpThGD8AAFjEAAAAAAAAAAAAAAAAGShJ1uxL3U0m/V7/owDEAAAAAAAyhCVlkYQW5SaSXmwSYgAEAAlMbhMm2NFk4arsknLUltR7d/m/4ENpdllCUk2ldEfVTbfLpprnZJLeorZ5ZXOqbhbCUJLxjJaaLZh8dRg56dDn79Uk1J78HEgufT/S18tPS6U3/2ldz37TSMIz0yzp9uiNJHA4m7OolbXZCKT6Upb7vt/Uji0/Zr92z/AOV/RGsVbOLU5JY4bokZkY2MsWGNWrpZKtlBd10ufuqX5eGjkzsC/BcPbR0prs9rx0tr8tnTO7p5xRm4xhDLctv4ba39Du+0ThkvHhTZCUoxnN6lvS0n80jKUnvUUdmnwx/bSySfKK6b8XEvzLHXjw6pJba2l2/M0pd0mWLOx48NRXk4UpKe1XLqSaknt9+xdp1wYrJjjkjGfT+DRi/Z62yqTybHVPeoxSUvz8fxNdvMws4+OFZjPpUYxclPW9a9PQ5LOVz7JNyyZra17vu/Q4iNqaW7tF4znjnPZL2v/NG26VMmvYVzgvj1TUv5I1AFiqVAAEAAAAsuZfRL7NxhG2tydcEkpLe1raK0AS3ZlixLGmr7AAINQAAAAAAAAAAAAAAAAAAAAAWrAS/w3/4p/wAytUY1+TLVFU7Gtb6V4fidSz83FoeFJuEF2cZQ00n4r5lk6OfPD1KjF8p2S32ixqKuPhKqmuEvaJbjFJ+DK4oykm4xbS7vS8C4chTTymPGivJgu/WnFqW0trzIy3InwTli1dNsZr2kHKPdNvWn38kY4E9nJ3/qWWK1GzHy6RDyxMmFCvlRYqn/AKnHt/fc0EnHPnkYlWJkZXs622pv2e9RSXT80zTmY2OrILBv9vuG5JRa1qO2+/n3ei8bq2ZZHBTUYW7RzU1SuvhVBpSnJRW/DuWDC4yHG5cbcqVcoTUYQ2m2pvXp5pkJx37yxv8Alj9Syc5YqsfHtkm1DIhJ69NkuO6LMFnli1MK6Iu6njcvJyLoZSqhHTUY1PWvdW/4vR1cjk8bHBbxoUe1klKv9T4+9r4r0ZXU2k0m0mtP1PZTlJRUntQWl6Lbf82THhUMuN5cm9vzdeDcsuxWOzpp21r/ACo6/hrRYv0pix4eOr+mx1OEdRa99RXb5oqpk5ydag37sW2l6vW/oik4b6s7MGb0d21dqiQr5jIpyVdGTs/VqGrG3rstvx80LbVnVXXXX012WTg+jUvgpLyZGnpald+TFuXprGnwiY5HhHi0VSolK2bfQ4qHeT7vfj5HZxV9XGY9uPmz9lZGxy04v3l2W127nHhczdPNoedclTDbbUfjppPt+Jq57Koy8yE8efXFVpN6a77fmZwlOMqkdGrwafPicoOuVwcWbZG3Nvsg9xlZJp+a2dGDyt2FKbUYT64pe98NLS8DgBr9nI4Jx2PolbuSx8jGud+JH7xNr3ozaW0mk9enl8dnNl8llZlUar5qUYvfaKW35/M4wQlVl5VJRTS9vXAAAIAAAAAAAAAAAAAAAAAAAAAANkqZpV9tu1bil4+LX8jFRlJNxi2l3el4ALnoxO7juNt5D2ns5wgoePV6719DhJ77M21VrJVlkIt9LSk9bS3sldmWecoY3KPZC3Uzptsrkt+zl0Sa8N/2jWXe/Ex8jFtVdVLdsW1LpXdtPT3+fiVfk+Nnx7r6pxlGxdtP4pLfzZlHKpOjvy6SePGp9quTgABocoNlFUr766oNKU5KK34dzWbaZ2UW15EY/sS3Ftdm0H9Exq1ZauJ46fH+1UpxkpqOtP4pd/myB57973fhH/1Rll83l5Eq3CXsej/Y33fbxI+yyds3Oycpyfi5PbYi3tSl2Z5MMVqZZMb9r/0dfGcg8G92Sg7F0dCXVrXfZ5ymd+kMiNqr9n0x6db38X/U4gTfgenHfv8AIJXg89Yc7ourr64uW+rWulNkUCsoqSpm+LJLHNTj2iWeBflU28pXZCtOUrVHb2tN/Hz7HDk5l+TpWWTcUl7rk2tpa3/fmIN/cLe//Vh9JnOW6VIwScpOUuQACC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJHEwcmOMs+uvfs5KcdtaaW99vxSOfCx/vFso+7pQk/emo9+l68fUxWVk10yx43zVfg4qXb++5KM53L2xJvj+SXJZMas2FMYw1OvTa99Pt8fU78CzBx1kV03VRrjZvXWnpdMe/8SnGUJSipRi9Ka6X6raf1SMp497uzu0uojp4qMYrizZRRZk5Cqoj1TlvS3o25OPdxuVKE0tuMlFv4xe1s7p8Zl8XT99hdWrK29679npLW16sjcrLvzLFZkT6pJaT0l2/Iu1JS+jnhPDkxNrl3/RqjOcJKUZOLT2mn4EhTZDkc+qGXkTVaUUlLb6paSa9NvfcjTKE5V2RnB6lFpp+TDVloZNvD6JD9D5Fr68T9fQ/2bNqO/Ps2SfLcfg149Pf2EVPo6+8tLUn4fiZcRyeFRxlVdt6jOCfUmn5/PxK1OcpPvJtLw2/ArjlK2midZp4VjnjlXyv+/NlhhDhYZF/3m2Nlrsm31RkunzXl5mjkOVpt46WLRUuhy6Ivq8Ix1p69f5EJJuUnKTbbe238TwslTbvsynU8cISS9vnyAASAAAAAAD3b6XHb03to8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPU3F7i2nrXY8AAB6AAdl/K5uRTKm67qhLxXSlv5HEASRGMYqoqgACCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q=="
+    }
+  ]
+}
