@@ -2,7 +2,8 @@ name: Beer Top 100 Market Cap (หุ้น US 100 ตัวใหญ่สุ�
 
 on:
   schedule:
-    - cron: '0 23 * * 1-5'       # 06:00 AM Bangkok (Tue-Sat) - ครอบคลุมตลาด US จันทร์-ศุกร์
+    - cron: '0 11 * * 1-5'       # 18:00 Bangkok (Mon-Fri) - US premarket news check
+    - cron: '0 23 * * 1-5'       # 06:00 Bangkok (Tue-Sat) - US postmarket recap
   workflow_dispatch:            # รันมือได้จากหน้าเว็บ Dashboard
 
 permissions:
@@ -41,6 +42,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Select report phase
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 11 * * 1-5" ]; then
+            phase="premarket"
+          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 23 * * 1-5" ]; then
+            phase="postmarket"
+          else
+            phase="manual"
+          fi
+          echo "RUN_PHASE=$phase" >> "$GITHUB_ENV"
+          echo "Selected RUN_PHASE=$phase"
+
       - name: Run Beer Top 100 Agent
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -53,5 +66,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/data/ docs/history-data/
-          git diff --cached --quiet || git commit -m "📊 Top 100 report $(date +%Y-%m-%d)"
+          git diff --cached --quiet || git commit -m "📊 Top 100 ${RUN_PHASE:-report} report $(date +%Y-%m-%d)"
           git push

@@ -49,6 +49,22 @@ RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
 RUN_REQUESTED_BY = os.getenv("RUN_REQUESTED_BY", "").strip()
 
+def detect_report_phase() -> str:
+    phase = os.getenv("RUN_PHASE", "").strip().lower()
+    if phase in {"premarket", "postmarket", "manual"}:
+        return phase
+    return "scheduled" if os.getenv("GITHUB_EVENT_NAME") == "schedule" else "manual"
+
+REPORT_PHASE = detect_report_phase()
+
+def scheduled_report_action(existing_data: dict, run_phase: str) -> str:
+    if not existing_data or existing_data.get("test_run"):
+        return "run"
+    existing_phase = existing_data.get("run_phase") or "postmarket"
+    if run_phase == "postmarket" and existing_phase == "premarket":
+        return "refresh"
+    return "skip"
+
 # ~140 หุ้น universe → sort by market cap → take 100
 US_UNIVERSE = [
     # ─ Tech / AI ─
@@ -807,6 +823,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     payload = {
         "date": date_key,
         "generated": datetime.datetime.now().isoformat(),
+        "run_phase": REPORT_PHASE,
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
         "homework_guide": homework_prompt_block("หุ้น US"),
         "market_indices": market_indices or {},
@@ -1110,10 +1127,14 @@ def main():
     if report_path.exists():
         try:
             existing_data = json.loads(report_path.read_text(encoding="utf-8"))
-            if is_scheduled and not existing_data.get("test_run"):
+            report_action = scheduled_report_action(existing_data, REPORT_PHASE) if is_scheduled else "run"
+            if report_action == "skip":
                 safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว (คุณน่าจะกดรันเองไปแล้ว)")
                 safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")
                 return
+            if report_action == "refresh":
+                safe_print(f"🔄 [Safety Net] พบรายงาน premarket ของวันนี้ ({today_file_str}) — รัน postmarket refresh เต็ม")
+                existing_data = {}
         except Exception:
             pass
 
@@ -1127,6 +1148,7 @@ def main():
     date_str = today.strftime("%A, %d %B %Y")
     safe_print(f"\n🍺 Beer Top 100 Agent — {date_str}\n{'='*55}")
     start_all = time.time()
+    safe_print(f"  report phase: {REPORT_PHASE}")
     if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY:
         safe_print(
             f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'}"
