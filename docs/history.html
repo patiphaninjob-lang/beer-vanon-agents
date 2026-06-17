@@ -192,6 +192,47 @@
     @media (max-width: 560px) {
       .marker-tooltip { max-width: calc(100vw - 32px); }
     }
+    /* UI polish: preserve the history workflow while making the chart surface calmer. */
+    body {
+      background:
+        radial-gradient(circle at 20% -10%, rgba(99,102,241,0.12), transparent 28%),
+        linear-gradient(180deg, #0b1018 0%, #0d1117 48%, #0b1018 100%);
+    }
+    .topbar {
+      z-index: 1200;
+      background: rgba(13,17,23,0.94);
+      border-bottom-color: #30363d;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+    }
+    .panel {
+      background: linear-gradient(180deg, #161d2a 0%, #131923 100%);
+      border-color: #242c3a;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+    .chart-box {
+      border-color: #242c3a;
+      border-radius: 8px;
+    }
+    .note-card,
+    .detail {
+      border-color: #242c3a;
+      border-radius: 8px;
+    }
+    .marker-tooltip { z-index: 1300; }
+    @media (max-width: 560px) {
+      .marker-tooltip {
+        left: 12px !important;
+        right: 12px;
+        bottom: 14px;
+        top: auto !important;
+        width: auto;
+        max-width: none;
+        max-height: 42vh !important;
+        border-radius: 12px;
+      }
+      .marker-tooltip::after { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -629,6 +670,8 @@ async function showGroup(group, candle) {
       
       let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
       const margin = 10;
+      const headerRect = document.querySelector('.topbar')?.getBoundingClientRect();
+      const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
       let tailLeft = tooltip.offsetWidth / 2;
       
       // Horizontal bounds
@@ -643,18 +686,18 @@ async function showGroup(group, candle) {
 
       // Vertical bounds and maxHeight
       let isBelow = false;
-      let spaceAbove = rect.top - margin - 14;
+      let spaceAbove = rect.top - topMargin - 14;
       let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
       
       let ttTop = rect.top - tooltip.offsetHeight - 14;
       
-      if (ttTop < margin) {
+      if (ttTop < topMargin) {
         if (spaceBelow > spaceAbove) {
           isBelow = true;
           ttTop = rect.bottom + 14;
           tooltip.style.maxHeight = `${spaceBelow}px`;
         } else {
-          ttTop = margin;
+          ttTop = topMargin;
           tooltip.style.maxHeight = `${spaceAbove}px`;
         }
       } else {
@@ -663,7 +706,7 @@ async function showGroup(group, candle) {
       
       if (!isBelow) {
         ttTop = rect.top - tooltip.offsetHeight - 14;
-        if (ttTop < margin) ttTop = margin;
+        if (ttTop < topMargin) ttTop = topMargin;
       }
 
       tooltip.style.left = `${ttLeft}px`;

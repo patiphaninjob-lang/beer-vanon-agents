@@ -441,6 +441,94 @@
     @media (max-width: 560px) {
       .marker-tooltip { max-width: calc(100vw - 32px); }
     }
+
+    /* UI polish: keep the existing dashboard structure, improve layering and density. */
+    body {
+      background:
+        radial-gradient(circle at 18% -10%, rgba(99,102,241,0.12), transparent 28%),
+        linear-gradient(180deg, #0b1018 0%, #0d1117 42%, #0b1018 100%);
+      padding-bottom: 34px;
+    }
+    .header {
+      background: rgba(13,17,23,0.94);
+      border-bottom-color: #30363d;
+      z-index: 1200;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+    }
+    .logo { font-weight: 800; }
+    .summary {
+      background: rgba(16,22,33,0.72);
+      border-bottom-color: #242c3a;
+      padding: 10px 18px;
+      gap: 14px;
+      backdrop-filter: blur(10px);
+    }
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+      padding-top: 16px;
+    }
+    .card {
+      background: linear-gradient(180deg, #1a2130 0%, #151b29 100%);
+      border: 1px solid #242c3a;
+      border-left-width: 3px;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+    .chart-container,
+    .index-card-chart {
+      isolation: isolate;
+      border: 1px solid #242c3a;
+      border-radius: 8px;
+      background: #0d1117;
+    }
+    .chart-img,
+    .index-card-chart img { border-radius: 7px; }
+    .chart-marker { z-index: 5; }
+    .marker-tooltip { z-index: 1300; }
+    .usage-bar {
+      background: rgba(13,17,23,0.96);
+      z-index: 1100;
+      backdrop-filter: blur(12px);
+    }
+    .market-overview {
+      background: rgba(16,22,33,0.76);
+      border-bottom-color: #242c3a;
+      backdrop-filter: blur(10px);
+    }
+    .index-row { gap: 14px; }
+    .index-card {
+      min-width: 220px;
+      background: linear-gradient(180deg, #111827 0%, #0d1117 100%);
+      border-color: #242c3a;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+    }
+    @media (max-width: 560px) {
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .stat-val { font-size: 0.95em; }
+      .index-row { flex-direction: column; }
+      .index-card { min-width: 0; width: 100%; }
+      .chart-marker { width: 12px; height: 12px; }
+      .chart-marker::before { height: 56px; }
+      .marker-tooltip {
+        left: 12px !important;
+        right: 12px;
+        bottom: 14px;
+        top: auto !important;
+        width: auto;
+        max-width: none;
+        max-height: 42vh !important;
+        border-radius: 12px;
+      }
+      .marker-tooltip::after { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1780,6 +1868,8 @@ document.addEventListener('click', async e => {
           let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
           
           const margin = 10;
+          const headerRect = document.querySelector('.header')?.getBoundingClientRect();
+          const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
           let tailLeft = tooltip.offsetWidth / 2;
           
           // Horizontal bounds
@@ -1794,12 +1884,12 @@ document.addEventListener('click', async e => {
 
           // Vertical bounds and maxHeight
           let isBelow = false;
-          let spaceAbove = rect.top - margin - 14;
+          let spaceAbove = rect.top - topMargin - 14;
           let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
           
           let ttTop = rect.top - tooltip.offsetHeight - 14;
           
-          if (ttTop < margin) {
+          if (ttTop < topMargin) {
             // Does not fit fully above. Check if space below is larger.
             if (spaceBelow > spaceAbove) {
               isBelow = true;
@@ -1807,7 +1897,7 @@ document.addEventListener('click', async e => {
               tooltip.style.maxHeight = `${spaceBelow}px`;
             } else {
               // Forced to stay above but clamp to margin
-              ttTop = margin;
+              ttTop = topMargin;
               tooltip.style.maxHeight = `${spaceAbove}px`;
             }
           } else {
@@ -1818,7 +1908,7 @@ document.addEventListener('click', async e => {
           // Re-measure after applying potential new maxHeight
           if (!isBelow) {
             ttTop = rect.top - tooltip.offsetHeight - 14;
-            if (ttTop < margin) ttTop = margin;
+            if (ttTop < topMargin) ttTop = topMargin;
           }
 
           tooltip.style.left = `${ttLeft}px`;
