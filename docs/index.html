@@ -323,6 +323,7 @@
       font-family: inherit; outline: none;
     }
     .date-picker-btn:hover, .date-picker-btn.open { border-color: #6366f1; color: #e6edf3; }
+    .phase-select { min-width: 132px; }
     .cal-wrap { position: relative; }
     .cal-popup {
       position: absolute; top: 36px; left: 0; z-index: 500;
@@ -361,7 +362,7 @@
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 8px; align-items: center;
       }
-      .cal-wrap, #searchBox, .run-agent-btn { grid-column: 1 / -1; width: 100%; }
+      .cal-wrap, #phaseSel, #searchBox, .run-agent-btn { grid-column: 1 / -1; width: 100%; }
       .run-agent-btn { justify-content: center; }
       #sectorSel, #sortSel { width: 100%; min-width: 0; }
       .date-picker-btn { width: 100%; justify-content: center; }
@@ -524,6 +525,10 @@
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
       <div id="calPopup" class="cal-popup" style="display:none"></div>
     </div>
+    <select id="phaseSel" class="phase-select" onchange="pickPhase(this.value)" title="เลือกรอบรายงาน">
+      <option value="postmarket">หลังตลาดปิด</option>
+      <option value="premarket">ก่อนตลาดเปิด</option>
+    </select>
     <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
     <button type="button" class="run-agent-btn" id="runAgentBtn" onclick="runAgent(event)" title="เริ่มทำการบ้านเดี๋ยวนี้ (On-demand)">🚀 รันการบ้านสด</button>
     <select id="sectorSel" onchange="renderCards()">
@@ -570,12 +575,33 @@ let availableDates  = [];
 let calYear  = new Date().getFullYear();
 let calMonth = new Date().getMonth();
 let selectedDate = null;
+let selectedPhase = 'postmarket';
 let calOpen = false;
+const PHASE_LABELS = {
+  postmarket: 'หลังตลาดปิด',
+  premarket: 'ก่อนตลาดเปิด',
+  legacy: 'รายวัน'
+};
 
 // ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
   const [y,m,day] = d.split('-');
   return `${parseInt(day)} ${MONTHS_TH[parseInt(m)]} ${y}`;
+}
+function normalizePhase(phase) {
+  return ['postmarket', 'premarket', 'legacy'].includes(phase) ? phase : null;
+}
+function phaseLabel(phase) {
+  return PHASE_LABELS[normalizePhase(phase) || 'legacy'] || phase || 'รายวัน';
+}
+function archiveKey(date, phase) {
+  return phase && phase !== 'legacy' ? `${date}-${phase}` : date;
+}
+function updateUrl(date, phase) {
+  const qs = new URLSearchParams();
+  qs.set('date', date);
+  if (phase && phase !== 'legacy') qs.set('phase', phase);
+  history.replaceState({}, '', `?${qs.toString()}`);
 }
 function fmtCap(cap) {
   if (!cap) return 'N/A';
@@ -1180,6 +1206,7 @@ function renderMarketOverview() {
   const el = document.getElementById('marketOverview');
   if (!el) return;
   const mi = currentData?.market_indices;
+  const phase = phaseLabel(currentData.run_phase || selectedPhase);
   const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
   const marketMarkersHTML = marketNotes.map(n => {
     const markerDate = n.date || n.archive_date;
@@ -1228,7 +1255,7 @@ function renderMarketOverview() {
   el.innerHTML = `
     <div class="market-overview">
       <div class="market-overview-head">
-        <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date) : ''}</span>
+        <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date)+' · '+phase : ''}</span>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="history-btn" type="button" onclick="openMarketHistory()">📈 History</button>
           <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
@@ -1347,13 +1374,16 @@ async function init() {
     const dates = await r.json();
     availableDates = dates;
     if (dates.length) {
-      const urlDate = new URLSearchParams(location.search).get('date');
+      const params = new URLSearchParams(location.search);
+      const urlDate = params.get('date');
+      const urlPhase = normalizePhase(params.get('phase')) || 'postmarket';
       const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
       selectedDate = target;
+      selectedPhase = urlPhase;
       const [ty, tm] = target.split('-').map(Number);
       calYear = ty; calMonth = tm - 1;
       document.getElementById('dateBtnLabel').textContent = fmtDate(target);
-      await loadDate(target);
+      await loadDate(target, selectedPhase);
     } else {
       document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
     }
@@ -1436,16 +1466,58 @@ function pickDate(date) {
   calYear = y; calMonth = m - 1;
   closeCalendar();
   document.getElementById('dateBtnLabel').textContent = fmtDate(date);
-  history.replaceState({}, '', `?date=${date}`);
-  loadDate(date);
+  loadDate(date, selectedPhase);
 }
 
-async function loadDate(date) {
+function pickPhase(phase) {
+  selectedPhase = normalizePhase(phase) || 'postmarket';
+  if (selectedDate) loadDate(selectedDate, selectedPhase);
+}
+
+async function fetchArchive(date, phase) {
+  const key = archiveKey(date, phase);
+  const r = await fetch(`data/${key}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+  if (!r.ok) return null;
+  return { key, phase, data: await r.json() };
+}
+
+async function detectPhases(date) {
+  const checks = await Promise.all([
+    fetch(`data/${archiveKey(date, 'postmarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
+    fetch(`data/${archiveKey(date, 'premarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
+    fetch(`data/${archiveKey(date, 'legacy')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false)
+  ]);
+  return ['postmarket', 'premarket', 'legacy'].filter((_, i) => checks[i]);
+}
+
+function updatePhaseSelector(phases, activePhase) {
+  const sel = document.getElementById('phaseSel');
+  if (!sel) return;
+  const active = normalizePhase(activePhase) || 'legacy';
+  const ordered = ['postmarket', 'premarket', 'legacy'].filter(p => phases.includes(p) || p === active);
+  sel.innerHTML = ordered.map(p => `<option value="${p}" ${p === active ? 'selected' : ''} ${phases.includes(p) ? '' : 'disabled'}>${phaseLabel(p)}</option>`).join('');
+  sel.disabled = ordered.length <= 1;
+}
+
+async function loadDate(date, preferredPhase = selectedPhase) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
-    const r = await fetch(`data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
-    if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
-    currentData = await r.json();
+    const phases = await detectPhases(date);
+    if (!phases.length) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    const preferred = normalizePhase(preferredPhase) || (phases.includes('postmarket') ? 'postmarket' : phases[0]);
+    const order = [preferred, ...phases.filter(p => p !== preferred)];
+    let loaded = null;
+    for (const phase of order) {
+      loaded = await fetchArchive(date, phase);
+      if (loaded) break;
+    }
+    if (!loaded) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    currentData = loaded.data;
+    selectedDate = date;
+    selectedPhase = normalizePhase(currentData.run_phase) || loaded.phase;
+    document.getElementById('dateBtnLabel').textContent = fmtDate(date);
+    updatePhaseSelector(phases, selectedPhase);
+    updateUrl(date, selectedPhase);
 
     const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
     const sectorSel = document.getElementById('sectorSel');
@@ -1469,8 +1541,10 @@ async function loadDate(date) {
 function renderSummary() {
   const s = currentData.summary;
   const up = s.avg_change >= 0;
+  const phase = phaseLabel(currentData.run_phase || selectedPhase);
   document.getElementById('summaryBar').innerHTML = `
     <div><span class="stat-label">วันที่</span><span class="stat-val">${fmtDate(currentData.date)}</span></div>
+    <div><span class="stat-label">รอบ</span><span class="stat-val">${phase}</span></div>
     <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers}▲</span> / <span class="down">${s.losers}▼</span></span></div>
     <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span></div>
     ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
@@ -1689,10 +1763,13 @@ document.addEventListener('click', async e => {
         if (ticker !== '_MARKET') {
           try {
             const fetchDate = note.archive_date || note.date;
-            const r = await fetch(`data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            const loaded = await fetchArchive(fetchDate, selectedPhase)
+              || await fetchArchive(fetchDate, 'postmarket')
+              || await fetchArchive(fetchDate, 'premarket')
+              || await fetchArchive(fetchDate, 'legacy');
             const loader = document.getElementById(loadingId);
-            if (r.ok && loader) {
-              const data = await r.json();
+            if (loaded && loader) {
+              const data = loaded.data;
               const stock = data.stocks?.find(s => s.ticker === ticker);
               if (stock && stock.analysis) {
                 loader.innerHTML = `<div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div>`;

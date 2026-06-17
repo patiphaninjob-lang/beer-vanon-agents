@@ -56,13 +56,15 @@ def detect_report_phase() -> str:
     return "scheduled" if os.getenv("GITHUB_EVENT_NAME") == "schedule" else "manual"
 
 REPORT_PHASE = detect_report_phase()
+PHASED_REPORT_PHASES = {"premarket", "postmarket"}
 
-def scheduled_report_action(existing_data: dict, run_phase: str) -> str:
+def archive_key_for_date(day: datetime.date, phase: str = REPORT_PHASE) -> str:
+    date_key = day.strftime("%Y-%m-%d")
+    return f"{date_key}-{phase}" if phase in PHASED_REPORT_PHASES else date_key
+
+def scheduled_report_action(existing_data: dict) -> str:
     if not existing_data or existing_data.get("test_run"):
         return "run"
-    existing_phase = existing_data.get("run_phase") or "postmarket"
-    if run_phase == "postmarket" and existing_phase == "premarket":
-        return "refresh"
     return "skip"
 
 # ~140 หุ้น universe → sort by market cap → take 100
@@ -815,6 +817,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     docs_dir.mkdir(parents=True, exist_ok=True)
 
     date_key = today.strftime("%Y-%m-%d")
+    archive_key = archive_key_for_date(today)
     avg_chg  = float(np.mean([s["stock"]["pct_change"] for s in stocks_data])) if stocks_data else 0
     gainers  = [s for s in stocks_data if s["stock"]["pct_change"] > 0]
     losers   = [s for s in stocks_data if s["stock"]["pct_change"] < 0]
@@ -822,6 +825,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
 
     payload = {
         "date": date_key,
+        "archive_key": archive_key,
         "generated": datetime.datetime.now().isoformat(),
         "run_phase": REPORT_PHASE,
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
@@ -864,7 +868,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         safe_print(f"  ⚠️ web archive missing stock charts: {missing_charts}/{len(payload['stocks'])}")
 
     # daily file
-    (docs_dir / f"{date_key}.json").write_text(
+    (docs_dir / f"{archive_key}.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
@@ -876,8 +880,9 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         dates.sort(reverse=True)
     idx_path.write_text(json.dumps(dates, ensure_ascii=False), encoding="utf-8")
 
-    url = f"{GITHUB_PAGES_URL}/?date={date_key}"
-    safe_print(f"  ✅ บันทึก web archive: docs/data/{date_key}.json")
+    phase_param = f"&phase={REPORT_PHASE}" if REPORT_PHASE in PHASED_REPORT_PHASES else ""
+    url = f"{GITHUB_PAGES_URL}/?date={date_key}{phase_param}"
+    safe_print(f"  ✅ บันทึก web archive: docs/data/{archive_key}.json")
     return url
 
 
@@ -1121,20 +1126,18 @@ def main():
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
     today_file_str = today.strftime("%Y-%m-%d")
-    report_path = DATA_DIR / f"{today_file_str}.json"
+    report_key = archive_key_for_date(today)
+    report_path = DATA_DIR / f"{report_key}.json"
 
     existing_data = {}
     if report_path.exists():
         try:
             existing_data = json.loads(report_path.read_text(encoding="utf-8"))
-            report_action = scheduled_report_action(existing_data, REPORT_PHASE) if is_scheduled else "run"
+            report_action = scheduled_report_action(existing_data) if is_scheduled else "run"
             if report_action == "skip":
                 safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว (คุณน่าจะกดรันเองไปแล้ว)")
                 safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")
                 return
-            if report_action == "refresh":
-                safe_print(f"🔄 [Safety Net] พบรายงาน premarket ของวันนี้ ({today_file_str}) — รัน postmarket refresh เต็ม")
-                existing_data = {}
         except Exception:
             pass
 

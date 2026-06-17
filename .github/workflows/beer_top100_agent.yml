@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write               # อนุญาตให้ push docs/data/ กลับ repo
 
+env:
+  TZ: Asia/Bangkok
+
 jobs:
   run:
     runs-on: ubuntu-latest
