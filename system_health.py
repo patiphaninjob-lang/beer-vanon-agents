@@ -18,6 +18,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from us_universe import build_us_universe
+
 
 CHECK_TIMEOUT = 20
 DATA_DIR = Path("docs/data")
@@ -107,6 +109,19 @@ def check_yfinance() -> tuple[str, str]:
     return "ok", "SPY and SPCX history ok"
 
 
+def check_universe() -> tuple[str, str]:
+    universe, meta = build_us_universe()
+    if meta["source"] == "static_fallback":
+        detail = meta.get("error") or "no dynamic rows"
+        return "warning", f"static fallback ({detail})"
+    if meta["candidate_count"] < 100:
+        return "warning", f"candidate universe small ({meta['candidate_count']})"
+    return (
+        "ok",
+        f"{meta['source']} candidates {len(universe)}, dynamic {meta['dynamic_count']}",
+    )
+
+
 def check_archive_freshness(max_age_hours: int) -> tuple[str, str]:
     status_path = DATA_DIR / "status.json"
     if not status_path.exists():
@@ -130,6 +145,7 @@ def build_health(max_age_hours: int) -> dict:
         run_check("env", check_env),
         run_check("groq", check_groq),
         run_check("gmail", check_gmail),
+        run_check("universe", check_universe),
         run_check("yfinance", check_yfinance),
         run_check("archive_freshness", lambda: check_archive_freshness(max_age_hours)),
     ]

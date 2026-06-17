@@ -10,6 +10,7 @@ class SystemHealthTest(unittest.TestCase):
             {"name": "env", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "groq", "status": "fail", "message": "bad key", "elapsed_ms": 1},
             {"name": "gmail", "status": "ok", "message": "ok", "elapsed_ms": 1},
+            {"name": "universe", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "yfinance", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "archive_freshness", "status": "ok", "message": "ok", "elapsed_ms": 1},
         ]
@@ -25,6 +26,7 @@ class SystemHealthTest(unittest.TestCase):
             {"name": "env", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "groq", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "gmail", "status": "ok", "message": "ok", "elapsed_ms": 1},
+            {"name": "universe", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "yfinance", "status": "ok", "message": "ok", "elapsed_ms": 1},
             {"name": "archive_freshness", "status": "warning", "message": "old", "elapsed_ms": 1},
         ]

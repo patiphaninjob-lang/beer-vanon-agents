@@ -23,6 +23,7 @@ from beer_homework_framework import (
     homework_email_guide_html,
     homework_prompt_block,
 )
+from us_universe import build_us_universe, write_universe_snapshot
 
 load_dotenv()
 
@@ -888,7 +889,13 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
 
 # # --- Web Archive # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---
 
-def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None, test_run: bool = False) -> str:
+def save_to_web(
+    stocks_data: list,
+    today: datetime.date,
+    market_indices: dict = None,
+    test_run: bool = False,
+    universe_meta: dict = None,
+) -> str:
     """บันทึก JSON ลง docs/data/ สำหรับ GitHub Pages web archive"""
     docs_dir = Path("docs/data")
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -908,6 +915,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
         "homework_guide": homework_prompt_block("หุ้น US"),
         "market_indices": market_indices or {},
+        "universe": universe_meta or {},
         "summary": {
             "total":       len(stocks_data),
             "gainers":     len(gainers),
@@ -1255,9 +1263,21 @@ def main():
     # 2. Market cap ranking
     safe_print("\n📊 จัดลำดับ Market Cap...")
     mkt_start = time.time()
-    mktcaps = fetch_market_caps(US_UNIVERSE)
-    ranked  = sorted(US_UNIVERSE, key=lambda t: mktcaps.get(t, 0), reverse=True)
+    candidate_universe, universe_meta = build_us_universe(US_UNIVERSE)
+    safe_print(
+        f"   universe: {universe_meta['source']} | candidates: {universe_meta['candidate_count']} | "
+        f"dynamic: {universe_meta['dynamic_count']}"
+    )
+    if universe_meta.get("error"):
+        safe_print(f"   ⚠️ universe warning: {universe_meta['error']}")
+    mktcaps = fetch_market_caps(candidate_universe)
+    ranked  = sorted(candidate_universe, key=lambda t: mktcaps.get(t, 0), reverse=True)
     top_stocks = [t for t in ranked if mktcaps.get(t, 0) > 0][:limit]
+    if not top_stocks:
+        safe_print("   ❌ ไม่พบ market cap ที่ใช้ได้จาก universe รอบนี้")
+        return
+    if not args.no_web:
+        write_universe_snapshot(DATA_DIR / "universe_snapshot.json", universe_meta, top_stocks, mktcaps)
     safe_print(f"   วิเคราะห์ {len(top_stocks)} หุ้น | อันดับ 1: {top_stocks[0]} ({_fmt_mktcap(mktcaps.get(top_stocks[0],0))})")
     safe_print(f"   ⏱️ Fetch market cap: {time.time() - mkt_start:.1f}s")
 
@@ -1276,7 +1296,14 @@ def main():
     stocks_data = []
     
     # 3.1 Load processed ones into stocks_data first
+    stale_processed = sorted(set(processed_tickers) - set(top_stocks))
+    if stale_processed:
+        safe_print(
+            f"   ⚠️ ข้าม resume ticker ที่ไม่อยู่ใน Top {limit}: {', '.join(stale_processed[:10])}"
+        )
     for ticker, s_data in processed_tickers.items():
+        if ticker not in top_stocks:
+            continue
         chart_bytes = b""
         if s_data.get("chart_b64"):
             try:
@@ -1348,7 +1375,13 @@ def main():
                     # Incremental Save after each stock
                     if not args.no_web:
                         stocks_data.sort(key=lambda x: x["stock"]["rank"])
-                        save_to_web(stocks_data, today, market_indices, test_run=args.test)
+                        save_to_web(
+                            stocks_data,
+                            today,
+                            market_indices,
+                            test_run=args.test,
+                            universe_meta=universe_meta,
+                        )
         
         safe_print(f"   ⏱️ Analysis completed in: {time.time() - analysis_start:.1f}s")
     else:
@@ -1367,7 +1400,13 @@ def main():
         safe_print(f"\n🌐 ข้ามการบันทึก web archive (--no-web)")
     else:
         safe_print(f"\n🌐 บันทึก web archive (Final)...")
-        archive_url = save_to_web(stocks_data, today, market_indices, test_run=args.test)
+        archive_url = save_to_web(
+            stocks_data,
+            today,
+            market_indices,
+            test_run=args.test,
+            universe_meta=universe_meta,
+        )
         if not args.no_history:
             save_history_data(stocks_data)
 
