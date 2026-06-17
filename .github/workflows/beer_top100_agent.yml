@@ -11,7 +11,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30         # top 100 ใช้เวลา ~10-15 นาที
+    timeout-minutes: 75         # top 100 can exceed 30 minutes when APIs are slow
 
     steps:
       - name: Checkout code
