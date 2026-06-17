@@ -173,9 +173,47 @@
     .pct { margin-top: 2px; font-size: 0.78rem; font-weight: 850; text-align: right; }
     .up { color: var(--green); }
     .down { color: var(--red); }
+    .watchlist-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: -2px 0 10px;
+    }
+    .watchlist-count { color: var(--muted); font-size: 0.78rem; font-weight: 800; }
+    .watchlist-reset, .stock-action {
+      min-height: 28px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--text);
+      background: #0b1119;
+      font-size: 0.76rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .watchlist-reset:hover, .stock-action:hover { border-color: var(--gold); color: var(--gold); }
+    .stock-action.danger { color: #ff9aa2; }
+    .stock-action.danger:hover { border-color: var(--red); color: var(--red); }
     .stock-row { width: 100%; color: var(--text); text-align: left; }
     .stock-row.active { border-color: rgba(240,185,11,0.72); background: rgba(240,185,11,0.1); }
     .stock-row:hover { border-color: rgba(88,166,255,0.6); }
+    .stock-main {
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      color: inherit;
+      background: transparent;
+      text-align: left;
+    }
+    .stock-main:focus-visible, .stock-action:focus-visible, .watchlist-reset:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .stock-quote {
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
     .hero { padding: 14px; border-bottom: 1px solid var(--line); background: #101720; }
     .hero-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
     .ticker { color: #fff; font-size: 1.8rem; line-height: 1; font-weight: 900; letter-spacing: 0; }
@@ -350,7 +388,7 @@
       .control label { align-self: flex-start; }
       .metric-card, .stock-row {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) max-content;
+        grid-template-columns: minmax(0, 1fr) max-content max-content;
         align-items: start;
         width: 100%;
       }
@@ -410,8 +448,12 @@
           <div class="section-head">
             <div>
               <div class="section-title">หุ้นที่ติดตาม</div>
-              <div class="section-sub">เลือกหุ้นแล้วจดอารมณ์กับ thesis ของตัวนั้น</div>
+              <div class="section-sub">พิมพ์ ticker ด้านบนเพื่อค้นหา เพิ่ม หรือลบหุ้นออกจากรายการนี้</div>
             </div>
+          </div>
+          <div class="watchlist-tools">
+            <span class="watchlist-count" id="watchlistCount"></span>
+            <button class="watchlist-reset" id="resetWatchlistBtn" type="button">รีเซ็ต</button>
           </div>
           <div class="stock-list" id="stockList"></div>
         </section>
@@ -541,6 +583,7 @@
 const PHASES = ['premarket', 'postmarket', 'legacy'];
 const PHASE_LABELS = { premarket: 'ก่อนตลาดเปิด', postmarket: 'หลังตลาดปิด', legacy: 'รายวัน' };
 const DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
+const WATCHLIST_KEY = 'beerJournalWatchlistV1';
 const state = {
   dates: [],
   phases: [],
@@ -549,6 +592,8 @@ const state = {
   data: null,
   notes: {},
   ticker: 'NVDA',
+  urlTicker: '',
+  watchlist: [],
   search: '',
   emotion: 'มั่นใจแต่ระวัง',
   intent: 'รอจังหวะ',
@@ -584,6 +629,82 @@ function selectedStock() {
   const ticker = String(state.ticker || '').toUpperCase();
   return state.data?.stocks?.find(stock => stock.ticker === ticker) || state.data?.stocks?.[0] || null;
 }
+function stockByTicker(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  return state.data?.stocks?.find(stock => stock.ticker === target) || null;
+}
+function readWatchlist() {
+  try {
+    const raw = localStorage.getItem(WATCHLIST_KEY);
+    if (raw === null) return null;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    return parsed.map(item => String(item || '').toUpperCase()).filter(Boolean);
+  } catch {
+    return null;
+  }
+}
+function saveWatchlist() {
+  try {
+    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(state.watchlist));
+  } catch {
+    showToast('บันทึกรายการติดตามใน browser นี้ไม่ได้');
+  }
+}
+function uniqueTickers(tickers) {
+  return [...new Set(tickers.map(item => String(item || '').toUpperCase()).filter(Boolean))];
+}
+function hydrateWatchlist() {
+  const available = new Set((state.data?.stocks || []).map(stock => stock.ticker));
+  const stored = readWatchlist();
+  const base = stored === null ? DEFAULT_TICKERS : stored;
+  state.watchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
+  if (state.urlTicker && available.has(state.urlTicker) && !state.watchlist.includes(state.urlTicker)) {
+    state.watchlist.unshift(state.urlTicker);
+  }
+  if (!stockByTicker(state.ticker)) {
+    state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'NVDA';
+  }
+  saveWatchlist();
+}
+function addWatchTicker(ticker) {
+  const stock = stockByTicker(ticker);
+  if (!stock) {
+    showToast('ไม่พบหุ้นนี้ใน archive วันที่เลือก');
+    return;
+  }
+  if (!state.watchlist.includes(stock.ticker)) {
+    state.watchlist.unshift(stock.ticker);
+    saveWatchlist();
+    showToast(`เพิ่ม ${stock.ticker} ในรายการติดตามแล้ว`);
+  }
+  state.ticker = stock.ticker;
+  state.search = '';
+  document.getElementById('stockSearch').value = '';
+  renderAll();
+}
+function removeWatchTicker(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  state.watchlist = state.watchlist.filter(item => item !== target);
+  saveWatchlist();
+  if (state.ticker === target) {
+    state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || state.ticker;
+  }
+  renderAll();
+  showToast(`ลบ ${target} ออกจากรายการติดตามแล้ว`);
+}
+function resetWatchlist() {
+  const available = new Set((state.data?.stocks || []).map(stock => stock.ticker));
+  state.watchlist = DEFAULT_TICKERS.filter(ticker => available.has(ticker));
+  if (!state.watchlist.includes(state.ticker)) {
+    state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || state.ticker;
+  }
+  saveWatchlist();
+  state.search = '';
+  document.getElementById('stockSearch').value = '';
+  renderAll();
+  showToast('รีเซ็ตรายการติดตามแล้ว');
+}
 function updateUrl() {
   const params = new URLSearchParams();
   if (state.date) params.set('date', state.date);
@@ -618,11 +739,13 @@ async function loadArchive(date, preferredPhase) {
 }
 async function init() {
   const params = new URLSearchParams(location.search);
-  state.ticker = (params.get('ticker') || 'NVDA').toUpperCase();
+  state.urlTicker = (params.get('ticker') || '').toUpperCase();
+  state.ticker = state.urlTicker || 'NVDA';
   state.phase = params.get('phase') || 'legacy';
   try {
     state.dates = await loadJson('data/index.json');
     await loadArchive(params.get('date') || state.dates[0] || '2026-06-16', state.phase);
+    hydrateWatchlist();
   } catch (error) {
     document.querySelector('.shell').innerHTML = `<div class="panel pad">โหลดข้อมูลตัวอย่างไม่สำเร็จ: ${esc(error.message)}</div>`;
     return;
@@ -673,17 +796,30 @@ function stockPool() {
   if (query) {
     return stocks.filter(stock => stock.ticker.includes(query) || String(stock.name || '').toUpperCase().includes(query)).slice(0, 18);
   }
-  const pinned = DEFAULT_TICKERS.map(ticker => stocks.find(stock => stock.ticker === ticker)).filter(Boolean);
-  const rest = stocks.filter(stock => !DEFAULT_TICKERS.includes(stock.ticker)).slice(0, 16);
-  return [...pinned, ...rest].slice(0, 18);
+  return state.watchlist.map(ticker => stockByTicker(ticker)).filter(Boolean);
 }
 function renderStockList() {
-  document.getElementById('stockList').innerHTML = stockPool().map(stock => `
-    <button class="stock-row ${stock.ticker === state.ticker ? 'active' : ''}" data-ticker="${esc(stock.ticker)}" type="button">
-      <div><div class="stock-symbol">${esc(stock.ticker)}</div><div class="stock-name">${esc(stock.name)}</div></div>
-      <div><div class="stock-price">${fmtMoney(stock.price)}</div><div class="pct ${pctClass(stock.pct_change)}">${signedPct(stock.pct_change)}</div></div>
-    </button>
-  `).join('');
+  const list = stockPool();
+  document.getElementById('watchlistCount').textContent = state.search
+    ? `ผลค้นหา ${list.length} รายการ`
+    : `ติดตาม ${state.watchlist.length} ตัว`;
+  document.getElementById('stockList').innerHTML = list.length ? list.map(stock => {
+    const tracked = state.watchlist.includes(stock.ticker);
+    const action = tracked
+      ? `<button class="stock-action danger" data-remove-ticker="${esc(stock.ticker)}" type="button">ลบ</button>`
+      : `<button class="stock-action" data-add-ticker="${esc(stock.ticker)}" type="button">เพิ่ม</button>`;
+    return `<div class="stock-row ${stock.ticker === state.ticker ? 'active' : ''}">
+      <button class="stock-main" data-ticker="${esc(stock.ticker)}" type="button">
+        <div class="stock-symbol">${esc(stock.ticker)}</div>
+        <div class="stock-name">${esc(stock.name)}</div>
+      </button>
+      <div class="stock-quote">
+        <div class="stock-price">${fmtMoney(stock.price)}</div>
+        <div class="pct ${pctClass(stock.pct_change)}">${signedPct(stock.pct_change)}</div>
+      </div>
+      ${action}
+    </div>`;
+  }).join('') : `<div class="empty">${state.search ? 'ไม่พบหุ้นจากคำค้นนี้' : 'ยังไม่มีหุ้นที่ติดตาม พิมพ์ ticker ด้านบนเพื่อเพิ่ม'}</div>`;
 }
 function renderStockContext() {
   const stock = selectedStock();
@@ -767,6 +903,16 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 2600);
 }
 document.addEventListener('click', event => {
+  const addButton = event.target.closest('[data-add-ticker]');
+  if (addButton) {
+    addWatchTicker(addButton.dataset.addTicker);
+    return;
+  }
+  const removeButton = event.target.closest('[data-remove-ticker]');
+  if (removeButton) {
+    removeWatchTicker(removeButton.dataset.removeTicker);
+    return;
+  }
   const stockButton = event.target.closest('[data-ticker]');
   if (stockButton) {
     state.ticker = stockButton.dataset.ticker;
@@ -779,7 +925,10 @@ document.addEventListener('click', event => {
   }
   const phaseButton = event.target.closest('[data-phase]');
   if (phaseButton && !phaseButton.disabled) {
-    loadArchive(state.date, phaseButton.dataset.phase).then(renderAll).catch(error => showToast(error.message));
+    loadArchive(state.date, phaseButton.dataset.phase).then(() => {
+      hydrateWatchlist();
+      renderAll();
+    }).catch(error => showToast(error.message));
     return;
   }
   const emotionButton = event.target.closest('[data-emotion]');
@@ -797,12 +946,16 @@ document.addEventListener('click', event => {
   }
 });
 document.getElementById('dateSelect').addEventListener('change', event => {
-  loadArchive(event.target.value, state.phase).then(renderAll).catch(error => showToast(error.message));
+  loadArchive(event.target.value, state.phase).then(() => {
+    hydrateWatchlist();
+    renderAll();
+  }).catch(error => showToast(error.message));
 });
 document.getElementById('stockSearch').addEventListener('input', event => {
   state.search = event.target.value;
   renderStockList();
 });
+document.getElementById('resetWatchlistBtn').addEventListener('click', resetWatchlist);
 ['thesisInput', 'invalidInput', 'riskInput', 'reviewSelect'].forEach(id => {
   document.getElementById(id).addEventListener('input', renderEntryPreview);
 });
