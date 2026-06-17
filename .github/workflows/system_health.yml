@@ -1,0 +1,45 @@
+name: System Health Canary
+
+on:
+  schedule:
+    - cron: '30 10 * * 1-5'      # 17:30 Bangkok (Mon-Fri), before US premarket report
+    - cron: '30 22 * * 1-5'      # 05:30 Bangkok (Tue-Sat), before US postmarket report
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  TZ: Asia/Bangkok
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install canary dependencies
+        run: pip install groq yfinance python-dotenv
+
+      - name: Run system health canary
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python system_health.py
+
+      - name: Commit system health
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/system_health.json
+          git diff --cached --quiet || git commit -m "System health $(date +%Y-%m-%d_%H-%M)"
+          git push

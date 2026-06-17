@@ -60,12 +60,14 @@
     }
     .system-status.ok { display: flex; border-left: 3px solid #16c784; }
     .system-status.warning { display: flex; border-left: 3px solid #f0b90b; }
+    .system-status.fail { display: flex; border-left: 3px solid #ea3943; }
     .status-pill {
       border: 1px solid #30363d; border-radius: 999px; padding: 2px 8px;
       color: #e6edf3; background: #161b22; font-weight: 600;
     }
     .system-status.ok .status-pill { color: #16c784; border-color: #16c78466; }
     .system-status.warning .status-pill { color: #f0b90b; border-color: #f0b90b66; }
+    .system-status.fail .status-pill { color: #ea3943; border-color: #ea394366; }
     .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
     .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
     .up   { color: #16c784 !important; }
@@ -560,6 +562,7 @@
 
 <div id="summaryBar" class="summary"></div>
 <div id="systemStatus" class="system-status"></div>
+<div id="canaryStatus" class="system-status"></div>
 <div id="marketOverview"></div>
 <div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
 
@@ -1590,6 +1593,40 @@ function renderSystemStatus() {
   `;
 }
 
+function renderCanaryStatus(data) {
+  const el = document.getElementById('canaryStatus');
+  if (!el) return;
+  if (!data) {
+    el.className = 'system-status';
+    el.innerHTML = '';
+    return;
+  }
+  const status = ['ok', 'warning', 'fail'].includes(data.status) ? data.status : 'warning';
+  const checks = data.checks || [];
+  const bad = checks.filter(c => c.status !== 'ok');
+  const label = status === 'ok' ? 'CANARY OK' : `CANARY ${status.toUpperCase()}`;
+  const detail = bad.length
+    ? bad.map(c => `${c.name}: ${c.message}`).join(' · ')
+    : checks.map(c => c.name).join(' · ');
+  const updated = data.updated ? new Date(data.updated).toLocaleString('th-TH') : '-';
+  el.className = `system-status ${status}`;
+  el.innerHTML = `
+    <span class="status-pill">${label}</span>
+    <span>ตรวจล่าสุด ${esc(updated)}</span>
+    <span>${esc(detail || 'ยังไม่มีรายละเอียด')}</span>
+  `;
+}
+
+async function loadSystemHealth() {
+  try {
+    const r = await fetch('data/system_health.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) return renderCanaryStatus(null);
+    renderCanaryStatus(await r.json());
+  } catch(e) {
+    renderCanaryStatus(null);
+  }
+}
+
 function renderCards() {
   if (!currentData) return;
   const search = document.getElementById('searchBox').value.toLowerCase().trim();
@@ -1849,6 +1886,8 @@ if ('serviceWorker' in navigator) {
 }
 
 init();
+loadSystemHealth();
+setInterval(loadSystemHealth, 300000);
 </script>
 <div id="usageBar" class="usage-bar" style="display:none">
   <div class="usage-item">
