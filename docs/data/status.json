@@ -1,0 +1,63 @@
+{
+  "updated": "2026-06-17T20:31:44.617610",
+  "latest": {
+    "date": "2026-06-17",
+    "archive_key": "2026-06-17",
+    "run_phase": "manual",
+    "generated": "2026-06-17T20:31:44.604220",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-17",
+    "health": {
+      "status": "warning",
+      "issues": [
+        "stock_count 99/100",
+        "missing_charts 1"
+      ],
+      "counts": {
+        "stocks": 99,
+        "expected_stocks": 100,
+        "charts": 98,
+        "homework_complete": 99,
+        "market_indices": 3
+      },
+      "missing": {
+        "charts": [
+          "SPCX"
+        ],
+        "homework": [],
+        "market_indices": [],
+        "market_cap": []
+      }
+    }
+  },
+  "phases": {
+    "manual": {
+      "date": "2026-06-17",
+      "archive_key": "2026-06-17",
+      "run_phase": "manual",
+      "generated": "2026-06-17T20:31:44.604220",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-17",
+      "health": {
+        "status": "warning",
+        "issues": [
+          "stock_count 99/100",
+          "missing_charts 1"
+        ],
+        "counts": {
+          "stocks": 99,
+          "expected_stocks": 100,
+          "charts": 98,
+          "homework_complete": 99,
+          "market_indices": 3
+        },
+        "missing": {
+          "charts": [
+            "SPCX"
+          ],
+          "homework": [],
+          "market_indices": [],
+          "market_cap": []
+        }
+      }
+    }
+  }
+}
