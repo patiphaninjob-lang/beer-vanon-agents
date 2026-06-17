@@ -160,6 +160,13 @@
       text-decoration: none;
     }
     .history-btn:hover { border-color: #93c5fd; color: #bfdbfe; }
+    .journal-btn {
+      font-size: 0.75em; padding: 2px 8px; border-radius: 4px;
+      border: 1px solid #30363d; background: #0d1117; color: #f7d774;
+      margin-top: 6px; margin-left: 5px; display: inline-flex; align-items: center; gap: 4px;
+      text-decoration: none;
+    }
+    .journal-btn:hover { border-color: #f0b90b; color: #f0b90b; }
 
     /* ── Past notes on card ── */
     .card-notes { margin-top: 8px; }
@@ -1789,6 +1796,7 @@ function cardHTML(s) {
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
   const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
+  const journalUrl = `journal.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : ''}`;
 
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
@@ -1819,6 +1827,7 @@ function cardHTML(s) {
 
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
+    <a class="journal-btn" href="${journalUrl}">Journal</a>
     ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}

@@ -1,25 +1,23 @@
-# Session Handoff (2026-05-31) - News-First Architecture Deployed
+# Session Handoff - Journal Page Deployed
 
 ## Latest Truth
-- **Architecture Upgrade:** Both Thai (`thai_top100_agent.py`) and US (`beer_top100_agent.py`) agents now use the **"News-First"** architecture.
-- **Persistent Homework:** "Chapter 34" homework (6 angles) is now cached in `*_metadata_cache.json` after the first generation. Subsequent runs reuse this data, saving ~60% of output tokens.
-- **Deep News Analysis:** AI now focuses 100% of its effort on daily news interpretation, with an increased context window (1,500 chars) and higher response tokens (600-800).
-- **Windows Constraint:** The ticker `COM7` (COM7.BK.json) remains a reserved filename on Windows. It must be excluded from local `git add` but will be handled correctly by the GitHub Actions Linux runner.
+- The US dashboard keeps the original fast overview layout.
+- Each stock card now has a `Journal` button next to `มุมมอง` and `History`.
+- `docs/journal.html` is a separate detailed Journal page for one stock/date/phase.
+- Journal currently loads archive market context, stock chart/news, old notes, and structured journal fields.
+- The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
 ## Files Changed
-- `thai_top100_agent.py`: Implemented persistent homework, deep news logic, and optimized history (2y).
-- `beer_top100_agent.py`: Migrated News-First logic, added persistent homework caching, and increased max tokens.
-- `thai_metadata_cache.json` & `stock_metadata_cache.json`: Updated to store `homework_34` and `homework_updated` fields.
-- `HANDOFF.md`, `PROJECT_CONTEXT.md`: Updated with new architectural truths and constraints.
+- `docs/index.html`: added `.journal-btn` styling and stock-card links to `journal.html?ticker=...&date=...&phase=...`.
+- `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 
-## Tests Run
-- **Thai Agent Test:** `python thai_top100_agent.py --test --limit 2` -> Verified deep news output and cache saving.
-- **US Agent Test:** `python beer_top100_agent.py --test --limit 1` -> Verified NVDA deep news interpretation and JSON validity at 800 tokens.
-
-## Open Risks
-- **Groq Rate Limits:** While more token-efficient, the increased `max_tokens` might hit TPM limits if many stocks have massive news updates simultaneously.
-- **Cache Staleness:** Cached homework might need a manual refresh or a "6-month refresh" logic in the future.
+## Verification
+- `node --check` passed for inline scripts extracted from `docs/index.html` and `docs/journal.html`.
+- Local HTTP checks returned 200 for:
+  - `http://127.0.0.1:8787/index.html?date=2026-06-16`
+  - `http://127.0.0.1:8787/journal.html?ticker=NVDA&date=2026-06-16`
+- Chrome DOM check confirmed stock cards render `Journal` links to `journal.html`.
+- Visual check confirmed `docs/journal.html` renders NVDA chart/news/Journal Capture without prototype switcher.
 
 ## Next Step
-- **Monitor Automated Runs:** Confirm GitHub Actions trigger correctly (Thai: 18:00 BKK, US: ~04:00 BKK).
-- **Audit News Depth:** Review the live dashboards to ensure the "Deep News Interpretation" meets the user's expectations for "แน่น" (dense) content.
+- Implement real Journal persistence by extending the existing notes/cloud sync path or creating a structured journal store.
