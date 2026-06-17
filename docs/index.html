@@ -86,8 +86,18 @@
     /* ── Card ── */
     .card { background: #1a1f2e; border-radius: 10px; padding: 14px; border-left: 3px solid #6366f1; }
     .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .ticker-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .card-rank { font-size: 0.69em; color: #6b7280; background: #111827; border-radius: 3px; padding: 1px 5px; margin-right: 5px; }
     .card-ticker { font-size: 1.15em; font-weight: bold; color: #fff; }
+    .watch-star {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 1px solid #30363d; background: #0d1117; color: #6b7280;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.95em; line-height: 1; padding: 0;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .watch-star:hover { border-color: #f0b90b; color: #f0b90b; }
+    .watch-star.active { border-color: #f0b90b80; color: #f0b90b; background: #f0b90b14; }
     .card-name { color: #8a8f98; font-size: 0.8em; margin-top: 2px; }
     .card-price { font-size: 1.1em; color: #fff; text-align: right; }
     .card-pct { font-weight: bold; font-size: 0.95em; text-align: right; }
@@ -694,6 +704,9 @@ const PHASE_LABELS = {
   premarket: 'ก่อนตลาดเปิด',
   legacy: 'รายวัน'
 };
+const JOURNAL_WATCHLIST_KEY = 'beerJournalWatchlistV1';
+const JOURNAL_DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
+let journalWatchlist = [];
 
 // ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
@@ -743,6 +756,56 @@ function showToast(msg, color='#16c784') {
   t.textContent = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 3000);
+}
+
+function uniqueTickers(tickers) {
+  return [...new Set(tickers.map(item => String(item || '').toUpperCase()).filter(Boolean))];
+}
+
+function readJournalWatchlist() {
+  try {
+    const raw = localStorage.getItem(JOURNAL_WATCHLIST_KEY);
+    if (raw === null) return null;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    return uniqueTickers(parsed);
+  } catch {
+    return null;
+  }
+}
+
+function saveJournalWatchlist() {
+  try {
+    localStorage.setItem(JOURNAL_WATCHLIST_KEY, JSON.stringify(journalWatchlist));
+  } catch {
+    showToast('บันทึกรายการติดตามใน browser นี้ไม่ได้', '#f0b90b');
+  }
+}
+
+function hydrateJournalWatchlist() {
+  const available = new Set((currentData?.stocks || []).map(stock => stock.ticker));
+  const stored = readJournalWatchlist();
+  const base = stored === null ? JOURNAL_DEFAULT_TICKERS : stored;
+  journalWatchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
+  saveJournalWatchlist();
+}
+
+function isJournalWatched(ticker) {
+  return journalWatchlist.includes(String(ticker || '').toUpperCase());
+}
+
+function toggleJournalWatchlist(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  if (!target) return;
+  if (isJournalWatched(target)) {
+    journalWatchlist = journalWatchlist.filter(item => item !== target);
+    showToast(`ลบ ${target} จากหุ้นที่ติดตามแล้ว`, '#f0b90b');
+  } else {
+    journalWatchlist.unshift(target);
+    showToast(`เพิ่ม ${target} ในหุ้นที่ติดตามแล้ว`);
+  }
+  saveJournalWatchlist();
+  renderCards();
 }
 
 function cloneNotesMap(src) {
@@ -1627,6 +1690,7 @@ async function loadDate(date, preferredPhase = selectedPhase) {
     currentData = loaded.data;
     selectedDate = date;
     selectedPhase = normalizePhase(currentData.run_phase) || loaded.phase;
+    hydrateJournalWatchlist();
     document.getElementById('dateBtnLabel').textContent = fmtDate(date);
     updatePhaseSelector(phases, selectedPhase);
     updateUrl(date, selectedPhase);
@@ -1797,14 +1861,19 @@ function cardHTML(s) {
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
   const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
   const journalUrl = `journal.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : ''}`;
+  const watched = isJournalWatched(s.ticker);
+  const watchLabel = watched ? 'ลบออกจากหุ้นที่ติดตาม' : 'เพิ่มเข้าหุ้นที่ติดตาม';
 
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
     <div class="card-head">
       <div>
-        <span class="card-rank">#${s.rank}</span>
-        <span class="card-ticker">${esc(s.ticker)}</span>
-        <span class="sector-badge">${esc(s.sector||'')}</span>
+        <div class="ticker-line">
+          <span class="card-rank">#${s.rank}</span>
+          <span class="card-ticker">${esc(s.ticker)}</span>
+          <button class="watch-star ${watched ? 'active' : ''}" type="button" data-watch-toggle="${esc(s.ticker)}" title="${watchLabel}" aria-label="${watchLabel} ${esc(s.ticker)}" aria-pressed="${watched ? 'true' : 'false'}">${watched ? '★' : '☆'}</button>
+          <span class="sector-badge">${esc(s.sector||'')}</span>
+        </div>
         <div class="card-name">${esc(s.name)}</div>
       </div>
       <div style="flex-shrink:0;margin-left:10px">
@@ -1838,6 +1907,14 @@ function cardHTML(s) {
 document.addEventListener('click', async e => {
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
+  }
+
+  const watchToggle = e.target.closest('[data-watch-toggle]');
+  if (watchToggle) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleJournalWatchlist(watchToggle.dataset.watchToggle);
+    return;
   }
 
   // Hide tooltip if clicked outside
@@ -1971,6 +2048,12 @@ document.addEventListener('click', async e => {
     if (stock) showNoteModal(ticker, stock);
     return;
   }
+});
+
+window.addEventListener('storage', event => {
+  if (event.key !== JOURNAL_WATCHLIST_KEY || !currentData) return;
+  hydrateJournalWatchlist();
+  renderCards();
 });
 
 // ── keyboard shortcuts ────────────────────────────────────────

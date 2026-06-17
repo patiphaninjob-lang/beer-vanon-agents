@@ -6,10 +6,12 @@
 - `docs/journal.html` is a separate detailed Journal page for one stock/date/phase.
 - Journal currently loads archive market context, stock chart/news, old notes, and structured journal fields.
 - Journal stock watchlist can now be edited in-browser: search a ticker, add it, remove tracked tickers, or reset to defaults. The watchlist is stored in browser `localStorage`.
+- The US dashboard stock cards now have star toggles that add/remove tickers from the same Journal watchlist (`beerJournalWatchlistV1`).
 - The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
 ## Files Changed
 - `docs/index.html`: added `.journal-btn` styling and stock-card links to `journal.html?ticker=...&date=...&phase=...`.
+- `docs/index.html`: added dashboard watchlist star toggles backed by the Journal `localStorage` watchlist.
 - `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 - `docs/journal.html`: added editable local watchlist controls (`เพิ่ม`, `ลบ`, `รีเซ็ต`) backed by `localStorage`.
 
@@ -21,6 +23,7 @@
 - Chrome DOM check confirmed stock cards render `Journal` links to `journal.html`.
 - Visual check confirmed `docs/journal.html` renders NVDA chart/news/Journal Capture without prototype switcher.
 - Temporary iframe harness verified watchlist add/remove: remove `NVDA`, search/add `ORCL`, then observe `ORCL` as tracked.
+- Node watchlist-toggle check verified dashboard star logic removes `NVDA`, adds `ORCL`, updates `localStorage`, and re-renders.
 - Desktop and mobile screenshots confirmed watchlist controls do not break layout.
 
 ## Next Step
