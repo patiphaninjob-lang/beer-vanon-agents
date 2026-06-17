@@ -53,6 +53,19 @@
       background: #161b22; border-bottom: 1px solid #21262d;
       padding: 8px 18px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.83em;
     }
+    .system-status {
+      display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+      background: #0d1117; border-bottom: 1px solid #21262d;
+      padding: 7px 18px; color: #8b949e; font-size: 0.8em;
+    }
+    .system-status.ok { display: flex; border-left: 3px solid #16c784; }
+    .system-status.warning { display: flex; border-left: 3px solid #f0b90b; }
+    .status-pill {
+      border: 1px solid #30363d; border-radius: 999px; padding: 2px 8px;
+      color: #e6edf3; background: #161b22; font-weight: 600;
+    }
+    .system-status.ok .status-pill { color: #16c784; border-color: #16c78466; }
+    .system-status.warning .status-pill { color: #f0b90b; border-color: #f0b90b66; }
     .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
     .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
     .up   { color: #16c784 !important; }
@@ -546,6 +559,7 @@
 </div>
 
 <div id="summaryBar" class="summary"></div>
+<div id="systemStatus" class="system-status"></div>
 <div id="marketOverview"></div>
 <div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
 
@@ -1530,6 +1544,7 @@ async function loadDate(date, preferredPhase = selectedPhase) {
       sectorSel.appendChild(o);
     });
     renderSummary();
+    renderSystemStatus();
     renderMarketOverview();
     upgradeMarketOverviewCards();
     renderCards();
@@ -1549,6 +1564,29 @@ function renderSummary() {
     <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change).toFixed(2)}%</span></div>
     ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
     ${s.top_loser?.ticker?`<div><span class="stat-label">Top Loser</span><span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span></div>`:''}
+  `;
+}
+
+function renderSystemStatus() {
+  const el = document.getElementById('systemStatus');
+  if (!el) return;
+  const health = currentData?.health;
+  if (!health) {
+    el.className = 'system-status';
+    el.innerHTML = '';
+    return;
+  }
+  const counts = health.counts || {};
+  const status = health.status === 'ok' ? 'ok' : 'warning';
+  const issues = (health.issues || []).length ? health.issues.join(' · ') : 'ข้อมูลครบ';
+  el.className = `system-status ${status}`;
+  el.innerHTML = `
+    <span class="status-pill">${status === 'ok' ? 'OK' : 'WARNING'}</span>
+    <span>หุ้น ${counts.stocks ?? '-'} / ${counts.expected_stocks ?? '-'}</span>
+    <span>กราฟ ${counts.charts ?? '-'} / ${counts.stocks ?? '-'}</span>
+    <span>การบ้าน ${counts.homework_complete ?? '-'} / ${counts.stocks ?? '-'}</span>
+    <span>ดัชนี ${counts.market_indices ?? '-'}</span>
+    <span>${esc(issues)}</span>
   `;
 }
 

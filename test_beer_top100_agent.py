@@ -48,6 +48,52 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
         self.assertNotIn("เบียร์วิเคราะห์เจาะลึก", html)
         self.assertNotIn("card-homework", html)
 
+    def test_archive_health_detects_missing_artifacts(self):
+        payload = {
+            "stocks": [
+                {
+                    "ticker": "OK",
+                    "chart_b64": "abc",
+                    "homework_checklist": [{}] * 6,
+                    "market_cap": 100,
+                },
+                {
+                    "ticker": "MISS",
+                    "chart_b64": "",
+                    "homework_checklist": [{}],
+                    "market_cap": 0,
+                },
+            ],
+            "market_indices": {"dji": {}, "spx": {}},
+        }
+
+        health = top100.build_archive_health(payload, expected_total=2)
+
+        self.assertEqual(health["status"], "warning")
+        self.assertIn("missing_charts 1", health["issues"])
+        self.assertIn("incomplete_homework 1", health["issues"])
+        self.assertIn("missing_market_indices ixic", health["issues"])
+        self.assertIn("zero_market_cap 1", health["issues"])
+        self.assertEqual(health["counts"]["charts"], 1)
+
+    def test_archive_health_accepts_complete_archive(self):
+        payload = {
+            "stocks": [
+                {
+                    "ticker": "OK",
+                    "chart_b64": "abc",
+                    "homework_checklist": [{}] * 6,
+                    "market_cap": 100,
+                }
+            ],
+            "market_indices": {"dji": {}, "spx": {}, "ixic": {}},
+        }
+
+        health = top100.build_archive_health(payload, expected_total=1)
+
+        self.assertEqual(health["status"], "ok")
+        self.assertEqual(health["issues"], [])
+
 
 if __name__ == "__main__":
     unittest.main()
