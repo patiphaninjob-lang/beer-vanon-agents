@@ -70,7 +70,7 @@ def scheduled_report_action(existing_data: dict) -> str:
 # ~140 หุ้น universe → sort by market cap → take 100
 US_UNIVERSE = [
     # ─ Tech / AI ─
-    "AAPL","MSFT","NVDA","GOOGL","AMZN","META","TSLA","AVGO","ORCL","CRM",
+    "SPCX","AAPL","MSFT","NVDA","GOOGL","AMZN","META","TSLA","AVGO","ORCL","CRM",
     "AMD","ADBE","QCOM","INTC","TXN","AMAT","KLAC","LRCX","MU","MRVL",
     "ADI","NOW","INTU","SNPS","CDNS","CRWD","PANW","FTNT","ZS","IBM",
     # ─ Healthcare ─
