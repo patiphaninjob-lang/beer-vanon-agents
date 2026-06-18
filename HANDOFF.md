@@ -9,6 +9,7 @@
 - The US dashboard stock cards now have star toggles that add/remove tickers from the same Journal watchlist (`beerJournalWatchlistV1`).
 - A separate semantic color UI prototype exists at `docs/index-semantic-color-prototype.html`; it does not replace the production dashboard.
 - A separate Journal semantic color prototype exists at `docs/journal-semantic-color-prototype.html`; the dashboard prototype links to it.
+- Journal semantic prototype now hides stock news behind a Thai `ข่าว` button and opens news in a popup; visible Journal labels were localized further.
 - The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
 ## Files Changed
@@ -19,6 +20,7 @@
 - `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 - `docs/journal.html`: added editable local watchlist controls (`เพิ่ม`, `ลบ`, `รีเซ็ต`) backed by `localStorage`.
 - `docs/journal-semantic-color-prototype.html`: experimental Journal color system separating market context, watchlist, stock/news, capture, review, and memory information.
+- `docs/journal-semantic-color-prototype.html`: moved dense news lists into a modal opened from a compact `ข่าว` button and added Thai display translations for the visible sample news.
 
 ## Verification
 - `node --check` passed for inline scripts extracted from `docs/index.html` and `docs/journal.html`.
@@ -33,6 +35,7 @@
 - Local HTTP check returned 200 for `http://127.0.0.1:8787/index-semantic-color-prototype.html?date=2026-06-16`.
 - `node --check` passed for inline scripts extracted from `docs/journal-semantic-color-prototype.html`.
 - Local HTTP check returned 200 for `http://127.0.0.1:8787/journal-semantic-color-prototype.html?ticker=NVDA&date=2026-06-16`.
+- Local HTTP check returned 200 for `http://127.0.0.1:8787/journal-semantic-color-prototype.html?ticker=SPCX&date=2026-06-17` after the news popup update.
 - Desktop and mobile screenshots confirmed watchlist controls do not break layout.
 
 ## Next Step
