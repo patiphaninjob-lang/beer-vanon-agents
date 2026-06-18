@@ -1859,27 +1859,8 @@ function openMarketNote() {
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
-  const notes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
   const container = document.getElementById('existingNotesContainer');
-  container.innerHTML = notes.length ? `
-    <div class="existing-notes">
-      <div class="existing-label">อารมณ์ตลาดที่เคยบันทึก (${notes.length} รายการ)</div>
-      ${notes.map(n => {
-        const dji = n.dji_price ? `DJI ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
-        const spx = n.spx_price ? `S&P ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
-        return `
-          <div class="existing-note-item">
-            <div class="existing-note-meta">
-              <span>${n.date}${n.time ? ' '+n.time : ''}</span>
-              ${dji ? `<span>${dji}</span>` : ''}
-              ${spx ? `<span>${spx}</span>` : ''}
-              ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
-              <button class="delete-note-btn" onclick="deleteNote('_MARKET','${n.id}')" title="ลบ">🗑️</button>
-            </div>
-            <div class="existing-note-text">${esc(n.note)}</div>
-          </div>`;
-      }).join('')}
-    </div>` : '';
+  container.innerHTML = '';
 
   openModal('noteOverlay');
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
