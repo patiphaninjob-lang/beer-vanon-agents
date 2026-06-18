@@ -59,6 +59,7 @@
       padding: 7px 18px; color: #8b949e; font-size: 0.8em;
     }
     .system-status.ok { display: flex; border-left: 3px solid #16c784; }
+    .system-status.running { display: flex; border-left: 3px solid #f0b90b; }
     .system-status.warning { display: flex; border-left: 3px solid #f0b90b; }
     .system-status.fail { display: flex; border-left: 3px solid #ea3943; }
     .status-pill {
@@ -66,8 +67,17 @@
       color: #e6edf3; background: #161b22; font-weight: 600;
     }
     .system-status.ok .status-pill { color: #16c784; border-color: #16c78466; }
+    .system-status.running .status-pill { color: #f0b90b; border-color: #f0b90b66; }
     .system-status.warning .status-pill { color: #f0b90b; border-color: #f0b90b66; }
     .system-status.fail .status-pill { color: #ea3943; border-color: #ea394366; }
+    .automation-progress {
+      flex: 1; min-width: 120px; max-width: 180px; height: 4px;
+      background: #21262d; border-radius: 999px; overflow: hidden;
+    }
+    .automation-progress-fill {
+      height: 100%; width: 0%; background: #f0b90b;
+      border-radius: inherit; transition: width 0.35s ease;
+    }
     .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
     .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
     .up   { color: #16c784 !important; }
@@ -1000,6 +1010,7 @@
 </div>
 
 <div id="summaryBar" class="summary"></div>
+<div id="automationStatus" class="system-status" aria-live="polite"></div>
 <div id="systemStatus" class="system-status"></div>
 <div id="canaryStatus" class="system-status"></div>
 <div id="marketOverview"></div>
@@ -2112,6 +2123,126 @@ function renderCanaryStatus(data) {
   `;
 }
 
+function automationDateKey() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Bangkok',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(new Date()).reduce((acc, p) => {
+    acc[p.type] = p.value;
+    return acc;
+  }, {});
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+function automationTime(value) {
+  if (!value) return '-';
+  try {
+    return new Date(value).toLocaleString('th-TH', {
+      timeZone: 'Asia/Bangkok',
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  } catch (_) {
+    return '-';
+  }
+}
+
+function renderAutomationStatus(kind, title, detail, percent, link) {
+  const el = document.getElementById('automationStatus');
+  if (!el) return;
+  const safe = (text) => typeof esc === 'function' ? esc(String(text || '')) : String(text || '');
+  const pct = Number.isFinite(percent) ? Math.max(0, Math.min(100, Math.round(percent))) : null;
+  const progress = pct === null ? '' : `
+    <span class="automation-progress" aria-label="progress ${pct}%">
+      <span class="automation-progress-fill" style="width:${pct}%"></span>
+    </span>`;
+  const href = link || `https://github.com/${REPO}/actions/workflows/beer_top100_agent.yml`;
+  el.className = `system-status ${kind}`;
+  el.innerHTML = `
+    <span class="status-pill">${safe(title)}</span>
+    <span>${safe(detail)}</span>
+    ${progress}
+    <a class="tv-link" href="${safe(href)}" target="_blank" rel="noopener">ดูระบบ</a>
+  `;
+}
+
+async function fetchLatestHomeworkRun() {
+  const url = `https://api.github.com/repos/${REPO}/actions/workflows/beer_top100_agent.yml/runs?per_page=1&nocache=${Date.now()}`;
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) return null;
+  const data = await r.json();
+  return Array.isArray(data.workflow_runs) ? data.workflow_runs[0] : null;
+}
+
+async function fetchHomeworkProblem(run) {
+  if (!run || !run.jobs_url) return run?.conclusion || 'unknown';
+  try {
+    const r = await fetch(run.jobs_url + '?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) return run.conclusion || 'unknown';
+    const data = await r.json();
+    const jobs = Array.isArray(data.jobs) ? data.jobs : [];
+    for (const job of jobs) {
+      const bad = (job.steps || []).find(step => step.conclusion && !['success', 'skipped'].includes(step.conclusion));
+      if (bad) return `${bad.name} / ${bad.conclusion}`;
+    }
+    return run.conclusion || 'unknown';
+  } catch (_) {
+    return run.conclusion || 'unknown';
+  }
+}
+
+async function loadAutomationStatus() {
+  const el = document.getElementById('automationStatus');
+  if (!el) return;
+  try {
+    const [statusData, run] = await Promise.all([
+      fetch('data/status.json?nocache=' + Date.now(), { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetchLatestHomeworkRun().catch(() => null)
+    ]);
+    const latest = statusData?.latest || null;
+    const latestDate = latest?.date || null;
+    const today = automationDateKey();
+
+    if (run && ['queued', 'in_progress'].includes(run.status)) {
+      const started = new Date(run.run_started_at || run.created_at || Date.now());
+      const elapsedMinutes = Math.max(0, (Date.now() - started.getTime()) / 60000);
+      const pct = Math.min(95, (elapsedMinutes / 150) * 95);
+      renderAutomationStatus('running', 'กำลังทำการบ้าน', `เริ่ม ${automationTime(started)} ประมาณ ${Math.round(pct)}%`, pct, run.html_url);
+      return;
+    }
+
+    if (run && run.conclusion && !['success', 'skipped'].includes(run.conclusion)) {
+      const problem = await fetchHomeworkProblem(run);
+      renderAutomationStatus('fail', 'การบ้านติดปัญหา', `run ล่าสุด ${run.conclusion}: ${problem}`, 100, run.html_url);
+      return;
+    }
+
+    if (latestDate && latestDate < today) {
+      renderAutomationStatus('warning', 'ยังไม่มีของวันนี้', `archive ล่าสุด ${latestDate} อัปเดต ${automationTime(latest?.generated)}`, 0, run?.html_url);
+      return;
+    }
+
+    if (latest) {
+      const counts = latest.health?.counts || {};
+      const done = counts.homework_complete ?? counts.stocks ?? '-';
+      const total = counts.expected_stocks ?? counts.stocks ?? '-';
+      renderAutomationStatus('ok', 'การบ้านล่าสุดพร้อม', `archive ${latest.archive_key || latest.date} หุ้น ${done}/${total}`, 100, latest.url || run?.html_url);
+      return;
+    }
+
+    el.className = 'system-status';
+    el.innerHTML = '';
+  } catch (e) {
+    el.className = 'system-status';
+    el.innerHTML = '';
+    console.warn('automation status failed', e);
+  }
+}
+
 async function loadSystemHealth() {
   try {
     const r = await fetch('data/system_health.json?nocache=' + Date.now(), { cache: 'no-cache' });
@@ -2451,7 +2582,9 @@ if ('serviceWorker' in navigator) {
 }
 
 init();
+loadAutomationStatus();
 loadSystemHealth();
+setInterval(loadAutomationStatus, 60000);
 setInterval(loadSystemHealth, 300000);
 </script>
 <div id="usageBar" class="usage-bar" style="display:none">
