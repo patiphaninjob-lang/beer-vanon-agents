@@ -1,7 +1,8 @@
-const CACHE_NAME = 'beer-top100-v20260617-canary-1';
+const CACHE_NAME = 'beer-top100-v20260618-journal-translate-1';
 const APP_SHELL = [
   './',
   './index.html',
+  './journal.html',
   './history.html',
   './manifest.webmanifest',
   './icon.svg',
