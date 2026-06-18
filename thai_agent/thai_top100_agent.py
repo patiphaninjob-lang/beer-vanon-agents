@@ -74,6 +74,16 @@ INPUT_COST_PER_1M = 0.05
 OUTPUT_COST_PER_1M = 0.08
 
 
+def normalized_run_phase() -> str:
+    return RUN_PHASE if RUN_PHASE in {"premarket", "postmarket"} else "legacy"
+
+
+def archive_key_for_date(day: datetime.date) -> str:
+    date_key = day.strftime("%Y-%m-%d")
+    phase = normalized_run_phase()
+    return f"{date_key}-{phase}" if phase != "legacy" else date_key
+
+
 def record_thai_usage(model: str, prompt_tokens: int, completion_tokens: int) -> dict:
     """Record Thai-agent usage without writing to the US dashboard data path."""
     with usage_lock:
@@ -728,6 +738,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     docs_dir = DATA_DIR
     docs_dir.mkdir(parents=True, exist_ok=True)
     date_key = today.strftime("%Y-%m-%d")
+    archive_key = archive_key_for_date(today)
 
     import numpy as np
     avg_chg  = float(np.mean([s["stock"]["pct_change"] for s in stocks_data])) if stocks_data else 0
@@ -738,7 +749,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
     payload = {
         "date": date_key,
         "generated": datetime.datetime.now().isoformat(),
-        "run_phase": RUN_PHASE,
+        "run_phase": normalized_run_phase(),
         "run_request": {
             "id": RUN_REQUEST_ID,
             "source": RUN_REQUEST_SOURCE,
@@ -775,7 +786,10 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
             for s in stocks_data
         ],
     }
-    (docs_dir / f"{date_key}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    serialized_payload = json.dumps(payload, ensure_ascii=False, indent=2)
+    (docs_dir / f"{archive_key}.json").write_text(serialized_payload, encoding="utf-8")
+    if archive_key != date_key:
+        (docs_dir / f"{date_key}.json").write_text(serialized_payload, encoding="utf-8")
     
     idx_path = docs_dir / "index.json"
     dates = json.loads(idx_path.read_text(encoding="utf-8")) if idx_path.exists() else []
@@ -893,15 +907,15 @@ def main():
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
     today_file_str = today.strftime("%Y-%m-%d")
-    report_path = DATA_DIR / f"{today_file_str}.json"
+    report_path = DATA_DIR / f"{archive_key_for_date(today)}.json"
 
     if is_scheduled and report_path.exists():
         try:
             existing_phase = json.loads(report_path.read_text(encoding="utf-8")).get("run_phase")
         except Exception:
             existing_phase = None
-        if existing_phase == RUN_PHASE:
-            safe_print(f"⚠️ [Safety Net] Thai {RUN_PHASE} report already exists for {today_file_str}.")
+        if existing_phase == normalized_run_phase():
+            safe_print(f"⚠️ [Safety Net] Thai {normalized_run_phase()} report already exists for {today_file_str}.")
             safe_print("⏭️ Skipping duplicate scheduled run for the same phase.")
             return
 
@@ -910,19 +924,19 @@ def main():
     start_all = time.time()
     if RUN_REQUEST_ID or RUN_REQUEST_SOURCE or RUN_REQUESTED_BY or RUN_PHASE:
         safe_print(
-            f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'} phase={RUN_PHASE}"
+            f"  run request: id={RUN_REQUEST_ID or '-'} source={RUN_REQUEST_SOURCE or '-'} requested_by={RUN_REQUESTED_BY or '-'} phase={normalized_run_phase()}"
         )
 
     # ── Checkpoint / Resume Logic (Unified) ──
-    report_path = DATA_DIR / f"{today_file_str}.json"
+    report_path = DATA_DIR / f"{archive_key_for_date(today)}.json"
     
     existing_results = {}
     if report_path.exists():
         try:
             today_data = json.loads(report_path.read_text(encoding="utf-8"))
             # If scheduled and today's report already exists, skip
-            if os.getenv("GITHUB_EVENT_NAME") == "schedule" and today_data.get("run_phase") == RUN_PHASE and not today_data.get("test_run"):
-                safe_print(f"⚠️ [Safety Net] Thai {RUN_PHASE} report already exists for {today_file_str}.")
+            if os.getenv("GITHUB_EVENT_NAME") == "schedule" and today_data.get("run_phase") == normalized_run_phase() and not today_data.get("test_run"):
+                safe_print(f"⚠️ [Safety Net] Thai {normalized_run_phase()} report already exists for {today_file_str}.")
                 return
             
             if "stocks" in today_data:
