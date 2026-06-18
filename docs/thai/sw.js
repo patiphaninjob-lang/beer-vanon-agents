@@ -1,11 +1,10 @@
-const CACHE_NAME = 'thai-top100-v20260613-3';
+const CACHE_NAME = 'thai-top100-v20260618-1';
 const APP_SHELL = [
   './',
   './index.html',
   './history.html',
   './manifest.webmanifest',
-  './icon.svg',
-  './tradingview-notes.user.js'
+  './icon.svg'
 ];
 
 self.addEventListener('install', event => {

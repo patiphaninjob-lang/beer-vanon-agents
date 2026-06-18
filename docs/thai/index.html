@@ -456,6 +456,15 @@
       <input type="password" id="groqKeyInput" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
     </div>
 
+    <div style="margin-bottom:14px;padding:12px;border:1px solid #334155;border-radius:8px;background:#0f172a">
+      <label style="display:flex;align-items:center;gap:10px;color:#d1d5db;font-size:0.9em;font-weight:600;cursor:pointer">
+        <input type="checkbox" id="thaiAutomationToggle" style="width:18px;height:18px;accent-color:#10b981">
+        <span>เปิดระบบอัตโนมัติหุ้นไทย</span>
+      </label>
+      <p style="margin:8px 0 0">เมื่อเปิด ระบบจะทำการบ้านอัตโนมัติ 09:00 ก่อนตลาดเปิด และ 18:00 หลังตลาดปิด. เมื่อปิด งานอัตโนมัติจะหยุด แต่ปุ่มรันการบ้านสดยังใช้ได้.</p>
+      <div id="thaiAutomationStatus" style="color:#6b7280;font-size:0.76em;margin-top:7px;min-height:16px"></div>
+    </div>
+
     <div style="margin-bottom:6px;padding-top:14px;border-top:1px solid #334155">
       <div style="color:#d1d5db;font-size:0.85em;margin-bottom:6px;font-weight:500">Online Sync</div>
       <p>ข้อมูลกลาง sync ผ่าน cloud; เปิดจากคอม มือถือ หรือเครื่องอื่นได้ด้วย URL เดียวกัน</p>
@@ -546,7 +555,10 @@
 
 <script>
 const REPO       = 'patiphaninjob-lang/beer-vanon-agents';
-const NOTES_FILE = '../notes/notes.json';
+const LOCAL_NOTES_FILE = 'notes/notes.json';
+const REPO_NOTES_FILE = 'docs/thai/notes/notes.json';
+const LOCAL_CONFIG_FILE = 'config.json';
+const REPO_CONFIG_FILE = 'docs/thai/config.json';
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
   authDomain: "beam-7645f.firebaseapp.com",
@@ -561,6 +573,8 @@ const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.�
 let currentData     = null;
 let notesCache      = {};
 let notesSha        = null;
+let thaiConfigSha   = null;
+let thaiConfig      = { automation_enabled: false };
 let notesDocRef      = null;
 let notesSyncReady   = false;
 let notesSyncBackend = 'github';
@@ -674,7 +688,7 @@ async function saveNotesToFirestore() {
     await notesDocRef.set({
       notes: cloneNotesMap(notesCache),
       updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      updatedBy: 'beer-top100',
+      updatedBy: 'thai-top100',
       source: location.origin
     }, { merge: true });
     notesSyncBackend = 'firestore';
@@ -687,7 +701,7 @@ async function saveNotesToFirestore() {
 
 async function refreshGithubSha(pat) {
   try {
-    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_NOTES_FILE}?_=${Date.now()}`, {
       headers: githubHeaders(pat),
       cache: 'no-store'
     });
@@ -721,7 +735,7 @@ async function loadNotes(force = false) {
   }
 
   const pat = localStorage.getItem('gh_pat') || '';
-  const apiUrl = `https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`;
+  const apiUrl = `https://api.github.com/repos/${REPO}/contents/${REPO_NOTES_FILE}?_=${Date.now()}`;
 
   try {
     const api = await fetch(apiUrl, {
@@ -741,14 +755,14 @@ async function loadNotes(force = false) {
   } catch(e) {}
 
   try {
-    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${NOTES_FILE}?_=` + Date.now(), {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${REPO_NOTES_FILE}?_=` + Date.now(), {
       cache: force ? 'no-store' : 'default'
     });
     if (!r.ok) throw new Error(`notes HTTP ${r.status}`);
     notesCache = await r.json();
     notesSyncBackend = 'github';
     // get SHA for write operations
-    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
+    const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_NOTES_FILE}?_=${Date.now()}`, {
       headers: githubHeaders(pat),
       cache: 'no-store'
     });
@@ -758,11 +772,117 @@ async function loadNotes(force = false) {
     }
     return true;
   } catch(e) {
+    try {
+      const local = await fetch(`${LOCAL_NOTES_FILE}?_=` + Date.now(), {
+        cache: force ? 'no-store' : 'default'
+      });
+      if (local.ok) {
+        notesCache = await local.json();
+        notesSha = null;
+        notesSyncBackend = 'local';
+        return true;
+      }
+    } catch (_) {}
     notesCache = {};
     notesSha = null;
-    notesSyncBackend = 'github';
+    notesSyncBackend = 'local';
     return false;
   }
+}
+
+function updateThaiAutomationUI() {
+  const toggle = document.getElementById('thaiAutomationToggle');
+  const status = document.getElementById('thaiAutomationStatus');
+  const enabled = !!thaiConfig.automation_enabled;
+  if (toggle) toggle.checked = enabled;
+  if (status) {
+    status.style.color = enabled ? '#16c784' : '#10b981';
+    status.textContent = enabled
+      ? 'ระบบอัตโนมัติเปิดอยู่: schedule 09:00 และ 18:00 จะทำงาน'
+      : 'ระบบอัตโนมัติปิดอยู่: schedule จะไม่ทำงาน แต่รันสดยังใช้ได้';
+  }
+}
+
+async function loadThaiConfig(force = false) {
+  const pat = localStorage.getItem('gh_pat');
+  if (pat) {
+    try {
+      const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_CONFIG_FILE}?_=${Date.now()}`, {
+        headers: githubHeaders(pat),
+        cache: 'no-store'
+      });
+      if (api.ok) {
+        const json = await api.json();
+        thaiConfigSha = json.sha || null;
+        thaiConfig = JSON.parse(fromBase64(json.content || '')) || { automation_enabled: false };
+        updateThaiAutomationUI();
+        return true;
+      }
+    } catch (_) {}
+  }
+
+  try {
+    const local = await fetch(`${LOCAL_CONFIG_FILE}?_=` + Date.now(), {
+      cache: force ? 'no-store' : 'default'
+    });
+    if (local.ok) {
+      thaiConfig = await local.json();
+      thaiConfigSha = null;
+      updateThaiAutomationUI();
+      return true;
+    }
+  } catch (_) {}
+
+  thaiConfig = { automation_enabled: false };
+  thaiConfigSha = null;
+  updateThaiAutomationUI();
+  return false;
+}
+
+async function saveThaiConfigToGitHub(pat, enabled) {
+  const nextConfig = {
+    automation_enabled: !!enabled,
+    updated_at: new Date().toISOString(),
+    updated_by: 'thai-dashboard',
+    note: 'Controls scheduled Thai Top 100 automation only. Manual live runs from the app may still dispatch explicitly.'
+  };
+
+  if (!thaiConfigSha) {
+    await loadThaiConfig(true);
+  }
+
+  const body = {
+    message: `Thai automation ${enabled ? 'enabled' : 'disabled'}`,
+    content: toBase64(JSON.stringify(nextConfig, null, 2))
+  };
+  if (thaiConfigSha) body.sha = thaiConfigSha;
+
+  let r = await fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_CONFIG_FILE}`, {
+    method: 'PUT',
+    headers: githubHeaders(pat, true),
+    body: JSON.stringify(body)
+  });
+
+  if (r.status === 409) {
+    await loadThaiConfig(true);
+    body.sha = thaiConfigSha;
+    r = await fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_CONFIG_FILE}`, {
+      method: 'PUT',
+      headers: githubHeaders(pat, true),
+      body: JSON.stringify(body)
+    });
+  }
+
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({}));
+    throw new Error(err.message || `config HTTP ${r.status}`);
+  }
+
+  const saved = await r.json().catch(() => ({}));
+  thaiConfig = nextConfig;
+  thaiConfigSha = saved?.content?.sha || thaiConfigSha;
+  updateThaiAutomationUI();
+  return true;
 }
 
 async function writeNotesToGitHub(message, pat) {
@@ -772,7 +892,7 @@ async function writeNotesToGitHub(message, pat) {
   };
   if (notesSha) body.sha = notesSha;
 
-  return fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}`, {
+  return fetch(`https://api.github.com/repos/${REPO}/contents/${REPO_NOTES_FILE}`, {
     method: 'PUT',
     headers: githubHeaders(pat, true),
     body: JSON.stringify(body)
@@ -861,6 +981,8 @@ async function deleteNote(ticker, noteId) {
 function showSettings() {
   document.getElementById('patInput').value    = localStorage.getItem('gh_pat')    || '';
   document.getElementById('groqKeyInput').value = localStorage.getItem('groq_key') || '';
+  updateThaiAutomationUI();
+  loadThaiConfig(false).catch(() => updateThaiAutomationUI());
   const status = document.getElementById('syncStatus');
   if (status) {
     const sourceLabel = notesSyncBackend === 'firestore' ? 'Firestore cloud' : 'GitHub backup';
@@ -872,11 +994,26 @@ function showSettings() {
 function closeSettings() {
   document.getElementById('settingsOverlay').style.display = 'none';
 }
-function saveSettings() {
+async function saveSettings() {
   const pat  = document.getElementById('patInput').value.trim();
   const groq = document.getElementById('groqKeyInput').value.trim();
   if (pat)  localStorage.setItem('gh_pat',   pat);
   if (groq) localStorage.setItem('groq_key', groq);
+  const desiredAutomation = !!document.getElementById('thaiAutomationToggle')?.checked;
+  if (desiredAutomation !== !!thaiConfig.automation_enabled) {
+    if (!pat) {
+      showToast('ต้องใส่ GitHub Token เพื่อเปิด/ปิดระบบอัตโนมัติออนไลน์', '#ea3943');
+      updateThaiAutomationUI();
+      return;
+    }
+    try {
+      await saveThaiConfigToGitHub(pat, desiredAutomation);
+    } catch (e) {
+      showToast(`บันทึกสวิตช์ไม่สำเร็จ: ${e.message}`, '#ea3943');
+      updateThaiAutomationUI();
+      return;
+    }
+  }
   showToast('✅ บันทึกการตั้งค่าแล้ว');
   closeSettings();
 }
@@ -1131,8 +1268,9 @@ async function runAgent(e) {
         ref: 'main',
         inputs: {
           request_id: 'WEB_' + Date.now(),
-          request_source: 'THAI_DASHBOARD',
-          requested_by: 'USER'
+          request_source: 'THAI_DASHBOARD_MANUAL',
+          requested_by: 'USER',
+          enable_thai: 'true'
         }
       })
     });
@@ -1315,14 +1453,16 @@ function openMarketNote() {
     <div class="existing-notes">
       <div class="existing-label">อารมณ์ตลาดที่เคยบันทึก (${notes.length} รายการ)</div>
       ${notes.map(n => {
-        const dji = n.dji_price ? `DJI ${n.dji_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.dji_pct>=0?'+':''}${n.dji_pct}%)` : '';
-        const spx = n.spx_price ? `S&P ${n.spx_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.spx_pct>=0?'+':''}${n.spx_pct}%)` : '';
+        const set = n.set_price ? `SET ${n.set_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set_pct>=0?'+':''}${n.set_pct}%)` : '';
+        const set50 = n.set50_price ? `SET50 ${n.set50_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set50_pct>=0?'+':''}${n.set50_pct}%)` : '';
+        const set100 = n.set100_price ? `SET100 ${n.set100_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set100_pct>=0?'+':''}${n.set100_pct}%)` : '';
         return `
           <div class="existing-note-item">
             <div class="existing-note-meta">
               <span>${n.date}${n.time ? ' '+n.time : ''}</span>
-              ${dji ? `<span>${dji}</span>` : ''}
-              ${spx ? `<span>${spx}</span>` : ''}
+              ${set ? `<span>${set}</span>` : ''}
+              ${set50 ? `<span>${set50}</span>` : ''}
+              ${set100 ? `<span>${set100}</span>` : ''}
               ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
               <button class="delete-note-btn" onclick="deleteNote('_MARKET_THAI','${n.id}')" title="ลบ">🗑️</button>
             </div>
@@ -1347,6 +1487,7 @@ async function init() {
       showToast('✅ ตั้งค่าเรียบร้อย — พร้อมใช้งาน');
     } catch(e) {}
   }
+  await loadThaiConfig();
   await loadNotes();
   try {
     const r = await fetch('../thai-data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
@@ -1763,7 +1904,7 @@ init();
 <script>
 async function loadUsage() {
   try {
-    const r = await fetch('../data/usage_stats.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    const r = await fetch('../thai-data/usage_stats.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) return;
     const stats = await r.json();
     document.getElementById('usageBar').style.display = 'flex';

@@ -4,17 +4,29 @@ on:
   workflow_dispatch:
     inputs:
       request_id:
-        description: 'Unique ID for this run'
+        description: Unique ID for this run
         required: false
       request_source:
-        description: 'Where the run was triggered from'
+        description: Where the run was triggered from
         required: false
       requested_by:
-        description: 'Who triggered the run'
+        description: Who triggered the run
         required: false
+      enable_thai:
+        description: Set to true to intentionally run the currently disabled Thai agent
+        required: true
+        default: "false"
+        type: boolean
+  schedule:
+    - cron: "0 2 * * 1-5"   # 09:00 Asia/Bangkok, pre-market homework
+    - cron: "0 11 * * 1-5"  # 18:00 Asia/Bangkok, post-market homework
 
 permissions:
   contents: write
+
+env:
+  TZ: Asia/Bangkok
+  PYTHONPATH: ${{ github.workspace }}/common:${{ github.workspace }}/thai_agent
 
 jobs:
   run:
@@ -25,14 +37,60 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
+          fetch-depth: 0
+
+      - name: Resolve Thai automation gate
+        shell: bash
+        run: |
+          phase="manual"
+          should_run="false"
+          thai_enabled="false"
+
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            if [[ "${{ github.event.schedule }}" == "0 2 * * 1-5" ]]; then
+              phase="premarket"
+            else
+              phase="postmarket"
+            fi
+
+            config_enabled="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("docs/thai/config.json")
+          if not path.exists():
+              print("false")
+          else:
+              try:
+                  print("true" if json.loads(path.read_text(encoding="utf-8")).get("automation_enabled") else "false")
+              except Exception:
+                  print("false")
+          PY
+          )"
+            if [[ "$config_enabled" == "true" ]]; then
+              should_run="true"
+              thai_enabled="true"
+            else
+              echo "Thai scheduled automation is disabled in docs/thai/config.json; skipping ${phase} run."
+            fi
+          elif [[ "${{ github.event.inputs.enable_thai || 'false' }}" == "true" ]]; then
+            should_run="true"
+            thai_enabled="true"
+          else
+            echo "Thai manual workflow dispatch skipped because enable_thai was not true."
+          fi
+
+          echo "SHOULD_RUN_THAI=${should_run}" >> "$GITHUB_ENV"
+          echo "THAI_ENABLE_FLAG=${thai_enabled}" >> "$GITHUB_ENV"
+          echo "RUN_PHASE=${phase}" >> "$GITHUB_ENV"
 
       - name: Setup Python 3.11
+        if: env.SHOULD_RUN_THAI == 'true'
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Cache pip packages
+        if: env.SHOULD_RUN_THAI == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
@@ -40,18 +98,22 @@ jobs:
           restore-keys: ${{ runner.os }}-pip-
 
       - name: Cache HuggingFace model
+        if: env.SHOULD_RUN_THAI == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/hf-thai-embeddings
           key: ${{ runner.os }}-hf-paraphrase-multilingual-minilm
 
-      - name: Install PyTorch (CPU only)
+      - name: Install PyTorch CPU
+        if: env.SHOULD_RUN_THAI == 'true'
         run: pip install torch --index-url https://download.pytorch.org/whl/cpu
 
       - name: Install dependencies
+        if: env.SHOULD_RUN_THAI == 'true'
         run: pip install -r requirements.txt
 
       - name: Run Beer Thai Top 100 Agent
+        if: env.SHOULD_RUN_THAI == 'true'
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
@@ -59,12 +121,22 @@ jobs:
           RUN_REQUEST_ID: ${{ github.event.inputs.request_id }}
           RUN_REQUEST_SOURCE: ${{ github.event.inputs.request_source }}
           RUN_REQUESTED_BY: ${{ github.event.inputs.requested_by }}
-        run: python thai_top100_agent.py
+          RUN_PHASE: ${{ env.RUN_PHASE }}
+          THAI_TOP100_ENABLED: ${{ env.THAI_ENABLE_FLAG }}
+        run: python thai_agent/thai_top100_agent.py
 
       - name: Commit Thai web archive data
+        if: env.SHOULD_RUN_THAI == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/thai-data/ docs/thai-history-data/ thai_metadata_cache.json
-          git diff --cached --quiet || git commit -m "Thai Top 100 report $(date +%Y-%m-%d)"
-          git push
+          git pull --rebase --autostash origin main
+          git add docs/thai-data/ docs/thai-history-data/ thai_agent/thai_metadata_cache.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Thai Top 100 report $(date +%Y-%m-%d)"
+          for attempt in 1 2 3; do
+            git push && exit 0
+            git pull --rebase --autostash origin main
+            sleep $((attempt * 10))
+          done
+          exit 1

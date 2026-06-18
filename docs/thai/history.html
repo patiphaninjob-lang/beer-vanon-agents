@@ -246,10 +246,14 @@
 
   <script>
 const NOTES_FILE = 'notes/notes.json';
+const DATA_INDEX_FILE = '../thai-data/index.json';
+const DATA_FILE_PREFIX = '../thai-data';
+const HISTORY_FILE_PREFIX = '../thai-history-data';
+const MARKET_TICKER = '_MARKET_THAI';
 const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
 const state = {
-  ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'NVDA'),
+  ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'AOT.BK'),
   range: new URLSearchParams(location.search).get('range') || '1y',
   notes: [],
   allCandles: [],
@@ -322,7 +326,7 @@ async function loadNotes() {
 
 async function loadLatestStock() {
   try {
-    const dates = await fetchJson(`../thai-data/index.json?nocache=${Date.now()}`);
+    const dates = await fetchJson(`${DATA_INDEX_FILE}?nocache=${Date.now()}`);
     // "Latest Always" - we always point the back link to the newest archive
     if (dates.length) document.getElementById('backLink').href = `index.html?date=${encodeURIComponent(dates[0])}`;
     
@@ -331,7 +335,7 @@ async function loadLatestStock() {
       const day = await loadArchive(date);
       if (!day) continue;
       
-      if (state.ticker === '_MARKET') {
+      if (state.ticker === MARKET_TICKER) {
         if (day.market_indices) {
           state.latestMarketArchive = day;
           state.latestMarket = day.market_indices;
@@ -355,7 +359,7 @@ async function loadLatestStock() {
 async function loadArchive(date) {
   if (!date) return null;
   if (!state.archiveCache[date]) {
-    state.archiveCache[date] = await fetchJson(`data/${date}.json?nocache=${Date.now()}`);
+    state.archiveCache[date] = await fetchJson(`${DATA_FILE_PREFIX}/${date}.json?nocache=${Date.now()}`);
   }
   return state.archiveCache[date];
 }
@@ -388,13 +392,13 @@ async function loadHistoryCandles() {
   
   const tryLoad = async (ticker) => {
     try {
-      const data = await fetchJson(`history-data/${encodeURIComponent(ticker)}.json?nocache=${Date.now()}`);
+      const data = await fetchJson(`${HISTORY_FILE_PREFIX}/${encodeURIComponent(ticker)}.json?nocache=${Date.now()}`);
       return parseHistoryCandles(data);
     } catch (e) { return null; }
   };
 
   let candles = [];
-  if (state.ticker === '_MARKET') {
+  if (state.ticker === MARKET_TICKER) {
     candles = await tryLoad('market');
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
   } else {
@@ -411,8 +415,8 @@ async function loadHistoryCandles() {
   // 1. Add latest archive candle if missing
   if (latestDate && !candleDates.has(latestDate)) {
       let lp = 0, lv = 0, lo = 0;
-      if (state.ticker === '_MARKET' && state.latestMarket) {
-        const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
+      if (state.ticker === MARKET_TICKER && state.latestMarket) {
+        const p = state.latestMarket.set || state.latestMarket.set50 || state.latestMarket.set100;
         lp = Number(p?.price || 0);
         lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
       } else if (state.latestStock) {
@@ -455,14 +459,14 @@ function filterCandlesByRange(candles, range) {
 }
 
 async function buildArchiveFallbackCandles() {
-  const dates = await fetchJson(`data/index.json?nocache=${Date.now()}`);
+  const dates = await fetchJson(`${DATA_INDEX_FILE}?nocache=${Date.now()}`);
   const candles = [];
   for (const date of dates.slice(0, 100)) { // Limit to last 100 archives as fallback
     try {
       const day = await loadArchive(date);
-      if (state.ticker === '_MARKET') {
+      if (state.ticker === MARKET_TICKER) {
         const mi = day?.market_indices || {};
-        const p = mi.dji || mi.spx || mi.ixic;
+        const p = mi.set || mi.set50 || mi.set100;
         if (!p?.price) continue;
         const c = Number(p.price);
         const pct = Number(p.pct_change || 0);
@@ -577,7 +581,7 @@ async function showGroup(group, candle) {
   let stock = null, mkt = null;
   try {
     const day = await loadArchive(archiveDate);
-    if (state.ticker === '_MARKET') mkt = day; else stock = findStock(day, state.ticker);
+    if (state.ticker === MARKET_TICKER) mkt = day; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
   const notesHTML = group.notes.map(n => `
@@ -702,7 +706,7 @@ window.selectDate = (d) => {
 
 function updateHeader() {
   const s = state.latestStock;
-  document.getElementById('tickerTitle').textContent = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker;
+  document.getElementById('tickerTitle').textContent = state.ticker === MARKET_TICKER ? 'ภาพรวมตลาด' : state.ticker;
   document.getElementById('tickerSub').textContent = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
   document.getElementById('badgeRow').innerHTML = `<span class="badge">${state.notes.length} notes</span>`;
 }
