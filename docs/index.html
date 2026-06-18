@@ -1073,6 +1073,7 @@ const PHASE_LABELS = {
 };
 const JOURNAL_WATCHLIST_KEY = 'beerJournalWatchlistV1';
 const JOURNAL_DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
+const DASHBOARD_STATE_KEY = 'beerUsDashboardViewStateV1';
 const NEWS_TRANSLATIONS = {
   "SpaceX becomes retail's biggest IPO trade: Chart of the Day": "SpaceX กลายเป็นดีล IPO ที่รายย่อยซื้อหนักที่สุด: กราฟเด่นประจำวัน",
   "SpaceX's market debut turned into a record retail buying event.": "การเปิดซื้อขายของ SpaceX กลายเป็นเหตุการณ์ที่รายย่อยเข้าซื้อสูงเป็นสถิติ",
@@ -1087,6 +1088,9 @@ const NEWS_TRANSLATIONS = {
   "These companies pay and raise dividends through thick and thin.": "บริษัทเหล่านี้จ่ายและเพิ่มปันผลได้แม้ในช่วงตลาดผันผวน"
 };
 let journalWatchlist = [];
+let pendingDashboardRestore = null;
+let dashboardRestoreApplied = false;
+let dashboardScrollSaveTimer = null;
 
 // ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
@@ -1116,6 +1120,125 @@ function fmtCap(cap) {
 }
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function dashboardNavigationType() {
+  const nav = performance.getEntriesByType?.('navigation')?.[0];
+  return nav?.type || '';
+}
+function sameDashboardDir(pathname) {
+  const dir = location.pathname.replace(/[^/]*$/, '');
+  return pathname === dir || pathname.startsWith(dir);
+}
+function cameFromDashboardDetailPage() {
+  try {
+    const ref = new URL(document.referrer);
+    return ref.origin === location.origin
+      && sameDashboardDir(ref.pathname)
+      && !ref.pathname.includes('/thai/')
+      && (ref.pathname.endsWith('/history.html') || ref.pathname.endsWith('/journal.html'));
+  } catch {
+    return false;
+  }
+}
+function readDashboardViewState() {
+  try {
+    const raw = sessionStorage.getItem(DASHBOARD_STATE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+function getPendingDashboardRestore() {
+  const saved = readDashboardViewState();
+  if (!saved || Date.now() - Number(saved.savedAt || 0) > 24 * 60 * 60 * 1000) return null;
+  if (dashboardNavigationType() === 'back_forward' || cameFromDashboardDetailPage()) return saved;
+  return null;
+}
+function dashboardDetailHref(href) {
+  try {
+    const url = new URL(href, location.href);
+    return url.origin === location.origin
+      && sameDashboardDir(url.pathname)
+      && !url.pathname.includes('/thai/')
+      && (url.pathname.endsWith('/history.html') || url.pathname.endsWith('/journal.html'));
+  } catch {
+    return false;
+  }
+}
+function getDashboardAnchorState() {
+  const headerBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 0;
+  for (const card of document.querySelectorAll('#grid .card')) {
+    const rect = card.getBoundingClientRect();
+    if (rect.bottom > headerBottom + 6) {
+      return { ticker: card.id.replace(/^card-/, ''), offset: rect.top };
+    }
+  }
+  return { ticker: '', offset: 0 };
+}
+function saveDashboardViewState() {
+  if (pendingDashboardRestore && !dashboardRestoreApplied) return;
+  const anchor = getDashboardAnchorState();
+  const state = {
+    date: selectedDate,
+    phase: selectedPhase,
+    search: document.getElementById('searchBox')?.value || '',
+    sector: document.getElementById('sectorSel')?.value || '',
+    sort: document.getElementById('sortSel')?.value || 'rank',
+    scrollY: window.scrollY || 0,
+    anchorTicker: anchor.ticker,
+    anchorOffset: anchor.offset,
+    savedAt: Date.now()
+  };
+  try {
+    sessionStorage.setItem(DASHBOARD_STATE_KEY, JSON.stringify(state));
+  } catch {}
+}
+function restoreDashboardControlsIfNeeded() {
+  const saved = pendingDashboardRestore;
+  if (!saved) return;
+  const searchBox = document.getElementById('searchBox');
+  const sectorSel = document.getElementById('sectorSel');
+  const sortSel = document.getElementById('sortSel');
+  if (searchBox && typeof saved.search === 'string') searchBox.value = saved.search;
+  if (sortSel && saved.sort) sortSel.value = saved.sort;
+  if (sectorSel && saved.sector && [...sectorSel.options].some(opt => opt.value === saved.sector)) {
+    sectorSel.value = saved.sector;
+  }
+}
+function applyDashboardScrollRestore(saved) {
+  const anchorTicker = saved.anchorTicker || '';
+  const anchor = anchorTicker ? document.getElementById(`card-${anchorTicker}`) : null;
+  if (anchor) {
+    const offset = Number.isFinite(saved.anchorOffset) ? saved.anchorOffset : 80;
+    const targetY = window.scrollY + anchor.getBoundingClientRect().top - offset;
+    window.scrollTo(0, Math.max(0, targetY));
+    return;
+  }
+  if (Number.isFinite(saved.scrollY)) window.scrollTo(0, Math.max(0, saved.scrollY));
+}
+function restoreDashboardScrollIfNeeded() {
+  const saved = pendingDashboardRestore;
+  if (!saved || dashboardRestoreApplied) return;
+  dashboardRestoreApplied = true;
+  requestAnimationFrame(() => {
+    applyDashboardScrollRestore(saved);
+    setTimeout(() => applyDashboardScrollRestore(saved), 120);
+    setTimeout(() => applyDashboardScrollRestore(saved), 400);
+  });
+}
+function bindDashboardViewState() {
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (link && !link.target && dashboardDetailHref(link.getAttribute('href'))) saveDashboardViewState();
+  }, true);
+  window.addEventListener('pagehide', saveDashboardViewState);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveDashboardViewState();
+  });
+  window.addEventListener('scroll', () => {
+    clearTimeout(dashboardScrollSaveTimer);
+    dashboardScrollSaveTimer = setTimeout(saveDashboardViewState, 150);
+  }, { passive: true });
 }
 function thaiNewsText(value) {
   const text = String(value || '').trim();
@@ -1879,6 +2002,7 @@ function openMarketNote() {
 
 // ── Init & Data Loading ───────────────────────────────────────
 async function init() {
+  pendingDashboardRestore = getPendingDashboardRestore();
   // Auto-setup credentials from URL hash (bookmark-friendly)
   if (location.hash.startsWith('#config=')) {
     try {
@@ -1899,9 +2023,11 @@ async function init() {
       const params = new URLSearchParams(location.search);
       const urlDate = params.get('date');
       const urlPhase = normalizePhase(params.get('phase')) || 'postmarket';
-      const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
+      const restoreDate = pendingDashboardRestore?.date;
+      const restorePhase = normalizePhase(pendingDashboardRestore?.phase);
+      const target  = (restoreDate && dates.includes(restoreDate)) ? restoreDate : ((urlDate && dates.includes(urlDate)) ? urlDate : dates[0]);
       selectedDate = target;
-      selectedPhase = urlPhase;
+      selectedPhase = restorePhase || urlPhase;
       const [ty, tm] = target.split('-').map(Number);
       calYear = ty; calMonth = tm - 1;
       document.getElementById('dateBtnLabel').textContent = fmtDate(target);
@@ -2052,6 +2178,7 @@ async function loadDate(date, preferredPhase = selectedPhase) {
       if (s === prev) o.selected = true;
       sectorSel.appendChild(o);
     });
+    restoreDashboardControlsIfNeeded();
     renderSummary();
     renderSystemStatus();
     renderMarketOverview();
@@ -2331,6 +2458,7 @@ function renderCards() {
     return;
   }
   document.getElementById('grid').innerHTML = stocks.map(cardHTML).join('');
+  restoreDashboardScrollIfNeeded();
 }
 
 function cardHTML(s) {
@@ -2638,6 +2766,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+bindDashboardViewState();
 init();
 loadAutomationStatus();
 loadSystemHealth();

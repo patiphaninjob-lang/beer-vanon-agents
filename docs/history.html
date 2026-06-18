@@ -345,6 +345,29 @@ async function fetchJson(url) {
   return r.json();
 }
 
+function canReturnToDashboard() {
+  if (!document.referrer) return false;
+  try {
+    const ref = new URL(document.referrer);
+    const currentDir = location.pathname.replace(/[^/]*$/, '');
+    return ref.origin === location.origin
+      && ref.pathname.replace(/[^/]*$/, '') === currentDir
+      && (ref.pathname === currentDir || ref.pathname === currentDir + 'index.html');
+  } catch (e) {
+    return false;
+  }
+}
+
+function bindBackLinkRestore() {
+  const backLink = document.getElementById('backLink');
+  if (!backLink) return;
+  backLink.addEventListener('click', event => {
+    if (!canReturnToDashboard()) return;
+    event.preventDefault();
+    history.back();
+  });
+}
+
 function noteDate(n) {
   return n.date || n.archive_date || '';
 }
@@ -782,6 +805,7 @@ async function setRange(r) {
 }
 
 async function init() {
+  bindBackLinkRestore();
   bindEvents();
   await Promise.all([loadNotes(), loadLatestStock()]);
   updateHeader();

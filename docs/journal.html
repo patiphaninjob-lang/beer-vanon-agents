@@ -1504,6 +1504,29 @@ function showToast(message) {
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 2600);
 }
+
+function canReturnToDashboard() {
+  if (!document.referrer) return false;
+  try {
+    const ref = new URL(document.referrer);
+    const currentDir = location.pathname.replace(/[^/]*$/, '');
+    return ref.origin === location.origin
+      && ref.pathname.replace(/[^/]*$/, '') === currentDir
+      && (ref.pathname === currentDir || ref.pathname === currentDir + 'index.html');
+  } catch (e) {
+    return false;
+  }
+}
+
+function bindBackLinkRestore() {
+  const backLink = document.getElementById('backLink');
+  if (!backLink) return;
+  backLink.addEventListener('click', event => {
+    if (!canReturnToDashboard()) return;
+    event.preventDefault();
+    history.back();
+  });
+}
 document.addEventListener('click', event => {
   const addButton = event.target.closest('[data-add-ticker]');
   if (addButton) {
@@ -1566,6 +1589,7 @@ document.getElementById('confidenceRange').addEventListener('input', event => {
   renderEntryPreview();
 });
 document.getElementById('savePreviewBtn').addEventListener('click', addPreviewEntry);
+bindBackLinkRestore();
 init();
   </script>
 </body>
