@@ -1974,7 +1974,7 @@ function cardHTML(s) {
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
   const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
-  const journalUrl = `journal.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : ''}`;
+  const journalUrl = `journal-semantic-color-prototype.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : ''}`;
   const watched = isJournalWatched(s.ticker);
   const watchLabel = watched ? 'ลบออกจากหุ้นที่ติดตาม' : 'เพิ่มเข้าหุ้นที่ติดตาม';
 

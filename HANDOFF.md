@@ -8,14 +8,17 @@
 - Journal stock watchlist can now be edited in-browser: search a ticker, add it, remove tracked tickers, or reset to defaults. The watchlist is stored in browser `localStorage`.
 - The US dashboard stock cards now have star toggles that add/remove tickers from the same Journal watchlist (`beerJournalWatchlistV1`).
 - A separate semantic color UI prototype exists at `docs/index-semantic-color-prototype.html`; it does not replace the production dashboard.
+- A separate Journal semantic color prototype exists at `docs/journal-semantic-color-prototype.html`; the dashboard prototype links to it.
 - The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
 ## Files Changed
 - `docs/index.html`: added `.journal-btn` styling and stock-card links to `journal.html?ticker=...&date=...&phase=...`.
 - `docs/index.html`: added dashboard watchlist star toggles backed by the Journal `localStorage` watchlist.
 - `docs/index-semantic-color-prototype.html`: experimental dashboard color system separating market, news, journal, homework, AI analysis, system, and price information.
+- `docs/index-semantic-color-prototype.html`: prototype Journal links now point to `journal-semantic-color-prototype.html`.
 - `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 - `docs/journal.html`: added editable local watchlist controls (`เพิ่ม`, `ลบ`, `รีเซ็ต`) backed by `localStorage`.
+- `docs/journal-semantic-color-prototype.html`: experimental Journal color system separating market context, watchlist, stock/news, capture, review, and memory information.
 
 ## Verification
 - `node --check` passed for inline scripts extracted from `docs/index.html` and `docs/journal.html`.
@@ -28,6 +31,8 @@
 - Node watchlist-toggle check verified dashboard star logic removes `NVDA`, adds `ORCL`, updates `localStorage`, and re-renders.
 - `node --check` passed for inline scripts extracted from `docs/index-semantic-color-prototype.html`.
 - Local HTTP check returned 200 for `http://127.0.0.1:8787/index-semantic-color-prototype.html?date=2026-06-16`.
+- `node --check` passed for inline scripts extracted from `docs/journal-semantic-color-prototype.html`.
+- Local HTTP check returned 200 for `http://127.0.0.1:8787/journal-semantic-color-prototype.html?ticker=NVDA&date=2026-06-16`.
 - Desktop and mobile screenshots confirmed watchlist controls do not break layout.
 
 ## Next Step
