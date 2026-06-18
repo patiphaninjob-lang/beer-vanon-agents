@@ -1,6 +1,6 @@
 # Gazill0T Project Memory
 
-Updated: 2026-05-25
+Updated: 2026-06-18
 
 ## Standing Working Rules
 
@@ -20,6 +20,10 @@ Updated: 2026-05-25
 
 - Main stock workspace: `C:\Users\Gazill0T\Documents\claude ai\stock`.
 - Beer Top 100 system centers on `beer_top100_agent.py`, `docs/index.html`, `docs/data/`, `docs/notes/notes.json`, and `docs/tradingview-notes.user.js`.
+- 2026-06-18 online-source rule: for Beer Top 100 work, assume the user wants fixes pushed to the live GitHub repo `patiphaninjob-lang/beer-vanon-agents`, not only the local portable bundle at `C:\Users\unn.br\Documents\Codex\beer_top100_portable`. The local portable checkout is not a normal git worktree. On Windows, the online repo contains `docs/thai-history-data/COM7.BK.json`, so full checkout can fail; use sparse/object-level git operations with `core.protectNTFS=false` and avoid committing accidental mass deletions.
+- 2026-06-18 Journal/notes source of truth: US notes are online-first in Firestore project `beam-7645f`, document `data/beer_top100_notes`. `docs/notes/notes.json` is a fallback/backup, not the source that scheduled homework should rely on. Firestore was publicly readable/writable via the existing Firebase web config during this session; do not record API keys in memory.
+- 2026-06-18 online commits to preserve: `eb96e3366f7c0513e82914349a0e11cb6c874d1c` made root `beer_top100_agent.py` load Firestore notes before GitHub/local notes, kept US GitHub Actions schedules at 18:00 and 06:00 Bangkok, added archive push rebase/retry, and paused Thai scheduled runs by leaving `thai_top100_agent.yml` manual-only. `c266da0c53cd4c3988322b5526142a5af2e2ab82` changed `docs/journal.html` and `docs/journal-semantic-color-prototype.html` from local/sample save to real Firestore cloud save. Verification after push: GitHub Pages served the new Journal button `บันทึกขึ้น Cloud`, the old warning `ยังไม่เขียนขึ้น GitHub หรือ cloud` was absent, the agent still read Firestore, and workflow cron/retry checks passed.
+- 2026-06-18 user preference: pause Thai stock work for now and focus on US. If the user reports mobile Journal save problems again, first check whether they are on `journal.html`/prototype versus `index.html`, then verify Firestore `data/beer_top100_notes.updatedAt` and GitHub Pages cache state before changing agent logic.
 - Latest local Top 100 archive checked on 2026-05-24: `docs/data/2026-05-24.json` contains 67 analyzed stocks, not the full intended 100 yet. First ticker `NVDA`, last ticker `CRM`.
 - TradingView userscript disabled and pushed to GitHub as v2.4.0 on 2026-05-24 after the user said they no longer want any marker/popup/script on TradingView and TradingView has limits. Current direction: do homework and review analysis/news only in Beer Top 100; TradingView should remain untouched except normal chart links from the web archive. `docs/tradingview-notes.user.js` still matches `https://*.tradingview.com/*` so Tampermonkey can overwrite the old Pine-opening version on update, but the script body is a no-op with no GM network grants, no marker, no panel, no Pine, no data load, and no console work. `docs/index.html` settings text says Pine/marker automation is disabled.
 - Verification for v2.4.0: `node --check docs/tradingview-notes.user.js` passed. Pushed in commit `b1e8cd4`.
