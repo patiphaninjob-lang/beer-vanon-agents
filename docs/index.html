@@ -668,18 +668,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      min-width: 24px;
+      width: 28px;
+      min-width: 28px;
       height: 24px;
       padding: 0;
-      border-radius: 8px;
-      color: #faf5ff;
-      background: linear-gradient(135deg, #8b5cf6, #4f46e5);
-      box-shadow: 0 8px 18px rgba(79,70,229,0.34), inset 0 1px 0 rgba(255,255,255,0.24);
-      font-size: 0.76em;
-      font-weight: 950;
-      letter-spacing: 0;
-      line-height: 1;
+      border-radius: 7px;
+      overflow: hidden;
+      background: rgba(226,232,240,0.96);
+      box-shadow: 0 8px 18px rgba(15,23,42,0.30), inset 0 1px 0 rgba(255,255,255,0.26);
+    }
+    .news-icon-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
     .news-icon-text {
       line-height: 1;
@@ -2131,7 +2133,7 @@ function cardHTML(s) {
   const newsItems = (s.news || []).slice(0, 8);
   const newsHTML = newsItems.length ? `
     <button class="news-icon-btn" type="button" data-news-ticker="${esc(s.ticker)}" aria-label="เปิดข่าวของ ${esc(s.ticker)}">
-      <span class="news-icon-mark" aria-hidden="true">N</span>
+      <span class="news-icon-mark" aria-hidden="true"><img class="news-icon-img" src="news-icon.png" alt=""></span>
       <span class="news-icon-text">NEWS</span>
       <span class="news-count">${newsItems.length}</span>
     </button>` : '';
