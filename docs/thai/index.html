@@ -265,11 +265,29 @@
       position: fixed; inset: 0; background: rgba(0,0,0,0.75);
       display: flex; align-items: center; justify-content: center;
       z-index: 2000; padding: 16px;
+      opacity: 0; backdrop-filter: blur(0); pointer-events: none;
+      transition: opacity 0.22s ease, backdrop-filter 0.28s ease;
+    }
+    .modal-overlay.modal-visible {
+      opacity: 1; backdrop-filter: blur(10px); pointer-events: auto;
+    }
+    .modal-overlay.modal-closing {
+      opacity: 0; pointer-events: none;
     }
     .modal {
       background: #1e293b; border: 1px solid #475569; border-radius: 12px;
       padding: 22px; width: 100%; max-width: 640px; max-height: 90vh;
       overflow-y: auto;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.48), 0 0 0 1px rgba(255,255,255,0.03) inset;
+      opacity: 0; transform: translateY(18px) scale(0.96);
+      transition: opacity 0.2s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .modal-overlay.modal-visible .modal {
+      opacity: 1; transform: translateY(0) scale(1);
+    }
+    .modal-overlay.modal-closing .modal {
+      opacity: 0; transform: translateY(10px) scale(0.98);
     }
     .modal h2 { color: #fff; font-size: 1.05em; margin-bottom: 14px; }
     .modal p { color: #8a8f98; font-size: 0.85em; line-height: 1.6; margin-bottom: 12px; }
@@ -403,6 +421,8 @@
       background: #1e293b; border: 1px solid #475569; border-radius: 10px;
       padding: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.55);
       width: 252px;
+      animation: popupSpringIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: top left;
     }
     .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .cal-nav-btn {
@@ -425,6 +445,21 @@
     .cal-day.sel { background: #3b82f6 !important; color: #fff !important; font-weight: bold; }
     .cal-day { display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .cal-bulb { font-size: 0.6em; line-height: 1; }
+
+    @keyframes popupSpringIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal-overlay,
+      .modal,
+      .cal-popup,
+      .marker-tooltip {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
 
     @media (max-width: 560px) {
       .grid { grid-template-columns: 1fr; padding: 10px; }
@@ -466,13 +501,14 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      transform: translateY(10px);
+      transition: opacity 0.22s ease, transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(10px) scale(0.97);
+      transform-origin: bottom center;
     }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     .marker-tooltip::after {
       content: '';
@@ -570,23 +606,6 @@
     <div id="existingNotesContainer"></div>
     <div style="color:#6b7280;font-size:0.78em;margin-bottom:6px">🌡️ บันทึกอารมณ์ตลาด — <span style="color:#10b981">ตลาดรู้สึกอะไรกับหุ้นตัวนี้ตอนนี้?</span></div>
     <div style="color:#4b5563;font-size:0.73em;margin-bottom:8px;line-height:1.5">เช่น: ตลาดกลัว/โลภ · ใครกำลังซื้อ/ขาย · ข่าวสร้างอารมณ์แบบไหน · คนส่วนใหญ่คิดอะไรกับหุ้นตัวนี้ · ตัวเองรู้สึกอยากได้หรืออยากเทขาย เพราะอะไร</div>
-    <div class="homework-guide" id="stockHomeworkGuide">
-      <div class="homework-guide-head">
-        <div>
-          <div class="homework-guide-title">บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ</div>
-          <div class="homework-guide-sub">ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว</div>
-        </div>
-        <button type="button" class="homework-template-btn" onclick="insertHomeworkTemplate()">ใส่โครงทำการบ้าน</button>
-      </div>
-      <div class="homework-grid">
-        <div class="homework-item"><strong>ธุรกิจ</strong>ขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง</div>
-        <div class="homework-item"><strong>ตัวเลข</strong>รายได้ กำไร หนี้ กระแสเงินสด ดีขึ้นหรือแย่ลง</div>
-        <div class="homework-item"><strong>การสื่อสาร</strong>ผู้บริหารอธิบายอะไร มีอะไรที่ต้องไปฟัง/อ่านเพิ่ม</div>
-        <div class="homework-item"><strong>คู่แข่ง</strong>ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบตรงไหน</div>
-        <div class="homework-item"><strong>ผู้บริหาร</strong>ประวัติ การตัดสินใจ ความน่าเชื่อถือ และความเสี่ยง</div>
-        <div class="homework-item"><strong>แผนของเรา</strong>ตามดู ถือ งด หรือรออะไร และอะไรคือจุดที่คิดผิด</div>
-      </div>
-    </div>
     <textarea id="noteInput" placeholder="เช่น: วันนี้ตลาดรู้สึกอะไรกับหุ้นตัวนี้ / ข่าวทำให้คนตีความอย่างไร / ธุรกิจกับตัวเลขรองรับไหม / คู่แข่งหรือผู้บริหารมีอะไรน่ากังวล / ถ้าคิดผิดต้องดูจุดไหน"></textarea>
     <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
     <div class="modal-actions" style="justify-content:space-between">
@@ -674,6 +693,28 @@ let selectedDate = null;
 let selectedPhase = 'postmarket';
 let journalWatchlist = [];
 let calOpen = false;
+const MODAL_CLOSE_MS = 180;
+
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  if (overlay._closeTimer) clearTimeout(overlay._closeTimer);
+  overlay.classList.remove('modal-closing');
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => overlay.classList.add('modal-visible'));
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay || overlay.style.display === 'none') return;
+  if (overlay._closeTimer) clearTimeout(overlay._closeTimer);
+  overlay.classList.remove('modal-visible');
+  overlay.classList.add('modal-closing');
+  overlay._closeTimer = setTimeout(() => {
+    overlay.style.display = 'none';
+    overlay.classList.remove('modal-closing');
+  }, MODAL_CLOSE_MS);
+}
 
 // ── Helpers ──────────────────────────────────────────────────
 function fmtDate(d) {
@@ -1143,10 +1184,10 @@ function showSettings() {
     status.style.color = '#6b7280';
     status.textContent = `Sync source: ${sourceLabel}`;
   }
-  document.getElementById('settingsOverlay').style.display = 'flex';
+  openModal('settingsOverlay');
 }
 function closeSettings() {
-  document.getElementById('settingsOverlay').style.display = 'none';
+  closeModal('settingsOverlay');
 }
 async function saveSettings() {
   const pat  = document.getElementById('patInput').value.trim();
@@ -1345,34 +1386,17 @@ function showNoteModal(ticker, stockData) {
   document.getElementById('noteModalTicker').textContent = ticker;
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
-  document.getElementById('stockHomeworkGuide').style.display = 'block';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
-  const notes = notesCache[ticker] || [];
   const container = document.getElementById('existingNotesContainer');
-  container.innerHTML = notes.length ? `
-    <div class="existing-notes">
-      <div class="existing-label">มุมมองที่ผ่านมา (${notes.length} รายการ)</div>
-      ${notes.map(n => `
-        <div class="existing-note-item">
-          <div class="existing-note-meta">
-            <span>${n.date}${n.time ? ' '+n.time : ''}</span>
-            <span>$${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)</span>
-            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูกราฟวันนั้น →</a>` : ''}
-            <button class="delete-note-btn" onclick="deleteNote('${ticker}','${n.id}')" title="ลบโน้ตนี้">🗑️</button>
-          </div>
-          <div class="existing-note-text">${esc(n.note)}</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
+  container.innerHTML = '';
 
-  document.getElementById('noteOverlay').style.display = 'flex';
+  openModal('noteOverlay');
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
 }
 function closeNoteModal() {
-  document.getElementById('noteOverlay').style.display = 'none';
+  closeModal('noteOverlay');
 }
 async function runAgent(e) {
   if (e) { e.preventDefault(); e.stopPropagation(); }
@@ -1597,35 +1621,13 @@ function openMarketNote() {
   document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
-  document.getElementById('stockHomeworkGuide').style.display = 'none';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
-  const notes = (notesCache['_MARKET_THAI'] || []).slice().sort((a,b)=>b.id-a.id);
   const container = document.getElementById('existingNotesContainer');
-  container.innerHTML = notes.length ? `
-    <div class="existing-notes">
-      <div class="existing-label">อารมณ์ตลาดที่เคยบันทึก (${notes.length} รายการ)</div>
-      ${notes.map(n => {
-        const set = n.set_price ? `SET ${n.set_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set_pct>=0?'+':''}${n.set_pct}%)` : '';
-        const set50 = n.set50_price ? `SET50 ${n.set50_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set50_pct>=0?'+':''}${n.set50_pct}%)` : '';
-        const set100 = n.set100_price ? `SET100 ${n.set100_price.toLocaleString('en-US',{minimumFractionDigits:2})} (${n.set100_pct>=0?'+':''}${n.set100_pct}%)` : '';
-        return `
-          <div class="existing-note-item">
-            <div class="existing-note-meta">
-              <span>${n.date}${n.time ? ' '+n.time : ''}</span>
-              ${set ? `<span>${set}</span>` : ''}
-              ${set50 ? `<span>${set50}</span>` : ''}
-              ${set100 ? `<span>${set100}</span>` : ''}
-              ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 วันนั้น →</a>` : ''}
-              <button class="delete-note-btn" onclick="deleteNote('_MARKET_THAI','${n.id}')" title="ลบ">🗑️</button>
-            </div>
-            <div class="existing-note-text">${esc(n.note)}</div>
-          </div>`;
-      }).join('')}
-    </div>` : '';
+  container.innerHTML = '';
 
-  document.getElementById('noteOverlay').style.display = 'flex';
+  openModal('noteOverlay');
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
 }
 
