@@ -72,6 +72,7 @@ THAI_NOTES_FILE = ROOT_DIR / "docs/thai/notes/notes.json"
 THAI_USAGE_FILE = DATA_DIR / "usage_stats.json"
 INPUT_COST_PER_1M = 0.05
 OUTPUT_COST_PER_1M = 0.08
+THAI_MARKET_INDEX_KEYS = ("set", "set50", "set100")
 
 
 def normalized_run_phase() -> str:
@@ -82,6 +83,97 @@ def archive_key_for_date(day: datetime.date) -> str:
     date_key = day.strftime("%Y-%m-%d")
     phase = normalized_run_phase()
     return f"{date_key}-{phase}" if phase != "legacy" else date_key
+
+
+def build_archive_health(payload: dict, expected_total: int = TOP_N) -> dict:
+    stocks = payload.get("stocks", [])
+    market_indices = payload.get("market_indices") or {}
+    test_run = bool(payload.get("test_run"))
+
+    missing_charts = [s.get("ticker", "?") for s in stocks if not s.get("chart_b64")]
+    incomplete_homework = [
+        s.get("ticker", "?")
+        for s in stocks
+        if len(s.get("homework_checklist") or []) != 6
+    ]
+    zero_market_cap = [s.get("ticker", "?") for s in stocks if not s.get("market_cap")]
+    missing_news = [s.get("ticker", "?") for s in stocks if not s.get("news")]
+    missing_market_indices = [
+        key for key in THAI_MARKET_INDEX_KEYS if key not in market_indices
+    ]
+    single_point_indices = [
+        key for key, data in market_indices.items()
+        if data.get("quality") == "single_point"
+    ]
+
+    issues = []
+    if not test_run and len(stocks) != expected_total:
+        issues.append(f"stock_count {len(stocks)}/{expected_total}")
+    if missing_charts:
+        issues.append(f"missing_charts {len(missing_charts)}")
+    if incomplete_homework:
+        issues.append(f"incomplete_homework {len(incomplete_homework)}")
+    if missing_news:
+        issues.append(f"missing_news {len(missing_news)}")
+    if missing_market_indices:
+        issues.append(f"missing_market_indices {','.join(missing_market_indices)}")
+    if single_point_indices:
+        issues.append(f"single_point_indices {','.join(single_point_indices)}")
+    if zero_market_cap:
+        issues.append(f"zero_market_cap {len(zero_market_cap)}")
+
+    return {
+        "status": "ok" if not issues else "warning",
+        "issues": issues,
+        "counts": {
+            "stocks": len(stocks),
+            "expected_stocks": expected_total if not test_run else len(stocks),
+            "charts": len(stocks) - len(missing_charts),
+            "news": len(stocks) - len(missing_news),
+            "homework_complete": len(stocks) - len(incomplete_homework),
+            "market_indices": len(market_indices),
+        },
+        "missing": {
+            "charts": missing_charts[:20],
+            "news": missing_news[:20],
+            "homework": incomplete_homework[:20],
+            "market_indices": missing_market_indices,
+            "single_point_indices": single_point_indices,
+            "market_cap": zero_market_cap[:20],
+        },
+    }
+
+
+def write_status_file(docs_dir: Path, payload: dict, archive_url: str) -> None:
+    status_path = docs_dir / "status.json"
+    existing = {}
+    if status_path.exists():
+        try:
+            existing = json.loads(status_path.read_text(encoding="utf-8"))
+        except Exception:
+            existing = {}
+
+    phase = payload.get("run_phase") or "legacy"
+    entry = {
+        "date": payload.get("date"),
+        "archive_key": payload.get("archive_key") or payload.get("date"),
+        "run_phase": phase,
+        "generated": payload.get("generated"),
+        "url": archive_url,
+        "health": payload.get("health", {}),
+    }
+
+    phases = existing.get("phases") if isinstance(existing.get("phases"), dict) else {}
+    phases[phase] = entry
+
+    status_payload = {
+        "updated": datetime.datetime.now().isoformat(),
+        "latest": entry,
+        "phases": phases,
+    }
+    status_path.write_text(
+        json.dumps(status_payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
 
 def record_thai_usage(model: str, prompt_tokens: int, completion_tokens: int) -> dict:
@@ -458,16 +550,24 @@ def fetch_market_indices() -> dict:
     result  = {}
     for symbol, key in indices.items():
         try:
-            hist = yf.Ticker(symbol).history(period="5d")
-            if len(hist) < 2:
+            hist = yf.Ticker(symbol).history(period="3mo").dropna(subset=["Close"])
+            if hist.empty:
                 continue
             price = float(hist["Close"].iloc[-1])
-            pct   = (price - float(hist["Close"].iloc[-2])) / float(hist["Close"].iloc[-2]) * 100
-            chart = generate_mini_chart_b64(symbol)
+            if len(hist) >= 2:
+                prev = float(hist["Close"].iloc[-2])
+                pct = (price - prev) / prev * 100 if prev else 0
+                quality = "ok"
+            else:
+                pct = 0
+                quality = "single_point"
+            chart = generate_mini_chart_b64(symbol, hist_df=hist)
             result[key] = {
                 "price":      round(price, 2),
                 "pct_change": round(pct, 2),
                 "chart_b64":  base64.b64encode(chart).decode() if chart else "",
+                "symbol":     symbol,
+                "quality":    quality,
             }
         except Exception as e:
             safe_print(f"   ⚠️ {symbol}: {e}")
@@ -748,6 +848,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
 
     payload = {
         "date": date_key,
+        "archive_key": archive_key,
         "generated": datetime.datetime.now().isoformat(),
         "run_phase": normalized_run_phase(),
         "run_request": {
@@ -779,6 +880,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
                 "market_cap": s["stock"]["market_cap"],
                 "pe_ratio": round(s["stock"]["pe_ratio"], 1) if s["stock"].get("pe_ratio") else None,
                 "tv_url": s["stock"]["tv_url"],
+                "news": s["stock"].get("news_list", []),
                 "analysis": f"{s['analysis_data'].get('interpretation','')}\n\nBeer มองว่า: {s['analysis_data'].get('beer_view','')}",
                 "homework_checklist": s["analysis_data"].get("homework_analysis", []),
                 "chart_b64": __import__("base64").b64encode(s["chart_bytes"]).decode() if s.get("chart_bytes") else "",
@@ -786,6 +888,10 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
             for s in stocks_data
         ],
     }
+    payload["health"] = build_archive_health(payload)
+    if payload["health"]["status"] != "ok":
+        safe_print(f"  ⚠️ Thai archive health warning: {', '.join(payload['health']['issues'])}")
+
     serialized_payload = json.dumps(payload, ensure_ascii=False, indent=2)
     (docs_dir / f"{archive_key}.json").write_text(serialized_payload, encoding="utf-8")
     if archive_key != date_key:
@@ -798,7 +904,10 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         dates.sort(reverse=True)
     idx_path.write_text(json.dumps(dates, ensure_ascii=False), encoding="utf-8")
 
-    return f"{GITHUB_PAGES_URL}/thai/index.html?date={date_key}"
+    phase_param = f"&phase={normalized_run_phase()}" if normalized_run_phase() != "legacy" else ""
+    url = f"{GITHUB_PAGES_URL}/thai/index.html?date={date_key}{phase_param}"
+    write_status_file(docs_dir, payload, url)
+    return url
 
 
 def save_history_data(stocks_data: list) -> None:

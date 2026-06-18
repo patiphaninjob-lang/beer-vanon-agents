@@ -21,7 +21,7 @@
     .header {
       background: #1e293b; border-bottom: 1px solid #334155;
       padding: 10px 18px; display: flex; align-items: center; gap: 10px;
-      flex-wrap: wrap; position: sticky; top: 0; z-index: 1200;
+      flex-wrap: wrap; position: sticky; top: 0; z-index: 1800;
     }
     .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
     .version-tag { font-size: 0.6em; color: #4b5563; font-weight: normal; margin-left: 4px; vertical-align: middle; }
@@ -39,6 +39,7 @@
       height: 32px; display: flex; align-items: center;
     }
     .settings-btn:hover { border-color: #3b82f6; color: #e6edf3; }
+    .phase-select { min-width: 132px; }
 
     .run-agent-btn {
       background: #238636; border: 1px solid #2ea44f; color: #fff;
@@ -53,6 +54,21 @@
       background: #1e293b; border-bottom: 1px solid #334155;
       padding: 8px 18px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.83em;
     }
+    .system-status {
+      display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+      background: #0f172a; border-bottom: 1px solid #334155;
+      padding: 7px 18px; color: #8a8f98; font-size: 0.8em;
+    }
+    .system-status.ok { display: flex; border-left: 3px solid #16c784; }
+    .system-status.warning { display: flex; border-left: 3px solid #f0b90b; }
+    .system-status.fail { display: flex; border-left: 3px solid #ea3943; }
+    .status-pill {
+      border: 1px solid #475569; border-radius: 999px; padding: 2px 8px;
+      color: #e6edf3; background: #1e293b; font-weight: 600;
+    }
+    .system-status.ok .status-pill { color: #16c784; border-color: #16c78466; }
+    .system-status.warning .status-pill { color: #f0b90b; border-color: #f0b90b66; }
+    .system-status.fail .status-pill { color: #ea3943; border-color: #ea394366; }
     .stat-label { color: #6b7280; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
     .stat-val { font-weight: bold; color: #e6edf3; margin-top: 1px; display: block; }
     .up   { color: #16c784 !important; }
@@ -71,8 +87,18 @@
     /* ── Card ── */
     .card { background: #1e293b; border-radius: 10px; padding: 14px; border-left: 3px solid #3b82f6; }
     .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .ticker-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .card-rank { font-size: 0.69em; color: #6b7280; background: #0f172a; border-radius: 3px; padding: 1px 5px; margin-right: 5px; }
     .card-ticker { font-size: 1.15em; font-weight: bold; color: #fff; }
+    .watch-star {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 1px solid #475569; background: #0f172a; color: #6b7280;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.95em; line-height: 1; padding: 0;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .watch-star:hover { border-color: #f0b90b; color: #f0b90b; }
+    .watch-star.active { border-color: #f0b90b80; color: #f0b90b; background: #f0b90b14; }
     .card-name { color: #8a8f98; font-size: 0.8em; margin-top: 2px; }
     .card-price { font-size: 1.1em; color: #fff; text-align: right; }
     .card-pct { font-weight: bold; font-size: 0.95em; text-align: right; }
@@ -165,7 +191,7 @@
     .card-note-text { color: #d1d5db; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
 
     /* ── News ── */
-    .news-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid #1e2532; }
+    .news-section { margin-top: 8px; padding-top: 8px; display: flex; }
     .news-label { color: #6b7280; font-size: 0.71em; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px; }
     .news-item { margin-bottom: 7px; }
     .news-title { color: #93c5fd; font-size: 0.82em; text-decoration: none; font-weight: 500; line-height: 1.4; display: block; }
@@ -173,6 +199,47 @@
     .news-title-plain { color: #d1d5db; font-size: 0.82em; font-weight: 500; line-height: 1.4; display: block; }
     .news-summary { color: #6b7280; font-size: 0.77em; line-height: 1.4; margin-top: 2px; }
     .news-meta { color: #4b5563; font-size: 0.72em; margin-top: 1px; }
+    .news-icon-btn {
+      border: 1px solid #475569; background: #0f172a; color: #93c5fd;
+      border-radius: 999px; min-height: 28px; padding: 3px 9px;
+      display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+      font-size: 0.73em; font-weight: 800; letter-spacing: 0.04em;
+    }
+    .news-icon-btn:hover { border-color: #3b82f6; color: #bfdbfe; }
+    .news-count {
+      min-width: 18px; height: 18px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #1e293b; color: #f0b90b; border: 1px solid #334155;
+      font-size: 0.9em; padding: 0 5px;
+    }
+    .news-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(2,6,23,0.78);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2200; padding: 18px;
+    }
+    .news-modal-backdrop.show { display: flex; }
+    .news-modal {
+      width: min(720px, 100%); max-height: 86vh; overflow-y: auto;
+      background: #1e293b; border: 1px solid #475569; border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .news-modal-head {
+      position: sticky; top: 0; z-index: 1;
+      display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
+      padding: 16px 18px; background: #1e293b; border-bottom: 1px solid #334155;
+    }
+    .section-title { color: #fff; font-size: 1.04em; font-weight: 800; margin-top: 2px; }
+    .news-modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid #475569; background: #0f172a; color: #d1d5db;
+      cursor: pointer; font-size: 1.2em; line-height: 1;
+    }
+    .news-modal-close:hover { color: #fff; border-color: #3b82f6; }
+    .news-modal-list { padding: 14px 18px 18px; }
+    .news-modal-list .news-item {
+      margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #334155;
+    }
+    .news-modal-list .news-item:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
 
     /* ── Analysis ── */
     .card-analysis {
@@ -368,7 +435,7 @@
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 8px; align-items: center;
       }
-      .cal-wrap, #searchBox, .run-agent-btn { grid-column: 1 / -1; width: 100%; }
+      .cal-wrap, #phaseSel, #searchBox, .run-agent-btn { grid-column: 1 / -1; width: 100%; }
       .run-agent-btn { justify-content: center; }
       #sectorSel, #sortSel { width: 100%; min-width: 0; }
       .date-picker-btn { width: 100%; justify-content: center; }
@@ -540,6 +607,10 @@
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
       <div id="calPopup" class="cal-popup" style="display:none"></div>
     </div>
+    <select id="phaseSel" class="phase-select" onchange="pickPhase(this.value)" title="เลือกรอบรายงาน">
+      <option value="postmarket">หลังตลาดปิด</option>
+      <option value="premarket">ก่อนตลาดเปิด</option>
+    </select>
     <input type="search" id="searchBox" placeholder="ค้นหา ticker / ชื่อ..." oninput="renderCards()">
     <button type="button" class="run-agent-btn" id="runAgentBtn" onclick="runAgent(event)" title="เริ่มทำการบ้านเดี๋ยวนี้ (On-demand)">🚀 รันการบ้านสด</button>
     <select id="sectorSel" onchange="renderCards()">
@@ -557,6 +628,8 @@
 </div>
 
 <div id="summaryBar" class="summary"></div>
+<div id="systemStatus" class="system-status"></div>
+<div id="canaryStatus" class="system-status"></div>
 <div id="marketOverview"></div>
 <div id="grid" class="grid"><div class="state-msg">กำลังโหลด...</div></div>
 
@@ -576,6 +649,13 @@ const FIREBASE_CONFIG = {
 };
 const FIRESTORE_DOC_PATH = 'thai-data/thai_top100_notes';
 const MONTHS_TH  = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const PHASE_LABELS = {
+  postmarket: 'หลังตลาดปิด',
+  premarket: 'ก่อนตลาดเปิด',
+  legacy: 'รายวัน'
+};
+const JOURNAL_WATCHLIST_KEY = 'beerThaiJournalWatchlistV1';
+const JOURNAL_DEFAULT_TICKERS = ['AOT.BK','PTT.BK','CPALL.BK','DELTA.BK','ADVANC.BK','GULF.BK','BDMS.BK','KBANK.BK','SCB.BK','SCC.BK'];
 
 let currentData     = null;
 let notesCache      = {};
@@ -591,6 +671,8 @@ let availableDates  = [];
 let calYear  = new Date().getFullYear();
 let calMonth = new Date().getMonth();
 let selectedDate = null;
+let selectedPhase = 'postmarket';
+let journalWatchlist = [];
 let calOpen = false;
 
 // ── Helpers ──────────────────────────────────────────────────
@@ -598,11 +680,26 @@ function fmtDate(d) {
   const [y,m,day] = d.split('-');
   return `${parseInt(day)} ${MONTHS_TH[parseInt(m)]} ${y}`;
 }
+function normalizePhase(phase) {
+  return ['postmarket', 'premarket', 'legacy'].includes(phase) ? phase : null;
+}
+function phaseLabel(phase) {
+  return PHASE_LABELS[normalizePhase(phase) || 'legacy'] || phase || 'รายวัน';
+}
+function archiveKey(date, phase) {
+  return phase && phase !== 'legacy' ? `${date}-${phase}` : date;
+}
+function updateUrl(date, phase) {
+  const qs = new URLSearchParams();
+  qs.set('date', date);
+  if (phase && phase !== 'legacy') qs.set('phase', phase);
+  history.replaceState({}, '', `?${qs.toString()}`);
+}
 function fmtCap(cap) {
   if (!cap) return 'N/A';
-  if (cap >= 1e12) return `$${(cap/1e12).toFixed(2)}T`;
-  if (cap >= 1e9)  return `$${(cap/1e9).toFixed(1)}B`;
-  return `$${(cap/1e6).toFixed(0)}M`;
+  if (cap >= 1e12) return `฿${(cap/1e12).toFixed(2)}T`;
+  if (cap >= 1e9)  return `฿${(cap/1e9).toFixed(1)}B`;
+  return `฿${(cap/1e6).toFixed(0)}M`;
 }
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -626,6 +723,56 @@ function showToast(msg, color='#16c784') {
   t.textContent = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 3000);
+}
+
+function uniqueTickers(tickers) {
+  return [...new Set(tickers.map(item => String(item || '').toUpperCase()).filter(Boolean))];
+}
+
+function readJournalWatchlist() {
+  try {
+    const raw = localStorage.getItem(JOURNAL_WATCHLIST_KEY);
+    if (raw === null) return null;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    return uniqueTickers(parsed);
+  } catch {
+    return null;
+  }
+}
+
+function saveJournalWatchlist() {
+  try {
+    localStorage.setItem(JOURNAL_WATCHLIST_KEY, JSON.stringify(journalWatchlist));
+  } catch {
+    showToast('บันทึกรายการติดตามใน browser นี้ไม่ได้', '#f0b90b');
+  }
+}
+
+function hydrateJournalWatchlist() {
+  const available = new Set((currentData?.stocks || []).map(stock => stock.ticker));
+  const stored = readJournalWatchlist();
+  const base = stored === null ? JOURNAL_DEFAULT_TICKERS : stored;
+  journalWatchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
+  saveJournalWatchlist();
+}
+
+function isJournalWatched(ticker) {
+  return journalWatchlist.includes(String(ticker || '').toUpperCase());
+}
+
+function toggleJournalWatchlist(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  if (!target) return;
+  if (isJournalWatched(target)) {
+    journalWatchlist = journalWatchlist.filter(item => item !== target);
+    showToast(`ลบ ${target} จากหุ้นที่ติดตามแล้ว`, '#f0b90b');
+  } else {
+    journalWatchlist.unshift(target);
+    showToast(`เพิ่ม ${target} ในหุ้นที่ติดตามแล้ว`);
+  }
+  saveJournalWatchlist();
+  renderCards();
 }
 
 function cloneNotesMap(src) {
@@ -1502,13 +1649,16 @@ async function init() {
     const dates = await r.json();
     availableDates = dates;
     if (dates.length) {
-      const urlDate = new URLSearchParams(location.search).get('date');
+      const params = new URLSearchParams(location.search);
+      const urlDate = params.get('date');
+      const urlPhase = normalizePhase(params.get('phase')) || 'postmarket';
       const target  = (urlDate && dates.includes(urlDate)) ? urlDate : dates[0];
       selectedDate = target;
+      selectedPhase = urlPhase;
       const [ty, tm] = target.split('-').map(Number);
       calYear = ty; calMonth = tm - 1;
       document.getElementById('dateBtnLabel').textContent = fmtDate(target);
-      await loadDate(target);
+      await loadDate(target, selectedPhase);
     } else {
       document.getElementById('grid').innerHTML = '<div class="state-msg">ยังไม่มีข้อมูล — รอ agent รันครั้งแรก</div>';
     }
@@ -1591,16 +1741,60 @@ function pickDate(date) {
   calYear = y; calMonth = m - 1;
   closeCalendar();
   document.getElementById('dateBtnLabel').textContent = fmtDate(date);
-  history.replaceState({}, '', `?date=${date}`);
-  loadDate(date);
+  loadDate(date, selectedPhase);
 }
 
-async function loadDate(date) {
+function pickPhase(phase) {
+  selectedPhase = normalizePhase(phase) || 'postmarket';
+  if (selectedDate) loadDate(selectedDate, selectedPhase);
+}
+
+async function fetchArchive(date, phase) {
+  const key = archiveKey(date, phase);
+  const r = await fetch(`../thai-data/${key}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+  if (!r.ok) return null;
+  return { key, phase, data: await r.json() };
+}
+
+async function detectPhases(date) {
+  const checks = await Promise.all([
+    fetch(`../thai-data/${archiveKey(date, 'postmarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
+    fetch(`../thai-data/${archiveKey(date, 'premarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
+    fetch(`../thai-data/${archiveKey(date, 'legacy')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false)
+  ]);
+  return ['postmarket', 'premarket', 'legacy'].filter((_, i) => checks[i]);
+}
+
+function updatePhaseSelector(phases, activePhase) {
+  const sel = document.getElementById('phaseSel');
+  if (!sel) return;
+  const active = normalizePhase(activePhase) || 'legacy';
+  const ordered = ['postmarket', 'premarket', 'legacy'].filter(p => phases.includes(p) || p === active);
+  sel.innerHTML = ordered.map(p => `<option value="${p}" ${p === active ? 'selected' : ''} ${phases.includes(p) ? '' : 'disabled'}>${phaseLabel(p)}</option>`).join('');
+  sel.disabled = ordered.length <= 1;
+}
+
+async function loadDate(date, preferredPhase = selectedPhase) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
-    const r = await fetch(`../thai-data/${date}.json?nocache=` + Date.now(), { cache: 'no-cache' });
-    if (!r.ok) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
-    currentData = await r.json();
+    const phases = await detectPhases(date);
+    if (!phases.length) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    const preferred = normalizePhase(preferredPhase) || (phases.includes('postmarket') ? 'postmarket' : phases[0]);
+    const order = [preferred, ...phases.filter(p => p !== preferred)];
+    let loaded = null;
+    for (const phase of order) {
+      loaded = await fetchArchive(date, phase);
+      if (loaded) break;
+    }
+    if (!loaded) throw new Error(`โหลดข้อมูลวัน ${date} ไม่สำเร็จ`);
+
+    currentData = loaded.data;
+    selectedDate = date;
+    selectedPhase = normalizePhase(currentData.run_phase) || loaded.phase;
+    hydrateJournalWatchlist();
+    document.getElementById('dateBtnLabel').textContent = fmtDate(date);
+    updatePhaseSelector(phases, selectedPhase);
+    updateUrl(date, selectedPhase);
 
     const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
     const sectorSel = document.getElementById('sectorSel');
@@ -1613,6 +1807,7 @@ async function loadDate(date) {
       sectorSel.appendChild(o);
     });
     renderSummary();
+    renderSystemStatus();
     renderMarketOverview();
     upgradeMarketOverviewCards();
     renderCards();
@@ -1630,11 +1825,70 @@ function renderSummary() {
   const up = (s.avg_change || 0) >= 0;
   document.getElementById('summaryBar').innerHTML = `
     <div><span class="stat-label">วันที่</span><span class="stat-val">${fmtDate(currentData.date)}</span></div>
+    <div><span class="stat-label">รอบ</span><span class="stat-val">${phaseLabel(currentData.run_phase || selectedPhase)}</span></div>
     <div><span class="stat-label">ขึ้น / ลง</span><span class="stat-val"><span class="up">${s.gainers || 0}▲</span> / <span class="down">${s.losers || 0}▼</span></span></div>
     <div><span class="stat-label">avg change</span><span class="stat-val ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(s.avg_change || 0).toFixed(2)}%</span></div>
     ${s.top_gainer?.ticker?`<div><span class="stat-label">Top Gainer</span><span class="stat-val up">${s.top_gainer.ticker} +${s.top_gainer.pct}%</span></div>`:''}
     ${s.top_loser?.ticker?`<div><span class="stat-label">Top Loser</span><span class="stat-val down">${s.top_loser.ticker} ${s.top_loser.pct}%</span></div>`:''}
   `;
+}
+
+function renderSystemStatus() {
+  const el = document.getElementById('systemStatus');
+  if (!el) return;
+  const health = currentData?.health;
+  if (!health) {
+    el.className = 'system-status';
+    el.innerHTML = '';
+    return;
+  }
+  const counts = health.counts || {};
+  const status = health.status === 'ok' ? 'ok' : 'warning';
+  const issues = (health.issues || []).length ? health.issues.join(' · ') : 'ข้อมูลครบ';
+  el.className = `system-status ${status}`;
+  el.innerHTML = `
+    <span class="status-pill">${status === 'ok' ? 'OK' : 'WARNING'}</span>
+    <span>หุ้น ${counts.stocks ?? '-'} / ${counts.expected_stocks ?? '-'}</span>
+    <span>กราฟ ${counts.charts ?? '-'} / ${counts.stocks ?? '-'}</span>
+    <span>การบ้าน ${counts.homework_complete ?? '-'} / ${counts.stocks ?? '-'}</span>
+    <span>ข่าว ${counts.news ?? '-'}</span>
+    <span>ดัชนี ${counts.market_indices ?? '-'}</span>
+    <span>${esc(issues)}</span>
+  `;
+}
+
+function renderCanaryStatus(data) {
+  const el = document.getElementById('canaryStatus');
+  if (!el) return;
+  if (!data) {
+    el.className = 'system-status';
+    el.innerHTML = '';
+    return;
+  }
+  const status = ['ok', 'warning', 'fail'].includes(data.status) ? data.status : 'warning';
+  const checks = data.checks || [];
+  const bad = checks.filter(c => c.status !== 'ok');
+  const label = status === 'ok' ? 'CANARY OK' : `CANARY ${status.toUpperCase()}`;
+  const detail = bad.length
+    ? bad.map(c => `${c.name}: ${c.message}`).join(' · ')
+    : checks.map(c => c.name).join(' · ');
+  const updated = data.updated ? new Date(data.updated).toLocaleString('th-TH') : '-';
+  el.className = `system-status ${status}`;
+  el.innerHTML = `
+    <span class="status-pill">${label}</span>
+    <span>ตรวจล่าสุด ${esc(updated)}</span>
+    <span>${esc(detail || 'ยังไม่มีรายละเอียด')}</span>
+  `;
+}
+
+async function loadSystemHealth() {
+  try {
+    const r = await fetch('../thai-data/system_health.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) return renderCanaryStatus(null);
+    renderCanaryStatus(await r.json());
+  } catch(e) {
+    renderCanaryStatus(null);
+  }
 }
 
 function renderCards() {
@@ -1674,13 +1928,13 @@ function cardHTML(s) {
   const normalizedTicker = (s.ticker || '').replace('.', '-');
   const myNotes = notesCache[normalizedTicker] || notesCache[s.ticker] || [];
 
-  const newsHTML = (s.news||[]).map(n => `
-    <div class="news-item">
-      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
-               : `<span class="news-title-plain">${esc(n.title)}</span>`}
-      ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
-      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
-    </div>`).join('');
+  const newsItems = (s.news || []).slice(0, 8);
+  const newsHTML = newsItems.length ? `
+    <button class="news-icon-btn" type="button" data-news-ticker="${esc(s.ticker)}" aria-label="เปิดข่าวของ ${esc(displayTicker)}">
+      <span class="news-icon-mark" aria-hidden="true">📰</span>
+      <span class="news-icon-text">NEWS</span>
+      <span class="news-count">${newsItems.length}</span>
+    </button>` : '';
 
   const analysisHTML = s.analysis
     ? `<div class="card-analysis"><div class="analysis-label">🇹🇭 วิเคราะห์เจาะลึก</div>${esc(s.analysis).replace(/\n/g,'<br>')}</div>`
@@ -1715,20 +1969,25 @@ function cardHTML(s) {
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
   const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
-  const phase = currentData.run_phase && currentData.run_phase !== 'legacy' ? `&phase=${encodeURIComponent(currentData.run_phase)}` : '';
+  const phase = selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : '';
   const journalUrl = `journal.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${phase}`;
+  const watched = isJournalWatched(s.ticker);
+  const watchLabel = watched ? 'ลบออกจากหุ้นที่ติดตาม' : 'เพิ่มเข้าหุ้นที่ติดตาม';
 
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
     <div class="card-head">
       <div>
-        <span class="card-rank">#${s.rank}</span>
-        <span class="card-ticker">${esc(displayTicker)}</span>
-        <span class="sector-badge">${esc(s.sector||'')}</span>
+        <div class="ticker-line">
+          <span class="card-rank">#${s.rank}</span>
+          <span class="card-ticker">${esc(displayTicker)}</span>
+          <button class="watch-star ${watched ? 'active' : ''}" type="button" data-watch-toggle="${esc(s.ticker)}" title="${watchLabel}" aria-label="${watchLabel} ${esc(displayTicker)}" aria-pressed="${watched ? 'true' : 'false'}">${watched ? '★' : '☆'}</button>
+          <span class="sector-badge">${esc(s.sector||'')}</span>
+        </div>
         <div class="card-name">${esc(displayName)}</div>
       </div>
       <div style="flex-shrink:0;margin-left:10px">
-        <div class="card-price">$${s.price.toFixed(2)}</div>
+        <div class="card-price">฿${s.price.toFixed(2)}</div>
         <div class="card-pct" style="color:${color}">${arrow} ${Math.abs(s.pct_change).toFixed(2)}%</div>
       </div>
     </div>
@@ -1748,16 +2007,72 @@ function cardHTML(s) {
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     <a class="journal-btn" href="${journalUrl}">Journal</a>
-    ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
+    ${newsHTML ? `<div class="news-section">${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}
   </div>`;
+}
+
+function stockNewsByTicker(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  return (currentData?.stocks || []).find(stock => stock.ticker === target)?.news || [];
+}
+
+function renderStockNewsModal(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  const displayTicker = target.replace('.BK', '');
+  const news = stockNewsByTicker(target).slice(0, 8);
+  document.getElementById('stockNewsModalTitle').textContent = `ข่าวของ ${displayTicker || '-'}`;
+  document.getElementById('stockNewsModalSub').textContent = `${phaseLabel(currentData?.run_phase || selectedPhase)} · ${currentData?.date || '-'}`;
+  document.getElementById('stockNewsModalList').innerHTML = news.length ? news.map(n => `
+    <article class="news-item">
+      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
+               : `<span class="news-title-plain">${esc(n.title)}</span>`}
+      ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
+      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
+    </article>
+  `).join('') : '<div class="state-msg">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
+}
+
+function openStockNewsModal(ticker) {
+  renderStockNewsModal(ticker);
+  const modal = document.getElementById('stockNewsModal');
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeStockNewsModal() {
+  const modal = document.getElementById('stockNewsModal');
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
 }
 
 // ── Event delegation ─────────────────────────────────────────
 document.addEventListener('click', async e => {
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
+  }
+
+  const newsToggle = e.target.closest('[data-news-ticker]');
+  if (newsToggle) {
+    e.preventDefault();
+    e.stopPropagation();
+    openStockNewsModal(newsToggle.dataset.newsTicker);
+    return;
+  }
+
+  if (e.target.closest('[data-close-news]') || e.target.id === 'stockNewsModal') {
+    closeStockNewsModal();
+    return;
+  }
+
+  const watchToggle = e.target.closest('[data-watch-toggle]');
+  if (watchToggle) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleJournalWatchlist(watchToggle.dataset.watchToggle);
+    return;
   }
 
   // Hide tooltip if clicked outside
@@ -1855,7 +2170,12 @@ document.addEventListener('click', async e => {
         if (ticker !== '_MARKET_THAI') {
           try {
             const fetchDate = note.archive_date || note.date;
-            const r = await fetch(`../thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            const fetchPhase = note.archive_phase || note.run_phase || selectedPhase || 'legacy';
+            const fetchKey = archiveKey(fetchDate, fetchPhase);
+            let r = await fetch(`../thai-data/${fetchKey}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            if (!r.ok && fetchKey !== fetchDate) {
+              r = await fetch(`../thai-data/${fetchDate}.json?nocache=` + Date.now(), { cache: 'no-cache' });
+            }
             const loader = document.getElementById(loadingId);
             if (r.ok && loader) {
               const data = await r.json();
@@ -1888,9 +2208,15 @@ document.addEventListener('click', async e => {
   }
 });
 
+window.addEventListener('storage', event => {
+  if (event.key !== JOURNAL_WATCHLIST_KEY || !currentData) return;
+  hydrateJournalWatchlist();
+  renderCards();
+});
+
 // ── keyboard shortcuts ────────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); }
+  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); closeStockNewsModal(); }
 });
 
 if ('serviceWorker' in navigator) {
@@ -1900,6 +2226,8 @@ if ('serviceWorker' in navigator) {
 }
 
 init();
+loadSystemHealth();
+setInterval(loadSystemHealth, 300000);
 </script>
 <div id="usageBar" class="usage-bar" style="display:none">
   <div class="usage-item">
@@ -1929,6 +2257,20 @@ async function loadUsage() {
 setInterval(loadUsage, 30000);
 loadUsage();
 </script>
+
+<div class="news-modal-backdrop" id="stockNewsModal" aria-hidden="true">
+  <section class="news-modal" role="dialog" aria-modal="true" aria-labelledby="stockNewsModalTitle">
+    <div class="news-modal-head">
+      <div>
+        <div class="news-label">ข่าว</div>
+        <div class="section-title" id="stockNewsModalTitle">ข่าวของหุ้น</div>
+        <div class="news-meta" id="stockNewsModalSub"></div>
+      </div>
+      <button class="news-modal-close" type="button" data-close-news aria-label="ปิดข่าว">×</button>
+    </div>
+    <div class="news-modal-list" id="stockNewsModalList"></div>
+  </section>
+</div>
 
 <div id="markerTooltip" class="marker-tooltip"></div>
 </body>

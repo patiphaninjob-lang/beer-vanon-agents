@@ -1,0 +1,89 @@
+name: Thai System Health Canary
+
+on:
+  workflow_dispatch:
+    inputs:
+      enable_thai:
+        description: Set to true to intentionally run the currently disabled Thai health canary
+        required: true
+        default: "false"
+        type: boolean
+  schedule:
+    - cron: "30 1 * * 1-5"   # 08:30 Asia/Bangkok, before Thai pre-market homework
+    - cron: "30 10 * * 1-5"  # 17:30 Asia/Bangkok, before Thai post-market homework
+
+permissions:
+  contents: write
+
+env:
+  TZ: Asia/Bangkok
+  PYTHONPATH: ${{ github.workspace }}/common:${{ github.workspace }}/thai_agent
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Resolve Thai health gate
+        shell: bash
+        run: |
+          should_run="false"
+
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            config_enabled="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("docs/thai/config.json")
+          if not path.exists():
+              print("false")
+          else:
+              try:
+                  print("true" if json.loads(path.read_text(encoding="utf-8")).get("automation_enabled") else "false")
+              except Exception:
+                  print("false")
+          PY
+          )"
+            if [[ "$config_enabled" == "true" ]]; then
+              should_run="true"
+            else
+              echo "Thai system health canary is disabled in docs/thai/config.json; skipping."
+            fi
+          elif [[ "${{ github.event.inputs.enable_thai || 'false' }}" == "true" ]]; then
+            should_run="true"
+          else
+            echo "Thai manual health dispatch skipped because enable_thai was not true."
+          fi
+
+          echo "SHOULD_RUN_THAI_HEALTH=${should_run}" >> "$GITHUB_ENV"
+
+      - name: Setup Python 3.11
+        if: env.SHOULD_RUN_THAI_HEALTH == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install health dependencies
+        if: env.SHOULD_RUN_THAI_HEALTH == 'true'
+        run: pip install groq yfinance numpy python-dotenv
+
+      - name: Run Thai system health canary
+        if: env.SHOULD_RUN_THAI_HEALTH == 'true'
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python thai_system_health.py
+
+      - name: Commit Thai system health
+        if: env.SHOULD_RUN_THAI_HEALTH == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+          git add docs/thai-data/system_health.json
+          git diff --cached --quiet || git commit -m "Thai system health $(date +%Y-%m-%d_%H-%M)"
+          git push
