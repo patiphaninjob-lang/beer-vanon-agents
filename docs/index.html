@@ -49,6 +49,40 @@
     .run-agent-btn:disabled { background: #21262d; border-color: #30363d; color: #8a8f98; cursor: not-allowed; }
 
     /* ── Summary bar ── */
+    .homework-status {
+      background: #101722; border-bottom: 1px solid #21262d;
+      padding: 10px 18px; display: flex; align-items: center; gap: 12px;
+      font-size: 0.84em; color: #8a8f98;
+    }
+    .homework-status.status-ok { border-left: 3px solid #16c784; }
+    .homework-status.status-running { border-left: 3px solid #f0b90b; }
+    .homework-status.status-warn { border-left: 3px solid #f59e0b; }
+    .homework-status.status-error { border-left: 3px solid #ea3943; }
+    .homework-status-dot {
+      width: 9px; height: 9px; border-radius: 50%; background: #6b7280; flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(107,114,128,0.12);
+    }
+    .status-ok .homework-status-dot { background: #16c784; box-shadow: 0 0 0 4px rgba(22,199,132,0.13); }
+    .status-running .homework-status-dot { background: #f0b90b; box-shadow: 0 0 0 4px rgba(240,185,11,0.13); animation: statusPulse 1.6s ease-in-out infinite; }
+    .status-warn .homework-status-dot { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.13); }
+    .status-error .homework-status-dot { background: #ea3943; box-shadow: 0 0 0 4px rgba(234,57,67,0.13); }
+    .homework-status-main { min-width: 0; flex: 1; }
+    .homework-status-title { color: #e6edf3; font-weight: 700; margin-bottom: 3px; }
+    .homework-status-detail { color: #8a8f98; line-height: 1.45; }
+    .homework-status-meter {
+      width: 148px; height: 6px; background: #21262d; border-radius: 999px; overflow: hidden; flex: 0 0 auto;
+    }
+    .homework-status-fill { height: 100%; width: 0%; background: #6366f1; border-radius: inherit; transition: width 0.35s ease; }
+    .status-ok .homework-status-fill { background: #16c784; }
+    .status-running .homework-status-fill { background: #f0b90b; }
+    .status-warn .homework-status-fill { background: #f59e0b; }
+    .status-error .homework-status-fill { background: #ea3943; }
+    .homework-status-link { color: #8b93ff; text-decoration: none; white-space: nowrap; }
+    .homework-status-link:hover { color: #a5b4fc; text-decoration: underline; }
+    @keyframes statusPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.72; }
+    }
     .summary {
       background: #161b22; border-bottom: 1px solid #21262d;
       padding: 8px 18px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.83em;
@@ -999,6 +1033,15 @@
   </div>
 </div>
 
+<div id="homeworkStatus" class="homework-status status-running" role="status" aria-live="polite">
+  <div class="homework-status-dot"></div>
+  <div class="homework-status-main">
+    <div class="homework-status-title" id="homeworkStatusTitle">Checking homework system...</div>
+    <div class="homework-status-detail" id="homeworkStatusDetail">Checking GitHub Actions and latest archive</div>
+  </div>
+  <div class="homework-status-meter" aria-hidden="true"><div class="homework-status-fill" id="homeworkStatusFill"></div></div>
+  <a class="homework-status-link" id="homeworkStatusLink" href="https://github.com/patiphaninjob-lang/beer-vanon-agents/actions/workflows/beer_top100_agent.yml" target="_blank" rel="noopener">View system</a>
+</div>
 <div id="summaryBar" class="summary"></div>
 <div id="systemStatus" class="system-status"></div>
 <div id="canaryStatus" class="system-status"></div>
@@ -1867,6 +1910,108 @@ function openMarketNote() {
 }
 
 // ── Init & Data Loading ───────────────────────────────────────
+function percent(n) {
+  return Math.max(0, Math.min(100, Math.round(n || 0)));
+}
+function shortTime(value) {
+  if (!value) return '-';
+  return new Date(value).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
+function bkkDateKey(value = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(value);
+  const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+  return map.year + '-' + map.month + '-' + map.day;
+}
+function setHomeworkStatus(kind, title, detail, pct, link) {
+  const box = document.getElementById('homeworkStatus');
+  const titleEl = document.getElementById('homeworkStatusTitle');
+  const detailEl = document.getElementById('homeworkStatusDetail');
+  const fill = document.getElementById('homeworkStatusFill');
+  const linkEl = document.getElementById('homeworkStatusLink');
+  if (!box || !titleEl || !detailEl || !fill || !linkEl) return;
+  box.className = 'homework-status status-' + kind;
+  titleEl.textContent = title;
+  detailEl.textContent = detail;
+  fill.style.width = percent(pct) + '%';
+  if (link) linkEl.href = link;
+}
+async function fetchHomeworkStatusJson() {
+  try {
+    const r = await fetch('data/status.json?nocache=' + Date.now(), { cache: 'no-cache' });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (_) {
+    return null;
+  }
+}
+async function fetchLatestWorkflowRun() {
+  try {
+    const r = await fetch('https://api.github.com/repos/' + REPO + '/actions/workflows/beer_top100_agent.yml/runs?per_page=1', { headers: githubHeaders(localStorage.getItem('gh_pat')) });
+    if (!r.ok) return null;
+    const data = await r.json();
+    return data.workflow_runs && data.workflow_runs[0] ? data.workflow_runs[0] : null;
+  } catch (_) {
+    return null;
+  }
+}
+async function fetchRunProblem(run) {
+  if (!run || !run.jobs_url) return 'step detail unavailable';
+  try {
+    const r = await fetch(run.jobs_url, { headers: githubHeaders(localStorage.getItem('gh_pat')) });
+    if (!r.ok) return run.conclusion || 'unknown';
+    const data = await r.json();
+    const steps = data.jobs?.flatMap(job => job.steps || []) || [];
+    const bad = steps.find(step => step.conclusion && !['success', 'skipped'].includes(step.conclusion));
+    return bad ? bad.name + ' / ' + bad.conclusion : (run.conclusion || 'unknown');
+  } catch (_) {
+    return run.conclusion || 'unknown';
+  }
+}
+async function updateHomeworkStatus() {
+  const [statusJson, run] = await Promise.all([fetchHomeworkStatusJson(), fetchLatestWorkflowRun()]);
+  const latest = statusJson?.latest || null;
+  const health = latest?.health || {};
+  const counts = health.counts || {};
+  const latestDate = latest?.date || (Array.isArray(availableDates) ? availableDates[0] : null);
+  const today = bkkDateKey();
+  const latestUrl = latest?.url || (latestDate ? (location.origin + location.pathname + '?date=' + latestDate) : '');
+
+  if (run && ['queued', 'in_progress'].includes(run.status)) {
+    const started = new Date(run.run_started_at || run.created_at || Date.now());
+    const elapsedMin = Math.max(0, (Date.now() - started.getTime()) / 60000);
+    const pct = percent(Math.min(95, (elapsedMin / 120) * 95));
+    setHomeworkStatus('running', 'Homework system is running', 'Started ' + shortTime(started) + ' - about ' + pct + '% by runtime estimate - open run for details', pct, run.html_url);
+    return;
+  }
+
+  if (run && run.conclusion && !['success', 'skipped'].includes(run.conclusion)) {
+    const problem = await fetchRunProblem(run);
+    const pct = run.conclusion === 'failure' ? 92 : 55;
+    setHomeworkStatus('error', 'Homework system has an issue: ' + run.conclusion, 'Latest ' + shortTime(run.updated_at) + ' - problem step: ' + problem, pct, run.html_url);
+    return;
+  }
+
+  if (latestDate && latestDate < today) {
+    const detail = 'Latest archive ' + latestDate + ' - no archive for today yet' + (run ? ' - latest run ' + (run.conclusion || run.status) + ' ' + shortTime(run.updated_at) : '');
+    setHomeworkStatus('warn', 'No homework archive for today yet', detail, 0, run?.html_url || latestUrl);
+    return;
+  }
+
+  if (latest) {
+    const done = counts.stocks || 100;
+    const expected = counts.expected_stocks || 100;
+    const pct = percent((done / expected) * 100);
+    setHomeworkStatus('ok', 'Latest homework completed', 'Latest ' + (latest.archive_key || latest.date) + ' - ' + done + '/' + expected + ' stocks - ' + shortTime(latest.generated), pct, latestUrl);
+    return;
+  }
+
+  if (run && run.conclusion === 'success') {
+    setHomeworkStatus('ok', 'Latest workflow completed', 'Updated ' + shortTime(run.updated_at) + ' - if the page is stale, wait for deploy/cache', 100, run.html_url);
+    return;
+  }
+
+  setHomeworkStatus('warn', 'Cannot read homework status yet', 'GitHub API or data/status.json did not respond. Refresh and try again.', 0, 'https://github.com/' + REPO + '/actions/workflows/beer_top100_agent.yml');
+}
 async function init() {
   // Auto-setup credentials from URL hash (bookmark-friendly)
   if (location.hash.startsWith('#config=')) {
@@ -1879,6 +2024,7 @@ async function init() {
     } catch(e) {}
   }
   await loadNotes();
+  updateHomeworkStatus();
   try {
     const r = await fetch('data/index.json?nocache=' + Date.now(), { cache: 'no-cache' });
     if (!r.ok) throw new Error('ไม่พบไฟล์ index');
@@ -1977,64 +2123,22 @@ function pickDate(date) {
   calYear = y; calMonth = m - 1;
   closeCalendar();
   document.getElementById('dateBtnLabel').textContent = fmtDate(date);
+  updateArchiveUrl(date, selectedPhase);
   loadDate(date, selectedPhase);
 }
 
-function pickPhase(phase) {
-  selectedPhase = normalizePhase(phase) || 'postmarket';
-  if (selectedDate) loadDate(selectedDate, selectedPhase);
-}
-
-async function fetchArchive(date, phase) {
-  const key = archiveKey(date, phase);
-  const r = await fetch(`data/${key}.json?nocache=` + Date.now(), { cache: 'no-cache' });
-  if (!r.ok) return null;
-  return { key, phase, data: await r.json() };
-}
-
-async function detectPhases(date) {
-  const checks = await Promise.all([
-    fetch(`data/${archiveKey(date, 'postmarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
-    fetch(`data/${archiveKey(date, 'premarket')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false),
-    fetch(`data/${archiveKey(date, 'legacy')}.json?nocache=` + Date.now(), { cache: 'no-cache' }).then(r => r.ok).catch(() => false)
-  ]);
-  return ['postmarket', 'premarket', 'legacy'].filter((_, i) => checks[i]);
-}
-
-function updatePhaseSelector(phases, activePhase) {
-  const sel = document.getElementById('phaseSel');
-  if (!sel) return;
-  const active = normalizePhase(activePhase) || 'legacy';
-  const ordered = ['postmarket', 'premarket', 'legacy'].filter(p => phases.includes(p) || p === active);
-  sel.innerHTML = ordered.map(p => `<option value="${p}" ${p === active ? 'selected' : ''} ${phases.includes(p) ? '' : 'disabled'}>${phaseLabel(p)}</option>`).join('');
-  sel.disabled = ordered.length <= 1;
-}
-
 async function loadDate(date, preferredPhase = selectedPhase) {
-  document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
+  document.getElementById('grid').innerHTML = '<div class="state-msg">Loading...</div>';
   try {
-    const phases = await detectPhases(date);
-    if (!phases.length) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
-    const preferred = normalizePhase(preferredPhase) || (phases.includes('postmarket') ? 'postmarket' : phases[0]);
-    const order = [preferred, ...phases.filter(p => p !== preferred)];
-    let loaded = null;
-    for (const phase of order) {
-      loaded = await fetchArchive(date, phase);
-      if (loaded) break;
-    }
-    if (!loaded) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
+    const loaded = await fetchArchive(date, preferredPhase);
     currentData = loaded.data;
-    selectedDate = date;
-    selectedPhase = normalizePhase(currentData.run_phase) || loaded.phase;
-    hydrateJournalWatchlist();
-    document.getElementById('dateBtnLabel').textContent = fmtDate(date);
-    updatePhaseSelector(phases, selectedPhase);
-    updateUrl(date, selectedPhase);
+    selectedPhase = loaded.phase;
+    updateArchiveUrl(date, selectedPhase);
 
     const sectors = [...new Set(currentData.stocks.map(s => s.sector).filter(Boolean))].sort();
     const sectorSel = document.getElementById('sectorSel');
     const prev = sectorSel.value;
-    sectorSel.innerHTML = '<option value="">ทุก Sector</option>';
+    sectorSel.innerHTML = '<option value="">??? Sector</option>';
     sectors.forEach(s => {
       const o = document.createElement('option');
       o.value = s; o.textContent = s;
@@ -2042,12 +2146,12 @@ async function loadDate(date, preferredPhase = selectedPhase) {
       sectorSel.appendChild(o);
     });
     renderSummary();
-    renderSystemStatus();
     renderMarketOverview();
     upgradeMarketOverviewCards();
     renderCards();
+    updateHomeworkStatus();
   } catch(e) {
-    document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
+    document.getElementById('grid').innerHTML = '<div class="state-msg">' + e.message + '</div>';
   }
 }
 
