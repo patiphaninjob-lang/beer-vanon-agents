@@ -897,23 +897,6 @@
     <div id="existingNotesContainer"></div>
     <div style="color:#6b7280;font-size:0.78em;margin-bottom:6px">🌡️ บันทึกอารมณ์ตลาด — <span style="color:#f0b90b">ตลาดรู้สึกอะไรกับหุ้นตัวนี้ตอนนี้?</span></div>
     <div style="color:#4b5563;font-size:0.73em;margin-bottom:8px;line-height:1.5">เช่น: ตลาดกลัว/โลภ · ใครกำลังซื้อ/ขาย · ข่าวสร้างอารมณ์แบบไหน · คนส่วนใหญ่คิดอะไรกับหุ้นตัวนี้ · ตัวเองรู้สึกอยากได้หรืออยากเทขาย เพราะอะไร</div>
-    <div class="homework-guide" id="stockHomeworkGuide">
-      <div class="homework-guide-head">
-        <div>
-          <div class="homework-guide-title">บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ</div>
-          <div class="homework-guide-sub">ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว</div>
-        </div>
-        <button type="button" class="homework-template-btn" onclick="insertHomeworkTemplate()">ใส่โครงทำการบ้าน</button>
-      </div>
-      <div class="homework-grid">
-        <div class="homework-item"><strong>ธุรกิจ</strong>ขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง</div>
-        <div class="homework-item"><strong>ตัวเลข</strong>รายได้ กำไร หนี้ กระแสเงินสด ดีขึ้นหรือแย่ลง</div>
-        <div class="homework-item"><strong>การสื่อสาร</strong>ผู้บริหารอธิบายอะไร มีอะไรที่ต้องไปฟัง/อ่านเพิ่ม</div>
-        <div class="homework-item"><strong>คู่แข่ง</strong>ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบตรงไหน</div>
-        <div class="homework-item"><strong>ผู้บริหาร</strong>ประวัติ การตัดสินใจ ความน่าเชื่อถือ และความเสี่ยง</div>
-        <div class="homework-item"><strong>แผนของเรา</strong>ตามดู ถือ งด หรือรออะไร และอะไรคือจุดที่คิดผิด</div>
-      </div>
-    </div>
     <textarea id="noteInput" placeholder="เช่น: วันนี้ตลาดรู้สึกอะไรกับหุ้นตัวนี้ / ข่าวทำให้คนตีความอย่างไร / ธุรกิจกับตัวเลขรองรับไหม / คู่แข่งหรือผู้บริหารมีอะไรน่ากังวล / ถ้าคิดผิดต้องดูจุดไหน"></textarea>
     <div id="polishStatus" style="font-size:0.78em;color:#6b7280;margin-top:5px;min-height:16px"></div>
     <div class="modal-actions" style="justify-content:space-between">
@@ -1561,28 +1544,11 @@ function showNoteModal(ticker, stockData) {
   document.getElementById('noteModalTicker').textContent = ticker;
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
-  document.getElementById('stockHomeworkGuide').style.display = 'block';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
-  const notes = notesCache[ticker] || [];
   const container = document.getElementById('existingNotesContainer');
-  container.innerHTML = notes.length ? `
-    <div class="existing-notes">
-      <div class="existing-label">มุมมองที่ผ่านมา (${notes.length} รายการ)</div>
-      ${notes.map(n => `
-        <div class="existing-note-item">
-          <div class="existing-note-meta">
-            <span>${n.date}${n.time ? ' '+n.time : ''}</span>
-            <span>$${n.price} (${n.pct_change>0?'+':''}${n.pct_change}%)</span>
-            ${n.archive_date ? `<a href="?date=${n.archive_date}">📊 ดูกราฟวันนั้น →</a>` : ''}
-            <button class="delete-note-btn" onclick="deleteNote('${ticker}','${n.id}')" title="ลบโน้ตนี้">🗑️</button>
-          </div>
-          <div class="existing-note-text">${esc(n.note)}</div>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
+  container.innerHTML = '';
 
   document.getElementById('noteOverlay').style.display = 'flex';
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
@@ -1806,7 +1772,6 @@ function openMarketNote() {
   document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
-  document.getElementById('stockHomeworkGuide').style.display = 'none';
   document.getElementById('saveNoteBtn').disabled = false;
   document.getElementById('saveNoteBtn').textContent = '💾 บันทึก';
 
