@@ -247,10 +247,10 @@
     }
     .chart-box img { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; }
     .empty { padding: 18px; color: var(--muted); text-align: center; line-height: 1.5; }
-    .news-list { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 10px; }
-    .news-item { padding: 10px; }
-    .news-title { color: #fff; font-weight: 800; line-height: 1.35; }
-    .news-summary { margin-top: 5px; color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+    .news-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 10px; }
+    .news-item { min-height: 128px; padding: 18px 20px; }
+    .news-title { color: #f7f2ff; font-size: 1.08rem; font-weight: 900; line-height: 1.32; }
+    .news-summary { margin-top: 12px; color: #aeb8c8; font-size: 1rem; line-height: 1.45; }
     .compare-panel {
       display: none;
       margin: 0 14px 14px;
@@ -493,43 +493,11 @@
       border-color: rgba(96,165,250,0.24);
       background: #080d14;
     }
-    .news-list {
-      display: flex;
-      justify-content: flex-end;
-    }
-    .news-icon-btn {
-      min-height: 36px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 12px;
-      border: 1px solid rgba(167,139,250,0.40);
-      border-radius: 999px;
-      color: #ddd6fe;
-      background: rgba(167,139,250,0.10);
-      font-weight: 900;
-    }
-    .news-icon-btn:hover {
-      border-color: var(--semantic-news);
-      background: rgba(167,139,250,0.16);
-    }
-    .news-icon-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 22px;
-      min-width: 42px;
-      padding: 0 7px;
-      border-radius: 999px;
-      color: #111827;
-      background: #c4b5fd;
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-    }
     .news-item {
       border-color: rgba(167,139,250,0.28);
-      border-left: 3px solid var(--semantic-news);
-      background: rgba(167,139,250,0.07);
+      border-left: 4px solid var(--semantic-news);
+      border-radius: 12px;
+      background: rgba(167,139,250,0.075);
     }
     .news-title { color: #ddd6fe; }
     .capture {
@@ -577,55 +545,6 @@
     .timeline-item {
       border-color: rgba(245,158,11,0.20);
       background: rgba(245,158,11,0.045);
-    }
-    .news-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 120;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(3,7,18,0.78);
-      backdrop-filter: blur(10px);
-    }
-    .news-modal-backdrop.show { display: flex; }
-    .news-modal {
-      width: min(760px, 100%);
-      max-height: min(760px, calc(100vh - 36px));
-      overflow: auto;
-      border: 1px solid rgba(167,139,250,0.36);
-      border-left: 4px solid var(--semantic-news);
-      border-radius: 12px;
-      background: linear-gradient(180deg, #171f2e 0%, #101720 100%);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.46);
-    }
-    .news-modal-head {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px;
-      border-bottom: 1px solid rgba(167,139,250,0.22);
-      background: rgba(16,23,32,0.96);
-      backdrop-filter: blur(8px);
-    }
-    .news-modal-close {
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(167,139,250,0.28);
-      border-radius: 8px;
-      color: #ddd6fe;
-      background: rgba(167,139,250,0.08);
-      font-weight: 900;
-    }
-    .news-modal-list {
-      display: grid;
-      gap: 10px;
-      padding: 14px;
     }
     @media (max-width: 760px) {
       .prototype-chip { display: flex; width: max-content; margin: 5px 0 0; }
@@ -809,19 +728,6 @@
       </aside>
     </div>
   </main>
-
-  <div class="news-modal-backdrop" id="newsModal" aria-hidden="true">
-    <section class="news-modal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
-      <div class="news-modal-head">
-        <div>
-          <div class="section-title" id="newsModalTitle">ข่าวของหุ้น</div>
-          <div class="section-sub" id="newsModalSub">ข่าวถูกซ่อนไว้เพื่อให้หน้า Journal อ่านง่ายขึ้น</div>
-        </div>
-        <button class="news-modal-close" type="button" data-close-news aria-label="ปิดข่าว">ปิด</button>
-      </div>
-      <div class="news-modal-list" id="newsModalList"></div>
-    </section>
-  </div>
 
   <script>
 const PHASES = ['premarket', 'postmarket', 'legacy'];
@@ -1188,40 +1094,16 @@ function renderStockContext() {
     ? `<img src="data:image/jpeg;base64,${stock.chart_b64}" alt="${esc(stock.ticker)} chart">`
     : '<div class="empty">ไม่พบกราฟใน archive วันนี้</div>';
   const news = stockNews(stock);
-  document.getElementById('newsList').innerHTML = news.length
-    ? `<button class="news-icon-btn" type="button" data-open-news aria-label="เปิดข่าวของ ${esc(stock.ticker)}">
-        <span class="news-icon-mark">ข่าว</span>
-        <span>ดูข่าว ${news.length} รายการ</span>
-      </button>`
-    : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
+  document.getElementById('newsList').innerHTML = news.length ? news.map(item => `
+    <article class="news-item">
+      <div class="news-title">${esc(thaiNewsText(item.title))}</div>
+      ${item.summary ? `<div class="news-summary">${esc(thaiNewsText(item.summary))}</div>` : ''}
+    </article>
+  `).join('') : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
   document.getElementById('review1d').textContent = Number(stock.pct_change || 0) === 0 ? 'รอผล' : signedPct(stock.pct_change);
 }
 function stockNews(stock = selectedStock()) {
   return (stock?.news || []).slice(0, 8);
-}
-function renderNewsModal() {
-  const stock = selectedStock();
-  const news = stockNews(stock);
-  document.getElementById('newsModalTitle').textContent = `ข่าวของ ${stock?.ticker || '-'}`;
-  document.getElementById('newsModalSub').textContent = `${PHASE_LABELS[state.phase] || 'รายวัน'} · ${state.date || '-'}`;
-  document.getElementById('newsModalList').innerHTML = news.length ? news.map(item => `
-    <article class="news-item">
-      <div class="news-title">${esc(thaiNewsText(item.title))}</div>
-      ${item.summary ? `<div class="news-summary">${esc(thaiNewsText(item.summary))}</div>` : ''}
-      <div class="metric-meta">${esc([item.provider, item.date].filter(Boolean).join(' · '))}</div>
-    </article>
-  `).join('') : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
-}
-function openNewsModal() {
-  renderNewsModal();
-  const modal = document.getElementById('newsModal');
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden', 'false');
-}
-function closeNewsModal() {
-  const modal = document.getElementById('newsModal');
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden', 'true');
 }
 function renderControls() {
   document.getElementById('emotionChips').innerHTML = emotions.map(item =>
@@ -1329,14 +1211,6 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 2600);
 }
 document.addEventListener('click', event => {
-  if (event.target.closest('[data-open-news]')) {
-    openNewsModal();
-    return;
-  }
-  if (event.target.closest('[data-close-news]') || event.target.id === 'newsModal') {
-    closeNewsModal();
-    return;
-  }
   const addButton = event.target.closest('[data-add-ticker]');
   if (addButton) {
     addWatchTicker(addButton.dataset.addTicker);
@@ -1398,9 +1272,6 @@ document.getElementById('confidenceRange').addEventListener('input', event => {
   renderEntryPreview();
 });
 document.getElementById('savePreviewBtn').addEventListener('click', addPreviewEntry);
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') closeNewsModal();
-});
 init();
   </script>
 </body>
