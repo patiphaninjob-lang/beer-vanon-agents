@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0d1117">
   <title>Beer Journal - Semantic Color Prototype</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     :root {
@@ -491,6 +493,39 @@
       border-color: rgba(96,165,250,0.24);
       background: #080d14;
     }
+    .news-list {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .news-icon-btn {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      border: 1px solid rgba(167,139,250,0.40);
+      border-radius: 999px;
+      color: #ddd6fe;
+      background: rgba(167,139,250,0.10);
+      font-weight: 900;
+    }
+    .news-icon-btn:hover {
+      border-color: var(--semantic-news);
+      background: rgba(167,139,250,0.16);
+    }
+    .news-icon-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 22px;
+      min-width: 42px;
+      padding: 0 7px;
+      border-radius: 999px;
+      color: #111827;
+      background: #c4b5fd;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+    }
     .news-item {
       border-color: rgba(167,139,250,0.28);
       border-left: 3px solid var(--semantic-news);
@@ -543,6 +578,55 @@
       border-color: rgba(245,158,11,0.20);
       background: rgba(245,158,11,0.045);
     }
+    .news-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(3,7,18,0.78);
+      backdrop-filter: blur(10px);
+    }
+    .news-modal-backdrop.show { display: flex; }
+    .news-modal {
+      width: min(760px, 100%);
+      max-height: min(760px, calc(100vh - 36px));
+      overflow: auto;
+      border: 1px solid rgba(167,139,250,0.36);
+      border-left: 4px solid var(--semantic-news);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #171f2e 0%, #101720 100%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.46);
+    }
+    .news-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid rgba(167,139,250,0.22);
+      background: rgba(16,23,32,0.96);
+      backdrop-filter: blur(8px);
+    }
+    .news-modal-close {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(167,139,250,0.28);
+      border-radius: 8px;
+      color: #ddd6fe;
+      background: rgba(167,139,250,0.08);
+      font-weight: 900;
+    }
+    .news-modal-list {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
     @media (max-width: 760px) {
       .prototype-chip { display: flex; width: max-content; margin: 5px 0 0; }
       .brand h1 { white-space: normal; }
@@ -559,7 +643,7 @@
     </div>
     <div class="top-actions">
       <a class="link-btn" id="backLink" href="index-semantic-color-prototype.html">กลับหน้าแรก</a>
-      <button class="btn primary" id="savePreviewBtn" type="button">บันทึกตัวอย่าง</button>
+      <button class="btn primary" id="savePreviewBtn" type="button">บันทึกขึ้น Cloud</button>
     </div>
   </header>
 
@@ -717,7 +801,7 @@
           <div class="section-head">
             <div>
               <div class="section-title">ความทรงจำย้อนหลัง</div>
-              <div class="section-sub">รวม note เก่ากับบันทึกตัวอย่างของหุ้นที่เลือก</div>
+              <div class="section-sub">รวม note เก่ากับบันทึก cloud ของหุ้นที่เลือก</div>
             </div>
           </div>
           <div class="timeline" id="noteTimeline"></div>
@@ -726,11 +810,35 @@
     </div>
   </main>
 
+  <div class="news-modal-backdrop" id="newsModal" aria-hidden="true">
+    <section class="news-modal" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
+      <div class="news-modal-head">
+        <div>
+          <div class="section-title" id="newsModalTitle">ข่าวของหุ้น</div>
+          <div class="section-sub" id="newsModalSub">ข่าวถูกซ่อนไว้เพื่อให้หน้า Journal อ่านง่ายขึ้น</div>
+        </div>
+        <button class="news-modal-close" type="button" data-close-news aria-label="ปิดข่าว">ปิด</button>
+      </div>
+      <div class="news-modal-list" id="newsModalList"></div>
+    </section>
+  </div>
+
   <script>
 const PHASES = ['premarket', 'postmarket', 'legacy'];
 const PHASE_LABELS = { premarket: 'ก่อนตลาดเปิด', postmarket: 'หลังตลาดปิด', legacy: 'รายวัน' };
 const DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
 const WATCHLIST_KEY = 'beerJournalWatchlistV1';
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
+  authDomain: "beam-7645f.firebaseapp.com",
+  projectId: "beam-7645f",
+  storageBucket: "beam-7645f.firebasestorage.app",
+  messagingSenderId: "645933254174",
+  appId: "1:645933254174:web:75a7e62fda923c9975500f"
+};
+const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
+let notesDocRef = null;
+let notesSyncReady = false;
 const state = {
   dates: [],
   phases: [],
@@ -882,6 +990,85 @@ async function loadJson(path) {
   if (!response.ok) throw new Error(`${path} ${response.status}`);
   return response.json();
 }
+function cloneNotesMap(src) {
+  const out = {};
+  for (const [ticker, notes] of Object.entries(src || {})) {
+    if (!Array.isArray(notes)) continue;
+    out[ticker] = notes.map(note => ({ ...note }));
+  }
+  return out;
+}
+function withTimeout(promise, ms) {
+  let timer = null;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+function hasFirebaseClient() {
+  return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
+}
+function initCloudSync() {
+  if (notesSyncReady) return true;
+  if (!hasFirebaseClient()) return false;
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+    const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
+    notesDocRef = db.collection(collectionName).doc(docName);
+    notesSyncReady = true;
+    return true;
+  } catch (error) {
+    console.warn('[journal-cloud] init failed', error);
+    notesDocRef = null;
+    notesSyncReady = false;
+    return false;
+  }
+}
+async function loadNotesFromFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    const snap = await notesDocRef.get();
+    if (!snap.exists) return false;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    return Object.keys(next).length ? next : false;
+  } catch (error) {
+    console.warn('[journal-cloud] load failed', error);
+    return false;
+  }
+}
+async function saveNotesToFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    await notesDocRef.set({
+      notes: cloneNotesMap(state.notes),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedBy: 'beer-journal',
+      source: location.origin
+    }, { merge: true });
+    return true;
+  } catch (error) {
+    console.warn('[journal-cloud] save failed', error);
+    return false;
+  }
+}
+async function loadNotes() {
+  const firestoreData = await withTimeout(loadNotesFromFirestore(), 2500).catch(() => false);
+  if (firestoreData) {
+    state.notes = firestoreData;
+    return true;
+  }
+  try {
+    state.notes = await loadJson('notes/notes.json');
+    return true;
+  } catch {
+    state.notes = {};
+    return false;
+  }
+}
 async function detectPhases(date) {
   const checks = await Promise.all(PHASES.map(phase =>
     fetch(`data/${archiveKey(date, phase)}.json?nocache=${Date.now()}`, { cache: 'no-cache' })
@@ -914,11 +1101,7 @@ async function init() {
     document.querySelector('.shell').innerHTML = `<div class="panel pad">โหลดข้อมูลตัวอย่างไม่สำเร็จ: ${esc(error.message)}</div>`;
     return;
   }
-  try {
-    state.notes = await loadJson('notes/notes.json');
-  } catch {
-    state.notes = {};
-  }
+  await loadNotes();
   renderAll();
 }
 function renderAll() {
@@ -1005,17 +1188,40 @@ function renderStockContext() {
     ? `<img src="data:image/jpeg;base64,${stock.chart_b64}" alt="${esc(stock.ticker)} chart">`
     : '<div class="empty">ไม่พบกราฟใน archive วันนี้</div>';
   const news = stockNews(stock);
-  document.getElementById('newsList').innerHTML = news.length ? news.map(item => `
+  document.getElementById('newsList').innerHTML = news.length
+    ? `<button class="news-icon-btn" type="button" data-open-news aria-label="เปิดข่าวของ ${esc(stock.ticker)}">
+        <span class="news-icon-mark">ข่าว</span>
+        <span>ดูข่าว ${news.length} รายการ</span>
+      </button>`
+    : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
+  document.getElementById('review1d').textContent = Number(stock.pct_change || 0) === 0 ? 'รอผล' : signedPct(stock.pct_change);
+}
+function stockNews(stock = selectedStock()) {
+  return (stock?.news || []).slice(0, 8);
+}
+function renderNewsModal() {
+  const stock = selectedStock();
+  const news = stockNews(stock);
+  document.getElementById('newsModalTitle').textContent = `ข่าวของ ${stock?.ticker || '-'}`;
+  document.getElementById('newsModalSub').textContent = `${PHASE_LABELS[state.phase] || 'รายวัน'} · ${state.date || '-'}`;
+  document.getElementById('newsModalList').innerHTML = news.length ? news.map(item => `
     <article class="news-item">
       <div class="news-title">${esc(thaiNewsText(item.title))}</div>
       ${item.summary ? `<div class="news-summary">${esc(thaiNewsText(item.summary))}</div>` : ''}
       <div class="metric-meta">${esc([item.provider, item.date].filter(Boolean).join(' · '))}</div>
     </article>
   `).join('') : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
-  document.getElementById('review1d').textContent = Number(stock.pct_change || 0) === 0 ? 'รอผล' : signedPct(stock.pct_change);
 }
-function stockNews(stock = selectedStock()) {
-  return (stock?.news || []).slice(0, 8);
+function openNewsModal() {
+  renderNewsModal();
+  const modal = document.getElementById('newsModal');
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+function closeNewsModal() {
+  const modal = document.getElementById('newsModal');
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
 }
 function renderControls() {
   document.getElementById('emotionChips').innerHTML = emotions.map(item =>
@@ -1053,13 +1259,65 @@ function renderTimeline() {
     </div>
   `).join('') : '<div class="empty">ยังไม่มีบันทึกของหุ้นนี้</div>';
 }
-function addPreviewEntry() {
+function buildJournalNote(stock) {
+  const thesis = document.getElementById('thesisInput').value.trim();
+  const invalid = document.getElementById('invalidInput').value.trim();
+  const risk = document.getElementById('riskInput').value.trim();
+  const review = document.getElementById('reviewSelect').value;
+  const lines = [
+    `[${PHASE_LABELS[state.phase] || 'รายวัน'} / ${state.emotion} / ${state.intent} / ${state.confidence}/10]`,
+    thesis ? `Thesis: ${thesis}` : '',
+    invalid ? `If wrong: ${invalid}` : '',
+    risk ? `Risk: ${risk}` : '',
+    review ? `Review: ${review}` : ''
+  ].filter(Boolean);
+  return {
+    id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }),
+    note: lines.join('\n'),
+    archive_date: state.date || '',
+    archive_phase: state.phase || 'legacy',
+    price: stock?.price || 0,
+    pct_change: stock?.pct_change || 0,
+    journal: {
+      emotion: state.emotion,
+      intent: state.intent,
+      confidence: Number(state.confidence || 0),
+      review
+    }
+  };
+}
+async function addPreviewEntry() {
   const stock = selectedStock();
   if (!stock) return;
-  const summary = `[${PHASE_LABELS[state.phase]} / ${state.emotion} / ${state.intent} / ${state.confidence}/10] ${document.getElementById('thesisInput').value.trim()}`;
-  state.previewEntries.unshift({ ticker: stock.ticker, summary });
-  renderTimeline();
-  showToast('เพิ่มบันทึกตัวอย่างแล้ว ยังไม่เขียนขึ้น GitHub หรือ cloud');
+  const note = buildJournalNote(stock);
+  if (!note.note.trim()) {
+    showToast('กรอกบันทึกก่อน');
+    return;
+  }
+  const btn = document.getElementById('savePreviewBtn');
+  btn.disabled = true;
+  btn.textContent = 'กำลังบันทึก...';
+  try {
+    const latest = await withTimeout(loadNotesFromFirestore(), 2500).catch(() => false);
+    if (latest) state.notes = latest;
+    if (!Array.isArray(state.notes[stock.ticker])) state.notes[stock.ticker] = [];
+    state.notes[stock.ticker].unshift(note);
+    const ok = await withTimeout(saveNotesToFirestore(), 5000).catch(() => false);
+    if (!ok) {
+      state.notes[stock.ticker].shift();
+      throw new Error('cloud save failed');
+    }
+    renderTimeline();
+    showToast(`บันทึก ${stock.ticker} ขึ้น cloud แล้ว`);
+  } catch (error) {
+    console.warn('[journal-cloud] persist failed', error);
+    showToast('บันทึกขึ้น cloud ไม่สำเร็จ');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'บันทึกขึ้น Cloud';
+  }
 }
 function showToast(message) {
   const old = document.querySelector('.toast');
@@ -1071,6 +1329,14 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 2600);
 }
 document.addEventListener('click', event => {
+  if (event.target.closest('[data-open-news]')) {
+    openNewsModal();
+    return;
+  }
+  if (event.target.closest('[data-close-news]') || event.target.id === 'newsModal') {
+    closeNewsModal();
+    return;
+  }
   const addButton = event.target.closest('[data-add-ticker]');
   if (addButton) {
     addWatchTicker(addButton.dataset.addTicker);
@@ -1132,6 +1398,9 @@ document.getElementById('confidenceRange').addEventListener('input', event => {
   renderEntryPreview();
 });
 document.getElementById('savePreviewBtn').addEventListener('click', addPreviewEntry);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeNewsModal();
+});
 init();
   </script>
 </body>

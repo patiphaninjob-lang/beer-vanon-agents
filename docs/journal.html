@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0d1117">
   <title>Beer Journal</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     :root {
@@ -412,7 +414,7 @@
     </div>
     <div class="top-actions">
       <a class="link-btn" id="backLink" href="index.html">กลับหน้าแรก</a>
-      <button class="btn primary" id="savePreviewBtn" type="button">บันทึกตัวอย่าง</button>
+      <button class="btn primary" id="savePreviewBtn" type="button">บันทึกขึ้น Cloud</button>
     </div>
   </header>
 
@@ -570,7 +572,7 @@
           <div class="section-head">
             <div>
               <div class="section-title">Memory Timeline</div>
-              <div class="section-sub">รวม note เก่ากับบันทึกตัวอย่างของหุ้นที่เลือก</div>
+              <div class="section-sub">รวม note เก่ากับบันทึก cloud ของหุ้นที่เลือก</div>
             </div>
           </div>
           <div class="timeline" id="noteTimeline"></div>
@@ -584,6 +586,17 @@ const PHASES = ['premarket', 'postmarket', 'legacy'];
 const PHASE_LABELS = { premarket: 'ก่อนตลาดเปิด', postmarket: 'หลังตลาดปิด', legacy: 'รายวัน' };
 const DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
 const WATCHLIST_KEY = 'beerJournalWatchlistV1';
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
+  authDomain: "beam-7645f.firebaseapp.com",
+  projectId: "beam-7645f",
+  storageBucket: "beam-7645f.firebasestorage.app",
+  messagingSenderId: "645933254174",
+  appId: "1:645933254174:web:75a7e62fda923c9975500f"
+};
+const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
+let notesDocRef = null;
+let notesSyncReady = false;
 const state = {
   dates: [],
   phases: [],
@@ -718,6 +731,85 @@ async function loadJson(path) {
   if (!response.ok) throw new Error(`${path} ${response.status}`);
   return response.json();
 }
+function cloneNotesMap(src) {
+  const out = {};
+  for (const [ticker, notes] of Object.entries(src || {})) {
+    if (!Array.isArray(notes)) continue;
+    out[ticker] = notes.map(note => ({ ...note }));
+  }
+  return out;
+}
+function withTimeout(promise, ms) {
+  let timer = null;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+function hasFirebaseClient() {
+  return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
+}
+function initCloudSync() {
+  if (notesSyncReady) return true;
+  if (!hasFirebaseClient()) return false;
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+    const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
+    notesDocRef = db.collection(collectionName).doc(docName);
+    notesSyncReady = true;
+    return true;
+  } catch (error) {
+    console.warn('[journal-cloud] init failed', error);
+    notesDocRef = null;
+    notesSyncReady = false;
+    return false;
+  }
+}
+async function loadNotesFromFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    const snap = await notesDocRef.get();
+    if (!snap.exists) return false;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    return Object.keys(next).length ? next : false;
+  } catch (error) {
+    console.warn('[journal-cloud] load failed', error);
+    return false;
+  }
+}
+async function saveNotesToFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    await notesDocRef.set({
+      notes: cloneNotesMap(state.notes),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedBy: 'beer-journal',
+      source: location.origin
+    }, { merge: true });
+    return true;
+  } catch (error) {
+    console.warn('[journal-cloud] save failed', error);
+    return false;
+  }
+}
+async function loadNotes() {
+  const firestoreData = await withTimeout(loadNotesFromFirestore(), 2500).catch(() => false);
+  if (firestoreData) {
+    state.notes = firestoreData;
+    return true;
+  }
+  try {
+    state.notes = await loadJson('notes/notes.json');
+    return true;
+  } catch {
+    state.notes = {};
+    return false;
+  }
+}
 async function detectPhases(date) {
   const checks = await Promise.all(PHASES.map(phase =>
     fetch(`data/${archiveKey(date, phase)}.json?nocache=${Date.now()}`, { cache: 'no-cache' })
@@ -750,11 +842,7 @@ async function init() {
     document.querySelector('.shell').innerHTML = `<div class="panel pad">โหลดข้อมูลตัวอย่างไม่สำเร็จ: ${esc(error.message)}</div>`;
     return;
   }
-  try {
-    state.notes = await loadJson('notes/notes.json');
-  } catch {
-    state.notes = {};
-  }
+  await loadNotes();
   renderAll();
 }
 function renderAll() {
@@ -885,13 +973,65 @@ function renderTimeline() {
     </div>
   `).join('') : '<div class="empty">ยังไม่มีบันทึกของหุ้นนี้</div>';
 }
-function addPreviewEntry() {
+function buildJournalNote(stock) {
+  const thesis = document.getElementById('thesisInput').value.trim();
+  const invalid = document.getElementById('invalidInput').value.trim();
+  const risk = document.getElementById('riskInput').value.trim();
+  const review = document.getElementById('reviewSelect').value;
+  const lines = [
+    `[${PHASE_LABELS[state.phase] || 'รายวัน'} / ${state.emotion} / ${state.intent} / ${state.confidence}/10]`,
+    thesis ? `Thesis: ${thesis}` : '',
+    invalid ? `If wrong: ${invalid}` : '',
+    risk ? `Risk: ${risk}` : '',
+    review ? `Review: ${review}` : ''
+  ].filter(Boolean);
+  return {
+    id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }),
+    note: lines.join('\n'),
+    archive_date: state.date || '',
+    archive_phase: state.phase || 'legacy',
+    price: stock?.price || 0,
+    pct_change: stock?.pct_change || 0,
+    journal: {
+      emotion: state.emotion,
+      intent: state.intent,
+      confidence: Number(state.confidence || 0),
+      review
+    }
+  };
+}
+async function addPreviewEntry() {
   const stock = selectedStock();
   if (!stock) return;
-  const summary = `[${PHASE_LABELS[state.phase]} / ${state.emotion} / ${state.intent} / ${state.confidence}/10] ${document.getElementById('thesisInput').value.trim()}`;
-  state.previewEntries.unshift({ ticker: stock.ticker, summary });
-  renderTimeline();
-  showToast('เพิ่มบันทึกตัวอย่างแล้ว ยังไม่เขียนขึ้น GitHub หรือ cloud');
+  const note = buildJournalNote(stock);
+  if (!note.note.trim()) {
+    showToast('กรอกบันทึกก่อน');
+    return;
+  }
+  const btn = document.getElementById('savePreviewBtn');
+  btn.disabled = true;
+  btn.textContent = 'กำลังบันทึก...';
+  try {
+    const latest = await withTimeout(loadNotesFromFirestore(), 2500).catch(() => false);
+    if (latest) state.notes = latest;
+    if (!Array.isArray(state.notes[stock.ticker])) state.notes[stock.ticker] = [];
+    state.notes[stock.ticker].unshift(note);
+    const ok = await withTimeout(saveNotesToFirestore(), 5000).catch(() => false);
+    if (!ok) {
+      state.notes[stock.ticker].shift();
+      throw new Error('cloud save failed');
+    }
+    renderTimeline();
+    showToast(`บันทึก ${stock.ticker} ขึ้น cloud แล้ว`);
+  } catch (error) {
+    console.warn('[journal-cloud] persist failed', error);
+    showToast('บันทึกขึ้น cloud ไม่สำเร็จ');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'บันทึกขึ้น Cloud';
+  }
 }
 function showToast(message) {
   const old = document.querySelector('.toast');
