@@ -10,7 +10,7 @@
 - A separate semantic color UI prototype exists at `docs/index-semantic-color-prototype.html`; it does not replace the production dashboard.
 - A separate Journal semantic color prototype exists at `docs/journal-semantic-color-prototype.html`; the dashboard prototype links to it.
 - Dashboard semantic prototype now hides each stock card's news list behind a compact Thai `ข่าว` button and opens the news in a popup.
-- Journal semantic prototype now hides stock news behind a Thai `ข่าว` button and opens news in a popup; visible Journal labels were localized further.
+- Journal semantic prototype shows stock news inline again on the Journal page; visible news title/summary text still uses Thai display translations where available.
 - The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
 ## Files Changed
@@ -22,7 +22,7 @@
 - `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 - `docs/journal.html`: added editable local watchlist controls (`เพิ่ม`, `ลบ`, `รีเซ็ต`) backed by `localStorage`.
 - `docs/journal-semantic-color-prototype.html`: experimental Journal color system separating market context, watchlist, stock/news, capture, review, and memory information.
-- `docs/journal-semantic-color-prototype.html`: moved dense news lists into a modal opened from a compact `ข่าว` button and added Thai display translations for the visible sample news.
+- `docs/journal-semantic-color-prototype.html`: restored inline news cards on the Journal page and kept Thai display translations for visible sample news.
 
 ## Verification
 - `node --check` passed for inline scripts extracted from `docs/index.html` and `docs/journal.html`.
