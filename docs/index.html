@@ -2136,6 +2136,64 @@ function automationDateKey() {
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
+function automationBangkokParts(date = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Bangkok',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date).reduce((acc, p) => {
+    acc[p.type] = p.value;
+    return acc;
+  }, {});
+}
+
+function bangkokMidnightUtcMs(parts) {
+  return Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day), -7, 0, 0);
+}
+
+function nextAutomationRun(now = new Date()) {
+  const nowMs = now.getTime();
+  const start = bangkokMidnightUtcMs(automationBangkokParts(now));
+  const dayMs = 24 * 60 * 60 * 1000;
+  const hourMs = 60 * 60 * 1000;
+  const candidates = [];
+
+  for (let dayOffset = 0; dayOffset < 8; dayOffset++) {
+    const dayStart = start + dayOffset * dayMs;
+    const bangkokNoon = new Date(dayStart + 19 * hourMs);
+    const dow = bangkokNoon.getUTCDay();
+    const slots = [
+      { hour: 6, label: 'รอบเช้า 06:00', allowed: dow >= 2 && dow <= 6 },
+      { hour: 18, label: 'รอบเย็น 18:00', allowed: dow >= 1 && dow <= 5 }
+    ];
+
+    for (const slot of slots) {
+      if (!slot.allowed) continue;
+      const whenMs = dayStart + slot.hour * hourMs;
+      if (whenMs > nowMs) candidates.push({ whenMs, label: slot.label });
+    }
+  }
+
+  candidates.sort((a, b) => a.whenMs - b.whenMs);
+  return candidates[0] || null;
+}
+
+function automationCountdownText(now = new Date()) {
+  const next = nextAutomationRun(now);
+  if (!next) return 'รอบ auto ถัดไป: ยังไม่ทราบเวลา';
+  const totalMinutes = Math.max(0, Math.ceil((next.whenMs - now.getTime()) / 60000));
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+  const duration = [
+    days ? `${days} วัน` : '',
+    hours ? `${hours} ชม.` : '',
+    `${minutes} นาที`
+  ].filter(Boolean).join(' ');
+  return `${next.label} อีก ${duration}`;
+}
+
 function automationTime(value) {
   if (!value) return '-';
   try {
@@ -2198,6 +2256,7 @@ async function fetchHomeworkProblem(run) {
 async function loadAutomationStatus() {
   const el = document.getElementById('automationStatus');
   if (!el) return;
+  const nextRun = automationCountdownText();
   try {
     const [statusData, run] = await Promise.all([
       fetch('data/status.json?nocache=' + Date.now(), { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null),
@@ -2217,12 +2276,12 @@ async function loadAutomationStatus() {
 
     if (run && run.conclusion && !['success', 'skipped'].includes(run.conclusion)) {
       const problem = await fetchHomeworkProblem(run);
-      renderAutomationStatus('fail', 'การบ้านติดปัญหา', `run ล่าสุด ${run.conclusion}: ${problem}`, 100, run.html_url);
+      renderAutomationStatus('fail', 'การบ้านติดปัญหา', `run ล่าสุด ${run.conclusion}: ${problem} | ${nextRun}`, 100, run.html_url);
       return;
     }
 
     if (latestDate && latestDate < today) {
-      renderAutomationStatus('warning', 'ยังไม่มีของวันนี้', `archive ล่าสุด ${latestDate} อัปเดต ${automationTime(latest?.generated)}`, 0, run?.html_url);
+      renderAutomationStatus('warning', 'ยังไม่มีของวันนี้', `archive ล่าสุด ${latestDate} | ${nextRun}`, 0, run?.html_url);
       return;
     }
 
@@ -2230,15 +2289,13 @@ async function loadAutomationStatus() {
       const counts = latest.health?.counts || {};
       const done = counts.homework_complete ?? counts.stocks ?? '-';
       const total = counts.expected_stocks ?? counts.stocks ?? '-';
-      renderAutomationStatus('ok', 'การบ้านล่าสุดพร้อม', `archive ${latest.archive_key || latest.date} หุ้น ${done}/${total}`, 100, latest.url || run?.html_url);
+      renderAutomationStatus('ok', 'การบ้านล่าสุดพร้อม', `archive ${latest.archive_key || latest.date} หุ้น ${done}/${total} | ${nextRun}`, 100, latest.url || run?.html_url);
       return;
     }
 
-    el.className = 'system-status';
-    el.innerHTML = '';
+    renderAutomationStatus('warning', 'รอรอบ auto', nextRun, null, run?.html_url);
   } catch (e) {
-    el.className = 'system-status';
-    el.innerHTML = '';
+    renderAutomationStatus('warning', 'รอรอบ auto', nextRun, null);
     console.warn('automation status failed', e);
   }
 }
