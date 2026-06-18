@@ -1,9 +1,7 @@
-name: Beer Thai Top 100 Market Cap (หุ้นไทย SET100)
+name: Beer Thai Top 100 Market Cap
 
 on:
-  schedule:
-    - cron: '0 11 * * 1-5'        # 18:00 PM Bangkok (Mon-Fri) - ครอบคลุมตลาดไทย จันทร์-ศุกร์
-  workflow_dispatch:            # รันมือได้จากหน้าเว็บ Thai Dashboard
+  workflow_dispatch:
     inputs:
       request_id:
         description: 'Unique ID for this run'
@@ -16,16 +14,18 @@ on:
         required: false
 
 permissions:
-  contents: write               # อนุญาตให้ push docs/thai-data/ กลับ repo
+  contents: write
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 45         # SET100 อาจใช้เวลานานกว่าเล็กน้อย
+    timeout-minutes: 45
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
@@ -66,5 +66,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/thai-data/ docs/thai-history-data/ thai_metadata_cache.json
-          git diff --cached --quiet || git commit -m "📊 Thai Top 100 report $(date +%Y-%m-%d)"
+          git diff --cached --quiet || git commit -m "Thai Top 100 report $(date +%Y-%m-%d)"
           git push

@@ -1,13 +1,13 @@
-name: Beer Top 100 Market Cap (หุ้น US 100 ตัวใหญ่สุด)
+name: Beer Top 100 Market Cap (US)
 
 on:
   schedule:
-    - cron: '0 11 * * 1-5'       # 18:00 Bangkok (Mon-Fri) - US premarket news check
-    - cron: '0 23 * * 1-5'       # 06:00 Bangkok (Tue-Sat) - US postmarket recap
-  workflow_dispatch:            # รันมือได้จากหน้าเว็บ Dashboard
+    - cron: '0 11 * * 1-5'       # 18:00 Bangkok, Mon-Fri
+    - cron: '0 23 * * 1-5'       # 06:00 Bangkok, Tue-Sat
+  workflow_dispatch:
 
 permissions:
-  contents: write               # อนุญาตให้ push docs/data/ กลับ repo
+  contents: write
 
 env:
   TZ: Asia/Bangkok
@@ -15,11 +15,13 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 75         # top 100 can exceed 30 minutes when APIs are slow
+    timeout-minutes: 75
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
@@ -68,6 +70,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/ docs/history-data/
-          git diff --cached --quiet || git commit -m "📊 Top 100 ${RUN_PHASE:-report} report $(date +%Y-%m-%d)"
-          git push
+          git pull --rebase --autostash origin main
+          git add docs/data/ docs/history-data/ stock_metadata_cache.json
+          if git diff --cached --quiet; then
+            echo "No archive changes to commit"
+            exit 0
+          fi
+          git commit -m "Top 100 ${RUN_PHASE:-report} report $(date +%Y-%m-%d)"
+          for attempt in 1 2 3; do
+            git push && exit 0
+            echo "Push failed; rebasing latest main before retry ${attempt}"
+            git pull --rebase --autostash origin main
+            sleep $((attempt * 10))
+          done
+          exit 1

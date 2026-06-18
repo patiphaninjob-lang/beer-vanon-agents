@@ -513,7 +513,60 @@ def fetch_market_indices() -> dict:
 
 # # --- User Notes # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
+FIRESTORE_PROJECT_ID = "beam-7645f"
+FIRESTORE_NOTES_DOC = "data/beer_top100_notes"
+
+
+def _firestore_value_to_python(value):
+    if not isinstance(value, dict):
+        return None
+    if "stringValue" in value:
+        return value["stringValue"]
+    if "integerValue" in value:
+        return int(value["integerValue"])
+    if "doubleValue" in value:
+        return float(value["doubleValue"])
+    if "booleanValue" in value:
+        return bool(value["booleanValue"])
+    if "timestampValue" in value:
+        return value["timestampValue"]
+    if "nullValue" in value:
+        return None
+    if "arrayValue" in value:
+        values = value.get("arrayValue", {}).get("values", [])
+        return [_firestore_value_to_python(item) for item in values]
+    if "mapValue" in value:
+        fields = value.get("mapValue", {}).get("fields", {})
+        return {key: _firestore_value_to_python(item) for key, item in fields.items()}
+    return None
+
+
+def _load_firestore_notes() -> dict:
+    try:
+        from urllib.parse import quote
+        from urllib.request import urlopen
+
+        doc_path = "/".join(quote(part, safe="") for part in FIRESTORE_NOTES_DOC.split("/"))
+        url = (
+            f"https://firestore.googleapis.com/v1/projects/{FIRESTORE_PROJECT_ID}"
+            f"/databases/(default)/documents/{doc_path}"
+        )
+        with urlopen(url, timeout=15) as resp:
+            payload = resp.read().decode("utf-8")
+
+        fields = json.loads(payload).get("fields", {})
+        notes = _firestore_value_to_python(fields.get("notes", {}))
+        return notes if isinstance(notes, dict) else {}
+    except Exception as e:
+        safe_print(f"   Firestore notes fallback: {e}")
+        return {}
+
+
 def load_user_notes() -> dict:
+    notes = _load_firestore_notes()
+    if notes:
+        return notes
+
     try:
         from urllib.request import urlopen
 
