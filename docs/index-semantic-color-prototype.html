@@ -627,10 +627,40 @@
       background: rgba(56,189,248,0.13);
     }
     .news-section {
-      padding: 9px 10px;
-      border-top: 0; border-left: 3px solid var(--semantic-news);
-      border-radius: 0 8px 8px 0;
-      background: rgba(167,139,250,0.075);
+      display: flex;
+      justify-content: flex-start;
+      padding: 8px 0 0;
+      border-top: 0;
+      border-left: 0;
+      background: transparent;
+    }
+    .news-icon-btn {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 10px;
+      border: 1px solid rgba(167,139,250,0.40);
+      border-radius: 999px;
+      color: #ddd6fe;
+      background: rgba(167,139,250,0.10);
+      font-size: 0.75em;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .news-icon-btn:hover { border-color: var(--semantic-news); background: rgba(167,139,250,0.16); }
+    .news-icon-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 999px;
+      color: #111827;
+      background: #c4b5fd;
+      font-size: 0.72em;
+      font-weight: 900;
     }
     .news-label { color: #c4b5fd; }
     .news-title { color: #ddd6fe; }
@@ -655,6 +685,64 @@
     .watch-star.active {
       border-color: rgba(240,185,11,0.68);
       box-shadow: 0 0 0 2px rgba(240,185,11,0.08);
+    }
+    .news-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(3,7,18,0.78);
+      backdrop-filter: blur(10px);
+    }
+    .news-modal-backdrop.show { display: flex; }
+    .news-modal {
+      width: min(760px, 100%);
+      max-height: min(760px, calc(100vh - 36px));
+      overflow: auto;
+      border: 1px solid rgba(167,139,250,0.36);
+      border-left: 4px solid var(--semantic-news);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #171f2e 0%, #101720 100%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.46);
+    }
+    .news-modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid rgba(167,139,250,0.22);
+      background: rgba(16,23,32,0.96);
+      backdrop-filter: blur(8px);
+    }
+    .news-modal-close {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(167,139,250,0.28);
+      border-radius: 8px;
+      color: #ddd6fe;
+      background: rgba(167,139,250,0.08);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .news-modal-list {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
+    .news-modal-list .news-item {
+      margin-bottom: 0;
+      padding: 10px;
+      border: 1px solid rgba(167,139,250,0.28);
+      border-left: 3px solid var(--semantic-news);
+      border-radius: 8px;
+      background: rgba(167,139,250,0.07);
     }
     @media (max-width: 560px) {
       .prototype-chip { margin-left: 0; margin-top: 4px; }
@@ -820,6 +908,19 @@ const PHASE_LABELS = {
 };
 const JOURNAL_WATCHLIST_KEY = 'beerJournalWatchlistV1';
 const JOURNAL_DEFAULT_TICKERS = ['NVDA', 'GOOGL', 'AAPL', 'MSFT', 'AMZN', 'AMD', 'TSLA', 'NFLX', 'META', 'AVGO'];
+const NEWS_TRANSLATIONS = {
+  "SpaceX becomes retail's biggest IPO trade: Chart of the Day": "SpaceX กลายเป็นดีล IPO ที่รายย่อยซื้อหนักที่สุด: กราฟเด่นประจำวัน",
+  "SpaceX's market debut turned into a record retail buying event.": "การเปิดซื้อขายของ SpaceX กลายเป็นเหตุการณ์ที่รายย่อยเข้าซื้อสูงเป็นสถิติ",
+  "SpaceX just took Palantir's top spot with one of the most excessive valuation multiples in megacap tech": "SpaceX แซง Palantir ขึ้นเป็นหุ้นที่ valuation แพงที่สุดกลุ่ม megacap tech",
+  "Let the eye-opening valuations for SpaceX begin!": "valuation ของ SpaceX เริ่มสูงจนต้องจับตา",
+  'Why the biggest "Magnificent 7" stocks have one giant headwind coming right at them': 'ทำไมหุ้น "Magnificent 7" ขนาดใหญ่กำลังเจอแรงต้านสำคัญ',
+  'Watch this one key metric on the "Magnificent Seven" names.': 'จับตา metric สำคัญตัวหนึ่งของหุ้นกลุ่ม "Magnificent Seven"',
+  "Prediction: This Artificial Intelligence (AI) Infrastructure Stock Will Skyrocket in June (Hint: It's Not Micron Technology)": "คาดการณ์: หุ้นโครงสร้างพื้นฐาน AI ตัวนี้อาจพุ่งแรงในเดือนมิถุนายน (ไม่ใช่ Micron)",
+  "The healthy demand for AI servers and data center components is driving strong growth for this company.": "ความต้องการ server AI และชิ้นส่วน data center กำลังหนุนการเติบโตของบริษัทนี้",
+  "Worried About a Stock Market Crash? 2 Magnificant Dividend Stocks You Can Buy Today and Hold Forever": "กังวลตลาดหุ้น crash? 2 หุ้นปันผลคุณภาพที่ซื้อและถือระยะยาวได้",
+  "Worried About a Stock Market Crash? 2 Magnificent Dividend Stocks You Can Buy Today and Hold Forever": "กังวลตลาดหุ้น crash? 2 หุ้นปันผลคุณภาพที่ซื้อและถือระยะยาวได้",
+  "These companies pay and raise dividends through thick and thin.": "บริษัทเหล่านี้จ่ายและเพิ่มปันผลได้แม้ในช่วงตลาดผันผวน"
+};
 let journalWatchlist = [];
 
 // ── Helpers ──────────────────────────────────────────────────
@@ -850,6 +951,10 @@ function fmtCap(cap) {
 }
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function thaiNewsText(value) {
+  const text = String(value || '').trim();
+  return NEWS_TRANSLATIONS[text] || text;
 }
 function toBase64(str) {
   return btoa(unescape(encodeURIComponent(str)));
@@ -1933,13 +2038,12 @@ function cardHTML(s) {
   const normalizedTicker = (s.ticker || '').replace('.', '-');
   const myNotes = notesCache[normalizedTicker] || notesCache[s.ticker] || [];
 
-  const newsHTML = (s.news||[]).map(n => `
-    <div class="news-item">
-      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>`
-               : `<span class="news-title-plain">${esc(n.title)}</span>`}
-      ${n.summary ? `<div class="news-summary">${esc(n.summary)}</div>` : ''}
-      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
-    </div>`).join('');
+  const newsItems = (s.news || []).slice(0, 8);
+  const newsHTML = newsItems.length ? `
+    <button class="news-icon-btn" type="button" data-news-ticker="${esc(s.ticker)}" aria-label="เปิดข่าวของ ${esc(s.ticker)}">
+      <span class="news-icon-mark">ข่าว</span>
+      <span>ดูข่าว ${newsItems.length} รายการ</span>
+    </button>` : '';
 
   const analysisHTML = s.analysis
     ? `<div class="card-analysis"><div class="analysis-label">🍺 วิเคราะห์เจาะลึก</div>${esc(s.analysis).replace(/\n/g,'<br>')}</div>`
@@ -2011,16 +2115,63 @@ function cardHTML(s) {
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     <a class="journal-btn" href="${journalUrl}">Journal</a>
-    ${newsHTML ? `<div class="news-section"><div class="news-label">📰 News</div>${newsHTML}</div>` : ''}
+    ${newsHTML ? `<div class="news-section">${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}
   </div>`;
+}
+
+function stockNewsByTicker(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  return (currentData?.stocks || []).find(stock => stock.ticker === target)?.news || [];
+}
+
+function renderStockNewsModal(ticker) {
+  const target = String(ticker || '').toUpperCase();
+  const news = stockNewsByTicker(target).slice(0, 8);
+  document.getElementById('stockNewsModalTitle').textContent = `ข่าวของ ${target || '-'}`;
+  document.getElementById('stockNewsModalSub').textContent = `${phaseLabel(currentData?.run_phase || selectedPhase)} · ${currentData?.date || '-'}`;
+  document.getElementById('stockNewsModalList').innerHTML = news.length ? news.map(n => `
+    <article class="news-item">
+      ${n.url ? `<a class="news-title" href="${esc(n.url)}" target="_blank" rel="noopener">${esc(thaiNewsText(n.title))}</a>`
+               : `<span class="news-title-plain">${esc(thaiNewsText(n.title))}</span>`}
+      ${n.summary ? `<div class="news-summary">${esc(thaiNewsText(n.summary))}</div>` : ''}
+      <div class="news-meta">${esc([n.provider,n.date].filter(Boolean).join(' · '))}</div>
+    </article>
+  `).join('') : '<div class="state-msg">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
+}
+
+function openStockNewsModal(ticker) {
+  renderStockNewsModal(ticker);
+  const modal = document.getElementById('stockNewsModal');
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeStockNewsModal() {
+  const modal = document.getElementById('stockNewsModal');
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
 }
 
 // ── Event delegation ─────────────────────────────────────────
 document.addEventListener('click', async e => {
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
+  }
+
+  const newsToggle = e.target.closest('[data-news-ticker]');
+  if (newsToggle) {
+    e.preventDefault();
+    e.stopPropagation();
+    openStockNewsModal(newsToggle.dataset.newsTicker);
+    return;
+  }
+
+  if (e.target.closest('[data-close-news]') || e.target.id === 'stockNewsModal') {
+    closeStockNewsModal();
+    return;
   }
 
   const watchToggle = e.target.closest('[data-watch-toggle]');
@@ -2172,7 +2323,7 @@ window.addEventListener('storage', event => {
 
 // ── keyboard shortcuts ────────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); }
+  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); closeStockNewsModal(); }
 });
 
 if ('serviceWorker' in navigator) {
@@ -2213,6 +2364,20 @@ async function loadUsage() {
 setInterval(loadUsage, 30000);
 loadUsage();
 </script>
+
+<div class="news-modal-backdrop" id="stockNewsModal" aria-hidden="true">
+  <section class="news-modal" role="dialog" aria-modal="true" aria-labelledby="stockNewsModalTitle">
+    <div class="news-modal-head">
+      <div>
+        <div class="news-label">ข่าว</div>
+        <div class="section-title" id="stockNewsModalTitle">ข่าวของหุ้น</div>
+        <div class="news-meta" id="stockNewsModalSub"></div>
+      </div>
+      <button class="news-modal-close" type="button" data-close-news aria-label="ปิดข่าว">ปิด</button>
+    </div>
+    <div class="news-modal-list" id="stockNewsModalList"></div>
+  </section>
+</div>
 
 <div id="markerTooltip" class="marker-tooltip"></div>
 </body>

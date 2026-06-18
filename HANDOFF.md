@@ -9,6 +9,7 @@
 - The US dashboard stock cards now have star toggles that add/remove tickers from the same Journal watchlist (`beerJournalWatchlistV1`).
 - A separate semantic color UI prototype exists at `docs/index-semantic-color-prototype.html`; it does not replace the production dashboard.
 - A separate Journal semantic color prototype exists at `docs/journal-semantic-color-prototype.html`; the dashboard prototype links to it.
+- Dashboard semantic prototype now hides each stock card's news list behind a compact Thai `ข่าว` button and opens the news in a popup.
 - Journal semantic prototype now hides stock news behind a Thai `ข่าว` button and opens news in a popup; visible Journal labels were localized further.
 - The Journal save action is still local preview only (`บันทึกตัวอย่าง`) and does not write to Firestore/GitHub yet.
 
@@ -17,6 +18,7 @@
 - `docs/index.html`: added dashboard watchlist star toggles backed by the Journal `localStorage` watchlist.
 - `docs/index-semantic-color-prototype.html`: experimental dashboard color system separating market, news, journal, homework, AI analysis, system, and price information.
 - `docs/index-semantic-color-prototype.html`: prototype Journal links now point to `journal-semantic-color-prototype.html`.
+- `docs/index-semantic-color-prototype.html`: moved dense stock-card news lists into a modal opened from a compact `ข่าว` button and added Thai display translations for the visible sample news.
 - `docs/journal.html`: new standalone Journal page promoted from the approved prototype.
 - `docs/journal.html`: added editable local watchlist controls (`เพิ่ม`, `ลบ`, `รีเซ็ต`) backed by `localStorage`.
 - `docs/journal-semantic-color-prototype.html`: experimental Journal color system separating market context, watchlist, stock/news, capture, review, and memory information.
