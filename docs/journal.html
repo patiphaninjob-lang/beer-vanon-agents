@@ -1134,9 +1134,6 @@ function hydrateWatchlist() {
   const stored = readWatchlist();
   const base = stored === null ? DEFAULT_TICKERS : stored;
   state.watchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
-  if (state.urlTicker && available.has(state.urlTicker) && !state.watchlist.includes(state.urlTicker)) {
-    state.watchlist.unshift(state.urlTicker);
-  }
   if (!stockByTicker(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'NVDA';
   }
