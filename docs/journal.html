@@ -247,10 +247,10 @@
     }
     .chart-box img { display: block; width: 100%; height: auto; max-height: 330px; object-fit: contain; }
     .empty { padding: 18px; color: var(--muted); text-align: center; line-height: 1.5; }
-    .news-list { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 10px; }
-    .news-item { padding: 10px; }
-    .news-title { color: #fff; font-weight: 800; line-height: 1.35; }
-    .news-summary { margin-top: 5px; color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+    .news-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 10px; }
+    .news-item { min-height: 128px; padding: 18px 20px; }
+    .news-title { color: #f7f2ff; font-size: 1.08rem; font-weight: 900; line-height: 1.32; }
+    .news-summary { margin-top: 12px; color: #aeb8c8; font-size: 1rem; line-height: 1.45; }
     .compare-panel {
       display: none;
       margin: 0 14px 14px;
@@ -402,13 +402,161 @@
       .price, .pct { text-align: left; }
       .chart-box { min-height: 180px; }
     }
+
+    /* Semantic color prototype: separate dense Journal data by cognitive role. */
+    :root {
+      --semantic-market: #38bdf8;
+      --semantic-watch: #2dd4bf;
+      --semantic-stock: #60a5fa;
+      --semantic-news: #a78bfa;
+      --semantic-journal: #f0b90b;
+      --semantic-review: #fb7185;
+      --semantic-memory: #f59e0b;
+      --semantic-ai: #22d3ee;
+      --semantic-soft-line: #2b3648;
+    }
+    body {
+      background:
+        linear-gradient(180deg, rgba(240,185,11,0.08) 0%, rgba(13,17,23,0) 250px),
+        #0b1018;
+    }
+    .prototype-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      margin-left: 8px;
+      padding: 2px 8px;
+      border: 1px solid rgba(240,185,11,0.42);
+      border-radius: 999px;
+      color: #fde68a;
+      background: rgba(240,185,11,0.10);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+    .topbar {
+      border-bottom-color: var(--semantic-soft-line);
+      background: rgba(11,16,24,0.96);
+    }
+    .control {
+      border-color: rgba(96,165,250,0.20);
+      background: rgba(96,165,250,0.055);
+    }
+    .phase-tab.active,
+    .chip.active,
+    .intent-btn.active {
+      box-shadow: 0 0 0 2px rgba(240,185,11,0.12);
+    }
+    .panel {
+      border-color: var(--semantic-soft-line);
+      background: linear-gradient(180deg, #171f2e 0%, #121824 100%);
+    }
+    .market-col .panel:nth-child(1) {
+      border-left: 4px solid var(--semantic-market);
+      background: linear-gradient(90deg, rgba(56,189,248,0.10), #151b22 34%);
+    }
+    .market-col .panel:nth-child(1) .section-title,
+    .metric-name { color: #bae6fd; }
+    .metric-card {
+      border-color: rgba(56,189,248,0.22);
+      background: rgba(56,189,248,0.055);
+    }
+    .market-col .panel:nth-child(2) {
+      border-left: 4px solid var(--semantic-watch);
+      background: linear-gradient(90deg, rgba(45,212,191,0.09), #151b22 34%);
+    }
+    .market-col .panel:nth-child(2) .section-title,
+    .stock-symbol { color: #99f6e4; }
+    .stock-row {
+      border-color: rgba(45,212,191,0.20);
+      background: rgba(45,212,191,0.045);
+    }
+    .stock-row.active {
+      border-color: rgba(240,185,11,0.78);
+      background: rgba(240,185,11,0.11);
+    }
+    .main-col.panel {
+      border-left: 4px solid var(--semantic-stock);
+    }
+    .hero {
+      background: linear-gradient(90deg, rgba(96,165,250,0.12), #101720 44%);
+    }
+    .ticker,
+    .price { color: #dbeafe; }
+    .meta-chip {
+      border-color: rgba(96,165,250,0.20);
+      background: rgba(96,165,250,0.065);
+    }
+    .chart-box {
+      border-color: rgba(96,165,250,0.24);
+      background: #080d14;
+    }
+    .news-item {
+      border-color: rgba(167,139,250,0.28);
+      border-left: 4px solid var(--semantic-news);
+      border-radius: 12px;
+      background: rgba(167,139,250,0.075);
+    }
+    .news-title { color: #ddd6fe; }
+    .capture {
+      border-top-color: rgba(240,185,11,0.34);
+      background: linear-gradient(180deg, rgba(240,185,11,0.055), transparent 220px);
+    }
+    .capture .section-title { color: #fde68a; }
+    .field {
+      background: rgba(240,185,11,0.045);
+      border-color: rgba(240,185,11,0.20);
+      border-left: 3px solid rgba(240,185,11,0.48);
+    }
+    .field:nth-child(2) { border-left-color: var(--semantic-stock); background: rgba(96,165,250,0.045); }
+    .field:nth-child(3) { border-left-color: var(--semantic-ai); background: rgba(34,211,238,0.045); }
+    .field:nth-child(4),
+    .field:nth-child(5) { border-left-color: var(--semantic-review); background: rgba(251,113,133,0.050); }
+    .field:nth-child(6) { border-left-color: var(--semantic-memory); background: rgba(245,158,11,0.045); }
+    .field:nth-child(7) { border-left-color: var(--semantic-watch); background: rgba(45,212,191,0.045); }
+    .field label,
+    .field-title { color: #f8fafc; }
+    textarea,
+    select,
+    input[type="search"],
+    input[type="text"] {
+      border-color: rgba(148,163,184,0.22);
+      background: rgba(7,12,20,0.82);
+    }
+    .entry-preview {
+      border-color: rgba(240,185,11,0.36);
+      background: rgba(240,185,11,0.105);
+    }
+    .review-col .panel:nth-child(1) {
+      border-left: 4px solid var(--semantic-review);
+      background: linear-gradient(90deg, rgba(251,113,133,0.09), #151b22 35%);
+    }
+    .review-col .panel:nth-child(1) .section-title,
+    .check-dot { color: #fecdd3; border-color: var(--semantic-review); }
+    .review-col .panel:nth-child(2) {
+      border-left: 4px solid var(--semantic-memory);
+      background: linear-gradient(90deg, rgba(245,158,11,0.08), #151b22 35%);
+    }
+    .review-col .panel:nth-child(2) .section-title,
+    .timeline-date { color: #fed7aa; }
+    .mini-card,
+    .timeline-item {
+      border-color: rgba(245,158,11,0.20);
+      background: rgba(245,158,11,0.045);
+    }
+    @media (max-width: 760px) {
+      .prototype-chip { display: flex; width: max-content; margin: 5px 0 0; }
+      .brand h1 { white-space: normal; }
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <div>
-        <h1>Beer Journal</h1>
+        <h1>สมุดบันทึกการเทรด </h1>
         <small>หน้าแยกสำหรับบันทึกอารมณ์ ความคิด และแผนของหุ้นแต่ละตัว</small>
       </div>
     </div>
@@ -439,7 +587,7 @@
         <section class="panel pad">
           <div class="section-head">
             <div>
-              <div class="section-title">Market Context</div>
+              <div class="section-title">ภาพรวมตลาด</div>
               <div class="section-sub">ภาพรวมตลาดของวันที่เลือก ใช้เป็นฉากหลังของความคิดตอนจด</div>
             </div>
           </div>
@@ -482,7 +630,7 @@
         </div>
 
         <div class="compare-panel" id="comparePanel">
-          <div class="section-title">Before / After Lens</div>
+          <div class="section-title">มุมมองก่อนตลาด / หลังตลาด</div>
           <div class="section-sub">ตัวอย่างแนวคิดสำหรับอนาคต: วันเดียวกันของหุ้นตัวเดียว แยกดูรอบก่อนตลาดเปิดและหลังตลาดปิดได้</div>
           <div class="compare-grid">
             <div class="mini-card">
@@ -499,7 +647,7 @@
         <div class="capture">
           <div class="section-head">
             <div>
-              <div class="section-title">Journal Capture</div>
+              <div class="section-title">บันทึกความคิด</div>
               <div class="section-sub">จดให้อนาคตกลับมาตรวจได้ว่า ตอนนั้นคิดอะไร รู้สึกอะไร และอะไรจะพิสูจน์ว่าคิดผิด</div>
             </div>
           </div>
@@ -516,7 +664,7 @@
               <div class="intent-grid" id="intentGrid"></div>
             </div>
             <div class="field">
-              <label for="thesisInput">Thesis ตอนนี้</label>
+              <label for="thesisInput">แนวคิดตอนนี้</label>
               <textarea id="thesisInput">ตลาดกำลังให้ premium กับหุ้นผู้นำ AI แต่ต้องระวังว่าข่าวดีอาจถูกสะท้อนไปมากแล้ว ถ้ากราฟยังรับได้และ volume ไม่แห้ง การย่ออาจเป็นจังหวะดูต่อมากกว่าหนีทันที</textarea>
             </div>
             <div class="field">
@@ -552,7 +700,7 @@
         <section class="panel pad">
           <div class="section-head">
             <div>
-              <div class="section-title">Review Lens</div>
+              <div class="section-title">มุมทบทวน</div>
               <div class="section-sub">กลับมาดูว่าความรู้สึกตอนนั้นช่วยหรือหลอกเรา</div>
             </div>
           </div>
@@ -571,7 +719,7 @@
         <section class="panel pad">
           <div class="section-head">
             <div>
-              <div class="section-title">Memory Timeline</div>
+              <div class="section-title">ความทรงจำย้อนหลัง</div>
               <div class="section-sub">รวม note เก่ากับบันทึก cloud ของหุ้นที่เลือก</div>
             </div>
           </div>
@@ -945,7 +1093,7 @@ function renderStockContext() {
   document.getElementById('chartBox').innerHTML = stock.chart_b64
     ? `<img src="data:image/jpeg;base64,${stock.chart_b64}" alt="${esc(stock.ticker)} chart">`
     : '<div class="empty">ไม่พบกราฟใน archive วันนี้</div>';
-  const news = (stock.news || []).slice(0, 4);
+  const news = stockNews(stock);
   document.getElementById('newsList').innerHTML = news.length ? news.map(item => `
     <article class="news-item">
       <div class="news-title">${esc(thaiNewsText(item.title))}</div>
@@ -953,6 +1101,9 @@ function renderStockContext() {
     </article>
   `).join('') : '<div class="empty">ยังไม่มีข่าวของหุ้นนี้ใน archive</div>';
   document.getElementById('review1d').textContent = Number(stock.pct_change || 0) === 0 ? 'รอผล' : signedPct(stock.pct_change);
+}
+function stockNews(stock = selectedStock()) {
+  return (stock?.news || []).slice(0, 8);
 }
 function renderControls() {
   document.getElementById('emotionChips').innerHTML = emotions.map(item =>
@@ -973,7 +1124,7 @@ function renderEntryPreview() {
     <div class="entry-meta">
       <span>${esc(stock?.ticker)}</span><span>${PHASE_LABELS[state.phase] || 'รายวัน'}</span><span>${esc(state.emotion)}</span><span>${esc(state.intent)}</span><span>${state.confidence}/10</span><span>${esc(review)}</span>
     </div>
-    <div class="entry-line"><strong>Thesis:</strong> ${esc(thesis)}</div>
+    <div class="entry-line"><strong>แนวคิด:</strong> ${esc(thesis)}</div>
     <div class="entry-line"><strong>ถ้าคิดผิด:</strong> ${esc(invalid)}</div>
     <div class="entry-line"><strong>ความเสี่ยง:</strong> ${esc(risk)}</div>
   `;
