@@ -45,6 +45,8 @@ GROQ_MODEL      = "llama-3.1-8b-instant"   # higher daily token limit สำห�
 REPORT_TO        = os.getenv("GMAIL_USER", "patiphan.injob@gmail.com")
 TOP_N            = 100
 CALL_DELAY = float(os.getenv("GROQ_CALL_DELAY", "35"))
+RATE_LIMIT_RETRIES = int(os.getenv("GROQ_RATE_LIMIT_RETRIES", "0"))
+RATE_LIMIT_FALLBACK = os.getenv("GROQ_RATE_LIMIT_FALLBACK", "1").strip().lower() not in {"0", "false", "no"}
 GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
@@ -88,6 +90,11 @@ def build_archive_health(payload: dict, expected_total: int = TOP_N) -> dict:
         if len(s.get("homework_checklist") or []) != 6
     ]
     zero_market_cap = [s.get("ticker", "?") for s in stocks if not s.get("market_cap")]
+    fallback_analysis = [
+        s.get("ticker", "?")
+        for s in stocks
+        if str(s.get("analysis_status") or "").startswith("fallback")
+    ]
     missing_market_indices = [
         key for key in ("dji", "spx", "ixic") if key not in market_indices
     ]
@@ -103,6 +110,8 @@ def build_archive_health(payload: dict, expected_total: int = TOP_N) -> dict:
         issues.append(f"missing_market_indices {','.join(missing_market_indices)}")
     if zero_market_cap:
         issues.append(f"zero_market_cap {len(zero_market_cap)}")
+    if fallback_analysis:
+        issues.append(f"fallback_analysis {len(fallback_analysis)}")
 
     return {
         "status": "ok" if not issues else "warning",
@@ -113,12 +122,14 @@ def build_archive_health(payload: dict, expected_total: int = TOP_N) -> dict:
             "charts": len(stocks) - len(missing_charts),
             "homework_complete": len(stocks) - len(incomplete_homework),
             "market_indices": len(market_indices),
+            "fallback_analysis": len(fallback_analysis),
         },
         "missing": {
             "charts": missing_charts[:20],
             "homework": incomplete_homework[:20],
             "market_indices": missing_market_indices,
             "market_cap": zero_market_cap[:20],
+            "fallback_analysis": fallback_analysis[:20],
         },
     }
 
@@ -759,6 +770,34 @@ DNA ของคุณ (ใช้คำศัพท์และหลักก�
         return fallback
 
 
+def build_rate_limit_fallback_analysis(stock: dict, knowledge_ctx: str = "", user_notes: list = None, error: str = "") -> dict:
+    """Build deterministic analysis when Groq rate limits would otherwise stop the run."""
+    direction = "ขึ้น" if stock.get("pct_change", 0) > 0 else "ลง"
+    homework = _normalize_homework_analysis(
+        stock,
+        stock.get("cached_homework") or _fallback_homework_analysis(stock, knowledge_ctx, user_notes),
+        knowledge_ctx,
+        user_notes,
+    )
+    data = {
+        "interpretation": (
+            f"{stock['ticker']} ใช้ข้อมูลราคา ข่าว และ framework สำรอง เพราะ Groq rate limit "
+            f"ระหว่างรันอัตโนมัติ ราคาวันนี้{direction} {abs(stock.get('pct_change', 0)):.1f}% "
+            f"ในกลุ่ม {stock.get('sector', 'N/A')} จึงควรใช้เป็นการบ้านเบื้องต้นและกลับมาตรวจซ้ำเมื่อ API พร้อม"
+        ),
+        "beer_view": (
+            f"Beer view แบบ self-healing: ยังบันทึกการบ้านของ {stock['ticker']} ให้ครบก่อน "
+            "เพื่อไม่ให้รายงานทั้งวันล้มจาก API limit จุดเดียว แต่ให้ถือว่าน้ำหนักความมั่นใจต่ำกว่าบทวิเคราะห์จาก Groq"
+        ),
+        "homework_analysis": homework,
+        "note_review": None,
+        "analysis_status": "fallback_rate_limit",
+    }
+    if error:
+        data["analysis_error"] = error
+    return data
+
+
 def _save_homework_to_cache(ticker: str, homework: list):
     """Saves generated Chapter 34 homework to the metadata cache."""
     cache_file = Path("stock_metadata_cache.json")
@@ -999,6 +1038,7 @@ def save_to_web(
                 "tv_url":     s["stock"]["tv_url"],
                 "news":       s["stock"]["news_list"],
                 "analysis":   f"{s['analysis_data'].get('interpretation','')}\n\nBeer มองว่า: {s['analysis_data'].get('beer_view','')}",
+                "analysis_status": s["analysis_data"].get("analysis_status", ""),
                 "homework_checklist": s["analysis_data"].get("homework_analysis", []),
                 "chart_b64":  __import__("base64").b64encode(s["chart_bytes"]).decode() if s.get("chart_bytes") else "",
             }
@@ -1208,7 +1248,12 @@ def send_email(html: str, subject: str, images: list = None):
 
 def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings, embed_model, query_vector, user_notes_db):
     """Worker function สำหรับ parallel processing"""
-    for attempt in range(3):
+    stock = None
+    ctx = ""
+    my_notes = []
+    max_rate_limit_retries = max(0, RATE_LIMIT_RETRIES)
+
+    for attempt in range(max_rate_limit_retries + 1):
         try:
             stock     = _safe_get_stock_context(ticker, rank, mktcap=mktcap, hist_df=hist_df)
             ctx       = search_knowledge(query, posts, embeddings, embed_model, query_vector=query_vector)
@@ -1234,9 +1279,30 @@ def process_single_stock(ticker, rank, mktcap, hist_df, query, posts, embeddings
         except Exception as e:
             err = str(e)
             if "rate_limit" in err.lower() or "429" in err:
-                wait = 65 * (attempt + 1)
-                safe_print(f"   [{rank:3d}] {ticker:<8} → ⏳ rate limit — รอ {wait}s...")
-                time.sleep(wait)
+                if attempt < max_rate_limit_retries:
+                    wait = 65 * (attempt + 1)
+                    safe_print(f"   [{rank:3d}] {ticker:<8} → ⏳ rate limit — รอ {wait}s...")
+                    time.sleep(wait)
+                    continue
+                if RATE_LIMIT_FALLBACK and stock is not None:
+                    safe_print(f"   [{rank:3d}] {ticker:<8} → 🛟 rate limit — ใช้ fallback homework")
+                    analysis_data = build_rate_limit_fallback_analysis(
+                        stock,
+                        ctx,
+                        my_notes if my_notes else None,
+                        err,
+                    )
+                    chart_bytes = generate_mini_chart_b64(ticker, hist_df=hist_df)
+                    cid = f"chart_{ticker.replace('-','_').replace('.','_')}"
+                    return {
+                        "stock": stock,
+                        "analysis_data": analysis_data,
+                        "chart_cid": cid,
+                        "chart_bytes": chart_bytes,
+                        "user_notes": my_notes or None,
+                    }
+                safe_print(f"   [{rank:3d}] {ticker:<8} → ❌ rate limit และ fallback ถูกปิด")
+                return None
             else:
                 import traceback
                 safe_print(f"   [{rank:3d}] {ticker:<8} → ❌ FATAL ERROR:\n{traceback.format_exc()}")
