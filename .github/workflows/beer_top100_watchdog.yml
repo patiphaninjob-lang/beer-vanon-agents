@@ -1,0 +1,83 @@
+name: Beer Top 100 Watchdog (US)
+
+on:
+  schedule:
+    - cron: '47 13 * * 1-5'      # 20:47 Bangkok, checks premarket run
+    - cron: '47 1 * * 2-6'       # 08:47 Bangkok, checks prior UTC postmarket run
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: Report phase to check
+        required: true
+        type: choice
+        options:
+          - premarket
+          - postmarket
+      report_date:
+        description: Optional report date in YYYY-MM-DD format
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Select report target
+        id: target
+        run: |
+          requested_phase="${{ github.event.inputs.phase }}"
+          requested_date="${{ github.event.inputs.report_date }}"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            phase="$requested_phase"
+            report_date="${requested_date:-$(date -u +%F)}"
+          elif [ "${{ github.event.schedule }}" = "47 13 * * 1-5" ]; then
+            phase="premarket"
+            report_date="$(date -u +%F)"
+          else
+            phase="postmarket"
+            report_date="$(date -u -d 'yesterday' +%F)"
+          fi
+
+          echo "phase=$phase" >> "$GITHUB_OUTPUT"
+          echo "report_date=$report_date" >> "$GITHUB_OUTPUT"
+          echo "Checking phase=$phase report_date=$report_date"
+
+      - name: Evaluate report archive
+        id: evaluate
+        run: python scripts/us_report_watchdog.py --phase "${{ steps.target.outputs.phase }}" --date "${{ steps.target.outputs.report_date }}"
+
+      - name: Dispatch recovery run
+        if: steps.evaluate.outputs.dispatch == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'beer_top100_agent.yml',
+              ref: 'main',
+              inputs: {
+                phase: '${{ steps.target.outputs.phase }}',
+                report_date: '${{ steps.target.outputs.report_date }}',
+                recovery_reason: 'watchdog_${{ steps.evaluate.outputs.reason }}'
+              }
+            })
+
+      - name: Watchdog summary
+        run: |
+          if [ "${{ steps.evaluate.outputs.dispatch }}" = "true" ]; then
+            echo "Recovery dispatched: ${{ steps.evaluate.outputs.reason }}"
+          else
+            echo "Archive is healthy: ${{ steps.evaluate.outputs.archive }}"
+          fi
