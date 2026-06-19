@@ -36,6 +36,47 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
         self.assertEqual(result["stock"]["name"], "FAIL")
         self.assertEqual(len(result["analysis_data"]["homework_analysis"]), 6)
 
+    def test_process_single_stock_uses_fallback_when_groq_rate_limited(self):
+        stock = {
+            "ticker": "RLIM",
+            "name": "Rate Limited",
+            "sector": "Technology",
+            "price": 123.45,
+            "pct_change": 1.2,
+            "rank": 3,
+            "volume": 1000000,
+            "market_cap": 1000000000,
+            "pe_ratio": 25.0,
+            "news": "rate limit test news",
+            "news_list": [],
+            "tv_url": "https://www.tradingview.com/symbols/NASDAQ-RLIM/",
+        }
+
+        with patch.object(top100, "_safe_get_stock_context", return_value=stock):
+            with patch.object(top100, "search_knowledge", return_value="knowledge ctx"):
+                with patch.object(top100, "combined_analysis", side_effect=RuntimeError("429 rate_limit")):
+                    with patch.object(top100, "generate_mini_chart_b64", return_value=b"chart"):
+                        with patch.object(top100, "RATE_LIMIT_RETRIES", 0):
+                            with patch.object(top100, "RATE_LIMIT_FALLBACK", True):
+                                result = top100.process_single_stock(
+                                    ticker="RLIM",
+                                    rank=3,
+                                    mktcap=1000000000,
+                                    hist_df=None,
+                                    query="query",
+                                    posts=[],
+                                    embeddings=None,
+                                    embed_model=None,
+                                    query_vector=None,
+                                    user_notes_db={},
+                                )
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result["stock"]["ticker"], "RLIM")
+        self.assertEqual(result["analysis_data"]["analysis_status"], "fallback_rate_limit")
+        self.assertEqual(len(result["analysis_data"]["homework_analysis"]), 6)
+        self.assertEqual(result["chart_bytes"], b"chart")
+
     def test_completion_email_includes_archive_link(self):
         html = top100.build_completion_email(
             "Tuesday, 26 May 2026",
@@ -92,6 +133,27 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
         self.assertIn("missing_market_indices ixic", health["issues"])
         self.assertIn("zero_market_cap 1", health["issues"])
         self.assertEqual(health["counts"]["charts"], 1)
+
+    def test_archive_health_flags_fallback_analysis(self):
+        payload = {
+            "stocks": [
+                {
+                    "ticker": "RLIM",
+                    "chart_b64": "abc",
+                    "homework_checklist": [{}] * 6,
+                    "market_cap": 100,
+                    "analysis_status": "fallback_rate_limit",
+                }
+            ],
+            "market_indices": {"dji": {}, "spx": {}, "ixic": {}},
+        }
+
+        health = top100.build_archive_health(payload, expected_total=1)
+
+        self.assertEqual(health["status"], "warning")
+        self.assertIn("fallback_analysis 1", health["issues"])
+        self.assertEqual(health["counts"]["fallback_analysis"], 1)
+        self.assertEqual(health["missing"]["fallback_analysis"], ["RLIM"])
 
     def test_archive_health_accepts_complete_archive(self):
         payload = {
