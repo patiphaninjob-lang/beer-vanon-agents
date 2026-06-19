@@ -51,9 +51,9 @@ jobs:
       - name: Select report phase
         run: |
           if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 11 * * 1-5" ]; then
-            phase="postmarket"
-          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 23 * * 1-5" ]; then
             phase="premarket"
+          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 23 * * 1-5" ]; then
+            phase="postmarket"
           else
             phase="manual"
           fi
