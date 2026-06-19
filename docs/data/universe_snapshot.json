@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-18T23:33:05.605509+00:00",
+  "updated": "2026-06-19T06:52:33.275128+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 265,
@@ -61,7 +61,7 @@
   "selected": [
     {
       "ticker": "NVDA",
-      "market_cap": 5103122549133.301
+      "market_cap": 5103122490000.0
     },
     {
       "ticker": "GOOGL",
@@ -69,7 +69,7 @@
     },
     {
       "ticker": "GOOG",
-      "market_cap": 4483957417712.306
+      "market_cap": 4483957521982.34
     },
     {
       "ticker": "AAPL",
@@ -125,7 +125,7 @@
     },
     {
       "ticker": "AMD",
-      "market_cap": 876235857417.5128
+      "market_cap": 876235865379.43
     },
     {
       "ticker": "JPM",
@@ -141,7 +141,7 @@
     },
     {
       "ticker": "V",
-      "market_cap": 622326622540.2832
+      "market_cap": 622326641112.0
     },
     {
       "ticker": "XOM",
@@ -157,7 +157,7 @@
     },
     {
       "ticker": "AMAT",
-      "market_cap": 489960292217.0349
+      "market_cap": 489960303847.3
     },
     {
       "ticker": "LRCX",
@@ -257,7 +257,7 @@
     },
     {
       "ticker": "NVS",
-      "market_cap": 280642169706.02075
+      "market_cap": 280642166212.2
     },
     {
       "ticker": "RY",
@@ -305,7 +305,7 @@
     },
     {
       "ticker": "QCOM",
-      "market_cap": 238319940643.31055
+      "market_cap": 238319940000.0
     },
     {
       "ticker": "MUFG",
@@ -345,7 +345,7 @@
     },
     {
       "ticker": "TM",
-      "market_cap": 205963269728.00195
+      "market_cap": 205963266837.12
     },
     {
       "ticker": "APH",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "UBS",
-      "market_cap": 166512499830.4331
+      "market_cap": 166512502331.19998
     },
     {
       "ticker": "ETN",
@@ -457,7 +457,7 @@
     },
     {
       "ticker": "BUD",
-      "market_cap": 156212209355.67493
+      "market_cap": 156212213488.75998
     }
   ]
 }

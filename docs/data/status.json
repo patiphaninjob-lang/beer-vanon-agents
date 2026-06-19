@@ -1,28 +1,51 @@
 {
-  "updated": "2026-06-19T08:34:23.045166",
+  "updated": "2026-06-19T14:50:35.273737",
   "latest": {
-    "date": "2026-06-19",
-    "archive_key": "2026-06-19",
-    "run_phase": "manual",
-    "generated": "2026-06-19T08:34:23.035067",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19",
+    "date": "2026-06-18",
+    "archive_key": "2026-06-18-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-06-19T14:50:35.261370",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-18&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
-        "stock_count 78/100"
+        "fallback_analysis 43"
       ],
       "counts": {
-        "stocks": 78,
+        "stocks": 100,
         "expected_stocks": 100,
-        "charts": 78,
-        "homework_complete": 78,
-        "market_indices": 3
+        "charts": 100,
+        "homework_complete": 100,
+        "market_indices": 3,
+        "fallback_analysis": 43
       },
       "missing": {
         "charts": [],
         "homework": [],
         "market_indices": [],
-        "market_cap": []
+        "market_cap": [],
+        "fallback_analysis": [
+          "AZN",
+          "DELL",
+          "WDC",
+          "BABA",
+          "WFC",
+          "C",
+          "STX",
+          "QCOM",
+          "MUFG",
+          "LIN",
+          "PANW",
+          "IBM",
+          "AXP",
+          "BHP",
+          "ANET",
+          "ADI",
+          "TM",
+          "APH",
+          "MCD",
+          "TD"
+        ]
       }
     }
   },
@@ -50,6 +73,55 @@
           "homework": [],
           "market_indices": [],
           "market_cap": []
+        }
+      }
+    },
+    "postmarket": {
+      "date": "2026-06-18",
+      "archive_key": "2026-06-18-postmarket",
+      "run_phase": "postmarket",
+      "generated": "2026-06-19T14:50:35.261370",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-18&phase=postmarket",
+      "health": {
+        "status": "warning",
+        "issues": [
+          "fallback_analysis 43"
+        ],
+        "counts": {
+          "stocks": 100,
+          "expected_stocks": 100,
+          "charts": 100,
+          "homework_complete": 100,
+          "market_indices": 3,
+          "fallback_analysis": 43
+        },
+        "missing": {
+          "charts": [],
+          "homework": [],
+          "market_indices": [],
+          "market_cap": [],
+          "fallback_analysis": [
+            "AZN",
+            "DELL",
+            "WDC",
+            "BABA",
+            "WFC",
+            "C",
+            "STX",
+            "QCOM",
+            "MUFG",
+            "LIN",
+            "PANW",
+            "IBM",
+            "AXP",
+            "BHP",
+            "ANET",
+            "ADI",
+            "TM",
+            "APH",
+            "MCD",
+            "TD"
+          ]
         }
       }
     }
