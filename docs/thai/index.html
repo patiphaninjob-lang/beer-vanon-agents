@@ -1574,6 +1574,7 @@ async function runAgent(e) {
           request_id: 'WEB_' + Date.now(),
           request_source: 'THAI_DASHBOARD_MANUAL',
           requested_by: 'USER',
+          phase: normalizePhase(selectedPhase) === 'legacy' ? 'manual' : (normalizePhase(selectedPhase) || 'manual'),
           enable_thai: 'true'
         }
       })

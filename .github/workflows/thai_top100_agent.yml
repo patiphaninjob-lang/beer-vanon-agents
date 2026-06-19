@@ -12,6 +12,15 @@ on:
       requested_by:
         description: Who triggered the run
         required: false
+      phase:
+        description: Report phase for manual runs
+        required: false
+        default: manual
+        type: choice
+        options:
+          - manual
+          - premarket
+          - postmarket
       enable_thai:
         description: Set to true to intentionally run the currently disabled Thai agent
         required: true
@@ -42,7 +51,7 @@ jobs:
       - name: Resolve Thai automation gate
         shell: bash
         run: |
-          phase="manual"
+          phase="${{ github.event.inputs.phase || 'manual' }}"
           should_run="false"
           thai_enabled="false"
 
