@@ -48,6 +48,23 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
         self.assertNotIn("เบียร์วิเคราะห์เจาะลึก", html)
         self.assertNotIn("card-homework", html)
 
+    def test_scheduled_report_paths_include_phase_and_manual_archive(self):
+        day = top100.datetime.date(2026, 6, 18)
+        with patch.object(top100, "DATA_DIR", top100.Path("docs/data")):
+            paths = top100.scheduled_report_paths(day, "postmarket")
+
+        self.assertEqual(
+            [str(path).replace("\\", "/") for path in paths],
+            ["docs/data/2026-06-18-postmarket.json", "docs/data/2026-06-18.json"],
+        )
+
+    def test_scheduled_report_paths_deduplicates_manual_archive(self):
+        day = top100.datetime.date(2026, 6, 18)
+        with patch.object(top100, "DATA_DIR", top100.Path("docs/data")):
+            paths = top100.scheduled_report_paths(day, "manual")
+
+        self.assertEqual([str(path).replace("\\", "/") for path in paths], ["docs/data/2026-06-18.json"])
+
     def test_archive_health_detects_missing_artifacts(self):
         payload = {
             "stocks": [
