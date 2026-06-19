@@ -1,28 +1,25 @@
 {
-  "updated": "2026-06-18T20:52:13.839859",
+  "updated": "2026-06-19T08:34:23.045166",
   "latest": {
-    "date": "2026-06-18",
-    "archive_key": "2026-06-18",
+    "date": "2026-06-19",
+    "archive_key": "2026-06-19",
     "run_phase": "manual",
-    "generated": "2026-06-18T20:52:13.827560",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-18",
+    "generated": "2026-06-19T08:34:23.035067",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19",
     "health": {
       "status": "warning",
       "issues": [
-        "stock_count 79/100",
-        "missing_charts 1"
+        "stock_count 78/100"
       ],
       "counts": {
-        "stocks": 79,
+        "stocks": 78,
         "expected_stocks": 100,
         "charts": 78,
-        "homework_complete": 79,
+        "homework_complete": 78,
         "market_indices": 3
       },
       "missing": {
-        "charts": [
-          "SPCX"
-        ],
+        "charts": [],
         "homework": [],
         "market_indices": [],
         "market_cap": []
@@ -31,28 +28,25 @@
   },
   "phases": {
     "manual": {
-      "date": "2026-06-18",
-      "archive_key": "2026-06-18",
+      "date": "2026-06-19",
+      "archive_key": "2026-06-19",
       "run_phase": "manual",
-      "generated": "2026-06-18T20:52:13.827560",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-18",
+      "generated": "2026-06-19T08:34:23.035067",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19",
       "health": {
         "status": "warning",
         "issues": [
-          "stock_count 79/100",
-          "missing_charts 1"
+          "stock_count 78/100"
         ],
         "counts": {
-          "stocks": 79,
+          "stocks": 78,
           "expected_stocks": 100,
           "charts": 78,
-          "homework_complete": 79,
+          "homework_complete": 78,
           "market_indices": 3
         },
         "missing": {
-          "charts": [
-            "SPCX"
-          ],
+          "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": []
