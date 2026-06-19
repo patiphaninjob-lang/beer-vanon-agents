@@ -68,6 +68,14 @@ def archive_key_for_date(day: datetime.date, phase: str = REPORT_PHASE) -> str:
 def scheduled_report_action(existing_data: dict) -> str:
     if not existing_data or existing_data.get("test_run"):
         return "run"
+    health = existing_data.get("health") or {}
+    issues = health.get("issues") or []
+    blocking_issues = [
+        issue for issue in issues
+        if not str(issue).startswith("fallback_analysis")
+    ]
+    if blocking_issues:
+        return "run"
     return "skip"
 
 def scheduled_report_paths(day: datetime.date, phase: str = REPORT_PHASE) -> list[Path]:
@@ -1338,6 +1346,7 @@ def main():
 
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
+    is_recovery = RUN_REQUEST_SOURCE.startswith("watchdog")
     today_file_str = today.strftime("%Y-%m-%d")
     report_paths = scheduled_report_paths(today)
     report_path = report_paths[0]
@@ -1350,7 +1359,7 @@ def main():
             candidate_data = json.loads(candidate_path.read_text(encoding="utf-8"))
             if candidate_path == report_path:
                 existing_data = candidate_data
-            report_action = scheduled_report_action(candidate_data) if is_scheduled else "run"
+            report_action = scheduled_report_action(candidate_data) if (is_scheduled or is_recovery) else "run"
             if report_action == "skip":
                 safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว: {candidate_path.name}")
                 safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")

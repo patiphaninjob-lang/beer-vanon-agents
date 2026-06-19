@@ -106,6 +106,24 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
 
         self.assertEqual([str(path).replace("\\", "/") for path in paths], ["docs/data/2026-06-18.json"])
 
+    def test_scheduled_report_action_reruns_unhealthy_archive(self):
+        existing_data = {
+            "health": {
+                "issues": ["stock_count 79/100", "missing_charts 1"],
+            },
+        }
+
+        self.assertEqual(top100.scheduled_report_action(existing_data), "run")
+
+    def test_scheduled_report_action_skips_fallback_only_archive(self):
+        existing_data = {
+            "health": {
+                "issues": ["fallback_analysis 3"],
+            },
+        }
+
+        self.assertEqual(top100.scheduled_report_action(existing_data), "skip")
+
     def test_archive_health_detects_missing_artifacts(self):
         payload = {
             "stocks": [
