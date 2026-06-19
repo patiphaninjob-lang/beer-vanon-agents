@@ -1877,7 +1877,7 @@ function pickDate(date) {
 
 function pickPhase(phase) {
   selectedPhase = normalizePhase(phase) || 'postmarket';
-  if (selectedDate) loadDate(selectedDate, selectedPhase);
+  if (selectedDate) loadDate(selectedDate, selectedPhase, true);
 }
 
 async function fetchArchive(date, phase) {
@@ -1900,17 +1900,18 @@ function updatePhaseSelector(phases, activePhase) {
   const sel = document.getElementById('phaseSel');
   if (!sel) return;
   const active = normalizePhase(activePhase) || 'legacy';
-  const ordered = ['postmarket', 'premarket', 'legacy'].filter(p => phases.includes(p) || p === active);
-  sel.innerHTML = ordered.map(p => `<option value="${p}" ${p === active ? 'selected' : ''} ${phases.includes(p) ? '' : 'disabled'}>${phaseLabel(p)}</option>`).join('');
-  sel.disabled = ordered.length <= 1;
+  const ordered = ['postmarket', 'premarket', 'legacy'];
+  sel.innerHTML = ordered.map(p => `<option value="${p}" ${p === active ? 'selected' : ''}>${phaseLabel(p)}</option>`).join('');
+  sel.disabled = false;
 }
 
-async function loadDate(date, preferredPhase = selectedPhase) {
+async function loadDate(date, preferredPhase = selectedPhase, keepPreferred = false) {
   document.getElementById('grid').innerHTML = '<div class="state-msg">กำลังโหลด...</div>';
   try {
     const phases = await detectPhases(date);
     if (!phases.length) throw new Error(`ไม่พบข้อมูลวัน ${date}`);
-    const preferred = normalizePhase(preferredPhase) || (phases.includes('postmarket') ? 'postmarket' : phases[0]);
+    const requestedPhase = normalizePhase(preferredPhase);
+    const preferred = requestedPhase || (phases.includes('postmarket') ? 'postmarket' : phases[0]);
     const order = [preferred, ...phases.filter(p => p !== preferred)];
     let loaded = null;
     for (const phase of order) {
@@ -1921,7 +1922,7 @@ async function loadDate(date, preferredPhase = selectedPhase) {
 
     currentData = loaded.data;
     selectedDate = date;
-    selectedPhase = normalizePhase(currentData.run_phase) || loaded.phase;
+    selectedPhase = keepPreferred && requestedPhase ? requestedPhase : (normalizePhase(currentData.run_phase) || loaded.phase);
     hydrateJournalWatchlist();
     document.getElementById('dateBtnLabel').textContent = fmtDate(date);
     updatePhaseSelector(phases, selectedPhase);
