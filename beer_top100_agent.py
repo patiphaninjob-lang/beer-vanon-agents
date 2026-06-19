@@ -68,6 +68,14 @@ def scheduled_report_action(existing_data: dict) -> str:
         return "run"
     return "skip"
 
+def scheduled_report_paths(day: datetime.date, phase: str = REPORT_PHASE) -> list[Path]:
+    date_key = day.strftime("%Y-%m-%d")
+    paths = [DATA_DIR / f"{archive_key_for_date(day, phase)}.json"]
+    manual_path = DATA_DIR / f"{date_key}.json"
+    if manual_path not in paths:
+        paths.append(manual_path)
+    return paths
+
 def build_archive_health(payload: dict, expected_total: int = TOP_N) -> dict:
     stocks = payload.get("stocks", [])
     market_indices = payload.get("market_indices") or {}
@@ -1265,16 +1273,20 @@ def main():
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
     today_file_str = today.strftime("%Y-%m-%d")
-    report_key = archive_key_for_date(today)
-    report_path = DATA_DIR / f"{report_key}.json"
+    report_paths = scheduled_report_paths(today)
+    report_path = report_paths[0]
 
     existing_data = {}
-    if report_path.exists():
+    for candidate_path in report_paths:
+        if not candidate_path.exists():
+            continue
         try:
-            existing_data = json.loads(report_path.read_text(encoding="utf-8"))
-            report_action = scheduled_report_action(existing_data) if is_scheduled else "run"
+            candidate_data = json.loads(candidate_path.read_text(encoding="utf-8"))
+            if candidate_path == report_path:
+                existing_data = candidate_data
+            report_action = scheduled_report_action(candidate_data) if is_scheduled else "run"
             if report_action == "skip":
-                safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว (คุณน่าจะกดรันเองไปแล้ว)")
+                safe_print(f"⚠️ [Safety Net] ตรวจพบรายงานของวันนี้ ({today_file_str}) แล้ว: {candidate_path.name}")
                 safe_print("⏭️ ข้ามการรันอัตโนมัติเพื่อไม่ให้ส่งเมลซ้ำซ้อน")
                 return
         except Exception:
