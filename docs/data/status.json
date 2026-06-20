@@ -1,15 +1,15 @@
 {
-  "updated": "2026-06-19T22:22:00.612578",
+  "updated": "2026-06-20T08:18:12.488705",
   "latest": {
-    "date": "2026-06-19",
-    "archive_key": "2026-06-19-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-06-19T22:22:00.599721",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19&phase=premarket",
+    "date": "2026-06-20",
+    "archive_key": "2026-06-20-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-06-20T08:18:12.474295",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-20&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
-        "fallback_analysis 31"
+        "fallback_analysis 16"
       ],
       "counts": {
         "stocks": 100,
@@ -17,7 +17,7 @@
         "charts": 100,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 31
+        "fallback_analysis": 16
       },
       "missing": {
         "charts": [],
@@ -25,26 +25,22 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "AXP",
-          "BHP",
-          "SHEL",
-          "ANET",
-          "ADI",
-          "APH",
-          "MCD",
-          "TD",
-          "TMUS",
-          "PEP",
-          "SAN",
-          "NVO",
-          "VZ",
-          "SAP",
           "TJX",
           "NEE",
           "DIS",
-          "TTE",
           "BA",
-          "CRWD"
+          "CRWD",
+          "TMO",
+          "GLW",
+          "UBS",
+          "ETN",
+          "BLK",
+          "RIO",
+          "SCCO",
+          "SCHW",
+          "DE",
+          "APP",
+          "BUD"
         ]
       }
     }
@@ -77,15 +73,15 @@
       }
     },
     "postmarket": {
-      "date": "2026-06-18",
-      "archive_key": "2026-06-18-postmarket",
+      "date": "2026-06-20",
+      "archive_key": "2026-06-20-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-06-19T14:50:35.261370",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-18&phase=postmarket",
+      "generated": "2026-06-20T08:18:12.474295",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-20&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
-          "fallback_analysis 43"
+          "fallback_analysis 16"
         ],
         "counts": {
           "stocks": 100,
@@ -93,7 +89,7 @@
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 43
+          "fallback_analysis": 16
         },
         "missing": {
           "charts": [],
@@ -101,26 +97,22 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "AZN",
-            "DELL",
-            "WDC",
-            "BABA",
-            "WFC",
-            "C",
-            "STX",
-            "QCOM",
-            "MUFG",
-            "LIN",
-            "PANW",
-            "IBM",
-            "AXP",
-            "BHP",
-            "ANET",
-            "ADI",
-            "TM",
-            "APH",
-            "MCD",
-            "TD"
+            "TJX",
+            "NEE",
+            "DIS",
+            "BA",
+            "CRWD",
+            "TMO",
+            "GLW",
+            "UBS",
+            "ETN",
+            "BLK",
+            "RIO",
+            "SCCO",
+            "SCHW",
+            "DE",
+            "APP",
+            "BUD"
           ]
         }
       }
