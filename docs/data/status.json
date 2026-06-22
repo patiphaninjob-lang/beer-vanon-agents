@@ -1,51 +1,28 @@
 {
-  "updated": "2026-06-20T14:03:32.478618",
+  "updated": "2026-06-23T00:00:12.743447",
   "latest": {
-    "date": "2026-06-19",
-    "archive_key": "2026-06-19-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-06-20T14:03:32.466524",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19&phase=postmarket",
+    "date": "2026-06-22",
+    "archive_key": "2026-06-22-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-06-23T00:00:12.729349",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-22&phase=premarket",
     "health": {
-      "status": "warning",
-      "issues": [
-        "fallback_analysis 52"
-      ],
+      "status": "ok",
+      "issues": [],
       "counts": {
         "stocks": 100,
         "expected_stocks": 100,
         "charts": 100,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 52
+        "fallback_analysis": 0
       },
       "missing": {
         "charts": [],
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": [
-          "SNDK",
-          "GS",
-          "PLTR",
-          "TXN",
-          "MRK",
-          "NVS",
-          "RY",
-          "PM",
-          "MRVL",
-          "AZN",
-          "DELL",
-          "WDC",
-          "WFC",
-          "RTX",
-          "C",
-          "STX",
-          "QCOM",
-          "MUFG",
-          "LIN",
-          "PANW"
-        ]
+        "fallback_analysis": []
       }
     }
   },
@@ -126,51 +103,28 @@
       }
     },
     "premarket": {
-      "date": "2026-06-19",
-      "archive_key": "2026-06-19-premarket",
+      "date": "2026-06-22",
+      "archive_key": "2026-06-22-premarket",
       "run_phase": "premarket",
-      "generated": "2026-06-19T22:22:00.599721",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-19&phase=premarket",
+      "generated": "2026-06-23T00:00:12.729349",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-22&phase=premarket",
       "health": {
-        "status": "warning",
-        "issues": [
-          "fallback_analysis 31"
-        ],
+        "status": "ok",
+        "issues": [],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 31
+          "fallback_analysis": 0
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": [
-            "AXP",
-            "BHP",
-            "SHEL",
-            "ANET",
-            "ADI",
-            "APH",
-            "MCD",
-            "TD",
-            "TMUS",
-            "PEP",
-            "SAN",
-            "NVO",
-            "VZ",
-            "SAP",
-            "TJX",
-            "NEE",
-            "DIS",
-            "TTE",
-            "BA",
-            "CRWD"
-          ]
+          "fallback_analysis": []
         }
       }
     }
