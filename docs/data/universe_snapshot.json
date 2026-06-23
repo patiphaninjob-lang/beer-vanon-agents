@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-23T00:21:32.725209+00:00",
+  "updated": "2026-06-23T05:53:49.353996+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 266,
@@ -277,7 +277,7 @@
     },
     {
       "ticker": "MRVL",
-      "market_cap": 269315915185.54688
+      "market_cap": 269547787014.29407
     },
     {
       "ticker": "WFC",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 247528873826.61328
+      "market_cap": 245315495166.625
     },
     {
       "ticker": "RTX",
@@ -432,12 +432,12 @@
       "market_cap": 163265794074.90308
     },
     {
-      "ticker": "RIO",
-      "market_cap": 161584414715.94556
+      "ticker": "DE",
+      "market_cap": 161683525186.23767
     },
     {
-      "ticker": "DE",
-      "market_cap": 161581850480.04608
+      "ticker": "RIO",
+      "market_cap": 161584414715.94556
     },
     {
       "ticker": "SCHW",
