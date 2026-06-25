@@ -1,11 +1,11 @@
 {
-  "updated": "2026-06-25T08:20:30.883431",
+  "updated": "2026-06-25T21:25:45.493705",
   "latest": {
     "date": "2026-06-25",
-    "archive_key": "2026-06-25-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-06-25T08:20:30.870425",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-25&phase=postmarket",
+    "archive_key": "2026-06-25-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-06-25T21:25:45.476296",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-25&phase=premarket",
     "health": {
       "status": "ok",
       "issues": [],
@@ -80,32 +80,28 @@
       }
     },
     "premarket": {
-      "date": "2026-06-24",
-      "archive_key": "2026-06-24-premarket",
+      "date": "2026-06-25",
+      "archive_key": "2026-06-25-premarket",
       "run_phase": "premarket",
-      "generated": "2026-06-24T21:27:30.332809",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-24&phase=premarket",
+      "generated": "2026-06-25T21:25:45.476296",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-25&phase=premarket",
       "health": {
-        "status": "warning",
-        "issues": [
-          "fallback_analysis 1"
-        ],
+        "status": "ok",
+        "issues": [],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 1
+          "fallback_analysis": 0
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": [
-            "INTC"
-          ]
+          "fallback_analysis": []
         }
       }
     }

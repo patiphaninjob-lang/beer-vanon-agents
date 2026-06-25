@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-25T00:22:31.212166+00:00",
+  "updated": "2026-06-25T13:27:44.334061+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 264,
@@ -293,7 +293,7 @@
     },
     {
       "ticker": "MRVL",
-      "market_cap": 242265573657.00494
+      "market_cap": 242057170678.71094
     },
     {
       "ticker": "BABA",
@@ -312,12 +312,12 @@
       "market_cap": 232486907958.98438
     },
     {
-      "ticker": "MUFG",
-      "market_cap": 223394838044.02036
+      "ticker": "STX",
+      "market_cap": 224724914217.0
     },
     {
-      "ticker": "STX",
-      "market_cap": 222715446304.0
+      "ticker": "MUFG",
+      "market_cap": 223394838044.02036
     },
     {
       "ticker": "WDC",
@@ -425,7 +425,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 162266949661.5
+      "market_cap": 162164908068.75
     },
     {
       "ticker": "UBS",
