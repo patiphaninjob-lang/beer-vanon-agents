@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-26T01:30:31.441850+00:00",
+  "updated": "2026-06-26T13:21:55.203940+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -289,7 +289,7 @@
     },
     {
       "ticker": "MRVL",
-      "market_cap": 246046256542.96875
+      "market_cap": 246258093988.30396
     },
     {
       "ticker": "IBM",
@@ -313,7 +313,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 231989866347.52002
+      "market_cap": 229915435952.51562
     },
     {
       "ticker": "BABA",
@@ -417,7 +417,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 170265732829.10767
+      "market_cap": 170372871832.08643
     },
     {
       "ticker": "DIS",
