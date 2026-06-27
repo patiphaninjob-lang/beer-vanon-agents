@@ -24,7 +24,7 @@
       flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
     }
     .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
-    .version-tag { font-size: 0.6em; color: #4b5563; font-weight: normal; margin-left: 4px; vertical-align: middle; }
+    .version-tag { font-size: 0.55em; color: #6b7280; font-weight: normal; margin-left: 6px; vertical-align: middle; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); padding: 1px 6px; border-radius: 4px; letter-spacing: 0.5px; }
     .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
     select, input[type=search] {
       background: #21262d; border: 1px solid #30363d; color: #e6edf3;
@@ -39,6 +39,28 @@
       height: 32px; display: flex; align-items: center;
     }
     .settings-btn:hover { border-color: #6366f1; color: #e6edf3; }
+
+    /* ── Watchlist Filter Button ── */
+    .watchlist-filter-btn {
+      background: #21262d; border: 1px solid #30363d; color: #8a8f98;
+      border-radius: 6px; padding: 5px 12px; font-size: 13px; cursor: pointer;
+      height: 32px; display: flex; align-items: center; gap: 5px;
+      transition: all 0.25s ease; white-space: nowrap;
+    }
+    .watchlist-filter-btn:hover {
+      background: rgba(240,185,11,0.08); border-color: rgba(240,185,11,0.4); color: #e6edf3;
+    }
+    .watchlist-filter-btn.active {
+      background: rgba(240,185,11,0.13); border-color: #f0b90b; color: #f0b90b;
+      box-shadow: 0 0 10px rgba(240,185,11,0.2);
+    }
+    .watchlist-filter-btn .wf-count {
+      background: rgba(240,185,11,0.2); color: #f0b90b; font-size: 11px;
+      padding: 0 5px; border-radius: 8px; min-width: 18px; text-align: center;
+    }
+    .watchlist-filter-btn.active .wf-count {
+      background: rgba(240,185,11,0.35);
+    }
 
     .run-agent-btn {
       background: #238636; border: 1px solid #2ea44f; color: #fff;
@@ -983,7 +1005,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 </div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag">v2.1.0</span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -1004,6 +1026,9 @@
       <option value="loss">% เปลี่ยนแปลง ↓</option>
       <option value="notes">มีโน้ตของฉัน</option>
     </select>
+    <button type="button" id="watchlistFilterBtn" class="watchlist-filter-btn" onclick="toggleWatchlistFilter()" title="แสดงเฉพาะรายการติดตาม">
+      ★ ติดตาม <span class="wf-count" id="wfCount">0</span>
+    </button>
     <span class="count-badge" id="countBadge"></span>
     <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า sync">⚙️</button>
   </div>
@@ -1088,6 +1113,7 @@ const NEWS_TRANSLATIONS = {
   "These companies pay and raise dividends through thick and thin.": "บริษัทเหล่านี้จ่ายและเพิ่มปันผลได้แม้ในช่วงตลาดผันผวน"
 };
 let journalWatchlist = [];
+let watchlistFilterActive = false;
 let pendingDashboardRestore = null;
 let dashboardRestoreApplied = false;
 let dashboardScrollSaveTimer = null;
@@ -1184,6 +1210,7 @@ function saveDashboardViewState() {
     search: document.getElementById('searchBox')?.value || '',
     sector: document.getElementById('sectorSel')?.value || '',
     sort: document.getElementById('sortSel')?.value || 'rank',
+    watchlistFilter: watchlistFilterActive,
     scrollY: window.scrollY || 0,
     anchorTicker: anchor.ticker,
     anchorOffset: anchor.offset,
@@ -1203,6 +1230,11 @@ function restoreDashboardControlsIfNeeded() {
   if (sortSel && saved.sort) sortSel.value = saved.sort;
   if (sectorSel && saved.sector && [...sectorSel.options].some(opt => opt.value === saved.sector)) {
     sectorSel.value = saved.sector;
+  }
+  if (saved.watchlistFilter) {
+    watchlistFilterActive = true;
+    const btn = document.getElementById('watchlistFilterBtn');
+    if (btn) btn.classList.add('active');
   }
 }
 function applyDashboardScrollRestore(saved) {
@@ -1312,6 +1344,7 @@ function toggleJournalWatchlist(ticker) {
     showToast(`เพิ่ม ${target} ในหุ้นที่ติดตามแล้ว`);
   }
   saveJournalWatchlist();
+  updateWatchlistBadge();
   renderCards();
 }
 
@@ -2170,6 +2203,7 @@ async function loadDate(date, preferredPhase = selectedPhase, keepPreferred = fa
     selectedDate = date;
     selectedPhase = keepPreferred && requestedPhase ? requestedPhase : (normalizePhase(currentData.run_phase) || loaded.phase);
     hydrateJournalWatchlist();
+    updateWatchlistBadge();
     document.getElementById('dateBtnLabel').textContent = fmtDate(date);
     updatePhaseSelector(phases, selectedPhase);
     updateUrl(date, selectedPhase);
@@ -2453,6 +2487,7 @@ function renderCards() {
   if (search) stocks = stocks.filter(s => s.ticker.toLowerCase().includes(search) || (s.name||'').toLowerCase().includes(search));
   if (sector) stocks = stocks.filter(s => s.sector === sector);
   if (sort === 'notes') stocks = stocks.filter(s => (notesCache[s.ticker]||[]).length > 0);
+  if (watchlistFilterActive) stocks = stocks.filter(s => isJournalWatched(s.ticker));
 
   if (sort === 'gain')  stocks.sort((a,b) => b.pct_change - a.pct_change);
   else if (sort === 'loss')  stocks.sort((a,b) => a.pct_change - b.pct_change);
@@ -2465,6 +2500,19 @@ function renderCards() {
   }
   document.getElementById('grid').innerHTML = stocks.map(cardHTML).join('');
   restoreDashboardScrollIfNeeded();
+}
+
+function toggleWatchlistFilter() {
+  watchlistFilterActive = !watchlistFilterActive;
+  const btn = document.getElementById('watchlistFilterBtn');
+  if (btn) btn.classList.toggle('active', watchlistFilterActive);
+  renderCards();
+  saveDashboardViewState();
+}
+
+function updateWatchlistBadge() {
+  const el = document.getElementById('wfCount');
+  if (el) el.textContent = journalWatchlist.length;
 }
 
 function cardHTML(s) {
