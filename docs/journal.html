@@ -562,10 +562,11 @@
     /* --- Canvas Chart & Marker Tooltip Styles --- */
     .marker-tooltip {
       position: absolute;
-      display: none;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 8px;
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(240, 185, 11, 0.25);
+      border-radius: 12px;
       padding: 10px 14px;
       color: #c9d1d9;
       font-size: 0.8em;
@@ -574,9 +575,14 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       pointer-events: none;
       z-index: 1200;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: scale(0.9) translateY(10px);
     }
     .marker-tooltip.show {
-      display: block;
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
     }
     .tt-header {
       font-weight: bold;
@@ -834,7 +840,10 @@ const state = {
   allCandles: [],
   markers: [],
   selectedKey: null,
-  range: '1y'
+  range: '1y',
+  hoveredKey: null,
+  hoverIntensities: {},
+  animating: false
 };
 const emotions = ['กลัว', 'โลภ', 'FOMO', 'ลังเล', 'มั่นใจแต่ระวัง', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
 const intents = ['ซื้อ', 'ขาย', 'ถือ', 'รอจังหวะ'];
@@ -1542,6 +1551,33 @@ function bindCanvasEvents() {
     }
   });
 
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    
+    if (m) {
+      if (state.hoveredKey !== m.key) {
+        state.hoveredKey = m.key;
+        canvas.style.cursor = 'pointer';
+        startAnimation();
+      }
+    } else {
+      if (state.hoveredKey !== null) {
+        state.hoveredKey = null;
+        canvas.style.cursor = 'default';
+        startAnimation();
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    if (state.hoveredKey !== null) {
+      state.hoveredKey = null;
+      canvas.style.cursor = 'default';
+      startAnimation();
+    }
+  });
+
   const rangeTabs = document.getElementById('rangeTabs');
   if (rangeTabs) {
     rangeTabs.addEventListener('click', e => {
@@ -1569,6 +1605,36 @@ async function setRange(r) {
   document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b.dataset.range === r));
   await loadCandles();
   drawChart();
+}
+
+function startAnimation() {
+  if (state.animating) return;
+  state.animating = true;
+  requestAnimationFrame(animationLoop);
+}
+
+function animationLoop() {
+  let changed = false;
+  for (const m of state.markers) {
+    const key = m.key;
+    const current = state.hoverIntensities[key] || 0;
+    const target = (state.hoveredKey === key) ? 1.0 : 0.0;
+    const diff = target - current;
+    
+    if (Math.abs(diff) > 0.01) {
+      state.hoverIntensities[key] = current + diff * 0.18;
+      changed = true;
+    } else {
+      state.hoverIntensities[key] = target;
+    }
+  }
+  
+  if (changed) {
+    drawChart();
+    requestAnimationFrame(animationLoop);
+  } else {
+    state.animating = false;
+  }
 }
 
 async function getAnalysisForDate(dateStr) {
@@ -1850,36 +1916,97 @@ function drawChart() {
     ctx.fillText(p.toFixed(2), pad.left - 8, y + 4);
   }
 
-  // Candles
-  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
-  state.candles.forEach((c, i) => {
-    const x = xFor(i), up = c.close >= c.open, col = up ? '#26a69a' : '#ef5350';
-    ctx.strokeStyle = col; ctx.fillStyle = col;
-    ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
-    ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
-  });
-
-  // Markers
+  // Candles & Markers
   state.markers = [];
+  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
+  
+  // Find note groups first
   const tickerNotes = state.notes[state.ticker] || [];
+  const notesMap = {};
   groupNotesByDate(tickerNotes).forEach(group => {
     const match = nearestCandle(group.date);
-    if (!match) return;
-    const x = xFor(match.index), y = yFor(match.candle.close), active = state.selectedKey === group.date;
-    
-    const journalNote = group.notes.find(n => n.journal);
-    const emotion = journalNote?.journal?.emotion;
-    const color = getEmotionColor(emotion);
+    if (match) {
+      notesMap[match.index] = { group, candle: match.candle };
+    }
+  });
 
-    ctx.save();
-    ctx.strokeStyle = active ? '#fff' : '#fff7c2';
-    ctx.fillStyle = color;
-    ctx.lineWidth = active ? 3 : 2;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = active ? 20 : 10;
-    ctx.beginPath(); ctx.arc(x, y, active ? 8 : 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.restore();
-    state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
+  state.candles.forEach((c, i) => {
+    const x = xFor(i), up = c.close >= c.open;
+    const isNote = notesMap[i] !== undefined;
+    
+    if (isNote) {
+      const { group } = notesMap[i];
+      const active = state.selectedKey === group.date;
+      const intensity = state.hoverIntensities[group.date] || 0;
+      
+      const wFactor = Math.max(active ? 1.0 : 0.0, intensity);
+      const finalCw = cw + wFactor * 4;
+      
+      // Determine emotion color
+      const journalNote = group.notes.find(n => n.journal);
+      const emotion = journalNote?.journal?.emotion;
+      const emotionColor = getEmotionColor(emotion);
+      
+      // Base colors for up/down 3D cylinder
+      const baseCol = up ? '#26a69a' : '#ef5350';
+      const lightCol = up ? '#4db6ac' : '#e57373';
+      const darkCol = up ? '#00796b' : '#c62828';
+      
+      // 1. Draw High/Low Wick
+      ctx.save();
+      ctx.strokeStyle = baseCol;
+      ctx.lineWidth = wFactor > 0 ? 1.5 : 1;
+      ctx.beginPath();
+      ctx.moveTo(x, yFor(c.high));
+      ctx.lineTo(x, yFor(c.low));
+      ctx.stroke();
+      ctx.restore();
+      
+      // 2. Fill 3D Candle Body
+      const bodyY = Math.min(yFor(c.open), yFor(c.close));
+      const bodyH = Math.max(1, Math.abs(yFor(c.open) - yFor(c.close)));
+      
+      let grad = ctx.createLinearGradient(x - finalCw/2, 0, x + finalCw/2, 0);
+      grad.addColorStop(0, darkCol);
+      grad.addColorStop(0.3, lightCol);
+      grad.addColorStop(0.7, baseCol);
+      grad.addColorStop(1, darkCol);
+      
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      // 3. Draw Neon Glowing Border
+      ctx.save();
+      ctx.strokeStyle = emotionColor;
+      ctx.lineWidth = active ? 2.5 : 1.5;
+      ctx.shadowColor = emotionColor;
+      ctx.shadowBlur = (active ? 15 : 6) + intensity * 10;
+      ctx.strokeRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      // Push marker info for clicking & hovering
+      state.markers.push({
+        x,
+        y: yFor(c.close),
+        r: Math.max(12, finalCw + 4),
+        key: group.date,
+        group,
+        candle: c
+      });
+      
+    } else {
+      // Normal flat candle
+      const col = up ? '#26a69a' : '#ef5350';
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.moveTo(x, yFor(c.high));
+      ctx.lineTo(x, yFor(c.low));
+      ctx.stroke();
+      ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
+    }
   });
 }
 function renderControls() {

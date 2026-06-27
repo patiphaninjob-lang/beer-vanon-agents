@@ -159,10 +159,13 @@
     /* ── Marker Tooltip ── */
     .marker-tooltip {
       position: fixed;
-      background: #fef9c3;
-      color: #374151;
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(240, 185, 11, 0.25);
+      color: #e6edf3;
       padding: 12px 14px;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 13px;
       line-height: 1.5;
       max-width: 320px;
@@ -170,16 +173,16 @@
       overflow-y: auto;
       width: max-content;
       z-index: 1500;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      transform: translateY(10px);
+      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: scale(0.9) translateY(10px);
     }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
     }
     .marker-tooltip::after {
       content: '';
@@ -189,19 +192,19 @@
       margin-left: -7px;
       border-width: 7px;
       border-style: solid;
-      border-color: #fef9c3 transparent transparent transparent;
+      border-color: rgba(22, 27, 34, 0.85) transparent transparent transparent;
     }
     .marker-tooltip.tail-top::after {
       top: auto;
       bottom: 100%;
-      border-color: transparent transparent #fef9c3 transparent;
+      border-color: transparent transparent rgba(22, 27, 34, 0.85) transparent;
     }
-    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
+    .tt-header { color: #f0b90b; font-weight: bold; font-size: 0.9em; margin-bottom: 6px; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
     .tt-section { margin-bottom: 8px; }
     .tt-section:last-child { margin-bottom: 0; }
-    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
-    .tt-label.beer { color: #b45309; }
-    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+    .tt-label { font-weight: 600; color: #8b949e; margin-bottom: 3px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tt-label.beer { color: #f0b90b; }
+    .tt-text { white-space: pre-wrap; font-size: 0.92em; color: #e6edf3; }
 
     @media (max-width: 560px) {
       .marker-tooltip { max-width: calc(100vw - 32px); }
@@ -330,7 +333,10 @@ const state = {
   latestMarketArchive: null,
   latestDate: null,
   selectedKey: null,
-  resizeTimer: null
+  resizeTimer: null,
+  hoveredKey: null,
+  hoverIntensities: {},
+  animating: false
 };
 
 const canvas = document.getElementById('priceCanvas');
@@ -646,37 +652,98 @@ function drawChart() {
     ctx.fillText(p.toFixed(2), pad.left - 8, y + 4);
   }
 
-  // Candles
-  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
-  state.candles.forEach((c, i) => {
-    const x = xFor(i), up = c.close >= c.open, col = up ? '#26a69a' : '#ef5350';
-    ctx.strokeStyle = col; ctx.fillStyle = col;
-    ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
-    ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
-  });
-
-  // Markers
+  // Candles & Markers
   state.markers = [];
+  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
+  
+  // Find note groups first
+  const notesMap = {};
   groupNotesByDate(state.notes).forEach(group => {
     const match = nearestCandle(group.date);
-    if (!match) return;
-    const x = xFor(match.index), y = yFor(match.candle.close), active = state.selectedKey === group.date;
-    
-    // Check if any note in the group is a journal entry to determine color
-    const journalNote = group.notes.find(n => n.journal);
-    const emotion = journalNote?.journal?.emotion;
-    const color = getEmotionColor(emotion);
-    
-    ctx.save();
-    ctx.strokeStyle = active ? '#fff' : '#fff7c2';
-    ctx.fillStyle = color;
-    ctx.lineWidth = active ? 3 : 2;
-    ctx.shadowColor = color;
-    ctx.shadowBlur = active ? 20 : 10;
-    ctx.beginPath(); ctx.arc(x, y, active ? 8 : 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.restore();
-    state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
+    if (match) {
+      notesMap[match.index] = { group, candle: match.candle };
+    }
   });
+
+  state.candles.forEach((c, i) => {
+    const x = xFor(i), up = c.close >= c.open;
+    const isNote = notesMap[i] !== undefined;
+    
+    if (isNote) {
+      const { group } = notesMap[i];
+      const active = state.selectedKey === group.date;
+      const intensity = state.hoverIntensities[group.date] || 0;
+      
+      const wFactor = Math.max(active ? 1.0 : 0.0, intensity);
+      const finalCw = cw + wFactor * 4;
+      
+      // Determine emotion color
+      const journalNote = group.notes.find(n => n.journal);
+      const emotion = journalNote?.journal?.emotion;
+      const emotionColor = getEmotionColor(emotion);
+      
+      // Base colors for up/down 3D cylinder
+      const baseCol = up ? '#26a69a' : '#ef5350';
+      const lightCol = up ? '#4db6ac' : '#e57373';
+      const darkCol = up ? '#00796b' : '#c62828';
+      
+      // 1. Draw High/Low Wick
+      ctx.save();
+      ctx.strokeStyle = baseCol;
+      ctx.lineWidth = wFactor > 0 ? 1.5 : 1;
+      ctx.beginPath();
+      ctx.moveTo(x, yFor(c.high));
+      ctx.lineTo(x, yFor(c.low));
+      ctx.stroke();
+      ctx.restore();
+      
+      // 2. Fill 3D Candle Body
+      const bodyY = Math.min(yFor(c.open), yFor(c.close));
+      const bodyH = Math.max(1, Math.abs(yFor(c.open) - yFor(c.close)));
+      
+      let grad = ctx.createLinearGradient(x - finalCw/2, 0, x + finalCw/2, 0);
+      grad.addColorStop(0, darkCol);
+      grad.addColorStop(0.3, lightCol);
+      grad.addColorStop(0.7, baseCol);
+      grad.addColorStop(1, darkCol);
+      
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      // 3. Draw Neon Glowing Border
+      ctx.save();
+      ctx.strokeStyle = emotionColor;
+      ctx.lineWidth = active ? 2.5 : 1.5;
+      ctx.shadowColor = emotionColor;
+      ctx.shadowBlur = (active ? 15 : 6) + intensity * 10;
+      ctx.strokeRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      // Push marker info for clicking & hovering
+      state.markers.push({
+        x,
+        y: yFor(c.close),
+        r: Math.max(12, finalCw + 4),
+        key: group.date,
+        group,
+        candle: c
+      });
+      
+    } else {
+      // Normal flat candle
+      const col = up ? '#26a69a' : '#ef5350';
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.moveTo(x, yFor(c.high));
+      ctx.lineTo(x, yFor(c.low));
+      ctx.stroke();
+      ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
+    }
+  });
+
   document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
 }
 
@@ -898,6 +965,7 @@ function bindEvents() {
   document.getElementById('rangeTabs').addEventListener('click', e => {
     const b = e.target.closest('button'); if (b) setRange(b.dataset.range);
   });
+
   canvas.addEventListener('click', e => {
     const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
     const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
@@ -909,6 +977,34 @@ function bindEvents() {
 
     if (m) showGroup(m.group, m.candle);
   });
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    
+    if (m) {
+      if (state.hoveredKey !== m.key) {
+        state.hoveredKey = m.key;
+        canvas.style.cursor = 'pointer';
+        startAnimation();
+      }
+    } else {
+      if (state.hoveredKey !== null) {
+        state.hoveredKey = null;
+        canvas.style.cursor = 'default';
+        startAnimation();
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    if (state.hoveredKey !== null) {
+      state.hoveredKey = null;
+      canvas.style.cursor = 'default';
+      startAnimation();
+    }
+  });
+
   window.addEventListener('resize', () => { clearTimeout(state.resizeTimer); state.resizeTimer = setTimeout(drawChart, 150); });
 }
 
@@ -916,6 +1012,36 @@ async function setRange(r) {
   state.range = r;
   document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b.dataset.range === r));
   await loadCandles(); drawChart();
+}
+
+function startAnimation() {
+  if (state.animating) return;
+  state.animating = true;
+  requestAnimationFrame(animationLoop);
+}
+
+function animationLoop() {
+  let changed = false;
+  for (const m of state.markers) {
+    const key = m.key;
+    const current = state.hoverIntensities[key] || 0;
+    const target = (state.hoveredKey === key) ? 1.0 : 0.0;
+    const diff = target - current;
+    
+    if (Math.abs(diff) > 0.01) {
+      state.hoverIntensities[key] = current + diff * 0.18;
+      changed = true;
+    } else {
+      state.hoverIntensities[key] = target;
+    }
+  }
+  
+  if (changed) {
+    drawChart();
+    requestAnimationFrame(animationLoop);
+  } else {
+    state.animating = false;
+  }
 }
 
 async function init() {
