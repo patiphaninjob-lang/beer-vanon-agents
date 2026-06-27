@@ -2126,12 +2126,17 @@ function renderMarketOverview() {
         const notes = (notesCache[ticker] || []).slice().sort((a,b)=>b.id-a.id);
         return `
           <div class="index-card" data-index-key="${k}" style="border-left-color:${color}">
-            <div class="index-card-name">${INDEX_META[k]}</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="index-card-name">${INDEX_META[k]}</div>
+              <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" style="font-size:0.72em; color:#8b949e; text-decoration:none; border:1px solid #30363d; padding:1px 5px; border-radius:4px; font-weight:bold;" title="เปิดกราฟ TradingView">TV ↗</a>
+            </div>
             <div class="index-card-price">${priceStr}</div>
             <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
             ${d.chart_b64 ? `<div class="index-card-chart">
-              <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
-                <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
+              <a onclick="openMarketHistory('${esc(ticker)}')" style="cursor:pointer" title="คลิกเพื่อดูประวัติกราฟราคา">
+                <div class="card-chart-box" data-ticker="${esc(ticker)}" style="position:relative; width:100%; height:80px; background:#0d1117; border:1px solid #21262d; border-radius:6px; overflow:hidden; margin-top:6px;">
+                  <canvas class="card-price-canvas" style="display:block; width:100%; height:80px;"></canvas>
+                </div>
               </a>
             </div>` : ''}
           </div>`;
@@ -2149,6 +2154,7 @@ function renderMarketOverview() {
       </div>
       <div class="index-row">${indexCards}</div>
     </div>`;
+  refreshMiniCharts();
 }
 
 function upgradeMarketOverviewCards() {
@@ -2227,6 +2233,166 @@ function renderMarketNewsSummary() {
       <div class="news-bullets-container">${bulletsHTML}</div>
     </div>
   `;
+}
+
+function groupNotesByDate(notesList) {
+  const groups = {};
+  notesList.forEach(n => {
+    const d = n.date || n.archive_date || '';
+    if (!d) return;
+    if (!groups[d]) groups[d] = { date: d, notes: [] };
+    groups[d].notes.push(n);
+  });
+  return Object.values(groups).sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function drawMiniChart(canvas, candles, myNotes) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  
+  const box = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(box.width * dpr));
+  canvas.height = Math.max(1, Math.floor(box.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  
+  const w = box.width, h = box.height;
+  ctx.clearRect(0, 0, w, h);
+  
+  if (!candles.length) return;
+  
+  const archiveDateStr = currentData?.date || '';
+  const archiveTS = archiveDateStr ? new Date(archiveDateStr + 'T12:00:00').getTime() : Date.now();
+  const rangeTS = 90 * 24 * 60 * 60 * 1000;
+  const startTS = archiveTS - rangeTS;
+  
+  const visibleCandles = candles.filter(c => {
+    const t = new Date(c.date + 'T12:00:00').getTime();
+    return t >= startTS && t <= archiveTS + 86400000;
+  });
+  
+  if (!visibleCandles.length) return;
+  
+  const yMax = Math.max(...visibleCandles.map(c => c.high)) * 1.01;
+  const yMin = Math.min(...visibleCandles.map(c => c.low)) * 0.99;
+  
+  const pad = { left: 4, right: 4, top: 8, bottom: 8 };
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+  
+  const xFor = i => pad.left + (visibleCandles.length === 1 ? plotW / 2 : (i / (visibleCandles.length - 1)) * plotW);
+  const yFor = p => pad.top + ((yMax - p) / (yMax - yMin)) * plotH;
+  
+  const notesMap = {};
+  groupNotesByDate(myNotes).forEach(group => {
+    let best = null, bestDist = Infinity;
+    const target = new Date(group.date + 'T12:00:00').getTime();
+    for (let i = 0; i < visibleCandles.length; i++) {
+      const t = new Date(visibleCandles[i].date + 'T12:00:00').getTime();
+      const dist = Math.abs(t - target);
+      if (dist < bestDist) { best = i; bestDist = dist; }
+    }
+    if (best !== null && bestDist < 24 * 60 * 60 * 1000 * 2) {
+      notesMap[best] = group;
+    }
+  });
+  
+  const cw = Math.max(1.5, Math.min(6, plotW / visibleCandles.length * 0.7));
+  
+  visibleCandles.forEach((c, i) => {
+    const x = xFor(i), up = c.close >= c.open;
+    const isNote = notesMap[i] !== undefined;
+    
+    if (isNote) {
+      const group = notesMap[i];
+      const finalCw = cw + 3;
+      
+      const journalNote = group.notes.find(n => n.journal);
+      const emotion = journalNote?.journal?.emotion;
+      const emotionColor = getEmotionColor(emotion);
+      
+      const baseCol = up ? '#26a69a' : '#ef5350';
+      const lightCol = up ? '#4db6ac' : '#e57373';
+      const darkCol = up ? '#00796b' : '#c62828';
+      
+      ctx.save();
+      ctx.strokeStyle = baseCol;
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+      ctx.restore();
+      
+      const bodyY = Math.min(yFor(c.open), yFor(c.close));
+      const bodyH = Math.max(1, Math.abs(yFor(c.open) - yFor(c.close)));
+      
+      let grad = ctx.createLinearGradient(x - finalCw/2, 0, x + finalCw/2, 0);
+      grad.addColorStop(0, darkCol);
+      grad.addColorStop(0.3, lightCol);
+      grad.addColorStop(0.7, baseCol);
+      grad.addColorStop(1, darkCol);
+      
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      ctx.save();
+      ctx.strokeStyle = emotionColor;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = emotionColor;
+      ctx.shadowBlur = 6;
+      ctx.strokeRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+    } else {
+      const col = up ? '#26a69a' : '#ef5350';
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.save();
+      ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+      ctx.fillRect(x - cw/2, Math.min(yFor(c.open), yFor(c.close)), cw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
+      ctx.restore();
+    }
+  });
+}
+
+async function loadAndDrawMiniChart(canvas, ticker) {
+  const normalized = ticker.replace('.', '-');
+  const myNotes = notesCache[normalized] || notesCache[ticker] || [];
+  try {
+    const response = await fetch(`history-data/${normalized}.json`);
+    if (!response.ok) return;
+    const data = await response.json();
+    if (data && data.candles) {
+      drawMiniChart(canvas, data.candles, myNotes);
+    }
+  } catch (e) {
+    console.error("Failed to load mini chart for", ticker, e);
+  }
+}
+
+let activeMiniChartsObserver = null;
+function refreshMiniCharts() {
+  if (activeMiniChartsObserver) {
+    activeMiniChartsObserver.disconnect();
+  }
+  
+  activeMiniChartsObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const container = entry.target;
+        const canvas = container.querySelector('.card-price-canvas');
+        const ticker = container.dataset.ticker;
+        if (canvas && ticker) {
+          loadAndDrawMiniChart(canvas, ticker);
+        }
+        obs.unobserve(container);
+      }
+    });
+  }, { rootMargin: '200px' });
+  
+  document.querySelectorAll('.card-chart-box').forEach(el => {
+    activeMiniChartsObserver.observe(el);
+  });
 }
 
 function scrollToMarketNotes() {
@@ -2720,6 +2886,7 @@ function renderCards() {
   }
   document.getElementById('grid').innerHTML = stocks.map(cardHTML).join('');
   restoreDashboardScrollIfNeeded();
+  refreshMiniCharts();
 }
 
 function toggleWatchlistFilter() {
@@ -2798,7 +2965,9 @@ function cardHTML(s) {
     <div class="chart-container">
       ${s.chart_b64
         ? `<a class="chart-link" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}" title="คลิกเพื่อดูประวัติกราฟราคา">
-             <img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}">
+             <div class="card-chart-box" data-ticker="${esc(s.ticker)}" style="position:relative; width:100%; height:120px; background:#0d1117; border:1px solid #21262d; border-radius:6px; overflow:hidden;">
+               <canvas class="card-price-canvas" style="display:block; width:100%; height:120px;"></canvas>
+             </div>
            </a>`
         : ''}
     </div>
