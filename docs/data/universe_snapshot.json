@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-27T00:20:52.615889+00:00",
+  "updated": "2026-06-27T15:38:29.664576+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -269,7 +269,7 @@
     },
     {
       "ticker": "TXN",
-      "market_cap": 259763223761.64386
+      "market_cap": 259767778669.41132
     },
     {
       "ticker": "DELL",
