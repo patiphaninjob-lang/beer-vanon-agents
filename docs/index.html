@@ -2363,7 +2363,21 @@ async function loadAndDrawMiniChart(canvas, ticker) {
     if (!response.ok) return;
     const data = await response.json();
     if (data && data.candles) {
-      drawMiniChart(canvas, data.candles, myNotes);
+      const parsedCandles = data.candles.map(row => {
+        if (Array.isArray(row)) {
+          return { date: row[0], open: row[1], high: row[2], low: row[3], close: row[4], volume: row[5] || 0 };
+        }
+        return row;
+      }).filter(c => c?.date && [c.open,c.high,c.low,c.close].every(v => Number.isFinite(Number(v))))
+        .map(c => ({
+          date: c.date,
+          open: Number(c.open),
+          high: Number(c.high),
+          low: Number(c.low),
+          close: Number(c.close),
+          volume: Number(c.volume || 0)
+        }));
+      drawMiniChart(canvas, parsedCandles, myNotes);
     }
   } catch (e) {
     console.error("Failed to load mini chart for", ticker, e);
