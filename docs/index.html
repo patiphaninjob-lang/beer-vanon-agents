@@ -2455,6 +2455,225 @@ function showMiniChartTooltip(canvas, note, ticker, clientX, clientY) {
   }
 }
 
+function drawMiniChart(canvas, candles, myNotes) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  
+  const box = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(box.width * dpr));
+  canvas.height = Math.max(1, Math.floor(box.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  
+  const w = box.width, h = box.height;
+  ctx.clearRect(0, 0, w, h);
+  
+  if (!candles.length) return;
+  
+  const archiveDateStr = currentData?.date || '';
+  const archiveTS = archiveDateStr ? new Date(archiveDateStr + 'T12:00:00').getTime() : Date.now();
+  const rangeTS = 90 * 24 * 60 * 60 * 1000;
+  const startTS = archiveTS - rangeTS;
+  
+  const visibleCandles = candles.filter(c => {
+    const t = new Date(c.date + 'T12:00:00').getTime();
+    return t >= startTS && t <= archiveTS + 86400000;
+  });
+  
+  if (!visibleCandles.length) return;
+  
+  const yMax = Math.max(...visibleCandles.map(c => c.high)) * 1.01;
+  const yMin = Math.min(...visibleCandles.map(c => c.low)) * 0.99;
+  
+  const pad = { left: 4, right: 4, top: 8, bottom: 8 };
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+  
+  const xFor = i => pad.left + (visibleCandles.length === 1 ? plotW / 2 : (i / (visibleCandles.length - 1)) * plotW);
+  const yFor = p => pad.top + ((yMax - p) / (yMax - yMin)) * plotH;
+  
+  const notesMap = {};
+  groupNotesByDate(myNotes).forEach(group => {
+    let best = null, bestDist = Infinity;
+    const target = new Date(group.date + 'T12:00:00').getTime();
+    for (let i = 0; i < visibleCandles.length; i++) {
+      const t = new Date(visibleCandles[i].date + 'T12:00:00').getTime();
+      const dist = Math.abs(t - target);
+      if (dist < bestDist) { best = i; bestDist = dist; }
+    }
+    if (best !== null && bestDist < 24 * 60 * 60 * 1000 * 2) {
+      notesMap[best] = group;
+    }
+  });
+  
+  // Store rendering properties on the canvas object for event interaction
+  canvas._visibleCandles = visibleCandles;
+  canvas._notesMap = notesMap;
+  canvas._xFor = xFor;
+  canvas._yFor = yFor;
+  canvas._candles = candles;
+  canvas._notes = myNotes;
+  
+  const hoverIdx = canvas._hoverIdx;
+  const cw = Math.max(1.5, Math.min(6, plotW / visibleCandles.length * 0.7));
+  
+  visibleCandles.forEach((c, i) => {
+    const x = xFor(i), up = c.close >= c.open;
+    const isNote = notesMap[i] !== undefined;
+    const isHovered = (hoverIdx === i);
+    
+    if (isNote) {
+      const group = notesMap[i];
+      const finalCw = cw + 3 + (isHovered ? 3 : 0);
+      
+      const journalNote = group.notes.find(n => n.journal);
+      const emotion = journalNote?.journal?.emotion;
+      const emotionColor = getEmotionColor(emotion);
+      
+      const baseCol = up ? '#26a69a' : '#ef5350';
+      const lightCol = up ? '#4db6ac' : '#e57373';
+      const darkCol = up ? '#00796b' : '#c62828';
+      
+      ctx.save();
+      ctx.strokeStyle = baseCol;
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+      ctx.restore();
+      
+      const bodyY = Math.min(yFor(c.open), yFor(c.close));
+      const bodyH = Math.max(1, Math.abs(yFor(c.open) - yFor(c.close)));
+      
+      let grad = ctx.createLinearGradient(x - finalCw/2, 0, x + finalCw/2, 0);
+      grad.addColorStop(0, darkCol);
+      grad.addColorStop(0.3, lightCol);
+      grad.addColorStop(0.7, baseCol);
+      grad.addColorStop(1, darkCol);
+      
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+      
+      ctx.save();
+      ctx.strokeStyle = emotionColor;
+      ctx.lineWidth = isHovered ? 2.5 : 1.5;
+      ctx.shadowColor = emotionColor;
+      ctx.shadowBlur = isHovered ? 12 : 6;
+      ctx.strokeRect(x - finalCw/2, bodyY, finalCw, bodyH);
+      ctx.restore();
+    } else {
+      const finalCw = cw + (isHovered ? 2 : 0);
+      const col = up ? '#26a69a' : '#ef5350';
+      ctx.strokeStyle = col;
+      ctx.fillStyle = col;
+      ctx.save();
+      ctx.beginPath(); ctx.moveTo(x, yFor(c.high)); ctx.lineTo(x, yFor(c.low)); ctx.stroke();
+      ctx.fillRect(x - finalCw/2, Math.min(yFor(c.open), yFor(c.close)), finalCw, Math.max(1, Math.abs(yFor(c.open) - yFor(c.close))));
+      ctx.restore();
+    }
+  });
+}
+
+function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
+  const tooltip = document.getElementById('markerTooltip');
+  if (!tooltip) return;
+  
+  tooltip._sourceCanvas = canvas;
+  
+  let baseHtml = `<div class="tt-header">📅 ${note.date}${note.time ? ' ' + note.time : ''}</div>`;
+  baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
+  
+  let loadingId = `ttLoad-${Date.now()}`;
+  if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
+    baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+  }
+  
+  tooltip.innerHTML = baseHtml;
+  tooltip.classList.add('show');
+  
+  // Position tooltip relative to the candle on the canvas
+  const rect = canvas.getBoundingClientRect();
+  const xFor = canvas._xFor;
+  const yFor = canvas._yFor;
+  const visibleCandles = canvas._visibleCandles || [];
+  
+  const cx = xFor ? xFor(closestIdx) : rect.width / 2;
+  const candle = visibleCandles[closestIdx];
+  const cy = (yFor && candle) ? Math.min(yFor(candle.open), yFor(candle.close)) : rect.height / 2;
+  
+  const candleScreenX = rect.left + cx;
+  const candleScreenY = rect.top + cy;
+  
+  tooltip.style.maxHeight = '80vh';
+  let ttLeft = candleScreenX - tooltip.offsetWidth / 2;
+  let ttTop = candleScreenY - tooltip.offsetHeight - 14;
+  
+  const margin = 10;
+  const headerRect = document.querySelector('.header')?.getBoundingClientRect();
+  const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
+  let tailLeft = tooltip.offsetWidth / 2;
+  
+  // Horizontal bounds
+  if (ttLeft < margin) {
+    ttLeft = margin;
+    tailLeft = candleScreenX - ttLeft;
+  } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+    ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+    tailLeft = candleScreenX - ttLeft;
+  }
+  tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+  
+  // Vertical bounds
+  let isBelow = false;
+  let spaceAbove = candleScreenY - topMargin - 14;
+  let spaceBelow = window.innerHeight - (rect.top + rect.height) - margin - 14;
+  
+  if (ttTop < topMargin) {
+    if (spaceBelow > spaceAbove) {
+      isBelow = true;
+      ttTop = rect.top + rect.height + 14;
+      tooltip.style.maxHeight = `${spaceBelow}px`;
+    } else {
+      ttTop = topMargin;
+      tooltip.style.maxHeight = `${spaceAbove}px`;
+    }
+  } else {
+    tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+  }
+  
+  if (!isBelow) {
+    ttTop = candleScreenY - tooltip.offsetHeight - 14;
+    if (ttTop < topMargin) ttTop = topMargin;
+  }
+  
+  tooltip.style.left = `${ttLeft}px`;
+  tooltip.style.top = `${ttTop}px`;
+  tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+  
+  if (isBelow) {
+    tooltip.classList.add('tail-top');
+  } else {
+    tooltip.classList.remove('tail-top');
+  }
+  
+  // Load Ch34 analysis
+  if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
+    const elLoad = document.getElementById(loadingId);
+    const stock = (currentData?.stocks || []).find(s => s.ticker === ticker);
+    if (stock && elLoad) {
+      const insight = stock.homework_checklist?.map(item => `• ${item.topic}: ${item.insight}`).join('<br>') || '';
+      if (insight) {
+        elLoad.innerHTML = `<div class="tt-label" style="color:#f0b90b;">🧭 Beer วิเคราะห์ Ch34:</div><div class="tt-text" style="font-size:0.9em;line-height:1.4;">${insight}</div>`;
+      } else {
+        elLoad.remove();
+      }
+    } else if (elLoad) {
+      elLoad.remove();
+    }
+  }
+}
+
 async function loadAndDrawMiniChart(canvas, ticker) {
   const normalized = ticker.replace('.', '-');
   const myNotes = notesCache[normalized] || notesCache[ticker] || [];
@@ -2495,7 +2714,6 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           
           if (!candles.length || !xFor) return;
           
-          // Find closest candle index
           let closestIdx = -1, minDistance = Infinity;
           for (let i = 0; i < candles.length; i++) {
             const cx = xFor(i);
@@ -2514,18 +2732,22 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
             canvas.style.cursor = 'pointer';
             
-            // Show tooltip
             const group = notesMap[closestIdx];
             const note = group.notes[0];
-            if (note) {
-              showMiniChartTooltip(canvas, note, ticker, e.clientX, e.clientY);
+            
+            const tooltip = document.getElementById('markerTooltip');
+            if (note && (!tooltip.classList.contains('show') || tooltip._activeNoteId !== note.id)) {
+              tooltip._activeNoteId = note.id;
+              showMiniChartTooltip(canvas, note, ticker, closestIdx);
             }
           } else {
             canvas.style.cursor = 'crosshair';
-            // Hide tooltip if active
+            
+            // Hide tooltip if it is NOT pinned
             const tooltip = document.getElementById('markerTooltip');
-            if (tooltip && tooltip._sourceCanvas === canvas) {
+            if (tooltip && tooltip._sourceCanvas === canvas && !tooltip._pinnedNoteId) {
               tooltip.classList.remove('show');
+              tooltip._activeNoteId = null;
             }
           }
         });
@@ -2535,10 +2757,11 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           canvas._hoverIdx = null;
           drawMiniChart(canvas, canvas._candles || parsedCandles, canvas._notes || myNotes);
           
-          // Hide tooltip
+          // Hide tooltip if it is NOT pinned
           const tooltip = document.getElementById('markerTooltip');
-          if (tooltip && tooltip._sourceCanvas === canvas) {
+          if (tooltip && tooltip._sourceCanvas === canvas && !tooltip._pinnedNoteId) {
             tooltip.classList.remove('show');
+            tooltip._activeNoteId = null;
           }
         });
         
@@ -2566,15 +2789,21 @@ async function loadAndDrawMiniChart(canvas, ticker) {
             }
           }
           
+          const tooltip = document.getElementById('markerTooltip');
           if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
             const group = notesMap[closestIdx];
             const note = group.notes[0];
             if (note) {
-              if (ticker.startsWith('_')) {
-                openMarketNote(ticker, note.id);
-              } else {
-                showNoteModal(ticker, null, note.id);
-              }
+              tooltip._activeNoteId = note.id;
+              tooltip._pinnedNoteId = note.id; // Pin it!
+              showMiniChartTooltip(canvas, note, ticker, closestIdx);
+            }
+          } else {
+            // Clicked outside a note candle: hide/unpin tooltip
+            if (tooltip) {
+              tooltip.classList.remove('show');
+              tooltip._activeNoteId = null;
+              tooltip._pinnedNoteId = null;
             }
           }
         });
