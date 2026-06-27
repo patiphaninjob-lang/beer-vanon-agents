@@ -46,3 +46,11 @@ When a session becomes long, use this command:
 
 When starting a fresh session, use this command:
 "Read PROJECT_MEMORY_POLICY.md, PROJECT_CONTEXT.md, and HANDOFF.md first. Treat them as current truth. Ignore old history unless I ask. Continue from the next step."
+
+## Version Control & App Bumping Rules
+
+Every single code modification, bug fix, feature addition, or visual update MUST follow these version rules:
+1. **Bump the App Version**: You must increment the app version tag displayed in the UI header of `docs/index.html` (e.g., from `v2.5.5` to `v2.5.6`).
+2. **Update the Changelog Tooltip**: Add the new version tag at the top of the version-tooltip list in `docs/index.html`, detailing exactly what changes were made in Thai.
+3. **Bump sw.js Cache Name**: Always increment the CACHE_NAME version in `docs/sw.js` (e.g., from `v12` to `v13`) to force client browsers to reload the updated assets.
+4. **Never skip versioning**: Even minor tweaks warrant a patch version increment. Do not group multiple tasks under the same version unless done in a single commit.
