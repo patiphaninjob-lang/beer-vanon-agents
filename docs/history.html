@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="utf-8">
@@ -395,7 +395,7 @@ async function loadLatestStock() {
       const day = await loadArchive(date);
       if (!day) continue;
       
-      if (state.ticker === '_MARKET') {
+      if (state.ticker.startsWith('_')) {
         if (day.market_indices) {
           state.latestMarketArchive = day;
           state.latestMarket = day.market_indices;
@@ -461,6 +461,13 @@ async function loadHistoryCandles() {
   if (state.ticker === '_MARKET') {
     candles = await tryLoad('market');
     if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
+  } else if (state.ticker.startsWith('_')) {
+    const key = state.ticker.slice(1).toLowerCase(); // 'dji', 'spx', 'ixic'
+    candles = await tryLoad(state.ticker);
+    if (!candles || !candles.length) {
+      if (key === 'dji') candles = await tryLoad('market'); // legacy fallback
+    }
+    if (!candles || !candles.length) candles = await buildArchiveFallbackCandles();
   } else {
     candles = await tryLoad(state.ticker);
     if (!candles) candles = await tryLoad(state.ticker.replace('-', '.'));
@@ -475,8 +482,9 @@ async function loadHistoryCandles() {
   // 1. Add latest archive candle if missing
   if (latestDate && !candleDates.has(latestDate)) {
       let lp = 0, lv = 0, lo = 0;
-      if (state.ticker === '_MARKET' && state.latestMarket) {
-        const p = state.latestMarket.dji || state.latestMarket.spx || state.latestMarket.ixic;
+      if (state.ticker.startsWith('_') && state.latestMarket) {
+        const key = state.ticker === '_MARKET' ? 'dji' : state.ticker.slice(1).toLowerCase();
+        const p = state.latestMarket[key];
         lp = Number(p?.price || 0);
         lo = lp / (1 + (Number(p?.pct_change || 0) / 100));
       } else if (state.latestStock) {
@@ -524,9 +532,10 @@ async function buildArchiveFallbackCandles() {
   for (const date of dates.slice(0, 100)) { // Limit to last 100 archives as fallback
     try {
       const day = await loadArchive(date);
-      if (state.ticker === '_MARKET') {
+      if (state.ticker.startsWith('_')) {
+        const key = state.ticker === '_MARKET' ? 'dji' : state.ticker.slice(1).toLowerCase();
         const mi = day?.market_indices || {};
-        const p = mi.dji || mi.spx || mi.ixic;
+        const p = mi[key];
         if (!p?.price) continue;
         const c = Number(p.price);
         const pct = Number(p.pct_change || 0);
@@ -641,7 +650,7 @@ async function showGroup(group, candle) {
   let stock = null, mkt = null;
   try {
     const day = await loadArchive(archiveDate);
-    if (state.ticker === '_MARKET') mkt = day; else stock = findStock(day, state.ticker);
+    if (state.ticker.startsWith('_')) mkt = day; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
   const notesHTML = group.notes.map(n => `
@@ -768,9 +777,30 @@ window.selectDate = (d) => {
 
 function updateHeader() {
   const s = state.latestStock;
-  document.getElementById('tickerTitle').textContent = state.ticker === '_MARKET' ? 'ภาพรวมตลาด' : state.ticker;
-  document.getElementById('tickerSub').textContent = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
-  document.getElementById('badgeRow').innerHTML = `<span class="badge">${state.notes.length} notes</span>`;
+  const isMarket = state.ticker.startsWith('_');
+  
+  let title = state.ticker;
+  let subtitle = s ? `${s.name} · ${s.sector}` : 'History Always Latest';
+  let badgeHtml = `<span class="badge">${state.notes.length} notes</span>`;
+  
+  if (isMarket) {
+    const labelMap = { '_MARKET': 'ภาพรวมตลาด', '_DJI': 'Dow Jones', '_SPX': 'S&P 500', '_IXIC': 'NASDAQ' };
+    title = labelMap[state.ticker] || state.ticker;
+    subtitle = 'Daily chart · market note history';
+    
+    // Add specific index price details to badge
+    const key = state.ticker === '_MARKET' ? 'dji' : state.ticker.slice(1).toLowerCase();
+    const nameMap = { dji: 'DJI', spx: 'S&P 500', ixic: 'NASDAQ' };
+    const market = state.latestMarket || {};
+    const p = market[key];
+    if (p?.price) {
+      badgeHtml += `<span class="badge">${nameMap[key]} ${fmtMoney(p.price)}${p.pct_change != null ? ` · ${p.pct_change >= 0 ? '+' : ''}${Number(p.pct_change).toFixed(2)}%` : ''}</span>`;
+    }
+  }
+  
+  document.getElementById('tickerTitle').textContent = title;
+  document.getElementById('tickerSub').textContent = subtitle;
+  document.getElementById('badgeRow').innerHTML = badgeHtml;
 }
 
 function bindEvents() {

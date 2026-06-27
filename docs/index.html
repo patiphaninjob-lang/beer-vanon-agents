@@ -1097,7 +1097,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเดต">v2.1.3<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.1.3 (ล่าสุด):</span> แก้ปัญหาหน้าจอค้างหน้าโหลดข้อมูล</li><li><span class="wt-ver">v2.1.2:</span> เพิ่มกล่องป๊อปอัปแสดงประวัติการอัปเดต (What's New)</li><li><span class="wt-ver">v2.1.1:</span> แก้ปัญหาประวัติกราฟตลาดรวม (Dow Jones) ไม่ยอมอัพเดต</li><li><span class="wt-ver">v2.1.0:</span> เพิ่มปุ่มกรองหุ้นติดตาม (Watchlist Filter) แสดงเฉพาะดาว ★</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเดต">v2.2.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.2.0 (ล่าสุด):</span> แยกประวัติกราฟและโน้ตอารมณ์ตลาดของ DJI, S&P 500, NASDAQ ออกจากกัน</li><li><span class="wt-ver">v2.1.3:</span> แก้ปัญหาหน้าจอค้างหน้าโหลดข้อมูล</li><li><span class="wt-ver">v2.1.2:</span> เพิ่มกล่องป๊อปอัปแสดงประวัติการอัปเดต (What's New)</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -1650,8 +1650,15 @@ async function saveNoteToGitHub(ticker, noteText) {
     note: noteText.trim(),
     archive_date: currentData?.date || ''
   };
-  if (ticker === '_MARKET') {
+  if (ticker.startsWith('_')) {
+    const key = ticker === '_MARKET' ? 'dji' : ticker.slice(1).toLowerCase();
     const mi = currentData?.market_indices || {};
+    const p = mi[key];
+    if (p) {
+      note.price      = p.price || 0;
+      note.pct_change = p.pct_change || 0;
+    }
+    // Keep legacy dji/spx/ixic properties for backward compatibility
     if (mi.dji)  { note.dji_price  = mi.dji.price;  note.dji_pct  = mi.dji.pct_change;  }
     if (mi.spx)  { note.spx_price  = mi.spx.price;  note.spx_pct  = mi.spx.pct_change;  }
     if (mi.ixic) { note.ixic_price = mi.ixic.price; note.ixic_pct = mi.ixic.pct_change; }
@@ -1983,10 +1990,11 @@ async function submitNote() {
   btn.textContent = 'กำลังบันทึก...'; btn.disabled = true;
   const ok = await saveNoteToGitHub(activeNoteTicker, text);
   if (ok) {
-    const label = activeNoteTicker === '_MARKET' ? 'อารมณ์ตลาดภาพรวม' : activeNoteTicker;
+    const labelMap = { '_MARKET': 'ภาพรวมตลาด', '_DJI': 'Dow Jones', '_SPX': 'S&P 500', '_IXIC': 'NASDAQ' };
+    const label = labelMap[activeNoteTicker] || activeNoteTicker;
     showToast(`✅ บันทึก ${label} แล้ว`);
     closeNoteModal();
-    if (activeNoteTicker === '_MARKET') {
+    if (activeNoteTicker.startsWith('_')) {
       renderMarketOverview();
       upgradeMarketOverviewCards();
     }
@@ -2002,20 +2010,6 @@ function renderMarketOverview() {
   if (!el) return;
   const mi = currentData?.market_indices;
   const phase = phaseLabel(currentData.run_phase || selectedPhase);
-  const marketNotes = (notesCache['_MARKET'] || []).slice().sort((a,b)=>b.id-a.id);
-  const marketMarkersHTML = marketNotes.map(n => {
-    const markerDate = n.date || n.archive_date;
-    if (!markerDate || !currentData?.date) return '';
-    const noteTS = new Date(markerDate + 'T12:00:00').getTime();
-    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
-    const rangeTS = 90 * 24 * 60 * 60 * 1000;
-    const startTS = archiveTS - rangeTS;
-    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
-    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
-    leftPos = Math.max(2, Math.min(98, leftPos));
-    const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="_MARKET" data-note-id="${n.id}" title="${esc(label)}"></div>`;
-  }).join('');
 
   const INDEX_META = { dji: 'Dow Jones', spx: 'S&P 500', ixic: 'NASDAQ' };
   const INDEX_TV   = {
@@ -2023,7 +2017,6 @@ function renderMarketOverview() {
     spx:  'https://www.tradingview.com/chart/?symbol=SP%3ASPX',
     ixic: 'https://www.tradingview.com/chart/?symbol=NASDAQ%3ACOMP'
   };
-  const marketNoteCount = marketNotes.length;
 
   const indexCards = mi && Object.keys(mi).length
     ? ['dji','spx','ixic'].filter(k => mi[k]).map(k => {
@@ -2032,8 +2025,25 @@ function renderMarketOverview() {
         const color = up ? '#16c784' : '#ea3943';
         const arrow = up ? '▲' : '▼';
         const priceStr = d.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        const ticker = `_${k.toUpperCase()}`; // '_DJI', '_SPX', '_IXIC'
+        const notes = (notesCache[ticker] || []).slice().sort((a,b)=>b.id-a.id);
+        const markersHTML = notes.map(n => {
+          const markerDate = n.date || n.archive_date;
+          if (!markerDate || !currentData?.date) return '';
+          const noteTS = new Date(markerDate + 'T12:00:00').getTime();
+          const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
+          const rangeTS = 90 * 24 * 60 * 60 * 1000;
+          const startTS = archiveTS - rangeTS;
+          if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
+          let leftPos = ((noteTS - startTS) / rangeTS) * 100;
+          leftPos = Math.max(2, Math.min(98, leftPos));
+          const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
+          return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${ticker}" data-note-id="${n.id}" title="${esc(label)}"></div>`;
+        }).join('');
+
         return `
-          <div class="index-card" style="border-left-color:${color}">
+          <div class="index-card" data-index-key="${k}" style="border-left-color:${color}">
             <div class="index-card-name">${INDEX_META[k]}</div>
             <div class="index-card-price">${priceStr}</div>
             <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
@@ -2041,7 +2051,7 @@ function renderMarketOverview() {
               <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
                 <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
               </a>
-              ${marketMarkersHTML}
+              ${markersHTML}
             </div>` : ''}
           </div>`;
       }).join('')
@@ -2052,8 +2062,8 @@ function renderMarketOverview() {
       <div class="market-overview-head">
         <span class="market-overview-title">📊 ภาพรวมตลาด${currentData?.date ? ' · '+fmtDate(currentData.date)+' · '+phase : ''}</span>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="history-btn" type="button" onclick="openMarketHistory()">📈 History</button>
-          <button class="market-add-btn" onclick="openMarketNote()">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
+          <button class="history-btn" type="button" onclick="openMarketHistory('_MARKET')">📈 History</button>
+          <button class="market-add-btn" onclick="openMarketNote('_MARKET')">🌡️ บันทึกอารมณ์ตลาดวันนี้</button>
         </div>
       </div>
       <div class="index-row">${indexCards}</div>
@@ -2063,12 +2073,14 @@ function renderMarketOverview() {
 function upgradeMarketOverviewCards() {
   const cards = document.querySelectorAll('#marketOverview .index-card');
   if (!cards.length) return;
-  const marketNoteCount = (notesCache['_MARKET'] || []).length;
 
   cards.forEach(card => {
     if (card.dataset.upgraded === '1') return;
     card.dataset.upgraded = '1';
 
+    const k = card.dataset.indexKey;
+    const ticker = k ? `_${k.toUpperCase()}` : '_MARKET';
+    const noteCount = (notesCache[ticker] || []).length;
     const name = card.querySelector('.index-card-name')?.textContent?.trim() || 'Market';
     const price = card.querySelector('.index-card-price')?.textContent?.trim() || '';
     const pct   = card.querySelector('.index-card-pct')?.textContent?.trim() || '';
@@ -2089,8 +2101,8 @@ function upgradeMarketOverviewCards() {
       </div>
       <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
       ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
-      <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
-      <button class="history-btn" type="button" onclick="openMarketHistory()">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</button>
+      <button class="note-btn ${noteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote('${ticker}')">${noteCount ? `📝 ${noteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
+      <button class="history-btn" type="button" onclick="openMarketHistory('${ticker}')">${noteCount ? `📈 History (${noteCount})` : '📈 History'}</button>
     `;
 
     const chartContainer = card.querySelector('.chart-container');
@@ -2108,16 +2120,17 @@ function scrollToMarketNotes() {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function openMarketHistory() {
+function openMarketHistory(ticker = '_MARKET') {
   const date = currentData?.date || '';
-  const url = `history.html?ticker=${encodeURIComponent('_MARKET')}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
+  const url = `history.html?ticker=${encodeURIComponent(ticker)}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
   location.href = url;
 }
 
-function openMarketNote() {
-  activeNoteTicker = '_MARKET';
+function openMarketNote(ticker = '_MARKET') {
+  activeNoteTicker = ticker;
   activeNoteStock  = null;
-  document.getElementById('noteModalTicker').textContent = 'ภาพรวมตลาด';
+  const labelMap = { '_MARKET': 'ภาพรวมตลาด', '_DJI': 'Dow Jones', '_SPX': 'S&P 500', '_IXIC': 'NASDAQ' };
+  document.getElementById('noteModalTicker').textContent = labelMap[ticker] || ticker;
   document.getElementById('noteInput').value = '';
   document.getElementById('polishStatus').textContent = '';
   document.getElementById('saveNoteBtn').disabled = false;

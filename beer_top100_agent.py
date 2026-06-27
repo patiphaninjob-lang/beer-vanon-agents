@@ -1140,40 +1140,49 @@ def save_history_data(stocks_data: list, period: str = "5y") -> None:
 
     safe_print(f"  ✅ บันทึก history-data: {saved}/{len(tickers)} ไฟล์")
 
-    # Save Market Index History (Dow Jones: ^DJI)
-    try:
-        safe_print("  ดึง history 1D สำหรับดัชนีตลาดรวม (^DJI)...")
-        mkt_hist = yf.Ticker("^DJI").history(period=period)
-        if not mkt_hist.empty:
-            candles = []
-            for idx, row in mkt_hist.dropna(subset=["Open", "High", "Low", "Close"]).iterrows():
-                try:
-                    date_key = idx.strftime("%Y-%m-%d")
-                    candles.append([
-                        date_key,
-                        round(float(row["Open"]), 4),
-                        round(float(row["High"]), 4),
-                        round(float(row["Low"]), 4),
-                        round(float(row["Close"]), 4),
-                        int(row["Volume"]) if not np.isnan(row["Volume"]) else 0,
-                    ])
-                except Exception:
-                    continue
-            payload = {
-                "ticker": "market",
-                "timeframe": "1D",
-                "period": period,
-                "generated": datetime.datetime.now().isoformat(),
-                "source": "yfinance",
-                "candles": candles,
-            }
-            (out_dir / "market.json").write_text(
-                json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
-                encoding="utf-8",
-            )
-            safe_print("  ✅ บันทึก market.json (Dow Jones ^DJI) เรียบร้อย")
-    except Exception as e:
-        safe_print(f"  ⚠️ Failed to save market index history (^DJI): {e}")
+    # Save Market Index History (Dow Jones: ^DJI, S&P 500: ^GSPC, NASDAQ: ^IXIC)
+    indices = {"_DJI": "^DJI", "_SPX": "^GSPC", "_IXIC": "^IXIC"}
+    for ticker_key, symbol in indices.items():
+        try:
+            safe_print(f"  ดึง history 1D สำหรับดัชนี {ticker_key} ({symbol})...")
+            mkt_hist = yf.Ticker(symbol).history(period=period)
+            if not mkt_hist.empty:
+                candles = []
+                for idx, row in mkt_hist.dropna(subset=["Open", "High", "Low", "Close"]).iterrows():
+                    try:
+                        date_key = idx.strftime("%Y-%m-%d")
+                        candles.append([
+                            date_key,
+                            round(float(row["Open"]), 4),
+                            round(float(row["High"]), 4),
+                            round(float(row["Low"]), 4),
+                            round(float(row["Close"]), 4),
+                            int(row["Volume"]) if not np.isnan(row["Volume"]) else 0,
+                        ])
+                    except Exception:
+                        continue
+                payload = {
+                    "ticker": ticker_key,
+                    "timeframe": "1D",
+                    "period": period,
+                    "generated": datetime.datetime.now().isoformat(),
+                    "source": "yfinance",
+                    "candles": candles,
+                }
+                (out_dir / f"{ticker_key}.json").write_text(
+                    json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+                    encoding="utf-8",
+                )
+                
+                # Also save ^DJI as legacy market.json for compatibility
+                if ticker_key == "_DJI":
+                    (out_dir / "market.json").write_text(
+                        json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+                        encoding="utf-8",
+                    )
+                safe_print(f"  ✅ บันทึก {ticker_key}.json เรียบร้อย")
+        except Exception as e:
+            safe_print(f"  ⚠️ Failed to save market index history ({symbol}): {e}")
 
 
 # # --- HTML Report # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
