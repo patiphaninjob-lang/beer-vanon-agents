@@ -1,7 +1,7 @@
 {
   "date": "2026-06-27",
   "archive_key": "2026-06-27",
-  "generated": "2026-06-27T11:29:45.106747",
+  "generated": "2026-06-27T12:24:33.417889",
   "run_phase": "manual",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
@@ -22,9 +22,116 @@
       "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQIDBgf/xAAzEAACAgIBAwEFBwMFAQAAAAAAAQIDBBEhBRIxExRBUWGBFSIycZGhsQZCwSNS0eHw8f/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EACYRAQEAAgEDBAICAwAAAAAAAAABAhEDEiExBBNBUSJhMnEjoeH/2gAMAwEAAhEDEQA/APnwANsgAAAAAAAAAAAAAAAAAAAAAAAAAAAHWmiy62uEVr1Jdqk/G/8AzKWyeXIE7qHS7sGVSlKNjt4iob3vjj9yCExymU6sfAACKA6V17lB2NwrlLTn27S+JNtxenxsUYZ8pJwcm1X4aW/e15/6HxsnfKY/NVxJxsDIyrIwqhzKPcm3pa3rf6lhXm9Or6XPH9Jzs00pOtbb50/Pu2QPtHMXp9uRYnWtLUnzzvn/AN7i9nK5Z3ck1r7d10TqGnulLS/3rk42dNy68X2mdWqtJ77l4fjg42ZF9rbsusm2tNuTfHwLXF6vG6qrDzq61jqPbKS3tpLjx80Zy3udLtxamOV5b31219qUF3m4NGbNfY9cZODfq9stJb8eePj4KeyuVVsq7FqUG018GXc3pMerLCZ2WS/bQAAAScDF9szIY/f2d2/va34Wy5j/AE1Hb7sttfKH/ZMrMZurxy8nJ7WPny86Cbd0vLqucI0zlD1OyM+3SfOk/lvZmfSM+EoxeNJuXjtaf668CWWbXLG459F8/SCDeyudU3C2EoSXmMlpo0KlmgABAAAAAAAAAAAAAAAAAAAAAAAAAylvwIxlOSjFNyb0kvLLfo++nZU7c6uymuUO1SlB63tcfsWRjkz6Jud6r8fDyMiE51VTlGHlqLe+VwvnyXt9HQ6KXY41z7dfdhbtv6bK7qHU7PbsiWHfP0rEuU2udLlfPjRViWy3acmE5ccLLZflZWrp2XmN0xtor9OUmlFPbSbfv4LD7ZxodLjVD1fU9N1x0kmmkufPHn9jz8Jyg9xem019GtP+TUu2MuDHLUt7RLpzrFlVW5Up3xrkmlOTeufK58k7Gu6S8FzyMOXeppS7N+X3a1z40imM9z7XHb03to55Y9T2cXL7faSa/pYYeEoZmO8+vsotTe5txXv0m/p/BZZD6Lh2TqdLk5R+92Scvf488PjZ5+dspxrjLxXHtX6t/wCTQ3LZO7zcvFM89y2T6Tsrqd91c8eE9Yu9Qg4rainwt/oQQCSSeHa5ZZfyuwABkAAHov6V/DlfnH/JpZ0SzLvvvVsIqd8tfJdzT+vgrum9Tt6f6npwhNWee74rev5OPtdntvtXHf6nqa9297ONwy6rY985+L2cMM5vW0vrPTY9PdThZ3Kxa1rWmktv6lak34TL2bu6zn00zjXGFUI2S8rakotr9yx6NjTw8e2ixxco28uPjmKZviu/xt7vL6+zil5cMfx3p5e7FyceEZ3U2Vxl4bWjFWXk0xcar7IRb3qMmjvm9SycuqNV09xi9vhcvnn9HohG7I48eWcm72v6ejy+qY8+iRhDIbyO2K9/d3LTf/0i4XXZ0Tk74ztjJQXM/wAOlpv6+SmBiccmNxenP1OeXJjy/MmkrqGS83KsyVW4Rlpa3vXHx+hFJ9U8BdOnXY7/AF5NPS1ra3r6c8lpg9P6ffOqLv8AaFGl6j2uO13vn92tFyynHIzw4Z+pzy+/284C263g1Y+VrFgoQjUpyW2/7tf5RUlxvVNscmF487hfMAAVgAAAAAAAAAMgYBY9Po6bZTL22+ddqb0lwta/L8zHs2E7K3HIs9OdzhzFLUU1zvfwa9wt0cf55XGfCvMnoL/szpU4dlUclW67tyUnBLXK49+9nGzL6ZdgXz9jlXY2lqPhS1Ltfn8/cZ650yx19rKcuXHlqann7cKug505anGFa15lJP8AjZFzsG3BuVVjjJuPduOzbK6ll5dUa77E4xe+Ipbfx/cY3U8zGhOFVvE33NySb38eTp2ePGc3m6/r/rhj0u+6NffCvu/um9RX1LKqjC6c39oenkua+56Uu7tWvf487WiJZ1LKsw1izmnUklrtW9LWl+xHus9WalrWoxj+iS/wRbjnn2vafpO9rwIY9qqxGre/dc+9przp/LXHHvIl+XkZEVG66c0tcN8HAEk075Xq1ueAABAAAAAAAAAAAAAAAAAAATK8+3HylfjPtfpwg1Jb3pJP+DnbmXXWW2Wy7p2xUZPWvDT935IjgkkndvLPLKdNvbyAArAAABlPXgwALTE61djwvXZBuyTmtp/ibXz8a2Vj5ZgFZmMmVy+aAAjQAAAAAAErAwrM+6VVUoxcY9zcipllMZutKsPJtip149soP+6MG0XHUfYsKmq/ps6o3wnpOMu56ae9oQ6nLpEFgW0KyVX90Z6T3z8PmULe3svh55MuXLeXaT/bvm5dubkO21/KK+C34I4BHokmM1AAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbVwlZZGEFuUnpL5hQk96i3rzx4Kbaln0aHT5u1Z6TaW4b34Sbfg1+xOodqforl+O9EXKxbsSxV5EO2TW0tp8fQmWNs0vDz4TOWav6XN0ehrEtsoS74rUX978TT15/Ir6OrX05Sv9OpvsUGlFR44+H5FeCucw7ZY27ld8zJnl5Mr7FFSlraj44WjgAGpJJqAAIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyk34R0xqvXya6d9vfJR3rxtlr/T+bjYav9os7O/t1w3vW/gTa8LEnVZ1SLnKSnO6OnpPTel495zvJ05aseqelvJx9XHlN6vb6R7cWXQoLKosjbKX+nJTjxzztafyJnSeoQvouuyLKq5uzclvWlpLfJU9T6ws/GVKo9PUlLfdv3P5fMqjvvV7Pkz0+XJh/k/k3lOT47n2ptpbNsmxXZNtsd6nNyW/g2cgZevUAARQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADdWTVbrUvuyabXzW/8AlgBd6aAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z"
     }
   },
+  "market_news": {
+    "news_list": [
+      {
+        "title": "Scott Bessent Defends Tariff Reboot, Unveils ‘3 Through 3’ Plan To Beat ‘Structural Inflation’",
+        "summary": "Treasury Secretary Scott Bessent on Wednesday defended the administration’s aggressive trade policies, unveiling a comprehensive “3 through 3” economic blueprint designed to sustain high GDP growth while neutralizing “st",
+        "provider": "Benzinga",
+        "date": "2026-06-27",
+        "url": "https://finance.yahoo.com/economy/policy/articles/scott-bessent-defends-tariff-reboot-033101799.html",
+        "ticker": "SPY"
+      },
+      {
+        "title": "S&P 500, Nasdaq End Week Lower As Investors Rotate Out Of Tech, AI Plays — ON, AAPL, SLS, INFQ, NKE in Focus",
+        "summary": "The Dow Jones ended its third consecutive week higher amid cooling oil prices and strength in pharma and materials stocks.",
+        "provider": "Stocktwits",
+        "date": "2026-06-26",
+        "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-week-lower-as-investors-rotate-out-of-tech-ai-plays-on-aapl-sls-infq-nke-in-focus/cZ12ck9R7W9",
+        "ticker": "SPY"
+      },
+      {
+        "title": "VOO Became the First ETF to Hit $1 Trillion, but Nearly 40% of It Is Now Tech",
+        "summary": "The Vanguard S&P 500 ETF (NYSEARCA:VOO) just became the first exchange-traded fund in history to cross one trillion dollars in assets, a milestone State Street had penciled in as one of its headline 2026 predictions. The",
+        "provider": "24/7 Wall St.",
+        "date": "2026-06-26",
+        "url": "https://247wallst.com/investing/2026/06/26/voo-became-the-first-etf-to-hit-1-trillion-but-nearly-40-of-it-is-now-tech/",
+        "ticker": "SPY"
+      },
+      {
+        "title": "The “BALI” Bull Run: Is BlackRock’s 7.7% Yield Strategy Too Good to Be True?",
+        "summary": "Monthly checks averaging around 20 cents per share against a $33 share price is how the iShares U.S. Large Cap Premium Income Active ETF (CBOE:BALI) builds its roughly 7.7% distribution yield. The “too good to be true” f",
+        "provider": "24/7 Wall St.",
+        "date": "2026-06-26",
+        "url": "https://247wallst.com/investing/2026/06/26/the-bali-bull-run-is-blackrocks-7-7-yield-strategy-too-good-to-be-true/",
+        "ticker": "SPY"
+      },
+      {
+        "title": "This Strategist Thinks the S&P 500 Could Smash Through 8,000 ‘In the Near Term’",
+        "summary": "The S&P 500 is sitting at around $734 on the SPDR S&P 500 ETF Trust (NYSEARCA:SPY) proxy, up 7.4% year to date and 20% over the past year, and a strategist appearing on The Markets segment “S&P to 8,000 This Year?” think",
+        "provider": "24/7 Wall St.",
+        "date": "2026-06-26",
+        "url": "https://247wallst.com/investing/2026/06/26/this-strategist-thinks-the-sp-500-could-smash-through-8000-in-the-near-term/",
+        "ticker": "SPY"
+      },
+      {
+        "title": "SpaceX rises modestly ahead of Russell rebalance, Nasdaq entry next",
+        "summary": "By Noel Randewich June 26 (Reuters) - Shares of SpaceX rose a marginal 0.15% on Friday ahead of its inclusion in Russell indexes, with passively managed funds tracking those benchmarks required to add",
+        "provider": "Reuters",
+        "date": "2026-06-27",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-rises-marginally-ahead-russell-205428459.html",
+        "ticker": "QQQ"
+      },
+      {
+        "title": "25% Yield!? Why Robinhood Traders Are Piling Into This FANG Income ETF Like There’s No Tomorrow",
+        "summary": "The pitch on the REX FANG & Innovation Equity Premium Income ETF (NASDAQ:FEPI) is pure Robinhood catnip. Mega-cap tech names you already love, monthly checks, and a distribution yield that has hovered in the 25% range si",
+        "provider": "24/7 Wall St.",
+        "date": "2026-06-26",
+        "url": "https://247wallst.com/investing/2026/06/26/25-yield-why-robinhood-traders-are-piling-into-this-fang-income-etf-like-theres-no-tomorrow/",
+        "ticker": "QQQ"
+      },
+      {
+        "title": "Exchange-Traded Funds Mixed, US Equities Advance After Midday",
+        "summary": "Broad Market Indicators Broad-market exchange-traded fund IWM fell while IVV rose. Actively tr",
+        "provider": "MT Newswires",
+        "date": "2026-06-26",
+        "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-mixed-us-171850205.html",
+        "ticker": "QQQ"
+      },
+      {
+        "title": "Global Cold Feet on AI Trade Affect Pre-Markets",
+        "summary": "This week of trading had so far been established early on: sinking in the Nasdaq and, by consequence, the S&P 500, while staying in the green for the blue-chip Dow and small-cap Russell 2000.",
+        "provider": "Zacks",
+        "date": "2026-06-26",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/global-cold-feet-ai-trade-142000988.html",
+        "ticker": "DIA"
+      },
+      {
+        "title": "S&P 500, Dow Futures Climb As Markets Look Past Big Tech Declines, Hotter-Than-Expected Inflation: AAPL, MSFT, BABA, MSTR, SNDK, FIG In Focus",
+        "summary": "U.S. stock markets are mostly headed for a month in the red amid a downbeat streak for technology names.",
+        "provider": "Stocktwits",
+        "date": "2026-06-26",
+        "url": "https://stocktwits.com/news-articles/markets/equity/sp500-dow-futures-climb-as-markets-look-past-big-tech-declines-hotter-than-expected-inflation/cZ1cIjUR7Xv",
+        "ticker": "DIA"
+      },
+      {
+        "title": "S&P 500 Ends Flat As Apple Weakness Offsets Micron Gains, Nasdaq 100 And Dow Post Modest Gains — MSFT, QCOM, SPCX, BMBL, SONO In Focus",
+        "summary": "icron stock soared 16% on strong Q3 earnings, while Apple slipped after increasing prices of Macs and iPads.",
+        "provider": "Stocktwits",
+        "date": "2026-06-25",
+        "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-ends-flat-as-apple-weakness-offsets-micron-gains-nasdaq-100-and-dow-post-modest-gains-msft-qcom-spcx-bmbl-sono-in-focus/cZ1GHa8R7Xo",
+        "ticker": "DIA"
+      },
+      {
+        "title": "Pre-Markets Up, Big Morning for Economic Releases",
+        "summary": "The pre-market futures, following Micron's (MU) epic fiscal Q3 earnings, are all in the green -- led by the Nasdaq's +700 points at this hour.",
+        "provider": "Zacks",
+        "date": "2026-06-25",
+        "url": "https://finance.yahoo.com/economy/articles/pre-markets-big-morning-economic-143100473.html",
+        "ticker": "DIA"
+      }
+    ],
+    "summary_bullets": [
+      "ทรัมป์ประกาศนโยบายกำแพงภาษีใหม่ ส่งผลกดดันหุ้นเทคโนโลยี แต่หนุนดัชนี Dow Jones ในกลุ่มอุตสาหกรรมในประเทศ",
+      "ราคาน้ำมันดิบ USO พุ่งขึ้น 2% หลังความตึงเครียดในตะวันออกกลางเพิ่มขึ้น หนุนหุ้นกลุ่มพลังงาน",
+      "นักลงทุนสลับกลุ่มเล่น (Sector Rotation) จากหุ้นเทคฯ ขนาดใหญ่ (AI Plays) เข้าหาหุ้นดัชนีแคปเล็กหรือกลุ่มปลอดภัย",
+      "หุ้น SpaceX พุ่งขึ้น 0.15% หลังการรวมเข้ากับ Russell indexes",
+      "นักลงทุนมองว่าหุ้น S&P 500 อาจพุ่งขึ้นผ่าน 8,000 ในระยะสั้น"
+    ]
+  },
   "universe": {
     "source": "nasdaq_screener",
-    "updated": "2026-06-27T04:27:09.019192+00:00",
+    "updated": "2026-06-27T05:24:19.232462+00:00",
     "static_count": 139,
     "dynamic_count": 240,
     "candidate_count": 262,
@@ -86,7 +193,7 @@
     "total": 5,
     "gainers": 2,
     "losers": 3,
-    "avg_change": 0.63,
+    "avg_change": 0.64,
     "top_gainer": {
       "ticker": "MSFT",
       "pct": 5.71
@@ -145,8 +252,8 @@
           "url": "https://www.thestreet.com/investing/stocks/wedbush-spots-clear-investor-opportunities-in-tech-stocks"
         }
       ],
-      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ซึ่งอาจกระทบต่อการลงทุนในหุ้น NVDA\n\nBeer มองว่า: หุ้น NVDA เป็น 'เข็มฉีดยา' เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin",
-      "analysis_status": "groq",
+      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ซึ่งอาจกระทบต่อการลงทุนในหุ้น NVDA\n\nBeer มองว่า:   หุ้น NVDA เป็น 'เข็มฉีดยา' เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -223,8 +330,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-week-lower-as-investors-rotate-out-of-tech-ai-plays-on-aapl-sls-infq-nke-in-focus/cZ12ck9R7W9"
         }
       ],
-      "analysis": "ข่าวเกี่ยวกับ Apple ที่มีผลกระทบต่อราคาหุ้น คือ การร่วมมือกับ Intel, ราคหน่วยความจำที่เพิ่มขึ้น และการซื้อขายที่รุนแรงในตลาด ทำให้ราคาหุ้น AAPL ลดลง 0.4% ในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาในระยะสั้น\n\nBeer มองว่า: SQ3 - หุ้นที่มีโอกาสติดเทรนด์ (รูปแบบ 'เข็มฉีดยา') เนื่องจากมีการซื้อขายที่รุนแรงและราคาที่เพิ่มขึ้นอย่างรวดเร็ว แต่ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น 'โลภ'",
-      "analysis_status": "groq",
+      "analysis": "ข่าวเกี่ยวกับ Apple ที่มีผลกระทบต่อราคาหุ้น คือ การร่วมมือกับ Intel, ราคหน่วยความจำที่เพิ่มขึ้น และการซื้อขายที่รุนแรงในตลาด ทำให้ราคาหุ้น AAPL ลดลง 0.4% ในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาในระยะสั้น\n\nBeer มองว่า:   SQ3 - หุ้นที่มีโอกาสติดเทรนด์ (รูปแบบ 'เข็มฉีดยา') เนื่องจากมีการซื้อขายที่รุนแรงและราคาที่เพิ่มขึ้นอย่างรวดเร็ว แต่ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น 'โลภ'",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -301,8 +408,8 @@
           "url": "https://www.barrons.com/articles/charitable-giving-where-theres-a-will-theres-a-way-42a6ae33?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ข่าวเกี่ยวกับ Micron และการลงทุนใน AI ของ Google อาจมีผลกระทบต่อธุรกิจของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น นอกจากนี้ การสื่อสารของบริษัทอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น\n\nBeer มองว่า: GOOGL เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ แต่ต้องระวังการเปลี่ยนแปลงผู้บริหารและคู่แข่งที่ลงทุนใน AI อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL",
-      "analysis_status": "groq",
+      "analysis": "ข่าวเกี่ยวกับ Micron และการลงทุนใน AI ของ Google อาจมีผลกระทบต่อธุรกิจของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น นอกจากนี้ การสื่อสารของบริษัทอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น\n\nBeer มองว่า:   GOOGL เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ แต่ต้องระวังการเปลี่ยนแปลงผู้บริหารและคู่แข่งที่ลงทุนใน AI อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -379,8 +486,8 @@
           "url": "https://www.barrons.com/articles/charitable-giving-where-theres-a-will-theres-a-way-42a6ae33?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ข่าวเกี่ยวกับอุตสาหกรรม AI และการเปลี่ยนแปลงในอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต ราคาหุ้น GOOG ลง 2.2% แต่ P/E Ratio ยังคงอยู่ที่ 27.64122 ซึ่งเป็นระดับที่น่าสนใจ ข่าวเกี่ยวกับ SpaceX และอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' ในรูปแบบ Daytrade Hunter เนื่องจากมีการเปลี่ยนแปลงในอุตสาหกรรม AI ที่อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต",
-      "analysis_status": "groq",
+      "analysis": "ข่าวเกี่ยวกับอุตสาหกรรม AI และการเปลี่ยนแปลงในอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต ราคาหุ้น GOOG ลง 2.2% แต่ P/E Ratio ยังคงอยู่ที่ 27.64122 ซึ่งเป็นระดับที่น่าสนใจ ข่าวเกี่ยวกับ SpaceX และอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต\n\nBeer มองว่า:   หุ้น 'เข็มฉีดยา' ในรูปแบบ Daytrade Hunter เนื่องจากมีการเปลี่ยนแปลงในอุตสาหกรรม AI ที่อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -457,8 +564,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/adobe-adbe-buys-topaz-labs-220919901.html"
         }
       ],
-      "analysis": "ราคา MSFT เพิ่มขึ้น 5.7% แต่ตลาดมีความกลัวเข้ามาแล้ว หุ้นอยู่โซนล่าง หากหมดแรงขาย เป็นโอกาสที่น่าสนใจ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่\n\nBeer มองว่า: • รหัส SQ: 4\n• รูปแบบ: รูปแบบ Daytrade Hunter (รูปแบบ 4)",
-      "analysis_status": "groq",
+      "analysis": "ราคา MSFT เพิ่มขึ้น 5.7% แต่ตลาดมีความกลัวเข้ามาแล้ว หุ้นอยู่โซนล่าง หากหมดแรงขาย เป็นโอกาสที่น่าสนใจ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่\n\nBeer มองว่า:   • รหัส SQ: 4\n• รูปแบบ: รูปแบบ Daytrade Hunter (รูปแบบ 4)",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",

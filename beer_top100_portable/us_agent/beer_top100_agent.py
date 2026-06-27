@@ -441,6 +441,115 @@ def fetch_market_indices() -> dict:
     return result
 
 
+def fetch_and_summarize_market_news() -> dict:
+    """ดึงข่าวจาก ETF และดัชนีหลักตลาดสหรัฐฯ (SPY, QQQ, DIA, USO, GLD) แล้วใช้ Groq สรุปข่าวใหญ่ในแต่ละวัน"""
+    import yfinance as yf
+    
+    safe_print("\n📰 ดึงข่าวสารและสรุปข่าวใหญ่ตลาดสหรัฐฯ...")
+    target_tickers = ["SPY", "QQQ", "DIA", "USO", "GLD"]
+    raw_news_items = []
+    
+    for ticker in target_tickers:
+        try:
+            tk = yf.Ticker(ticker)
+            if tk.news:
+                for n in tk.news[:5]:
+                    item = _parse_news(n)
+                    if item:
+                        item["ticker"] = ticker
+                        raw_news_items.append(item)
+        except Exception as e:
+            safe_print(f"  ⚠️ ไม่สามารถดึงข่าวของ {ticker} ได้: {e}")
+            
+    if not raw_news_items:
+        safe_print("  ❌ ไม่มีข้อมูลข่าวสารที่ดึงได้")
+        return {"news_list": [], "summary_bullets": ["ไม่มีข้อมูลข่าวสารที่ดึงได้ในวันนี้"]}
+
+    seen_urls = set()
+    dedup_news = []
+    for item in raw_news_items:
+        url = item.get("url") or item.get("title")
+        if url not in seen_urls:
+            seen_urls.add(url)
+            dedup_news.append(item)
+            
+    dedup_news = dedup_news[:12]
+    
+    news_text_block = ""
+    for idx, item in enumerate(dedup_news, 1):
+        news_text_block += f"[{idx}] Source: {item.get('provider','Yahoo')} ({item.get('ticker')})\n"
+        news_text_block += f"Title: {item.get('title')}\n"
+        if item.get("summary"):
+            news_text_block += f"Summary: {item.get('summary')}\n"
+        news_text_block += "\n"
+        
+    prompt = f"""คุณคือผู้ช่วยวิเคราะห์ข่าวการเงินของเทรดเดอร์ Beer Vanon
+นี่คือข่าวสารล่าสุดเกี่ยวกับตลาดหุ้นอเมริกา (S&P 500, NASDAQ, Dow Jones, น้ำมัน, ทองคำ):
+
+{news_text_block}
+
+จงรวบรวมและสรุปข่าวใหญ่ที่มีผลกระทบและกำหนดทิศทางตลาดหุ้นอเมริกาในวันนี้ออกมาเป็นข้อๆ (ภาษาไทย) 
+ใช้สำนวนภาษาที่กระชับ เฉียบคม และมีมุมมองเชิงวิเคราะห์ว่าข่าวนี้ส่งผลอย่างไรต่ออารมณ์ตลาด (Market Sentiment)
+เช่น:
+- ข่าวการเมือง นโยบายของทรัมป์/ผู้นำประเทศต่างๆ
+- ข่าวเศรษฐกิจมหาภาค/Fed/เงินเฟ้อ/อัตราดอกเบี้ย
+- ข่าวราคาน้ำมัน (Commodities/Geopolitics) หรือทองคำ
+- ข่าวการหมุนเวียนกลุ่มเล่น (Sector rotation/AI boom)
+
+ให้ผลลัพธ์เป็น JSON Object รูปแบบดังนี้เท่านั้น (ไม่มีข้อความอภิปรายอื่นนำหรือตาม):
+{{
+  "summary_bullets": [
+    "ทรัมป์ประกาศนโยบายกำแพงภาษีใหม่ ส่งผลกดดันหุ้นเทคโนโลยี แต่หนุนดัชนี Dow Jones ในกลุ่มอุตสาหกรรมในประเทศ",
+    "ราคาน้ำมันดิบ USO พุ่งขึ้น 2% หลังความตึงเครียดในตะวันออกกลางเพิ่มขึ้น หนุนหุ้นกลุ่มพลังงาน",
+    "นักลงทุนสลับกลุ่มเล่น (Sector Rotation) จากหุ้นเทคฯ ขนาดใหญ่ (AI Plays) เข้าหาหุ้นดัชนีแคปเล็กหรือกลุ่มปลอดภัย"
+  ]
+}}"""
+
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    try:
+        global last_groq_call
+        with groq_lock:
+            now = time.time()
+            elapsed = now - last_groq_call
+            if elapsed < CALL_DELAY:
+                time.sleep(CALL_DELAY - elapsed)
+            last_groq_call = time.time()
+
+        resp = client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[
+                {"role": "system", "content": "คุณคือผู้เชี่ยวชาญด้านการสรุปข่าวเศรษฐกิจระดับโลกสำหรับเทรดเดอร์ ทำการวิเคราะห์ทิศทางและ Sentiment ตลาด ตอบกลับในรูปแบบ JSON เสมอ"},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.3,
+            max_tokens=600,
+            response_format={"type": "json_object"},
+        )
+        
+        try:
+            from usage_tracker import record_usage
+            record_usage(GROQ_MODEL, resp.usage.prompt_tokens, resp.usage.completion_tokens)
+        except Exception:
+            pass
+
+        res_data = json.loads(resp.choices[0].message.content)
+        bullets = res_data.get("summary_bullets", [])
+        if not bullets:
+            bullets = ["ไม่สามารถแยกประเด็นข่าวใหญ่ในวันนี้ได้"]
+        safe_print(f"  ✅ สรุปข่าวใหญ่ได้ {len(bullets)} ประเด็น")
+        return {
+            "news_list": dedup_news,
+            "summary_bullets": bullets
+        }
+    except Exception as e:
+        safe_print(f"  ⚠️ ไม่สามารถสรุปข่าวด้วย Groq ได้: {e}")
+        fallback_bullets = [n["title"] for n in dedup_news[:3]]
+        return {
+            "news_list": dedup_news,
+            "summary_bullets": fallback_bullets or ["ไม่สามารถสรุปข่าวใหญ่ได้ในขณะนี้"]
+        }
+
+
 # # --- User Notes # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---──
 
 def load_user_notes() -> dict:
@@ -819,7 +928,7 @@ def stock_card(stock: dict, analysis_data: dict, chart_cid: str, user_notes: lis
 
 # # --- Web Archive # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---
 
-def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None, test_run: bool = False) -> str:
+def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = None, test_run: bool = False, market_news: dict = None) -> str:
     """บันทึก JSON ลง docs/data/ สำหรับ GitHub Pages web archive"""
     docs_dir = Path("docs/data")
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -836,6 +945,7 @@ def save_to_web(stocks_data: list, today: datetime.date, market_indices: dict = 
         "homework_framework": HOMEWORK_FRAMEWORK_TITLE,
         "homework_guide": homework_prompt_block("หุ้น US"),
         "market_indices": market_indices or {},
+        "market_news": market_news or {"news_list": [], "summary_bullets": []},
         "summary": {
             "total":       len(stocks_data),
             "gainers":     len(gainers),
@@ -1268,11 +1378,18 @@ def main():
     
     # 4a. ดึงดัชนีตลาดก่อน (เพื่อใช้ในการ save_to_web ชุดแรก)
     market_indices = {}
+    market_news = {"news_list": [], "summary_bullets": []}
     if not args.no_web:
         safe_print(f"\n📈 ดึงดัชนีตลาด (DJI/S&P/NASDAQ)...")
         market_indices = fetch_market_indices()
         idx_status = " | ".join(f"{k.upper()}:✅" if k in market_indices else f"{k.upper()}:❌" for k in ["dji","spx","ixic"])
         safe_print(f"   {idx_status}")
+        
+        # ดึงและสรุปข่าวใหญ่ตลาด
+        try:
+            market_news = fetch_and_summarize_market_news()
+        except Exception as e:
+            safe_print(f"   ⚠️ ไม่สามารถดึง/สรุปข่าวตลาดได้: {e}")
 
     if remaining_stocks:
         safe_print(f"\n🔍 วิเคราะห์ {len(remaining_stocks)} หุ้นที่เหลือ (parallel workers={args.workers})...")
@@ -1299,7 +1416,7 @@ def main():
                     # Incremental Save after each stock
                     if not args.no_web:
                         stocks_data.sort(key=lambda x: x["stock"]["rank"])
-                        save_to_web(stocks_data, today, market_indices, test_run=args.test)
+                        save_to_web(stocks_data, today, market_indices, test_run=args.test, market_news=market_news)
         
         safe_print(f"   ⏱️ Analysis completed in: {time.time() - analysis_start:.1f}s")
     else:
@@ -1318,7 +1435,7 @@ def main():
         safe_print(f"\n🌐 ข้ามการบันทึก web archive (--no-web)")
     else:
         safe_print(f"\n🌐 บันทึก web archive (Final)...")
-        archive_url = save_to_web(stocks_data, today, market_indices, test_run=args.test)
+        archive_url = save_to_web(stocks_data, today, market_indices, test_run=args.test, market_news=market_news)
         if not args.no_history:
             save_history_data(stocks_data)
 
