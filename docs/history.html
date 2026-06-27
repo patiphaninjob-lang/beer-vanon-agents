@@ -73,6 +73,20 @@
     .detail-pill { color: #8b949e; font-size: 0.78em; border: 1px solid #30363d; border-radius: 999px; padding: 2px 7px; }
     .note-block { padding: 10px 0; border-top: 1px solid #21262d; }
     .note-block:first-of-type { border-top: 0; padding-top: 0; }
+    .note-block.is-journal {
+      border-left: 3px solid #f0b90b;
+      padding-left: 12px;
+      margin-bottom: 12px;
+      background: rgba(22, 27, 34, 0.4);
+      border-radius: 4px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 6px;
+    }
+    .journal-link-btn:hover {
+      text-decoration: underline !important;
+      opacity: 0.8;
+    }
     .note-text { color: #d1d5db; white-space: pre-wrap; line-height: 1.65; word-break: break-word; }
     .archive-link { color: #93c5fd; text-decoration: none; font-size: 0.8em; }
     .archive-link:hover { text-decoration: underline; }
@@ -288,6 +302,20 @@
   <script>
 const NOTES_FILE = 'notes/notes.json';
 const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+function getEmotionColor(emotion) {
+  if (!emotion) return '#f0b90b'; // default gold
+  const fear = ['กลัว'];
+  const confident = ['มั่นใจแต่ระวัง'];
+  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
+  const greed = ['โลภ', 'FOMO'];
+  
+  if (fear.includes(emotion)) return '#ef5350'; // Red
+  if (confident.includes(emotion)) return '#26a69a'; // Green
+  if (hesitant.includes(emotion)) return '#facc15'; // Yellow
+  if (greed.includes(emotion)) return '#3b82f6'; // Blue
+  return '#f0b90b'; // default gold
+}
 
 const state = {
   ticker: normalizeTicker(new URLSearchParams(location.search).get('ticker') || 'NVDA'),
@@ -633,9 +661,18 @@ function drawChart() {
     const match = nearestCandle(group.date);
     if (!match) return;
     const x = xFor(match.index), y = yFor(match.candle.close), active = state.selectedKey === group.date;
+    
+    // Check if any note in the group is a journal entry to determine color
+    const journalNote = group.notes.find(n => n.journal);
+    const emotion = journalNote?.journal?.emotion;
+    const color = getEmotionColor(emotion);
+    
     ctx.save();
-    ctx.strokeStyle = active ? '#fff' : '#fff7c2'; ctx.fillStyle = '#f0b90b'; ctx.lineWidth = active ? 3 : 2;
-    ctx.shadowColor = 'rgba(240,185,11,0.8)'; ctx.shadowBlur = active ? 20 : 10;
+    ctx.strokeStyle = active ? '#fff' : '#fff7c2';
+    ctx.fillStyle = color;
+    ctx.lineWidth = active ? 3 : 2;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = active ? 20 : 10;
     ctx.beginPath(); ctx.arc(x, y, active ? 8 : 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.restore();
     state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
@@ -653,22 +690,50 @@ async function showGroup(group, candle) {
     if (state.ticker.startsWith('_')) mkt = day; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
-  const notesHTML = group.notes.map(n => `
-    <div class="note-block">
-      <div class="detail-head">
-        <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
-        <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}</div>
+  const notesHTML = group.notes.map(n => {
+    let journalHtml = '';
+    if (n.journal) {
+      const eColor = getEmotionColor(n.journal.emotion);
+      const intentLabels = { 'ซื้อ': '🟢 ซื้อ', 'ขาย': '🔴 ขาย', 'ถือ': '🟡 ถือ', 'รอจังหวะ': '🔵 รอจังหวะ' };
+      const intentText = intentLabels[n.journal.intent] || n.journal.intent || '';
+      
+      journalHtml = `
+        <div class="journal-badge-row" style="display:flex; gap:8px; margin-top:8px; margin-bottom:12px; flex-wrap:wrap;">
+          <span style="background:${eColor}20; color:${eColor}; border:1px solid ${eColor}; padding:2px 8px; border-radius:12px; font-size:0.75em; font-weight:bold;">🎭 อารมณ์: ${esc(n.journal.emotion || 'N/A')}</span>
+          ${intentText ? `<span style="background:#161b22; color:#c9d1d9; border:1px solid #30363d; padding:2px 8px; border-radius:12px; font-size:0.75em; font-weight:bold;">🎯 ตั้งใจ: ${esc(intentText)}</span>` : ''}
+          ${n.journal.confidence ? `<span style="background:#161b22; color:#f0b90b; border:1px solid #f0b90b; padding:2px 8px; border-radius:12px; font-size:0.75em; font-weight:bold;">💪 มั่นใจ: ${esc(n.journal.confidence)}/10</span>` : ''}
+          ${n.journal.review ? `<span style="background:#161b22; color:#8b949e; border:1px solid #30363d; padding:2px 8px; border-radius:12px; font-size:0.75em;">📅 ทบทวน: ${esc(n.journal.review)}</span>` : ''}
+        </div>
+      `;
+    }
+
+    const journalLink = n.journal ? `
+      <div style="margin-top:12px; text-align:right;">
+        <a class="journal-link-btn" href="journal.html?ticker=${encodeURIComponent(state.ticker)}&date=${encodeURIComponent(n.archive_date || group.date)}&phase=${encodeURIComponent(n.archive_phase || 'legacy')}" style="font-size:0.75em; color:#f0b90b; text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-weight:bold;">
+          เปิดใน Journal →
+        </a>
       </div>
-      <div class="note-text">${esc(n.note || '')}</div>
-    </div>
-  `).join('');
+    ` : '';
+
+    return `
+      <div class="note-block ${n.journal ? 'is-journal' : ''}">
+        <div class="detail-head">
+          <div class="detail-date">${fmtDate(n.date || group.date)}${n.time ? ' · '+n.time : ''}</div>
+          <div class="detail-pill">${n.price ? fmtMoney(n.price) : fmtMoney(candle?.close)}</div>
+        </div>
+        ${journalHtml}
+        <div class="note-text" style="white-space: pre-wrap;">${esc(n.note || '')}</div>
+        ${journalLink}
+      </div>
+    `;
+  }).join('');
 
   detail.innerHTML = `
     <div class="detail-head">
       <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
     </div>
     ${notesHTML}
-    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี')}</div></div>` : ''}
+    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี้')}</div></div>` : ''}
   `;
 
   // --- Show Tooltip Logic ---
@@ -677,11 +742,30 @@ async function showGroup(group, candle) {
   if (m && tooltip) {
     let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
     group.notes.forEach(n => {
-      baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div><div class="tt-text">${esc(n.note || '')}</div></div>`;
+      let journalBadges = '';
+      if (n.journal) {
+        const eColor = getEmotionColor(n.journal.emotion);
+        const intentLabels = { 'ซื้อ': '🟢 ซื้อ', 'ขาย': '🔴 ขาย', 'ถือ': '🟡 ถือ', 'รอจังหวะ': '🔵 รอจังหวะ' };
+        const intentText = intentLabels[n.journal.intent] || n.journal.intent || '';
+        
+        journalBadges = `
+          <div style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
+            <span style="background:${eColor}20; color:${eColor}; border:1px solid ${eColor}; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">🎭 ${esc(n.journal.emotion)}</span>
+            ${intentText ? `<span style="background:#161b22; color:#c9d1d9; border:1px solid #30363d; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">🎯 ${esc(intentText)}</span>` : ''}
+            ${n.journal.confidence ? `<span style="background:#161b22; color:#f0b90b; border:1px solid #f0b90b; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">💪 ${esc(n.journal.confidence)}/10</span>` : ''}
+          </div>
+        `;
+      }
+      
+      baseHtml += `<div class="tt-section">
+        <div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div>
+        ${journalBadges}
+        <div class="tt-text" style="white-space: pre-wrap; word-break: break-word;">${esc(n.note || '')}</div>
+      </div>`;
     });
     
     if (stock && stock.analysis) {
-      baseHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div></div>`;
+      baseHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="word-break: break-word;">${esc(stock.analysis.trim())}</div></div>`;
     }
     
     tooltip.innerHTML = baseHtml;
