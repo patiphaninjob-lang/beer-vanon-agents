@@ -2532,11 +2532,7 @@ async function loadAndDrawMiniChart(canvas, ticker) {
             const group = notesMap[closestIdx];
             const note = group.notes[0];
             if (note) {
-              if (ticker.startsWith('_')) {
-                openMarketNote(ticker);
-              } else {
-                showNoteModal(ticker, null);
-              }
+              showMiniChartTooltip(canvas, note, ticker, e.clientX, e.clientY);
             }
           }
         });
