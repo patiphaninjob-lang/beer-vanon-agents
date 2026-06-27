@@ -1,11 +1,11 @@
 {
-  "updated": "2026-06-26T21:19:58.381064",
+  "updated": "2026-06-27T08:19:00.522390",
   "latest": {
-    "date": "2026-06-26",
-    "archive_key": "2026-06-26-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-06-26T21:19:58.363227",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-26&phase=premarket",
+    "date": "2026-06-27",
+    "archive_key": "2026-06-27-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-06-27T08:19:00.509759",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-27&phase=postmarket",
     "health": {
       "status": "ok",
       "issues": [],
@@ -54,11 +54,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-06-26",
-      "archive_key": "2026-06-26-postmarket",
+      "date": "2026-06-27",
+      "archive_key": "2026-06-27-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-06-26T09:28:48.920741",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-26&phase=postmarket",
+      "generated": "2026-06-27T08:19:00.509759",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-27&phase=postmarket",
       "health": {
         "status": "ok",
         "issues": [],
