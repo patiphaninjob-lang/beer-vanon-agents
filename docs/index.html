@@ -694,6 +694,182 @@
       .marker-tooltip { max-width: calc(100vw - 32px); }
     }
 
+    /* ── Expand Chart Button ── */
+    .chart-expand-btn {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      z-index: 10;
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(13, 17, 23, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #8b949e;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      padding: 0;
+      line-height: 1;
+    }
+    .card-chart-box:hover .chart-expand-btn,
+    .card-chart-box:active .chart-expand-btn {
+      opacity: 1;
+    }
+    .chart-expand-btn:hover {
+      background: rgba(88, 166, 255, 0.25);
+      color: #58a6ff;
+      transform: scale(1.12);
+    }
+    .chart-expand-btn:active {
+      transform: scale(0.95);
+    }
+    @media (max-width: 560px) {
+      .chart-expand-btn {
+        opacity: 0.7;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+    }
+
+    /* ── Fullscreen Chart Modal ── */
+    .chart-fullscreen-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  -webkit-backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.3s ease;
+    }
+    .chart-fullscreen-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(16px) saturate(1.6);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    }
+    .chart-fullscreen-panel {
+      background: linear-gradient(145deg, #161b22 0%, #0d1117 100%);
+      border: 1px solid rgba(48, 54, 61, 0.8);
+      border-radius: 18px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6),
+                  0 0 0 1px rgba(88, 166, 255, 0.08),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      width: calc(100vw - 32px);
+      max-width: 960px;
+      max-height: calc(100vh - 32px);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.92) translateY(20px);
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.35s ease;
+    }
+    .chart-fullscreen-overlay.active .chart-fullscreen-panel {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    .chart-fullscreen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+    }
+    .chart-fullscreen-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #e6edf3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chart-fullscreen-title .ticker-label {
+      color: #58a6ff;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .chart-fullscreen-close {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(110, 118, 129, 0.15);
+      color: #8b949e;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      flex-shrink: 0;
+    }
+    .chart-fullscreen-close:hover {
+      background: rgba(248, 81, 73, 0.2);
+      color: #f85149;
+      transform: scale(1.1);
+    }
+    .chart-fullscreen-close:active {
+      transform: scale(0.9);
+    }
+    .chart-fullscreen-canvas-wrap {
+      flex: 1;
+      position: relative;
+      min-height: 300px;
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .chart-fullscreen-canvas-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 560px) {
+      .chart-fullscreen-panel {
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 16px);
+        padding: 14px;
+        border-radius: 14px;
+      }
+      .chart-fullscreen-canvas-wrap {
+        min-height: 220px;
+      }
+      .chart-fullscreen-header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+      }
+      .chart-fullscreen-title {
+        font-size: 0.95em;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .chart-fullscreen-overlay,
+      .chart-fullscreen-panel {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+
     /* UI polish: keep the existing dashboard structure, improve layering and density. */
     body {
       background:
@@ -1183,7 +1359,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.5.7<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.5.7 (ล่าสุด):</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก และระบบเคลียร์ไฮไลท์กราฟอัตโนมัติเมื่อกดปิดป๊อปอัปลอย</li><li><span class="wt-ver">v2.5.6:</span> ปรับปรุงกราฟดัชนีภาพรวมตลาดให้สูง 120px เต็มกว้างสมส่วน ย้ายลิงก์เข้า TradingView ไปเป็นปุ่มเฉพาะ และเปิด Floating Tooltip ตรงตัวแท่งเทียนแบบมีปักหมุดเมื่อคลิก</li><li><span class="wt-ver">v2.5.5:</span> อัพเกรดกราฟหน้าแรกเป็นแบบ Interactive 3D Candlestick โต้ตอบเมาส์และแสดงโชว์บันทึกโน้ตในตัว</li><li><span class="wt-ver">v2.5.0:</span> อัพเกรดกราฟแท่งเทียน 3D เรืองแสงแยกตามอารมณ์ และแอนิเมชันเปิดป๊อปอัปสปริงเบลอกระจกสไตล์ iOS ในหน้า History / Journal</li><li><span class="wt-ver">v2.4.2:</span> เพิ่มปุ่มเลือกช่วงเวลากราฟ (1M, 6M, 1Y, 5Y, ALL) บนกราฟหน้า Journal</li><li><span class="wt-ver">v2.4.1:</span> แก้ไขป๊อปอัปมุดโน้ตในหน้า Journal ไม่แสดงผลจากการทับซ้อนสไตล์ CSS</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.5.8<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.5.8 (ล่าสุด):</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล พร้อมลูกเล่น Hover/Click/Touch เหมือนกราฟเล็กทุกประการ</li><li><span class="wt-ver">v2.5.7:</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก และระบบเคลียร์ไฮไลท์กราฟอัตโนมัติเมื่อกดปิดป๊อปอัปลอย</li><li><span class="wt-ver">v2.5.6:</span> ปรับปรุงกราฟดัชนีภาพรวมตลาดให้สูง 120px เต็มกว้างสมส่วน ย้ายลิงก์เข้า TradingView ไปเป็นปุ่มเฉพาะ และเปิด Floating Tooltip ตรงตัวแท่งเทียนแบบมีปักหมุดเมื่อคลิก</li><li><span class="wt-ver">v2.5.5:</span> อัพเกรดกราฟหน้าแรกเป็นแบบ Interactive 3D Candlestick โต้ตอบเมาส์และแสดงโชว์บันทึกโน้ตในตัว</li><li><span class="wt-ver">v2.5.0:</span> อัพเกรดกราฟแท่งเทียน 3D เรืองแสงแยกตามอารมณ์ และแอนิเมชันเปิดป๊อปอัปสปริงเบลอกระจกสไตล์ iOS ในหน้า History / Journal</li><li><span class="wt-ver">v2.4.2:</span> เพิ่มปุ่มเลือกช่วงเวลากราฟ (1M, 6M, 1Y, 5Y, ALL) บนกราฟหน้า Journal</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2176,6 +2352,7 @@ function renderMarketOverview() {
             <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
             ${d.chart_b64 ? `<div class="index-card-chart">
               <div class="card-chart-box" data-ticker="${esc(ticker)}" style="position:relative; width:100%; height:120px; background:#0d1117; border:1px solid #21262d; border-radius:6px; overflow:hidden; margin-top:6px;">
+                <button class="chart-expand-btn" type="button" onclick="event.stopPropagation(); openExpandedChart('${esc(ticker)}')" title="ขยายกราฟเต็มจอ" aria-label="ขยายกราฟ">⤢</button>
                 <canvas class="card-price-canvas" style="display:block; width:100%; height:120px;"></canvas>
               </div>
             </div>` : ''}
@@ -2681,6 +2858,163 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
     } else if (elLoad) {
       elLoad.remove();
     }
+  }
+}
+
+// ── Fullscreen Chart Expand ──
+function openExpandedChart(ticker) {
+  const overlay = document.getElementById('chartFullscreenOverlay');
+  if (!overlay) return;
+
+  // Build display label
+  const INDEX_LABELS = { '_DJI': 'Dow Jones (DJI)', '_SPX': 'S&P 500', '_IXIC': 'NASDAQ' };
+  let displayName = INDEX_LABELS[ticker] || ticker;
+  const stock = (currentData?.stocks || []).find(s => s.ticker === ticker);
+  if (stock) displayName = `${stock.ticker} · ${stock.name}`;
+
+  document.getElementById('chartFsTitle').innerHTML = `<span class="ticker-label">${esc(displayName)}</span>`;
+  const canvasWrap = document.getElementById('chartFsCanvasWrap');
+  canvasWrap.innerHTML = '<canvas id="chartFsCanvas" style="display:block;width:100%;height:100%;"></canvas>';
+  const canvas = document.getElementById('chartFsCanvas');
+
+  // Show overlay with animation
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Fetch data and draw
+  const normalized = ticker.replace('.', '-');
+  const myNotes = notesCache[normalized] || notesCache[ticker] || [];
+
+  fetch(`history-data/${normalized}.json`).then(r => {
+    if (!r.ok) throw new Error('Not found');
+    return r.json();
+  }).then(data => {
+    if (!data?.candles) return;
+    const parsedCandles = data.candles.map(row => {
+      if (Array.isArray(row)) return { date: row[0], open: row[1], high: row[2], low: row[3], close: row[4], volume: row[5] || 0 };
+      return row;
+    }).filter(c => c?.date && [c.open,c.high,c.low,c.close].every(v => Number.isFinite(Number(v))))
+      .map(c => ({ date: c.date, open: Number(c.open), high: Number(c.high), low: Number(c.low), close: Number(c.close), volume: Number(c.volume || 0) }));
+
+    // Wait for layout then draw
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        drawMiniChart(canvas, parsedCandles, myNotes);
+        bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker);
+      });
+    });
+  }).catch(e => {
+    console.error('Expanded chart load failed:', e);
+    canvasWrap.innerHTML = '<div style="color:#6e7681;padding:20px;text-align:center;">ไม่พบข้อมูลกราฟ</div>';
+  });
+}
+
+function bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker) {
+  if (canvas._fsBound) return;
+  canvas._fsBound = true;
+
+  // Mouse/touch move for hover
+  const onMove = (clientX) => {
+    const candles = canvas._visibleCandles || [];
+    const xFor = canvas._xFor;
+    if (!candles.length || !xFor) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = clientX - rect.left;
+    let closestIdx = -1, minDistance = Infinity;
+    for (let i = 0; i < candles.length; i++) {
+      const dist = Math.abs(xFor(i) - mouseX);
+      if (dist < minDistance) { minDistance = dist; closestIdx = i; }
+    }
+
+    canvas._hoverIdx = closestIdx;
+    drawMiniChart(canvas, canvas._candles || parsedCandles, canvas._notes || myNotes);
+
+    const notesMap = canvas._notesMap || {};
+    if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
+      canvas.style.cursor = 'pointer';
+      const group = notesMap[closestIdx];
+      const note = group.notes[0];
+      const tooltip = document.getElementById('markerTooltip');
+      if (note && (!tooltip.classList.contains('show') || tooltip._activeNoteId !== note.id)) {
+        tooltip._activeNoteId = note.id;
+        showMiniChartTooltip(canvas, note, ticker, closestIdx);
+      }
+    } else {
+      canvas.style.cursor = 'crosshair';
+      const tooltip = document.getElementById('markerTooltip');
+      if (tooltip && tooltip._sourceCanvas === canvas && !tooltip._pinnedNoteId) {
+        tooltip.classList.remove('show');
+        tooltip._activeNoteId = null;
+      }
+    }
+  };
+
+  canvas.addEventListener('mousemove', e => onMove(e.clientX));
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length) onMove(e.touches[0].clientX);
+  }, { passive: false });
+
+  canvas.addEventListener('mouseleave', () => {
+    canvas._hoverIdx = null;
+    drawMiniChart(canvas, canvas._candles || parsedCandles, canvas._notes || myNotes);
+    const tooltip = document.getElementById('markerTooltip');
+    if (tooltip && tooltip._sourceCanvas === canvas && !tooltip._pinnedNoteId) {
+      tooltip.classList.remove('show');
+      tooltip._activeNoteId = null;
+    }
+  });
+
+  const onClick = (clientX) => {
+    const candles = canvas._visibleCandles || [];
+    const notesMap = canvas._notesMap || {};
+    const xFor = canvas._xFor;
+    if (!candles.length || !xFor) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = clientX - rect.left;
+    let closestIdx = -1, minDistance = Infinity;
+    for (let i = 0; i < candles.length; i++) {
+      const dist = Math.abs(xFor(i) - mouseX);
+      if (dist < minDistance) { minDistance = dist; closestIdx = i; }
+    }
+
+    const tooltip = document.getElementById('markerTooltip');
+    if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
+      const group = notesMap[closestIdx];
+      const note = group.notes[0];
+      if (note) {
+        tooltip._activeNoteId = note.id;
+        tooltip._pinnedNoteId = note.id;
+        showMiniChartTooltip(canvas, note, ticker, closestIdx);
+      }
+    } else {
+      if (tooltip) {
+        tooltip.classList.remove('show');
+        tooltip._activeNoteId = null;
+        tooltip._pinnedNoteId = null;
+      }
+    }
+  };
+
+  canvas.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); onClick(e.clientX); });
+  canvas.addEventListener('touchend', e => {
+    if (e.changedTouches.length) onClick(e.changedTouches[0].clientX);
+  });
+}
+
+function closeExpandedChart() {
+  const overlay = document.getElementById('chartFullscreenOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  // Hide any tooltip that was shown inside
+  const tooltip = document.getElementById('markerTooltip');
+  if (tooltip) {
+    tooltip.classList.remove('show');
+    tooltip._activeNoteId = null;
+    tooltip._pinnedNoteId = null;
   }
 }
 
@@ -3456,6 +3790,7 @@ function cardHTML(s) {
     <div class="chart-container">
       ${s.chart_b64
         ? `<div class="card-chart-box" data-ticker="${esc(s.ticker)}" style="position:relative; width:100%; height:120px; background:#0d1117; border:1px solid #21262d; border-radius:6px; overflow:hidden;">
+             <button class="chart-expand-btn" type="button" onclick="event.stopPropagation(); openExpandedChart('${esc(s.ticker)}')" title="ขยายกราฟเต็มจอ" aria-label="ขยายกราฟ">⤢</button>
              <canvas class="card-price-canvas" style="display:block; width:100%; height:120px;"></canvas>
            </div>`
         : ''}
@@ -3688,7 +4023,7 @@ window.addEventListener('storage', event => {
 
 // ── keyboard shortcuts ────────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeNoteModal(); closeSettings(); closeStockNewsModal(); }
+  if (e.key === 'Escape') { closeExpandedChart(); closeNoteModal(); closeSettings(); closeStockNewsModal(); }
 });
 
 if ('serviceWorker' in navigator) {
@@ -3748,5 +4083,19 @@ loadUsage();
 </div>
 
 <div id="markerTooltip" class="marker-tooltip"></div>
+
+<!-- Fullscreen Chart Modal -->
+<div id="chartFullscreenOverlay" class="chart-fullscreen-overlay" onclick="if(event.target===this) closeExpandedChart()">
+  <div class="chart-fullscreen-panel" onclick="event.stopPropagation()">
+    <div class="chart-fullscreen-header">
+      <div class="chart-fullscreen-title" id="chartFsTitle"></div>
+      <button class="chart-fullscreen-close" type="button" onclick="closeExpandedChart()" title="ปิด" aria-label="ปิด">✕</button>
+    </div>
+    <div class="chart-fullscreen-canvas-wrap" id="chartFsCanvasWrap">
+      <canvas id="chartFsCanvas" style="display:block;width:100%;height:100%;"></canvas>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
