@@ -1983,7 +1983,7 @@ ${topNews ? `- ข่าวที่ต้องแปลความ:\n${topNew
   input.focus();
 }
 
-function showNoteModal(ticker, stockData) {
+function showNoteModal(ticker, stockData, highlightNoteId = null) {
   activeNoteTicker = ticker;
   activeNoteStock  = stockData;
 
@@ -1995,6 +1995,44 @@ function showNoteModal(ticker, stockData) {
 
   const container = document.getElementById('existingNotesContainer');
   container.innerHTML = '';
+
+  const normalized = ticker.replace('.', '-');
+  const myNotes = notesCache[normalized] || notesCache[ticker] || [];
+  if (myNotes.length) {
+    let html = '<div class="existing-notes-title" style="font-weight:bold; font-size:0.85em; margin-bottom:8px; color:#9ca3af;">📝 บันทึกที่ผ่านมา:</div>';
+    html += '<div class="existing-notes-list" style="max-height: 180px; overflow-y: auto; margin-bottom: 12px; padding-right: 4px;">';
+    
+    myNotes.forEach(n => {
+      const isHighlighted = highlightNoteId && n.id == highlightNoteId;
+      const borderCol = isHighlighted ? '#f0b90b' : '#30363d';
+      const bgCol = isHighlighted ? '#f0b90b10' : '#161b22';
+      
+      let journalHtml = '';
+      if (n.journal) {
+        const eColor = getEmotionColor(n.journal.emotion);
+        journalHtml = `<span style="background:${eColor}20; color:${eColor}; border:1px solid ${eColor}; padding:1px 6px; border-radius:10px; font-size:0.7em; font-weight:bold; margin-left:8px;">🎭 ${esc(n.journal.emotion)}</span>`;
+      }
+      
+      html += `
+        <div class="existing-note-card" id="note-card-${n.id}" style="background:${bgCol}; border:1px solid ${borderCol}; border-radius:6px; padding:8px 10px; margin-bottom:6px; font-size:0.82em;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; color:#8b949e; font-size:0.9em;">
+            <div>📅 ${n.date}${n.time ? ' ' + n.time : ''}${journalHtml}</div>
+            <a href="journal.html?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent(n.archive_date || n.date)}" style="color:#58a6ff; text-decoration:none; font-size:0.9em;" title="ไปที่หน้า Journal เพื่อแก้ไข/ลบ">เปิดใน Journal ↗</a>
+          </div>
+          <div class="existing-note-text" style="color:#c9d1d9; line-height:1.4; white-space:pre-wrap;">${esc(n.note)}</div>
+        </div>
+      `;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    
+    if (highlightNoteId) {
+      setTimeout(() => {
+        const target = document.getElementById(`note-card-${highlightNoteId}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 200);
+    }
+  }
 
   openModal('noteOverlay');
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
@@ -2532,7 +2570,11 @@ async function loadAndDrawMiniChart(canvas, ticker) {
             const group = notesMap[closestIdx];
             const note = group.notes[0];
             if (note) {
-              showMiniChartTooltip(canvas, note, ticker, e.clientX, e.clientY);
+              if (ticker.startsWith('_')) {
+                openMarketNote(ticker, note.id);
+              } else {
+                showNoteModal(ticker, null, note.id);
+              }
             }
           }
         });
@@ -2579,7 +2621,7 @@ function openMarketHistory(ticker = '_MARKET') {
   location.href = url;
 }
 
-function openMarketNote(ticker = '_MARKET') {
+function openMarketNote(ticker = '_MARKET', highlightNoteId = null) {
   activeNoteTicker = ticker;
   activeNoteStock  = null;
   const labelMap = { '_MARKET': 'ภาพรวมตลาด', '_DJI': 'Dow Jones', '_SPX': 'S&P 500', '_IXIC': 'NASDAQ' };
@@ -2591,6 +2633,43 @@ function openMarketNote(ticker = '_MARKET') {
 
   const container = document.getElementById('existingNotesContainer');
   container.innerHTML = '';
+
+  const myNotes = notesCache[ticker] || [];
+  if (myNotes.length) {
+    let html = '<div class="existing-notes-title" style="font-weight:bold; font-size:0.85em; margin-bottom:8px; color:#9ca3af;">📝 บันทึกที่ผ่านมา:</div>';
+    html += '<div class="existing-notes-list" style="max-height: 180px; overflow-y: auto; margin-bottom: 12px; padding-right: 4px;">';
+    
+    myNotes.forEach(n => {
+      const isHighlighted = highlightNoteId && n.id == highlightNoteId;
+      const borderCol = isHighlighted ? '#f0b90b' : '#30363d';
+      const bgCol = isHighlighted ? '#f0b90b10' : '#161b22';
+      
+      let journalHtml = '';
+      if (n.journal) {
+        const eColor = getEmotionColor(n.journal.emotion);
+        journalHtml = `<span style="background:${eColor}20; color:${eColor}; border:1px solid ${eColor}; padding:1px 6px; border-radius:10px; font-size:0.7em; font-weight:bold; margin-left:8px;">🎭 ${esc(n.journal.emotion)}</span>`;
+      }
+      
+      html += `
+        <div class="existing-note-card" id="note-card-${n.id}" style="background:${bgCol}; border:1px solid ${borderCol}; border-radius:6px; padding:8px 10px; margin-bottom:6px; font-size:0.82em;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; color:#8b949e; font-size:0.9em;">
+            <div>📅 ${n.date}${n.time ? ' ' + n.time : ''}${journalHtml}</div>
+            <a href="journal.html?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent(n.archive_date || n.date)}" style="color:#58a6ff; text-decoration:none; font-size:0.9em;" title="ไปที่หน้า Journal เพื่อแก้ไข/ลบ">เปิดใน Journal ↗</a>
+          </div>
+          <div class="existing-note-text" style="color:#c9d1d9; line-height:1.4; white-space:pre-wrap;">${esc(n.note)}</div>
+        </div>
+      `;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    
+    if (highlightNoteId) {
+      setTimeout(() => {
+        const target = document.getElementById(`note-card-${highlightNoteId}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 200);
+    }
+  }
 
   openModal('noteOverlay');
   setTimeout(() => document.getElementById('noteInput').focus(), 100);
