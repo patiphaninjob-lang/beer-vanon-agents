@@ -1359,7 +1359,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.5.9<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.5.9 (ล่าสุด):</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li><li><span class="wt-ver">v2.5.8:</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล พร้อมลูกเล่น Hover/Click/Touch เหมือนกราฟเล็กทุกประการ</li><li><span class="wt-ver">v2.5.7:</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก</li><li><span class="wt-ver">v2.5.6:</span> ปรับปรุงกราฟดัชนีภาพรวมตลาดให้สูง 120px เต็มกว้างสมส่วน</li><li><span class="wt-ver">v2.5.5:</span> อัพเกรดกราฟหน้าแรกเป็นแบบ Interactive 3D Candlestick</li><li><span class="wt-ver">v2.5.0:</span> อัพเกรดกราฟแท่งเทียน 3D เรืองแสงแยกตามอารมณ์ สไตล์ iOS</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.6.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.6.0 (ล่าสุด):</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y (ตรวจเฉพาะบนตัวแท่งเทียนจริงๆ ไม่แสดงผลในพื้นที่ว่างเปล่า)</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li><li><span class="wt-ver">v2.5.8:</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล</li><li><span class="wt-ver">v2.5.7:</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก</li><li><span class="wt-ver">v2.5.6:</span> ปรับปรุงกราฟดัชนีภาพรวมตลาดให้สูง 120px เต็มกว้างสมส่วน</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2642,6 +2642,31 @@ function showMiniChartTooltip(canvas, note, ticker, clientX, clientY) {
   }
 }
 
+// Hit-test a candle: returns {idx, isHit} checking BOTH X proximity AND Y within candle range
+function hitTestCandle(canvas, mouseX, mouseY, maxXDist) {
+  const candles = canvas._visibleCandles || [];
+  const xFor = canvas._xFor;
+  const yFor = canvas._yFor;
+  if (!candles.length || !xFor || !yFor) return { idx: -1, isHit: false };
+
+  let closestIdx = -1, minDist = Infinity;
+  for (let i = 0; i < candles.length; i++) {
+    const dist = Math.abs(xFor(i) - mouseX);
+    if (dist < minDist) { minDist = dist; closestIdx = i; }
+  }
+
+  if (closestIdx === -1 || minDist > maxXDist) return { idx: -1, isHit: false };
+
+  // Check Y: mouse must be within the candle's high-to-low range (with generous padding)
+  const c = candles[closestIdx];
+  const yHigh = yFor(c.high);
+  const yLow = yFor(c.low);
+  const padY = Math.max(8, (yLow - yHigh) * 0.3); // 30% padding or 8px min
+  const inY = mouseY >= (yHigh - padY) && mouseY <= (yLow + padY);
+
+  return { idx: closestIdx, isHit: inY, xDist: minDist };
+}
+
 function drawMiniChart(canvas, candles, myNotes) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -2914,31 +2939,28 @@ function bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker) {
   canvas._fsBound = true;
 
   // Mouse/touch move for hover
-  const onMove = (clientX) => {
+  const onMove = (clientX, clientY) => {
     const candles = canvas._visibleCandles || [];
     const xFor = canvas._xFor;
     if (!candles.length || !xFor) return;
 
     const rect = canvas.getBoundingClientRect();
     const mouseX = clientX - rect.left;
-    let closestIdx = -1, minDistance = Infinity;
-    for (let i = 0; i < candles.length; i++) {
-      const dist = Math.abs(xFor(i) - mouseX);
-      if (dist < minDistance) { minDistance = dist; closestIdx = i; }
-    }
+    const mouseY = clientY - rect.top;
+    const hit = hitTestCandle(canvas, mouseX, mouseY, 15);
 
-    canvas._hoverIdx = closestIdx;
+    canvas._hoverIdx = hit.isHit ? hit.idx : null;
     drawMiniChart(canvas, canvas._candles || parsedCandles, canvas._notes || myNotes);
 
     const notesMap = canvas._notesMap || {};
-    if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
+    if (hit.isHit && notesMap[hit.idx] !== undefined) {
       canvas.style.cursor = 'pointer';
-      const group = notesMap[closestIdx];
+      const group = notesMap[hit.idx];
       const note = group.notes[0];
       const tooltip = document.getElementById('markerTooltip');
       if (note && (!tooltip.classList.contains('show') || tooltip._activeNoteId !== note.id)) {
         tooltip._activeNoteId = note.id;
-        showMiniChartTooltip(canvas, note, ticker, closestIdx);
+        showMiniChartTooltip(canvas, note, ticker, hit.idx);
       }
     } else {
       canvas.style.cursor = 'crosshair';
@@ -2950,10 +2972,10 @@ function bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker) {
     }
   };
 
-  canvas.addEventListener('mousemove', e => onMove(e.clientX));
+  canvas.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
   canvas.addEventListener('touchmove', e => {
     e.preventDefault();
-    if (e.touches.length) onMove(e.touches[0].clientX);
+    if (e.touches.length) onMove(e.touches[0].clientX, e.touches[0].clientY);
   }, { passive: false });
 
   canvas.addEventListener('mouseleave', () => {
@@ -2966,28 +2988,21 @@ function bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker) {
     }
   });
 
-  const onClick = (clientX) => {
-    const candles = canvas._visibleCandles || [];
+  const onClick = (clientX, clientY) => {
     const notesMap = canvas._notesMap || {};
-    const xFor = canvas._xFor;
-    if (!candles.length || !xFor) return;
-
     const rect = canvas.getBoundingClientRect();
     const mouseX = clientX - rect.left;
-    let closestIdx = -1, minDistance = Infinity;
-    for (let i = 0; i < candles.length; i++) {
-      const dist = Math.abs(xFor(i) - mouseX);
-      if (dist < minDistance) { minDistance = dist; closestIdx = i; }
-    }
+    const mouseY = clientY - rect.top;
+    const hit = hitTestCandle(canvas, mouseX, mouseY, 15);
 
     const tooltip = document.getElementById('markerTooltip');
-    if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
-      const group = notesMap[closestIdx];
+    if (hit.isHit && notesMap[hit.idx] !== undefined) {
+      const group = notesMap[hit.idx];
       const note = group.notes[0];
       if (note) {
         tooltip._activeNoteId = note.id;
         tooltip._pinnedNoteId = note.id;
-        showMiniChartTooltip(canvas, note, ticker, closestIdx);
+        showMiniChartTooltip(canvas, note, ticker, hit.idx);
       }
     } else {
       if (tooltip) {
@@ -2998,9 +3013,9 @@ function bindExpandedChartEvents(canvas, parsedCandles, myNotes, ticker) {
     }
   };
 
-  canvas.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); onClick(e.clientX); });
+  canvas.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); onClick(e.clientX, e.clientY); });
   canvas.addEventListener('touchend', e => {
-    if (e.changedTouches.length) onClick(e.changedTouches[0].clientX);
+    if (e.changedTouches.length) onClick(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
   });
 }
 
@@ -3051,6 +3066,7 @@ async function loadAndDrawMiniChart(canvas, ticker) {
         canvas.addEventListener('mousemove', e => {
           const rect = canvas.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
           
           const candles = canvas._visibleCandles || [];
           const notesMap = canvas._notesMap || {};
@@ -3058,31 +3074,23 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           
           if (!candles.length || !xFor) return;
           
-          let closestIdx = -1, minDistance = Infinity;
-          for (let i = 0; i < candles.length; i++) {
-            const cx = xFor(i);
-            const dist = Math.abs(cx - mouseX);
-            if (dist < minDistance) {
-              minDistance = dist;
-              closestIdx = i;
-            }
-          }
+          const hit = hitTestCandle(canvas, mouseX, mouseY, 15);
           
           // Set active hover index and redraw
-          canvas._hoverIdx = closestIdx;
+          canvas._hoverIdx = hit.isHit ? hit.idx : null;
           drawMiniChart(canvas, canvas._candles || parsedCandles, canvas._notes || myNotes);
           
           // Check if closest candle has note and cursor is near it
-          if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
+          if (hit.isHit && notesMap[hit.idx] !== undefined) {
             canvas.style.cursor = 'pointer';
             
-            const group = notesMap[closestIdx];
+            const group = notesMap[hit.idx];
             const note = group.notes[0];
             
             const tooltip = document.getElementById('markerTooltip');
             if (note && (!tooltip.classList.contains('show') || tooltip._activeNoteId !== note.id)) {
               tooltip._activeNoteId = note.id;
-              showMiniChartTooltip(canvas, note, ticker, closestIdx);
+              showMiniChartTooltip(canvas, note, ticker, hit.idx);
             }
           } else {
             canvas.style.cursor = 'crosshair';
@@ -3116,6 +3124,7 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           
           const rect = canvas.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
           
           const candles = canvas._visibleCandles || [];
           const notesMap = canvas._notesMap || {};
@@ -3123,24 +3132,16 @@ async function loadAndDrawMiniChart(canvas, ticker) {
           
           if (!candles.length || !xFor) return;
           
-          let closestIdx = -1, minDistance = Infinity;
-          for (let i = 0; i < candles.length; i++) {
-            const cx = xFor(i);
-            const dist = Math.abs(cx - mouseX);
-            if (dist < minDistance) {
-              minDistance = dist;
-              closestIdx = i;
-            }
-          }
+          const hit = hitTestCandle(canvas, mouseX, mouseY, 15);
           
           const tooltip = document.getElementById('markerTooltip');
-          if (closestIdx !== -1 && notesMap[closestIdx] !== undefined && minDistance < 15) {
-            const group = notesMap[closestIdx];
+          if (hit.isHit && notesMap[hit.idx] !== undefined) {
+            const group = notesMap[hit.idx];
             const note = group.notes[0];
             if (note) {
               tooltip._activeNoteId = note.id;
               tooltip._pinnedNoteId = note.id; // Pin it!
-              showMiniChartTooltip(canvas, note, ticker, closestIdx);
+              showMiniChartTooltip(canvas, note, ticker, hit.idx);
             }
           } else {
             // Clicked outside a note candle: hide/unpin tooltip
