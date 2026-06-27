@@ -1312,6 +1312,19 @@ function fmtCap(cap) {
   if (cap >= 1e9)  return `$${(cap/1e9).toFixed(1)}B`;
   return `$${(cap/1e6).toFixed(0)}M`;
 }
+function getEmotionColor(emotion) {
+  if (!emotion) return '#f0b90b'; // default gold
+  const fear = ['กลัว'];
+  const confident = ['มั่นใจแต่ระวัง'];
+  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
+  const greed = ['โลภ', 'FOMO'];
+  
+  if (fear.includes(emotion)) return '#ef5350'; // Red
+  if (confident.includes(emotion)) return '#26a69a'; // Green
+  if (hesitant.includes(emotion)) return '#facc15'; // Yellow
+  if (greed.includes(emotion)) return '#3b82f6'; // Blue
+  return '#f0b90b'; // default gold
+}
 function esc(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
@@ -2115,7 +2128,8 @@ function renderMarketOverview() {
           let leftPos = ((noteTS - startTS) / rangeTS) * 100;
           leftPos = Math.max(2, Math.min(98, leftPos));
           const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
-          return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${ticker}" data-note-id="${n.id}" title="${esc(label)}"></div>`;
+          const emotionColor = getEmotionColor(n.journal?.emotion);
+          return `<div class="chart-marker" style="left:${leftPos}%; background:${emotionColor}; border-color:${emotionColor === '#f0b90b' ? '#111827' : '#fff'};" data-ticker="${ticker}" data-note-id="${n.id}" title="${esc(label)}"></div>`;
         }).join('');
 
         return `
@@ -2776,7 +2790,8 @@ function cardHTML(s) {
     
     if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
     
-    return `<div class="chart-marker" style="left:${leftPos}%" data-ticker="${esc(s.ticker)}" data-note-id="${n.id}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
+    const emotionColor = getEmotionColor(n.journal?.emotion);
+    return `<div class="chart-marker" style="left:${leftPos}%; background:${emotionColor}; border-color:${emotionColor === '#f0b90b' ? '#111827' : '#fff'};" data-ticker="${esc(s.ticker)}" data-note-id="${n.id}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
   }).join('') : '';
 
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
