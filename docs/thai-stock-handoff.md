@@ -1,84 +1,82 @@
-# Thai Stock App Handoff
+# Thai Stock App Handoff & US Parity Roadmap
 
-Last updated: 2026-06-18
+Last updated: 2026-06-27
 
-## Current State
+---
 
-- GitHub repo: `https://github.com/patiphaninjob-lang/beer-vanon-agents.git`
-- GitHub Pages Thai app: `https://patiphaninjob-lang.github.io/beer-vanon-agents/thai/`
-- Latest Thai parity commit pushed: `6c883c196f038548e696b4a12077392aaf7e222c`
-- The US stock app is considered stable. Do not touch US files unless the user explicitly asks.
-- Thai automation is intentionally disabled by default through `docs/thai/config.json`.
-- Manual Thai live homework from the app is allowed and dispatches the workflow with `enable_thai=true`.
+> [!IMPORTANT]
+> **นี่คือบันทึกความจำระยะยาวสำหรับการอัปเกรดแอปพลิเคชันหุ้นไทย (Thai Stock App)**
+> ข้อมูลในเอกสารนี้ระบุการพัฒนาทั้งหมดที่เราทำในฝั่งแอปพลิเคชันหุ้นสหรัฐฯ (US Stock App) แต่ **"ยังไม่ได้พอร์ตเข้ามาในฝั่งแอปหุ้นไทย"** 
+> เพื่อให้ในอนาคตเมื่อผู้ใช้ต้องการเปิดใช้งานหรืออัปเดตหุ้นไทย ทีมพัฒนา (AI) สามารถหยิบรายงานเล่มนี้ไปประยุกต์ใช้เพื่ออัปเกรดแอปหุ้นไทยให้มีความสามารถเท่าเทียมกับแอปหุ้นสหรัฐฯ ได้ทันทีอย่างปลอดภัยไร้ปัญหา (Zero-Issue)
 
-## Thai App Scope
+---
 
-The Thai app should remain fully separated from the US app:
+## 📌 สรุปฟีเจอร์เด่นของ US App ที่ต้องพอร์ตไป Thai App ในอนาคต
 
-- Thai dashboard files live under `docs/thai/`.
-- Thai public data lives under `docs/thai-data/` and `docs/thai-history-data/`.
-- Thai agent code lives under `thai_agent/`.
-- Thai workflow is `.github/workflows/thai_top100_agent.yml`.
-- Thai canary workflow is `.github/workflows/thai_system_health.yml`.
-- Thai notes/config paths are separate from US paths.
+### 1. ระบบสรุปข่าวสารและปัจจัยขับเคลื่อนตลาด (Market Driver Summary) [v2.3.0]
+- **ความสามารถใน US App**: ดึงข่าวสารรายวันจาก 5 ดัชนี/ETF หลัก (`SPY`, `QQQ`, `DIA`, `USO`, `GLD`) แล้วใช้ Groq LLM (Llama-3-8b) เขียนข้อสรุปทิศทางตลาดเป็นภาษาไทย 5 ประเด็นเด่น แสดงผลเป็นบล็อกพรีเมียมอยู่ด้านล่างแผงดัชนีหลัก
+- **แนวทางพอร์ตไป Thai App**:
+  - ต้องปรับบอทวิเคราะห์หุ้นไทย (`thai_top100_agent.py`) ให้ทำฟังก์ชันดึงข่าวสารที่เกี่ยวข้องกับตลาดไทย เช่น ดึงข่าวจาก **`^SET.BK`** หรือ ETF ที่อ้างอิง SET50 เช่น **`TDEX.BK`** ร่วมกับข่าวพลังงานและเศรษฐกิจไทย
+  - ส่งผ่านข่าวสารเข้าฟังก์ชันสรุปของ Groq ด้วย Prompt ที่ปรับแต่งสำหรับ Sentiment ของตลาดหุ้นไทยโดยเฉพาะ (เช่น อัตราแลกเปลี่ยนเงินบาท, นโยบายรัฐบาลไทย, มาตรการกระตุ้นเศรษฐกิจ)
+  - อัปเดตโครงสร้าง UI ในหน้าจอไทย `docs/thai/index.html` ให้รองรับกล่อง `.market-news-summary-section`
 
-## Behavior Implemented
+### 2. การแยกประวัติกราฟและการจดโน้ตรายดัชนีตลาดหลัก [v2.2.0]
+- **ความสามารถใน US App**: แยกประวัติราคาของ DJI, S&P 500, NASDAQ ออกเป็น 3 ตลาดอิสระ ดึงผ่าน yfinance และจัดเก็บลงไฟล์ประวัติแยกกัน (`_DJI.json`, `_SPX.json`, `_IXIC.json`) หน้าเว็บประวัติสามารถโหลดดูแนวโน้มรายตลาดแยกกันได้ และสามารถจดโน้ตมุมมองแยกแต่ละตลาดได้อิสระ
+- **แนวทางพอร์ตไป Thai App**:
+  - ต้องแยกประวัติของดัชนีไทย เช่น ดัชนี **SET Index** (`^SET.BK`) และ **SET50 Index** (หรือดัชนีอื่นๆ) ออกจากกันเป็นไฟล์แยกอิสระ เช่น `_SET.json` และ `_SET50.json`
+  - ปรับบอทฝั่งไทยให้เขียนประวัติแยกไฟล์ลงโฟลเดอร์ `docs/thai-history-data/`
+  - ปรับปุ่ม History และการจดบันทึกมุมมองในแผงภาพรวมตลาดของแอปหุ้นไทย ให้แยกกันระหว่าง SET และ SET50 เพื่อให้เทรดเดอร์บันทึกอารมณ์ตลาดของแต่ละดัชนีแยกกัน
 
-- Thai dashboard now supports archive phases:
-  - `YYYY-MM-DD-postmarket.json`
-  - `YYYY-MM-DD-premarket.json`
-  - fallback legacy `YYYY-MM-DD.json`
-- Thai schedule is prepared but gated:
-  - 09:00 Asia/Bangkok premarket homework
-  - 18:00 Asia/Bangkok postmarket homework
-- Thai agent writes archive health metadata and `status.json`.
-- Thai dashboard has:
-  - phase selector
-  - archive health status bar
-  - system health/canary status bar
-  - stock news modal
-  - Thai Journal watchlist star button
-  - Thai-specific watchlist key `beerThaiJournalWatchlistV1`
-  - service worker cache version `thai-top100-v20260618-4`
-- Chart marker/header overlap was addressed by raising the sticky header z-index.
+### 3. ระบบ Version Tag และป๊อปอัป What's New [v2.2.0 - v2.3.0]
+- **ความสามารถใน US App**: เมื่อนำเมาส์ไปชี้ที่เลขเวอร์ชันข้างโลโก้ Beer Top 100 จะมีป๊อปอัปแสดงผลประวัติการอัปเกรดล่าสุด (เป็นภาษาไทย)
+- **แนวทางพอร์ตไป Thai App**:
+  - เพิ่มองค์ประกอบ HTML `<span class="version-tag">` และสไตล์ CSS เข้าไปที่หน้าจอแอปหุ้นไทย (`docs/thai/index.html`)
 
-## Important Files
+---
 
-- `thai_agent/thai_top100_agent.py`
-  - `build_archive_health`
-  - `write_status_file`
-  - `THAI_MARKET_INDEX_KEYS`
-  - includes per-stock `news` payload
-- `thai_system_health.py`
-  - writes `docs/thai-data/system_health.json`
-  - checks env, Groq, Gmail, Thai universe, yfinance, archive freshness
-- `.github/workflows/thai_top100_agent.yml`
-  - schedule is 09:00 and 18:00 Bangkok
-  - schedule only runs when `docs/thai/config.json` has `automation_enabled: true`
-  - manual run requires `enable_thai=true`
-- `.github/workflows/thai_system_health.yml`
-  - separate Thai canary
-  - also gated by `automation_enabled`
-- `docs/thai/index.html`
-  - main Thai mobile/web dashboard
-- `dashboard/thai/index.html`
-  - local bundle mirror of the Thai dashboard
+## ⚠️ ปัญหาทางเทคนิคที่พบและแนวทางป้องกัน (Lessons Learned & Issues Solved)
 
-## Verification Already Run
+ในการพัฒนา US App เราได้เจอปัญหาสำคัญหลายอย่าง ซึ่งทีมพัฒนา (AI) ในรอบหน้าต้องนำบทเรียนและวิธีการแก้ไขเหล่านี้ไปใช้กับฝั่งไทย เพื่อป้องกันไม่ให้เกิดปัญหาเดิมซ้ำรอย:
 
-- `python -m py_compile thai_agent\thai_top100_agent.py thai_system_health.py`
-- Extracted inline scripts from `docs/thai/index.html` and checked with `node --check`
-- `python verify_bundle.py`
-- `python thai_system_health.py --out _ui_audit\thai_system_health_test.json`
-  - local result failed only for missing local secrets, expected outside GitHub Actions
-  - universe and yfinance checks worked
-- Verified raw GitHub files after push.
-- Verified GitHub Pages served updated Thai index and `sw.js`.
+### 🚨 ปัญหาที่ 1: GitHub Pages บล็อกไฟล์ข้อมูลที่มีเครื่องหมายขีดล่างนำหน้า (404 Error)
+- **สถานการณ์ที่พบใน US**: เมื่อแยกประวัติตลาดเป็นไฟล์ชื่อ `_SPX.json` และ `_DJI.json` แล้วอัปโหลดขึ้น GitHub Pages ปรากฏว่าหน้ากราฟไม่โหลดเนื่องจากเซิร์ฟเวอร์ตอบกลับเป็น **Error 404 (Not Found)**
+- **สาเหตุ**: ระบบ Jekyll ของ GitHub Pages จะบล็อกและไม่เผยแพร่ไฟล์ที่มีเครื่องหมายขีดล่าง (`_`) นำหน้าโดยอัตโนมัติ
+- **วิธีแก้ไขที่ทำสำเร็จ**: เราได้สร้างไฟล์เปล่าชื่อ `.nojekyll` ไว้ในโฟลเดอร์รากของโครงการและในโฟลเดอร์ `docs/` เพื่อสั่งให้ปิดการทำงานของ Jekyll ทำให้ GitHub Pages ยอมปล่อยไฟล์เหล่านั้น
+- **การพอร์ตไปไทย**: ระบบไทยสามารถใช้ไฟล์ `_SET.json` หรือ `_SET50.json` ได้ทันทีอย่างปลอดภัย เพราะระบบ `.nojekyll` ถูกติดตั้งใน Repo เรียบร้อยแล้ว แต่ตอนพอร์ตโค้ดฝั่ง Agent ต้องแน่ใจว่าได้ระบุชื่อดัชนีและโฟลเดอร์ปลายทางได้ถูกต้อง
 
-## Known Notes
+### 🚨 ปัญหาที่ 2: กราฟไม่แสดงผลเพราะความต่างของความละเอียดของข้อมูล (Period/Interval)
+- **สถานการณ์ที่พบใน US**: ในการดูข้อมูลย้อนหลัง 1M, 6M, 1Y หรือ All กราฟมีหน้าตาเหมือนกันและข้อมูลไม่ครบถ้วนเหมือนหุ้นรายตัว
+- **สาเหตุ**: yfinance ดึงข้อมูลสำหรับดัชนีตลาดด้วยค่า default ที่ความละเอียดเป็นรายวัน (1d) แต่โค้ดประวัติในเว็บคาดหวังความละเอียดช่วงเวลา (Period) และการรวมกลุ่มข้อมูลที่ถูกต้อง
+- **วิธีแก้ไขที่ทำสำเร็จ**: เราได้แก้ฟังก์ชันการดึงและเตรียมข้อมูลประวัติให้รองรับการเขียนไฟล์ประวัติราคาของดัชนีแยกเป็น 1D และ 5Y ที่เหมาะสม
+- **การพอร์ตไปไทย**: ตรวจสอบการเรียกใช้งาน API ของ yfinance สำหรับตลาด SET Index (`^SET.BK`) ว่ามีการส่งอาร์กิวเมนต์ดาวน์โหลดข้อมูลย้อนหลังที่เพียงพอ และไม่มีคีย์ที่ว่างเปล่าส่งลงในไฟล์ JSON ประวัติ
 
-- Existing old Thai archives may not contain `health`, `status.json`, or per-stock `news`.
-- Those fields will appear after the next Thai agent run.
-- If the mobile app shows stale UI, refresh/reopen because the service worker may cache the old app shell briefly.
-- Local repo is a portable bundle and may not have normal `.git` history. Previous deploy used a temporary bare git repo and pushed only approved Thai paths.
+### 🚨 ปัญหาที่ 3: ปัญหา Cache ของหน้าเว็บแสดงผลไม่เปลี่ยนหลังจากอัปเดตเวอร์ชัน
+- **สถานการณ์ที่พบใน US**: หลังจากอัปเดตเวอร์ชันและแก้โค้ด HTML หน้าเว็บมือถือหรือบราวเซอร์บางตัวยังคงแสดงข้อมูลเก่าหรือค้างเวอร์ชันเดิม
+- **สาเหตุ**: หน้าเว็บมี Service Worker (`sw.js`) คอยทำแคชหน้าแอปเพื่อให้เปิดใช้งานแบบออฟไลน์ได้ (PWA)
+- **วิธีแก้ไขที่ทำสำเร็จ**: เมื่อมีการเปลี่ยนแปลงโครงสร้าง HTML/JS/CSS ต้องเข้าไปแก้ไขและเพิ่มเลขเวอร์ชันแคชในไฟล์ `docs/sw.js` (หรือ `docs/thai/sw.js` สำหรับแอปหุ้นไทย) เพื่อบังคับให้เบราว์เซอร์ล้างแคชและดึงโค้ดล่าสุดจากเซิร์ฟเวอร์
+- **การพอร์ตไปไทย**: ทุกครั้งที่มีการอัปเกรดแอปหุ้นไทย ต้องเปลี่ยนเลขเวอร์ชันแคชใน Service Worker ของไทย เช่น `thai-top100-v[DATE]-[REVISION]`
 
+---
+
+## 🛠️ รายการจุดที่ต้องแก้ไขรายไฟล์เมื่อเริ่มพอร์ตไปหุ้นไทย
+
+### 1. ฝั่ง Agent (Python)
+- [ ] **`thai_agent/thai_top100_agent.py`**
+  - เพิ่มโมดูลหรือฟังก์ชันในการดึงข่าวตลาดหุ้นไทย เช่น การสแกนข่าวจาก RSS หรือ Google News สำหรับคีย์เวิร์ดที่เกี่ยวข้องกับ SET Index / เศรษฐกิจไทย หรือดึงข่าวผ่าน API ของหลักทรัพย์ไทยยอดนิยม
+  - เพิ่มฟังก์ชัน `fetch_and_summarize_thai_market_news()` ที่เรียก Groq วิเคราะห์ประเด็นข่าวเศรษฐกิจไทย
+  - ปรับปรุงฟังก์ชัน `save_to_web()` ให้รับฟิลด์ `market_news` และเขียนลงใน JSON ประจำวันของหุ้นไทย
+  - ปรับการดาวน์โหลดดัชนี ให้บันทึกราคาและราคาปิดย้อนหลังของ SET Index แยกเป็นรายไฟล์อย่างสมบูรณ์
+
+### 2. ฝั่ง Dashboard (HTML/CSS/JS)
+- [ ] **`docs/thai/index.html`**
+  - เพิ่ม HTML โครงสร้างกล่องข่าวสารสำหรับตลาดไทย
+  - เพิ่มสไตล์ CSS สำหรับ `.market-news-summary-section` และ `.market-news-card`
+  - เพิ่ม JavaScript ฟังก์ชัน `renderMarketNewsSummary()`
+  - อัปเดตฟังก์ชัน `loadDate()` ในหน้าไทยให้เรียกใช้งานการเรนเดอร์สรุปข่าว
+  - แยกหน้าประวัติกราฟตลาด SET / SET50
+
+---
+
+> [!TIP]
+> **คำสั่งสำหรับให้ AI ทำงานต่อทันทีในอนาคต**:
+> *"กรุณาอ่าน docs/thai-stock-handoff.md และเริ่มทำตามแผนการพอร์ตฟีเจอร์จาก US App (ระบบ Market Driver News Summary และการแยกประวัติ/โน้ตดัชนี SET/SET50) ไปยังแอปหุ้นไทย โดยนำข้อเสนอแนะและวิธีแก้ปัญหาทางเทคนิคมาประยุกต์ใช้อย่างเคร่งครัด"*
