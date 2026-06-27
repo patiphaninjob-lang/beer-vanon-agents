@@ -24,7 +24,99 @@
       flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
     }
     .logo { font-size: 1.2em; font-weight: bold; color: #fff; white-space: nowrap; margin-right: 4px; }
-    .version-tag { font-size: 0.55em; color: #6b7280; font-weight: normal; margin-left: 6px; vertical-align: middle; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); padding: 1px 6px; border-radius: 4px; letter-spacing: 0.5px; }
+    .version-tag {
+      position: relative;
+      font-size: 0.55em;
+      color: #8b949e;
+      font-weight: normal;
+      margin-left: 6px;
+      vertical-align: middle;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .version-tag:hover {
+      background: rgba(99,102,241,0.25);
+      border-color: #6366f1;
+      color: #fff;
+    }
+    .version-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 135%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      border: 1px solid #374151;
+      color: #e6edf3;
+      padding: 12px 14px;
+      border-radius: 8px;
+      width: 290px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.55);
+      z-index: 1000;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: left;
+      white-space: normal;
+      pointer-events: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .version-tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent #1f2937 transparent;
+    }
+    .version-tooltip::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: transparent transparent #374151 transparent;
+      z-index: -1;
+    }
+    .version-tag:hover .version-tooltip,
+    .version-tag.active-tooltip .version-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .version-tooltip .wt-title {
+      color: #f0b90b;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 4px;
+    }
+    .version-tooltip ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .version-tooltip li {
+      margin-bottom: 8px;
+    }
+    .version-tooltip li:last-child {
+      margin-bottom: 0;
+    }
+    .version-tooltip .wt-ver {
+      color: #93c5fd;
+      font-weight: bold;
+      margin-right: 4px;
+    }
     .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
     select, input[type=search] {
       background: #21262d; border: 1px solid #30363d; color: #e6edf3;
@@ -1005,7 +1097,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag">v2.1.1</span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเดต">v2.1.2<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.1.2 (ล่าสุด):</span> เพิ่มกล่องป๊อปอัปแสดงประวัติการอัปเดต (What's New)</li><li><span class="wt-ver">v2.1.1:</span> แก้ปัญหาประวัติกราฟตลาดรวม (Dow Jones) ไม่ยอมอัพเดต</li><li><span class="wt-ver">v2.1.0:</span> เพิ่มปุ่มกรองหุ้นติดตาม (Watchlist Filter) แสดงเฉพาะดาว ★</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2644,7 +2736,12 @@ function closeStockNewsModal() {
 }
 
 // ── Event delegation ─────────────────────────────────────────
-document.addEventListener('click', async e => {
+  // Close version tooltip if clicked outside
+  const verTag = document.getElementById('versionTag');
+  if (verTag && !e.target.closest('#versionTag')) {
+    verTag.classList.remove('active-tooltip');
+  }
+
   if (calOpen && !e.target.closest('#calPopup') && !e.target.closest('#dateBtn')) {
     closeCalendar();
   }
