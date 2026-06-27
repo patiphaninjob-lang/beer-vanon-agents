@@ -1,0 +1,512 @@
+{
+  "date": "2026-06-27",
+  "archive_key": "2026-06-27",
+  "generated": "2026-06-27T11:29:45.106747",
+  "run_phase": "manual",
+  "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
+  "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
+  "market_indices": {
+    "dji": {
+      "price": 51876.11,
+      "pct_change": -0.09,
+      "chart_b64": "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"
+    },
+    "spx": {
+      "price": 7354.02,
+      "pct_change": -0.05,
+      "chart_b64": "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"
+    },
+    "ixic": {
+      "price": 25297.62,
+      "pct_change": -0.24,
+      "chart_b64": "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"
+    }
+  },
+  "universe": {
+    "source": "nasdaq_screener",
+    "updated": "2026-06-27T04:27:09.019192+00:00",
+    "static_count": 139,
+    "dynamic_count": 240,
+    "candidate_count": 262,
+    "new_dynamic_tickers": [
+      "ABNB",
+      "ABT",
+      "ACN",
+      "ADP",
+      "AEM",
+      "AMX",
+      "ANET",
+      "APH",
+      "APP",
+      "ARM",
+      "ASML",
+      "ASX",
+      "AZN",
+      "BABA",
+      "BAM",
+      "BBVA",
+      "BCS",
+      "BE",
+      "BHP",
+      "BMO",
+      "BN",
+      "BNS",
+      "BNY",
+      "BP",
+      "BRK-A",
+      "BTI",
+      "BUD",
+      "BX",
+      "CB",
+      "CCZ",
+      "CEG",
+      "CM",
+      "CMI",
+      "CNI",
+      "CNQ",
+      "COHR",
+      "CP",
+      "CRH",
+      "CSCO",
+      "DASH",
+      "DDOG",
+      "DELL",
+      "E",
+      "ENB",
+      "EPD",
+      "EQNR",
+      "FDX",
+      "GD",
+      "GEV",
+      "GLW"
+    ],
+    "error": ""
+  },
+  "summary": {
+    "total": 5,
+    "gainers": 2,
+    "losers": 3,
+    "avg_change": 0.63,
+    "top_gainer": {
+      "ticker": "MSFT",
+      "pct": 5.71
+    },
+    "top_loser": {
+      "ticker": "GOOG",
+      "pct": -2.19
+    }
+  },
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "price": 192.53,
+      "pct_change": -1.64,
+      "volume": 178906300,
+      "market_cap": 4663269100433.35,
+      "pe_ratio": 32.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:NVDA",
+      "news": [
+        {
+          "title": "What turning AI compute into a financial asset would look like",
+          "summary": "What exactly does it mean when investors want to \"financialize\" AI computing, a.k.a, turning it into a liquid financial asset or market? The Economist's Wall Street editor Mike Bird speaks with Julie Hyman and helps expl",
+          "provider": "Yahoo Finance Video",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/video/turning-ai-compute-financial-asset-151459284.html"
+        },
+        {
+          "title": "Nvidia's Market Cap Just Fell Below $5 Trillion. Here's Why It's a Buying Opportunity",
+          "summary": "It's still not too late to get in on this market beater.",
+          "provider": "Motley Fool",
+          "date": "2026-06-27",
+          "url": "https://www.fool.com/investing/2026/06/27/nvidias-market-cap-just-fell-below-5-trillion-here/"
+        },
+        {
+          "title": "3 Beaten-Down AI Chip Stocks to Consider Buying in the Sell-Off",
+          "summary": "When a whole sector sells off at once, the best names can get dragged down with the worst.",
+          "provider": "Motley Fool",
+          "date": "2026-06-27",
+          "url": "https://www.fool.com/investing/2026/06/26/3-beaten-down-ai-chip-stocks-to-consider-buying-in/"
+        },
+        {
+          "title": "From $135 to $154: Tracking SpaceX's Stock Volatility in Its First Weeks as a Public Company",
+          "summary": "The popular space company's stock has come back to Earth after the hype wore off.",
+          "provider": "Motley Fool",
+          "date": "2026-06-27",
+          "url": "https://www.fool.com/investing/2026/06/26/from-135-to-154-tracking-spacexs-stock-volatility/"
+        },
+        {
+          "title": "Wedbush spots clear investor opportunities in tech stocks",
+          "summary": "Dan Ives of Wedbush Securities has a specific name for what is happening to tech stocks right now. In a note published June 26, he called it a \"Twilight Zone market,\" Seeking Alpha reported, and the phrase is more specif",
+          "provider": "TheStreet",
+          "date": "2026-06-27",
+          "url": "https://www.thestreet.com/investing/stocks/wedbush-spots-clear-investor-opportunities-in-tech-stocks"
+        }
+      ],
+      "analysis": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ซึ่งอาจกระทบต่อการลงทุนในหุ้น NVDA\n\nBeer มองว่า: หุ้น NVDA เป็น 'เข็มฉีดยา' เนื่องจากมีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin",
+      "analysis_status": "groq",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "หุ้น NVDA เป็นหนึ่งในหุ้นที่มีโอกาสดีในตลาดเทคโนโลยี เนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคา $192.53 ลง 1.6% แต่มีโอกาสดีในระยะยาว เนื่องจากหุ้นมี P/E 32.558956 ซึ่งเป็นระดับที่สูง"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวที่มีอยู่ในตลาดมีการเปลี่ยนแปลงอย่างมาก โดยเฉพาะการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin ซึ่งอาจกระทบต่อการลงทุนในหุ้น NVDA"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "หุ้น NVDA มีคู่แข่งอย่าง Intel และ AMD แต่หุ้นมีโอกาสดีในระยะยาวเนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับผู้บริหารของหุ้น NVDA แต่หุ้นมีโอกาสดีในระยะยาวเนื่องจากมีการลงทุนในเทคโนโลยี AI"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "หุ้น NVDA มีโอกาสดีในระยะยาว แต่ต้องระวังการลงมาในจังหวะนี้ เนื่องจากมีการลงทุนในเทคโนโลยี AI และมีการเปลี่ยนแปลงของ GOP lawmakers' portfolios ที่มีการลงทุนในหุ้น Intel และ bitcoin"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 2,
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "price": 283.78,
+      "pct_change": 3.14,
+      "volume": 261693600,
+      "market_cap": 4167977867751.0986,
+      "pe_ratio": 37.7,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
+      "news": [
+        {
+          "title": "Stock market today: S&P 500, Nasdaq snap 2-week win streak as AI jitters pressure tech",
+          "summary": "Wall Street digested a downbeat week for tech stocks.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-25",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-sp-500-nasdaq-snap-2-week-win-streak-as-ai-jitters-pressure-tech-231347821.html"
+        },
+        {
+          "title": "The AI boom now has a price tag — and Micron just sent the bill: Chart of the Day",
+          "summary": "Micron's blowout earnings did not just revive the AI trade — they showed how expensive it is becoming.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/article/the-ai-boom-now-has-a-price-tag--and-micron-just-sent-the-bill-chart-of-the-day-100000526.html"
+        },
+        {
+          "title": "How Qualcomm is evolving to grab a piece of the AI data center explosion",
+          "summary": "Qualcomm is looking to move past the smartphone era.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-25",
+          "url": "https://finance.yahoo.com/technology/article/how-qualcomm-is-evolving-to-grab-a-piece-of-the-ai-data-center-explosion-200314570.html"
+        },
+        {
+          "title": "Apple seeks approval to buy chips from blacklisted Chinese company, FT reports",
+          "summary": "Apple is lobbying the Trump administration for clearance to buy memory chips from ChangXin ‌Memory Technologies, a Chinese company the Pentagon has ‌put on a blacklist, the Financial Times reported on Friday.  The iPhone",
+          "provider": "Reuters",
+          "date": "2026-06-27",
+          "url": "https://finance.yahoo.com/technology/articles/apple-seeks-approval-buy-chips-032619573.html"
+        },
+        {
+          "title": "S&P 500, Nasdaq End Week Lower As Investors Rotate Out Of Tech, AI Plays — ON, AAPL, SLS, INFQ, NKE in Focus",
+          "summary": "The Dow Jones ended its third consecutive week higher amid cooling oil prices and strength in pharma and materials stocks.",
+          "provider": "Stocktwits",
+          "date": "2026-06-26",
+          "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-week-lower-as-investors-rotate-out-of-tech-ai-plays-on-aapl-sls-infq-nke-in-focus/cZ12ck9R7W9"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับ Apple ที่มีผลกระทบต่อราคาหุ้น คือ การร่วมมือกับ Intel, ราคหน่วยความจำที่เพิ่มขึ้น และการซื้อขายที่รุนแรงในตลาด ทำให้ราคาหุ้น AAPL ลดลง 0.4% ในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาในระยะสั้น\n\nBeer มองว่า: SQ3 - หุ้นที่มีโอกาสติดเทรนด์ (รูปแบบ 'เข็มฉีดยา') เนื่องจากมีการซื้อขายที่รุนแรงและราคาที่เพิ่มขึ้นอย่างรวดเร็ว แต่ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น 'โลภ'",
+      "analysis_status": "groq",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การร่วมมือกับ Intel อาจช่วยให้ Apple มีโอกาสเพิ่มขึ้นในอนาคต แต่ต้องตรวจสอบการเปลี่ยนแปลงของตลาดและคู่แข่ง"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น AAPL ลดลง 0.4% ในวันนี้ ซึ่งอาจส่งผลกระทบต่อราคาในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "CEO ของ Apple ได้แสดงความกังวลเกี่ยวกับราคหน่วยความจำที่เพิ่มขึ้น ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Micron Technology อาจเป็นคู่แข่งที่สำคัญสำหรับ Apple ในเรื่องราคหน่วยความจำ"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "CEO ของ Apple ได้แสดงความกังวลเกี่ยวกับราคหน่วยความจำที่เพิ่มขึ้น ซึ่งอาจส่งผลกระทบต่อราคาหุ้นในระยะยาว"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรตรวจสอบการเปลี่ยนแปลงของราคาหุ้นของ Apple และ Micron Technology ในอนาคต"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 3,
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "price": 337.39,
+      "pct_change": -1.84,
+      "volume": 114642600,
+      "market_cap": 4117026326741.94,
+      "pe_ratio": 29.8,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOGL",
+      "news": [
+        {
+          "title": "The AI boom now has a price tag — and Micron just sent the bill: Chart of the Day",
+          "summary": "Micron's blowout earnings did not just revive the AI trade — they showed how expensive it is becoming.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/article/the-ai-boom-now-has-a-price-tag--and-micron-just-sent-the-bill-chart-of-the-day-100000526.html"
+        },
+        {
+          "title": "FTC gives Musk the OK to acquire SpaceX alumni startup Mesh",
+          "summary": "Mesh came out of stealth in February with a $50 million Series A.",
+          "provider": "TechCrunch",
+          "date": "2026-06-27",
+          "url": "https://finance.yahoo.com/technology/articles/ftc-gives-musk-ok-acquire-003834597.html"
+        },
+        {
+          "title": "Alphabet (GOOGL) Loses More Gemini Talent To Anthropic And OpenAI",
+          "summary": "Alphabet NasdaqGS:GOOGL is seeing a series of senior AI researchers leave, including core Gemini contributors Jonas Adler and Alexander Pritzel, to rival Anthropic. The departures follow the recent exits of Noam Shazeer ",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-27",
+          "url": "https://finance.yahoo.com/technology/ai/articles/alphabet-googl-loses-more-gemini-001533204.html"
+        },
+        {
+          "title": "American Airlines (AAL) Brings Starlink To 500 Planes And Signs Google Fuel Deal",
+          "summary": "American Airlines Group announced plans to equip over 500 aircraft with SpaceX Starlink high-speed in-flight Wi-Fi starting in 2027. The company also entered a three-year sustainable aviation fuel partnership with Google",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/american-airlines-aal-brings-starlink-230727652.html"
+        },
+        {
+          "title": "Charitable Giving: Where There’s a Will, There’s a Way",
+          "summary": "An annual report finds donations to nonprofits rose by 3% in inflation-adjusted dollars to $617.2 billion in 2025",
+          "provider": "Barrons.com",
+          "date": "2026-06-26",
+          "url": "https://www.barrons.com/articles/charitable-giving-where-theres-a-will-theres-a-way-42a6ae33?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับ Micron และการลงทุนใน AI ของ Google อาจมีผลกระทบต่อธุรกิจของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น นอกจากนี้ การสื่อสารของบริษัทอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น\n\nBeer มองว่า: GOOGL เป็น 'เข็มฉีดยา' ที่มีโอกาสติดเทรนด์ แต่ต้องระวังการเปลี่ยนแปลงผู้บริหารและคู่แข่งที่ลงทุนใน AI อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL",
+      "analysis_status": "groq",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อธุรกิจของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อผลกำไรของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "การสื่อสารของบริษัทอาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัทอื่นๆ ที่ลงทุนใน AI อาจมีผลกระทบต่อการลงทุนในหุ้น GOOGL แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "การเปลี่ยนแปลงผู้บริหารอาจมีผลกระทบต่อการบริหารจัดการของบริษัท แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "การลงทุนใน AI ของ Google อาจมีผลกระทบต่อแผนการลงทุนของเรา แต่ไม่ได้เปลี่ยนแปลงแนวโน้มที่จะขึ้นในระยะสั้น"
+        }
+      ],
+      "chart_b64": "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"
+    },
+    {
+      "rank": 4,
+      "ticker": "GOOG",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "price": 334.69,
+      "pct_change": -2.19,
+      "volume": 82450400,
+      "market_cap": 4084079230336.448,
+      "pe_ratio": 27.6,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:GOOG",
+      "news": [
+        {
+          "title": "The AI boom now has a price tag — and Micron just sent the bill: Chart of the Day",
+          "summary": "Micron's blowout earnings did not just revive the AI trade — they showed how expensive it is becoming.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/article/the-ai-boom-now-has-a-price-tag--and-micron-just-sent-the-bill-chart-of-the-day-100000526.html"
+        },
+        {
+          "title": "FTC gives Musk the OK to acquire SpaceX alumni startup Mesh",
+          "summary": "Mesh came out of stealth in February with a $50 million Series A.",
+          "provider": "TechCrunch",
+          "date": "2026-06-27",
+          "url": "https://finance.yahoo.com/technology/articles/ftc-gives-musk-ok-acquire-003834597.html"
+        },
+        {
+          "title": "Alphabet (GOOGL) Loses More Gemini Talent To Anthropic And OpenAI",
+          "summary": "Alphabet NasdaqGS:GOOGL is seeing a series of senior AI researchers leave, including core Gemini contributors Jonas Adler and Alexander Pritzel, to rival Anthropic. The departures follow the recent exits of Noam Shazeer ",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-27",
+          "url": "https://finance.yahoo.com/technology/ai/articles/alphabet-googl-loses-more-gemini-001533204.html"
+        },
+        {
+          "title": "American Airlines (AAL) Brings Starlink To 500 Planes And Signs Google Fuel Deal",
+          "summary": "American Airlines Group announced plans to equip over 500 aircraft with SpaceX Starlink high-speed in-flight Wi-Fi starting in 2027. The company also entered a three-year sustainable aviation fuel partnership with Google",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/american-airlines-aal-brings-starlink-230727652.html"
+        },
+        {
+          "title": "Charitable Giving: Where There’s a Will, There’s a Way",
+          "summary": "An annual report finds donations to nonprofits rose by 3% in inflation-adjusted dollars to $617.2 billion in 2025",
+          "provider": "Barrons.com",
+          "date": "2026-06-26",
+          "url": "https://www.barrons.com/articles/charitable-giving-where-theres-a-will-theres-a-way-42a6ae33?siteid=yhoof2&yptr=yahoo"
+        }
+      ],
+      "analysis": "ข่าวเกี่ยวกับอุตสาหกรรม AI และการเปลี่ยนแปลงในอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต ราคาหุ้น GOOG ลง 2.2% แต่ P/E Ratio ยังคงอยู่ที่ 27.64122 ซึ่งเป็นระดับที่น่าสนใจ ข่าวเกี่ยวกับ SpaceX และอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต\n\nBeer มองว่า: หุ้น 'เข็มฉีดยา' ในรูปแบบ Daytrade Hunter เนื่องจากมีการเปลี่ยนแปลงในอุตสาหกรรม AI ที่อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต",
+      "analysis_status": "groq",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "การเปลี่ยนแปลงในอุตสาหกรรม AI อาจเป็นโอกาสหรือความท้าทายสำหรับ Alphabet Inc.ในอนาคต"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น GOOG ลง 2.2% แต่ P/E Ratio ยังคงอยู่ที่ 27.64122 ซึ่งเป็นระดับที่น่าสนใจ"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวเกี่ยวกับ SpaceX และอุตสาหกรรม AI อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Meta (META), Amazon (AMZN), Nvidia (NVDA), OpenAI (OPAI.PVT) เป็นคู่แข่งที่สำคัญของ Alphabet Inc.ในอุตสาหกรรม AI"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข้อมูลเกี่ยวกับการเปลี่ยนแปลงในตำแหน่งผู้บริหารที่อาจมีผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรติดตามข่าวเกี่ยวกับอุตสาหกรรม AI และผลกระทบต่อการเติบโตของ Alphabet Inc.ในอนาคต"
+        }
+      ],
+      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAEFAgMEBgf/xAAwEAACAgIBAwMDAwQBBQAAAAAAAQIDBBEhBRIxQVFhExQicYGxBpHB0aEVIzJC4f/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EACcRAQACAgEDBAICAwAAAAAAAAABAgMRIRIxQQQTIlFhcRShMpHB/9oADAMBAAIRAxEAPwD58ADbIAAAAAAAAAAAAAAAAAAAAAAFj0XDqzcuVd/d2xh3aT1vlFZveKVm0q4FzbVgYV+VRZiu/wCklNSlY09PtWuP1Fn/AE7Nr+36fiWLJa/Bt6+Xvn22TfffhqZ4pNeer68ftTA6c7Dtwsh1Wr5i/db8npqsfEXSK5W49coqlSlqK3/48v8AUtflzDl6jJOCYi0cvIGarbqlZx2xkov99/6LSyPSszLprocseLWpPtf5PjS+H55/k0OjGWPdXVm1STsi4uUZJvSl6a+RojLvxMT+leCwz+kX4FCutnXKLl26i3v+Pg4ZwlXZKE1qUW017MzFons9F8dsc6tGmIBKTk9RTb1vgrCATp9rlp6T02QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB04GL95mQx+/s7t/lretLZcL+mo75ym1r0h/9KnpmTDEz677FJxjvfb55TR39b6jC+dKo74yjBttpeJxX+GajWnly+7OSK0nUaRHpOJCiyy7OW6ptSitJ8N8efL1wc2ZdhKVduDK9XQ7eZpaSSX/PCODufa47em9tEGY3G3rvFbdOo1qOfyk2Y99uNdG6mXbOPh62agO5EzE7hZ0dQhkXyn1KqORL6bUW32paTeuPc77Ot4cunSphXZGTrcFHW1HjXn2POgVjp7Jmj3oiL+OQlcPZAAtM3rNmZVVXbTW4xfdJaaTfPz400bPq9OndmyvVkXKTX/aa1KPcuVv13z+hTglaxXs3myXzRq0/X9L6eD0mGHVkK+TTlFtSmm2m1tNL2T9DKy7oWPNOuqVjlFp9jb0mvl+zPPgtd1/Ln6itc0xMcajXHla3ZfTXj3VY+HJdzXa5Te96fP7b8fJqz+kX4FCutnXKLl26i3v+PgrzurzpXXURzp2WUwa2nJvfPl+d+f7EnqmY01jrjx0tuJmfHLhBulCFjsnRGUIQipNTlt+Uvb5Jw8aeXkxorcVKW9OXjhbKzM6jctALDL6TkYkoKc65d8ZSXa3/AOq2/Q4CpW9bRusoBsnTOFka9blJRaS9dpNfyayNzEx3AbceizJujTTHunLwt6LWnolcZzjl5MK5Lu7YtrbjriXn9/2LEbcr5aU/ylSg7remZEdOuE7IyscIy7dJrjT37PZrzMDIwuz7iCXf4aaf6/ySOezpaemYie8uUAAAAAAAAAAAAAAAAAAAAAAAAFj0jAhm5Lrv+pGP03KLXG+df7OzN6Z07HtnGeU6m4d0Yyi5a58r39tfuXTjbPStujyojKc5Te5PbSS/ZLS/gs78KiHR67Y5cJSTclBa221Ha8+hVBul4vzAACNgAAAAAAAAAAAAAAAL7od+BXg3LKVfenuXdDf48a9Pc3dJ6VOmePluVen3Sem99ritL+TzZO37sxFJi24l3yZYyYvbtXxMRP8A16nrudfhfQePJLv7k9pP2KijqGNCl22YkbMtT71Y5Pl8vevjjj1K1tvyyDdvl3eX0tf48fHW/vT0lFr6r1OqOQlFY9cbo9nG21F879DiyeiX/dXQxIuVVbSTlJbb0nr/AJKyq62iXdTZOuTWtxejqx8zK+nlS+4t32KW+9+e6K3/AGMUp0z+Hq9R6icmPiPlvvP039UqwK8Wh4l05zS1FP1juW349ysc5ubm5y7nvb3y9+SHJtJNt6Wlv0INVjUaYy3i9t60tH1vJeFDHjCuPZ2pTS5/HWv4Nzpy+tz4vrcaYQfPHMorfhe6ZSlr0LP+0vdP0u/684x33a7edf5M2ia1nobx9ObNWc09uHDmY08PJlRY4uUdbcfHK2aC7ycK3qVVvU12VqS7lBy3qMU0/TzwiOr4eHTh0Sxr/qTX4pd6e47k98fJeqY1E95ZitMk3nHPFVKDP6U/z3Fp1rck+Nc6/lmBpyAAAAAAAAADJwlF6lFp63poCFFvwi2l0Oymdf3OTTXXOXa5b8cN+uvYtOj5ONX0umFl9UJLe4ymk1yzzd+XkXxULbpzjF8KT2amOHDHlvfJ24iefyu68Xo2HOdWRdC2e29vfC9uON+fk57V0fIUcfEqnC6yxQjPnS5XPL/UpSYylCSlFuMk9pryjExMxEbeqkxTJa0RxPiedfpfW9H6fiSiszLmlZxDjXPrzz7nLdd0uqm2qjHdsk12Wyk03w+fHo/T1K+7Ivv19e6dnb47pN6NRIiemIstrRGW18fafE8rfqnV452LXVCrse+5vu3p8rXj9yqsnKyyU5vcpPbfyYg3M7cKY60jVU7fao7ek9pEAEbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyhOVdkZwepRaafszEBXXX1HLrxftoW6q0129q8PzyZ9M6g8G92Sg7F2diXdrXOzhBduc46zExru9TT1bpuVCyeTCuEl+Opx7nKO1r09/Q8u/L14IBmK6mZ+3eb7x1xxGoqAArmAyrhKyyMILcpPSXyQBB39LzqcJ2fWxo3d64b1xw+OffZOJhOq+FvUceyGNz3OUWtccb1z5aI6vDErzOzCWoxWprniW3vyLV3HKY/UdGSOj/fh2rN6TGqV9WI43xkpRXtLlrXPjf8Ag1v+oMiWRC101ajFx1zzvW+f2KcDUbifpY3FLUmdxbu35eTPLyZX2KKlLW1Hx40aACpEREagABFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzrrlbZGuC3KbSS92d/SOmR6j9VytcFXrwt73v8A0bKemZONkfddvfRj27bTSbUW9vW/gz113qZdZwZejrrG+/8ATZgV3dGulk5tMlXKPYnFp8+ff4N8er9NlZkWW0Sk5tNbrTbWktf3WzT1nquPm4cKqVPu71J9y1ryikOm9dnz6YfdjryRqXbkdVzMmmVNtu65eV2pHHJuUnKTbbe236kAj01pWvFY0AAjQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJTa8MyVk1W61L8ZNNr5W/9sALtgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z"
+    },
+    {
+      "rank": 5,
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "price": 372.97,
+      "pct_change": 5.71,
+      "volume": 186112200,
+      "market_cap": 2770583300618.7935,
+      "pe_ratio": 25.3,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:MSFT",
+      "news": [
+        {
+          "title": "Semiconductor stocks retreat over worries about memory costs",
+          "summary": "The semiconductor sector declined on Friday as high memory and storage costs weighed on stocks.",
+          "provider": "Yahoo Finance",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/markets/article/semiconductor-stocks-retreat-over-worries-about-memory-costs-131508185.html"
+        },
+        {
+          "title": "Wedbush spots clear investor opportunities in tech stocks",
+          "summary": "Dan Ives of Wedbush Securities has a specific name for what is happening to tech stocks right now. In a note published June 26, he called it a \"Twilight Zone market,\" Seeking Alpha reported, and the phrase is more specif",
+          "provider": "TheStreet",
+          "date": "2026-06-27",
+          "url": "https://www.thestreet.com/investing/stocks/wedbush-spots-clear-investor-opportunities-in-tech-stocks"
+        },
+        {
+          "title": "The Old-School Signal That Lit Up Palo Alto Networks Stock",
+          "summary": "While all eyes were on a futuristic AI platform, the most telling clue to the stock's takeoff lay buried in the company's oldest business.",
+          "provider": "Trefis",
+          "date": "2026-06-27",
+          "url": "https://www.trefis.com/articles/604729/the-old-school-signal-that-lit-up-palo-alto-networks-stock/2026-06-26"
+        },
+        {
+          "title": "Why Microsoft Stock Rose Today",
+          "summary": "Is the AI software play about to come back in vogue?",
+          "provider": "Motley Fool",
+          "date": "2026-06-26",
+          "url": "https://www.fool.com/investing/2026/06/26/why-microsoft-stock-rose-today/"
+        },
+        {
+          "title": "Adobe (ADBE) Buys Topaz Labs As It Expands Agentic AI Partnerships",
+          "summary": "Adobe (NasdaqGS:ADBE) has entered a definitive agreement to acquire Topaz Labs, a specialist in AI-based image and video enhancement tools. The company is extending its Firefly and Creative Cloud AI features while pursui",
+          "provider": "Simply Wall St.",
+          "date": "2026-06-26",
+          "url": "https://finance.yahoo.com/technology/ai/articles/adobe-adbe-buys-topaz-labs-220919901.html"
+        }
+      ],
+      "analysis": "ราคา MSFT เพิ่มขึ้น 5.7% แต่ตลาดมีความกลัวเข้ามาแล้ว หุ้นอยู่โซนล่าง หากหมดแรงขาย เป็นโอกาสที่น่าสนใจ แต่ต้องรอจังหวะตลาดเริ่มเทรนด์ใหม่\n\nBeer มองว่า: • รหัส SQ: 4\n• รูปแบบ: รูปแบบ Daytrade Hunter (รูปแบบ 4)",
+      "analysis_status": "groq",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ไม่มีข่าวใหม่เกี่ยวกับธุรกิจที่กระทบต่อ MSFT"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ไม่มีข่าวใหม่เกี่ยวกับตัวเลขที่กระทบต่อ MSFT"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ไม่มีข่าวใหม่เกี่ยวกับการสื่อสารที่กระทบต่อ MSFT"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "Oracle มีการกลับมาที่ดีหลังจากการซื้อหุ้นกลับมาและจ่ายเงินให้กับนักลงทุน แต่ไม่มีข่าวใหม่เกี่ยวกับคู่แข่งนี้"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ไม่มีข่าวใหม่เกี่ยวกับผู้บริหารที่กระทบต่อ MSFT"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรเลือกหุ้นที่มีโอกาสติดเทรนด์ก่อน และไม่ควรเลือกหุ้นที่มีการเปลี่ยนแปลงมากเกินไป"
+        }
+      ],
+      "chart_b64": "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"
+    }
+  ],
+  "test_run": true,
+  "test_note": "Generated by beer_top100_agent.py --test; limited smoke archive, not the full daily report.",
+  "health": {
+    "status": "ok",
+    "issues": [],
+    "counts": {
+      "stocks": 5,
+      "expected_stocks": 5,
+      "charts": 5,
+      "homework_complete": 5,
+      "market_indices": 3,
+      "fallback_analysis": 0
+    },
+    "missing": {
+      "charts": [],
+      "homework": [],
+      "market_indices": [],
+      "market_cap": [],
+      "fallback_analysis": []
+    }
+  }
+}
