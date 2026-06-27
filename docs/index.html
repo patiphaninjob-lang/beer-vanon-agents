@@ -2117,21 +2117,6 @@ function renderMarketOverview() {
         
         const ticker = `_${k.toUpperCase()}`; // '_DJI', '_SPX', '_IXIC'
         const notes = (notesCache[ticker] || []).slice().sort((a,b)=>b.id-a.id);
-        const markersHTML = notes.map(n => {
-          const markerDate = n.date || n.archive_date;
-          if (!markerDate || !currentData?.date) return '';
-          const noteTS = new Date(markerDate + 'T12:00:00').getTime();
-          const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
-          const rangeTS = 90 * 24 * 60 * 60 * 1000;
-          const startTS = archiveTS - rangeTS;
-          if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
-          let leftPos = ((noteTS - startTS) / rangeTS) * 100;
-          leftPos = Math.max(2, Math.min(98, leftPos));
-          const label = `อารมณ์ตลาด ${n.date}${n.time ? ' · '+n.time : ''}: คลิกเพื่อดู`;
-          const emotionColor = getEmotionColor(n.journal?.emotion);
-          return `<div class="chart-marker" style="left:${leftPos}%; background:${emotionColor}; border-color:${emotionColor === '#f0b90b' ? '#111827' : '#fff'};" data-ticker="${ticker}" data-note-id="${n.id}" title="${esc(label)}"></div>`;
-        }).join('');
-
         return `
           <div class="index-card" data-index-key="${k}" style="border-left-color:${color}">
             <div class="index-card-name">${INDEX_META[k]}</div>
@@ -2141,7 +2126,6 @@ function renderMarketOverview() {
               <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
                 <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
               </a>
-              ${markersHTML}
             </div>` : ''}
           </div>`;
       }).join('')
@@ -2777,23 +2761,6 @@ function cardHTML(s) {
     </div>
   ` : '';
 
-  // Calculate marker positions (90 days history)
-  const chartMarkersHTML = s.chart_b64 ? myNotes.map(n => {
-    // Safe date parsing for T00:00:00
-    const noteTS = new Date(n.date + 'T12:00:00').getTime();
-    const archiveTS = new Date(currentData.date + 'T12:00:00').getTime();
-    const rangeTS = 90 * 24 * 60 * 60 * 1000;
-    const startTS = archiveTS - rangeTS;
-    
-    let leftPos = ((noteTS - startTS) / rangeTS) * 100;
-    leftPos = Math.max(2, Math.min(98, leftPos));
-    
-    if (noteTS < startTS || noteTS > archiveTS + 86400000) return '';
-    
-    const emotionColor = getEmotionColor(n.journal?.emotion);
-    return `<div class="chart-marker" style="left:${leftPos}%; background:${emotionColor}; border-color:${emotionColor === '#f0b90b' ? '#111827' : '#fff'};" data-ticker="${esc(s.ticker)}" data-note-id="${n.id}" title="โน้ตวันที่ ${n.date}: คลิกกราฟเพื่อดู"></div>`;
-  }).join('') : '';
-
   const noteLabel = myNotes.length ? `📝 ${myNotes.length} มุมมอง` : '📝 เพิ่มมุมมอง';
   const historyLabel = myNotes.length ? `📈 History (${myNotes.length})` : '📈 History';
   const journalUrl = `journal.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}${selectedPhase && selectedPhase !== 'legacy' ? `&phase=${encodeURIComponent(selectedPhase)}` : ''}`;
@@ -2827,7 +2794,6 @@ function cardHTML(s) {
              <img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}">
            </a>`
         : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
-      ${chartMarkersHTML}
     </div>
 
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
