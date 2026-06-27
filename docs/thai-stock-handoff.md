@@ -141,10 +141,10 @@
     - [ ] เพิ่มฟังก์ชัน `getEmotionColor()` และอัปเดตการวาดมุดใน `drawChart()` ให้เป็นสีตามอารมณ์จิตวิทยา
     - [ ] ปรับปรุงการแสดงผล `showGroup()` ให้แยกรายละเอียดฟิลด์ Journal และปุ่มเปิดหน้ารายการบันทึก
 4.  **`docs/thai/journal.html`**
-    - [ ] เปลี่ยนกล่องกราฟภาพนิ่ง `#chartBox` ให้เป็น Canvas สำหรับวาดกราฟ candlestick
+    - [ ] เปลี่ยนกล่องกราฟภาพนิ่ง `#chartBox` ให้เป็น Canvas สำหรับวาดกราฟ candlestick พร้อมมีกล่องควบคุมช่วงเวลา `.range-tabs`
     - [ ] เพิ่มตัวแปร `candles`, `allCandles`, `markers`, `selectedKey`, และ `range` ลงใน `state`
-    - [ ] เพิ่มสไตล์ CSS สำหรับ `.marker-tooltip` และกล่องลูกเล่นอื่นๆ
-    - [ ] ใส่ชุดฟังก์ชันการวาด Canvas กราฟ ได้แก่ `drawChart()`, `loadCandles()`, `bindCanvasEvents()`, `showMarkerTooltip()`, `getEmotionColor()`
+    - [ ] เพิ่มสไตล์ CSS สำหรับ `.range-tabs` และ `.marker-tooltip` และกล่องลูกเล่นอื่นๆ
+    - [ ] ใส่ชุดฟังก์ชันการวาด Canvas กราฟ ได้แก่ `drawChart()`, `loadCandles()`, `bindCanvasEvents()`, `showMarkerTooltip()`, `getEmotionColor()`, `setRange()`
     - [ ] ปรับปรุง `renderStockContext()` เพื่อวาดกราฟเทียนพร้อมมุด
     - [ ] ปรับปรุง `addPreviewEntry()` ให้ล้างแคชและอัปเดตกราฟแบบ Real-time
 5.  **`docs/thai/sw.js`**

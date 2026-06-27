@@ -550,6 +550,14 @@
       .prototype-chip { display: flex; width: max-content; margin: 5px 0 0; }
       .brand h1 { white-space: normal; }
     }
+
+    /* --- Range Tabs Styles --- */
+    .range-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .range-tabs button {
+      height: 28px; min-width: 40px; border: 1px solid #30363d; border-radius: 6px;
+      background: #21262d; color: #8b949e; cursor: pointer; font-weight: 650; font-size: 0.78em;
+    }
+    .range-tabs button.active { background: #f0b90b; color: #111827; border-color: #f0b90b; }
     
     /* --- Canvas Chart & Marker Tooltip Styles --- */
     .marker-tooltip {
@@ -674,6 +682,16 @@
         </div>
 
         <div class="chart-wrap">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <div style="color:#8b949e; font-size:0.85em; font-weight:600;">📈 กราฟราคาประวัติและการจดบันทึก</div>
+            <div class="range-tabs" id="rangeTabs">
+              <button data-range="1mo">1M</button>
+              <button data-range="6mo">6M</button>
+              <button data-range="1y" class="active">1Y</button>
+              <button data-range="5y">5Y</button>
+              <button data-range="max">ALL</button>
+            </div>
+          </div>
           <div class="chart-box" id="chartBox" style="position:relative; background:#0d1117; border:1px solid #21262d; border-radius:8px; min-height:330px; display:flex; flex-direction:column; justify-content:center;">
             <canvas id="priceCanvas" style="display:block; width:100%; height:320px;"></canvas>
             <div id="hoverTip" class="marker-tooltip"></div>
@@ -1524,6 +1542,14 @@ function bindCanvasEvents() {
     }
   });
 
+  const rangeTabs = document.getElementById('rangeTabs');
+  if (rangeTabs) {
+    rangeTabs.addEventListener('click', e => {
+      const b = e.target.closest('button');
+      if (b) setRange(b.dataset.range);
+    });
+  }
+
   document.addEventListener('click', e => {
     if (canvas && !e.target.closest('#priceCanvas') && !e.target.closest('.marker-tooltip')) {
       if (hoverTip) hoverTip.classList.remove('show');
@@ -1536,6 +1562,13 @@ function bindCanvasEvents() {
       state.resizeTimer = setTimeout(drawChart, 150);
     }
   });
+}
+
+async function setRange(r) {
+  state.range = r;
+  document.querySelectorAll('#rangeTabs button').forEach(b => b.classList.toggle('active', b.dataset.range === r));
+  await loadCandles();
+  drawChart();
 }
 
 async function getAnalysisForDate(dateStr) {
