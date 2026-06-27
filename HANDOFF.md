@@ -1,25 +1,28 @@
-# Session Handoff - Market Driver News Summary & Separate Market History Deployed
+# Session Handoff - Fullscreen Charts & Precision Hit-Testing Deployed
 
 ## Latest Truth
-- **v2.3.0 Deployed**: เพิ่มระบบรวบรวมข่าวสารและสรุปปัจจัยเด่นขับเคลื่อนตลาดรายวัน (Market Driver Summary) จาก ETF หลัก (SPY, QQQ, DIA, USO, GLD) และใช้ Groq LLM (Llama-3-8b) ในการสรุปประเด็นเป็นภาษาไทย
-- ข้อมูลข่าวสารจะถูกฝังลงในฟิลด์ `"market_news"` ของไฟล์ JSON ประจำวัน (เช่น `2026-06-27-postmarket.json`) และอัปเดตใหม่ทุกวันตามรอบการบ้าน
-- แสดงกล่องสรุปข่าวสวยงามใต้แผงดัชนีภาพรวมตลาดในหน้าเว็บหลัก `docs/index.html` รองรับการแสดงผลทั้งเดสก์ท็อปและโมบายล์
-- **แยกกราฟและประวัติรายตลาดสำเร็จ (v2.2.0 - v2.2.2)**: 
-  - ดัชนีหลัก DJI, S&P 500, NASDAQ แยกไฟล์ประวัติการดึงราคาเป็นของตัวเอง (`_DJI.json`, `_SPX.json`, `_IXIC.json`) ไม่ปนกันเหมือนในอดีต
-  - หน้าเว็บ `history.html` และกล่องป๊อปอัปบันทึกโน้ตตลาดแยกการทำงานเป็นอิสระต่อกัน (เช่น โน้ตของ DJI, S&P 500, NASDAQ จะถูกเซฟและแสดงผลแยกกัน)
-  - เพิ่มไฟล์ `docs/.nojekyll` ป้องกัน GitHub Pages บล็อกการโหลดไฟล์ข้อมูลที่มีเครื่องหมายขีดล่างนำหน้า (เช่น `_SPX.json`) เรียบร้อยแล้ว
+- **v2.6.0 Deployed**: อัพเดตฟังก์ชันกราฟหน้าแรกครั้งใหญ่แบบครบวงจร
+- **ระบบขยายกราฟ (Fullscreen Chart Modal)**: เพิ่มปุ่ม `⤢` ขยายกราฟที่มุมซ้ายบนของทุกหน้าต่างกราฟ (ดัชนีตลาดและหุ้นรายตัว) แสดงผลหน้าต่างป๊อปอัปใหญ่สไตล์ iOS (Backdrop-filter blur 16px, spring scale animation, click-outside-to-close)
+- **ระบบตรวจจับพิกัดแท่งเทียนอัจฉริยะ (Precision Hit-Testing)**: เพิ่มแกน Y ในการหาพิกัด (`hitTestCandle()`) ทำให้การจ่อเมาส์ (Hover) หรือสัมผัส (Touch) ทริกเกอร์ Tooltip เฉพาะเมื่ออยู่บนพื้นที่แกนของแท่งเทียนจริงๆ ไม่เด้งรบกวนเมื่อชี้บริเวณพื้นที่ว่าง
+- **ปรับปรุง Touch Screen**: รองรับการลากนิ้ว (TouchMove) บนมือถือเพื่อเลื่อนดูข้อมูลแท่งเทียนแบบเรียลไทม์
+- **แก้ไขเลเยอร์การแสดงผล (Z-Index Fix)**: ปรับ `z-index` ของกล่อง Tooltip จาก `1500` เป็น `2500` เพื่อให้แสดงผลทับหน้าต่างกราฟ fullscreen เสมอ
 
 ## Files Changed
-- `beer_top100_agent.py`: เพิ่มฟังก์ชันดึงและสรุปข่าว `fetch_and_summarize_market_news` และส่งต่อผ่านฟังก์ชัน `save_to_web` ลงใน JSON
-- `beer_top100_portable/us_agent/beer_top100_agent.py`: ปรับปรุงในแบบเดียวกับไฟล์หลักเพื่อให้ทำงานแบบ Portable ได้สมบูรณ์
-- `docs/index.html`: 
-  - เพิ่ม CSS/HTML โครงสร้าง `.market-news-summary-section` สำหรับแสดงผลสรุปข่าว
-  - เพิ่มฟังก์ชัน Javascript `renderMarketNewsSummary()` และเรียกใช้งานในฟังก์ชัน `loadDate()`
-  - อัปเดต Version Tag ในหน้าเว็บหลักเป็น `v2.3.0` และอัปเดตประวัติ "มีอะไรใหม่ (What's New)"
+- `docs/index.html`:
+  - เพิ่ม CSS ส่วนของ `.chart-expand-btn` และ `.chart-fullscreen-overlay`
+  - เพิ่มปุ่มขยายกราฟลงใน HTML template ของดัชนีและหุ้นรายตัว
+  - เพิ่ม JS ฟังก์ชัน `hitTestCandle()`, `openExpandedChart()`, `bindExpandedChartEvents()`, และ `closeExpandedChart()`
+  - อัปเดตอีเวนต์ `mousemove`, `click`, `touchmove`, `touchend` ของกราฟทั้งตัวเล็กและตัวใหญ่ให้ใช้ `hitTestCandle()`
+  - อัปเดตเวอร์ชันบนหน้าเว็บบนซ้ายเป็น `v2.6.0` พร้อม Changelog ใน Tooltip
+- `docs/sw.js`:
+  - อัปเดต `CACHE_NAME` แคชบราว์เซอร์เป็น `beer-top100-v20260627-candlestick-3d-glow-v17` เพื่ออัปเดตไฟล์ให้ผู้ใช้ทันที
 
 ## Verification
-- บอททำงานจริงในเฟส `postmarket` สำเร็จและเซฟไฟล์ `docs/data/2026-06-27-postmarket.json` พร้อมสรุปข่าวจาก Groq
-- ทำการ Commit และ Push ขึ้น GitHub เรียบร้อย และทำการร้องขอผ่าน Python HTTP Client ยืนยันว่าฝั่ง GitHub Pages ได้อัปเดตไฟล์ข้อมูลเป็นเวอร์ชันที่มีข้อมูลสรุปข่าวครบถ้วนแล้ว
+- ทดสอบตรวจสอบไวยากรณ์ด้วย Node.js และไม่พบข้อผิดพลาด (`SYNTAX OK`)
+- ทดสอบ Git commit & push ขึ้นเซิร์ฟเวอร์เรียบร้อยดี
+
+## Open Risks
+- ไม่มี
 
 ## Next Step
-- เพิ่มความสามารถในการซิงค์/บันทึกบันทึกเทรด (Journal) เข้ากับระบบ Cloud หรือ GitHub เพิ่มเติม หรือพัฒนาฟีเจอร์อื่นๆ ตามความต้องการถัดไปของผู้ใช้
+- พัฒนาหรือปรับแต่งระบบ Trading Journal, Note, หรือ RAG-Knowledge Base เพิ่มเติมตามความต้องการถัดไป
