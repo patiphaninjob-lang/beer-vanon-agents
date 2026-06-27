@@ -301,6 +301,13 @@
       text-decoration: none;
     }
     .journal-btn:hover { border-color: #f0b90b; color: #f0b90b; }
+    .tv-btn {
+      font-size: 0.75em; padding: 2px 8px; border-radius: 4px;
+      border: 1px solid #30363d; background: #0d1117; color: #8b949e;
+      margin-top: 6px; margin-left: 5px; display: inline-flex; align-items: center; gap: 4px;
+      text-decoration: none;
+    }
+    .tv-btn:hover { border-color: #8b949e; color: #fff; }
 
     /* ── Past notes on card ── */
     .card-notes { margin-top: 8px; }
@@ -2790,15 +2797,16 @@ function cardHTML(s) {
     
     <div class="chart-container">
       ${s.chart_b64
-        ? `<a class="chart-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="คลิกเพื่อดูกราฟจริงบน TradingView">
+        ? `<a class="chart-link" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}" title="คลิกเพื่อดูประวัติกราฟราคา">
              <img class="chart-img" src="data:image/jpeg;base64,${s.chart_b64}">
            </a>`
-        : `<a class="tv-link" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
+        : ''}
     </div>
 
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     <a class="journal-btn" href="${journalUrl}">Journal</a>
+    <a class="tv-btn" href="${esc(s.tv_url||'')}" target="_blank" rel="noopener" title="เปิดกราฟจริงบน TradingView">TradingView ↗</a>
     ${newsHTML ? `<div class="news-section">${newsHTML}</div>` : ''}
     ${homeworkHTML}
     ${analysisHTML}
