@@ -1095,9 +1095,9 @@ function drawChart() {
 }
 
 async function showGroup(group, candle, isNavigating) {
-  const tooltip = document.getElementById('markerTooltip');
-  if (tooltip) {
-    tooltip._isNavigating = !!isNavigating;
+  const topTooltip = document.getElementById('markerTooltip');
+  if (topTooltip) {
+    topTooltip._isNavigating = !!isNavigating;
   }
   state.selectedKey = group.date; drawChart();
   const detail = document.getElementById('detailPanel');
