@@ -562,29 +562,113 @@
     /* --- Canvas Chart & Marker Tooltip Styles --- */
     .marker-tooltip {
       position: fixed;
-      background: rgba(20, 24, 33, 0.88);
-      backdrop-filter: blur(12px) saturate(1.6);
-      -webkit-backdrop-filter: blur(12px) saturate(1.6);
-      border: 1px solid rgba(240, 185, 11, 0.35);
-      color: #e6edf3;
       padding: 0;
-      border-radius: 12px;
       font-size: 13px;
       line-height: 1.5;
       max-width: 320px;
       max-height: 80vh;
       width: 290px;
       z-index: 2500;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.05);
+      border-radius: 12px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       transform: translateY(10px) scale(0.96);
       transform-origin: bottom center;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      backdrop-filter: blur(14px) saturate(1.8);
+      -webkit-backdrop-filter: blur(14px) saturate(1.8);
     }
+    
+    /* ── Emotion-based Tooltip Themes (iOS style) ── */
+    .marker-tooltip.theme-fear {
+      background: rgba(35, 14, 17, 0.86);
+      border: 1px solid rgba(239, 83, 80, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(239, 83, 80, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-fear .tt-header {
+      background: rgba(239, 83, 80, 0.12);
+      color: #ff8a80;
+      border-bottom: 1px solid rgba(239, 83, 80, 0.22);
+    }
+    .marker-tooltip.theme-fear .tt-label {
+      color: #ff8a80;
+    }
+
+    .marker-tooltip.theme-greed {
+      background: rgba(14, 22, 35, 0.86);
+      border: 1px solid rgba(59, 130, 246, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(59, 130, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-greed .tt-header {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.22);
+    }
+    .marker-tooltip.theme-greed .tt-label {
+      color: #93c5fd;
+    }
+
+    .marker-tooltip.theme-confident {
+      background: rgba(10, 30, 25, 0.86);
+      border: 1px solid rgba(38, 166, 154, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(38, 166, 154, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-confident .tt-header {
+      background: rgba(38, 166, 154, 0.12);
+      color: #80cbc4;
+      border-bottom: 1px solid rgba(38, 166, 154, 0.22);
+    }
+    .marker-tooltip.theme-confident .tt-label {
+      color: #80cbc4;
+    }
+
+    .marker-tooltip.theme-hesitant {
+      background: rgba(30, 24, 10, 0.86);
+      border: 1px solid rgba(240, 185, 11, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(240, 185, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-hesitant .tt-header {
+      background: rgba(240, 185, 11, 0.12);
+      color: #ffe082;
+      border-bottom: 1px solid rgba(240, 185, 11, 0.22);
+    }
+    .marker-tooltip.theme-hesitant .tt-label {
+      color: #ffe082;
+    }
+
+    .marker-tooltip.theme-default {
+      background: rgba(20, 24, 33, 0.88);
+      border: 1px solid rgba(88, 166, 255, 0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-default .tt-header {
+      background: rgba(48, 54, 61, 0.35);
+      color: #f0b90b;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+    }
+    .marker-tooltip.theme-default .tt-label {
+      color: #8b949e;
+    }
+
+    /* iOS Badges */
+    .journal-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.07);
+      color: #e6edf3;
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+    }
+    .theme-fear .journal-badge.sentiment { background: rgba(239, 83, 80, 0.15); color: #ff8a80; border-color: rgba(239, 83, 80, 0.25); }
+    .theme-greed .journal-badge.sentiment { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border-color: rgba(59, 130, 246, 0.25); }
+    .theme-confident .journal-badge.sentiment { background: rgba(38, 166, 154, 0.15); color: #80cbc4; border-color: rgba(38, 166, 154, 0.25); }
+    .theme-hesitant .journal-badge.sentiment { background: rgba(240, 185, 11, 0.15); color: #ffe082; border-color: rgba(240, 185, 11, 0.25); }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
@@ -911,8 +995,36 @@ const state = {
 const emotions = ['กลัว', 'โลภ', 'FOMO', 'ลังเล', 'มั่นใจแต่ระวัง', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
 const intents = ['ซื้อ', 'ขาย', 'ถือ', 'รอจังหวะ'];
 
+function detectEmotion(note) {
+  if (!note) return null;
+  if (note.journal && note.journal.emotion) {
+    return note.journal.emotion;
+  }
+  if (note.note) {
+    const emotions = ['กลัว','ลังเล','ใจเย็นรอ','มั่นใจแต่ระวัง','โลภ','FOMO','ไม่เชื่อข่าว'];
+    for (const em of emotions) {
+      if (note.note.includes(em)) return em;
+    }
+  }
+  return null;
+}
+
+function getEmotionCategory(emotion) {
+  if (!emotion) return 'default';
+  const fear = ['กลัว'];
+  const confident = ['มั่นใจแต่ระวัง'];
+  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
+  const greed = ['โลภ', 'FOMO'];
+  
+  if (fear.includes(emotion)) return 'fear';
+  if (confident.includes(emotion)) return 'confident';
+  if (hesitant.includes(emotion)) return 'hesitant';
+  if (greed.includes(emotion)) return 'greed';
+  return 'default';
+}
+
 function getEmotionColor(emotion) {
-  if (!emotion) return '#f0b90b'; // default gold
+  if (!emotion) return '#8b949e'; // default gray/blue for lines
   const fear = ['กลัว'];
   const confident = ['มั่นใจแต่ระวัง'];
   const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
@@ -922,7 +1034,7 @@ function getEmotionColor(emotion) {
   if (confident.includes(emotion)) return '#26a69a'; // Green
   if (hesitant.includes(emotion)) return '#facc15'; // Yellow
   if (greed.includes(emotion)) return '#3b82f6'; // Blue
-  return '#f0b90b'; // default gold
+  return '#f0b90b'; // gold fallback
 }
 const NEWS_TRANSLATIONS = {
   "SpaceX becomes retail's biggest IPO trade: Chart of the Day": "SpaceX กลายเป็นดีล IPO ที่รายย่อยซื้อหนักที่สุด: กราฟเด่นประจำวัน",
@@ -1807,6 +1919,12 @@ async function showMarkerTooltip(m) {
     }
   } catch (e) {}
 
+  const emotion = group.notes[0] ? detectEmotion(group.notes[0]) : null;
+  hoverTip._emotion = emotion;
+  const category = getEmotionCategory(emotion);
+  hoverTip.classList.remove('theme-fear', 'theme-greed', 'theme-confident', 'theme-hesitant', 'theme-default');
+  hoverTip.classList.add(`theme-${category}`);
+
   hoverTip._sourceCanvas = canvas;
   hoverTip._activeMarker = m;
 
@@ -1816,15 +1934,14 @@ async function showMarkerTooltip(m) {
   group.notes.forEach(n => {
     let journalBadges = '';
     if (n.journal) {
-      const eColor = getEmotionColor(n.journal.emotion);
-      const intentLabels = { 'ซื้อ': '🟢 ซื้อ', 'ขาย': '🔴 ขาย', 'ถือ': '🟡 ถือ', 'รอจังหวะ': '🔵 รอจังหวะ' };
+      const intentLabels = { 'ซื้อ': 'ซื้อ', 'ขาย': 'ขาย', 'ถือ': 'ถือ', 'รอจังหวะ': 'รอจังหวะ' };
       const intentText = intentLabels[n.journal.intent] || n.journal.intent || '';
       
       journalBadges = `
-        <div style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
-          <span style="background:${eColor}20; color:${eColor}; border:1px solid ${eColor}; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">🎭 ${esc(n.journal.emotion)}</span>
-          ${intentText ? `<span style="background:#161b22; color:#c9d1d9; border:1px solid #30363d; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">🎯 ${esc(intentText)}</span>` : ''}
-          ${n.journal.confidence ? `<span style="background:#161b22; color:#f0b90b; border:1px solid #f0b90b; padding:1px 6px; border-radius:8px; font-size:0.7em; font-weight:bold;">💪 ${esc(n.journal.confidence)}/10</span>` : ''}
+        <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
+          <span class="journal-badge sentiment">${esc(n.journal.emotion)}</span>
+          ${intentText ? `<span class="journal-badge action">${esc(intentText)}</span>` : ''}
+          ${n.journal.confidence ? `<span class="journal-badge confidence">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
         </div>
       `;
     }
@@ -1948,6 +2065,10 @@ function updateTooltipConnector() {
   const intersect = getBoxIntersection(candleScreenX, candleScreenY, ttRect);
   const xClamped = intersect.x;
   const yClamped = intersect.y;
+
+  const emotionColor = getEmotionColor(tooltip._emotion);
+  line.setAttribute('stroke', emotionColor);
+  dot.setAttribute('fill', emotionColor);
 
   line.setAttribute('x1', candleScreenX);
   line.setAttribute('y1', candleScreenY);

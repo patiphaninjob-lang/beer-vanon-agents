@@ -633,29 +633,113 @@
     /* ── Marker Tooltip ── */
     .marker-tooltip {
       position: fixed;
-      background: rgba(20, 24, 33, 0.88);
-      backdrop-filter: blur(12px) saturate(1.6);
-      -webkit-backdrop-filter: blur(12px) saturate(1.6);
-      border: 1px solid rgba(240, 185, 11, 0.35);
-      color: #e6edf3;
       padding: 0;
-      border-radius: 12px;
       font-size: 13px;
       line-height: 1.5;
       max-width: 320px;
       max-height: 80vh;
       width: 290px;
       z-index: 2500;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.05);
+      border-radius: 12px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       transform: translateY(10px) scale(0.96);
       transform-origin: bottom center;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      backdrop-filter: blur(14px) saturate(1.8);
+      -webkit-backdrop-filter: blur(14px) saturate(1.8);
     }
+    
+    /* ── Emotion-based Tooltip Themes (iOS style) ── */
+    .marker-tooltip.theme-fear {
+      background: rgba(35, 14, 17, 0.86);
+      border: 1px solid rgba(239, 83, 80, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(239, 83, 80, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-fear .tt-header {
+      background: rgba(239, 83, 80, 0.12);
+      color: #ff8a80;
+      border-bottom: 1px solid rgba(239, 83, 80, 0.22);
+    }
+    .marker-tooltip.theme-fear .tt-label {
+      color: #ff8a80;
+    }
+
+    .marker-tooltip.theme-greed {
+      background: rgba(14, 22, 35, 0.86);
+      border: 1px solid rgba(59, 130, 246, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(59, 130, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-greed .tt-header {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.22);
+    }
+    .marker-tooltip.theme-greed .tt-label {
+      color: #93c5fd;
+    }
+
+    .marker-tooltip.theme-confident {
+      background: rgba(10, 30, 25, 0.86);
+      border: 1px solid rgba(38, 166, 154, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(38, 166, 154, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-confident .tt-header {
+      background: rgba(38, 166, 154, 0.12);
+      color: #80cbc4;
+      border-bottom: 1px solid rgba(38, 166, 154, 0.22);
+    }
+    .marker-tooltip.theme-confident .tt-label {
+      color: #80cbc4;
+    }
+
+    .marker-tooltip.theme-hesitant {
+      background: rgba(30, 24, 10, 0.86);
+      border: 1px solid rgba(240, 185, 11, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 16px rgba(240, 185, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-hesitant .tt-header {
+      background: rgba(240, 185, 11, 0.12);
+      color: #ffe082;
+      border-bottom: 1px solid rgba(240, 185, 11, 0.22);
+    }
+    .marker-tooltip.theme-hesitant .tt-label {
+      color: #ffe082;
+    }
+
+    .marker-tooltip.theme-default {
+      background: rgba(20, 24, 33, 0.88);
+      border: 1px solid rgba(88, 166, 255, 0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .marker-tooltip.theme-default .tt-header {
+      background: rgba(48, 54, 61, 0.35);
+      color: #f0b90b;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+    }
+    .marker-tooltip.theme-default .tt-label {
+      color: #8b949e;
+    }
+
+    /* iOS Badges */
+    .journal-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.07);
+      color: #e6edf3;
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+    }
+    .theme-fear .journal-badge.sentiment { background: rgba(239, 83, 80, 0.15); color: #ff8a80; border-color: rgba(239, 83, 80, 0.25); }
+    .theme-greed .journal-badge.sentiment { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border-color: rgba(59, 130, 246, 0.25); }
+    .theme-confident .journal-badge.sentiment { background: rgba(38, 166, 154, 0.15); color: #80cbc4; border-color: rgba(38, 166, 154, 0.25); }
+    .theme-hesitant .journal-badge.sentiment { background: rgba(240, 185, 11, 0.15); color: #ffe082; border-color: rgba(240, 185, 11, 0.25); }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
@@ -1414,7 +1498,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.0.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.0.0 (ล่าสุด):</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.1.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.1.0 (ล่าสุด):</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -1944,6 +2028,48 @@ function syncWatchlistFromNotes() {
     saveJournalWatchlist();
     updateWatchlistBadge();
   }
+}
+
+function detectEmotion(note) {
+  if (!note) return null;
+  if (note.journal && note.journal.emotion) {
+    return note.journal.emotion;
+  }
+  if (note.note) {
+    const emotions = ['กลัว','ลังเล','ใจเย็นรอ','มั่นใจแต่ระวัง','โลภ','FOMO','ไม่เชื่อข่าว'];
+    for (const em of emotions) {
+      if (note.note.includes(em)) return em;
+    }
+  }
+  return null;
+}
+
+function getEmotionCategory(emotion) {
+  if (!emotion) return 'default';
+  const fear = ['กลัว'];
+  const confident = ['มั่นใจแต่ระวัง'];
+  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
+  const greed = ['โลภ', 'FOMO'];
+  
+  if (fear.includes(emotion)) return 'fear';
+  if (confident.includes(emotion)) return 'confident';
+  if (hesitant.includes(emotion)) return 'hesitant';
+  if (greed.includes(emotion)) return 'greed';
+  return 'default';
+}
+
+function getEmotionColor(emotion) {
+  if (!emotion) return '#8b949e'; // default gray/blue for lines
+  const fear = ['กลัว'];
+  const confident = ['มั่นใจแต่ระวัง'];
+  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
+  const greed = ['โลภ', 'FOMO'];
+  
+  if (fear.includes(emotion)) return '#ef5350'; // Red
+  if (confident.includes(emotion)) return '#26a69a'; // Green
+  if (hesitant.includes(emotion)) return '#facc15'; // Yellow
+  if (greed.includes(emotion)) return '#3b82f6'; // Blue
+  return '#f0b90b'; // gold fallback
 }
 
 // ── Notes ─────────────────────────────────────────────────────
@@ -2884,9 +3010,35 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   
   tooltip._sourceCanvas = canvas;
   tooltip._closestIdx = closestIdx;
+
+  const emotion = detectEmotion(note);
+  tooltip._emotion = emotion;
+  const category = getEmotionCategory(emotion);
+  tooltip.classList.remove('theme-fear', 'theme-greed', 'theme-confident', 'theme-hesitant', 'theme-default');
+  tooltip.classList.add(`theme-${category}`);
   
   let headerHtml = `📅 ${note.date}${note.time ? ' ' + note.time : ''}`;
-  let bodyHtml = `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
+  
+  let journalBadgesHtml = '';
+  if (note.journal) {
+    const emotionText = note.journal.emotion || '';
+    const intentText = note.journal.intent || '';
+    const confidenceText = note.journal.confidence ? `ความมั่นใจ ${note.journal.confidence}/10` : '';
+    const reviewText = note.journal.review ? `รีวิว: ${note.journal.review}` : '';
+    
+    if (emotionText || intentText || confidenceText || reviewText) {
+      journalBadgesHtml = `
+        <div class="tt-section journal-badge-section" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 2px;">
+          ${emotionText ? `<span class="journal-badge sentiment">${emotionText}</span>` : ''}
+          ${intentText ? `<span class="journal-badge action">${intentText}</span>` : ''}
+          ${confidenceText ? `<span class="journal-badge confidence">${confidenceText}</span>` : ''}
+          ${reviewText ? `<span class="journal-badge review">${reviewText}</span>` : ''}
+        </div>
+      `;
+    }
+  }
+
+  let bodyHtml = `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div>${journalBadgesHtml}</div>`;
   
   let loadingId = `ttLoad-${Date.now()}`;
   if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
@@ -3077,6 +3229,10 @@ function updateTooltipConnector() {
   const intersect = getBoxIntersection(candleScreenX, candleScreenY, ttRect);
   const xClamped = intersect.x;
   const yClamped = intersect.y;
+
+  const emotionColor = getEmotionColor(tooltip._emotion);
+  line.setAttribute('stroke', emotionColor);
+  dot.setAttribute('fill', emotionColor);
 
   line.setAttribute('x1', candleScreenX);
   line.setAttribute('y1', candleScreenY);
