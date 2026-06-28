@@ -1394,8 +1394,45 @@ function withTimeout(promise, ms) {
 function hasFirebaseClient() {
   return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
 }
+let firestoreListenerRegistered = false;
+
+function registerFirestoreRealtimeListener() {
+  if (firestoreListenerRegistered || !notesDocRef) return;
+  firestoreListenerRegistered = true;
+  
+  notesDocRef.onSnapshot(snap => {
+    if (!snap.exists) return;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    
+    const oldStr = JSON.stringify(state.notes);
+    const newStr = JSON.stringify(next);
+    if (oldStr !== newStr) {
+      state.notes = next;
+      
+      // Sync watchlist from cloud
+      if (Array.isArray(state.notes._watchlist)) {
+        const merged = uniqueTickers([...state.notes._watchlist, ...state.watchlist]);
+        state.watchlist = merged;
+        saveWatchlist();
+      }
+      
+      // Redraw journal page
+      renderAll();
+      
+      console.log('[journal-cloud] Notes & Watchlist updated in real-time from Firestore.');
+    }
+  }, e => {
+    console.warn('[journal-cloud] Real-time listener error:', e);
+    firestoreListenerRegistered = false;
+  });
+}
+
 function initCloudSync() {
-  if (notesSyncReady) return true;
+  if (notesSyncReady) {
+    registerFirestoreRealtimeListener();
+    return true;
+  }
   if (!hasFirebaseClient()) return false;
   try {
     if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
@@ -1403,6 +1440,7 @@ function initCloudSync() {
     const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
     notesDocRef = db.collection(collectionName).doc(docName);
     notesSyncReady = true;
+    registerFirestoreRealtimeListener();
     return true;
   } catch (error) {
     console.warn('[journal-cloud] init failed', error);

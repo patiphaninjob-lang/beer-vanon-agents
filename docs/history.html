@@ -304,6 +304,8 @@
       .marker-tooltip::after { display: none; }
     }
   </style>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <div class="topbar">
@@ -459,13 +461,144 @@ function noteDate(n) {
   return n.date || n.archive_date || '';
 }
 
-async function loadNotes() {
-  const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
-  const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
-  state.notes = [];
-  keys.forEach(key => {
-    if (db[key]) state.notes = state.notes.concat(db[key]);
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyB3ky96m5kIMzwBYOMkPk7YCrMT_ZEzwHc",
+  authDomain: "beam-7645f.firebaseapp.com",
+  projectId: "beam-7645f",
+  storageBucket: "beam-7645f.firebasestorage.app",
+  messagingSenderId: "645933254174",
+  appId: "1:645933254174:web:75a7e62fda923c9975500f"
+};
+const FIRESTORE_DOC_PATH = 'data/beer_top100_notes';
+
+let notesDocRef      = null;
+let notesSyncReady   = false;
+let firestoreListenerRegistered = false;
+let globalNotesCache = {};
+
+function hasFirebaseClient() {
+  return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
+}
+
+function initCloudSync() {
+  if (notesSyncReady) {
+    registerFirestoreRealtimeListener();
+    return true;
+  }
+  if (!hasFirebaseClient()) return false;
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(FIREBASE_CONFIG);
+    }
+    const db = firebase.firestore();
+    const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
+    notesDocRef = db.collection(collectionName).doc(docName);
+    notesSyncReady = true;
+    registerFirestoreRealtimeListener();
+    return true;
+  } catch (e) {
+    console.warn('[cloud-sync] init failed', e);
+    notesDocRef = null;
+    notesSyncReady = false;
+    return false;
+  }
+}
+
+async function loadNotesFromFirestore() {
+  if (!initCloudSync() || !notesDocRef) return false;
+  try {
+    const snap = await notesDocRef.get();
+    if (!snap.exists) return false;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    if (!Object.keys(next).length) return false;
+    return next;
+  } catch (e) {
+    console.warn('[cloud-sync] load firestore failed', e);
+    return false;
+  }
+}
+
+function cloneNotesMap(src) {
+  const out = {};
+  if (!src || typeof src !== 'object') return out;
+  for (const [ticker, notes] of Object.entries(src)) {
+    if (ticker === '_watchlist') {
+      if (Array.isArray(notes)) out[ticker] = [...notes];
+      continue;
+    }
+    if (!Array.isArray(notes)) continue;
+    out[ticker] = notes.map(note => ({ ...note }));
+  }
+  return out;
+}
+
+function registerFirestoreRealtimeListener() {
+  if (firestoreListenerRegistered || !notesDocRef) return;
+  firestoreListenerRegistered = true;
+  
+  notesDocRef.onSnapshot(snap => {
+    if (!snap.exists) return;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    
+    const oldStr = JSON.stringify(globalNotesCache);
+    const newStr = JSON.stringify(next);
+    if (oldStr !== newStr) {
+      globalNotesCache = next;
+      
+      const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+      let tickerNotes = [];
+      keys.forEach(key => {
+        if (globalNotesCache[key]) tickerNotes = tickerNotes.concat(globalNotesCache[key]);
+      });
+      state.notes = tickerNotes
+        .filter(n => n && noteDate(n))
+        .sort((a,b) => noteDate(a).localeCompare(noteDate(b)));
+        
+      drawChart();
+      if (typeof renderSidebarList === 'function') {
+        renderSidebarList();
+      }
+      
+      if (state.selectedKey) {
+        const group = groupNotesByDate(state.notes).find(x => x.date === state.selectedKey);
+        if (group) {
+          showGroup(group, nearestCandle(state.selectedKey)?.candle);
+        }
+      }
+      
+      console.log('[history-cloud] Notes updated in real-time from Firestore.');
+    }
+  }, e => {
+    console.warn('[history-cloud] Real-time listener error:', e);
+    firestoreListenerRegistered = false;
   });
+}
+
+async function loadNotes() {
+  initCloudSync(); // Make sure real-time listener initializes
+  const firestoreData = await loadNotesFromFirestore();
+  if (firestoreData) {
+    globalNotesCache = firestoreData;
+    const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+    state.notes = [];
+    keys.forEach(key => {
+      if (firestoreData[key]) state.notes = state.notes.concat(firestoreData[key]);
+    });
+  } else {
+    try {
+      const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
+      globalNotesCache = db;
+      const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+      state.notes = [];
+      keys.forEach(key => {
+        if (db[key]) state.notes = state.notes.concat(db[key]);
+      });
+    } catch (e) {
+      state.notes = [];
+    }
+  }
   state.notes = state.notes
     .filter(n => n && noteDate(n))
     .sort((a,b) => noteDate(a).localeCompare(noteDate(b)));

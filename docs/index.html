@@ -1414,7 +1414,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.9.8<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.9.8 (ล่าสุด):</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li><li><span class="wt-ver">v2.8.0:</span> อัพเกรดเส้นเชื่อมต่อ Tooltip สไตล์ iOS (High Performance) ปรับการทำงานด้วย requestAnimationFrame ป้องกันอาการแล็กหน่วง และใช้ CSS Opacity ควบคุมการเฟดเข้าออกพร้อมตัวกล่อง 100%</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.0.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.0.0 (ล่าสุด):</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -1809,8 +1809,69 @@ function hasFirebaseClient() {
   return typeof firebase !== 'undefined' && typeof firebase.initializeApp === 'function' && typeof firebase.firestore === 'function';
 }
 
+let firestoreListenerRegistered = false;
+
+function registerFirestoreRealtimeListener() {
+  if (firestoreListenerRegistered || !notesDocRef) return;
+  firestoreListenerRegistered = true;
+  
+  notesDocRef.onSnapshot(snap => {
+    if (!snap.exists) return;
+    const data = snap.data() || {};
+    const next = cloneNotesMap(data.notes || data.notesCache || {});
+    
+    const oldStr = JSON.stringify(notesCache);
+    const newStr = JSON.stringify(next);
+    if (oldStr !== newStr) {
+      notesCache = next;
+      
+      // Sync watchlist from cloud
+      if (Array.isArray(notesCache._watchlist)) {
+        const merged = uniqueTickers([...notesCache._watchlist, ...journalWatchlist]);
+        journalWatchlist = merged;
+        saveJournalWatchlist();
+        updateWatchlistBadge();
+      }
+      
+      // Redraw main dashboard
+      renderCards();
+      
+      // Update fullscreen overlay if active
+      const fsOverlay = document.getElementById('chartFullscreenOverlay');
+      if (fsOverlay && fsOverlay.classList.contains('show')) {
+        const ticker = fsOverlay.dataset.ticker;
+        if (ticker) {
+          const canvas = document.getElementById('chartFsCanvas');
+          const candles = canvas._candles || [];
+          const notes = notesCache[ticker] || [];
+          drawMiniChart(canvas, candles, notes);
+          
+          const tooltip = document.getElementById('markerTooltip');
+          if (tooltip && tooltip.classList.contains('show') && tooltip._sourceCanvas === canvas) {
+            const activeNote = notes.find(n => n.id === tooltip._activeNoteId);
+            if (activeNote) {
+              showMiniChartTooltip(canvas, activeNote, ticker, tooltip._closestIdx);
+            } else {
+              tooltip.classList.remove('show');
+              updateTooltipConnector();
+            }
+          }
+        }
+      }
+      
+      console.log('[cloud-sync] Notes & Watchlist updated in real-time from Firestore.');
+    }
+  }, e => {
+    console.warn('[cloud-sync] Real-time listener error:', e);
+    firestoreListenerRegistered = false;
+  });
+}
+
 function initCloudSync() {
-  if (notesSyncReady) return true;
+  if (notesSyncReady) {
+    registerFirestoreRealtimeListener();
+    return true;
+  }
   if (!hasFirebaseClient()) return false;
   try {
     if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
@@ -1818,6 +1879,7 @@ function initCloudSync() {
     const [collectionName, docName] = FIRESTORE_DOC_PATH.split('/');
     notesDocRef = db.collection(collectionName).doc(docName);
     notesSyncReady = true;
+    registerFirestoreRealtimeListener();
     return true;
   } catch (e) {
     console.warn('[cloud-sync] init failed', e);
