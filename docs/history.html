@@ -297,7 +297,56 @@
       opacity: 0.5;
       font-size: 12px;
       margin-left: 8px;
+      order: 3;
     }
+    .tt-nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+      margin-right: 8px;
+      order: 2;
+    }
+    .tt-nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf3;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      outline: none;
+      padding: 0;
+      pointer-events: auto;
+    }
+    .tt-nav-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.08);
+    }
+    .tt-nav-btn:active:not(:disabled) {
+      transform: scale(0.92);
+    }
+    .tt-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+    .theme-fear .tt-nav-btn { background: rgba(239, 83, 80, 0.12); border-color: rgba(239, 83, 80, 0.25); color: #ff8a80; }
+    .theme-fear .tt-nav-btn:hover:not(:disabled) { background: rgba(239, 83, 80, 0.25); border-color: rgba(239, 83, 80, 0.45); }
+    .theme-greed .tt-nav-btn { background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.25); color: #93c5fd; }
+    .theme-greed .tt-nav-btn:hover:not(:disabled) { background: rgba(59, 130, 246, 0.25); border-color: rgba(59, 130, 246, 0.45); }
+    .theme-confident .tt-nav-btn { background: rgba(38, 166, 154, 0.12); border-color: rgba(38, 166, 154, 0.25); color: #80cbc4; }
+    .theme-confident .tt-nav-btn:hover:not(:disabled) { background: rgba(38, 166, 154, 0.25); border-color: rgba(38, 166, 154, 0.45); }
+    .theme-hesitant .tt-nav-btn { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.25); color: #ffe082; }
+    .theme-hesitant .tt-nav-btn:hover:not(:disabled) { background: rgba(240, 185, 11, 0.25); border-color: rgba(240, 185, 11, 0.45); }
     .tt-body {
       padding: 12px;
       overflow-y: auto;
@@ -1111,10 +1160,25 @@ async function showGroup(group, candle) {
     tooltip.classList.remove('theme-fear', 'theme-greed', 'theme-confident', 'theme-hesitant', 'theme-default');
     tooltip.classList.add(`theme-${category}`);
 
+    const sortedMarkers = [...state.markers].sort((a,b) => a.x - b.x);
+    const currentPos = sortedMarkers.findIndex(x => x.key === m.key);
+    
+    tooltip._sortedMarkers = sortedMarkers;
+    tooltip._currentPos = currentPos;
+    
+    const prevMarker = currentPos > 0 ? sortedMarkers[currentPos - 1] : null;
+    const nextMarker = currentPos < sortedMarkers.length - 1 ? sortedMarkers[currentPos + 1] : null;
+
     tooltip._sourceCanvas = canvas;
     tooltip._activeMarker = m;
 
-    let headerHtml = `📅 ${fmtDate(group.date)}`;
+    let headerHtml = `
+      <span>📅 ${fmtDate(group.date)}</span>
+      <div class="tt-nav-arrows">
+        <button class="tt-nav-btn" ${prevMarker === null ? 'disabled' : ''} onclick="navigateHistoryTooltip(event, -1)" title="ก่อนหน้า">‹</button>
+        <button class="tt-nav-btn" ${nextMarker === null ? 'disabled' : ''} onclick="navigateHistoryTooltip(event, 1)" title="ถัดไป">›</button>
+      </div>
+    `;
     let bodyHtml = '';
 
     group.notes.forEach(n => {
@@ -1220,6 +1284,26 @@ async function showGroup(group, candle) {
     tooltip.classList.remove('show');
   }
 }
+
+window.navigateHistoryTooltip = function(event, direction) {
+  if (event) event.stopPropagation();
+  const tooltip = document.getElementById('markerTooltip');
+  if (!tooltip) return;
+  const sortedMarkers = tooltip._sortedMarkers;
+  const currentPos = tooltip._currentPos;
+  if (!sortedMarkers || currentPos === undefined || currentPos === -1) return;
+  
+  const nextPos = currentPos + direction;
+  if (nextPos >= 0 && nextPos < sortedMarkers.length) {
+    const nextMarker = sortedMarkers[nextPos];
+    const candle = state.candles.find(c => c.date === nextMarker.key);
+    const group = {
+      date: nextMarker.key,
+      notes: state.notes.filter(n => (n.date || n.archive_date) === nextMarker.key)
+    };
+    showGroup(group, candle);
+  }
+};
 
 let connectorFrameId = null;
 function queueConnectorUpdate() {

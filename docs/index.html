@@ -771,7 +771,56 @@
       opacity: 0.5;
       font-size: 12px;
       margin-left: 8px;
+      order: 3;
     }
+    .tt-nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+      margin-right: 8px;
+      order: 2;
+    }
+    .tt-nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf3;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      outline: none;
+      padding: 0;
+      pointer-events: auto;
+    }
+    .tt-nav-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.08);
+    }
+    .tt-nav-btn:active:not(:disabled) {
+      transform: scale(0.92);
+    }
+    .tt-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+    .theme-fear .tt-nav-btn { background: rgba(239, 83, 80, 0.12); border-color: rgba(239, 83, 80, 0.25); color: #ff8a80; }
+    .theme-fear .tt-nav-btn:hover:not(:disabled) { background: rgba(239, 83, 80, 0.25); border-color: rgba(239, 83, 80, 0.45); }
+    .theme-greed .tt-nav-btn { background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.25); color: #93c5fd; }
+    .theme-greed .tt-nav-btn:hover:not(:disabled) { background: rgba(59, 130, 246, 0.25); border-color: rgba(59, 130, 246, 0.45); }
+    .theme-confident .tt-nav-btn { background: rgba(38, 166, 154, 0.12); border-color: rgba(38, 166, 154, 0.25); color: #80cbc4; }
+    .theme-confident .tt-nav-btn:hover:not(:disabled) { background: rgba(38, 166, 154, 0.25); border-color: rgba(38, 166, 154, 0.45); }
+    .theme-hesitant .tt-nav-btn { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.25); color: #ffe082; }
+    .theme-hesitant .tt-nav-btn:hover:not(:disabled) { background: rgba(240, 185, 11, 0.25); border-color: rgba(240, 185, 11, 0.45); }
     .tt-body {
       padding: 12px;
       overflow-y: auto;
@@ -1498,7 +1547,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.1.1<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.1.1 (ล่าสุด):</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.0 (ล่าสุด):</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2978,8 +3027,24 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   const category = getEmotionCategory(emotion);
   tooltip.classList.remove('theme-fear', 'theme-greed', 'theme-confident', 'theme-hesitant', 'theme-default');
   tooltip.classList.add(`theme-${category}`);
+
+  const noteIndices = Object.keys(canvas._notesMap || {}).map(Number).sort((a,b) => a - b);
+  const currentPos = noteIndices.indexOf(closestIdx);
   
-  let headerHtml = `📅 ${note.date}${note.time ? ' ' + note.time : ''}`;
+  tooltip._ticker = ticker;
+  tooltip._noteIndices = noteIndices;
+  tooltip._currentPos = currentPos;
+
+  const prevIdx = currentPos > 0 ? noteIndices[currentPos - 1] : null;
+  const nextIdx = currentPos < noteIndices.length - 1 ? noteIndices[currentPos + 1] : null;
+  
+  let headerHtml = `
+    <span>📅 ${note.date}${note.time ? ' ' + note.time : ''}</span>
+    <div class="tt-nav-arrows">
+      <button class="tt-nav-btn" ${prevIdx === null ? 'disabled' : ''} onclick="navigateTooltipNote(event, -1)" title="ก่อนหน้า">‹</button>
+      <button class="tt-nav-btn" ${nextIdx === null ? 'disabled' : ''} onclick="navigateTooltipNote(event, 1)" title="ถัดไป">›</button>
+    </div>
+  `;
   
   let journalBadgesHtml = '';
   if (note.journal) {
@@ -3101,6 +3166,26 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   // Initialize dragging capability
   initTooltipDragging();
 }
+
+window.navigateTooltipNote = function(event, direction) {
+  if (event) event.stopPropagation();
+  const tooltip = document.getElementById('markerTooltip');
+  if (!tooltip) return;
+  const canvas = tooltip._sourceCanvas;
+  const noteIndices = tooltip._noteIndices;
+  const currentPos = tooltip._currentPos;
+  const ticker = tooltip._ticker;
+  if (!canvas || !noteIndices || currentPos === undefined || currentPos === -1) return;
+  
+  const nextPos = currentPos + direction;
+  if (nextPos >= 0 && nextPos < noteIndices.length) {
+    const newIdx = noteIndices[nextPos];
+    const group = canvas._notesMap[newIdx];
+    if (group && group.notes && group.notes[0]) {
+      showMiniChartTooltip(canvas, group.notes[0], ticker, newIdx);
+    }
+  }
+};
 
 let connectorFrameId = null;
 function queueConnectorUpdate() {
