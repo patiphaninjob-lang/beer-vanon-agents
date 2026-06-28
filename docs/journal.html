@@ -561,57 +561,88 @@
     
     /* --- Canvas Chart & Marker Tooltip Styles --- */
     .marker-tooltip {
-      position: absolute;
-      background: rgba(22, 27, 34, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(240, 185, 11, 0.25);
+      position: fixed;
+      background: rgba(20, 24, 33, 0.88);
+      backdrop-filter: blur(12px) saturate(1.6);
+      -webkit-backdrop-filter: blur(12px) saturate(1.6);
+      border: 1px solid rgba(240, 185, 11, 0.35);
+      color: #e6edf3;
+      padding: 0;
       border-radius: 12px;
-      padding: 10px 14px;
-      color: #c9d1d9;
-      font-size: 0.8em;
-      min-width: 220px;
+      font-size: 13px;
+      line-height: 1.5;
       max-width: 320px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      pointer-events: none;
-      z-index: 1200;
+      max-height: 80vh;
+      width: 290px;
+      z-index: 2500;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.05);
       opacity: 0;
-      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transform: scale(0.9) translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(10px) scale(0.96);
+      transform-origin: bottom center;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
-      transform: scale(1) translateY(0);
+      transform: translateY(0) scale(1);
+    }
+    .marker-tooltip.dragging {
+      transition: none !important;
+      opacity: 0.95;
     }
     .tt-header {
-      font-weight: bold;
+      background: rgba(48, 54, 61, 0.35);
       color: #f0b90b;
-      border-bottom: 1px solid #21262d;
-      padding-bottom: 6px;
-      margin-bottom: 8px;
-      font-size: 1.05em;
+      font-weight: bold;
+      font-size: 0.9em;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+      cursor: move;
+      cursor: grab;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tt-header:active {
+      cursor: grabbing;
+    }
+    .tt-header::after {
+      content: '⋮⋮';
+      opacity: 0.5;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .tt-body {
+      padding: 12px;
+      overflow-y: auto;
+      max-height: calc(80vh - 36px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .tt-section {
-      margin-bottom: 8px;
-    }
-    .tt-section:last-child {
       margin-bottom: 0;
     }
     .tt-label {
-      font-size: 0.72em;
+      font-weight: 600;
       color: #8b949e;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
       margin-bottom: 3px;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
     .tt-label.beer {
       color: #f0b90b;
     }
     .tt-text {
-      line-height: 1.45;
-      color: #e6edf3;
       white-space: pre-wrap;
+      font-size: 0.92em;
+      color: #e6edf3;
     }
   </style>
 </head>
@@ -701,6 +732,21 @@
           <div class="chart-box" id="chartBox" style="position:relative; background:#0d1117; border:1px solid #21262d; border-radius:8px; min-height:330px; display:flex; flex-direction:column; justify-content:center;">
             <canvas id="priceCanvas" style="display:block; width:100%; height:320px;"></canvas>
             <div id="hoverTip" class="marker-tooltip"></div>
+
+            <!-- Tooltip Connector Line SVG -->
+            <svg id="tooltipConnector" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2400; display:none; overflow:visible;">
+              <defs>
+                <filter id="connectorGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <line id="connectorLine" x1="0" y1="0" x2="0" y2="0" stroke="rgba(240, 185, 11, 0.85)" stroke-width="1.8" filter="url(#connectorGlow)" />
+              <circle id="connectorDot" cx="0" cy="0" r="4.5" fill="#f0b90b" filter="url(#connectorGlow)" />
+            </svg>
           </div>
           <div class="news-list" id="newsList"></div>
         </div>
@@ -1672,7 +1718,12 @@ async function showMarkerTooltip(m) {
     }
   } catch (e) {}
 
-  let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
+  hoverTip._sourceCanvas = canvas;
+  hoverTip._activeMarker = m;
+
+  let headerHtml = `📅 ${fmtDate(group.date)}`;
+  let bodyHtml = '';
+
   group.notes.forEach(n => {
     let journalBadges = '';
     if (n.journal) {
@@ -1688,7 +1739,7 @@ async function showMarkerTooltip(m) {
         </div>
       `;
     }
-    baseHtml += `<div class="tt-section">
+    bodyHtml += `<div class="tt-section">
       <div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div>
       ${journalBadges}
       <div class="tt-text" style="white-space: pre-wrap; word-break: break-word;">${esc(n.note || '')}</div>
@@ -1696,10 +1747,10 @@ async function showMarkerTooltip(m) {
   });
   
   if (stockData && stockData.analysis) {
-    baseHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="word-break: break-word;">${esc(stockData.analysis.trim())}</div></div>`;
+    bodyHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="word-break: break-word;">${esc(stockData.analysis.trim())}</div></div>`;
   }
   
-  hoverTip.innerHTML = baseHtml;
+  hoverTip.innerHTML = `<div class="tt-header">${headerHtml}</div><div class="tt-body">${bodyHtml}</div>`;
   hoverTip.classList.add('show');
   
   positionTooltip(m);
@@ -1708,27 +1759,163 @@ async function showMarkerTooltip(m) {
 function positionTooltip(m) {
   if (!hoverTip || !canvas) return;
   
-  hoverTip.style.maxHeight = '250px';
-  hoverTip.style.overflow = 'auto';
+  hoverTip.style.maxHeight = '80vh';
   
-  const ttW = hoverTip.offsetWidth || 220;
-  const ttH = hoverTip.offsetHeight || 120;
+  const canvasRect = canvas.getBoundingClientRect();
+  const candleScreenX = canvasRect.left + m.x;
+  const candleScreenY = canvasRect.top + m.y;
   
-  let left = m.x - ttW / 2;
-  let top = m.y - ttH - 12;
+  let ttLeft = candleScreenX - hoverTip.offsetWidth / 2;
+  let ttTop = candleScreenY - hoverTip.offsetHeight - 14;
   
-  if (left < 10) left = 10;
-  if (left + ttW > canvas.width / (window.devicePixelRatio || 1) - 10) {
-    left = canvas.width / (window.devicePixelRatio || 1) - ttW - 10;
+  const margin = 10;
+  // Bounds check relative to window
+  if (ttLeft < margin) ttLeft = margin;
+  if (ttLeft + hoverTip.offsetWidth > window.innerWidth - margin) {
+    ttLeft = window.innerWidth - hoverTip.offsetWidth - margin;
   }
   
-  if (top < 10) {
-    top = m.y + 12;
+  if (ttTop < margin) {
+    ttTop = candleScreenY + 14;
   }
   
-  hoverTip.style.left = `${left}px`;
-  hoverTip.style.top = `${top}px`;
+  hoverTip.style.left = `${ttLeft}px`;
+  hoverTip.style.top = `${ttTop}px`;
 }
+
+function updateTooltipConnector() {
+  const tooltip = document.getElementById('hoverTip');
+  const svg = document.getElementById('tooltipConnector');
+  const line = document.getElementById('connectorLine');
+  const dot = document.getElementById('connectorDot');
+  if (!tooltip || !svg || !line || !dot) return;
+
+  if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
+    svg.style.display = 'none';
+    return;
+  }
+
+  const canvas = tooltip._sourceCanvas;
+  const m = tooltip._activeMarker;
+  if (!canvas || !m) {
+    svg.style.display = 'none';
+    return;
+  }
+
+  const canvasRect = canvas.getBoundingClientRect();
+  const candleScreenX = canvasRect.left + m.x;
+  const candleScreenY = canvasRect.top + m.y;
+
+  svg.style.display = 'block';
+
+  // Calculate nearest edge on the tooltip rectangle to the candle coordinate
+  const ttRect = tooltip.getBoundingClientRect();
+  const xClamped = Math.max(ttRect.left, Math.min(ttRect.right, candleScreenX));
+  const yClamped = Math.max(ttRect.top, Math.min(ttRect.bottom, candleScreenY));
+
+  line.setAttribute('x1', candleScreenX);
+  line.setAttribute('y1', candleScreenY);
+  line.setAttribute('x2', xClamped);
+  line.setAttribute('y2', yClamped);
+
+  dot.setAttribute('cx', candleScreenX);
+  dot.setAttribute('cy', candleScreenY);
+}
+
+let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0 };
+
+function initTooltipDragging() {
+  const tooltip = document.getElementById('hoverTip');
+  if (!tooltip) return;
+
+  if (tooltip._dragBound) return;
+  tooltip._dragBound = true;
+
+  tooltip.addEventListener('mousedown', onDragStart);
+  tooltip.addEventListener('touchstart', onDragStart, { passive: false });
+
+  function onDragStart(e) {
+    const header = e.target.closest('.tt-header');
+    if (!header) return;
+
+    e.preventDefault();
+
+    const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+
+    tooltipDragState = {
+      active: true,
+      startX: clientX,
+      startY: clientY,
+      initialLeft: parseFloat(tooltip.style.left) || 0,
+      initialTop: parseFloat(tooltip.style.top) || 0
+    };
+
+    tooltip.classList.add('dragging');
+
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('touchmove', onDragMove, { passive: false });
+    document.addEventListener('mouseup', onDragEnd);
+    document.addEventListener('touchend', onDragEnd);
+  }
+
+  function onDragMove(e) {
+    if (!tooltipDragState.active) return;
+    if (e.type.startsWith('touch')) e.preventDefault();
+
+    const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+
+    const dx = clientX - tooltipDragState.startX;
+    const dy = clientY - tooltipDragState.startY;
+
+    let newLeft = tooltipDragState.initialLeft + dx;
+    let newTop = tooltipDragState.initialTop + dy;
+
+    const margin = 10;
+    const rect = tooltip.getBoundingClientRect();
+    newLeft = Math.max(margin, Math.min(window.innerWidth - rect.width - margin, newLeft));
+    newTop = Math.max(margin, Math.min(window.innerHeight - rect.height - margin, newTop));
+
+    tooltip.style.left = `${newLeft}px`;
+    tooltip.style.top = `${newTop}px`;
+
+    updateTooltipConnector();
+  }
+
+  function onDragEnd() {
+    if (!tooltipDragState.active) return;
+    tooltipDragState.active = false;
+    tooltip.classList.remove('dragging');
+
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    document.removeEventListener('touchend', onDragEnd);
+  }
+}
+
+// Setup MutationObserver to automatically keep SVG connector in sync with tooltip visibility & styles
+const tooltipObserver = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes') {
+      updateTooltipConnector();
+    }
+  });
+});
+const markerTooltipEl = document.getElementById('hoverTip');
+if (markerTooltipEl) {
+  tooltipObserver.observe(markerTooltipEl, { attributes: true, attributeFilter: ['class', 'style'] });
+}
+
+// Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
+window.addEventListener('scroll', updateTooltipConnector, { passive: true });
+window.addEventListener('resize', updateTooltipConnector, { passive: true });
+
+// Trigger dragging init immediately on script load
+window.addEventListener('load', () => {
+  initTooltipDragging();
+});
 
 function noteDate(n) {
   return n.date || n.archive_date || '';
