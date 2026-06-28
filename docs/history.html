@@ -1211,6 +1211,10 @@ async function showGroup(group, candle) {
     tooltip.classList.add('show');
     
     const positionTooltip = () => {
+      if (tooltip._isNavigating && tooltip.style.left && tooltip.style.top) {
+        updateTooltipConnector();
+        return;
+      }
       tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
       
       const canvasRect = canvas.getBoundingClientRect();
@@ -1301,7 +1305,10 @@ window.navigateHistoryTooltip = function(event, direction) {
       date: nextMarker.key,
       notes: state.notes.filter(n => (n.date || n.archive_date) === nextMarker.key)
     };
+    tooltip._isNavigating = true;
     showGroup(group, candle);
+    updateTooltipConnector();
+    tooltip._isNavigating = false;
   }
 };
 

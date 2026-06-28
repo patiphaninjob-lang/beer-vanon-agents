@@ -1547,7 +1547,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.0 (ล่าสุด):</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.1<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.1 (ล่าสุด):</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -3092,56 +3092,60 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   tooltip._candleX = candleScreenX;
   tooltip._candleY = candleScreenY;
   
-  tooltip.style.maxHeight = '80vh';
-  let ttLeft = candleScreenX - tooltip.offsetWidth / 2;
-  let ttTop = candleScreenY - tooltip.offsetHeight - 14;
-  
-  const margin = 10;
-  const headerRect = document.querySelector('.header')?.getBoundingClientRect();
-  const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
-  let tailLeft = tooltip.offsetWidth / 2;
-  
-  // Horizontal bounds
-  if (ttLeft < margin) {
-    ttLeft = margin;
-    tailLeft = candleScreenX - ttLeft;
-  } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
-    ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
-    tailLeft = candleScreenX - ttLeft;
-  }
-  tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
-  
-  // Vertical bounds
-  let isBelow = false;
-  let spaceAbove = candleScreenY - topMargin - 14;
-  let spaceBelow = window.innerHeight - (rect.top + rect.height) - margin - 14;
-  
-  if (ttTop < topMargin) {
-    if (spaceBelow > spaceAbove) {
-      isBelow = true;
-      ttTop = rect.top + rect.height + 14;
-      tooltip.style.maxHeight = `${spaceBelow}px`;
-    } else {
-      ttTop = topMargin;
-      tooltip.style.maxHeight = `${spaceAbove}px`;
+  if (tooltip._isNavigating && tooltip.style.left && tooltip.style.top) {
+    // Keep current position during navigation
+  } else {
+    tooltip.style.maxHeight = '80vh';
+    let ttLeft = candleScreenX - tooltip.offsetWidth / 2;
+    let ttTop = candleScreenY - tooltip.offsetHeight - 14;
+    
+    const margin = 10;
+    const headerRect = document.querySelector('.header')?.getBoundingClientRect();
+    const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
+    let tailLeft = tooltip.offsetWidth / 2;
+    
+    // Horizontal bounds
+    if (ttLeft < margin) {
+      ttLeft = margin;
+      tailLeft = candleScreenX - ttLeft;
+    } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+      ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+      tailLeft = candleScreenX - ttLeft;
     }
-  } else {
-    tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
-  }
-  
-  if (!isBelow) {
-    ttTop = candleScreenY - tooltip.offsetHeight - 14;
-    if (ttTop < topMargin) ttTop = topMargin;
-  }
-  
-  tooltip.style.left = `${ttLeft}px`;
-  tooltip.style.top = `${ttTop}px`;
-  tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
-  
-  if (isBelow) {
-    tooltip.classList.add('tail-top');
-  } else {
-    tooltip.classList.remove('tail-top');
+    tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+    
+    // Vertical bounds
+    let isBelow = false;
+    let spaceAbove = candleScreenY - topMargin - 14;
+    let spaceBelow = window.innerHeight - (rect.top + rect.height) - margin - 14;
+    
+    if (ttTop < topMargin) {
+      if (spaceBelow > spaceAbove) {
+        isBelow = true;
+        ttTop = rect.top + rect.height + 14;
+        tooltip.style.maxHeight = `${spaceBelow}px`;
+      } else {
+        ttTop = topMargin;
+        tooltip.style.maxHeight = `${spaceAbove}px`;
+      }
+    } else {
+      tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+    }
+    
+    if (!isBelow) {
+      ttTop = candleScreenY - tooltip.offsetHeight - 14;
+      if (ttTop < topMargin) ttTop = topMargin;
+    }
+    
+    tooltip.style.left = `${ttLeft}px`;
+    tooltip.style.top = `${ttTop}px`;
+    tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+    
+    if (isBelow) {
+      tooltip.classList.add('tail-top');
+    } else {
+      tooltip.classList.remove('tail-top');
+    }
   }
   
   // Load Ch34 analysis
@@ -3182,7 +3186,10 @@ window.navigateTooltipNote = function(event, direction) {
     const newIdx = noteIndices[nextPos];
     const group = canvas._notesMap[newIdx];
     if (group && group.notes && group.notes[0]) {
+      tooltip._isNavigating = true;
       showMiniChartTooltip(canvas, group.notes[0], ticker, newIdx);
+      updateTooltipConnector();
+      tooltip._isNavigating = false;
     }
   }
 };

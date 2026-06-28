@@ -2037,12 +2037,20 @@ window.navigateJournalTooltip = function(event, direction) {
   const nextPos = currentPos + direction;
   if (nextPos >= 0 && nextPos < sortedMarkers.length) {
     const nextMarker = sortedMarkers[nextPos];
+    tooltip._isNavigating = true;
     showMarkerTooltip(nextMarker);
+    updateTooltipConnector();
+    tooltip._isNavigating = false;
   }
 };
 
 function positionTooltip(m) {
   if (!hoverTip || !canvas) return;
+  
+  if (hoverTip._isNavigating && hoverTip.style.left && hoverTip.style.top) {
+    // Keep current position during navigation
+    return;
+  }
   
   hoverTip.style.maxHeight = '80vh';
   
