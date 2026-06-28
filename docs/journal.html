@@ -1291,10 +1291,9 @@ function uniqueTickers(tickers) {
   return [...new Set(tickers.map(item => String(item || '').toUpperCase()).filter(Boolean))];
 }
 function hydrateWatchlist() {
-  const available = new Set((state.data?.stocks || []).map(stock => stock.ticker));
   const stored = readWatchlist();
   const base = stored === null ? DEFAULT_TICKERS : stored;
-  state.watchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
+  state.watchlist = uniqueTickers(base);
   if (!stockByTicker(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'NVDA';
   }
@@ -1309,6 +1308,13 @@ function addWatchTicker(ticker) {
   if (!state.watchlist.includes(stock.ticker)) {
     state.watchlist.unshift(stock.ticker);
     saveWatchlist();
+
+    // Keep state.notes in sync with local watchlist
+    if (state.notes) {
+      state.notes._watchlist = state.watchlist;
+      saveNotesToFirestore(); // Persist in background
+    }
+
     showToast(`เพิ่ม ${stock.ticker} ในรายการติดตามแล้ว`);
   }
   state.ticker = stock.ticker;
@@ -1320,6 +1326,13 @@ function removeWatchTicker(ticker) {
   const target = String(ticker || '').toUpperCase();
   state.watchlist = state.watchlist.filter(item => item !== target);
   saveWatchlist();
+
+  // Keep state.notes in sync with local watchlist
+  if (state.notes) {
+    state.notes._watchlist = state.watchlist;
+    saveNotesToFirestore(); // Persist in background
+  }
+
   if (state.ticker === target) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || state.ticker;
   }
@@ -1327,12 +1340,18 @@ function removeWatchTicker(ticker) {
   showToast(`ลบ ${target} ออกจากรายการติดตามแล้ว`);
 }
 function resetWatchlist() {
-  const available = new Set((state.data?.stocks || []).map(stock => stock.ticker));
-  state.watchlist = DEFAULT_TICKERS.filter(ticker => available.has(ticker));
+  state.watchlist = [...DEFAULT_TICKERS];
+  saveWatchlist();
+
+  // Keep state.notes in sync with local watchlist
+  if (state.notes) {
+    state.notes._watchlist = state.watchlist;
+    saveNotesToFirestore(); // Persist in background
+  }
+
   if (!state.watchlist.includes(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || state.ticker;
   }
-  saveWatchlist();
   state.search = '';
   document.getElementById('stockSearch').value = '';
   renderAll();
@@ -1354,6 +1373,10 @@ async function loadJson(path) {
 function cloneNotesMap(src) {
   const out = {};
   for (const [ticker, notes] of Object.entries(src || {})) {
+    if (ticker === '_watchlist') {
+      if (Array.isArray(notes)) out[ticker] = [...notes];
+      continue;
+    }
     if (!Array.isArray(notes)) continue;
     out[ticker] = notes.map(note => ({ ...note }));
   }
@@ -1416,14 +1439,25 @@ async function saveNotesToFirestore() {
     return false;
   }
 }
+function syncWatchlistFromNotes() {
+  if (state.notes && Array.isArray(state.notes._watchlist)) {
+    const merged = uniqueTickers([...state.notes._watchlist, ...state.watchlist]);
+    state.watchlist = merged;
+    state.notes._watchlist = merged;
+    saveWatchlist();
+  }
+}
+
 async function loadNotes() {
   const firestoreData = await withTimeout(loadNotesFromFirestore(), 2500).catch(() => false);
   if (firestoreData) {
     state.notes = firestoreData;
+    syncWatchlistFromNotes();
     return true;
   }
   try {
     state.notes = await loadJson('notes/notes.json');
+    syncWatchlistFromNotes();
     return true;
   } catch {
     state.notes = {};
