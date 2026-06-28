@@ -397,6 +397,12 @@
       font-weight: 850;
     }
     .chip.active, .intent-btn.active { color: #111; border-color: var(--gold); background: var(--gold); }
+    .chip[data-outcome="Big Win"].active { background: #16c784 !important; border-color: #16c784 !important; color: #111 !important; }
+    .chip[data-outcome="Small Win"].active { background: #16c784 !important; border-color: #16c784 !important; color: #111 !important; }
+    .chip[data-outcome="Breakeven"].active { background: #8b949e !important; border-color: #8b949e !important; color: #111 !important; }
+    .chip[data-outcome="Small Loss"].active { background: #ea3943 !important; border-color: #ea3943 !important; color: #111 !important; }
+    .chip[data-outcome="Big Loss"].active { background: #ea3943 !important; border-color: #ea3943 !important; color: #111 !important; }
+    .chip[data-outcome="Open"].active { background: #3b82f6 !important; border-color: #3b82f6 !important; color: #fff !important; }
     .intent-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; }
     .intent-btn { border-radius: 7px; }
     .slider-row { display: grid; grid-template-columns: 1fr 58px; align-items: center; gap: 10px; }
@@ -1022,7 +1028,7 @@
   <header class="topbar">
     <div class="brand">
       <div>
-        <h1>สมุดบันทึกการเทรด <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.5.3<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.5.3 (ล่าสุด):</span> เปิดใช้ระบบตรวจจับและอัปเดต Service Worker ใหม่ในทุกหน้า (Home, History, Journal) เพื่อรีโหลดรับหน้าเว็บเวอร์ชันล่าสุดโดยอัตโนมัติเมื่อมีการอัปเดต แก้ปัญหามือถือค้างแคชหน้าเดิม</li><li><span class="wt-ver">v3.5.2:</span> เปิดใช้งานการลากย้ายตำแหน่งป๊อปอัปได้อย่างอิสระบนหน้าจอมือถือ ทั้งในหน้าแรก (Home) และหน้าประวัติ (History) โดยยกเลิกการล็อกพิกัดกล่องไว้ที่ขอบด้านล่างหน้าจอ เพื่อให้ได้ประสบการณ์ที่ยืดหยุ่นเหมือนหน้า Journal</li><li><span class="wt-ver">v3.5.1:</span> แก้ไขระบบสัมผัสบนมือถือ: ปลดล็อกปุ่มลูกศรนำทาง (‹ และ ›) และปุ่มลิงก์สมุดบันทึก (Journal Link) บนแถบหัวป๊อปอัปให้สามารถแตะสัมผัสกดได้เป็นปกติ 100% จากเดิมที่การตรวจจับการลากบดบังและกั้นการสัมผัสไว้</li><li><span class="wt-ver">v3.5.0:</span> เพิ่มระบบจำลองหน้าจอมือถือสุดพรีเมียม (Mobile Device Previewer 📱) พร้อมปุ่มด่วนเปิดหน้านี้บนแถบเมนูด้านบน เพื่อความสะดวกในการทดสอบการแสดงผลบนอุปกรณ์พกพาขนาดต่างๆ และหมุนทิศทางได้อิสระ</li><li><span class="wt-ver">v3.4.0:</span> เพิ่มปุ่มขยายกราฟเป็นเต็มจอ (Fullscreen Chart Toggle ⛶) บนหน้าประวัติ (History) และหน้าสมุดบันทึกเทรด (Journal) พร้อมรองรับการกดปิดด้วยปุ่มกากบาทหรือคีย์ Escape ให้ผู้ใช้งานวิเคราะห์จุดเทรดบนกราฟขนาดใหญ่ได้อย่างจุใจ</li><li><span class="wt-ver">v3.3.1:</span> แก้ไขระบบจุดเทียนจำลอง (Placeholder) ของวันหยุดเสาร์-อาทิตย์ in หน้า History และ Journal โดยดึงราคาปิดของวันที่ใกล้เคียงที่สุดมาอ้างอิงแทนการใช้ราคาล่าสุด ช่วยลดข้อผิดพลาดของแท่งเทียนที่วาดลอยโดดเดี่ยวไม่ตรงราคา in อดีต</li><li><span class="wt-ver">v3.3.0:</span> แก้ไขข้อผิดพลาดหน้าระบบประวัติ (History) ตัวแปรล้มเหลวขณะคำนวณตำแหน่งเส้นเชื่อมโยง ทำให้หน้าประวัติกลับมาทำงานได้ถูกต้องและเสถียร 100%</li><li><span class="wt-ver">v3.2.9:</span> ปรับปรุงระบบเปลี่ยนบันทึกซ้ายขวา in หน้า History และ Journal ให้แสดงผลทันทีแบบไม่มีดีเลย์ (Non-blocking Sync) โดยโหลดข้อความโน้ตขึ้นมาก่อน และดึงบทวิเคราะห์ตามมาในภายหลัง ช่วยให้การเปลี่ยนข้อมูลลื่นไหลและนุ่มนวลสูงสุด</li><li><span class="wt-ver">v3.2.8:</span> นำคำนำหน้าข้อความ "Beer มองว่า:" หรือ "Beer มองว่า" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ "Beer วิเคราะห์ Ch34 เจาะลึก" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจোহือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></h1>
+        <h1>สมุดบันทึกการเทรด <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.6.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.6.0 (ล่าสุด):</span> อัปเกรดระบบสมุดบันทึกเทรด (Journal) เพิ่มการวางแผน Setup (Daytrade Hunter), คำนวณ RRR อัตโนมัติแบบเรียลไทม์ และเพิ่มส่วน Outcome ปิดดีล พร้อมระบบเชื่อมโยง Badge ผลลัพธ์และราคาไปยังหน้าแรก (Home) และหน้าประวัติ (History) อัตโนมัติ</li><li><span class="wt-ver">v3.5.3:</span> เปิดใช้ระบบตรวจจับและอัปเดต Service Worker ใหม่ในทุกหน้า (Home, History, Journal) เพื่อรีโหลดรับหน้าเว็บเวอร์ชันล่าสุดโดยอัตโนมัติเมื่อมีการอัปเดต แก้ปัญหามือถือค้างแคชหน้าเดิม</li><li><span class="wt-ver">v3.5.2:</span> เปิดใช้งานการลากย้ายตำแหน่งป๊อปอัปได้อย่างอิสระบนหน้าจอมือถือ ทั้งในหน้าแรก (Home) และหน้าประวัติ (History) โดยยกเลิกการล็อกพิกัดกล่องไว้ที่ขอบด้านล่างหน้าจอ เพื่อให้ได้ประสบการณ์ที่ยืดหยุ่นเหมือนหน้า Journal</li><li><span class="wt-ver">v3.5.1:</span> แก้ไขระบบสัมผัสบนมือถือ: ปลดล็อกปุ่มลูกศรนำทาง (‹ และ ›) และปุ่มลิงก์สมุดบันทึก (Journal Link) บนแถบหัวป๊อปอัปให้สามารถแตะสัมผัสกดได้เป็นปกติ 100% จากเดิมที่การตรวจจับการลากบดบังและกั้นการสัมผัสไว้</li><li><span class="wt-ver">v3.5.0:</span> เพิ่มระบบจำลองหน้าจอมือถือสุดพรีเมียม (Mobile Device Previewer 📱) พร้อมปุ่มด่วนเปิดหน้านี้บนแถบเมนูด้านบน เพื่อความสะดวกในการทดสอบการแสดงผลบนอุปกรณ์พกพาขนาดต่างๆ และหมุนทิศทางได้อิสระ</li><li><span class="wt-ver">v3.4.0:</span> เพิ่มปุ่มขยายกราฟเป็นเต็มจอ (Fullscreen Chart Toggle ⛶) บนหน้าประวัติ (History) และหน้าสมุดบันทึกเทรด (Journal) พร้อมรองรับการกดปิดด้วยปุ่มกากบาทหรือคีย์ Escape ให้ผู้ใช้งานวิเคราะห์จุดเทรดบนกราฟขนาดใหญ่ได้อย่างจุใจ</li><li><span class="wt-ver">v3.3.1:</span> แก้ไขระบบจุดเทียนจำลอง (Placeholder) ของวันหยุดเสาร์-อาทิตย์ in หน้า History และ Journal โดยดึงราคาปิดของวันที่ใกล้เคียงที่สุดมาอ้างอิงแทนการใช้ราคาล่าสุด ช่วยลดข้อผิดพลาดของแท่งเทียนที่วาดลอยโดดเดี่ยวไม่ตรงราคา in อดีต</li><li><span class="wt-ver">v3.3.0:</span> แก้ไขข้อผิดพลาดหน้าระบบประวัติ (History) ตัวแปรล้มเหลวขณะคำนวณตำแหน่งเส้นเชื่อมโยง ทำให้หน้าประวัติกลับมาทำงานได้ถูกต้องและเสถียร 100%</li><li><span class="wt-ver">v3.2.9:</span> ปรับปรุงระบบเปลี่ยนบันทึกซ้ายขวา in หน้า History และ Journal ให้แสดงผลทันทีแบบไม่มีดีเลย์ (Non-blocking Sync) โดยโหลดข้อความโน้ตขึ้นมาก่อน และดึงบทวิเคราะห์ตามมาในภายหลัง ช่วยให้การเปลี่ยนข้อมูลลื่นไหลและนุ่มนวลสูงสุด</li><li><span class="wt-ver">v3.2.8:</span> นำคำนำหน้าข้อความ "Beer มองว่า:" หรือ "Beer มองว่า" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ "Beer วิเคราะห์ Ch34 เจาะลึก" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจোহือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></h1>
         <small>หน้าแยกสำหรับบันทึกอารมณ์ ความคิด และแผนของหุ้นแต่ละตัว</small>
       </div>
     </div>
@@ -1163,6 +1169,31 @@
               <div class="field-hint">บันทึกเจตนาก่อนรู้ผลลัพธ์</div>
               <div class="intent-grid" id="intentGrid"></div>
             </div>
+            <div class="field wide">
+              <div class="field-title">รูปแบบจุดเข้าเทรด (Trade Setup)</div>
+              <div class="field-hint">เลือกรูปแบบแผนเทรดตาม Daytrade Hunter (Beer Vanon)</div>
+              <div class="chip-row" id="setupChips"></div>
+            </div>
+            
+            <div class="field wide" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 8px; border: 1px solid var(--line);">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label for="entryPriceInput" style="font-size: 0.82em; color: var(--muted); margin-bottom: 0;">ราคาซื้อ (Entry)</label>
+                <input id="entryPriceInput" type="number" step="any" placeholder="เช่น 100" style="padding: 6px 10px; font-size: 0.9em; background: #0d1117; border: 1px solid var(--line); border-radius: 6px; color: #fff;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label for="targetPriceInput" style="font-size: 0.82em; color: var(--muted); margin-bottom: 0;">เป้ากำไร (Target)</label>
+                <input id="targetPriceInput" type="number" step="any" placeholder="เช่น 130" style="padding: 6px 10px; font-size: 0.9em; background: #0d1117; border: 1px solid var(--line); border-radius: 6px; color: #fff;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label for="stopLossInput" style="font-size: 0.82em; color: var(--muted); margin-bottom: 0;">จุดคัท (Stop Loss)</label>
+                <input id="stopLossInput" type="number" step="any" placeholder="เช่น 90" style="padding: 6px 10px; font-size: 0.9em; background: #0d1117; border: 1px solid var(--line); border-radius: 6px; color: #fff;">
+              </div>
+              <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border-left: 1px dashed var(--line); padding-left: 8px;">
+                <div style="font-size: 0.75em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Risk-Reward (RRR)</div>
+                <div id="rrrValue" style="font-size: 1.4em; font-weight: 800; color: var(--muted); margin-top: 4px;">-</div>
+              </div>
+            </div>
+
             <div class="field">
               <label for="thesisInput">แนวคิดตอนนี้</label>
               <textarea id="thesisInput">ตลาดกำลังให้ premium กับหุ้นผู้นำ AI แต่ต้องระวังว่าข่าวดีอาจถูกสะท้อนไปมากแล้ว ถ้ากราฟยังรับได้และ volume ไม่แห้ง การย่ออาจเป็นจังหวะดูต่อมากกว่าหนีทันที</textarea>
@@ -1190,6 +1221,12 @@
                 <input id="confidenceRange" type="range" min="1" max="10" value="7">
                 <div class="score"><span id="confidenceValue">7</span>/10</div>
               </div>
+            </div>
+
+            <div class="field wide">
+              <div class="field-title">ผลลัพธ์จริง (Outcome / ปิดสถานะเทรด)</div>
+              <div class="field-hint">ระบุผลลัพธ์เมื่อการเทรดสิ้นสุดลง เพื่อใช้ประเมินและทบทวนความสามารถเชิงสถิติ</div>
+              <div class="chip-row" id="outcomeChips"></div>
               <div class="entry-preview" id="entryPreview"></div>
             </div>
           </div>
@@ -1259,6 +1296,12 @@ const state = {
   emotion: 'มั่นใจแต่ระวัง',
   intent: 'รอจังหวะ',
   confidence: 7,
+  setup: null,
+  outcome: 'Open',
+  entryPrice: null,
+  targetPrice: null,
+  stopLoss: null,
+  rrr: null,
   previewEntries: [],
   candles: [],
   allCandles: [],
@@ -1925,6 +1968,7 @@ async function init() {
   }
   await loadNotes();
   renderAll();
+  loadLatestNoteToInputs();
 }
 function renderAll() {
   renderDateSelect();
@@ -2804,6 +2848,24 @@ function renderControls() {
   document.getElementById('intentGrid').innerHTML = intents.map(item =>
     `<button class="intent-btn ${item === state.intent ? 'active' : ''}" data-intent="${esc(item)}" type="button">${esc(item)}</button>`
   ).join('');
+
+  const setups = ['Buy on Dip', 'Breakout', 'Stop Hunt', 'Channel Trade'];
+  document.getElementById('setupChips').innerHTML = setups.map(item =>
+    `<button class="chip ${item === state.setup ? 'active' : ''}" data-setup="${esc(item)}" type="button">${esc(item)}</button>`
+  ).join('');
+
+  const outcomes = ['Open', 'Big Win', 'Small Win', 'Breakeven', 'Small Loss', 'Big Loss'];
+  const outcomeLabels = {
+    'Open': '⏳ ยังถือ (Open)',
+    'Big Win': '🏆 Big Win',
+    'Small Win': '🟢 Small Win',
+    'Breakeven': '🟡 เท่าทุน',
+    'Small Loss': '🟠 คัทในแผน',
+    'Big Loss': '🔴 ขาดทุนเกินแผน'
+  };
+  document.getElementById('outcomeChips').innerHTML = outcomes.map(item =>
+    `<button class="chip outcome-chip ${item === state.outcome ? 'active' : ''}" data-outcome="${esc(item)}" type="button">${esc(outcomeLabels[item])}</button>`
+  ).join('');
 }
 function renderEntryPreview() {
   const stock = selectedStock();
@@ -2812,9 +2874,25 @@ function renderEntryPreview() {
   const risk = document.getElementById('riskInput').value.trim();
   const review = document.getElementById('reviewSelect').value;
   document.getElementById('confidenceValue').textContent = state.confidence;
+  
+  const setupText = state.setup ? `Setup: ${state.setup}` : '';
+  const rrrText = state.rrr ? `RRR: 1:${state.rrr}` : '';
+  const outcomeLabels = {
+    'Open': '⏳ ยังถือ',
+    'Big Win': '🏆 Big Win',
+    'Small Win': '🟢 Small Win',
+    'Breakeven': '🟡 เท่าทุน',
+    'Small Loss': '🟠 คัทในแผน',
+    'Big Loss': '🔴 ขาดทุนเกินแผน'
+  };
+  const outcomeText = `Outcome: ${outcomeLabels[state.outcome] || state.outcome}`;
+
   document.getElementById('entryPreview').innerHTML = `
     <div class="entry-meta">
       <span>${esc(stock?.ticker)}</span><span>${PHASE_LABELS[state.phase] || 'รายวัน'}</span><span>${esc(state.emotion)}</span><span>${esc(state.intent)}</span><span>${state.confidence}/10</span><span>${esc(review)}</span>
+      ${setupText ? `<span>${esc(setupText)}</span>` : ''}
+      ${rrrText ? `<span>${esc(rrrText)}</span>` : ''}
+      <span>${esc(outcomeText)}</span>
     </div>
     <div class="entry-line"><strong>แนวคิด:</strong> ${esc(thesis)}</div>
     <div class="entry-line"><strong>ถ้าคิดผิด:</strong> ${esc(invalid)}</div>
@@ -2838,8 +2916,18 @@ function buildJournalNote(stock) {
   const invalid = document.getElementById('invalidInput').value.trim();
   const risk = document.getElementById('riskInput').value.trim();
   const review = document.getElementById('reviewSelect').value;
+  const headerParts = [
+    PHASE_LABELS[state.phase] || 'รายวัน',
+    state.emotion,
+    state.intent,
+    `${state.confidence}/10`
+  ];
+  if (state.setup) headerParts.push(`Setup: ${state.setup}`);
+  if (state.outcome && state.outcome !== 'Open') headerParts.push(`Outcome: ${state.outcome}`);
+  
   const lines = [
-    `[${PHASE_LABELS[state.phase] || 'รายวัน'} / ${state.emotion} / ${state.intent} / ${state.confidence}/10]`,
+    `[${headerParts.join(' / ')}]`,
+    state.rrr ? `RRR: 1:${state.rrr} (Entry: ${state.entryPrice} / Target: ${state.targetPrice} / Stop: ${state.stopLoss})` : '',
     thesis ? `Thesis: ${thesis}` : '',
     invalid ? `If wrong: ${invalid}` : '',
     risk ? `Risk: ${risk}` : '',
@@ -2858,7 +2946,13 @@ function buildJournalNote(stock) {
       emotion: state.emotion,
       intent: state.intent,
       confidence: Number(state.confidence || 0),
-      review
+      review,
+      setup: state.setup || null,
+      outcome: state.outcome || 'Open',
+      entryPrice: state.entryPrice || null,
+      targetPrice: state.targetPrice || null,
+      stopLoss: state.stopLoss || null,
+      rrr: state.rrr || null
     }
   };
 }
@@ -2929,6 +3023,127 @@ function bindBackLinkRestore() {
     history.back();
   });
 }
+function calculateRRR() {
+  const entry = parseFloat(document.getElementById('entryPriceInput').value);
+  const target = parseFloat(document.getElementById('targetPriceInput').value);
+  const stop = parseFloat(document.getElementById('stopLossInput').value);
+  const rrrValEl = document.getElementById('rrrValue');
+  
+  if (isNaN(entry) || isNaN(target) || isNaN(stop)) {
+    rrrValEl.textContent = '-';
+    rrrValEl.style.color = '#8b949e';
+    state.rrr = null;
+    state.entryPrice = null;
+    state.targetPrice = null;
+    state.stopLoss = null;
+    return;
+  }
+  
+  state.entryPrice = entry;
+  state.targetPrice = target;
+  state.stopLoss = stop;
+  
+  const profit = target - entry;
+  const loss = entry - stop;
+  
+  if (loss <= 0) {
+    rrrValEl.textContent = 'Invalid';
+    rrrValEl.style.color = '#ea3943';
+    state.rrr = null;
+    return;
+  }
+  
+  const rrr = profit / loss;
+  state.rrr = Number(rrr.toFixed(2));
+  rrrValEl.textContent = `1:${state.rrr}`;
+  
+  if (rrr >= 3.0) {
+    rrrValEl.style.color = '#16c784';
+  } else if (rrr >= 2.0) {
+    rrrValEl.style.color = '#f0b90b';
+  } else {
+    rrrValEl.style.color = '#ea3943';
+  }
+  renderEntryPreview();
+}
+
+function loadLatestNoteToInputs() {
+  const stock = selectedStock();
+  if (!stock) return;
+  const notes = state.notes[stock.ticker] || [];
+  
+  document.getElementById('thesisInput').value = '';
+  document.getElementById('invalidInput').value = '';
+  document.getElementById('riskInput').value = '';
+  document.getElementById('reviewSelect').selectedIndex = 1;
+  document.getElementById('confidenceRange').value = 7;
+  state.confidence = 7;
+  
+  document.getElementById('entryPriceInput').value = '';
+  document.getElementById('targetPriceInput').value = '';
+  document.getElementById('stopLossInput').value = '';
+  document.getElementById('rrrValue').textContent = '-';
+  document.getElementById('rrrValue').style.color = '#8b949e';
+  
+  state.emotion = 'ใจเย็นรอ';
+  state.intent = 'รอจังหวะ';
+  state.setup = null;
+  state.outcome = 'Open';
+  state.entryPrice = null;
+  state.targetPrice = null;
+  state.stopLoss = null;
+  state.rrr = null;
+
+  if (notes.length > 0) {
+    const latest = notes[0];
+    if (latest.journal) {
+      state.emotion = latest.journal.emotion || 'ใจเย็นรอ';
+      state.intent = latest.journal.intent || 'รอจังหวะ';
+      state.confidence = latest.journal.confidence || 7;
+      document.getElementById('confidenceRange').value = state.confidence;
+      if (latest.journal.review) document.getElementById('reviewSelect').value = latest.journal.review;
+      state.setup = latest.journal.setup || null;
+      state.outcome = latest.journal.outcome || 'Open';
+      
+      if (latest.journal.entryPrice) {
+        document.getElementById('entryPriceInput').value = latest.journal.entryPrice;
+        state.entryPrice = latest.journal.entryPrice;
+      }
+      if (latest.journal.targetPrice) {
+        document.getElementById('targetPriceInput').value = latest.journal.targetPrice;
+        state.targetPrice = latest.journal.targetPrice;
+      }
+      if (latest.journal.stopLoss) {
+        document.getElementById('stopLossInput').value = latest.journal.stopLoss;
+        state.stopLoss = latest.journal.stopLoss;
+      }
+      calculateRRR();
+    }
+    
+    const noteText = latest.note || '';
+    const thesisMatch = noteText.match(/Thesis:\s*(.*)/i);
+    const wrongMatch = noteText.match(/If wrong:\s*(.*)/i);
+    const riskMatch = noteText.match(/Risk:\s*(.*)/i);
+    
+    if (thesisMatch) document.getElementById('thesisInput').value = thesisMatch[1].trim();
+    else if (!latest.journal) document.getElementById('thesisInput').value = noteText;
+    
+    if (wrongMatch) document.getElementById('invalidInput').value = wrongMatch[1].trim();
+    if (riskMatch) document.getElementById('riskInput').value = riskMatch[1].trim();
+  }
+  renderControls();
+  renderEntryPreview();
+}
+
+function bindBackLinkRestore() {
+  const backLink = document.getElementById('backLink');
+  if (!backLink) return;
+  backLink.addEventListener('click', event => {
+    if (!canReturnToDashboard()) return;
+    event.preventDefault();
+    history.back();
+  });
+}
 document.addEventListener('click', event => {
   const addButton = event.target.closest('[data-add-ticker]');
   if (addButton) {
@@ -2945,7 +3160,7 @@ document.addEventListener('click', event => {
     state.ticker = stockButton.dataset.ticker;
     renderStockList();
     renderStockContext();
-    renderEntryPreview();
+    loadLatestNoteToInputs();
     renderTimeline();
     updateUrl();
     return;
@@ -2970,6 +3185,21 @@ document.addEventListener('click', event => {
     state.intent = intentButton.dataset.intent;
     renderControls();
     renderEntryPreview();
+    return;
+  }
+  const setupButton = event.target.closest('[data-setup]');
+  if (setupButton) {
+    state.setup = setupButton.dataset.setup;
+    renderControls();
+    renderEntryPreview();
+    return;
+  }
+  const outcomeButton = event.target.closest('[data-outcome]');
+  if (outcomeButton) {
+    state.outcome = outcomeButton.dataset.outcome;
+    renderControls();
+    renderEntryPreview();
+    return;
   }
   const vt = document.getElementById('versionTag');
   if (vt && !event.target.closest('.version-tag')) vt.classList.remove('active-tooltip');
@@ -2987,6 +3217,9 @@ document.getElementById('stockSearch').addEventListener('input', event => {
 document.getElementById('resetWatchlistBtn').addEventListener('click', resetWatchlist);
 ['thesisInput', 'invalidInput', 'riskInput', 'reviewSelect'].forEach(id => {
   document.getElementById(id).addEventListener('input', renderEntryPreview);
+});
+['entryPriceInput', 'targetPriceInput', 'stopLossInput'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calculateRRR);
 });
 document.getElementById('confidenceRange').addEventListener('input', event => {
   state.confidence = event.target.value;
