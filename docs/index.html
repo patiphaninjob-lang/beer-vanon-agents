@@ -633,50 +633,88 @@
     /* ── Marker Tooltip ── */
     .marker-tooltip {
       position: fixed;
-      background: #fef9c3;
-      color: #374151;
-      padding: 12px 14px;
-      border-radius: 8px;
+      background: rgba(20, 24, 33, 0.88);
+      backdrop-filter: blur(12px) saturate(1.6);
+      -webkit-backdrop-filter: blur(12px) saturate(1.6);
+      border: 1px solid rgba(240, 185, 11, 0.35);
+      color: #e6edf3;
+      padding: 0;
+      border-radius: 12px;
       font-size: 13px;
       line-height: 1.5;
       max-width: 320px;
       max-height: 80vh;
-      overflow-y: auto;
-      width: max-content;
+      width: 290px;
       z-index: 2500;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.05);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.22s ease, transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translateY(10px) scale(0.97);
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(10px) scale(0.96);
       transform-origin: bottom center;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
     .marker-tooltip.show {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0) scale(1);
     }
-    .marker-tooltip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: var(--tail-left, 50%);
-      margin-left: -7px;
-      border-width: 7px;
-      border-style: solid;
-      border-color: #fef9c3 transparent transparent transparent;
+    .marker-tooltip.dragging {
+      transition: none !important;
+      opacity: 0.95;
     }
-    .marker-tooltip.tail-top::after {
-      top: auto;
-      bottom: 100%;
-      border-color: transparent transparent #fef9c3 transparent;
+    .tt-header {
+      background: rgba(48, 54, 61, 0.35);
+      color: #f0b90b;
+      font-weight: bold;
+      font-size: 0.9em;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+      cursor: move;
+      cursor: grab;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .tt-header { color: #6b7280; font-size: 0.85em; margin-bottom: 6px; border-bottom: 1px solid #fde047; padding-bottom: 4px; }
-    .tt-section { margin-bottom: 8px; }
-    .tt-section:last-child { margin-bottom: 0; }
-    .tt-label { font-weight: 600; color: #1f2937; margin-bottom: 3px; font-size: 0.95em; }
-    .tt-label.beer { color: #b45309; }
-    .tt-text { white-space: pre-wrap; font-size: 0.92em; }
+    .tt-header:active {
+      cursor: grabbing;
+    }
+    .tt-header::after {
+      content: '⋮⋮';
+      opacity: 0.5;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .tt-body {
+      padding: 12px;
+      overflow-y: auto;
+      max-height: calc(80vh - 36px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tt-section {
+      margin-bottom: 0;
+    }
+    .tt-label {
+      font-weight: 600;
+      color: #8b949e;
+      margin-bottom: 3px;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tt-label.beer {
+      color: #f0b90b;
+    }
+    .tt-text {
+      white-space: pre-wrap;
+      font-size: 0.92em;
+      color: #e6edf3;
+    }
 
     @keyframes popupSpringIn {
       from { opacity: 0; transform: translateY(-8px) scale(0.97); }
@@ -1359,7 +1397,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.6.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.6.0 (ล่าสุด):</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y (ตรวจเฉพาะบนตัวแท่งเทียนจริงๆ ไม่แสดงผลในพื้นที่ว่างเปล่า)</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li><li><span class="wt-ver">v2.5.8:</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล</li><li><span class="wt-ver">v2.5.7:</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก</li><li><span class="wt-ver">v2.5.6:</span> ปรับปรุงกราฟดัชนีภาพรวมตลาดให้สูง 120px เต็มกว้างสมส่วน</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.7.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.7.0 (ล่าสุด):</span> อัพเกรดดีไซน์ Tooltip เป็นแบบ Dark Glassmorphism ขอบทองเรืองแสงหรูหรา เพิ่มเส้นชี้โยงหาตัวแท่งเทียนแบบไดนามิก (SVG Glow Line) และสามารถใช้นิ้วหรือเมาส์ลากย้ายตำแหน่งป๊อปอัปได้อย่างอิสระ (Draggable)</li><li><span class="wt-ver">v2.6.0:</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y (ตรวจเฉพาะบนตัวแท่งเทียนจริงๆ ไม่แสดงผลในพื้นที่ว่างเปล่า)</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li><li><span class="wt-ver">v2.5.8:</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล</li><li><span class="wt-ver">v2.5.7:</span> ปรับปรุงประสิทธิภาพการใช้งานบนหน้าจอมือถือ เพิ่มการรองรับการสัมผัส (Touch Screen) บนกราฟหน้าแรก</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2591,56 +2629,6 @@ function drawMiniChart(canvas, candles, myNotes) {
   });
 }
 
-function showMiniChartTooltip(canvas, note, ticker, clientX, clientY) {
-  const tooltip = document.getElementById('markerTooltip');
-  if (!tooltip) return;
-  
-  tooltip._sourceCanvas = canvas;
-  
-  let baseHtml = `<div class="tt-header">📅 ${note.date}${note.time ? ' ' + note.time : ''}</div>`;
-  baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
-  
-  let loadingId = `ttLoad-${Date.now()}`;
-  if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
-    baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
-  }
-  
-  tooltip.innerHTML = baseHtml;
-  tooltip.classList.add('show');
-  
-  // Position tooltip relative to the cursor
-  tooltip.style.maxHeight = '80vh';
-  let ttLeft = clientX - tooltip.offsetWidth / 2;
-  let ttTop = clientY - tooltip.offsetHeight - 20;
-  
-  const margin = 10;
-  if (ttLeft < margin) ttLeft = margin;
-  if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
-    ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
-  }
-  if (ttTop < 10) ttTop = clientY + 20; // Show below cursor if no space above
-  
-  tooltip.style.left = `${ttLeft}px`;
-  tooltip.style.top = `${ttTop}px`;
-  tooltip.style.setProperty('--tail-left', `${clientX - ttLeft}px`);
-  tooltip.classList.remove('tail-top');
-  
-  // Load analysis if normal stock note
-  if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
-    const elLoad = document.getElementById(loadingId);
-    const stock = (currentData?.stocks || []).find(s => s.ticker === ticker);
-    if (stock && elLoad) {
-      const insight = stock.homework_checklist?.map(item => `• ${item.topic}: ${item.insight}`).join('<br>') || '';
-      if (insight) {
-        elLoad.innerHTML = `<div class="tt-label" style="color:#f0b90b;">🧭 Beer วิเคราะห์ Ch34:</div><div class="tt-text" style="font-size:0.9em;line-height:1.4;">${insight}</div>`;
-      } else {
-        elLoad.remove();
-      }
-    } else if (elLoad) {
-      elLoad.remove();
-    }
-  }
-}
 
 // Hit-test a candle: returns {idx, isHit} checking BOTH X proximity AND Y within candle range
 function hitTestCandle(canvas, mouseX, mouseY, maxXDist) {
@@ -2792,16 +2780,17 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   if (!tooltip) return;
   
   tooltip._sourceCanvas = canvas;
+  tooltip._closestIdx = closestIdx;
   
-  let baseHtml = `<div class="tt-header">📅 ${note.date}${note.time ? ' ' + note.time : ''}</div>`;
-  baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
+  let headerHtml = `📅 ${note.date}${note.time ? ' ' + note.time : ''}`;
+  let bodyHtml = `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ:</div><div class="tt-text">${esc(note.note)}</div></div>`;
   
   let loadingId = `ttLoad-${Date.now()}`;
   if (ticker !== '_MARKET' && !ticker.startsWith('_')) {
-    baseHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+    bodyHtml += `<div id="${loadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
   }
   
-  tooltip.innerHTML = baseHtml;
+  tooltip.innerHTML = `<div class="tt-header">${headerHtml}</div><div class="tt-body">${bodyHtml}</div>`;
   tooltip.classList.add('show');
   
   // Position tooltip relative to the candle on the canvas
@@ -2816,6 +2805,10 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   
   const candleScreenX = rect.left + cx;
   const candleScreenY = rect.top + cy;
+  
+  // Cache coordinates for SVG connector line
+  tooltip._candleX = candleScreenX;
+  tooltip._candleY = candleScreenY;
   
   tooltip.style.maxHeight = '80vh';
   let ttLeft = candleScreenX - tooltip.offsetWidth / 2;
@@ -2883,6 +2876,137 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
     } else if (elLoad) {
       elLoad.remove();
     }
+  }
+
+  // Draw connector line
+  updateTooltipConnector();
+
+  // Initialize dragging capability
+  initTooltipDragging();
+}
+
+function updateTooltipConnector() {
+  const tooltip = document.getElementById('markerTooltip');
+  const svg = document.getElementById('tooltipConnector');
+  const line = document.getElementById('connectorLine');
+  const dot = document.getElementById('connectorDot');
+  if (!tooltip || !svg || !line || !dot) return;
+
+  if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
+    svg.style.display = 'none';
+    return;
+  }
+
+  const canvas = tooltip._sourceCanvas;
+  const closestIdx = tooltip._closestIdx;
+  if (!canvas || closestIdx === undefined) {
+    svg.style.display = 'none';
+    return;
+  }
+
+  // Dynamically calculate candle screen coordinates
+  const rect = canvas.getBoundingClientRect();
+  const xFor = canvas._xFor;
+  const yFor = canvas._yFor;
+  const visibleCandles = canvas._visibleCandles || [];
+  
+  const cx = xFor ? xFor(closestIdx) : rect.width / 2;
+  const candle = visibleCandles[closestIdx];
+  const cy = (yFor && candle) ? Math.min(yFor(candle.open), yFor(candle.close)) : rect.height / 2;
+  
+  const candleScreenX = rect.left + cx;
+  const candleScreenY = rect.top + cy;
+  
+  tooltip._candleX = candleScreenX;
+  tooltip._candleY = candleScreenY;
+
+  svg.style.display = 'block';
+
+  // Calculate nearest edge on the tooltip rectangle to the candle coordinate
+  const ttRect = tooltip.getBoundingClientRect();
+  const xClamped = Math.max(ttRect.left, Math.min(ttRect.right, candleScreenX));
+  const yClamped = Math.max(ttRect.top, Math.min(ttRect.bottom, candleScreenY));
+
+  line.setAttribute('x1', candleScreenX);
+  line.setAttribute('y1', candleScreenY);
+  line.setAttribute('x2', xClamped);
+  line.setAttribute('y2', yClamped);
+
+  dot.setAttribute('cx', candleScreenX);
+  dot.setAttribute('cy', candleScreenY);
+}
+
+let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0 };
+
+function initTooltipDragging() {
+  const tooltip = document.getElementById('markerTooltip');
+  if (!tooltip) return;
+
+  if (tooltip._dragBound) return;
+  tooltip._dragBound = true;
+
+  tooltip.addEventListener('mousedown', onDragStart);
+  tooltip.addEventListener('touchstart', onDragStart, { passive: false });
+
+  function onDragStart(e) {
+    const header = e.target.closest('.tt-header');
+    if (!header) return;
+
+    e.preventDefault();
+
+    const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+
+    tooltipDragState = {
+      active: true,
+      startX: clientX,
+      startY: clientY,
+      initialLeft: parseFloat(tooltip.style.left) || 0,
+      initialTop: parseFloat(tooltip.style.top) || 0
+    };
+
+    tooltip.classList.add('dragging');
+    tooltip._pinnedNoteId = tooltip._activeNoteId;
+
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('touchmove', onDragMove, { passive: false });
+    document.addEventListener('mouseup', onDragEnd);
+    document.addEventListener('touchend', onDragEnd);
+  }
+
+  function onDragMove(e) {
+    if (!tooltipDragState.active) return;
+    if (e.type.startsWith('touch')) e.preventDefault();
+
+    const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+
+    const dx = clientX - tooltipDragState.startX;
+    const dy = clientY - tooltipDragState.startY;
+
+    let newLeft = tooltipDragState.initialLeft + dx;
+    let newTop = tooltipDragState.initialTop + dy;
+
+    const margin = 10;
+    const rect = tooltip.getBoundingClientRect();
+    newLeft = Math.max(margin, Math.min(window.innerWidth - rect.width - margin, newLeft));
+    newTop = Math.max(margin, Math.min(window.innerHeight - rect.height - margin, newTop));
+
+    tooltip.style.left = `${newLeft}px`;
+    tooltip.style.top = `${newTop}px`;
+
+    updateTooltipConnector();
+  }
+
+  function onDragEnd() {
+    if (!tooltipDragState.active) return;
+    tooltipDragState.active = false;
+    tooltip.classList.remove('dragging');
+
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    document.removeEventListener('touchend', onDragEnd);
   }
 }
 
@@ -4035,6 +4159,24 @@ if ('serviceWorker' in navigator) {
 
 bindDashboardViewState();
 init();
+
+// Setup MutationObserver to automatically keep SVG connector in sync with tooltip visibility & styles
+const tooltipObserver = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes') {
+      updateTooltipConnector();
+    }
+  });
+});
+const markerTooltipEl = document.getElementById('markerTooltip');
+if (markerTooltipEl) {
+  tooltipObserver.observe(markerTooltipEl, { attributes: true, attributeFilter: ['class', 'style'] });
+}
+
+// Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
+window.addEventListener('scroll', updateTooltipConnector, { passive: true });
+window.addEventListener('resize', updateTooltipConnector, { passive: true });
+
 loadAutomationStatus();
 loadSystemHealth();
 setInterval(loadAutomationStatus, 60000);
@@ -4084,6 +4226,21 @@ loadUsage();
 </div>
 
 <div id="markerTooltip" class="marker-tooltip"></div>
+
+<!-- Tooltip Connector Line SVG -->
+<svg id="tooltipConnector" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2400; display:none; overflow:visible;">
+  <defs>
+    <filter id="connectorGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <line id="connectorLine" x1="0" y1="0" x2="0" y2="0" stroke="rgba(240, 185, 11, 0.85)" stroke-width="1.8" filter="url(#connectorGlow)" />
+  <circle id="connectorDot" cx="0" cy="0" r="4.5" fill="#f0b90b" filter="url(#connectorGlow)" />
+</svg>
 
 <!-- Fullscreen Chart Modal -->
 <div id="chartFullscreenOverlay" class="chart-fullscreen-overlay" onclick="if(event.target===this) closeExpandedChart()">
