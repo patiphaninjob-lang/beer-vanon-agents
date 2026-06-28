@@ -1809,6 +1809,22 @@ function queueConnectorUpdate() {
   });
 }
 
+function getBoxIntersection(cx, cy, rect) {
+  const mx = rect.left + rect.width / 2;
+  const my = rect.top + rect.height / 2;
+  const dx = cx - mx;
+  const dy = cy - my;
+  if (dx === 0 && dy === 0) {
+    return { x: mx, y: my };
+  }
+  const w2 = rect.width / 2;
+  const h2 = rect.height / 2;
+  const tX = dx !== 0 ? (Math.sign(dx) * w2) / dx : Infinity;
+  const tY = dy !== 0 ? (Math.sign(dy) * h2) / dy : Infinity;
+  const t = Math.min(Math.abs(tX), Math.abs(tY));
+  return { x: mx + t * dx, y: my + t * dy };
+}
+
 function updateTooltipConnector() {
   const tooltip = document.getElementById('hoverTip');
   const svg = document.getElementById('tooltipConnector');
@@ -1831,7 +1847,7 @@ function updateTooltipConnector() {
   const candleScreenX = canvasRect.left + m.x;
   const candleScreenY = canvasRect.top + m.y;
 
-  // Calculate nearest edge on the tooltip rectangle to the candle coordinate
+  // Calculate sliding edge intersection on the tooltip rectangle to the candle coordinate
   // Use cached dragging rect if active to avoid layout thrashing (getBoundingClientRect)
   let ttRect;
   if (tooltipDragState && tooltipDragState.active) {
@@ -1841,14 +1857,25 @@ function updateTooltipConnector() {
       left: left,
       top: top,
       right: left + tooltipDragState.width,
-      bottom: top + tooltipDragState.height
+      bottom: top + tooltipDragState.height,
+      width: tooltipDragState.width,
+      height: tooltipDragState.height
     };
   } else {
-    ttRect = tooltip.getBoundingClientRect();
+    const r = tooltip.getBoundingClientRect();
+    ttRect = {
+      left: r.left,
+      top: r.top,
+      right: r.right,
+      bottom: r.bottom,
+      width: r.width,
+      height: r.height
+    };
   }
 
-  const xClamped = Math.max(ttRect.left, Math.min(ttRect.right, candleScreenX));
-  const yClamped = Math.max(ttRect.top, Math.min(ttRect.bottom, candleScreenY));
+  const intersect = getBoxIntersection(candleScreenX, candleScreenY, ttRect);
+  const xClamped = intersect.x;
+  const yClamped = intersect.y;
 
   line.setAttribute('x1', candleScreenX);
   line.setAttribute('y1', candleScreenY);
