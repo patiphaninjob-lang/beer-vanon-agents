@@ -987,13 +987,14 @@ function updateTooltipConnector() {
   const dot = document.getElementById('connectorDot');
   if (!tooltip || !svg || !line || !dot) return;
 
-  if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
+  if (!tooltip.classList.contains('show')) {
     return;
   }
 
   const canvas = tooltip._sourceCanvas;
-  const m = tooltip._activeMarker;
-  if (!canvas || !m) {
+  const mKey = tooltip._activeMarker ? tooltip._activeMarker.key : null;
+  const m = mKey ? state.markers.find(x => x.key === mKey) : null;
+  if (!canvas || !m || canvas.offsetWidth === 0 || canvas.offsetHeight === 0) {
     return;
   }
 
@@ -1117,7 +1118,7 @@ if (markerTooltipEl) {
 }
 
 // Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
-window.addEventListener('scroll', queueConnectorUpdate, { passive: true });
+document.addEventListener('scroll', queueConnectorUpdate, { passive: true, capture: true });
 window.addEventListener('resize', queueConnectorUpdate, { passive: true });
 
 function renderNoteList() {

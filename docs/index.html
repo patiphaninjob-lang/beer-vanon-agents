@@ -1414,7 +1414,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.8.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.8.0 (ล่าสุด):</span> อัพเกรดเส้นเชื่อมต่อ Tooltip สไตล์ iOS (High Performance) ปรับการทำงานด้วย requestAnimationFrame ป้องกันอาการแล็กหน่วง และใช้ CSS Opacity ควบคุมการเฟดเข้าออกพร้อมตัวกล่อง 100% ทำให้เส้นเชื่อมโยงนุ่มนวลและไม่ค้างคาในทุกจุด (กราฟเล็ก/ใหญ่ หน้าแรก History และ Journal)</li><li><span class="wt-ver">v2.7.5:</span> พอร์ตระบบ Tooltip แบบพรีเมียม (Dark Glassmorphism, เส้นชี้โยงแท่งเทียนไดนามิก SVG Glow Line, และการลากย้ายตำแหน่งอิสระ Draggable) ไปยังหน้าประวัติ (History) และหน้าบันทึกส่วนตัว (Journal) เรียบร้อยครบถ้วนสม่ำเสมอ</li><li><span class="wt-ver">v2.7.0:</span> อัพเกรดดีไซน์ Tooltip หน้าแรกเป็นแบบ Dark Glassmorphism พร้อมเส้นชี้และระบบลากย้ายอิสระ</li><li><span class="wt-ver">v2.6.0:</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.8.5<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.8.5 (ล่าสุด):</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip ขั้นสุด เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li><li><span class="wt-ver">v2.8.0:</span> อัพเกรดเส้นเชื่อมต่อ Tooltip สไตล์ iOS (High Performance) ปรับการทำงานด้วย requestAnimationFrame ป้องกันอาการแล็กหน่วง และใช้ CSS Opacity ควบคุมการเฟดเข้าออกพร้อมตัวกล่อง 100%</li><li><span class="wt-ver">v2.7.5:</span> พอร์ตระบบ Tooltip แบบพรีเมียม (Dark Glassmorphism, เส้นชี้โยงแท่งเทียนไดนามิก SVG Glow Line, และการลากย้ายตำแหน่งอิสระ Draggable) ไปยังหน้าประวัติ (History) และหน้าบันทึกส่วนตัว (Journal) เรียบร้อยครบถ้วนสม่ำเสมอ</li><li><span class="wt-ver">v2.7.0:</span> อัพเกรดดีไซน์ Tooltip หน้าแรกเป็นแบบ Dark Glassmorphism พร้อมเส้นชี้และระบบลากย้ายอิสระ</li><li><span class="wt-ver">v2.6.0:</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2918,13 +2918,13 @@ function updateTooltipConnector() {
   const dot = document.getElementById('connectorDot');
   if (!tooltip || !svg || !line || !dot) return;
 
-  if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
+  if (!tooltip.classList.contains('show')) {
     return;
   }
 
   const canvas = tooltip._sourceCanvas;
   const closestIdx = tooltip._closestIdx;
-  if (!canvas || closestIdx === undefined) {
+  if (!canvas || closestIdx === undefined || closestIdx === -1 || canvas.offsetWidth === 0 || canvas.offsetHeight === 0) {
     return;
   }
 
@@ -2936,7 +2936,9 @@ function updateTooltipConnector() {
   
   const cx = xFor ? xFor(closestIdx) : rect.width / 2;
   const candle = visibleCandles[closestIdx];
-  const cy = (yFor && candle) ? Math.min(yFor(candle.open), yFor(candle.close)) : rect.height / 2;
+  if (!candle) return;
+  
+  const cy = yFor ? Math.min(yFor(candle.open), yFor(candle.close)) : rect.height / 2;
   
   const candleScreenX = rect.left + cx;
   const candleScreenY = rect.top + cy;
@@ -4211,7 +4213,7 @@ if (markerTooltipEl) {
 }
 
 // Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
-window.addEventListener('scroll', queueConnectorUpdate, { passive: true });
+document.addEventListener('scroll', queueConnectorUpdate, { passive: true, capture: true });
 window.addEventListener('resize', queueConnectorUpdate, { passive: true });
 
 loadAutomationStatus();
