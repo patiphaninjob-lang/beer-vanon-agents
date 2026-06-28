@@ -35,6 +35,99 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
     }
+    .version-tag {
+      position: relative;
+      font-size: 0.55em;
+      color: #8b949e;
+      font-weight: normal;
+      margin-left: 6px;
+      vertical-align: middle;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .version-tag:hover {
+      background: rgba(99,102,241,0.25);
+      border-color: #6366f1;
+      color: #fff;
+    }
+    .version-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 135%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      border: 1px solid #374151;
+      color: #e6edf3;
+      padding: 12px 14px;
+      border-radius: 8px;
+      width: 290px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.55);
+      z-index: 1000;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: left;
+      white-space: normal;
+      pointer-events: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .version-tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent #1f2937 transparent;
+    }
+    .version-tooltip::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: transparent transparent #374151 transparent;
+      z-index: -1;
+    }
+    .version-tag:hover .version-tooltip,
+    .version-tag.active-tooltip .version-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .version-tooltip .wt-title {
+      color: #f0b90b;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 4px;
+    }
+    .version-tooltip ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .version-tooltip li {
+      margin-bottom: 8px;
+    }
+    .version-tooltip li:last-child {
+      margin-bottom: 0;
+    }
+    .version-tooltip .wt-ver {
+      color: #93c5fd;
+      font-weight: bold;
+      margin-right: 4px;
+    }
     .topbar, .shell, .control-strip, .layout, .market-col, .main-col, .review-col, .panel, .control {
       max-width: 100%;
       min-width: 0;
@@ -800,7 +893,7 @@
   <header class="topbar">
     <div class="brand">
       <div>
-        <h1>สมุดบันทึกการเทรด </h1>
+        <h1>สมุดบันทึกการเทรด <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.3<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.3 (ล่าสุด):</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></h1>
         <small>หน้าแยกสำหรับบันทึกอารมณ์ ความคิด และแผนของหุ้นแต่ละตัว</small>
       </div>
     </div>
@@ -2713,6 +2806,8 @@ document.addEventListener('click', event => {
     renderControls();
     renderEntryPreview();
   }
+  const vt = document.getElementById('versionTag');
+  if (vt && !event.target.closest('.version-tag')) vt.classList.remove('active-tooltip');
 });
 document.getElementById('dateSelect').addEventListener('change', event => {
   loadArchive(event.target.value, state.phase).then(() => {
