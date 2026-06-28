@@ -560,7 +560,7 @@
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; align-items: center; gap: 4px;">
           <div class="ticker-title" id="tickerTitle">Loading...</div>
-          <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.8<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.8 (ล่าสุด):</span> นำคำนำหน้าข้อความ \"Beer มองว่า:\" หรือ \"Beer มองว่า\" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ \"Beer วิเคราะห์ Ch34 เจาะลึก\" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
+          <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.2.9<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.2.9 (ล่าสุด):</span> ปรับปรุงระบบเปลี่ยนบันทึกซ้ายขวาในหน้า History และ Journal ให้แสดงผลทันทีแบบไม่มีดีเลย์ (Non-blocking Sync) โดยโหลดข้อความโน้ตขึ้นมาก่อน และดึงบทวิเคราะห์ตามมาในภายหลัง ช่วยให้การเปลี่ยนข้อมูลลื่นไหลและนุ่มนวลสูงสุด</li><li><span class="wt-ver">v3.2.8:</span> นำคำนำหน้าข้อความ \"Beer มองว่า:\" หรือ \"Beer มองว่า\" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ \"Beer วิเคราะห์ Ch34 เจาะลึก\" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจอมือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></div>
         </div>
         <div class="ticker-sub" id="tickerSub">Daily chart · thoughts history</div>
       </div>
@@ -1210,19 +1210,16 @@ function drawChart() {
   document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
 }
 
-async function showGroup(group, candle, isNavigating) {
+function showGroup(group, candle, isNavigating) {
   const topTooltip = document.getElementById('markerTooltip');
   if (topTooltip) {
     topTooltip._isNavigating = !!isNavigating;
   }
-  state.selectedKey = group.date; drawChart();
+  state.selectedKey = group.date; 
+  drawChart();
+  
   const detail = document.getElementById('detailPanel');
   const archiveDate = group.notes[0]?.archive_date || group.date;
-  let stock = null, mkt = null;
-  try {
-    const day = await loadArchive(archiveDate);
-    if (state.ticker.startsWith('_')) mkt = day; else stock = findStock(day, state.ticker);
-  } catch(e) {}
 
   const notesHTML = group.notes.map(n => {
     let journalHtml = '';
@@ -1262,17 +1259,95 @@ async function showGroup(group, candle, isNavigating) {
     `;
   }).join('');
 
+  const sidebarLoadingId = `sbLoad-${Date.now()}`;
+  const tooltipLoadingId = `ttLoad-${Date.now()}`;
+
   detail.innerHTML = `
     <div class="detail-head">
       <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
     </div>
     ${notesHTML}
-    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis ? stock.analysis.replace(/Beer\s+มองว่า\s*:?\s*/gi, '') : 'ไม่มีบทวิเคราะห์ในวันนี้')}</div></div>` : ''}
+    <div id="${sidebarLoadingId}" class="snapshot-loading" style="padding:10px; color:#9ca3af; font-size:0.85em; text-align:center;">⏳ กำลังโหลดรายละเอียดตลาด...</div>
   `;
 
   // --- Show Tooltip Logic ---
   const m = state.markers.find(x => x.key === group.date);
   const tooltip = document.getElementById('markerTooltip');
+  
+  const positionTooltip = () => {
+    if (!tooltip || !m) return;
+    if (tooltip._isNavigating && tooltip.style.left && tooltip.style.top) {
+      updateTooltipConnector();
+      return;
+    }
+    tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
+    
+    const canvasRect = canvas.getBoundingClientRect();
+    const rect = {
+      left: canvasRect.left + m.x - 8,
+      right: canvasRect.left + m.x + 8,
+      top: canvasRect.top + m.y - 8,
+      bottom: canvasRect.top + m.y + 8,
+      width: 16,
+      height: 16
+    };
+    
+    let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+    const margin = 10;
+    const headerRect = document.querySelector('.topbar')?.getBoundingClientRect();
+    const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
+    let tailLeft = tooltip.offsetWidth / 2;
+    
+    // Horizontal bounds
+    if (ttLeft < margin) {
+      ttLeft = margin;
+      tailLeft = rect.left + rect.width / 2 - ttLeft;
+    } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
+      ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
+      tailLeft = rect.left + rect.width / 2 - ttLeft;
+    }
+    tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
+
+    // Vertical bounds and maxHeight
+    let isBelow = false;
+    let spaceAbove = rect.top - topMargin - 14;
+    let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
+    
+    let ttTop = rect.top - tooltip.offsetHeight - 14;
+    
+    if (ttTop < topMargin) {
+      if (spaceBelow > spaceAbove) {
+        isBelow = true;
+        ttTop = rect.bottom + 14;
+        tooltip.style.maxHeight = `${spaceBelow}px`;
+      } else {
+        ttTop = topMargin;
+        tooltip.style.maxHeight = `${spaceAbove}px`;
+      }
+    } else {
+      tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
+    }
+    
+    if (!isBelow) {
+      ttTop = rect.top - tooltip.offsetHeight - 14;
+      if (ttTop < topMargin) ttTop = topMargin;
+    }
+
+    tooltip.style.left = `${ttLeft}px`;
+    tooltip.style.top = `${ttTop}px`;
+    tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
+
+    if (isBelow) {
+      tooltip.classList.add('tail-top');
+    } else {
+      tooltip.classList.remove('tail-top');
+    }
+
+    // Draw connector line and enable dragging
+    updateTooltipConnector();
+    initTooltipDragging();
+  };
+
   if (m && tooltip) {
     const emotion = group.notes[0] ? detectEmotion(group.notes[0]) : null;
     tooltip._emotion = emotion;
@@ -1323,91 +1398,57 @@ async function showGroup(group, candle, isNavigating) {
       </div>`;
     });
     
-    if (stock && stock.analysis) {
-      const cleanedAnalysis = stock.analysis.replace(/Beer\s+มองว่า\s*:?\s*/gi, '');
-      bodyHtml += `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="word-break: break-word;">${esc(cleanedAnalysis.trim())}</div></div>`;
-    }
+    bodyHtml += `<div id="${tooltipLoadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
     
     tooltip.innerHTML = `<div class="tt-header">${headerHtml}</div><div class="tt-body">${bodyHtml}</div>`;
     tooltip.classList.add('show');
     
-    const positionTooltip = () => {
-      if (tooltip._isNavigating && tooltip.style.left && tooltip.style.top) {
-        updateTooltipConnector();
-        return;
-      }
-      tooltip.style.maxHeight = '80vh'; // Reset to default before measuring
-      
-      const canvasRect = canvas.getBoundingClientRect();
-      const rect = {
-        left: canvasRect.left + m.x - 8,
-        right: canvasRect.left + m.x + 8,
-        top: canvasRect.top + m.y - 8,
-        bottom: canvasRect.top + m.y + 8,
-        width: 16,
-        height: 16
-      };
-      
-      let ttLeft = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
-      const margin = 10;
-      const headerRect = document.querySelector('.topbar')?.getBoundingClientRect();
-      const topMargin = Math.max(margin, (headerRect?.bottom || 0) + 10);
-      let tailLeft = tooltip.offsetWidth / 2;
-      
-      // Horizontal bounds
-      if (ttLeft < margin) {
-        ttLeft = margin;
-        tailLeft = rect.left + rect.width / 2 - ttLeft;
-      } else if (ttLeft + tooltip.offsetWidth > window.innerWidth - margin) {
-        ttLeft = window.innerWidth - tooltip.offsetWidth - margin;
-        tailLeft = rect.left + rect.width / 2 - ttLeft;
-      }
-      tailLeft = Math.max(12, Math.min(tooltip.offsetWidth - 12, tailLeft));
-
-      // Vertical bounds and maxHeight
-      let isBelow = false;
-      let spaceAbove = rect.top - topMargin - 14;
-      let spaceBelow = window.innerHeight - rect.bottom - margin - 14;
-      
-      let ttTop = rect.top - tooltip.offsetHeight - 14;
-      
-      if (ttTop < topMargin) {
-        if (spaceBelow > spaceAbove) {
-          isBelow = true;
-          ttTop = rect.bottom + 14;
-          tooltip.style.maxHeight = `${spaceBelow}px`;
-        } else {
-          ttTop = topMargin;
-          tooltip.style.maxHeight = `${spaceAbove}px`;
-        }
-      } else {
-        tooltip.style.maxHeight = `${Math.min(spaceAbove, window.innerHeight * 0.8)}px`;
-      }
-      
-      if (!isBelow) {
-        ttTop = rect.top - tooltip.offsetHeight - 14;
-        if (ttTop < topMargin) ttTop = topMargin;
-      }
-
-      tooltip.style.left = `${ttLeft}px`;
-      tooltip.style.top = `${ttTop}px`;
-      tooltip.style.setProperty('--tail-left', `${tailLeft}px`);
-
-      if (isBelow) {
-        tooltip.classList.add('tail-top');
-      } else {
-        tooltip.classList.remove('tail-top');
-      }
-
-      // Draw connector line and enable dragging
-      updateTooltipConnector();
-      initTooltipDragging();
-    };
+    // Set coordinates for SVG connection line immediately
+    tooltip._candleX = rect.left + rect.width / 2;
+    tooltip._candleY = rect.top + rect.height / 2;
     
     setTimeout(positionTooltip, 0);
   } else if (tooltip) {
     tooltip.classList.remove('show');
   }
+
+  // --- Start background fetch ---
+  loadArchive(archiveDate).then(day => {
+    if (state.selectedKey !== group.date) return;
+    
+    let stock = null, mkt = null;
+    if (day) {
+      if (state.ticker.startsWith('_')) mkt = day; else stock = findStock(day, state.ticker);
+    }
+    
+    const sbLoader = document.getElementById(sidebarLoadingId);
+    if (sbLoader) {
+      if (stock) {
+        const cleanedAnalysis = (stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี้').replace(/Beer\s+มองว่า\s*:?\s*/gi, '');
+        sbLoader.outerHTML = `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(cleanedAnalysis)}</div></div>`;
+      } else {
+        sbLoader.remove();
+      }
+    }
+    
+    const ttLoader = document.getElementById(tooltipLoadingId);
+    if (ttLoader) {
+      if (stock && stock.analysis) {
+        const cleanedAnalysis = stock.analysis.replace(/Beer\s+มองว่า\s*:?\s*/gi, '');
+        ttLoader.outerHTML = `<div class="tt-section"><div class="tt-label beer">🍺 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="word-break: break-word;">${esc(cleanedAnalysis.trim())}</div></div>`;
+      } else {
+        ttLoader.remove();
+      }
+      positionTooltip();
+    }
+  }).catch(() => {
+    if (state.selectedKey !== group.date) return;
+    const sbLoader = document.getElementById(sidebarLoadingId);
+    if (sbLoader) sbLoader.remove();
+    const ttLoader = document.getElementById(tooltipLoadingId);
+    if (ttLoader) ttLoader.remove();
+    positionTooltip();
+  });
 }
 
 window.navigateHistoryTooltip = function(event, direction) {
