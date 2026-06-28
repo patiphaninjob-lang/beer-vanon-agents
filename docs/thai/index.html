@@ -39,6 +39,17 @@
       height: 32px; display: flex; align-items: center;
     }
     .settings-btn:hover { border-color: #3b82f6; color: #e6edf3; }
+
+    .simulator-btn {
+      background: #334155; border: 1px solid #475569; color: #8a8f98;
+      border-radius: 6px; padding: 5px 12px; font-size: 13px; cursor: pointer;
+      height: 32px; display: flex; align-items: center; gap: 6px; text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .simulator-btn:hover { border-color: #3b82f6; color: #e6edf3; }
+    @media (max-width: 768px) {
+      .simulator-btn { display: none !important; }
+    }
     .phase-select { min-width: 132px; }
 
     .run-agent-btn {
@@ -652,6 +663,7 @@
       <option value="notes">มีโน้ตของฉัน</option>
     </select>
     <span class="count-badge" id="countBadge"></span>
+    <a href="../preview.html?url=thai/index.html" target="_blank" class="simulator-btn" title="จำลองการแสดงผลบนมือถือ">📱 จำลองมือถือ</a>
     <button class="settings-btn" onclick="showSettings()" title="ตั้งค่า sync">⚙️</button>
   </div>
 </div>

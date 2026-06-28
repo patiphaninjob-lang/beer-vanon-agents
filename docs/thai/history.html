@@ -20,6 +20,9 @@
       padding: 6px 10px; background: #334155; font-size: 0.84em; flex-shrink: 0;
     }
     .back-link:hover { color: #10b981; border-color: #10b981; }
+    @media (max-width: 768px) {
+      .simulator-btn { display: none !important; }
+    }
     .ticker-title { font-size: 1.35em; font-weight: 800; color: #fff; letter-spacing: 0; }
     .ticker-sub { color: #8b949e; font-size: 0.82em; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 62vw; }
     .range-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -198,6 +201,7 @@
   <div class="topbar">
     <div class="brand">
       <a class="back-link" id="backLink" href="index.html">← Archive</a>
+      <a class="back-link simulator-btn" href="../preview.html?url=thai/history.html" target="_blank" title="จำลองการแสดงผลบนมือถือ">📱 จำลองมือถือ</a>
       <div>
         <div class="ticker-title" id="tickerTitle">Loading...</div>
         <div class="ticker-sub" id="tickerSub">Daily chart · thoughts history</div>

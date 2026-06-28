@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="utf-8">
@@ -89,6 +89,9 @@
     }
     .btn:hover, .link-btn:hover { border-color: var(--gold); color: var(--gold); }
     .btn.primary { color: #fff; background: #238636; border-color: #2ea44f; }
+    @media (max-width: 768px) {
+      .simulator-btn { display: none !important; }
+    }
     .shell { max-width: 1480px; margin: 0 auto; padding: 16px 18px 28px; }
     .control-strip {
       display: grid;
@@ -562,6 +565,7 @@
     </div>
     <div class="top-actions">
       <a class="link-btn" id="backLink" href="index.html">กลับหน้าแรก</a>
+      <a class="link-btn simulator-btn" href="../preview.html?url=thai/journal.html" target="_blank" title="จำลองการแสดงผลบนมือถือ">📱 จำลองมือถือ</a>
       <button class="btn primary" id="savePreviewBtn" type="button">บันทึกขึ้น Cloud</button>
     </div>
   </header>

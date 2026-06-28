@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📱 Mobile Device Previewer - Beer Top 100</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <style>
+    :root {
+      --bg-dark: #0d1117;
+      --panel-bg: rgba(22, 27, 34, 0.7);
+      --border-color: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.15);
+      --success: #2ea44f;
+      --danger: #f85149;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 50%, #161b22 0%, #0d1117 100%);
+      color: var(--text-main);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* ── Layout ── */
+    .sidebar {
+      width: 320px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      z-index: 10;
+    }
+
+    .main-content {
+      flex: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ── Sidebar Head ── */
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .sidebar-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-header p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Controls Section ── */
+    .controls-group {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Custom Scrollbar */
+    .controls-group::-webkit-scrollbar {
+      width: 6px;
+    }
+    .controls-group::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .controls-group::-webkit-scrollbar-thumb {
+      background: #30363d;
+      border-radius: 3px;
+    }
+    .controls-group::-webkit-scrollbar-thumb:hover {
+      background: #8b949e;
+    }
+
+    .control-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .control-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Input elements styling */
+    select, input[type="text"], input[type="number"] {
+      width: 100%;
+      background: #21262d;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    select:focus, input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .dimensions-input {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn {
+      background: #21262d;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .btn:hover {
+      background: #30363d;
+      border-color: #8b949e;
+    }
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0d1117;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #79c0ff;
+      border-color: #79c0ff;
+    }
+    
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #161b22;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .toggle-row label {
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 22px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #30363d;
+      transition: .3s;
+      border-radius: 22px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--success);
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    /* ── Pages List ── */
+    .pages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .page-link-item {
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #161b22;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-link-item:hover, .page-link-item.active {
+      border-color: var(--accent);
+      background: rgba(88, 166, 255, 0.05);
+      color: #fff;
+    }
+    .page-link-item .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+      background: var(--border-color);
+      color: var(--text-muted);
+    }
+    .page-link-item.active .badge {
+      background: var(--accent-glow);
+      color: var(--accent);
+    }
+
+    /* ── Info / Guidelines ── */
+    .sidebar-footer {
+      padding: 15px 20px;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      background: rgba(13, 17, 23, 0.5);
+    }
+
+    /* ── Workspace ── */
+    .topbar {
+      height: 60px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 9;
+    }
+    .url-bar-container {
+      flex: 1;
+      max-width: 600px;
+      margin: 0 20px;
+      display: flex;
+      gap: 8px;
+    }
+    .url-input {
+      background: #0d1117;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 6px 16px;
+      color: #fff;
+      font-size: 0.85rem;
+      flex: 1;
+      font-family: monospace;
+      outline: none;
+    }
+    .url-input:focus {
+      border-color: var(--accent);
+    }
+
+    .canvas-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 40px;
+      position: relative;
+    }
+
+    /* ── Simulated Phone Device Frame ── */
+    .device-scaler {
+      transform-origin: center center;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .device-wrapper {
+      position: relative;
+      background: #000;
+      border-radius: 44px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9),
+                  0 0 0 1px rgba(255, 255, 255, 0.05),
+                  inset 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Device frame shell visual styles */
+    .device-wrapper.with-frame {
+      border: 12px solid #1c1c1e;
+      padding-top: 0px;
+    }
+
+    .device-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      background: #161b22;
+      display: flex;
+      flex-direction: column;
+    }
+    .device-wrapper:not(.with-frame) .device-screen {
+      border-radius: 8px;
+    }
+
+    /* Realistic Notch/Dynamic Island */
+    .device-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 28px;
+      background: #000;
+      border-radius: 15px;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .device-notch::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: #0f1016;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: 15px;
+      border: 1px solid #1c1d22;
+    }
+    .device-notch::after {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #10122e;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+
+    .device-wrapper.with-frame.has-notch .device-notch {
+      display: flex;
+    }
+
+    /* Simulated Status Bar */
+    .device-status-bar {
+      height: 44px;
+      background: transparent;
+      display: none;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 24px 6px 24px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      user-select: none;
+      z-index: 99;
+      position: absolute;
+      width: 100%;
+      top: 0;
+    }
+    .device-wrapper.with-frame.has-notch .device-status-bar {
+      display: flex;
+    }
+    .status-left {
+      width: 54px;
+      text-align: center;
+    }
+    .status-right {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      width: 54px;
+      justify-content: flex-end;
+    }
+    .status-battery {
+      width: 20px;
+      height: 10px;
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 3px;
+      padding: 1px;
+      display: flex;
+    }
+    .battery-fill {
+      flex: 1;
+      background: #fff;
+      border-radius: 1px;
+      width: 80%;
+    }
+
+    /* Simulated Home Indicator Bar at the bottom */
+    .device-home-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 3px;
+      z-index: 100;
+      display: none;
+      pointer-events: none;
+    }
+    .device-wrapper.with-frame.has-notch .device-home-bar {
+      display: flex;
+    }
+
+    /* Preview Iframe */
+    .device-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+      flex: 1;
+    }
+    .device-wrapper.with-frame.has-notch .device-iframe {
+      padding-top: 44px;
+      padding-bottom: 20px;
+    }
+
+    /* Developer Overlay Grid */
+    .dev-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      display: none;
+      z-index: 80;
+    }
+    .dev-grid-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      border-left: 1px dashed rgba(88, 166, 255, 0.2);
+    }
+    .dev-grid-overlay::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      border-top: 1px dashed rgba(88, 166, 255, 0.2);
+    }
+    .device-wrapper.show-grid .dev-grid-overlay {
+      display: block;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        overflow: auto;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .main-content {
+        height: auto;
+        min-height: calc(100vh - 120px);
+      }
+      .canvas-area {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Control Panel Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>📱 Device Simulator</h2>
+      <p>จำลองและตรวจการแสดงผลบนสมาร์ทโฟน</p>
+    </div>
+
+    <div class="controls-group">
+      <!-- Target URL Selection -->
+      <div class="control-item">
+        <span class="control-label">หน้าเว็บที่จะทดสอบ</span>
+        <div class="pages-list">
+          <a class="page-link-item active" data-url="index.html" onclick="loadPage('index.html', this)">
+            <span>🏠 หน้าแรก (US)</span>
+            <span class="badge">US</span>
+          </a>
+          <a class="page-link-item" data-url="journal.html" onclick="loadPage('journal.html', this)">
+            <span>📓 สมุดบันทึก (US)</span>
+            <span class="badge">US</span>
+          </a>
+          <a class="page-link-item" data-url="history.html" onclick="loadPage('history.html', this)">
+            <span>📊 ประวัติกราฟ (US)</span>
+            <span class="badge">US</span>
+          </a>
+          <a class="page-link-item" data-url="thai/index.html" onclick="loadPage('thai/index.html', this)">
+            <span>🏠 หน้าแรก (Thai)</span>
+            <span class="badge">TH</span>
+          </a>
+          <a class="page-link-item" data-url="thai/journal.html" onclick="loadPage('thai/journal.html', this)">
+            <span>📓 สมุดบันทึก (Thai)</span>
+            <span class="badge">TH</span>
+          </a>
+          <a class="page-link-item" data-url="thai/history.html" onclick="loadPage('thai/history.html', this)">
+            <span>📊 ประวัติกราฟ (Thai)</span>
+            <span class="badge">TH</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Device Preset Selection -->
+      <div class="control-item">
+        <label class="control-label" for="devicePreset">เลือกรุ่นอุปกรณ์</label>
+        <select id="devicePreset" onchange="applyPreset()">
+          <option value="iphone15pro" selected>iPhone 15 Pro (393 × 852)</option>
+          <option value="iphone15promax">iPhone 15 Pro Max (430 × 932)</option>
+          <option value="iphonese">iPhone SE / 8 (375 × 667)</option>
+          <option value="galaxys23">Samsung Galaxy S23 (360 × 800)</option>
+          <option value="pixel8">Google Pixel 8 (412 × 915)</option>
+          <option value="ipadmini">iPad Mini (768 × 1024)</option>
+          <option value="custom">กำหนดเอง (Custom Size)</option>
+        </select>
+      </div>
+
+      <!-- Custom Dimensions -->
+      <div class="control-item" id="customDimensions" style="display: none;">
+        <label class="control-label">ขนาดจอ (กว้าง × สูง px)</label>
+        <div class="dimensions-input">
+          <input type="number" id="customWidth" value="393" min="200" max="2000" oninput="updateCustomSize()">
+          <input type="number" id="customHeight" value="852" min="200" max="2000" oninput="updateCustomSize()">
+        </div>
+      </div>
+
+      <!-- Orientation & Reload -->
+      <div class="control-item">
+        <span class="control-label">การควบคุมทิศทาง</span>
+        <div class="btn-group">
+          <button class="btn" id="orientationBtn" onclick="toggleOrientation()">🔄 หมุนจอ</button>
+          <button class="btn" onclick="reloadIframe()">🔄 โหลดใหม่</button>
+        </div>
+      </div>
+
+      <!-- Simulator Zoom Scale -->
+      <div class="control-item">
+        <label class="control-label" for="scaleSelect">อัตราการซูมพรีวิว</label>
+        <select id="scaleSelect" onchange="applyScale()">
+          <option value="0.5">50%</option>
+          <option value="0.75">75%</option>
+          <option value="1.0" selected>100%</option>
+          <option value="1.25">125%</option>
+          <option value="fit">พอดีกับหน้าต่าง (Fit)</option>
+        </select>
+      </div>
+
+      <!-- Settings Toggles -->
+      <div class="control-item">
+        <span class="control-label">ความสวยงาม & การพัฒนา</span>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="toggle-row">
+            <label for="toggleShell">แสดงกรอบเคสมือถือ</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggleShell" checked onchange="toggleFrameShell()">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <label for="toggleGrid">แสดงเส้นไกด์ Grid</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggleGrid" onchange="toggleDevGrid()">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <strong>💡 เคล็ดลับการทดสอบบนมือถือ:</strong><br>
+      • กด F12 เพื่อดู Console ล็อคอินและ Log ต่างๆ<br>
+      • กราฟบนระบบมี Touch Handler รองรับการรูดดูจุดเทรดบนมือถือได้แบบเรียลไทม์<br>
+      • ตรวจสอบ Margin และ Padding เพื่อป้องกันการล้นกรอบ (Responsive Layout)
+    </div>
+  </aside>
+
+  <!-- ── Main Preview Workspace ── -->
+  <main class="main-content">
+    <header class="topbar">
+      <div class="btn-group">
+        <a href="index.html" class="btn" style="text-decoration: none;">🏠 กลับหน้าแรก</a>
+      </div>
+      <div class="url-bar-container">
+        <span class="control-label" style="align-self: center; margin: 0;">URL:</span>
+        <input type="text" class="url-input" id="simulatorUrlInput" readonly value="index.html">
+      </div>
+      <div style="display:flex; gap:8px;">
+        <span class="badge" id="viewportInfo" style="background:#21262d; border: 1px solid var(--border-color); padding: 6px 12px; border-radius:15px; font-size: 0.8rem;">393 x 852 (100%)</span>
+      </div>
+    </header>
+
+    <div class="canvas-area" id="canvasArea">
+      <div class="device-scaler" id="deviceScaler">
+        <div class="device-wrapper with-frame has-notch" id="deviceWrapper" style="width: 393px; height: 852px;">
+          <!-- Realistic details -->
+          <div class="device-notch"></div>
+          
+          <div class="device-status-bar">
+            <div class="status-left" id="liveClock">19:00</div>
+            <div class="status-right">
+              <span>📶</span>
+              <span>📶</span>
+              <div class="status-battery">
+                <div class="battery-fill"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="device-home-bar"></div>
+          
+          <!-- Development Grid -->
+          <div class="dev-grid-overlay"></div>
+          
+          <div class="device-screen">
+            <iframe src="index.html" class="device-iframe" id="previewIframe"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Configuration presets
+    const PRESETS = {
+      iphone15pro: { w: 393, h: 852, hasNotch: true },
+      iphone15promax: { w: 430, h: 932, hasNotch: true },
+      iphonese: { w: 375, h: 667, hasNotch: false },
+      galaxys23: { w: 360, h: 800, hasNotch: false },
+      pixel8: { w: 412, h: 915, hasNotch: false },
+      ipadmini: { w: 768, h: 1024, hasNotch: false }
+    };
+
+    let activeWidth = 393;
+    let activeHeight = 852;
+    let activeHasNotch = true;
+    let isLandscape = false;
+
+    const iframe = document.getElementById('previewIframe');
+    const wrapper = document.getElementById('deviceWrapper');
+    const scaler = document.getElementById('deviceScaler');
+    const viewportInfo = document.getElementById('viewportInfo');
+    const clockEl = document.getElementById('liveClock');
+    const canvasArea = document.getElementById('canvasArea');
+    const urlInput = document.getElementById('simulatorUrlInput');
+
+    // Parse query params to load target URL on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const targetUrl = params.get('url');
+      if (targetUrl) {
+        // Find matching menu item and highlight
+        const items = document.querySelectorAll('.page-link-item');
+        let matched = false;
+        items.forEach(item => {
+          const itemUrl = item.getAttribute('data-url');
+          if (itemUrl === targetUrl || (targetUrl.includes(itemUrl) && itemUrl !== 'index.html')) {
+            items.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            matched = true;
+          }
+        });
+        
+        loadPage(targetUrl, matched ? document.querySelector(`.page-link-item[data-url="${targetUrl}"]`) : null);
+      } else {
+        loadPage('index.html');
+      }
+
+      // Start mock clock
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Setup window resize hook for 'fit' scaling
+      window.addEventListener('resize', () => {
+        if (document.getElementById('scaleSelect').value === 'fit') {
+          applyScale();
+        }
+      });
+      
+      // Update info after loader loads
+      iframe.addEventListener('load', () => {
+        try {
+          const localPath = iframe.contentWindow.location.pathname;
+          // Extract filename relative to docs
+          let parts = localPath.split('/');
+          let cleanUrl = parts.slice(parts.indexOf('docs') + 1).join('/');
+          if (cleanUrl) {
+            urlInput.value = cleanUrl;
+            
+            // Highlight matching link item
+            const items = document.querySelectorAll('.page-link-item');
+            items.forEach(item => {
+              if (item.getAttribute('data-url') === cleanUrl) {
+                items.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+              }
+            });
+          }
+        } catch(e) {
+          // If cross origin or frame loading doesn't allow parsing, keep it
+        }
+      });
+
+      // Run initial scaling
+      setTimeout(applyScale, 100);
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hr = now.getHours().toString().padStart(2, '0');
+      let min = now.getMinutes().toString().padStart(2, '0');
+      clockEl.textContent = `${hr}:${min}`;
+    }
+
+    // Load inside iframe
+    function loadPage(url, element) {
+      iframe.src = url;
+      urlInput.value = url;
+      if (element) {
+        document.querySelectorAll('.page-link-item').forEach(i => i.classList.remove('active'));
+        element.classList.add('active');
+      }
+    }
+
+    // Reload iframe
+    function reloadIframe() {
+      iframe.contentWindow.location.reload();
+    }
+
+    // Switch presets
+    function applyPreset() {
+      const select = document.getElementById('devicePreset');
+      const val = select.value;
+      const customDiv = document.getElementById('customDimensions');
+
+      if (val === 'custom') {
+        customDiv.style.display = 'block';
+        updateCustomSize();
+      } else {
+        customDiv.style.display = 'none';
+        const preset = PRESETS[val];
+        activeWidth = preset.w;
+        activeHeight = preset.h;
+        activeHasNotch = preset.hasNotch;
+        updateFrame();
+      }
+    }
+
+    function updateCustomSize() {
+      const w = parseInt(document.getElementById('customWidth').value) || 393;
+      const h = parseInt(document.getElementById('customHeight').value) || 852;
+      activeWidth = w;
+      activeHeight = h;
+      activeHasNotch = false;
+      updateFrame();
+    }
+
+    // Swap portrait / landscape
+    function toggleOrientation() {
+      isLandscape = !isLandscape;
+      updateFrame();
+    }
+
+    // Apply frame values
+    function updateFrame() {
+      let finalW = isLandscape ? activeHeight : activeWidth;
+      let finalH = isLandscape ? activeWidth : activeHeight;
+
+      wrapper.style.width = `${finalW}px`;
+      wrapper.style.height = `${finalH}px`;
+
+      // Show/hide notch
+      if (activeHasNotch && !isLandscape && document.getElementById('toggleShell').checked) {
+        wrapper.classList.add('has-notch');
+      } else {
+        wrapper.classList.remove('has-notch');
+      }
+
+      applyScale();
+      updateInfoLabel();
+    }
+
+    // Scale controls
+    function applyScale() {
+      const scaleVal = document.getElementById('scaleSelect').value;
+      let scale = 1;
+
+      let finalW = isLandscape ? activeHeight : activeWidth;
+      let finalH = isLandscape ? activeWidth : activeHeight;
+      
+      // Calculate scale if fit
+      if (scaleVal === 'fit') {
+        const padding = 100;
+        const maxW = canvasArea.clientWidth - padding;
+        const maxH = canvasArea.clientHeight - padding;
+        
+        let shellW = finalW;
+        let shellH = finalH;
+        
+        if (document.getElementById('toggleShell').checked) {
+          shellW += 24; // Bezel offsets
+          shellH += 24;
+        }
+
+        const scaleX = maxW / shellW;
+        const scaleY = maxH / shellH;
+        scale = Math.min(scaleX, scaleY, 1.2); // limit max scaling to 1.2
+        scale = Math.floor(scale * 100) / 100; // round to two digits
+      } else {
+        scale = parseFloat(scaleVal);
+      }
+
+      scaler.style.transform = `scale(${scale})`;
+      updateInfoLabel(scale);
+    }
+
+    function updateInfoLabel(currentScale) {
+      let finalW = isLandscape ? activeHeight : activeWidth;
+      let finalH = isLandscape ? activeWidth : activeHeight;
+      const scalePercent = Math.round((currentScale || 1) * 100);
+      viewportInfo.textContent = `${finalW} × ${finalH} px (${scalePercent}%)`;
+    }
+
+    // Toggle Frame Shell Bezel
+    function toggleFrameShell() {
+      const showFrame = document.getElementById('toggleShell').checked;
+      if (showFrame) {
+        wrapper.classList.add('with-frame');
+        if (activeHasNotch && !isLandscape) {
+          wrapper.classList.add('has-notch');
+        }
+      } else {
+        wrapper.classList.remove('with-frame');
+        wrapper.classList.remove('has-notch');
+      }
+      applyScale();
+    }
+
+    // Toggle Dev Grid
+    function toggleDevGrid() {
+      const showGrid = document.getElementById('toggleGrid').checked;
+      if (showGrid) {
+        wrapper.classList.add('show-grid');
+      } else {
+        wrapper.classList.remove('show-grid');
+      }
+    }
+  </script>
+</body>
+</html>
