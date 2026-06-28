@@ -1949,8 +1949,9 @@ async function getAnalysisForDate(dateStr) {
   return null;
 }
 
-async function showMarkerTooltip(m) {
+async function showMarkerTooltip(m, isNavigating) {
   if (!hoverTip) return;
+  hoverTip._isNavigating = !!isNavigating;
   
   const group = m.group;
   const archiveDate = group.notes[0]?.archive_date || group.date;
@@ -2037,10 +2038,7 @@ window.navigateJournalTooltip = function(event, direction) {
   const nextPos = currentPos + direction;
   if (nextPos >= 0 && nextPos < sortedMarkers.length) {
     const nextMarker = sortedMarkers[nextPos];
-    tooltip._isNavigating = true;
-    showMarkerTooltip(nextMarker);
-    updateTooltipConnector();
-    tooltip._isNavigating = false;
+    showMarkerTooltip(nextMarker, true);
   }
 };
 
@@ -2048,7 +2046,7 @@ function positionTooltip(m) {
   if (!hoverTip || !canvas) return;
   
   if (hoverTip._isNavigating && hoverTip.style.left && hoverTip.style.top) {
-    // Keep current position during navigation
+    updateTooltipConnector();
     return;
   }
   

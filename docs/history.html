@@ -1094,7 +1094,11 @@ function drawChart() {
   document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
 }
 
-async function showGroup(group, candle) {
+async function showGroup(group, candle, isNavigating) {
+  const tooltip = document.getElementById('markerTooltip');
+  if (tooltip) {
+    tooltip._isNavigating = !!isNavigating;
+  }
   state.selectedKey = group.date; drawChart();
   const detail = document.getElementById('detailPanel');
   const archiveDate = group.notes[0]?.archive_date || group.date;
@@ -1305,10 +1309,7 @@ window.navigateHistoryTooltip = function(event, direction) {
       date: nextMarker.key,
       notes: state.notes.filter(n => (n.date || n.archive_date) === nextMarker.key)
     };
-    tooltip._isNavigating = true;
-    showGroup(group, candle);
-    updateTooltipConnector();
-    tooltip._isNavigating = false;
+    showGroup(group, candle, true);
   }
 };
 
