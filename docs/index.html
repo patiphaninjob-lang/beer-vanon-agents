@@ -715,6 +715,23 @@
       font-size: 0.92em;
       color: #e6edf3;
     }
+    
+    /* ── Tooltip Connector SVG ── */
+    #tooltipConnector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2400;
+      opacity: 0;
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: visible;
+    }
+    #markerTooltip.show ~ #tooltipConnector {
+      opacity: 1;
+    }
 
     @keyframes popupSpringIn {
       from { opacity: 0; transform: translateY(-8px) scale(0.97); }
@@ -1397,7 +1414,7 @@
 
 <!-- ── Header ── -->
 <div class="header">
-  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.7.5<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.7.5 (ล่าสุด):</span> พอร์ตระบบ Tooltip แบบพรีเมียม (Dark Glassmorphism, เส้นชี้โยงแท่งเทียนไดนามิก SVG Glow Line, และการลากย้ายตำแหน่งอิสระ Draggable) ไปยังหน้าประวัติ (History) และหน้าบันทึกส่วนตัว (Journal) เรียบร้อยครบถ้วนสม่ำเสมอ</li><li><span class="wt-ver">v2.7.0:</span> อัพเกรดดีไซน์ Tooltip หน้าแรกเป็นแบบ Dark Glassmorphism พร้อมเส้นชี้และระบบลากย้ายอิสระ</li><li><span class="wt-ver">v2.6.0:</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li><li><span class="wt-ver">v2.5.8:</span> เพิ่มปุ่มขยายกราฟเต็มจอ ⤢ มุมซ้ายบนกราฟทุกตัว กดแล้วเด้งป๊อปอัปกราฟใหญ่สไตล์ iOS สมูทนุ่มนวล</li></ul></span></span></div>
+  <div class="logo">🍺 Beer Top 100 <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v2.8.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v2.8.0 (ล่าสุด):</span> อัพเกรดเส้นเชื่อมต่อ Tooltip สไตล์ iOS (High Performance) ปรับการทำงานด้วย requestAnimationFrame ป้องกันอาการแล็กหน่วง และใช้ CSS Opacity ควบคุมการเฟดเข้าออกพร้อมตัวกล่อง 100% ทำให้เส้นเชื่อมโยงนุ่มนวลและไม่ค้างคาในทุกจุด (กราฟเล็ก/ใหญ่ หน้าแรก History และ Journal)</li><li><span class="wt-ver">v2.7.5:</span> พอร์ตระบบ Tooltip แบบพรีเมียม (Dark Glassmorphism, เส้นชี้โยงแท่งเทียนไดนามิก SVG Glow Line, และการลากย้ายตำแหน่งอิสระ Draggable) ไปยังหน้าประวัติ (History) และหน้าบันทึกส่วนตัว (Journal) เรียบร้อยครบถ้วนสม่ำเสมอ</li><li><span class="wt-ver">v2.7.0:</span> อัพเกรดดีไซน์ Tooltip หน้าแรกเป็นแบบ Dark Glassmorphism พร้อมเส้นชี้และระบบลากย้ายอิสระ</li><li><span class="wt-ver">v2.6.0:</span> ปรับปรุงระบบตรวจจับการชี้เมาส์/สัมผัส (Hit-Testing) บนแท่งเทียนให้แม่นยำยิ่งขึ้น ตรวจเช็กทั้งแกน X และแกน Y</li><li><span class="wt-ver">v2.5.9:</span> แก้ไข Tooltip บันทึกโน้ตที่ซ่อนหลังป๊อปอัปกราฟเต็มจอ ตอนนี้แสดงด้านหน้าถูกต้องแล้ว</li></ul></span></span></div>
   <div class="controls">
     <div class="cal-wrap">
       <button id="dateBtn" class="date-picker-btn" onclick="toggleCalendar()">📅 <span id="dateBtnLabel">เลือกวัน</span> ▾</button>
@@ -2885,6 +2902,15 @@ function showMiniChartTooltip(canvas, note, ticker, closestIdx) {
   initTooltipDragging();
 }
 
+let connectorFrameId = null;
+function queueConnectorUpdate() {
+  if (connectorFrameId) return;
+  connectorFrameId = requestAnimationFrame(() => {
+    connectorFrameId = null;
+    updateTooltipConnector();
+  });
+}
+
 function updateTooltipConnector() {
   const tooltip = document.getElementById('markerTooltip');
   const svg = document.getElementById('tooltipConnector');
@@ -2893,14 +2919,12 @@ function updateTooltipConnector() {
   if (!tooltip || !svg || !line || !dot) return;
 
   if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
-    svg.style.display = 'none';
     return;
   }
 
   const canvas = tooltip._sourceCanvas;
   const closestIdx = tooltip._closestIdx;
   if (!canvas || closestIdx === undefined) {
-    svg.style.display = 'none';
     return;
   }
 
@@ -2920,10 +2944,22 @@ function updateTooltipConnector() {
   tooltip._candleX = candleScreenX;
   tooltip._candleY = candleScreenY;
 
-  svg.style.display = 'block';
-
   // Calculate nearest edge on the tooltip rectangle to the candle coordinate
-  const ttRect = tooltip.getBoundingClientRect();
+  // Use cached dragging rect if active to avoid layout thrashing (getBoundingClientRect)
+  let ttRect;
+  if (tooltipDragState && tooltipDragState.active) {
+    const left = parseFloat(tooltip.style.left) || 0;
+    const top = parseFloat(tooltip.style.top) || 0;
+    ttRect = {
+      left: left,
+      top: top,
+      right: left + tooltipDragState.width,
+      bottom: top + tooltipDragState.height
+    };
+  } else {
+    ttRect = tooltip.getBoundingClientRect();
+  }
+
   const xClamped = Math.max(ttRect.left, Math.min(ttRect.right, candleScreenX));
   const yClamped = Math.max(ttRect.top, Math.min(ttRect.bottom, candleScreenY));
 
@@ -2936,7 +2972,7 @@ function updateTooltipConnector() {
   dot.setAttribute('cy', candleScreenY);
 }
 
-let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0 };
+let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0, width: 0, height: 0 };
 
 function initTooltipDragging() {
   const tooltip = document.getElementById('markerTooltip');
@@ -2962,7 +2998,9 @@ function initTooltipDragging() {
       startX: clientX,
       startY: clientY,
       initialLeft: parseFloat(tooltip.style.left) || 0,
-      initialTop: parseFloat(tooltip.style.top) || 0
+      initialTop: parseFloat(tooltip.style.top) || 0,
+      width: tooltip.offsetWidth,
+      height: tooltip.offsetHeight
     };
 
     tooltip.classList.add('dragging');
@@ -2988,14 +3026,13 @@ function initTooltipDragging() {
     let newTop = tooltipDragState.initialTop + dy;
 
     const margin = 10;
-    const rect = tooltip.getBoundingClientRect();
-    newLeft = Math.max(margin, Math.min(window.innerWidth - rect.width - margin, newLeft));
-    newTop = Math.max(margin, Math.min(window.innerHeight - rect.height - margin, newTop));
+    newLeft = Math.max(margin, Math.min(window.innerWidth - tooltipDragState.width - margin, newLeft));
+    newTop = Math.max(margin, Math.min(window.innerHeight - tooltipDragState.height - margin, newTop));
 
     tooltip.style.left = `${newLeft}px`;
     tooltip.style.top = `${newTop}px`;
 
-    updateTooltipConnector();
+    queueConnectorUpdate();
   }
 
   function onDragEnd() {
@@ -4164,7 +4201,7 @@ init();
 const tooltipObserver = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.type === 'attributes') {
-      updateTooltipConnector();
+      queueConnectorUpdate();
     }
   });
 });
@@ -4174,8 +4211,8 @@ if (markerTooltipEl) {
 }
 
 // Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
-window.addEventListener('scroll', updateTooltipConnector, { passive: true });
-window.addEventListener('resize', updateTooltipConnector, { passive: true });
+window.addEventListener('scroll', queueConnectorUpdate, { passive: true });
+window.addEventListener('resize', queueConnectorUpdate, { passive: true });
 
 loadAutomationStatus();
 loadSystemHealth();
@@ -4228,7 +4265,7 @@ loadUsage();
 <div id="markerTooltip" class="marker-tooltip"></div>
 
 <!-- Tooltip Connector Line SVG -->
-<svg id="tooltipConnector" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2400; display:none; overflow:visible;">
+<svg id="tooltipConnector">
   <defs>
     <filter id="connectorGlow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3" result="blur" />

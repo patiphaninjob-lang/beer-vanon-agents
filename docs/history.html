@@ -241,6 +241,23 @@
       font-size: 0.92em;
       color: #e6edf3;
     }
+    
+    /* ── Tooltip Connector SVG ── */
+    #tooltipConnector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2400;
+      opacity: 0;
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: visible;
+    }
+    #markerTooltip.show ~ #tooltipConnector {
+      opacity: 1;
+    }
 
     @media (max-width: 560px) {
       .marker-tooltip { max-width: calc(100vw - 32px); }
@@ -954,6 +971,15 @@ async function showGroup(group, candle) {
   }
 }
 
+let connectorFrameId = null;
+function queueConnectorUpdate() {
+  if (connectorFrameId) return;
+  connectorFrameId = requestAnimationFrame(() => {
+    connectorFrameId = null;
+    updateTooltipConnector();
+  });
+}
+
 function updateTooltipConnector() {
   const tooltip = document.getElementById('markerTooltip');
   const svg = document.getElementById('tooltipConnector');
@@ -962,14 +988,12 @@ function updateTooltipConnector() {
   if (!tooltip || !svg || !line || !dot) return;
 
   if (!tooltip.classList.contains('show') || window.innerWidth <= 560) {
-    svg.style.display = 'none';
     return;
   }
 
   const canvas = tooltip._sourceCanvas;
   const m = tooltip._activeMarker;
   if (!canvas || !m) {
-    svg.style.display = 'none';
     return;
   }
 
@@ -977,10 +1001,22 @@ function updateTooltipConnector() {
   const candleScreenX = canvasRect.left + m.x;
   const candleScreenY = canvasRect.top + m.y;
 
-  svg.style.display = 'block';
-
   // Calculate nearest edge on the tooltip rectangle to the candle coordinate
-  const ttRect = tooltip.getBoundingClientRect();
+  // Use cached dragging rect if active to avoid layout thrashing (getBoundingClientRect)
+  let ttRect;
+  if (tooltipDragState && tooltipDragState.active) {
+    const left = parseFloat(tooltip.style.left) || 0;
+    const top = parseFloat(tooltip.style.top) || 0;
+    ttRect = {
+      left: left,
+      top: top,
+      right: left + tooltipDragState.width,
+      bottom: top + tooltipDragState.height
+    };
+  } else {
+    ttRect = tooltip.getBoundingClientRect();
+  }
+
   const xClamped = Math.max(ttRect.left, Math.min(ttRect.right, candleScreenX));
   const yClamped = Math.max(ttRect.top, Math.min(ttRect.bottom, candleScreenY));
 
@@ -993,7 +1029,7 @@ function updateTooltipConnector() {
   dot.setAttribute('cy', candleScreenY);
 }
 
-let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0 };
+let tooltipDragState = { active: false, startX: 0, startY: 0, initialLeft: 0, initialTop: 0, width: 0, height: 0 };
 
 function initTooltipDragging() {
   const tooltip = document.getElementById('markerTooltip');
@@ -1019,7 +1055,9 @@ function initTooltipDragging() {
       startX: clientX,
       startY: clientY,
       initialLeft: parseFloat(tooltip.style.left) || 0,
-      initialTop: parseFloat(tooltip.style.top) || 0
+      initialTop: parseFloat(tooltip.style.top) || 0,
+      width: tooltip.offsetWidth,
+      height: tooltip.offsetHeight
     };
 
     tooltip.classList.add('dragging');
@@ -1044,14 +1082,13 @@ function initTooltipDragging() {
     let newTop = tooltipDragState.initialTop + dy;
 
     const margin = 10;
-    const rect = tooltip.getBoundingClientRect();
-    newLeft = Math.max(margin, Math.min(window.innerWidth - rect.width - margin, newLeft));
-    newTop = Math.max(margin, Math.min(window.innerHeight - rect.height - margin, newTop));
+    newLeft = Math.max(margin, Math.min(window.innerWidth - tooltipDragState.width - margin, newLeft));
+    newTop = Math.max(margin, Math.min(window.innerHeight - tooltipDragState.height - margin, newTop));
 
     tooltip.style.left = `${newLeft}px`;
     tooltip.style.top = `${newTop}px`;
 
-    updateTooltipConnector();
+    queueConnectorUpdate();
   }
 
   function onDragEnd() {
@@ -1070,7 +1107,7 @@ function initTooltipDragging() {
 const tooltipObserver = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.type === 'attributes') {
-      updateTooltipConnector();
+      queueConnectorUpdate();
     }
   });
 });
@@ -1080,8 +1117,8 @@ if (markerTooltipEl) {
 }
 
 // Recalculate connector line dynamically on scroll & resize to stay pinned to the scrolling/resizing chart
-window.addEventListener('scroll', updateTooltipConnector, { passive: true });
-window.addEventListener('resize', updateTooltipConnector, { passive: true });
+window.addEventListener('scroll', queueConnectorUpdate, { passive: true });
+window.addEventListener('resize', queueConnectorUpdate, { passive: true });
 
 function renderNoteList() {
   const list = document.getElementById('noteList');
@@ -1235,7 +1272,7 @@ init();
 <div id="markerTooltip" class="marker-tooltip"></div>
 
 <!-- Tooltip Connector Line SVG -->
-<svg id="tooltipConnector" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2400; display:none; overflow:visible;">
+<svg id="tooltipConnector">
   <defs>
     <filter id="connectorGlow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3" result="blur" />
