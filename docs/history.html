@@ -942,6 +942,10 @@ async function showGroup(group, candle) {
       } else {
         tooltip.classList.remove('tail-top');
       }
+
+      // Draw connector line and enable dragging
+      updateTooltipConnector();
+      initTooltipDragging();
     };
     
     setTimeout(positionTooltip, 0);
