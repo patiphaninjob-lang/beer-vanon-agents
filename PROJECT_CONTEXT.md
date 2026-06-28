@@ -16,9 +16,10 @@
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.
-2. `docs/index.html` (US) & `docs/thai.html` (Thai): Dashboards for viewing and triggering runs.
+2. `docs/index.html` (US) & `docs/thai/index.html` (Thai): Dashboards for viewing and triggering runs.
 3. `docs/data/` (US) & `docs/thai-data/` (Thai): Daily report storage.
 4. `docs/notes/notes.json`: Centralized user sentiment data.
+5. `docs/preview.html`: Mobile Device Previewer/Simulator for testing layouts on mobile viewports.
 
 ## Important Active Files and Commands
 - `beer_top100_agent.py` / `thai_top100_agent.py`: Agent scripts.
