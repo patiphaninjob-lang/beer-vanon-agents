@@ -1,10 +1,11 @@
-const CACHE_NAME = 'beer-top100-v20260628-candlestick-3d-glow-v55';
+const CACHE_NAME = 'beer-top100-v20260628-candlestick-3d-glow-v56';
 const APP_SHELL = [
   './',
   './index.html',
   './journal.html',
   './history.html',
   './preview.html',
+  './shared-utils.js',
   './manifest.webmanifest',
   './icon.svg',
   './tradingview-notes.user.js'

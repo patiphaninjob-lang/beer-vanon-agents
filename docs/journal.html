@@ -7,6 +7,7 @@
   <title>Beer Journal</title>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="shared-utils.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     /* Modern Premium Custom Scrollbar */
@@ -1128,7 +1129,7 @@
   <header class="topbar">
     <div class="brand">
       <div>
-        <h1>สมุกบันทึกการเทรด <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.6.9<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.6.9 (ล่าสุด):</span> ปรับปรุงการแสดงผลส่วนการบ้าน (Homework Checklist) และบทวิเคราะห์ Ch34 บนหน้าการ์ดหุ้นแต่ละตัวในหน้าหลัก (Home Page) และแถบด้านข้าง (History Page) ให้แสดงในรูปแบบกล่อง Accent Glassmorphic Boxes สอดคล้องกับกล่องป๊อปอัป (Tooltip) และสม่ำเสมอสวยงามทั่วทั้งเว็บไซต์ 100%</li><li><span class="wt-ver">v3.6.8:</span> ปรับปรุงกล่องป๊อปอัปข้อความ (Tooltip) ของโน้ตส่วนตัวบนหน้าแรก (Home) และหน้าประวัติ (History) ให้แสดงผลเป็นกล่องขอบสี Accent Glassmorphic Boxes (Thesis, If Wrong, Risk, Plan Grid, RRR) ให้สวยงามสม่ำเสมอเหมือนกันกับหน้า Journal 100% แก้ปัญหาหน้าเว็บแสดงผลไม่เหมือนกัน</li><li><span class="wt-ver">v3.6.7:</span> ปรับปรุงการแสดงผลส่วน "บทวิเคราะห์เจาะลึก Ch34 ของ Beer" (วิเคราะห์ 6 ด้าน: ธุรกิจ, ตัวเลข, การสื่อสาร, คู่แข่ง, ผู้บริหาร, แผนของเรา) ภายในกล่องข้อความป๊อปอัป (Tooltip) ให้จัดเป็นระเบียบสวยงามในรูปแบบ Accent Glassmorphic Boxes พร้อมไอคอนสอดคล้องกับหัวข้อ ให้อ่านง่ายและน่าสนใจเหมือนโน้ตบันทึกเทรดส่วนตัว</li><li><span class="wt-ver">v3.6.5:</span> ปรับปรุงการจัดเรียงและการแสดงผลของกล่องข้อความป๊อปอัป (Tooltip) โน้ตบันทึกเทรดส่วนตัว โดยแยกรายละเอียดแผนการเทรด (Target/Entry/Stop Loss/RRR) ออกมาเป็นการ์ดตารางที่อ่านง่าย พร้อมจัดกลุ่มบันทึกเชิงลึก (Thesis, If Wrong, Risk) ในกล่องเน้นขอบสีสไตล์ iOS Glassmorphism</li><li><span class="wt-ver">v3.6.4 (ล่าสุด):</span> ปรับปรุงตำแหน่งเริ่มต้นของกล่องป๊อปอัป (Tooltip) ให้อยู่ด้านล่างเยื้องซ้ายของจุดเทียน/จุดโน้ต โดยยังสามารถลากย้ายได้อย่างอิสระเหมือนเดิม เพื่อไม่ให้บดบังแท่งเทียนขณะเปิดอ่าน</li><li><span class="wt-ver">v3.6.3:</span> นำปุ่ม "ไม่ระบุ / ไม่ลงข้อมูล" ออกจากกลุ่มผลลัพธ์จริง (Outcome) พร้อมเพิ่มฟังก์ชันคลิกซ้ำเพื่อยกเลิกการเลือก (Deselect) ให้กับชิป Outcome เช่นเดียวกัน เพื่อให้พฤติกรรมการกดยกเลิกมีความสม่ำเสมอสอดคล้องกันทุกหัวข้อ</li><li><span class="wt-ver">v3.6.2:</span> อัปเกรดชิปอารมณ์ ("ตอนนี้รู้สึกอะไร") และตั้งใจ ("ตั้งใจจะทำอะไร") ให้รองรับการกดคลิกซ้ำเพื่อยกเลิกการเลือก (Deselect) เช่นกัน เพื่อความยืดหยุ่นและการทำงานที่สอดคล้องกับหัวข้ออื่นๆ</li><li><span class="wt-ver">v3.6.1:</span> เพิ่มตัวเลือก "ไม่ระบุ/ไม่ลงข้อมูล" (None) สำหรับผลลัพธ์จริง (Outcome) พร้อมรองรับการคลิกซ้ำที่ Chip ที่เลือกไว้แล้วเพื่อยกเลิกการเลือก (Deselect) ทั้งส่วนของ Trade Setup และ Outcome เพื่อความยืดหยุ่นในกรณีที่ไม่มีข้อมูล</li><li><span class="wt-ver">v3.6.0:</span> อัปเกรดระบบสมุดบันทึกเทรด (Journal) เพิ่มการวางแผน Setup (Daytrade Hunter), คำนวณ RRR อัตโนมัติแบบเรียลไทม์ และเพิ่มส่วน Outcome ปิดดีล พร้อมระบบเชื่อมโยง Badge ผลลัพธ์และราคาไปยังหน้าแรก (Home) และหน้าประวัติ (History) อัตโนมัติ</li><li><span class="wt-ver">v3.5.3:</span> เปิดใช้ระบบตรวจจับและอัปเดต Service Worker ใหม่ในทุกหน้า (Home, History, Journal) เพื่อรีโหลดรับหน้าเว็บเวอร์ชันล่าสุดโดยอัตโนมัติเมื่อมีการอัปเดต แก้ปัญหามือถือค้างแคชหน้าเดิม</li><li><span class="wt-ver">v3.5.2:</span> เปิดใช้งานการลากย้ายตำแหน่งป๊อปอัปได้อย่างอิสระบนหน้าจอมือถือ ทั้งในหน้าแรก (Home) และหน้าประวัติ (History) โดยยกเลิกการล็อกพิกัดกล่องไว้ที่ขอบด้านล่างหน้าจอ เพื่อให้ได้ประสบการณ์ที่ยืดหยุ่นเหมือนหน้า Journal</li><li><span class="wt-ver">v3.5.1:</span> แก้ไขระบบสัมผัสบนมือถือ: ปลดล็อกปุ่มลูกศรนำทาง (‹ และ ›) และปุ่มลิงก์สมุดบันทึก (Journal Link) บนแถบหัวป๊อปอัปให้สามารถแตะสัมผัสกดได้เป็นปกติ 100% จากเดิมที่การตรวจจับการลากบดบังและกั้นการสัมผัสไว้</li><li><span class="wt-ver">v3.5.0:</span> เพิ่มระบบจำลองหน้าจอมือถือสุดพรีเมียม (Mobile Device Previewer 📱) พร้อมปุ่มด่วนเปิดหน้านี้บนแถบเมนูด้านบน เพื่อความสะดวกในการทดสอบการแสดงผลบนอุปกรณ์พกพาขนาดต่างๆ และหมุนทิศทางได้อิสระ</li><li><span class="wt-ver">v3.4.0:</span> เพิ่มปุ่มขยายกราฟเป็นเต็มจอ (Fullscreen Chart Toggle ⛶) บนหน้าประวัติ (History) และหน้าสมุดบันทึกเทรด (Journal) พร้อมรองรับการกดปิดด้วยปุ่มกากบาทหรือคีย์ Escape ให้ผู้ใช้งานวิเคราะห์จุดเทรดบนกราฟขนาดใหญ่ได้อย่างจุใจ</li><li><span class="wt-ver">v3.3.1:</span> แก้ไขระบบจุดเทียนจำลอง (Placeholder) ของวันหยุดเสาร์-อาทิตย์ in หน้า History และ Journal โดยดึงราคาปิดของวันที่ใกล้เคียงที่สุดมาอ้างอิงแทนการใช้ราคาล่าสุด ช่วยลดข้อผิดพลาดของแท่งเทียนที่วาดลอยโดดเดี่ยวไม่ตรงราคา in อดีต</li><li><span class="wt-ver">v3.3.0:</span> แก้ไขข้อผิดพลาดหน้าระบบประวัติ (History) ตัวแปรล้มเหลวขณะคำนวณตำแหน่งเส้นเชื่อมโยง ทำให้หน้าประวัติกลับมาทำงานได้ถูกต้องและเสถียร 100%</li><li><span class="wt-ver">v3.2.9:</span> ปรับปรุงระบบเปลี่ยนบันทึกซ้ายขวา in หน้า History และ Journal ให้แสดงผลทันทีแบบไม่มีดีเลย์ (Non-blocking Sync) โดยโหลดข้อความโน้ตขึ้นมาก่อน และดึงบทวิเคราะห์ตามมาในภายหลัง ช่วยให้การเปลี่ยนข้อมูลลื่นไหลและนุ่มนวลสูงสุด</li><li><span class="wt-ver">v3.2.8:</span> นำคำนำหน้าข้อความ "Beer มองว่า:" หรือ "Beer มองว่า" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ "Beer วิเคราะห์ Ch34 เจาะลึก" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจোহือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></h1>
+        <h1>สมุกบันทึกการเทรด <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.7.0<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.7.0 (ล่าสุด):</span> ปรับปรุงกล่องข้อความป๊อปอัป (Tooltip) บนหน้าหลัก (Home Page) และหน้าประวัติ (History Page) ให้รองรับการแสดงผลโน้ตบันทึกเทรดส่วนตัวครบถ้วนทุกอันที่มีในวันเดียวกัน โดยดึงมาแสดงผลต่อกันและใช้ฟังก์ชันจัดกลุ่ม Accent Glassmorphic Boxes แบบเดียวกับหน้า Journal 100% แก้ปัญหาข้อมูลบางส่วนสูญหายเมื่อมีหลายโน้ตในวันเดียวกัน</li><li><span class="wt-ver">v3.6.9:</span> ปรับปรุงการแสดงผลส่วนการบ้าน (Homework Checklist) และบทวิเคราะห์ Ch34 บนหน้าการ์ดหุ้นแต่ละตัวในหน้าหลัก (Home Page) และแถบด้านข้าง (History Page) ให้แสดงในรูปแบบกล่อง Accent Glassmorphic Boxes สอดคล้องกับกล่องป๊อปอัป (Tooltip) และสม่ำเสมอสวยงามทั่วทั้งเว็บไซต์ 100%</li><li><span class="wt-ver">v3.6.8:</span> ปรับปรุงกล่องป๊อปอัปข้อความ (Tooltip) ของโน้ตส่วนตัวบนหน้าแรก (Home) และหน้าประวัติ (History) ให้แสดงผลเป็นกล่องขอบสี Accent Glassmorphic Boxes (Thesis, If Wrong, Risk, Plan Grid, RRR) ให้สวยงามสม่ำเสมอเหมือนกันกับหน้า Journal 100% แก้ปัญหาหน้าเว็บแสดงผลไม่เหมือนกัน</li><li><span class="wt-ver">v3.6.7:</span> ปรับปรุงการแสดงผลส่วน "บทวิเคราะห์เจาะลึก Ch34 ของ Beer" (วิเคราะห์ 6 ด้าน: ธุรกิจ, ตัวเลข, การสื่อสาร, คู่แข่ง, ผู้บริหาร, แผนของเรา) ภายในกล่องข้อความป๊อปอัป (Tooltip) ให้จัดเป็นระเบียบสวยงามในรูปแบบ Accent Glassmorphic Boxes พร้อมไอคอนสอดคล้องกับหัวข้อ ให้อ่านง่ายและน่าสนใจเหมือนโน้ตบันทึกเทรดส่วนตัว</li><li><span class="wt-ver">v3.6.5:</span> ปรับปรุงการจัดเรียงและการแสดงผลของกล่องข้อความป๊อปอัป (Tooltip) โน้ตบันทึกเทรดส่วนตัว โดยแยกรายละเอียดแผนการเทรด (Target/Entry/Stop Loss/RRR) ออกมาเป็นการ์ดตารางที่อ่านง่าย พร้อมจัดกลุ่มบันทึกเชิงลึก (Thesis, If Wrong, Risk) ในกล่องเน้นขอบสีสไตล์ iOS Glassmorphism</li><li><span class="wt-ver">v3.6.4 (ล่าสุด):</span> ปรับปรุงตำแหน่งเริ่มต้นของกล่องป๊อปอัป (Tooltip) ให้อยู่ด้านล่างเยื้องซ้ายของจุดเทียน/จุดโน้ต โดยยังสามารถลากย้ายได้อย่างอิสระเหมือนเดิม เพื่อไม่ให้บดบังแท่งเทียนขณะเปิดอ่าน</li><li><span class="wt-ver">v3.6.3:</span> นำปุ่ม "ไม่ระบุ / ไม่ลงข้อมูล" ออกจากกลุ่มผลลัพธ์จริง (Outcome) พร้อมเพิ่มฟังก์ชันคลิกซ้ำเพื่อยกเลิกการเลือก (Deselect) ให้กับชิป Outcome เช่นเดียวกัน เพื่อให้พฤติกรรมการกดยกเลิกมีความสม่ำเสมอสอดคล้องกันทุกหัวข้อ</li><li><span class="wt-ver">v3.6.2:</span> อัปเกรดชิปอารมณ์ ("ตอนนี้รู้สึกอะไร") และตั้งใจ ("ตั้งใจจะทำอะไร") ให้รองรับการกดคลิกซ้ำเพื่อยกเลิกการเลือก (Deselect) เช่นกัน เพื่อความยืดหยุ่นและการทำงานที่สอดคล้องกับหัวข้ออื่นๆ</li><li><span class="wt-ver">v3.6.1:</span> เพิ่มตัวเลือก "ไม่ระบุ/ไม่ลงข้อมูล" (None) สำหรับผลลัพธ์จริง (Outcome) พร้อมรองรับการคลิกซ้ำที่ Chip ที่เลือกไว้แล้วเพื่อยกเลิกการเลือก (Deselect) ทั้งส่วนของ Trade Setup และ Outcome เพื่อความยืดหยุ่นในกรณีที่ไม่มีข้อมูล</li><li><span class="wt-ver">v3.6.0:</span> อัปเกรดระบบสมุดบันทึกเทรด (Journal) เพิ่มการวางแผน Setup (Daytrade Hunter), คำนวณ RRR อัตโนมัติแบบเรียลไทม์ และเพิ่มส่วน Outcome ปิดดีล พร้อมระบบเชื่อมโยง Badge ผลลัพธ์และราคาไปยังหน้าแรก (Home) และหน้าประวัติ (History) อัตโนมัติ</li><li><span class="wt-ver">v3.5.3:</span> เปิดใช้ระบบตรวจจับและอัปเดต Service Worker ใหม่ในทุกหน้า (Home, History, Journal) เพื่อรีโหลดรับหน้าเว็บเวอร์ชันล่าสุดโดยอัตโนมัติเมื่อมีการอัปเดต แก้ปัญหามือถือค้างแคชหน้าเดิม</li><li><span class="wt-ver">v3.5.2:</span> เปิดใช้งานการลากย้ายตำแหน่งป๊อปอัปได้อย่างอิสระบนหน้าจৌমือถือ ทั้งในหน้าแรก (Home) และหน้าประวัติ (History) โดยยกเลิกการล็อกพิกัดกล่องไว้ที่ขอบด้านล่างหน้าจอ เพื่อให้ได้ประสบการณ์ที่ยืดหยุ่นเหมือนหน้า Journal</li><li><span class="wt-ver">v3.5.1:</span> แก้ไขระบบสัมผัสบนมือถือ: ปลดล็อกปุ่มลูกศรนำทาง (‹ และ ›) และปุ่มลิงก์สมุดบันทึก (Journal Link) บนแถบหัวป๊อปอัปให้สามารถแตะสัมผัสกดได้เป็นปกติ 100% จากเดิมที่การตรวจจับการลากบดบังและกั้นการสัมผัสไว้</li><li><span class="wt-ver">v3.5.0:</span> เพิ่มระบบจำลองหน้าจอมือถือสุดพรีเมียม (Mobile Device Previewer 📱) พร้อมปุ่มด่วนเปิดหน้านี้บนแถบเมนูด้านบน เพื่อความสะดวกในการทดสอบการแสดงผลบนอุปกรณ์พกพาขนาดต่างๆ และหมุนทิศทางได้อิสระ</li><li><span class="wt-ver">v3.4.0:</span> เพิ่มปุ่มขยายกราฟเป็นเต็มจอ (Fullscreen Chart Toggle ⛶) บนหน้าประวัติ (History) และหน้าสมุดบันทึกเทรด (Journal) พร้อมรองรับการกดปิดด้วยปุ่มกากบาทหรือคีย์ Escape ให้ผู้ใช้งานวิเคราะห์จุดเทรดบนกราฟขนาดใหญ่ได้อย่างจุใจ</li><li><span class="wt-ver">v3.3.1:</span> แก้ไขระบบจุดเทียนจำลอง (Placeholder) ของวันหยุดเสาร์-อาทิตย์ in หน้า History และ Journal โดยดึงราคาปิดของวันที่ใกล้เคียงที่สุดมาอ้างอิงแทนการใช้ราคาล่าสุด ช่วยลดข้อผิดพลาดของแท่งเทียนที่วาดลอยโดดเดี่ยวไม่ตรงราคา in อดี트</li><li><span class="wt-ver">v3.3.0:</span> แก้ไขข้อผิดพลาดหน้าระบบประวัติ (History) ตัวแปรล้มเหลวขณะคำนวณตำแหน่งเส้นเชื่อมโยง ทำให้หน้าประวัติกลับมาทำงานได้ถูกต้องและเสถียร 100%</li><li><span class="wt-ver">v3.2.9:</span> ปรับปรุงระบบเปลี่ยนบันทึกซ้ายขวา in หน้า History และ Journal ให้แสดงผลทันทีแบบไม่มีดีเลย์ (Non-blocking Sync) โดยโหลดข้อความโน้ตขึ้นมาก่อน และดึงบทวิเคราะห์ตามมาในภายหลัง ช่วยให้การเปลี่ยนข้อมูลลื่นไหลและนุ่มนวลสูงสุด</li><li><span class="wt-ver">v3.2.8:</span> นำคำนำหน้าข้อความ "Beer มองว่า:" หรือ "Beer มองว่า" ออกจากรายละเอียดบทวิเคราะห์เจาะลึกทั้งหมดของตัวหุ้น เพื่อให้ข้อมูลดูเป็นกลาง ชัดเจน และสอดคล้องกับหน้าจอบันทึกส่วนตัวมากขึ้น</li><li><span class="wt-ver">v3.2.7:</span> นำหัวข้อป้ายชื่อ "Beer วิเคราะห์ Ch34 เจาะลึก" ออกจากกล่องการบ้านของการ์ดหุ้นแต่ละตัวเพื่อให้หน้าจอดูกลัดเกลา สวยงาม และมินิมอลมากขึ้น</li><li><span class="wt-ver">v3.2.6:</span> เพิ่มระบบซิงก์ข้อมูลข้ามหน้าต่าง/แท็บทันทีและเมื่อกดปุ่มย้อนกลับ (bfcache pageshow & visibilitychange sync) บนหน้าแรก History และ Journal โดยไม่ต้องกดปุ่ม F5 รีเฟรชอีกต่อไป</li><li><span class="wt-ver">v3.2.5:</span> ปรับปรุงดีไซน์แถบเลื่อนหน้าจอ (Scrollbar) ให้เป็นแบบพรีเมียมสีเทาดำกึ่งโปร่งแสง สไตล์ iOS/macOS ทั่วทั้งเว็บไซต์และทุกหน้าจอ (หน้าแรก, History, และ Journal) ช่วยให้ดูกลมกลืน สบายตา ไม่สว่างเด่นขัดหูขัดตา</li><li><span class="wt-ver">v3.2.4:</span> เพิ่มป้ายเลขเวอร์ชันแอปและกล่องแสดงรายละเอียดความเปลี่ยนแปลง (What's New) ให้แสดงผลครบทุกหน้า (หน้าแรก, History, และ Journal) ช่วยให้ผู้ใช้ตรวจสอบความอัปเดตของ PWA บนอุปกรณ์ต่างๆ ได้ทันที</li><li><span class="wt-ver">v3.2.3:</span> แก้ไขข้อผิดพลาดของชื่อตัวแปรซ้ำซ้อน (Duplicate const declaration) ในหน้าประวัติ (History) ช่วยให้หน้าเว็บกลับมาโหลดข้อมูลได้ปกติ 100%</li><li><span class="wt-ver">v3.2.2:</span> แก้ไขข้อผิดพลาดเชิงเวลา (Async timing bugs) ในหน้าประวัติ (History) และหน้าบันทึกประจำวัน (Journal) เพื่อให้ตำแหน่งกล่องข้อความป๊อปอัปล็อกตำแหน่งนิ่งสนิท 100% เมื่อกดลูกศรเลื่อนดูบันทึกสลับไปมา</li><li><span class="wt-ver">v3.2.1:</span> ล็อกตำแหน่งพิกัดกล่องข้อความป๊อปอัป (Tooltip) ให้อยู่กับที่เมื่อกดลูกศรเลื่อนดูบันทึกซ้ายขวา ป้องกันป๊อปอัปกระโดดหรือดิ้นไปมา ทำให้สลับอ่านข้อมูลได้ลื่นไหล สบายตาสุดๆ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.2.0:</span> เพิ่มปุ่มควบคุมลูกศร (‹ และ ›) บนหัวป๊อปอัป (Tooltip) เพื่อให้สามารถกดเลื่อนดูบันทึกและจุดเทรดในแท่งเทียนถัดไปหรือก่อนหน้าได้อย่างอิสระและลื่นไหล 360 องศา ทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.1.1:</span> เอาส่วนประวัติโน้ตเก่า ("บันทึกที่ผ่านมา") ออกจากป๊อปอัปเขียนโน้ต "มุมมองของฉัน" ตามคำสั่งเพื่อความกระชับและไม่รกหน้าจอ</li><li><span class="wt-ver">v3.1.0:</span> เพิ่มการแสดงผลสีกล่องข้อมูลและเส้นเชื่อมโยงป๊อปอัป (Tooltip) ตามอารมณ์เทรดเดอร์ (กลัว=แดง, โลภ/FOMO=ฟ้า, มั่นใจแต่ระวัง=เขียว, ลังเล/ใจเย็นรอ/ไม่เชื่อข่าว=เหลือง) ในรูปแบบ iOS Glassmorphism และเม็ดกลมแสดงผลอารมณ์ที่สวยงามทุกหน้าจอ ทั้งหน้าแรก Journal และ History</li><li><span class="wt-ver">v3.0.0:</span> ระบบซิงก์ข้อมูลเรียลไทม์ 100% ข้ามหน้าต่างและอุปกรณ์ด้วย Firestore `onSnapshot` ทุกการบันทึกใน Journal หรือโน้ตจะอัปเดตขึ้นหน้าแรก กราฟย่อย กราฟขยาย และหน้า History ทันทีโดยไม่ต้องกดรีเฟรช พร้อมเชื่อมต่อไลบรารีคลาวด์ในหน้าประวัติ (History) สำเร็จครบวงจร</li><li><span class="wt-ver">v2.9.8:</span> ปรับปรุงระบบรายการติดตาม (Watchlist) ครั้งใหญ่: ยกเลิกการกรองลบหุ้นที่ติดตามออกโดยอัตโนมัติเมื่อกดรีเซ็ตหรือเปลี่ยนวันที่ (ป้องกันข้อมูลสูญหาย 100%) พร้อมเพิ่มการซิงก์ข้อมูลข้ามคอมและมือถือโดยอัตโนมัติผ่านคลาวด์ Firestore และ GitHub</li><li><span class="wt-ver">v2.9.5:</span> เพิ่มระบบคำนวณจุดตัดขอบแบบเลื่อนสไลด์อิสระ (Sliding Boundary Intersection) เมื่อลากย้ายป๊อปอัปไปมา ปลายเส้นเชื่อมต่อจะเลื่อนไหลตามขอบของกล่องอย่างเป็นธรรมชาติ 360 องศา ไม่กองติดค้างทื่อๆ อยู่แค่ที่มุมกล่องในทุกหน้าจอ</li><li><span class="wt-ver">v2.9.0:</span> แก้ไขข้อผิดพลาดของเส้นเชื่อมโยง (SVG Leader Line) อย่างถาวร: เพิ่มการเชื่อมโยงเส้นตรงจุดแท่งเทียนแม้เปิดป๊อปอัปจากการกดปุ่มโน้ต (Note Buttons) นอกกราฟ และใส่คุณสมบัติ `width="100%" height="100%"` ให้ SVG</li><li><span class="wt-ver">v2.8.5:</span> เพิ่มความเสถียรของเส้นเชื่อมต่อ Tooltip เปิดใช้งานบนหน้าจোহือถืออย่างสมบูรณ์แบบ ดักจับการสกรอลล์ในทุกคอนเทนเนอร์ (เลื่อนตามทันทีในหน้าจอขยายเต็มจอ) และแก้จุดพิกัดค้างหลังหมุน/ย่อขยายจอหรือเปลี่ยนช่วงเวลาในทุกหน้า (หน้าแรก, กราฟเล็ก/ใหญ่, History, Journal)</li></ul></span></span></h1>
         <small>หน้าแยกสำหรับบันทึกอารมณ์ ความคิด และแผนของหุ้นแต่ละตัว</small>
       </div>
     </div>
@@ -1415,47 +1416,7 @@ const state = {
 const emotions = ['กลัว', 'โลภ', 'FOMO', 'ลังเล', 'มั่นใจแต่ระวัง', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
 const intents = ['ซื้อ', 'ขาย', 'ถือ', 'รอจังหวะ'];
 
-function detectEmotion(note) {
-  if (!note) return null;
-  if (note.journal && note.journal.emotion) {
-    return note.journal.emotion;
-  }
-  if (note.note) {
-    const emotions = ['กลัว','ลังเล','ใจเย็นรอ','มั่นใจแต่ระวัง','โลภ','FOMO','ไม่เชื่อข่าว'];
-    for (const em of emotions) {
-      if (note.note.includes(em)) return em;
-    }
-  }
-  return null;
-}
-
-function getEmotionCategory(emotion) {
-  if (!emotion) return 'default';
-  const fear = ['กลัว'];
-  const confident = ['มั่นใจแต่ระวัง'];
-  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
-  const greed = ['โลภ', 'FOMO'];
-  
-  if (fear.includes(emotion)) return 'fear';
-  if (confident.includes(emotion)) return 'confident';
-  if (hesitant.includes(emotion)) return 'hesitant';
-  if (greed.includes(emotion)) return 'greed';
-  return 'default';
-}
-
-function getEmotionColor(emotion) {
-  if (!emotion) return '#8b949e'; // default gray/blue for lines
-  const fear = ['กลัว'];
-  const confident = ['มั่นใจแต่ระวัง'];
-  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
-  const greed = ['โลภ', 'FOMO'];
-  
-  if (fear.includes(emotion)) return '#ef5350'; // Red
-  if (confident.includes(emotion)) return '#26a69a'; // Green
-  if (hesitant.includes(emotion)) return '#facc15'; // Yellow
-  if (greed.includes(emotion)) return '#3b82f6'; // Blue
-  return '#f0b90b'; // gold fallback
-}
+// Emotion helper functions are now loaded from shared-utils.js
 const NEWS_TRANSLATIONS = {
   "SpaceX becomes retail's biggest IPO trade: Chart of the Day": "SpaceX กลายเป็นดีล IPO ที่รายย่อยซื้อหนักที่สุด: กราฟเด่นประจำวัน",
   "SpaceX's market debut turned into a record retail buying event.": "การเปิดซื้อขายของ SpaceX กลายเป็นเหตุการณ์ที่รายย่อยเข้าซื้อสูงเป็นสถิติ",
@@ -1727,9 +1688,7 @@ const NEWS_PHRASE_TRANSLATIONS = [
   [/\ban?\b/gi, '']
 ];
 
-function esc(value) {
-  return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+// esc helper function is now loaded from shared-utils.js
 function decodeNewsEntities(text) {
   const raw = String(text || '');
   if (typeof document !== 'undefined' && document.createElement) {
@@ -2177,13 +2136,7 @@ function stockNews(stock = selectedStock()) {
 }
 
 const MONTHS_TH = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-function fmtDate(date) {
-  if (!date) return '';
-  const parts = date.split('-');
-  if (parts.length < 3) return date;
-  const [y,m,d] = parts;
-  return `${parseInt(d,10)} ${MONTHS_TH[parseInt(m,10)] || m} ${y}`;
-}
+// fmtDate helper function is now loaded from shared-utils.js
 
 let canvas = null;
 let ctx = null;
@@ -2321,336 +2274,7 @@ async function getAnalysisForDate(dateStr) {
   return null;
 }
 
-function parseBeerAnalysis(text) {
-  if (!text) return null;
-  
-  const businessMatch = text.match(/(?:•?\s*ธุรกิจ|•?\s*Business)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ตัวเลข|การสื่อสาร|คู่แข่ง|ผู้บริหาร|แผนของเรา|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-  const numbersMatch = text.match(/(?:•?\s*ตัวเลข|•?\s*Numbers)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ธุรกิจ|การสื่อสาร|คู่แข่ง|ผู้บริหาร|แผนของเรา|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-  const commsMatch = text.match(/(?:•?\s*การสื่อสาร|•?\s*Communication)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ธุรกิจ|ตัวเลข|คู่แข่ง|ผู้บริหาร|แผนของเรา|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-  const competitorsMatch = text.match(/(?:•?\s*คู่แข่ง|•?\s*Competitors)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ธุรกิจ|ตัวเลข|การสื่อสาร|ผู้บริหาร|แผนของเรา|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-  const managementMatch = text.match(/(?:•?\s*ผู้บริหาร|•?\s*Management)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ธุรกิจ|ตัวเลข|การสื่อสาร|คู่แข่ง|แผนของเรา|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-  const planMatch = text.match(/(?:•?\s*แผนของเรา|•?\s*Our Plan)\s*:\s*([\s\S]*?)(?=(?:•?\s*(?:ธุรกิจ|ตัวเลข|การสื่อสาร|คู่แข่ง|ผู้บริหาร|Business|Numbers|Communication|Competitors|Management|Our Plan))\s*:|$)/i);
-
-  if (!businessMatch && !numbersMatch && !commsMatch && !competitorsMatch && !managementMatch && !planMatch) {
-    return null;
-  }
-
-  return {
-    business: businessMatch ? businessMatch[1].trim() : null,
-    numbers: numbersMatch ? numbersMatch[1].trim() : null,
-    comms: commsMatch ? commsMatch[1].trim() : null,
-    competitors: competitorsMatch ? competitorsMatch[1].trim() : null,
-    management: managementMatch ? managementMatch[1].trim() : null,
-    plan: planMatch ? planMatch[1].trim() : null
-  };
-}
-
-function renderBeerAnalysis(analysisText, customLabel) {
-  if (!analysisText) return '';
-  const cleaned = analysisText.replace(/Beer\s+มองว่า\s*:?\s*/gi, '').trim();
-  const parsed = parseBeerAnalysis(cleaned);
-  
-  const labelHtml = customLabel !== null ? `<div class="tt-label beer">${esc(customLabel || '🧭 Beer วิเคราะห์ Ch34 เจาะลึก:')}</div>` : '';
-  
-  if (parsed) {
-    return `
-      <div class="tt-section" style="margin-top: 10px; width: 100%;">
-        ${labelHtml}
-        ${parsed.business ? `
-        <div class="tt-thought-box beer-business">
-          <div class="tt-thought-title">🏢 ธุรกิจ (Business Angle)</div>
-          <div class="tt-thought-text">${esc(parsed.business)}</div>
-        </div>` : ''}
-        ${parsed.numbers ? `
-        <div class="tt-thought-box beer-numbers">
-          <div class="tt-thought-title">📊 ตัวเลข (Numbers / Valuation)</div>
-          <div class="tt-thought-text">${esc(parsed.numbers)}</div>
-        </div>` : ''}
-        ${parsed.comms ? `
-        <div class="tt-thought-box beer-comms">
-          <div class="tt-thought-title">📢 การสื่อสาร (Communication)</div>
-          <div class="tt-thought-text">${esc(parsed.comms)}</div>
-        </div>` : ''}
-        ${parsed.competitors ? `
-        <div class="tt-thought-box beer-competitors">
-          <div class="tt-thought-title">⚔️ คู่แข่ง (Competitors)</div>
-          <div class="tt-thought-text">${esc(parsed.competitors)}</div>
-        </div>` : ''}
-        ${parsed.management ? `
-        <div class="tt-thought-box beer-management">
-          <div class="tt-thought-title">👤 ผู้บริหาร (Management)</div>
-          <div class="tt-thought-text">${esc(parsed.management)}</div>
-        </div>` : ''}
-        ${parsed.plan ? `
-        <div class="tt-thought-box beer-plan">
-          <div class="tt-thought-title">💡 แผนของเรา (Our Strategy)</div>
-          <div class="tt-thought-text">${esc(parsed.plan)}</div>
-        </div>` : ''}
-      </div>
-    `;
-  }
-  
-  return `
-    <div class="tt-section">
-      ${labelHtml}
-      <div class="tt-text" style="word-break: break-word; white-space: pre-wrap;">${esc(cleaned)}</div>
-    </div>
-  `;
-}
-
-function parseNoteText(noteText) {
-  if (!noteText) return { text: '' };
-  
-  const thesisMatch = noteText.match(/Thesis:\s*([\s\S]*?)(?=(?:If wrong:|Risk:|Review:|$))/i);
-  const wrongMatch = noteText.match(/If wrong:\s*([\s\S]*?)(?=(?:Thesis:|Risk:|Review:|$))/i);
-  const riskMatch = noteText.match(/Risk:\s*([\s\S]*?)(?=(?:Thesis:|If wrong:|Review:|$))/i);
-  const reviewMatch = noteText.match(/Review:\s*([\s\S]*?)(?=(?:Thesis:|If wrong:|Risk:|$))/i);
-
-  if (!thesisMatch && !wrongMatch && !riskMatch && !reviewMatch) {
-    let cleanText = noteText;
-    if (cleanText.trim().startsWith('[')) {
-      const closingBracket = cleanText.indexOf(']');
-      if (closingBracket !== -1) {
-        cleanText = cleanText.substring(closingBracket + 1).trim();
-      }
-    }
-    cleanText = cleanText.replace(/RRR:\s*1:[\d.]+\s*\(Entry:[\s\S]*?\)/gi, '').trim();
-    return { text: cleanText };
-  }
-
-  return {
-    thesis: thesisMatch ? thesisMatch[1].trim() : null,
-    wrong: wrongMatch ? wrongMatch[1].trim() : null,
-    risk: riskMatch ? riskMatch[1].trim() : null,
-    review: reviewMatch ? reviewMatch[1].trim() : null
-  };
-}
-
-function renderJournalNoteBody(n) {
-  let journalBadges = '';
-  let planCard = '';
-  let thoughtsHtml = '';
-  
-  if (n.journal) {
-    const intentLabels = { 'ซื้อ': 'ซื้อ', 'ขาย': 'ขาย', 'ถือ': 'ถือ', 'รอจังหวะ': 'รอจังหวะ' };
-    const intentText = intentLabels[n.journal.intent] || n.journal.intent || '';
-    
-    const setupText = n.journal.setup || '';
-    const outcomeVal = n.journal.outcome || 'None';
-    let outcomeBadgeHtml = '';
-    if (outcomeVal !== 'None' && outcomeVal !== null) {
-      const outcomeLabels = {
-        'Open': '⏳ ยังถือ (Open)',
-        'Big Win': '🏆 Big Win',
-        'Small Win': '🟢 Small Win',
-        'Breakeven': '🟡 เท่าทุน',
-        'Small Loss': '🟠 คัทในแผน',
-        'Big Loss': '🔴 ขาดทุนเกินแผน'
-      };
-      const outcomeText = outcomeLabels[outcomeVal] || outcomeVal;
-      
-      let outcomeClass = 'outcome-open';
-      if (outcomeVal.includes('Win')) outcomeClass = 'outcome-win';
-      else if (outcomeVal.includes('Loss')) outcomeClass = 'outcome-loss';
-      else if (outcomeVal.includes('Breakeven') || outcomeVal.includes('เท่าทุน')) outcomeClass = 'outcome-draw';
-      outcomeBadgeHtml = `<span class="journal-badge ${outcomeClass}">${esc(outcomeText)}</span>`;
-    }
-
-    journalBadges = `
-      <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
-        ${n.journal.emotion ? `<span class="journal-badge sentiment">${esc(n.journal.emotion)}</span>` : ''}
-        ${intentText ? `<span class="journal-badge action">${esc(intentText)}</span>` : ''}
-        ${n.journal.confidence ? `<span class="journal-badge confidence">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
-        ${setupText ? `<span class="journal-badge setup-badge">${esc(setupText)}</span>` : ''}
-        ${outcomeBadgeHtml}
-      </div>
-    `;
-    
-    if (n.journal.entryPrice) {
-      const entry = n.journal.entryPrice;
-      const target = n.journal.targetPrice || '-';
-      const stop = n.journal.stopLoss || '-';
-      const rrr = n.journal.rrr;
-      
-      let rrrClass = 'low-rrr';
-      if (rrr >= 3.0) rrrClass = 'high-rrr';
-      else if (rrr >= 2.0) rrrClass = 'mid-rrr';
-      
-      planCard = `
-        <div class="tt-plan-card">
-          <div class="tt-plan-grid">
-            <div class="tt-plan-col">
-              <span class="tt-plan-label">🎯 เป้ากำไร</span>
-              <span class="tt-plan-val profit">${target}</span>
-            </div>
-            <div class="tt-plan-col">
-              <span class="tt-plan-label">🏁 จุดเข้าซื้อ</span>
-              <span class="tt-plan-val entry">${entry}</span>
-            </div>
-            <div class="tt-plan-col">
-              <span class="tt-plan-label">🛑 จุดคัทลอส</span>
-              <span class="tt-plan-val loss">${stop}</span>
-            </div>
-          </div>
-          <div class="tt-plan-rrr-row">
-            <span>Risk-Reward Ratio (RRR)</span>
-            ${rrr ? `<span class="tt-plan-rrr-badge ${rrrClass}">1:${rrr}</span>` : '<span class="tt-plan-rrr-badge low-rrr">-</span>'}
-          </div>
-        </div>
-      `;
-    }
-  }
-
-  const parsed = parseNoteText(n.note || '');
-  if (parsed.thesis || parsed.wrong || parsed.risk) {
-    thoughtsHtml = `
-      ${parsed.thesis ? `
-      <div class="tt-thought-box thesis">
-        <div class="tt-thought-title">🎯 แนวคิดเชิงกลยุทธ์ (Thesis)</div>
-        <div class="tt-thought-text">${esc(parsed.thesis)}</div>
-      </div>` : ''}
-      ${parsed.wrong ? `
-      <div class="tt-thought-box wrong">
-        <div class="tt-thought-title">⚠️ จุดยอมรับความพ่ายแพ้ (If Wrong)</div>
-        <div class="tt-thought-text">${esc(parsed.wrong)}</div>
-      </div>` : ''}
-      ${parsed.risk ? `
-      <div class="tt-thought-box risk">
-        <div class="tt-thought-title">⚡ ความเสี่ยงที่เฝ้าระวัง (Risk Factors)</div>
-        <div class="tt-thought-text">${esc(parsed.risk)}</div>
-      </div>` : ''}
-      ${parsed.review ? `
-      <div class="tt-thought-box review" style="border-left-color: #8b949e; background: rgba(255,255,255,0.01);">
-        <div class="tt-thought-title">⏱️ กลับมาทบทวน (Review)</div>
-        <div class="tt-thought-text">${esc(parsed.review)}</div>
-      </div>` : ''}
-    `;
-  } else {
-    thoughtsHtml = `<div class="tt-text" style="white-space: pre-wrap; word-break: break-word; margin-top: 6px;">${esc(parsed.text || n.note || '')}</div>`;
-  }
-
-  return `
-    <div class="tt-section" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; margin-bottom: 10px;">
-      <div class="tt-label" style="display:flex; justify-content:space-between; align-items:center;">
-        <span>📝 บันทึกเทรดส่วนตัว ${n.time ? esc(n.time) : ''}</span>
-      </div>
-      ${journalBadges}
-      ${planCard}
-      ${thoughtsHtml}
-    </div>
-  `;
-}
-
-function renderJournalNoteCard(n) {
-  let journalBadges = '';
-  let planCard = '';
-  let thoughtsHtml = '';
-  
-  if (n.journal) {
-    const intentLabels = { 'ซื้อ': 'ซื้อ', 'ขาย': 'ขาย', 'ถือ': 'ถือ', 'รอจังหวะ': 'รอจังหวะ' };
-    const intentText = intentLabels[n.journal.intent] || n.journal.intent || '';
-    const setupText = n.journal.setup || '';
-    const outcomeVal = n.journal.outcome || 'None';
-    let outcomeBadgeHtml = '';
-    if (outcomeVal !== 'None' && outcomeVal !== null) {
-      const outcomeLabels = {
-        'Open': '⏳ ยังถือ',
-        'Big Win': '🏆 Big Win',
-        'Small Win': '🟢 Small Win',
-        'Breakeven': '🟡 เท่าทุน',
-        'Small Loss': '🟠 คัทในแผน',
-        'Big Loss': '🔴 ขาดทุนเกินแผน'
-      };
-      const outcomeText = outcomeLabels[outcomeVal] || outcomeVal;
-      
-      let outcomeClass = 'outcome-open';
-      if (outcomeVal.includes('Win')) outcomeClass = 'outcome-win';
-      else if (outcomeVal.includes('Loss')) outcomeClass = 'outcome-loss';
-      else if (outcomeVal.includes('Breakeven') || outcomeVal.includes('เท่าทุน')) outcomeClass = 'outcome-draw';
-      outcomeBadgeHtml = `<span class="journal-badge ${outcomeClass}" style="font-size:0.75em; padding:2px 6px;">${esc(outcomeText)}</span>`;
-    }
-
-    journalBadges = `
-      <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
-        ${n.journal.emotion ? `<span class="journal-badge sentiment" style="font-size:0.75em; padding:2px 6px;">${esc(n.journal.emotion)}</span>` : ''}
-        ${intentText ? `<span class="journal-badge action" style="font-size:0.75em; padding:2px 6px;">${esc(intentText)}</span>` : ''}
-        ${n.journal.confidence ? `<span class="journal-badge confidence" style="font-size:0.75em; padding:2px 6px;">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
-        ${setupText ? `<span class="journal-badge setup-badge" style="font-size:0.75em; padding:2px 6px;">${esc(setupText)}</span>` : ''}
-        ${outcomeBadgeHtml}
-      </div>
-    `;
-    
-    if (n.journal.entryPrice) {
-      const entry = n.journal.entryPrice;
-      const target = n.journal.targetPrice || '-';
-      const stop = n.journal.stopLoss || '-';
-      const rrr = n.journal.rrr;
-      
-      let rrrClass = 'low-rrr';
-      if (rrr >= 3.0) rrrClass = 'high-rrr';
-      else if (rrr >= 2.0) rrrClass = 'mid-rrr';
-      
-      planCard = `
-        <div class="tt-plan-card" style="margin: 6px 0; padding: 8px;">
-          <div class="tt-plan-grid" style="gap: 4px; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px dashed rgba(255,255,255,0.08);">
-            <div class="tt-plan-col">
-              <span class="tt-plan-label" style="font-size: 8px;">🎯 เป้ากำไร</span>
-              <span class="tt-plan-val profit" style="font-size: 11px;">${target}</span>
-            </div>
-            <div class="tt-plan-col">
-              <span class="tt-plan-label" style="font-size: 8px;">🏁 จุดเข้าซื้อ</span>
-              <span class="tt-plan-val entry" style="font-size: 11px;">${entry}</span>
-            </div>
-            <div class="tt-plan-col">
-              <span class="tt-plan-label" style="font-size: 8px;">🛑 จุดคัทลอส</span>
-              <span class="tt-plan-val loss" style="font-size: 11px;">${stop}</span>
-            </div>
-          </div>
-          <div class="tt-plan-rrr-row" style="font-size: 10px;">
-            <span>RRR</span>
-            ${rrr ? `<span class="tt-plan-rrr-badge ${rrrClass}" style="font-size: 9px; padding: 1px 4px;">1:${rrr}</span>` : '<span class="tt-plan-rrr-badge low-rrr" style="font-size: 9px; padding: 1px 4px;">-</span>'}
-          </div>
-        </div>
-      `;
-    }
-  }
-
-  const parsed = parseNoteText(n.note || '');
-  if (parsed.thesis || parsed.wrong || parsed.risk) {
-    thoughtsHtml = `
-      ${parsed.thesis ? `
-      <div class="tt-thought-box thesis" style="padding: 6px 8px; margin-top: 4px;">
-        <div class="tt-thought-title" style="font-size: 10px;">🎯 แนวคิดเชิงกลยุทธ์ (Thesis)</div>
-        <div class="tt-thought-text" style="font-size: 11px; line-height: 1.4;">${esc(parsed.thesis)}</div>
-      </div>` : ''}
-      ${parsed.wrong ? `
-      <div class="tt-thought-box wrong" style="padding: 6px 8px; margin-top: 4px;">
-        <div class="tt-thought-title" style="font-size: 10px;">⚠️ จุดยอมรับความพ่ายแพ้ (If Wrong)</div>
-        <div class="tt-thought-text" style="font-size: 11px; line-height: 1.4;">${esc(parsed.wrong)}</div>
-      </div>` : ''}
-      ${parsed.risk ? `
-      <div class="tt-thought-box risk" style="padding: 6px 8px; margin-top: 4px;">
-        <div class="tt-thought-title" style="font-size: 10px;">⚡ ความเสี่ยงที่เฝ้าระวัง (Risk Factors)</div>
-        <div class="tt-thought-text" style="font-size: 11px; line-height: 1.4;">${esc(parsed.risk)}</div>
-      </div>` : ''}
-      ${parsed.review ? `
-      <div class="tt-thought-box review" style="padding: 6px 8px; margin-top: 4px; border-left-color: #8b949e; background: rgba(255,255,255,0.01);">
-        <div class="tt-thought-title" style="font-size: 10px;">⏱️ กลับมาทบทวน (Review)</div>
-        <div class="tt-thought-text" style="font-size: 11px; line-height: 1.4;">${esc(parsed.review)}</div>
-      </div>` : ''}
-    `;
-  } else {
-    thoughtsHtml = `<div class="tt-text" style="white-space: pre-wrap; word-break: break-word; margin-top: 4px; font-size: 12px; line-height: 1.45;">${esc(parsed.text || n.note || '')}</div>`;
-  }
-
-  return `
-    <div class="journal-card-body" style="width: 100%;">
-      ${journalBadges}
-      ${planCard}
-      ${thoughtsHtml}
-    </div>
-  `;
-}
+// Shared parsing and rendering functions are now loaded from shared-utils.js
 
 function showMarkerTooltip(m, isNavigating) {
   if (!hoverTip) return;
