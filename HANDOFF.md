@@ -1,30 +1,29 @@
-# Session Handoff - Mobile Device Previewer Deployed
+# Session Handoff - Trading Journal & Tooltip Upgrades Deployed
 
 ## Latest Truth
-- **v3.5.0 Deployed**: เพิ่มระบบจำลองหน้าจอมือถือ (Mobile Device Previewer) แบบครบวงจรและพรีเมียม
-- **ระบบจำลองหน้าจอมือถือ (Mobile Device Previewer)**: สร้างไฟล์ `docs/preview.html` เป็นตัวจำลองหน้าจอด้วย Iframe สไตล์ Glassmorphism
-  - รองรับรุ่นอุปกรณ์ต่างๆ (iPhone 15 Pro, Pro Max, SE, S23, Pixel 8, iPad Mini, Custom)
-  - ปรับการวางแนวได้ทั้งแนวตั้ง/แนวนอน (Portrait / Landscape)
-  - ปรับอัตราการซูมพรีวิว (50%, 75%, 100%, 125%, Fit to Window) เพื่อให้พอดีกับหน้าจอคอมพิวเตอร์
-  - แสดงผล Mock เคสมือถือและ Status Bar พร้อมนาฬิกาจำลองอัปเดตเรียลไทม์
-  - รองรับการกรองแสดงเฉพาะ Iframe / แสดงเส้น Grid ลายน้ำช่วยจัดตำแหน่งองค์ประกอบ
-  - ดึงค่า URL ดั้งเดิมจาก Param `?url=...` เพื่อให้เปิดพรีวิวตรงตามหน้าหลักได้ทันที
-- **การเชื่อมต่อลิงก์ด่วน (Quick Access Buttons)**: เพิ่มปุ่ม "📱 จำลองมือถือ" บนทาสก์บาร์ด้านบนของหน้าเว็บหลักทั้งหมด 6 หน้า (US Index, Journal, History และ TH Index, Journal, History) โดยปุ่มนี้จะซ่อนตัวเองอัตโนมัติบนหน้าจอมือถือจริง (<768px)
-- **Service Worker Cache**: อัปเดต `CACHE_NAME` เป็น `v42` และเพิ่ม `preview.html` ใน Shell เพื่อให้บันทึกข้อมูลแบบ Offline ได้สมบูรณ์แบบ
+- **v3.6.4 Deployed**: ปรับปรุงหน้าสมุดบันทึกเทรด (Journal), แดชบอร์ดหลัก (Home), หน้าประวัติ (History), แคช Service Worker และตำแหน่งเริ่มต้นของกล่องป๊อปอัป (Tooltip) ครบวงจร
+- **ระบบบันทึกเทรด (Trading Journal Upgrades - v3.6.0)**:
+  * บันทึกแผนการเทรดละเอียด (entryPrice, targetPrice, stopLoss) พร้อมระบบคำนวณอัตราส่วน Risk Reward Ratio (RRR) อัตโนมัติและเรียลไทม์
+  * เพิ่มชิป Setup และ Outcome ในหน้ารายละเอียดโน้ต
+  * เชื่อมโยง Badge ข้อมูลแผน, Setup, และ Outcome ไปยังป๊อปอัปหน้าแรก (Home) และหน้าประวัติ (History) อัตโนมัติ
+- **ระบบกดยกเลิกเลือกชิป (Toggle to Deselect - v3.6.1 ถึง v3.6.3)**:
+  * ปุ่มในส่วน "ตอนนี้รู้สึกอะไร (Emotion)", "ตั้งใจจะทำอะไร (Intent)", "Trade Setup", และ "Outcome (ผลลัพธ์จริง)" รองรับการกดคลิกซ้ำเพื่อยกเลิกการเลือก (Deselect) ทำให้ค่ากลับเป็น `null` ได้สำเร็จ
+  * นำปุ่ม "ไม่ระบุ/ไม่ลงข้อมูล" ออกจากกลุ่มผลลัพธ์ Outcome เพื่อความสะอาดตา
+- **ตำแหน่งแสดงผลเริ่มต้นของกล่องป๊อปอัป (Below-Left Tooltip Placement - v3.6.4)**:
+  * ปรับแต่งพิกัดแสดงผลเริ่มต้นของกล่องป๊อปอัปให้แสดงผลที่ด้านล่างเยื้องซ้ายของจุดเทียน/จุดโน้ตบนกราฟ (Below-Left) เสมอ เพื่อหลีกเลี่ยงการบังแท่งเทียนรอบข้างขณะเปิดวิเคราะห์
+  * รองรับการตรวจสอบขอบจอ (Window Boundary Checking) ทั้งสี่ทิศอย่างแม่นยำ พร้อมรักษาความสามารถในการลากย้ายกล่องได้อย่างอิสระ 100%
+- **Service Worker Cache**: อัปเดต `CACHE_NAME` เป็น `v50` ใน `sw.js` เพื่อบังคับให้อุปกรณ์และบราวเซอร์โหลดไฟล์โค้ดล่าสุดจากคลาวด์/กิตฮับ
 
 ## Files Changed
-- `docs/preview.html`: [NEW] หน้าเพจโปรแกรมจำลองและส่วนควบคุม
-- `docs/index.html`: เพิ่มปุ่ม จำลองมือถือ, CSS ปรับแต่ง, อัปเกรต Changelog Tooltip เป็น `v3.5.0`
-- `docs/journal.html`: เพิ่มปุ่ม จำลองมือถือ, CSS, อัปเกรต Changelog Tooltip เป็น `v3.5.0`
-- `docs/history.html`: เพิ่มปุ่ม จำลองมือถือ, CSS, อัปเกรต Changelog Tooltip เป็น `v3.5.0`
-- `docs/thai/index.html`: เพิ่มปุ่ม จำลองมือถือ, CSS ปรับแต่ง
-- `docs/thai/journal.html`: เพิ่มปุ่ม จำลองมือถือ, CSS
-- `docs/thai/history.html`: เพิ่มปุ่ม จำลองมือถือ, CSS
-- `docs/sw.js`: อัปเดตแคชแอปและลงทะเบียนเพจจำลอง
+- `docs/index.html`: อัปเดตพิกัดเริ่มต้น Tooltip (Below-Left), เพิ่ม Badge ข้อมูล RRR/Setup/Outcome ใน Mini-chart tooltip, อัปเกรต Changelog เป็น `v3.6.4`
+- `docs/history.html`: อัปเดตพิกัดเริ่มต้น Tooltip (Below-Left), ดึง Badge ข้อมูล RRR/Setup/Outcome มาแสดงใน Tooltip และแถบข้าง, อัปเกรต Changelog เป็น `v3.6.4`
+- `docs/journal.html`: อัปเดตพิกัดเริ่มต้น Tooltip (Below-Left), นำตัวเลือก Outcome "ไม่ระบุ" ออก, เพิ่มระบบกดยกเลิก Outcome/Emotion/Intent, อัปเกรต Changelog เป็น `v3.6.4`
+- `docs/sw.js`: อัปเดตแคชเวอร์ชัน PWA เป็น `v50` เพื่อดึงไฟล์ใหม่ล่าสุด
 
 ## Verification
-- ตรวจสอบไวยากรณ์ Service Worker ผ่าน Node.js สำเร็จ (`node -c docs/sw.js` -> OK)
-- ทำการ Commit และ Git Push ขึ้นรีโพสิทอรีหลักเรียบร้อยดี
+- ทดสอบการคำนวณ RRR และการกดสลับ/ยกเลิกชิปเรียบร้อย
+- ทดสอบตำแหน่งเปิดเริ่มต้นของกล่องป๊อปอัปอยู่ด้านล่างเยื้องซ้าย เรียบร้อย
+- ทำการ Commit และ Git Push ขึ้น GitHub เรียบร้อย
 
 ## Open Risks
 - ไม่มี

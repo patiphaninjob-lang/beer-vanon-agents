@@ -13,6 +13,7 @@
 - **Homework Framework:** Strictly follow Book 1, Chapter 34: "การบ้านที่ไม่มีอาจารย์ตรวจ" (6 angles).
 - **User Sentiment:** Integrated from `docs/notes/notes.json`.
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
+- **Trading Journal Upgrade (v3.6.4):** Real-time RRR calculator, Setup & Outcome badges connected dynamically to Home/History pages, toggle-to-deselect support, and below-left initial tooltip alignment.
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.
@@ -36,6 +37,4 @@
 - **Groq Rate Limits:** 429 errors possible if concurrency is too high or delays are too low.
 
 ## Next Recommended Step
-1. Monitor the first automated run of the Thai agent today (Sunday, 2026-05-31) at 18:00 BKK.
-2. Verify that `COM7.BK.json` is correctly handled by the GitHub Actions Linux runner.
-3. Maintain analysis quality and monitor for regressions.
+1. Maintain analysis quality and monitor for regressions.
