@@ -13,7 +13,7 @@
 - **Homework Framework:** Strictly follow Book 1, Chapter 34: "การบ้านที่ไม่มีอาจารย์ตรวจ" (6 angles).
 - **User Sentiment:** Integrated from `docs/notes/notes.json`.
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
-- **Unified Note Layout (v3.6.6):** Unified note card rendering across all pages (Existing Notes modal in Home, note blocks and sidebar in History, and timeline list in Journal) to use structured plans and glassmorphic accent boxes.
+- **Styled Beer Ch34 Analysis (v3.6.7):** Parsed and formatted Beer's Ch34 6-pillar analysis (business, numbers, comms, competitors, management, plan) into beautiful accent-bordered glassmorphic boxes inside all page tooltips.
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.
