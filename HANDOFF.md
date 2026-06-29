@@ -1,21 +1,27 @@
-# Session Handoff - Unified Multi-Note Tooltips Deployed
+# Session Handoff - Unified Multi-Note Tooltips & Shared Utils Deployed
 
 ## Latest Truth
-- **v3.7.0 Deployed**: แก้ปัญหากล่องข้อความป๊อปอัป (Tooltip) บนหน้าหลัก (Home Page) และหน้าประวัติ (History Page) ให้รองรับการแสดงผลโน้ตบันทึกเทรดส่วนตัวครบถ้วนทุกอันที่มีในวันเดียวกัน โดยดึงมาแสดงผลต่อกันและใช้ฟังก์ชันจัดกลุ่ม Accent Glassmorphic Boxes แบบเดียวกับหน้า Journal 100% แก้ปัญหาข้อมูลบางส่วนสูญหายเมื่อมีหลายโน้ตในวันเดียวกัน
-- **การแก้ไขและเชื่อมโยงกลุ่มโน้ต (Grouped Notes rendering)**:
-  * หน้าหลัก (`index.html`) ฟังก์ชัน `showMiniChartTooltip` เปลี่ยนไปรับกลุ่มโน้ต (`group` object) ที่มีลิสต์โน้ตของวันนั้นทั้งหมด
-  * ทำการลูปแสดงผลโน้ตทุกตัวของวันนั้นเพื่อให้ออกมาเป็นกล่องขอบสี Accent Glassmorphic Boxes ต่อเนื่องลงมาทั้งหมด ไม่ตกหล่นโน้ตตัวที่สองหรือสามอีกต่อไป
+- **v3.7.0 Fully Deployed**: 
+  * Extracted and unified all shared formatting, date, emotion, parsing, and rendering helper functions (`esc`, `fmtDate`, `fmtMoney`, `detectEmotion`, `getEmotionCategory`, `getEmotionColor`, `parseNoteText`, `renderJournalNoteBody`, `renderJournalNoteCard`, `parseBeerAnalysis`, `renderBeerAnalysis`) to a single shared file: [shared-utils.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/shared-utils.js).
+  * Removed duplicate function definitions across all pages ([index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html), [history.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/history.html), and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html)), reducing redundant code by over 700 lines.
+  * Injected `<script src="shared-utils.js"></script>` to the `<head>` of all three pages to ensure seamless global execution.
+  * Bumped Service Worker cache version to `v56` inside `docs/sw.js` and added `./shared-utils.js` to `APP_SHELL` to ensure offline support and force refresh on mobile client browsers.
+  * Bushed version tag changes and tooltip logs to Git repository.
 
 ## Files Changed
-- `docs/index.html`: อัปเดต Changelog เป็น `v3.7.0`, ปรับปรุง `showMiniChartTooltip` และตำแหน่งการเรียกใช้งานในคลิก/เลื่อนเมาส์บนแท่งเทียน และปุ่มโน้ตนอกกราฟ
-- `docs/sw.js`: อัปเดตแคชเวอร์ชัน PWA เป็น `v56` เพื่อเคลียร์แคชทันที
+- `docs/shared-utils.js`: New shared helper library.
+- `docs/index.html`: Linked shared library, removed duplicate helper definitions.
+- `docs/history.html`: Linked shared library, removed duplicate helper definitions, bumped version tag.
+- `docs/journal.html`: Linked shared library, removed duplicate helper definitions, bumped version tag.
+- `docs/sw.js`: Incremented cache version and added `shared-utils.js` to `APP_SHELL`.
 
 ## Verification
-- การคลิกโน้ตของวันที่ 23 มิ.ย. 2026 บนหน้าหลัก (Home) แสดงผลโน้ตครบทั้ง 2 รายการ (22:02 และ 22:01) จัดรูปแบบตรงกับในหน้า Journal ทุกประการ
-- ทำการ Commit และ Git Push ขึ้น GitHub เรียบร้อย
+- Verified code structure is clean and Git repository status is synchronized.
+- Changes committed and pushed to origin main successfully.
 
 ## Open Risks
-- ไม่มี
+- None.
 
 ## Next Step
-- เฝ้าระวังและรับข้อมูลเพิ่มเติมจากผู้ใช้งาน
+- Monitor user feedback for any additional formatting or page behavior requests.
+- Ready for next development prompt.
