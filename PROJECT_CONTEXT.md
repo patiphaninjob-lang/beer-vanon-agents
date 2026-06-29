@@ -13,7 +13,7 @@
 - **Homework Framework:** Strictly follow Book 1, Chapter 34: "การบ้านที่ไม่มีอาจารย์ตรวจ" (6 angles).
 - **User Sentiment:** Integrated from `docs/notes/notes.json`.
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
-- **Trading Journal Upgrade (v3.6.4):** Real-time RRR calculator, Setup & Outcome badges connected dynamically to Home/History pages, toggle-to-deselect support, and below-left initial tooltip alignment.
+- **Trading Journal & Tooltip Redesign (v3.6.5):** Grid plan layout (Target, Entry, Stop Loss), dynamic colored RRR badges, iOS Glassmorphic styling for Thesis/If Wrong/Risk boxes, and increased tooltip width to 320px for better reading flow.
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.
