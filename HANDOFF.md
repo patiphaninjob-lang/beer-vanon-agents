@@ -1,21 +1,17 @@
-# Session Handoff - Unified Ch34 Card & Sidebar Analysis Deployed
+# Session Handoff - Unified Multi-Note Tooltips Deployed
 
 ## Latest Truth
-- **v3.6.9 Deployed**: ปรับปรุงการแสดงผลส่วนการบ้าน (Homework Checklist) และบทวิเคราะห์ Ch34 บนหน้าการ์ดหุ้นแต่ละตัวในหน้าหลัก (Home Page) และแถบด้านข้าง (History Page) ให้แสดงในรูปแบบกล่อง Accent Glassmorphic Boxes สอดคล้องกับกล่องป๊อปอัป (Tooltip) และสม่ำเสมอสวยงามทั่วทั้งเว็บไซต์ 100%
-- **การปรับแต่งฟังก์ชัน `renderBeerAnalysis`**:
-  * เพิ่มพารามิเตอร์ `customLabel` เพื่อรองรับการกำหนดป้ายชื่อหัวข้อแบบกำหนดเอง (Custom Labels) หรือไม่แสดงชื่อหัวข้อเลยหากส่งค่า `null`
-  * หน้าหลัก (`index.html`) เรียกใช้งานผ่านการ์ดหุ้นแต่ละใบเพื่อแสดงผล 6 มิติวินิจฉัย
-  * หน้าประวัติ (`history.html`) เรียกใช้งานผ่านแถบข้างขวา (Archive Context) เพื่อวาดข้อมูลตาม 6 มิติ
+- **v3.7.0 Deployed**: แก้ปัญหากล่องข้อความป๊อปอัป (Tooltip) บนหน้าหลัก (Home Page) และหน้าประวัติ (History Page) ให้รองรับการแสดงผลโน้ตบันทึกเทรดส่วนตัวครบถ้วนทุกอันที่มีในวันเดียวกัน โดยดึงมาแสดงผลต่อกันและใช้ฟังก์ชันจัดกลุ่ม Accent Glassmorphic Boxes แบบเดียวกับหน้า Journal 100% แก้ปัญหาข้อมูลบางส่วนสูญหายเมื่อมีหลายโน้ตในวันเดียวกัน
+- **การแก้ไขและเชื่อมโยงกลุ่มโน้ต (Grouped Notes rendering)**:
+  * หน้าหลัก (`index.html`) ฟังก์ชัน `showMiniChartTooltip` เปลี่ยนไปรับกลุ่มโน้ต (`group` object) ที่มีลิสต์โน้ตของวันนั้นทั้งหมด
+  * ทำการลูปแสดงผลโน้ตทุกตัวของวันนั้นเพื่อให้ออกมาเป็นกล่องขอบสี Accent Glassmorphic Boxes ต่อเนื่องลงมาทั้งหมด ไม่ตกหล่นโน้ตตัวที่สองหรือสามอีกต่อไป
 
 ## Files Changed
-- `docs/index.html`: อัปเดต Changelog เป็น `v3.6.9`, ปรับปรุง `renderBeerAnalysis` และส่วนแสดงผลการ์ดหุ้นหลัก
-- `docs/history.html`: อัปเดต Changelog เป็น `v3.6.9`, ปรับปรุง `renderBeerAnalysis` และส่วนแสดงผล Context แถบข้างขวา
-- `docs/journal.html`: อัปเดต Changelog เป็น `v3.6.9`, ปรับปรุงโครงสร้างลายเซ็นฟังก์ชัน `renderBeerAnalysis`
-- `docs/sw.js`: อัปเดตแคชเวอร์ชัน PWA เป็น `v55` เพื่อเคลียร์แคชทันที
+- `docs/index.html`: อัปเดต Changelog เป็น `v3.7.0`, ปรับปรุง `showMiniChartTooltip` และตำแหน่งการเรียกใช้งานในคลิก/เลื่อนเมาส์บนแท่งเทียน และปุ่มโน้ตนอกกราฟ
+- `docs/sw.js`: อัปเดตแคชเวอร์ชัน PWA เป็น `v56` เพื่อเคลียร์แคชทันที
 
 ## Verification
-- การ์ดหุ้นหน้าแรก (เช่น AAPL, NVDA, GOOGL) แสดงผล Ch34 ครบ 6 ด้านเป็นกล่อง Accent Glassmorphic Boxes สวยงามสม่ำเสมอตรงกัน
-- แถบข้างหน้า History แสดงโครงสร้างกล่องข้อมูลจัดอย่างถูกต้องสวยงาม
+- การคลิกโน้ตของวันที่ 23 มิ.ย. 2026 บนหน้าหลัก (Home) แสดงผลโน้ตครบทั้ง 2 รายการ (22:02 และ 22:01) จัดรูปแบบตรงกับในหน้า Journal ทุกประการ
 - ทำการ Commit และ Git Push ขึ้น GitHub เรียบร้อย
 
 ## Open Risks
