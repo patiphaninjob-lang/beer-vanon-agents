@@ -1,5 +1,10 @@
 # Session Handoff - Unified Multi-Note Tooltips & Shared Utils Deployed
 
+- **v3.7.3 Fully Deployed**:
+  * Fixed all page date headings (Home Page note modal, History Page sidebar, and Journal Page timeline) to prioritize `archive_date` (trade date) over `date` (calendar save date).
+  * Resolved an issue in the Home Page stock card note trigger click handler where notes were filtered by calendar date instead of trade date, making sure multi-note tooltip grouping and popups match by trade date consistently across all pages.
+  * Bumped Service Worker cache version to `v59` inside `docs/sw.js` and bumped version to `v3.7.3` on all pages.
+
 - **v3.7.2 Fully Deployed**:
   * Added recording time (e.g. `เวลา 14:30 น.`) and trading phase information (e.g. `ก่อนตลาดเปิด`, `ระหว่างวัน`, `หลังตลาดปิด`) directly in the header of note cards in the chart Tooltip.
   * Added colored phase badges to note cards inside the trade journal timeline (`journal.html`) to visually separate notes taken in different market phases.
@@ -21,11 +26,10 @@
   * Bushed version tag changes and tooltip logs to Git repository.
 
 ## Files Changed
-- `docs/shared-utils.js`: Added phase and time metadata to note card rendering, added phase badges.
-- `docs/index.html`: Bumped version to `v3.7.2`.
-- `docs/history.html`: Bumped version to `v3.7.2`.
-- `docs/journal.html`: Bumped version to `v3.7.2`.
-- `docs/sw.js`: Incremented cache version to `v58`.
+- `docs/index.html`: Fixed note trigger click handler (date filter & closestIdx candle match), prioritized trade date in note modal headers, bumped version to `v3.7.3`.
+- `docs/history.html`: Prioritized trade date in sidebar note headers, bumped version to `v3.7.3`.
+- `docs/journal.html`: Prioritized trade date in note timeline headers, bumped version to `v3.7.3`.
+- `docs/sw.js`: Incremented cache version to `v59`.
 
 ## Verification
 - Verified code structure is clean and Git repository status is synchronized.
