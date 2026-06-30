@@ -1,28 +1,32 @@
 {
-  "updated": "2026-06-30T13:57:00.596876",
+  "updated": "2026-06-30T21:15:43.391088",
   "latest": {
-    "date": "2026-06-29",
-    "archive_key": "2026-06-29-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-06-30T13:57:00.583928",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-29&phase=postmarket",
+    "date": "2026-06-30",
+    "archive_key": "2026-06-30-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-06-30T21:15:43.376989",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-30&phase=premarket",
     "health": {
-      "status": "ok",
-      "issues": [],
+      "status": "warning",
+      "issues": [
+        "fallback_analysis 1"
+      ],
       "counts": {
         "stocks": 100,
         "expected_stocks": 100,
         "charts": 100,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 0
+        "fallback_analysis": 1
       },
       "missing": {
         "charts": [],
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": []
+        "fallback_analysis": [
+          "ARM"
+        ]
       }
     }
   },
@@ -80,28 +84,32 @@
       }
     },
     "premarket": {
-      "date": "2026-06-29",
-      "archive_key": "2026-06-29-premarket",
+      "date": "2026-06-30",
+      "archive_key": "2026-06-30-premarket",
       "run_phase": "premarket",
-      "generated": "2026-06-29T22:53:02.048705",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-29&phase=premarket",
+      "generated": "2026-06-30T21:15:43.376989",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-06-30&phase=premarket",
       "health": {
-        "status": "ok",
-        "issues": [],
+        "status": "warning",
+        "issues": [
+          "fallback_analysis 1"
+        ],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 0
+          "fallback_analysis": 1
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": []
+          "fallback_analysis": [
+            "ARM"
+          ]
         }
       }
     }

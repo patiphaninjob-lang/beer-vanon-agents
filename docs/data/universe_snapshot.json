@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-06-30T05:58:17.118869+00:00",
+  "updated": "2026-06-30T13:17:02.923843+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -292,12 +292,12 @@
       "market_cap": 252274209033.091
     },
     {
-      "ticker": "C",
-      "market_cap": 243027669686.96405
+      "ticker": "MRVL",
+      "market_cap": 243184893800.75
     },
     {
-      "ticker": "MRVL",
-      "market_cap": 242975700000.0
+      "ticker": "C",
+      "market_cap": 243027669686.96405
     },
     {
       "ticker": "LIN",
@@ -325,7 +325,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 219131968537.95996
+      "market_cap": 217172512190.96875
     },
     {
       "ticker": "NVO",
@@ -412,12 +412,12 @@
       "market_cap": 171272116979.64893
     },
     {
-      "ticker": "BA",
-      "market_cap": 169240629366.95624
+      "ticker": "DE",
+      "market_cap": 169257327438.5432
     },
     {
-      "ticker": "DE",
-      "market_cap": 169150889945.80383
+      "ticker": "BA",
+      "market_cap": 169240629366.95624
     },
     {
       "ticker": "APP",
