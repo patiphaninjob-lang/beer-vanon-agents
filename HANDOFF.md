@@ -1,5 +1,10 @@
 # Session Handoff - Unified Multi-Note Tooltips & Shared Utils Deployed
 
+- **v3.7.2 Fully Deployed**:
+  * Added recording time (e.g. `เวลา 14:30 น.`) and trading phase information (e.g. `ก่อนตลาดเปิด`, `ระหว่างวัน`, `หลังตลาดปิด`) directly in the header of note cards in the chart Tooltip.
+  * Added colored phase badges to note cards inside the trade journal timeline (`journal.html`) to visually separate notes taken in different market phases.
+  * Bumped Service Worker cache version to `v58` inside `docs/sw.js` and bumped version to `v3.7.2` on all pages.
+
 - **v3.7.1 Fully Deployed**:
   * Fixed the journal saving system to prevent overwriting notes taken in different phases (Premarket / Midday / Postmarket) for the same stock on the same day.
   * Inputs inside `journal.html` are now dynamically loaded based on the currently selected stock, date, and phase, clearing inputs if no entry exists and loading the exact matching entry if it exists.
@@ -16,10 +21,11 @@
   * Bushed version tag changes and tooltip logs to Git repository.
 
 ## Files Changed
-- `docs/index.html`: Updated `groupNotesByDate` to group by `archive_date` first, bumped version to `v3.7.1`.
-- `docs/history.html`: Updated `noteDate` to prioritize `archive_date`, bumped version to `v3.7.1`.
-- `docs/journal.html`: Updated `loadLatestNoteToInputs`, `addPreviewEntry`, and event listeners (date change, phase change) to isolate by selected date and phase; bumped version to `v3.7.1`.
-- `docs/sw.js`: Incremented cache version to `v57`.
+- `docs/shared-utils.js`: Added phase and time metadata to note card rendering, added phase badges.
+- `docs/index.html`: Bumped version to `v3.7.2`.
+- `docs/history.html`: Bumped version to `v3.7.2`.
+- `docs/journal.html`: Bumped version to `v3.7.2`.
+- `docs/sw.js`: Incremented cache version to `v58`.
 
 ## Verification
 - Verified code structure is clean and Git repository status is synchronized.

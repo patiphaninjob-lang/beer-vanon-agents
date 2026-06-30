@@ -192,9 +192,20 @@ function renderJournalNoteBody(n) {
     thoughtsHtml = `<div class="tt-text" style="white-space: pre-wrap; word-break: break-word; margin-top: 4px; font-size: 12px; line-height: 1.45;">${esc(parsed.text || n.note || '')}</div>`;
   }
 
+  const phaseLabels = {
+    'premarket': 'ก่อนตลาดเปิด',
+    'midday': 'ระหว่างวัน',
+    'postmarket': 'หลังตลาดปิด',
+    'legacy': 'ทั่วไป'
+  };
+  const phaseText = n.archive_phase ? (phaseLabels[n.archive_phase] || n.archive_phase) : '';
+  const timeText = n.time ? `เวลา ${esc(n.time)} น.` : '';
+  const metaParts = [phaseText, timeText].filter(Boolean);
+  const metaStr = metaParts.length > 0 ? ` · ${metaParts.join(' ')}` : '';
+
   return `
     <div class="tt-section">
-      <div class="tt-label">📝 บันทึกเทรดส่วนตัว</div>
+      <div class="tt-label">📝 บันทึกเทรดส่วนตัว${metaStr}</div>
       ${journalBadges}
       ${planCard}
       ${thoughtsHtml}
@@ -233,8 +244,17 @@ function renderJournalNoteCard(n) {
       outcomeBadgeHtml = `<span class="journal-badge ${outcomeClass}">${esc(outcomeText)}</span>`;
     }
 
+    const phaseLabels = {
+      'premarket': 'ก่อนตลาดเปิด',
+      'midday': 'ระหว่างวัน',
+      'postmarket': 'หลังตลาดปิด',
+      'legacy': 'ทั่วไป'
+    };
+    const phaseText = n.archive_phase ? (phaseLabels[n.archive_phase] || n.archive_phase) : '';
+
     journalBadges = `
       <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
+        ${phaseText ? `<span class="journal-badge phase-badge" style="background:rgba(88, 166, 255, 0.15); color:#58a6ff; border:1px solid rgba(88, 166, 255, 0.25); font-weight:bold;">${esc(phaseText)}</span>` : ''}
         ${n.journal.emotion ? `<span class="journal-badge sentiment">${esc(n.journal.emotion)}</span>` : ''}
         ${intentText ? `<span class="journal-badge action">${esc(intentText)}</span>` : ''}
         ${n.journal.confidence ? `<span class="journal-badge confidence">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
