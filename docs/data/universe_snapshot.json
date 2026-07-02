@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-02T00:21:56.785713+00:00",
+  "updated": "2026-07-02T13:08:15.441047+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -309,7 +309,7 @@
     },
     {
       "ticker": "BABA",
-      "market_cap": 235201879518.92258
+      "market_cap": 235137465303.87683
     },
     {
       "ticker": "MUFG",
@@ -317,11 +317,11 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 215897745736.85364
+      "market_cap": 215846537236.373
     },
     {
       "ticker": "SHEL",
-      "market_cap": 212252528589.49078
+      "market_cap": 212182490623.32993
     },
     {
       "ticker": "APH",
