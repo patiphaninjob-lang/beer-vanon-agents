@@ -74,29 +74,29 @@ function getEmotionColor(emotion) {
   if (!emotion) return '#8b949e';
   const mapping = {
     // 🔴 กลุ่มอารมณ์ลบ / กลัว (เฉดสีแดง/ส้ม/เทา)
-    'กลัว': '#ef5350',                  // แดงมะเขือเทศ (Tomato Red)
-    'กังวล': '#ff7675',                 // ชมพูปะการังอ่อน (Soft Coral Pink)
-    'ระแวง': '#ff9f43',                 // ส้มระเบิด (Burst Orange)
-    'ท้อแท้': '#c0392b',                 // แดงทับทิมเข้ม (Ruby Dark Crimson)
-    'เหนื่อยล้า': '#8395a7',             // เทาอมฟ้าหม่น (Muted Slate Grey-Blue)
-    'หัวร้อน/อยากเอาคืน': '#ee5253',       // แดงเพลิงเข้มจัด (Intense revenge fire red)
+    'กลัว': '#b71c1c',                  // แดงก่ำเข้ม (Deep Crimson Red)
+    'กังวล': '#f06292',                 // ชมพูปะการังเข้ม (Vibrant Salmon Pink)
+    'ระแวง': '#9e9d24',                 // เขียวมะกอกเข้ม (Mustard Dark Olive)
+    'ท้อแท้': '#5c4033',                 // น้ำตาลดินเข้ม (Muddy Chestnut Brown)
+    'เหนื่อยล้า': '#78909c',             // เทาอมฟ้าหม่น (Slate Blue-Grey)
+    'หัวร้อน/อยากเอาคืน': '#ff1744',       // แดงเพลิงนีออน (Neon Active Lava Red)
     
     // 🔵 กลุ่มโลภ / ตื่นตัวสูง (เฉดสีน้ำเงิน/ฟ้า/ม่วง)
-    'โลภ': '#341f97',                  // น้ำเงินอินดิโก้ไฟฟ้า (Electric Indigo Blue)
-    'FOMO': '#0abde3',                 // ฟ้าสว่างเทอร์ควอยซ์ (Vibrant Turquoise/Cyan)
-    'มั่นใจเกินไป': '#8c11ad',           // ม่วงอเมทิสต์สว่าง (Amethyst Violet Purple)
-    'เสียดาย': '#5f27cd',               // ม่วงลาเวนเดอร์นีออน (Neon Lavender/Purple)
+    'โลภ': '#ffd700',                  // เหลืองทองคำ (Gold Yellow)
+    'FOMO': '#00e5ff',                 // ฟ้าสว่างนีออน (Electric Cyan Blue)
+    'มั่นใจเกินไป': '#d500f9',           // ม่วงอมชมพูนีออน (Euphoric Purple Pink)
+    'เสียดาย': '#311b92',               // ครามม่วงเข้มจัด (Deep Indigo Blue)
     
     // 🟢 กลุ่มมั่นใจ / วินัยบวก (เฉดสีเขียว)
-    'มั่นใจแต่ระวัง': '#10ac84',           // เขียวหัวเป็ดสว่าง (Mint Teal Green)
-    'มีวินัย': '#1dd1a1',               // เขียวมรกตสดใส (Emerald Fresh Green)
-    'สบายใจ/ใจเย็น': '#1289a7',           // เขียวมินต์อมฟ้าสบายตา (Calm Ocean Teal)
+    'มั่นใจแต่ระวัง': '#00897b',           // เขียวหัวเป็ดเข้ม (Deep Teal Green)
+    'มีวินัย': '#00e676',               // เขียวมรกตนีออน (Neon Emerald Green)
+    'สบายใจ/ใจเย็น': '#0288d1',           // ฟ้าครามทะเล (Calm Ocean Blue)
     
     // 🟡 กลุ่มลังเล / รอคอย (เฉดสีเหลือง/ส้ม/น้ำตาล)
-    'ลังเล': '#f1c40f',                 // เหลืองแดดจ้า (Sun Yellow)
-    'สับสน': '#e67e22',                 // ส้มฟักทองอบอุ่น (Pumpkin Orange)
-    'ใจเย็นรอ': '#ff9f43',               // ส้มเหลืองพาสเทล (Gold Apricot Orange)
-    'ไม่เชื่อข่าว': '#54a0ff'              // ฟ้าพาสเทลสดใส (Soft Pastel Sky Blue)
+    'ลังเล': '#ffea00',                 // เหลืองมะนาวสว่าง (Lemon Yellow)
+    'สับสน': '#e65100',                 // ส้มอิฐเข้ม (Dark Muddy Orange)
+    'ใจเย็นรอ': '#ff9100',               // ส้มอำพันสว่าง (Amber Orange)
+    'ไม่เชื่อข่าว': '#7986cb'              // ฟ้าอมม่วงยีนส์ (Muted Denim Indigo)
   };
   
   // fallback map for aliases or other exact matches
