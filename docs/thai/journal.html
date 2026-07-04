@@ -553,13 +553,106 @@
       .prototype-chip { display: flex; width: max-content; margin: 5px 0 0; }
       .brand h1 { white-space: normal; }
     }
+    .version-tag {
+      position: relative;
+      font-size: 0.55em;
+      color: #8b949e;
+      font-weight: normal;
+      margin-left: 6px;
+      vertical-align: middle;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .version-tag:hover {
+      background: rgba(99,102,241,0.25);
+      border-color: #6366f1;
+      color: #fff;
+    }
+    .version-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 135%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      border: 1px solid #374151;
+      color: #e6edf3;
+      padding: 12px 14px;
+      border-radius: 8px;
+      width: 290px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.55);
+      z-index: 1000;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: left;
+      white-space: normal;
+      pointer-events: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .version-tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent #1f2937 transparent;
+    }
+    .version-tooltip::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -7px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: transparent transparent #374151 transparent;
+      z-index: -1;
+    }
+    .version-tag:hover .version-tooltip,
+    .version-tag.active-tooltip .version-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .version-tooltip .wt-title {
+      color: #f0b90b;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 4px;
+    }
+    .version-tooltip ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .version-tooltip li {
+      margin-bottom: 8px;
+    }
+    .version-tooltip li:last-child {
+      margin-bottom: 0;
+    }
+    .wt-ver {
+      color: #58a6ff;
+      font-weight: 600;
+      margin-right: 4px;
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <div>
-        <h1>สมุดบันทึกหุ้นไทย</h1>
+        <h1>สมุดบันทึกหุ้นไทย <span class="version-tag" id="versionTag" onclick="event.stopPropagation(); this.classList.toggle('active-tooltip')" title="ดูประวัติการอัปเกรต">v3.9.23<span class="version-tooltip"><span class="wt-title">💡 มีอะไรใหม่? (What's New)</span><ul><li><span class="wt-ver">v3.9.23 (ล่าสุด):</span> ยกเลิกหน้าประวัติแบบแยกเดี่ยว และนำปุ่มเลือกช่วงเวลาแสดงผลกราฟ (1M, 6M, 1Y, 5Y, ALL) ไปรวมไว้ในหน้าจอกราฟขยายเต็มจอบนหน้าแรกโดยตรงเพื่อความสะดวกในการใช้งาน พร้อมแก้ไขและขยายระบบนี้ทั้งเวอร์ชัน US และ Thai</li><li><span class="wt-ver">v3.9.22:</span> แก้ไขระบบเลือกหุ้นในหน้า Journal ที่จะปรับเป็นหุ้นตัวแรกอัตโนมัติหากหุ้นตัวนั้นไม่มีข้อมูลการบ้านในวันนั้น พร้อมแก้ไขระบบเส้นเชื่อมต่อ Tooltip และอัปเดตเวอร์ชันทุกหน้าให้ตรงกัน</li></ul></span></span></h1>
         <small>หน้าแยกสำหรับบันทึกอารมณ์ ความคิด และแผนของหุ้นไทยแต่ละตัว</small>
       </div>
     </div>
