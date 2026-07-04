@@ -1026,6 +1026,8 @@ async function loadNotes() {
   if (firestoreData) {
     globalNotesCache = firestoreData;
     const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+    if (state.ticker === '_MARKET') keys.push('_MARKET_');
+    if (state.ticker === '_MARKET_') keys.push('_MARKET');
     state.notes = [];
     keys.forEach(key => {
       if (firestoreData[key]) state.notes = state.notes.concat(firestoreData[key]);
@@ -1035,6 +1037,8 @@ async function loadNotes() {
       const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
       globalNotesCache = db;
       const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+      if (state.ticker === '_MARKET') keys.push('_MARKET_');
+      if (state.ticker === '_MARKET_') keys.push('_MARKET');
       state.notes = [];
       keys.forEach(key => {
         if (db[key]) state.notes = state.notes.concat(db[key]);

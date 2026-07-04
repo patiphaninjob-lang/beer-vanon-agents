@@ -340,6 +340,8 @@ function noteDate(n) {
 async function loadNotes() {
   const db = await fetchJson(`${NOTES_FILE}?nocache=${Date.now()}`);
   const keys = [...new Set([state.ticker, state.ticker.replace('-', '.')])];
+  if (state.ticker === '_MARKET') keys.push('_MARKET_');
+  if (state.ticker === '_MARKET_') keys.push('_MARKET');
   state.notes = [];
   keys.forEach(key => {
     if (db[key]) state.notes = state.notes.concat(db[key]);

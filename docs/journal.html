@@ -1775,8 +1775,8 @@ function archiveKey(date, phase) {
 }
 function selectedStock() {
   const ticker = String(state.ticker || '').toUpperCase();
-  if (ticker === '_MARKET_') {
-    return { ticker: '_MARKET_', name: 'ภาพรวมตลาด', price: 0, pct_change: 0 };
+  if (ticker === '_MARKET' || ticker === '_MARKET_') {
+    return { ticker: '_MARKET', name: 'ภาพรวมตลาด', price: 0, pct_change: 0 };
   }
   return state.data?.stocks?.find(stock => stock.ticker === ticker) || state.data?.stocks?.[0] || null;
 }
@@ -2129,8 +2129,9 @@ function renderStockList() {
     
   let html = '';
   if (!state.search) {
-    html += `<div class="stock-row ${state.ticker === '_MARKET_' ? 'active' : ''}" style="border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 8px; margin-bottom: 8px;">
-      <button class="stock-main" data-ticker="_MARKET_" type="button">
+    const isMarketActive = state.ticker === '_MARKET' || state.ticker === '_MARKET_';
+    html += `<div class="stock-row ${isMarketActive ? 'active' : ''}" style="border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 8px; margin-bottom: 8px;">
+      <button class="stock-main" data-ticker="_MARKET" type="button">
         <div class="stock-symbol" style="color: #f0b90b; font-weight: bold;">📊 ภาพรวมตลาด</div>
         <div class="stock-name" style="color: #8b949e;">Market Overview</div>
       </button>
@@ -2171,7 +2172,7 @@ function renderStockContext() {
   
   state.ticker = stock.ticker;
   
-  if (stock.ticker === '_MARKET_') {
+  if (stock.ticker === '_MARKET' || stock.ticker === '_MARKET_') {
     const indices = state.data?.market_indices || {};
     document.getElementById('tickerTitle').textContent = 'MARKET';
     document.getElementById('companyTitle').textContent = 'ภาพรวมตลาด (Market Overview)';

@@ -2065,6 +2065,7 @@ function registerFirestoreRealtimeListener() {
     const newStr = JSON.stringify(next);
     if (oldStr !== newStr) {
       notesCache = next;
+      sanitizeNotesCache();
       
       // Sync watchlist from cloud
       if (Array.isArray(notesCache._watchlist)) {
@@ -2193,11 +2194,25 @@ function syncWatchlistFromNotes() {
 // Emotion functions (detectEmotion, getEmotionCategory, getEmotionColor) are now loaded from shared-utils.js
 
 // ── Notes ─────────────────────────────────────────────────────
+function sanitizeNotesCache() {
+  if (!notesCache) return;
+  if (notesCache['_MARKET_']) {
+    if (!Array.isArray(notesCache['_MARKET'])) notesCache['_MARKET'] = [];
+    notesCache['_MARKET_'].forEach(n => {
+      if (n && !notesCache['_MARKET'].some(x => x.id === n.id)) {
+        notesCache['_MARKET'].push(n);
+      }
+    });
+    notesCache['_MARKET'].sort((a, b) => b.id - a.id);
+  }
+}
+
 async function loadNotes(force = false) {
   if (force) {
     const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
     if (firestoreData) {
       notesCache = firestoreData;
+      sanitizeNotesCache();
       notesSha = null;
       notesSyncBackend = 'firestore';
       syncWatchlistFromNotes();
@@ -2207,6 +2222,7 @@ async function loadNotes(force = false) {
     const firestoreData = await withTimeout(loadNotesFromFirestore(), 1500).catch(() => false);
     if (firestoreData) {
       notesCache = firestoreData;
+      sanitizeNotesCache();
       notesSha = null;
       notesSyncBackend = 'firestore';
       syncWatchlistFromNotes();
@@ -2226,6 +2242,7 @@ async function loadNotes(force = false) {
       const file = await api.json();
       notesSha = file.sha;
       notesCache = JSON.parse(fromBase64(file.content || 'e30='));
+      sanitizeNotesCache();
       notesSyncBackend = 'github';
       if (countNotesMap(notesCache) > 0) {
         await saveNotesToFirestore();
@@ -2241,6 +2258,7 @@ async function loadNotes(force = false) {
     });
     if (!r.ok) throw new Error(`notes HTTP ${r.status}`);
     notesCache = await r.json();
+    sanitizeNotesCache();
     notesSyncBackend = 'github';
     // get SHA for write operations
     const api = await fetch(`https://api.github.com/repos/${REPO}/contents/${NOTES_FILE}?_=${Date.now()}`, {
@@ -2255,6 +2273,7 @@ async function loadNotes(force = false) {
     return true;
   } catch(e) {
     notesCache = {};
+    sanitizeNotesCache();
     notesSha = null;
     notesSyncBackend = 'github';
     return false;
