@@ -108,11 +108,11 @@ function getEmotionColor(emotion) {
   const hesitant = ['ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'];
   const greed = ['โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป'];
   
-  if (fear.includes(emotion)) return '#ef5350';
-  if (confident.includes(emotion)) return '#26a69a';
-  if (hesitant.includes(emotion)) return '#facc15';
-  if (greed.includes(emotion)) return '#3b82f6';
-  return '#f0b90b';
+  if (fear.includes(emotion)) return '#b71c1c';
+  if (confident.includes(emotion)) return '#00e676';
+  if (hesitant.includes(emotion)) return '#ffea00';
+  if (greed.includes(emotion)) return '#ffd700';
+  return '#8b949e';
 }
 
 function renderEmotionBadge(label, emotion) {
