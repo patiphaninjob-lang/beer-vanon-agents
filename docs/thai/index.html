@@ -2331,8 +2331,6 @@ function cardHTML(s) {
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     <a class="journal-btn" href="${journalUrl}">Journal</a>
     ${newsHTML ? `<div class="news-section">${newsHTML}</div>` : ''}
-    ${homeworkHTML}
-    ${analysisHTML}
   </div>`;
 }
 
@@ -2503,8 +2501,20 @@ document.addEventListener('click', async e => {
             if (r.ok && loader) {
               const data = await r.json();
               const stock = data.stocks?.find(s => s.ticker === ticker);
-              if (stock && stock.analysis) {
-                loader.innerHTML = `<div class="tt-label beer">🇹🇭 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div>`;
+              if (stock) {
+                let html = '';
+                if (stock.homework_checklist && stock.homework_checklist.length) {
+                  const hwText = stock.homework_checklist.map(item => `• ${item.topic}: ${item.insight || item.prompt}`).join('\n');
+                  html += `<div class="tt-label beer">🧭 Beer วิเคราะห์ Ch34 เจาะลึก:</div><div class="tt-text" style="white-space:pre-wrap; margin-bottom:8px;">${esc(hwText)}</div>`;
+                }
+                if (stock.analysis) {
+                  html += `<div class="tt-label beer">🇹🇭 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="white-space:pre-wrap;">${esc(stock.analysis.trim())}</div>`;
+                }
+                if (html) {
+                  loader.innerHTML = html;
+                } else {
+                  loader.remove();
+                }
               } else {
                 loader.remove();
               }

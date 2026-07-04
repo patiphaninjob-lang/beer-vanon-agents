@@ -1478,7 +1478,20 @@ function showGroup(group, candle, isNavigating) {
   `;
 
   // --- Show Tooltip Logic ---
-  const m = state.markers.find(x => x.key === group.date);
+  const m = state.markers.find(x => x.key === group.date) || (() => {
+    if (!candle) return null;
+    const idx = state.candles.findIndex(cx => cx.date === candle.date);
+    if (idx === -1) return null;
+    const pad = { left: 56, right: 16, top: 22, bottom: 34 };
+    const w = canvas.getBoundingClientRect().width;
+    const h = canvas.getBoundingClientRect().height;
+    const plotW = w - pad.left - pad.right;
+    const x = pad.left + (state.candles.length === 1 ? plotW / 2 : (idx / (state.candles.length - 1)) * plotW);
+    const yMax = Math.max(...state.candles.map(cx => cx.high)) * 1.05;
+    const yMin = Math.min(...state.candles.map(cx => cx.low)) * 0.95;
+    const y = pad.top + ((yMax - candle.close) / (yMax - yMin)) * (h - pad.top - pad.bottom);
+    return { key: group.date, x, y, r: 8, group, candle };
+  })();
   const tooltip = document.getElementById('markerTooltip');
   const keepPosition = !!(tooltip && tooltip._activeMarker && m && tooltip._activeMarker.key === m.key && tooltip.classList.contains('show'));
   
@@ -1679,7 +1692,10 @@ function showGroup(group, candle, isNavigating) {
     const sbLoader = document.getElementById(sidebarLoadingId);
     if (sbLoader) {
       if (stock) {
-        sbLoader.outerHTML = renderBeerAnalysis(stock.analysis, 'Beer Archive Context');
+        const insightStr = (stock.homework_checklist || []).map(item => `• ${item.topic}: ${item.insight || item.prompt}`).join('\n');
+        const homeworkHTML = insightStr ? renderBeerAnalysis(insightStr, '🧭 Beer วิเคราะห์ Ch34 เจาะลึก') : '';
+        const analysisHTML = stock.analysis ? renderBeerAnalysis(stock.analysis, '🍺 วิเคราะห์เจาะลึก') : '';
+        sbLoader.outerHTML = `${homeworkHTML}${analysisHTML}`;
       } else {
         sbLoader.remove();
       }
@@ -1687,8 +1703,11 @@ function showGroup(group, candle, isNavigating) {
     
     const ttLoader = document.getElementById(tooltipLoadingId);
     if (ttLoader) {
-      if (stock && stock.analysis) {
-        ttLoader.outerHTML = renderBeerAnalysis(stock.analysis);
+      if (stock) {
+        const insightStr = (stock.homework_checklist || []).map(item => `• ${item.topic}: ${item.insight || item.prompt}`).join('\n');
+        const homeworkHTML = insightStr ? renderBeerAnalysis(insightStr, '🧭 Beer วิเคราะห์ Ch34 เจาะลึก') : '';
+        const analysisHTML = stock.analysis ? renderBeerAnalysis(stock.analysis, '🍺 วิเคราะห์เจาะลึก') : '';
+        ttLoader.outerHTML = `${homeworkHTML}${analysisHTML}`;
       } else {
         ttLoader.remove();
       }
@@ -2034,18 +2053,10 @@ function bindEvents() {
       }
     });
 
-    const isNote = notesMap[closestIdx] !== undefined;
-    if (isNote) {
-      const { group } = notesMap[closestIdx];
-      state.selectedKey = group.date;
-      drawChart();
-      showGroup(group, c);
-    } else {
-      state.selectedKey = null;
-      const tooltip = document.getElementById('markerTooltip');
-      if (tooltip) tooltip.classList.remove('show');
-      drawChart();
-    }
+    const group = notesMap[closestIdx]?.group || { date: c.date, notes: [] };
+    state.selectedKey = group.date;
+    drawChart();
+    showGroup(group, c);
   });
 
   canvas.addEventListener('mousemove', e => {

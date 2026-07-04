@@ -677,16 +677,44 @@ async function showGroup(group, candle) {
     </div>
   `).join('');
 
+  let homeworkHTML = '';
+  if (stock && stock.homework_checklist && stock.homework_checklist.length) {
+    homeworkHTML = `
+      <div class="card-homework" style="background:#0f172a; border:1px solid #334155; border-radius:7px; padding:10px; margin-top:8px; margin-bottom:8px;">
+        <div class="card-homework-label" style="color:#10b981; font-weight:bold; font-size:0.85em; margin-bottom:6px;">🧭 Beer วิเคราะห์ Ch34 เจาะลึก</div>
+        ${stock.homework_checklist.map(item => `
+          <div class="card-homework-item" style="margin-top:6px; font-size:0.85em; line-height:1.45;">
+            <strong>${esc(item.topic || '')}</strong>: ${esc(item.insight || item.prompt || '')}
+          </div>`).join('')}
+      </div>
+    `;
+  }
+  
   detail.innerHTML = `
     <div class="detail-head">
       <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
     </div>
     ${notesHTML}
-    ${stock ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis || 'ไม่มีบทวิเคราะห์ในวันนี')}</div></div>` : ''}
+    ${homeworkHTML}
+    ${stock && stock.analysis ? `<div class="snapshot"><div class="snapshot-title">Beer Archive Context</div><div class="snapshot-analysis">${esc(stock.analysis)}</div></div>` : ''}
   `;
 
   // --- Show Tooltip Logic ---
-  const m = state.markers.find(x => x.key === group.date);
+  let m = state.markers.find(x => x.key === group.date);
+  if (!m && candle) {
+    const idx = state.candles.findIndex(cx => cx.date === candle.date);
+    if (idx !== -1) {
+      const pad = { left: 56, right: 16, top: 22, bottom: 34 };
+      const w = canvas.getBoundingClientRect().width;
+      const h = canvas.getBoundingClientRect().height;
+      const plotW = w - pad.left - pad.right;
+      const x = pad.left + (state.candles.length === 1 ? plotW / 2 : (idx / (state.candles.length - 1)) * plotW);
+      const yMax = Math.max(...state.candles.map(cx => cx.high)) * 1.05;
+      const yMin = Math.min(...state.candles.map(cx => cx.low)) * 0.95;
+      const y = pad.top + ((yMax - candle.close) / (yMax - yMin)) * (h - pad.top - pad.bottom);
+      m = { key: group.date, x, y, r: 8, group, candle };
+    }
+  }
   const tooltip = document.getElementById('markerTooltip');
   if (m && tooltip) {
     let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
@@ -694,8 +722,12 @@ async function showGroup(group, candle) {
       baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div><div class="tt-text">${esc(n.note || '')}</div></div>`;
     });
     
+    if (stock && stock.homework_checklist && stock.homework_checklist.length) {
+      const hwText = stock.homework_checklist.map(item => `• ${item.topic}: ${item.insight || item.prompt || ''}`).join('\n');
+      baseHtml += `<div class="tt-section"><div class="tt-label beer">🧭 Beer วิเคราะห์ Ch34 เจาะลึก:</div><div class="tt-text" style="white-space:pre-wrap; margin-bottom:8px;">${esc(hwText)}</div></div>`;
+    }
     if (stock && stock.analysis) {
-      baseHtml += `<div class="tt-section"><div class="tt-label beer">🇹🇭 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text">${esc(stock.analysis.trim())}</div></div>`;
+      baseHtml += `<div class="tt-section"><div class="tt-label beer">🇹🇭 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="white-space:pre-wrap;">${esc(stock.analysis.trim())}</div></div>`;
     }
     
     tooltip.innerHTML = baseHtml;
@@ -825,18 +857,10 @@ function bindEvents() {
       }
     });
 
-    const isNote = notesMap[closestIdx] !== undefined;
-    if (isNote) {
-      const { group } = notesMap[closestIdx];
-      state.selectedKey = group.date;
-      drawChart();
-      showGroup(group, c);
-    } else {
-      state.selectedKey = null;
-      const tooltip = document.getElementById('markerTooltip');
-      if (tooltip) tooltip.classList.remove('show');
-      drawChart();
-    }
+    const group = notesMap[closestIdx]?.group || { date: c.date, notes: [] };
+    state.selectedKey = group.date;
+    drawChart();
+    showGroup(group, c);
   });
 
   canvas.addEventListener('mousemove', e => {
