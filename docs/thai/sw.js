@@ -1,4 +1,4 @@
-const CACHE_NAME = 'thai-top100-v20260618-9';
+const CACHE_NAME = 'thai-top100-v20260618-10';
 const APP_SHELL = [
   './',
   './index.html',

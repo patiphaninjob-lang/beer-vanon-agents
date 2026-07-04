@@ -1302,7 +1302,7 @@ async function deleteNote(ticker, noteId) {
   const ok = await persistNotes(`🗑️ Delete note: ${ticker} ${noteId}`);
 
   if (ok) {
-    if (ticker === '_MARKET_THAI') { openMarketNote(); renderMarketOverview(); upgradeMarketOverviewCards(); }
+    if (ticker === '_MARKET_THAI') { openMarketNote(); renderMarketOverview(); }
     else { showNoteModal(ticker, activeNoteStock); renderCards(); }
   } else {
     notesCache[ticker] = before; // rollback
@@ -1367,7 +1367,6 @@ async function syncNow() {
       status.textContent = `Sync แล้ว: ${total} notes จาก ${notesSyncBackend === 'firestore' ? 'cloud' : 'GitHub'}`;
     }
     renderMarketOverview();
-    upgradeMarketOverviewCards();
     renderCards();
     renderCalendar();
     showToast('✅ Sync notes แล้ว');
@@ -1629,7 +1628,6 @@ async function submitNote() {
     closeNoteModal();
     if (activeNoteTicker === '_MARKET_THAI') {
       renderMarketOverview();
-      upgradeMarketOverviewCards();
     }
     else renderCards();
   } else {
@@ -1643,6 +1641,8 @@ function renderMarketOverview() {
   if (!el) return;
   const mi = currentData?.market_indices;
   const marketNotes = (notesCache['_MARKET_THAI'] || []).slice().sort((a,b)=>b.id-a.id);
+  const marketNoteCount = marketNotes.length;
+
   const marketMarkersHTML = marketNotes.map(n => {
     const markerDate = n.date || n.archive_date;
     if (!markerDate || !currentData?.date) return '';
@@ -1663,7 +1663,6 @@ function renderMarketOverview() {
     set50: 'https://www.tradingview.com/chart/?symbol=SET%3ASET50',
     set100:'https://www.tradingview.com/chart/?symbol=SET%3ASET100'
   };
-  const marketNoteCount = marketNotes.length;
 
   const indexCards = mi && Object.keys(mi).length
     ? ['set','set50','set100'].filter(k => mi[k]).map(k => {
@@ -1672,17 +1671,34 @@ function renderMarketOverview() {
         const color = up ? '#16c784' : '#ea3943';
         const arrow = up ? '▲' : '▼';
         const priceStr = d.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        const name = INDEX_META[k];
+        const price = priceStr;
+        const pct = `${arrow} ${Math.abs(d.pct_change).toFixed(2)}%`;
+        const tvUrl = INDEX_TV[k];
+        
         return `
-          <div class="index-card" style="border-left-color:${color}">
-            <div class="index-card-name">${INDEX_META[k]}</div>
-            <div class="index-card-price">${priceStr}</div>
-            <div class="index-card-pct" style="color:${color}">${arrow} ${Math.abs(d.pct_change).toFixed(2)}%</div>
-            ${d.chart_b64 ? `<div class="index-card-chart">
-              <a href="${INDEX_TV[k]}" target="_blank" rel="noopener" title="เปิดกราฟใน TradingView">
-                <img src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy" style="cursor:pointer">
-              </a>
+          <div class="card market-card" style="border-left-color:${color}">
+            <div class="card-head">
+              <div>
+                <span class="card-ticker">${esc(name)}</span>
+                <div class="card-name">ภาพรวมตลาด</div>
+              </div>
+              <div style="flex-shrink:0;margin-left:10px">
+                <div class="card-price">${esc(price)}</div>
+                <div class="card-pct" style="color:${color}">${esc(pct)}</div>
+              </div>
+            </div>
+            <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
+            <div class="chart-container">
+              ${d.chart_b64 ? `
+                <a class="chart-link" href="${esc(tvUrl)}" target="_blank" rel="noopener" title="คลิกเพื่อดูกราฟจริงบน TradingView">
+                  <img class="chart-img" src="data:image/jpeg;base64,${d.chart_b64}" loading="lazy">
+                </a>` : `<a class="tv-link" href="${esc(tvUrl)}" target="_blank" rel="noopener">📊 ดูกราฟบน TradingView →</a>`}
               ${marketMarkersHTML}
-            </div>` : ''}
+            </div>
+            <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" data-ticker="_MARKET_THAI">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
+            <a class="history-btn" href="history.html?ticker=_MARKET_THAI&date=${encodeURIComponent(currentData?.date || '')}">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</a>
+            <a class="journal-btn" href="journal.html?ticker=_MARKET_THAI&date=${encodeURIComponent(currentData?.date || '')}">Journal</a>
           </div>`;
       }).join('')
     : `<div style="color:#4b5563;font-size:0.83em;padding:6px 0">ข้อมูลดัชนีจะปรากฏหลังจาก agent รันในวันถัดไป</div>`;
@@ -1698,50 +1714,6 @@ function renderMarketOverview() {
       </div>
       <div class="index-row">${indexCards}</div>
     </div>`;
-}
-
-function upgradeMarketOverviewCards() {
-  const cards = document.querySelectorAll('#marketOverview .index-card');
-  if (!cards.length) return;
-  const marketNoteCount = (notesCache['_MARKET_THAI'] || []).length;
-
-  cards.forEach(card => {
-    if (card.dataset.upgraded === '1') return;
-    card.dataset.upgraded = '1';
-
-    const name = card.querySelector('.index-card-name')?.textContent?.trim() || 'Market';
-    const price = card.querySelector('.index-card-price')?.textContent?.trim() || '';
-    const pct   = card.querySelector('.index-card-pct')?.textContent?.trim() || '';
-    const chart = card.querySelector('.index-card-chart');
-    const chartHTML = chart ? chart.innerHTML : '';
-
-    card.className = 'card market-card';
-    card.innerHTML = `
-      <div class="card-head">
-        <div>
-          <span class="card-ticker">${esc(name)}</span>
-          <div class="card-name">ภาพรวมตลาด</div>
-      </div>
-      <div style="flex-shrink:0;margin-left:10px">
-        <div class="card-price">${esc(price)}</div>
-        <div class="card-pct">${esc(pct)}</div>
-      </div>
-      </div>
-      <div class="card-meta">คลิกกราฟเพื่อเปิด TradingView</div>
-      ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
-      <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
-      <button class="history-btn" type="button" onclick="openMarketHistory()">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</button>
-      <a class="journal-btn" href="journal.html?ticker=_MARKET_THAI&date=${encodeURIComponent(currentData?.date || '')}">Journal</a>
-    `;
-
-    const chartContainer = card.querySelector('.chart-container');
-    if (chartContainer) {
-      const link = chartContainer.querySelector('a');
-      const img = chartContainer.querySelector('img');
-      if (link) link.classList.add('chart-link');
-      if (img) img.classList.add('chart-img');
-    }
-  });
 }
 
 function scrollToMarketNotes() {
@@ -1956,7 +1928,6 @@ async function loadDate(date, preferredPhase = selectedPhase, keepPreferred = fa
     renderSummary();
     renderSystemStatus();
     renderMarketOverview();
-    upgradeMarketOverviewCards();
     renderCards();
   } catch(e) {
     document.getElementById('grid').innerHTML = `<div class="state-msg">${e.message}</div>`;
