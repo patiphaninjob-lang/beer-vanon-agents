@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260628-candlestick-3d-glow-v89';
+const CACHE_NAME = 'beer-top100-v20260628-candlestick-3d-glow-v90';
 const APP_SHELL = [
   './',
   './index.html',

@@ -1141,7 +1141,8 @@ function hydrateWatchlist() {
   const stored = readWatchlist();
   const base = stored === null ? DEFAULT_TICKERS : stored;
   state.watchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
-  if (state.ticker !== '_MARKET_THAI' && state.ticker !== '_MARKET_THAI_' && !stockByTicker(state.ticker)) {
+  const isMarket = state.ticker && state.ticker.startsWith('_');
+  if (!isMarket && !stockByTicker(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'AOT.BK';
   }
   saveWatchlist();

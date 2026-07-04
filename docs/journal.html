@@ -1795,7 +1795,8 @@ function hydrateWatchlist() {
   const stored = readWatchlist();
   const base = stored === null ? DEFAULT_TICKERS : stored;
   state.watchlist = uniqueTickers(base);
-  if (!stockByTicker(state.ticker)) {
+  const isMarket = state.ticker && state.ticker.startsWith('_');
+  if (!isMarket && !stockByTicker(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'NVDA';
   }
   saveWatchlist();
@@ -2341,32 +2342,27 @@ function bindCanvasEvents() {
     });
 
     const isNote = notesMap[closestIdx] !== undefined;
-    if (isNote) {
-      const { group } = notesMap[closestIdx];
-      state.selectedKey = group.date;
-      drawChart();
-      
-      const tempMarker = {
-        x: xFor(closestIdx),
-        y: yFor(c.close),
-        r: Math.max(12, cw + 4),
-        key: group.date,
-        group,
-        candle: c
-      };
-      showMarkerTooltip(tempMarker);
-    } else {
-      state.selectedKey = null;
-      if (hoverTip) hoverTip.classList.remove('show');
-      
+    const group = notesMap[closestIdx]?.group || { date: c.date, notes: [] };
+    state.selectedKey = group.date;
+    drawChart();
+    
+    const tempMarker = {
+      x: xFor(closestIdx),
+      y: yFor(c.close),
+      r: Math.max(12, cw + 4),
+      key: group.date,
+      group,
+      candle: c
+    };
+    showMarkerTooltip(tempMarker);
+
+    if (!isNote) {
       state.date = c.date;
       const dateSelect = document.getElementById('dateSelect');
       if (dateSelect) {
         dateSelect.value = c.date;
       }
-      
       loadLatestNoteToInputs();
-      drawChart();
     }
   });
 

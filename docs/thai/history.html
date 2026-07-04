@@ -385,10 +385,32 @@ async function loadLatestStock() {
 
 async function loadArchive(date) {
   if (!date) return null;
-  if (!state.archiveCache[date]) {
-    state.archiveCache[date] = await fetchJson(`${DATA_FILE_PREFIX}/${date}.json?nocache=${Date.now()}`);
+  if (state.archiveCache[date]) {
+    return state.archiveCache[date];
   }
-  return state.archiveCache[date];
+
+  const hasSuffix = date.includes('-postmarket') || date.includes('-premarket') || date.includes('-legacy');
+  if (hasSuffix) {
+    try {
+      state.archiveCache[date] = await fetchJson(`${DATA_FILE_PREFIX}/${date}.json?nocache=${Date.now()}`);
+      return state.archiveCache[date];
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const phases = ['postmarket', 'premarket', 'legacy'];
+  for (const phase of phases) {
+    try {
+      const key = phase === 'legacy' ? date : `${date}-${phase}`;
+      const data = await fetchJson(`${DATA_FILE_PREFIX}/${key}.json?nocache=${Date.now()}`);
+      if (data) {
+        state.archiveCache[date] = data;
+        return data;
+      }
+    } catch (e) {}
+  }
+  return null;
 }
 function findStock(day, ticker) {
   if (!day?.stocks) return null;
