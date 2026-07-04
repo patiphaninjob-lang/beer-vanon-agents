@@ -66,7 +66,27 @@ GITHUB_PAGES_URL = "https://patiphaninjob-lang.github.io/beer-vanon-agents"
 RUN_REQUEST_ID   = os.getenv("RUN_REQUEST_ID", "").strip()
 RUN_REQUEST_SOURCE = os.getenv("RUN_REQUEST_SOURCE", "").strip()
 RUN_REQUESTED_BY = os.getenv("RUN_REQUESTED_BY", "").strip()
-RUN_PHASE = os.getenv("RUN_PHASE", "manual").strip() or "manual"
+def detect_report_phase() -> str:
+    phase = os.getenv("RUN_PHASE", "").strip().lower()
+    if phase in {"premarket", "postmarket", "manual"}:
+        return phase
+    
+    import datetime
+    try:
+        tz_bangkok = datetime.timezone(datetime.timedelta(hours=7))
+        now_bk = datetime.datetime.now(tz_bangkok)
+    except Exception:
+        now_bk = datetime.datetime.now()
+        
+    hour = now_bk.hour
+    if hour < 6:
+        return "premarket"
+    elif hour < 12:
+        return "postmarket"
+    else:
+        return "premarket"
+
+RUN_PHASE = detect_report_phase()
 THAI_TOP100_ENABLED = os.getenv("THAI_TOP100_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}
 THAI_NOTES_FILE = ROOT_DIR / "docs/thai/notes/notes.json"
 THAI_USAGE_FILE = DATA_DIR / "usage_stats.json"
@@ -1011,7 +1031,17 @@ def main():
         safe_print("Set THAI_TOP100_ENABLED=1 or pass --enable-thai when you intentionally want to run it.")
         return
 
-    today = datetime.date.today()
+    try:
+        tz_bangkok = datetime.timezone(datetime.timedelta(hours=7))
+        now_bk = datetime.datetime.now(tz_bangkok)
+    except Exception:
+        now_bk = datetime.datetime.now()
+        
+    hour = now_bk.hour
+    today = now_bk.date()
+    
+    if RUN_PHASE == "postmarket" and 6 <= hour < 12:
+        today = today - datetime.timedelta(days=1)
     
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"

@@ -56,7 +56,21 @@ def detect_report_phase() -> str:
     phase = os.getenv("RUN_PHASE", "").strip().lower()
     if phase in {"premarket", "postmarket", "manual"}:
         return phase
-    return "scheduled" if os.getenv("GITHUB_EVENT_NAME") == "schedule" else "manual"
+    
+    import datetime
+    try:
+        tz_bangkok = datetime.timezone(datetime.timedelta(hours=7))
+        now_bk = datetime.datetime.now(tz_bangkok)
+    except Exception:
+        now_bk = datetime.datetime.now()
+        
+    hour = now_bk.hour
+    if hour < 6:
+        return "premarket"
+    elif hour < 12:
+        return "postmarket"
+    else:
+        return "premarket"
 
 REPORT_PHASE = detect_report_phase()
 PHASED_REPORT_PHASES = {"premarket", "postmarket"}
@@ -1497,7 +1511,17 @@ def main():
         except ValueError:
             parser.error("--date must use YYYY-MM-DD format")
     else:
-        today = datetime.date.today()
+        try:
+            tz_bangkok = datetime.timezone(datetime.timedelta(hours=7))
+            now_bk = datetime.datetime.now(tz_bangkok)
+        except Exception:
+            now_bk = datetime.datetime.now()
+            
+        hour = now_bk.hour
+        today = now_bk.date()
+        
+        if REPORT_PHASE == "postmarket" and 6 <= hour < 12:
+            today = today - datetime.timedelta(days=1)
 
     # 0. Safety Net Check: ถ้าเป็นระบบ Auto (schedule) และวันนี้ทำไปแล้ว (กดมือ) ให้ข้าม
     is_scheduled = os.getenv("GITHUB_EVENT_NAME") == "schedule"
