@@ -1,4 +1,8 @@
-# Session Handoff - Ch34 AI Analysis Relocated to Chart Candles (v3.9.15)
+# Session Handoff - Candlestick Tooltip Click-Only Update (v3.9.16)
+
+- **v3.9.16 Deployed**:
+  * **Click-Only Tooltips**: Disabled automatic tooltip popup showing on mouse hover for both mini-charts and expanded charts in `docs/index.html`. Tooltips now only open when clicking or tapping a candlestick.
+  * **Version & Cache Bumps**: Bumped version tag to `v3.9.16` in `docs/index.html`, added the changelog details, and bumped `sw.js` cache name in `docs/sw.js` (to `v86`).
 
 - **v3.9.15 Deployed**:
   * **Card Compactness**: Removed static `homeworkHTML` (Beer Ch34 checklist) and `analysisHTML` (general analysis) rendering from stock cards on both US and Thai homepages (`docs/index.html` & `docs/thai/index.html`).
@@ -14,15 +18,12 @@
   * **Version & Cache Bumps**: Bumped version tag to `v3.9.15` in `docs/index.html`, added the changelog details, and bumped `sw.js` cache names in `docs/sw.js` (to `v85`) and `docs/thai/sw.js` (to `v9`).
 
 ## Files Changed
-- `docs/index.html`: Updated version tags, changelog, homepage card template (removed NEWS button), mini-chart tooltips, and canvas interactivity. Added index cards metadata in `upgradeMarketOverviewCards()`.
-- `docs/history.html`: Enabled universal candle clicking, dynamic tooltip positioning without note markers, and rendering of Ch34 checklist and general analysis.
-- `docs/thai/index.html`: Removed homepage card template analysis blocks and NEWS button, added `homeworkTimeHtml` headers, and added them to tooltips. Support `_MARKET_THAI` journaling.
-- `docs/thai/history.html`: Enabled universal candle clicking, dynamic tooltip positioning, and rendering of Ch34 checklist and general analysis with homework completed metadata.
-- `docs/thai/journal.html`: Support `_MARKET_THAI` journaling and watchlist structure.
-- `docs/sw.js` & `docs/thai/sw.js`: Incremented cache versions.
+- `docs/index.html`: Bumped to v3.9.16. Removed tooltips on hover for mini-charts and expanded charts (changed to click-only).
+- `docs/sw.js`: Incremented cache version to v86.
+- `HANDOFF.md`: Updated to document version 3.9.16.
 
 ## Verification
-- Committed and pushed successfully to GitHub repository (`origin/main`).
+- Staged, committed, and pushed successfully to GitHub repository (`origin/main`).
 - Verified all pages compile and run correctly.
 
 ## Next Steps
