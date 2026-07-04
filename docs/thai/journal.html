@@ -1106,6 +1106,9 @@ function archiveKey(date, phase) {
 }
 function selectedStock() {
   const ticker = String(state.ticker || '').toUpperCase();
+  if (ticker === '_MARKET_THAI' || ticker === '_MARKET_THAI_') {
+    return { ticker: '_MARKET_THAI', name: 'ภาพรวมตลาด', price: 0, pct_change: 0 };
+  }
   return state.data?.stocks?.find(stock => stock.ticker === ticker) || state.data?.stocks?.[0] || null;
 }
 function stockByTicker(ticker) {
@@ -1138,7 +1141,7 @@ function hydrateWatchlist() {
   const stored = readWatchlist();
   const base = stored === null ? DEFAULT_TICKERS : stored;
   state.watchlist = uniqueTickers(base).filter(ticker => available.has(ticker));
-  if (!stockByTicker(state.ticker)) {
+  if (state.ticker !== '_MARKET_THAI' && state.ticker !== '_MARKET_THAI_' && !stockByTicker(state.ticker)) {
     state.ticker = state.watchlist[0] || state.data?.stocks?.[0]?.ticker || 'AOT.BK';
   }
   saveWatchlist();
@@ -1354,7 +1357,23 @@ function renderStockList() {
   document.getElementById('watchlistCount').textContent = state.search
     ? `ผลค้นหา ${list.length} รายการ`
     : `ติดตาม ${state.watchlist.length} ตัว`;
-  document.getElementById('stockList').innerHTML = list.length ? list.map(stock => {
+
+  let html = '';
+  if (!state.search) {
+    const isMarketActive = state.ticker === '_MARKET_THAI' || state.ticker === '_MARKET_THAI_';
+    html += `<div class="stock-row ${isMarketActive ? 'active' : ''}" style="border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 8px; margin-bottom: 8px;">
+      <button class="stock-main" data-ticker="_MARKET_THAI" type="button">
+        <div class="stock-symbol" style="color: #f0b90b; font-weight: bold;">📊 ภาพรวมตลาด</div>
+        <div class="stock-name" style="color: #8b949e;">Market Overview</div>
+      </button>
+      <div class="stock-quote">
+        <div class="stock-price" style="font-size:0.9em; font-weight:bold; color:#e6edf3;">ดัชนี</div>
+        <div class="pct" style="color:var(--muted); font-size:0.8em;">SET / SET50</div>
+      </div>
+    </div>`;
+  }
+
+  html += list.length ? list.map(stock => {
     const tracked = state.watchlist.includes(stock.ticker);
     const action = tracked
       ? `<button class="stock-action danger" data-remove-ticker="${esc(stock.ticker)}" type="button">ลบ</button>`
@@ -1371,10 +1390,54 @@ function renderStockList() {
       ${action}
     </div>`;
   }).join('') : `<div class="empty">${state.search ? 'ไม่พบหุ้นจากคำค้นนี้' : 'ยังไม่มีหุ้นที่ติดตาม พิมพ์ ticker ด้านบนเพื่อเพิ่ม'}</div>`;
+
+  document.getElementById('stockList').innerHTML = html;
 }
 function renderStockContext() {
   const stock = selectedStock();
   if (!stock) return;
+
+  if (stock.ticker === '_MARKET_THAI' || stock.ticker === '_MARKET_THAI_') {
+    state.ticker = stock.ticker;
+    const indices = state.data?.market_indices || {};
+    document.getElementById('tickerTitle').textContent = 'ภาพรวมตลาด';
+    document.getElementById('companyTitle').textContent = 'ภาพรวมตลาดหุ้นไทย (SET Index)';
+
+    const setPrice = indices.set?.price;
+    document.getElementById('priceTitle').textContent = setPrice ? Number(setPrice).toLocaleString('en-US', { maximumFractionDigits: 2 }) : '-';
+
+    const pctVal = Number(indices.set?.pct_change || 0);
+    const pct = document.getElementById('pctTitle');
+    pct.textContent = signedPct(pctVal);
+    pct.className = `pct ${pctClass(pctVal)}`;
+
+    document.getElementById('metaRow').innerHTML = [
+      `SET50: ${indices.set50?.price ? Number(indices.set50.price).toLocaleString('en-US') : '-'} (${signedPct(indices.set50?.pct_change || 0)})`,
+      `SET100: ${indices.set100?.price ? Number(indices.set100.price).toLocaleString('en-US') : '-'} (${signedPct(indices.set100?.pct_change || 0)})`
+    ].map(item => `<span class="meta-chip">${esc(item)}</span>`).join('');
+
+    document.getElementById('chartBox').innerHTML = indices.set?.chart_b64
+      ? `<img src="data:image/jpeg;base64,${indices.set.chart_b64}" alt="SET Index Chart">`
+      : '<div class="empty">ไม่พบกราฟดัชนีใน archive วันนี้</div>';
+
+    const summary = state.data?.summary || {};
+    document.getElementById('newsList').innerHTML = `
+      <div class="market-summary-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:8px; padding:12px; font-size:0.9em; display:flex; flex-direction:column; gap:8px; grid-column: 1 / -1;">
+        <div style="font-weight:bold; color:var(--muted);">📊 สรุปตลาดประจำวัน</div>
+        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;">
+          <div>หุ้นที่ปรับตัวขึ้น: <span style="color:#26a69a; font-weight:bold;">${summary.gainers || 0}</span></div>
+          <div>หุ้นที่ปรับตัวลง: <span style="color:#ef5350; font-weight:bold;">${summary.losers || 0}</span></div>
+          <div>จำนวนหุ้นทั้งหมด: <span>${summary.total || 0}</span></div>
+          <div>ค่าเฉลี่ยการเปลี่ยนแปลง: <span style="font-weight:bold;">${signedPct(summary.avg_change || 0)}</span></div>
+        </div>
+        ${summary.top_gainer ? `<div style="border-top:1px dashed var(--line); padding-top:6px; margin-top:4px;">🔥 หุ้นบวกแรงสุด: <span style="font-weight:bold; color:#26a69a;">${summary.top_gainer.ticker}</span> (${signedPct(summary.top_gainer.pct)})</div>` : ''}
+        ${summary.top_loser ? `<div>❄️ หุ้นลบแรงสุด: <span style="font-weight:bold; color:#ef5350;">${summary.top_loser.ticker}</span> (${signedPct(summary.top_loser.pct)})</div>` : ''}
+      </div>`;
+
+    document.getElementById('review1d').textContent = indices.set?.pct_change ? signedPct(indices.set.pct_change) : '-';
+    return;
+  }
+
   state.ticker = stock.ticker;
   document.getElementById('tickerTitle').textContent = stock.ticker;
   document.getElementById('companyTitle').textContent = `${stock.name || '-'} · ${stock.sector || 'ไม่ระบุ sector'}`;
@@ -1451,6 +1514,9 @@ function buildJournalNote(stock) {
     risk ? `Risk: ${risk}` : '',
     review ? `Review: ${review}` : ''
   ].filter(Boolean);
+  const isMarket = stock?.ticker === '_MARKET_THAI';
+  const priceVal = isMarket ? (state.data?.market_indices?.set?.price || 0) : (stock?.price || 0);
+  const pctVal = isMarket ? (state.data?.market_indices?.set?.pct_change || 0) : (stock?.pct_change || 0);
   return {
     id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
     date: new Date().toISOString().split('T')[0],
@@ -1458,8 +1524,8 @@ function buildJournalNote(stock) {
     note: lines.join('\n'),
     archive_date: state.date || '',
     archive_phase: state.phase || 'legacy',
-    price: stock?.price || 0,
-    pct_change: stock?.pct_change || 0,
+    price: priceVal,
+    pct_change: pctVal,
     journal: {
       emotion: state.emotion,
       intent: state.intent,

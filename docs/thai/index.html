@@ -1731,6 +1731,7 @@ function upgradeMarketOverviewCards() {
       ${chartHTML ? `<div class="chart-container">${chartHTML}</div>` : ''}
       <button class="note-btn ${marketNoteCount ? 'has-notes' : ''}" type="button" onclick="openMarketNote()">${marketNoteCount ? `📝 ${marketNoteCount} มุมมอง` : '📝 เพิ่มมุมมอง'}</button>
       <button class="history-btn" type="button" onclick="openMarketHistory()">${marketNoteCount ? `📈 History (${marketNoteCount})` : '📈 History'}</button>
+      <a class="journal-btn" href="journal.html?ticker=_MARKET_THAI&date=${encodeURIComponent(currentData?.date || '')}">Journal</a>
     `;
 
     const chartContainer = card.querySelector('.chart-container');
