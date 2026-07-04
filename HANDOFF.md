@@ -1,4 +1,9 @@
-# Session Handoff - Candlestick Tooltip Click-Only Update (v3.9.16)
+# Session Handoff - Market Index Journal Support & Version Sync (v3.9.17)
+
+- **v3.9.17 Deployed**:
+  * **Market Index Journal Support**: Enabled separate journal entry records and emotion tracking for the three US indices (_DJI, _SPX, _IXIC) on the Journal Page (`docs/journal.html`). Updated stock matching, stock context rendering, and stock selection sidebar list to support these tickers.
+  * **Synchronized Versions**: Ensured that the header version tags of `docs/history.html` and `docs/journal.html` are fully synchronized with the home page (`docs/index.html`), showing version `v3.9.17`.
+  * **Version & Cache Bumps**: Bumped version tags across all three files to `v3.9.17`, updated changelog tools, and incremented `sw.js` Cache Version to `v87`.
 
 - **v3.9.16 Deployed**:
   * **Click-Only Tooltips**: Disabled automatic tooltip popup showing on mouse hover for both mini-charts and expanded charts in `docs/index.html`. Tooltips now only open when clicking or tapping a candlestick.
@@ -18,9 +23,11 @@
   * **Version & Cache Bumps**: Bumped version tag to `v3.9.15` in `docs/index.html`, added the changelog details, and bumped `sw.js` cache names in `docs/sw.js` (to `v85`) and `docs/thai/sw.js` (to `v9`).
 
 ## Files Changed
-- `docs/index.html`: Bumped to v3.9.16. Removed tooltips on hover for mini-charts and expanded charts (changed to click-only).
-- `docs/sw.js`: Incremented cache version to v86.
-- `HANDOFF.md`: Updated to document version 3.9.16.
+- `docs/index.html`: Bumped to v3.9.17.
+- `docs/history.html`: Bumped to v3.9.17.
+- `docs/journal.html`: Bumped to v3.9.17. Enabled journal logs and sentiment tracking for Dow Jones (_DJI), S&P 500 (_SPX), and Nasdaq (_IXIC).
+- `docs/sw.js`: Incremented cache version to v87.
+- `HANDOFF.md`: Updated to document version 3.9.17.
 
 ## Verification
 - Staged, committed, and pushed successfully to GitHub repository (`origin/main`).
