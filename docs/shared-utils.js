@@ -32,13 +32,23 @@ function fmtMoney(value) {
 }
 
 // Emotion detection and coloring
-function detectEmotion(note) {
+function detectEmotion(note, mode = 'personal') {
   if (!note) return null;
-  if (note.journal && note.journal.emotion) {
-    return note.journal.emotion;
+  if (note.journal) {
+    if (mode === 'market' && note.journal.market_emotion) {
+      return note.journal.market_emotion;
+    }
+    if (note.journal.emotion) {
+      return note.journal.emotion;
+    }
   }
   if (note.note) {
-    const emotions = ['กลัว','ลังเล','ใจเย็นรอ','มั่นใจแต่ระวัง','โลภ','FOMO','ไม่เชื่อข่าว'];
+    const emotions = [
+      'กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า',
+      'โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป',
+      'มั่นใจแต่ระวัง', 'มีวินัย', 'สบายใจ/ใจเย็น',
+      'ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'
+    ];
     for (const em of emotions) {
       if (note.note.includes(em)) return em;
     }
@@ -48,10 +58,10 @@ function detectEmotion(note) {
 
 function getEmotionCategory(emotion) {
   if (!emotion) return 'default';
-  const fear = ['กลัว'];
-  const confident = ['มั่นใจแต่ระวัง'];
-  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
-  const greed = ['โลภ', 'FOMO'];
+  const fear = ['กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า'];
+  const confident = ['มั่นใจแต่ระวัง', 'มีวินัย', 'สบายใจ/ใจเย็น'];
+  const hesitant = ['ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'];
+  const greed = ['โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป'];
   
   if (fear.includes(emotion)) return 'fear';
   if (confident.includes(emotion)) return 'confident';
@@ -62,16 +72,24 @@ function getEmotionCategory(emotion) {
 
 function getEmotionColor(emotion) {
   if (!emotion) return '#8b949e';
-  const fear = ['กลัว'];
-  const confident = ['มั่นใจแต่ระวัง'];
-  const hesitant = ['ลังเล', 'ใจเย็นรอ', 'ไม่เชื่อข่าว'];
-  const greed = ['โลภ', 'FOMO'];
+  const fear = ['กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า'];
+  const confident = ['มั่นใจแต่ระวัง', 'มีวินัย', 'สบายใจ/ใจเย็น'];
+  const hesitant = ['ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'];
+  const greed = ['โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป'];
   
   if (fear.includes(emotion)) return '#ef5350';
   if (confident.includes(emotion)) return '#26a69a';
   if (hesitant.includes(emotion)) return '#facc15';
   if (greed.includes(emotion)) return '#3b82f6';
   return '#f0b90b';
+}
+
+function renderEmotionBadge(label, emotion) {
+  if (!emotion) return '';
+  const color = getEmotionColor(emotion);
+  const bg = color + '26'; // 15% opacity hex
+  const border = color + '40'; // 25% opacity hex
+  return `<span class="journal-badge" style="background:${bg}; color:${color}; border:1px solid ${border}; font-weight:bold;">${esc(label)}: ${esc(emotion)}</span>`;
 }
 
 // Note Parser
@@ -136,7 +154,8 @@ function renderJournalNoteBody(n) {
 
     journalBadges = `
       <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
-        ${n.journal.emotion ? `<span class="journal-badge sentiment">${esc(n.journal.emotion)}</span>` : ''}
+        ${renderEmotionBadge('😊 ส่วนตัว', n.journal.emotion)}
+        ${renderEmotionBadge('👥 ตลาด', n.journal.market_emotion)}
         ${intentText ? `<span class="journal-badge action">${esc(intentText)}</span>` : ''}
         ${n.journal.confidence ? `<span class="journal-badge confidence">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
         ${setupText ? `<span class="journal-badge setup-badge">${esc(setupText)}</span>` : ''}
@@ -255,7 +274,8 @@ function renderJournalNoteCard(n) {
     journalBadges = `
       <div class="journal-badge-section" style="display:flex; gap:6px; margin:4px 0 8px 0; flex-wrap:wrap;">
         ${phaseText ? `<span class="journal-badge phase-badge" style="background:rgba(88, 166, 255, 0.15); color:#58a6ff; border:1px solid rgba(88, 166, 255, 0.25); font-weight:bold;">${esc(phaseText)}</span>` : ''}
-        ${n.journal.emotion ? `<span class="journal-badge sentiment">${esc(n.journal.emotion)}</span>` : ''}
+        ${renderEmotionBadge('😊 ส่วนตัว', n.journal.emotion)}
+        ${renderEmotionBadge('👥 ตลาด', n.journal.market_emotion)}
         ${intentText ? `<span class="journal-badge action">${esc(intentText)}</span>` : ''}
         ${n.journal.confidence ? `<span class="journal-badge confidence">ความมั่นใจ ${esc(n.journal.confidence)}/10</span>` : ''}
         ${setupText ? `<span class="journal-badge setup-badge">${esc(setupText)}</span>` : ''}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="utf-8">
@@ -269,7 +269,8 @@ const state = {
   latestMarketArchive: null,
   latestDate: null,
   selectedKey: null,
-  resizeTimer: null
+  resizeTimer: null,
+  mouseX: null
 };
 
 const canvas = document.getElementById('priceCanvas');
@@ -563,8 +564,24 @@ function drawChart() {
   
   const xFor = i => pad.left + (state.candles.length === 1 ? plotW / 2 : (i / (state.candles.length - 1)) * plotW);
   const yFor = p => pad.top + ((yMax - p) / (yMax - yMin)) * plotH;
+  const yBottom = pad.top + plotH;
+  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
 
-  // Grid
+  // 1. Draw Volume Bars (Underlay)
+  const maxVol = Math.max(...state.candles.map(c => c.volume || 0)) || 1;
+  const volHeight = plotH * 0.15;
+  state.candles.forEach((c, i) => {
+    const x = xFor(i);
+    const barH = ((c.volume || 0) / maxVol) * volHeight;
+    const up = c.close >= c.open;
+    ctx.fillStyle = up ? 'rgba(38, 166, 154, 0.18)' : 'rgba(239, 83, 80, 0.18)';
+    ctx.fillRect(x - cw / 2, yBottom - barH, cw, barH);
+  });
+  ctx.fillStyle = '#6b7280'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText(`Vol Max: ${Number(maxVol).toLocaleString('en-US')}`, w - pad.right - 8, yBottom - volHeight - 4);
+
+  // 2. Grid lines
+  // Horizontal Price Grid
   ctx.strokeStyle = '#1f2937'; ctx.lineWidth = 1; ctx.textAlign = 'right'; ctx.fillStyle = '#6b7280';
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + (plotH * i / 4);
@@ -573,8 +590,20 @@ function drawChart() {
     ctx.fillText(p.toFixed(2), pad.left - 8, y + 4);
   }
 
+  // Vertical Date Grid
+  ctx.textAlign = 'center';
+  const ticks = 4;
+  for (let i = 0; i <= ticks; i++) {
+    const idx = Math.floor((i / ticks) * (state.candles.length - 1));
+    if (idx >= 0 && idx < state.candles.length) {
+      const c = state.candles[idx];
+      const x = xFor(idx);
+      ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, yBottom); ctx.stroke();
+      ctx.fillText(c.date, x, yBottom + 16);
+    }
+  }
+
   // Candles
-  const cw = Math.max(2, Math.min(10, plotW / state.candles.length * 0.7));
   state.candles.forEach((c, i) => {
     const x = xFor(i), up = c.close >= c.open, col = up ? '#26a69a' : '#ef5350';
     ctx.strokeStyle = col; ctx.fillStyle = col;
@@ -595,6 +624,34 @@ function drawChart() {
     ctx.restore();
     state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
   });
+
+  // 3. Draw Cursor/Crosshair and Candle Hover Details Text
+  if (state.mouseX !== null && state.mouseX >= pad.left && state.mouseX <= w - pad.right) {
+    const closestIdx = Math.max(0, Math.min(state.candles.length - 1, Math.round(((state.mouseX - pad.left) / plotW) * (state.candles.length - 1))));
+    const c = state.candles[closestIdx];
+    const x = xFor(closestIdx);
+    
+    // Draw vertical dashed line
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(x, pad.top);
+    ctx.lineTo(x, yBottom);
+    ctx.stroke();
+    ctx.restore();
+    
+    // Draw top details text overlay
+    ctx.save();
+    ctx.fillStyle = '#e6edf3';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'left';
+    const detailText = `📅 ${c.date}  |  O: ${c.open.toFixed(2)}  H: ${c.high.toFixed(2)}  L: ${c.low.toFixed(2)}  C: ${c.close.toFixed(2)}  Vol: ${Number(c.volume).toLocaleString('en-US')}`;
+    ctx.fillText(detailText, pad.left, pad.top - 8);
+    ctx.restore();
+  }
+
   document.getElementById('visibleCount').textContent = `${state.markers.length} จุดบนกราฟช่วงนี้`;
 }
 
@@ -748,14 +805,51 @@ function bindEvents() {
   });
   canvas.addEventListener('click', e => {
     const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    const w = r.width, h = r.height;
+    const pad = { left: 56, right: 16, top: 22, bottom: 34 };
+    const plotW = w - pad.left - pad.right;
+    const yBottom = h - pad.bottom;
     
-    if (!m) {
+    if (x < pad.left || x > w - pad.right || y < pad.top || y > yBottom) return;
+    
+    const closestIdx = Math.max(0, Math.min(state.candles.length - 1, Math.round(((x - pad.left) / plotW) * (state.candles.length - 1))));
+    const c = state.candles[closestIdx];
+
+    const notesMap = {};
+    groupNotesByDate(state.notes).forEach(group => {
+      const match = nearestCandle(group.date);
+      if (match) {
+        notesMap[match.index] = { group, candle: match.candle };
+      }
+    });
+
+    const isNote = notesMap[closestIdx] !== undefined;
+    if (isNote) {
+      const { group } = notesMap[closestIdx];
+      state.selectedKey = group.date;
+      drawChart();
+      showGroup(group, c);
+    } else {
+      state.selectedKey = null;
       const tooltip = document.getElementById('markerTooltip');
       if (tooltip) tooltip.classList.remove('show');
+      drawChart();
     }
+  });
 
-    if (m) showGroup(m.group, m.candle);
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    state.mouseX = x;
+    
+    const m = state.markers.find(m => Math.hypot(m.x-x, m.y-y) <= m.r);
+    canvas.style.cursor = m ? 'pointer' : 'default';
+    drawChart();
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    state.mouseX = null;
+    canvas.style.cursor = 'default';
+    drawChart();
   });
   window.addEventListener('resize', () => { clearTimeout(state.resizeTimer); state.resizeTimer = setTimeout(drawChart, 150); });
 }
