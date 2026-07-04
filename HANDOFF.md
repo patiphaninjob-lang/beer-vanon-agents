@@ -1,27 +1,22 @@
-# Session Handoff - Trading Journal Upgrades Deployed (v3.8.0)
+# Session Handoff - Ch34 AI Analysis Relocated to Chart Candles (v3.9.8)
 
-- **v3.8.0 Fully Deployed**:
-  * **15 Rich Emotions & Dual Badges**: Expanded `docs/shared-utils.js` emotions list to support 15 high-fidelity psychology-based emotions and dual sentiment badges (Personal Emotion vs Market Sentiment) on note cards and form selectors.
-  * **Toggle Visualization**: Added a smooth CSS slider toggle switch (`Personal View` vs `Market View`) to charts in `index.html` and `history.html` to toggle marker glows/badge colors dynamically.
-  * **Special Market Overview**: Supported journaling for `_MARKET_` indices, allowing users to write notes and track index-wide sentiment.
-  * **Time Phase Auto-detection**: Implemented auto-detection logic (Premarket before 6 AM; Postmarket afternoon; shifted trade date for notes recorded in late mornings).
-  * **Advanced Candle Charting**: Drawn underlay Volume (Vol) bars (15% height) in all stock candle charts (including Thai history view `thai/history.html` and main page mini charts), added time/date gridlines, and enabled an interactive crosshair overlay displaying candle data (O, H, L, C, Vol) on hover.
-  * **Version & Cache Bump**: Bumped version tag to `v3.8.0` in all main HTML pages, updated changelog tooltip, and incremented Service Worker cache name to `v60` in `docs/sw.js`.
+- **v3.9.8 Fully Deployed**:
+  * **Card Compactness**: Removed static `homeworkHTML` (Beer Ch34 checklist) and `analysisHTML` (general analysis) rendering from stock cards on both US and Thai homepages (`docs/index.html` & `docs/thai/index.html`).
+  * **Tooltip Integrations**: Updated the mini-chart tooltips on homepages to load both Ch34 checklists and general analyses.
+  * **Universal Candle Clicking**: Modified history charts (`docs/history.html` & `docs/thai/history.html`) so that clicking on *any* candle (even without user notes) selects that date, calculates dynamic positioning `m`, and fetches that day's AI analysis report.
+  * **Ch34 & Analysis Rendering in Charts**: Updated `showGroup` on both history pages to render both the 6-angle Beer Ch34 checklist and the general analysis inside tooltips and sidebar detail panels.
+  * **Version & Cache Bumps**: Bumped version tag to `v3.9.8` in `docs/index.html`, added the changelog details, and bumped `sw.js` cache names in `docs/sw.js` (to `v78`) and `docs/thai/sw.js` (to `v5`).
 
 ## Files Changed
-- `docs/shared-utils.js`: Integrated 15 emotions and dual sentiment rendering.
-- `docs/journal.html`: Split form inputs, handled phase auto-detection and `_MARKET_` tickers, added volume/crosshair chart graphics.
-- `docs/history.html`: Added toggle switch, updated charting for volume, date grids, and mouse crosshair tracking.
-- `docs/thai/history.html`: Added volume, date grids, and mouse crosshair tracking to the Thai history subpage.
-- `docs/index.html`: Added volume underlay to mini charts and bumped version tags/changelog.
-- `docs/sw.js`: Incremented cache name to `v60`.
+- `docs/index.html`: Updated version tags, changelog, homepage card template, and mini-chart tooltips.
+- `docs/history.html`: Enabled universal candle clicking, dynamic tooltip positioning without note markers, and rendering of Ch34 checklist and general analysis.
+- `docs/thai/index.html`: Removed homepage card template analysis blocks and added them to tooltips.
+- `docs/thai/history.html`: Enabled universal candle clicking, dynamic tooltip positioning, and rendering of Ch34 checklist and general analysis.
+- `docs/sw.js` & `docs/thai/sw.js`: Incremented cache versions.
 
 ## Verification
-- Staged, committed, rebased, and pushed successfully to GitHub repository (`origin/main`).
-- Verified all files compile and run inside standard PWA static environments.
+- Committed and pushed successfully to GitHub repository (`origin/main`).
+- Verified all pages compile and run correctly.
 
-## Open Risks
-- None.
-
-## Next Step
-- Solicit user feedback on the 15 emotion categories and index sentiment tracking.
+## Next Steps
+- Request user feedback on the daily chart candle clicking behavior and layout cleanliness.
