@@ -2330,7 +2330,6 @@ function cardHTML(s) {
     <button class="note-btn ${myNotes.length?'has-notes':''}" data-ticker="${esc(s.ticker)}">${noteLabel}</button>
     <a class="history-btn" href="history.html?ticker=${encodeURIComponent(s.ticker)}&date=${encodeURIComponent(currentData.date)}">${historyLabel}</a>
     <a class="journal-btn" href="${journalUrl}">Journal</a>
-    ${newsHTML ? `<div class="news-section">${newsHTML}</div>` : ''}
   </div>`;
 }
 
