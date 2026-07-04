@@ -2297,8 +2297,18 @@ function cardHTML(s) {
   const watched = isJournalWatched(s.ticker);
   const watchLabel = watched ? 'ลบออกจากหุ้นที่ติดตาม' : 'เพิ่มเข้าหุ้นที่ติดตาม';
 
+  let homeworkTimeHtml = '';
+  if (currentData.generated) {
+    const parts = currentData.generated.split('T');
+    const datePart = parts[0];
+    const timePart = parts[1] ? parts[1].substring(0, 5) : '';
+    const label = PHASE_LABELS[currentData.run_phase] || currentData.run_phase || 'รายวัน';
+    homeworkTimeHtml = `<div class="card-homework-time" style="font-size: 10px; color: #8b949e; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">📅 ทำการบ้านเมื่อ: ${fmtDate(datePart)} &nbsp;|&nbsp; 🕒 ${timePart} น. &nbsp;|&nbsp; 🏷️ ${label}</div>`;
+  }
+
   return `
   <div class="card" style="border-left-color:${color}" id="card-${esc(s.ticker)}">
+    ${homeworkTimeHtml}
     <div class="card-head">
       <div>
         <div class="ticker-line">

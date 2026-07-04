@@ -661,9 +661,9 @@ async function showGroup(group, candle) {
   state.selectedKey = group.date; drawChart();
   const detail = document.getElementById('detailPanel');
   const archiveDate = group.notes[0]?.archive_date || group.date;
-  let stock = null, mkt = null;
+  let stock = null, mkt = null, day = null;
   try {
-    const day = await loadArchive(archiveDate);
+    day = await loadArchive(archiveDate);
     if (state.ticker === MARKET_TICKER) mkt = day; else stock = findStock(day, state.ticker);
   } catch(e) {}
 
@@ -690,9 +690,19 @@ async function showGroup(group, candle) {
     `;
   }
   
+  let homeworkTimeHtml = '';
+  if (day && day.generated) {
+    const parts = day.generated.split('T');
+    const datePart = parts[0];
+    const timePart = parts[1] ? parts[1].substring(0, 5) : '';
+    const label = PHASE_LABELS[day.run_phase] || day.run_phase || 'รายวัน';
+    homeworkTimeHtml = `<div class="sb-homework-time" style="font-size: 11px; color: #8b949e; margin-top: 4px; font-weight: 600;">📅 ทำการบ้านเมื่อ: ${fmtDate(datePart)} &nbsp;|&nbsp; 🕒 ${timePart} น. &nbsp;|&nbsp; 🏷️ ${label}</div>`;
+  }
+
   detail.innerHTML = `
     <div class="detail-head">
       <div class="detail-date">${fmtDate(group.date)} (โน้ตทั้งหมดของวันนี้)</div>
+      ${homeworkTimeHtml}
     </div>
     ${notesHTML}
     ${homeworkHTML}
@@ -717,7 +727,16 @@ async function showGroup(group, candle) {
   }
   const tooltip = document.getElementById('markerTooltip');
   if (m && tooltip) {
-    let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div>`;
+    let ttTimeHtml = '';
+    if (day && day.generated) {
+      const parts = day.generated.split('T');
+      const datePart = parts[0];
+      const timePart = parts[1] ? parts[1].substring(0, 5) : '';
+      const label = PHASE_LABELS[day.run_phase] || day.run_phase || 'รายวัน';
+      ttTimeHtml = `<div class="tt-homework-time" style="font-size:10px; color:#8b949e; margin-bottom:8px; border-bottom:1px dashed rgba(255,255,255,0.08); padding-bottom:6px; margin-top:6px;">📅 ทำการบ้านเมื่อ: ${fmtDate(datePart)} &nbsp;|&nbsp; 🕒 ${timePart} น. &nbsp;|&nbsp; 🏷️ ${label}</div>`;
+    }
+
+    let baseHtml = `<div class="tt-header">📅 ${fmtDate(group.date)}</div><div class="tt-body">${ttTimeHtml}`;
     group.notes.forEach(n => {
       baseHtml += `<div class="tt-section"><div class="tt-label">📝 บันทึกของคุณ${n.time ? ' '+n.time : ''}:</div><div class="tt-text">${esc(n.note || '')}</div></div>`;
     });
@@ -729,6 +748,7 @@ async function showGroup(group, candle) {
     if (stock && stock.analysis) {
       baseHtml += `<div class="tt-section"><div class="tt-label beer">🇹🇭 วิเคราะห์เจาะลึก (Beer):</div><div class="tt-text" style="white-space:pre-wrap;">${esc(stock.analysis.trim())}</div></div>`;
     }
+    baseHtml += '</div>';
     
     tooltip.innerHTML = baseHtml;
     tooltip.classList.add('show');
