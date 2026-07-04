@@ -1,43 +1,27 @@
-# Session Handoff - Unified Multi-Note Tooltips & Shared Utils Deployed
+# Session Handoff - Trading Journal Upgrades Deployed (v3.8.0)
 
-- **v3.7.3 Fully Deployed**:
-  * Fixed all page date headings (Home Page note modal, History Page sidebar, and Journal Page timeline) to prioritize `archive_date` (trade date) over `date` (calendar save date).
-  * Resolved an issue in the Home Page stock card note trigger click handler where notes were filtered by calendar date instead of trade date, making sure multi-note tooltip grouping and popups match by trade date consistently across all pages.
-  * Bumped Service Worker cache version to `v59` inside `docs/sw.js` and bumped version to `v3.7.3` on all pages.
-
-- **v3.7.2 Fully Deployed**:
-  * Added recording time (e.g. `เวลา 14:30 น.`) and trading phase information (e.g. `ก่อนตลาดเปิด`, `ระหว่างวัน`, `หลังตลาดปิด`) directly in the header of note cards in the chart Tooltip.
-  * Added colored phase badges to note cards inside the trade journal timeline (`journal.html`) to visually separate notes taken in different market phases.
-  * Bumped Service Worker cache version to `v58` inside `docs/sw.js` and bumped version to `v3.7.2` on all pages.
-
-- **v3.7.1 Fully Deployed**:
-  * Fixed the journal saving system to prevent overwriting notes taken in different phases (Premarket / Midday / Postmarket) for the same stock on the same day.
-  * Inputs inside `journal.html` are now dynamically loaded based on the currently selected stock, date, and phase, clearing inputs if no entry exists and loading the exact matching entry if it exists.
-  * Implemented in-place updating of journal notes when saving to the same date and phase to prevent database duplication while still preserving creation date/ID.
-  * Updated note grouping on the Home Page (`index.html`) and History Page (`history.html`) to group by `archive_date` (the actual trade date) first before falling back to `date` (creation/save date), allowing multiple notes from different times/phases on the same day to stack and render together in a single tooltip.
-  * Bumped Service Worker cache version to `v57` inside `docs/sw.js` and bumped version to `v3.7.1` on all pages.
-
-- **v3.7.0 Fully Deployed**: 
-  * Extracted and unified all shared formatting, date, emotion, parsing, and rendering helper functions (`esc`, `fmtDate`, `fmtMoney`, `detectEmotion`, `getEmotionCategory`, `getEmotionColor`, `parseNoteText`, `renderJournalNoteBody`, `renderJournalNoteCard`, `parseBeerAnalysis`, `renderBeerAnalysis`) to a single shared file: [shared-utils.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/shared-utils.js).
-  * Removed duplicate function definitions across all pages ([index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html), [history.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/history.html), and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html)), reducing redundant code by over 700 lines.
-  * *Fix implemented*: Resolved a transient refactoring issue in `docs/history.html` where line number offsets shifted during removal of formatting functions, which had accidentally cut off chart rendering and page loading routines. Restored the original functions and performed clean bottom-up extraction.
-  * Injected `<script src="shared-utils.js"></script>` to the `<head>` of all three pages to ensure seamless global execution.
-  * Bumped Service Worker cache version to `v56` inside `docs/sw.js` and added `./shared-utils.js` to `APP_SHELL` to ensure offline support and force refresh on mobile client browsers.
-  * Bushed version tag changes and tooltip logs to Git repository.
+- **v3.8.0 Fully Deployed**:
+  * **15 Rich Emotions & Dual Badges**: Expanded `docs/shared-utils.js` emotions list to support 15 high-fidelity psychology-based emotions and dual sentiment badges (Personal Emotion vs Market Sentiment) on note cards and form selectors.
+  * **Toggle Visualization**: Added a smooth CSS slider toggle switch (`Personal View` vs `Market View`) to charts in `index.html` and `history.html` to toggle marker glows/badge colors dynamically.
+  * **Special Market Overview**: Supported journaling for `_MARKET_` indices, allowing users to write notes and track index-wide sentiment.
+  * **Time Phase Auto-detection**: Implemented auto-detection logic (Premarket before 6 AM; Postmarket afternoon; shifted trade date for notes recorded in late mornings).
+  * **Advanced Candle Charting**: Drawn underlay Volume (Vol) bars (15% height) in all stock candle charts (including Thai history view `thai/history.html` and main page mini charts), added time/date gridlines, and enabled an interactive crosshair overlay displaying candle data (O, H, L, C, Vol) on hover.
+  * **Version & Cache Bump**: Bumped version tag to `v3.8.0` in all main HTML pages, updated changelog tooltip, and incremented Service Worker cache name to `v60` in `docs/sw.js`.
 
 ## Files Changed
-- `docs/index.html`: Fixed note trigger click handler (date filter & closestIdx candle match), prioritized trade date in note modal headers, bumped version to `v3.7.3`.
-- `docs/history.html`: Prioritized trade date in sidebar note headers, bumped version to `v3.7.3`.
-- `docs/journal.html`: Prioritized trade date in note timeline headers, bumped version to `v3.7.3`.
-- `docs/sw.js`: Incremented cache version to `v59`.
+- `docs/shared-utils.js`: Integrated 15 emotions and dual sentiment rendering.
+- `docs/journal.html`: Split form inputs, handled phase auto-detection and `_MARKET_` tickers, added volume/crosshair chart graphics.
+- `docs/history.html`: Added toggle switch, updated charting for volume, date grids, and mouse crosshair tracking.
+- `docs/thai/history.html`: Added volume, date grids, and mouse crosshair tracking to the Thai history subpage.
+- `docs/index.html`: Added volume underlay to mini charts and bumped version tags/changelog.
+- `docs/sw.js`: Incremented cache name to `v60`.
 
 ## Verification
-- Verified code structure is clean and Git repository status is synchronized.
-- Changes committed and pushed to origin main successfully.
+- Staged, committed, rebased, and pushed successfully to GitHub repository (`origin/main`).
+- Verified all files compile and run inside standard PWA static environments.
 
 ## Open Risks
 - None.
 
 ## Next Step
-- Monitor user feedback for any additional formatting or page behavior requests.
-- Ready for next development prompt.
+- Solicit user feedback on the 15 emotion categories and index sentiment tracking.
