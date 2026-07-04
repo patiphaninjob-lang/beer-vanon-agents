@@ -2557,8 +2557,13 @@ function showMarkerTooltip(m, isNavigating) {
   });
   
   const tooltipLoadingId = `ttLoad-${Date.now()}`;
-  if (state.ticker && !state.ticker.startsWith('_')) {
-    bodyHtml += `<div id="${tooltipLoadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+  const isMarket = state.ticker === '_MARKET' || (state.ticker && state.ticker.startsWith('_'));
+  if (state.ticker) {
+    if (isMarket) {
+      bodyHtml += `<div id="${tooltipLoadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงปัจจัยตลาด...</div></div>`;
+    } else {
+      bodyHtml += `<div id="${tooltipLoadingId}" class="tt-section"><div class="tt-text" style="color:#9ca3af;font-size:0.85em;">⏳ ดึงบทวิเคราะห์...</div></div>`;
+    }
   }
   
   hoverTip.innerHTML = `<div class="tt-header">${headerHtml}</div><div class="tt-body">${bodyHtml}</div>`;
@@ -2567,23 +2572,50 @@ function showMarkerTooltip(m, isNavigating) {
   positionTooltip(m);
 
   // --- Background fetch ---
-  if (state.ticker && !state.ticker.startsWith('_')) {
+  if (state.ticker) {
     getAnalysisForDate(archiveDate).then(day => {
       // Ensure the user hasn't moved to another marker
       if (hoverTip._activeMarker !== m) return;
       
-      let stockData = null;
-      if (day) {
-        const wanted = state.ticker.toUpperCase();
-        stockData = (day.stocks || []).find(s => s.ticker.toUpperCase() === wanted || s.ticker.toUpperCase().replace('-', '.') === wanted);
-      }
-      
       const ttLoader = document.getElementById(tooltipLoadingId);
       if (ttLoader) {
-        if (stockData && stockData.analysis) {
-          ttLoader.outerHTML = renderBeerAnalysis(stockData.analysis);
+        if (isMarket) {
+          const news = day?.market_news;
+          const bullets = news?.summary_bullets || [];
+          if (bullets.length) {
+            const bulletsHTML = bullets.map(b => `
+              <div class="news-bullet-item" style="display:flex; gap:8px; margin-bottom:6px; font-size:0.88em; line-height:1.4;">
+                <span style="color:#f0b90b;">🔥</span>
+                <span style="color:#d1d9e0;">${esc(b)}</span>
+              </div>
+            `).join('');
+            const newsHTML = `
+              <div class="tt-section" style="border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; margin-top:8px;">
+                <div style="font-weight:bold; color:#bae6fd; font-size:0.9em; margin-bottom:6px;">📰 ข่าวเด่น & ปัจจัยขับเคลื่อนตลาด</div>
+                <div>${bulletsHTML}</div>
+              </div>`;
+            ttLoader.outerHTML = newsHTML;
+          } else {
+            ttLoader.remove();
+          }
         } else {
-          ttLoader.remove();
+          let stockData = null;
+          if (day) {
+            const wanted = state.ticker.toUpperCase();
+            stockData = (day.stocks || []).find(s => s.ticker.toUpperCase() === wanted || s.ticker.toUpperCase().replace('-', '.') === wanted);
+          }
+          if (stockData) {
+            const insight = stockData.homework_checklist?.map(item => `• ${item.topic}: ${item.insight || item.prompt}`).join('\n') || '';
+            const homeworkHTML = insight ? renderBeerAnalysis(insight, '🧭 Beer วิเคราะห์ Ch34 เจาะลึก') : '';
+            const analysisHTML = stockData.analysis ? renderBeerAnalysis(stockData.analysis, '🍺 วิเคราะห์เจาะลึก') : '';
+            if (homeworkHTML || analysisHTML) {
+              ttLoader.outerHTML = `${homeworkHTML}${analysisHTML}`;
+            } else {
+              ttLoader.remove();
+            }
+          } else {
+            ttLoader.remove();
+          }
         }
         positionTooltip(m);
       }
