@@ -1109,7 +1109,9 @@ function selectedStock() {
   if (ticker === '_MARKET_THAI' || ticker === '_MARKET_THAI_') {
     return { ticker: '_MARKET_THAI', name: 'ภาพรวมตลาด', price: 0, pct_change: 0 };
   }
-  return state.data?.stocks?.find(stock => stock.ticker === ticker) || state.data?.stocks?.[0] || null;
+  const found = state.data?.stocks?.find(stock => stock.ticker === ticker);
+  if (found) return found;
+  return { ticker: ticker, name: ticker, price: 0, pct_change: 0 };
 }
 function stockByTicker(ticker) {
   const target = String(ticker || '').toUpperCase();

@@ -649,6 +649,32 @@ function drawChart() {
     state.markers.push({ x, y, r: 12, key: group.date, group, candle: match.candle });
   });
 
+  if (state.selectedKey && !state.markers.some(m => m.key === state.selectedKey)) {
+    const match = nearestCandle(state.selectedKey);
+    if (match) {
+      const x = xFor(match.index), y = yFor(match.candle.close);
+      ctx.save();
+      ctx.strokeStyle = '#fff';
+      ctx.fillStyle = '#f59e0b';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = 'rgba(240,185,11,0.8)';
+      ctx.shadowBlur = 20;
+      ctx.beginPath();
+      ctx.arc(x, y, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+      state.markers.push({
+        x,
+        y,
+        r: 12,
+        key: state.selectedKey,
+        group: { date: state.selectedKey, notes: [] },
+        candle: match.candle
+      });
+    }
+  }
+
   // 3. Draw Cursor/Crosshair and Candle Hover Details Text
   if (state.mouseX !== null && state.mouseX >= pad.left && state.mouseX <= w - pad.right) {
     const closestIdx = Math.max(0, Math.min(state.candles.length - 1, Math.round(((state.mouseX - pad.left) / plotW) * (state.candles.length - 1))));
