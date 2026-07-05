@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v111-cache-bypass';
+const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v112-sentiment-stats-aside';
 const APP_SHELL = [
   './',
   './index.html',
