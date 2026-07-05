@@ -1224,6 +1224,48 @@
     .emotion-delete-btn:hover {
       color: #ff7b72;
     }
+
+    /* ปุ่มบันทึกขึ้น Cloud ลอยตัวสำหรับมือถือ */
+    .mobile-fixed-save-btn {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: rgba(35, 134, 54, 0.95);
+      border: 1px solid #2ea44f;
+      box-shadow: 0 10px 25px rgba(35, 134, 54, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .mobile-fixed-save-btn:active {
+      transform: scale(0.92);
+      background: #2ea44f;
+    }
+
+    /* ซ่อนปุ่มบันทึกท้ายฟอร์มบนจอคอมและแสดงผลในจอเล็ก */
+    .form-bottom-actions {
+      display: none;
+    }
+
+    @media (max-width: 991px) {
+      .mobile-fixed-save-btn {
+        display: flex;
+      }
+      .form-bottom-actions {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1446,6 +1488,13 @@
               <div class="field-hint">ระบุผลลัพธ์เมื่อการเทรดสิ้นสุดลง เพื่อใช้ประเมินและทบทวนความสามารถเชิงสถิติ</div>
               <div class="chip-row" id="outcomeChips"></div>
               <div class="entry-preview" id="entryPreview"></div>
+            </div>
+
+            <!-- ปุ่มบันทึกคลาสสิกท้ายฟอร์ม แสดงเฉพาะในมือถือ/แท็บเล็ต -->
+            <div class="field wide form-bottom-actions" style="margin-top: 15px;">
+              <button class="btn primary" type="button" onclick="document.getElementById('savePreviewBtn').click();" style="width: 100%; height: 44px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 8px;">
+                💾 บันทึกขึ้น Cloud (บันทึกข้อมูล)
+              </button>
             </div>
           </div>
         </div>
@@ -4087,5 +4136,9 @@ if ('serviceWorker' in navigator) {
       </div>
     </div>
   </div>
+  <!-- ปุ่มบันทึกลอยติดหน้าจอสำหรับมือถือ -->
+  <button class="mobile-fixed-save-btn" id="mobileSaveBtn" type="button" onclick="document.getElementById('savePreviewBtn').click();">
+    💾 บันทึก Cloud
+  </button>
 </body>
 </html>
