@@ -336,10 +336,11 @@ function renderJournalNoteBody(n) {
     'postmarket': 'หลังตลาดปิด',
     'legacy': 'ทั่วไป'
   };
+  const noteDateStr = n.date ? fmtDate(n.date) : '';
   const phaseText = n.archive_phase ? (phaseLabels[n.archive_phase] || n.archive_phase) : '';
   const timeText = n.time ? `เวลา ${esc(n.time)} น.` : '';
-  const metaParts = [phaseText, timeText].filter(Boolean);
-  const metaStr = metaParts.length > 0 ? ` · ${metaParts.join(' ')}` : '';
+  const metaParts = [noteDateStr, phaseText, timeText].filter(Boolean);
+  const metaStr = metaParts.length > 0 ? ` - ${metaParts.join(' · ')}` : '';
 
   return `
     <div class="tt-section">

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-tooltip-position-fix-v116';
+const CACHE_NAME = 'beer-top100-v20260705-weekend-notes-split-v117';
 const APP_SHELL = [
   './',
   './index.html',
