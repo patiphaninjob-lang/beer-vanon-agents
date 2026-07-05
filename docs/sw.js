@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v112-sentiment-stats-aside';
+const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v113-stats-bypassed';
 const APP_SHELL = [
   './',
   './index.html',
@@ -36,6 +36,7 @@ self.addEventListener('activate', event => {
 function normalizedLocalRequest(request) {
   const url = new URL(request.url);
   url.searchParams.delete('_');
+  url.searchParams.delete('v');
   return new Request(url.toString(), { method: 'GET' });
 }
 

@@ -4618,7 +4618,7 @@ document.addEventListener('keydown', e => {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js?v=3.9.40').catch(() => {});
   });
   let refreshing = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
@@ -4632,23 +4632,30 @@ if ('serviceWorker' in navigator) {
 function forceUpdateApp() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(registrations => {
+      const promises = [];
       for (let registration of registrations) {
-        registration.unregister();
+        promises.push(registration.unregister());
       }
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            return caches.delete(cacheName);
-          })
-        );
-      }).then(() => {
-        const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
-        window.location.replace(cleanUrl);
+      Promise.all(promises).then(() => {
+        caches.keys().then(cacheNames => {
+          return Promise.all(
+            cacheNames.map(cacheName => {
+              return caches.delete(cacheName);
+            })
+          );
+        }).then(() => {
+          fetch(window.location.pathname, { cache: 'reload' }).finally(() => {
+            const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+            window.location.replace(cleanUrl);
+          });
+        });
       });
     });
   } else {
-    const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
-    window.location.replace(cleanUrl);
+    fetch(window.location.pathname, { cache: 'reload' }).finally(() => {
+      const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+      window.location.replace(cleanUrl);
+    });
   }
 }
 
