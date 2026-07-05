@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v107-stable-tooltip-lock';
+const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v108-stable-homepage-tooltip';
 const APP_SHELL = [
   './',
   './index.html',
