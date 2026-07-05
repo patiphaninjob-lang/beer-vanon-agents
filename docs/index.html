@@ -4642,11 +4642,13 @@ function forceUpdateApp() {
           })
         );
       }).then(() => {
-        window.location.reload(true);
+        const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+        window.location.replace(cleanUrl);
       });
     });
   } else {
-    window.location.reload(true);
+    const cleanUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+    window.location.replace(cleanUrl);
   }
 }
 
