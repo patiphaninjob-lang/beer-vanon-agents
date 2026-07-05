@@ -105,6 +105,32 @@ function syncCustomEmotionsFromNotes(notes) {
   return updated;
 }
 
+function getNextDateString(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  d.setDate(d.getDate() + 1);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+function getTradingDaysList(rawDates) {
+  const dates = [];
+  rawDates.forEach(dStr => {
+    const d = new Date(dStr + 'T12:00:00');
+    const dow = d.getDay(); // 6 = Saturday, 0 = Sunday
+    let targetDate = dStr;
+    if (dow === 6) {
+      const prev = new Date(d);
+      prev.setDate(d.getDate() - 1);
+      targetDate = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0') + '-' + String(prev.getDate()).padStart(2, '0');
+    } else if (dow === 0) {
+      const prev = new Date(d);
+      prev.setDate(d.getDate() - 2);
+      targetDate = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0') + '-' + String(prev.getDate()).padStart(2, '0');
+    }
+    if (!dates.includes(targetDate)) dates.push(targetDate);
+  });
+  return dates;
+}
+
 function detectEmotion(note, mode = 'personal') {
   if (!note) return null;
   if (note.journal) {
