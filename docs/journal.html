@@ -2412,9 +2412,13 @@ async function init() {
     const baseTradingDays = getTradingDaysList(rawDates);
     const notedDates = new Set();
     for (const notes of Object.values(state.notes || {})) {
-      for (const n of notes) {
-        if (n.date) notedDates.add(n.date);
-        if (n.archive_date) notedDates.add(n.archive_date);
+      if (Array.isArray(notes)) {
+        for (const n of notes) {
+          if (n && typeof n === 'object') {
+            if (n.date) notedDates.add(n.date);
+            if (n.archive_date) notedDates.add(n.archive_date);
+          }
+        }
       }
     }
     const allUniqueDates = new Set([...baseTradingDays, ...notedDates]);
