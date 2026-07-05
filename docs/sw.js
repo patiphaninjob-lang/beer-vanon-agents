@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v113-stats-bypassed';
+const CACHE_NAME = 'beer-top100-v20260705-seasons-alert-v114';
 const APP_SHELL = [
   './',
   './index.html',
