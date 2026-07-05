@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-full-weekend-support-v118';
+const CACHE_NAME = 'beer-top100-v20260705-robust-weekend-system-v119';
 const APP_SHELL = [
   './',
   './index.html',

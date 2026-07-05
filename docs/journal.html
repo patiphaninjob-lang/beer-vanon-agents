@@ -2291,8 +2291,16 @@ async function loadNotes() {
     return false;
   }
 }
+function getPrevDateString(dateStr, offset = 1) {
+  const d = new Date(dateStr + 'T12:00:00');
+  d.setDate(d.getDate() - offset);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
 async function detectPhases(date) {
   const nextDate = getNextDateString(date);
+  const prevDate1 = getPrevDateString(date, 1);
+  const prevDate2 = getPrevDateString(date, 2);
   
   const checks = await Promise.all(['postmarket', 'premarket', 'legacy'].map(async (phase) => {
     if (phase === 'postmarket') {
@@ -2304,11 +2312,30 @@ async function detectPhases(date) {
       r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
       if (r && r.ok) return { phase, ok: true, key };
       
+      key = `${prevDate1}-postmarket`;
+      r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
+      if (r && r.ok) return { phase, ok: true, key };
+
+      key = `${prevDate2}-postmarket`;
+      r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
+      if (r && r.ok) return { phase, ok: true, key };
+      
       return { phase, ok: false, key: null };
     } else {
-      const key = phase === 'premarket' ? `${date}-premarket` : date;
-      const r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
-      return { phase, ok: !!(r && r.ok), key };
+      let key = phase === 'premarket' ? `${date}-premarket` : date;
+      let r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
+      if (r && r.ok) return { phase, ok: true, key };
+
+      if (phase === 'premarket') {
+        key = `${prevDate1}-premarket`;
+        r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
+        if (r && r.ok) return { phase, ok: true, key };
+
+        key = `${prevDate2}-premarket`;
+        r = await fetch(`data/${key}.json?nocache=${Date.now()}`, { method: 'HEAD', cache: 'no-cache' }).catch(() => null);
+        if (r && r.ok) return { phase, ok: true, key };
+      }
+      return { phase, ok: false, key: null };
     }
   }));
   
@@ -2378,16 +2405,27 @@ async function init() {
   }
   state.phase = defaultPhase;
   
+  await loadNotes();
+  
   try {
     const rawDates = await loadJson('data/index.json');
-    state.dates = getTradingDaysList(rawDates);
+    const baseTradingDays = getTradingDaysList(rawDates);
+    const notedDates = new Set();
+    for (const notes of Object.values(state.notes || {})) {
+      for (const n of notes) {
+        if (n.date) notedDates.add(n.date);
+        if (n.archive_date) notedDates.add(n.archive_date);
+      }
+    }
+    const allUniqueDates = new Set([...baseTradingDays, ...notedDates]);
+    state.dates = Array.from(allUniqueDates).sort((a, b) => b.localeCompare(a));
+    
     await loadArchive(defaultDate || state.dates[0] || '2026-06-16', state.phase);
     hydrateWatchlist();
   } catch (error) {
     document.querySelector('.shell').innerHTML = `<div class="panel pad">โหลดข้อมูลตัวอย่างไม่สำเร็จ: ${esc(error.message)}</div>`;
     return;
   }
-  await loadNotes();
   renderAll();
   loadLatestNoteToInputs();
 }
