@@ -96,7 +96,7 @@
       line-height: 1.55;
       text-align: left;
       white-space: normal;
-      pointer-events: none;
+      pointer-events: auto;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     .version-tooltip::after {
@@ -4098,6 +4098,27 @@ if ('serviceWorker' in navigator) {
       window.location.reload();
     }
   });
+}
+
+function forceUpdateApp() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            return caches.delete(cacheName);
+          })
+        );
+      }).then(() => {
+        window.location.reload(true);
+      });
+    });
+  } else {
+    window.location.reload(true);
+  }
 }
   </script>
 
