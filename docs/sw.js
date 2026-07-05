@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-realtime-tooltip-sync-v115';
+const CACHE_NAME = 'beer-top100-v20260705-tooltip-position-fix-v116';
 const APP_SHELL = [
   './',
   './index.html',
