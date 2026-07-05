@@ -54,3 +54,27 @@ Every single code modification, bug fix, feature addition, or visual update MUST
 2. **Update the Changelog Tooltip**: Add the new version tag at the top of the version-tooltip list in `docs/index.html`, detailing exactly what changes were made in Thai.
 3. **Bump sw.js Cache Name**: Always increment the CACHE_NAME version in `docs/sw.js` (e.g., from `v12` to `v13`) to force client browsers to reload the updated assets.
 4. **Never skip versioning**: Even minor tweaks warrant a patch version increment. Do not group multiple tasks under the same version unless done in a single commit.
+
+## 🎯 Current Focus Scope — US Stocks ONLY
+
+> **⚠️ MANDATORY RULE — DO NOT OVERRIDE WITHOUT USER PERMISSION**
+
+All development, bug fixes, feature additions, and improvements MUST focus **exclusively on the US stock section** until the user explicitly lifts this restriction.
+
+### What is IN scope:
+- `beer_top100_agent.py` and related US market analysis scripts
+- `docs/index.html` (the US Top-100 dashboard / PWA)
+- `docs/sw.js`, `docs/manifest.json`, and other US dashboard assets
+- US market data pipelines, email reports, and AI coaching features
+- Any file or feature directly serving the **US stock** workflow
+
+### What is OUT of scope (deferred):
+- Thai stock dashboards, agents, and data pipelines
+- `The Legend/`, `International League/`, and other Thai-focused course folders
+- Thai market tickers, SET index analysis, or Thai broker integrations
+- Any new feature or fix request related to Thai stocks
+
+### Enforcement:
+- If a task touches **both US and Thai** scopes, implement **only the US portion** and note the Thai portion as deferred.
+- If the user requests Thai stock work, **remind them of this rule** and confirm whether they want to override it.
+- This rule remains active until the user says otherwise (e.g., "เปิดให้ทำหุ้นไทยได้แล้ว" or similar).

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-hide-unused-modules-v97';
+const CACHE_NAME = 'beer-top100-v20260705-custom-emotions-v98';
 const APP_SHELL = [
   './',
   './index.html',

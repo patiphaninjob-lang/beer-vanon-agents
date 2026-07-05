@@ -32,6 +32,69 @@ function fmtMoney(value) {
 }
 
 // Emotion detection and coloring
+const DEFAULT_EMOTIONS = [
+  'กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า',
+  'โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป',
+  'มั่นใจแต่ระวัง', 'มีวินัย', 'สบายใจ/ใจเย็น',
+  'ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'
+];
+
+const DEFAULT_EMOTION_COLORS = {
+  'กลัว': '#b71c1c',
+  'กังวล': '#f06292',
+  'ระแวง': '#9e9d24',
+  'ท้อแท้': '#5c4033',
+  'เหนื่อยล้า': '#78909c',
+  'หัวร้อน/อยากเอาคืน': '#ff1744',
+  'โลภ': '#ffd700',
+  'FOMO': '#00e5ff',
+  'มั่นใจเกินไป': '#d500f9',
+  'เสียดาย': '#311b92',
+  'มั่นใจแต่ระวัง': '#00897b',
+  'มีวินัย': '#00e676',
+  'สบายใจ/ใจเย็น': '#0288d1',
+  'ลังเล': '#ffea00',
+  'สับสน': '#e65100',
+  'ใจเย็นรอ': '#ff9100',
+  'ไม่เชื่อข่าว': '#7986cb'
+};
+
+function getCustomEmotionsList() {
+  try {
+    const raw = localStorage.getItem('BEER_CUSTOM_EMOTIONS');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_EMOTIONS;
+}
+
+function getCustomEmotionColorsMap() {
+  try {
+    const raw = localStorage.getItem('BEER_CUSTOM_EMOTION_COLORS');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_EMOTION_COLORS;
+}
+
+function syncCustomEmotionsFromNotes(notes) {
+  if (!notes) return false;
+  let updated = false;
+  if (Array.isArray(notes._custom_emotions) && notes._custom_emotions.length > 0) {
+    localStorage.setItem('BEER_CUSTOM_EMOTIONS', JSON.stringify(notes._custom_emotions));
+    updated = true;
+  }
+  if (notes._custom_emotion_colors && typeof notes._custom_emotion_colors === 'object' && Object.keys(notes._custom_emotion_colors).length > 0) {
+    localStorage.setItem('BEER_CUSTOM_EMOTION_COLORS', JSON.stringify(notes._custom_emotion_colors));
+    updated = true;
+  }
+  return updated;
+}
+
 function detectEmotion(note, mode = 'personal') {
   if (!note) return null;
   if (note.journal) {
@@ -43,13 +106,8 @@ function detectEmotion(note, mode = 'personal') {
     }
   }
   if (note.note) {
-    const emotions = [
-      'กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า',
-      'โลภ', 'FOMO', 'หัวร้อน/อยากเอาคืน', 'มั่นใจเกินไป',
-      'มั่นใจแต่ระวัง', 'มีวินัย', 'สบายใจ/ใจเย็น',
-      'ลังเล', 'สับสน', 'ใจเย็นรอ', 'ไม่เชื่อข่าว', 'เสียดาย'
-    ];
-    for (const em of emotions) {
+    const emotionsList = getCustomEmotionsList();
+    for (const em of emotionsList) {
       if (note.note.includes(em)) return em;
     }
   }
@@ -72,35 +130,8 @@ function getEmotionCategory(emotion) {
 
 function getEmotionColor(emotion) {
   if (!emotion) return '#8b949e';
-  const mapping = {
-    // 🔴 กลุ่มอารมณ์ลบ / กลัว (เฉดสีแดง/ส้ม/เทา)
-    'กลัว': '#b71c1c',                  // แดงก่ำเข้ม (Deep Crimson Red)
-    'กังวล': '#f06292',                 // ชมพูปะการังเข้ม (Vibrant Salmon Pink)
-    'ระแวง': '#9e9d24',                 // เขียวมะกอกเข้ม (Mustard Dark Olive)
-    'ท้อแท้': '#5c4033',                 // น้ำตาลดินเข้ม (Muddy Chestnut Brown)
-    'เหนื่อยล้า': '#78909c',             // เทาอมฟ้าหม่น (Slate Blue-Grey)
-    'หัวร้อน/อยากเอาคืน': '#ff1744',       // แดงเพลิงนีออน (Neon Active Lava Red)
-    
-    // 🔵 กลุ่มโลภ / ตื่นตัวสูง (เฉดสีน้ำเงิน/ฟ้า/ม่วง)
-    'โลภ': '#ffd700',                  // เหลืองทองคำ (Gold Yellow)
-    'FOMO': '#00e5ff',                 // ฟ้าสว่างนีออน (Electric Cyan Blue)
-    'มั่นใจเกินไป': '#d500f9',           // ม่วงอมชมพูนีออน (Euphoric Purple Pink)
-    'เสียดาย': '#311b92',               // ครามม่วงเข้มจัด (Deep Indigo Blue)
-    
-    // 🟢 กลุ่มมั่นใจ / วินัยบวก (เฉดสีเขียว)
-    'มั่นใจแต่ระวัง': '#00897b',           // เขียวหัวเป็ดเข้ม (Deep Teal Green)
-    'มีวินัย': '#00e676',               // เขียวมรกตนีออน (Neon Emerald Green)
-    'สบายใจ/ใจเย็น': '#0288d1',           // ฟ้าครามทะเล (Calm Ocean Blue)
-    
-    // 🟡 กลุ่มลังเล / รอคอย (เฉดสีเหลือง/ส้ม/น้ำตาล)
-    'ลังเล': '#ffea00',                 // เหลืองมะนาวสว่าง (Lemon Yellow)
-    'สับสน': '#e65100',                 // ส้มอิฐเข้ม (Dark Muddy Orange)
-    'ใจเย็นรอ': '#ff9100',               // ส้มอำพันสว่าง (Amber Orange)
-    'ไม่เชื่อข่าว': '#7986cb'              // ฟ้าอมม่วงยีนส์ (Muted Denim Indigo)
-  };
-  
-  // fallback map for aliases or other exact matches
-  if (mapping[emotion]) return mapping[emotion];
+  const colorsMap = getCustomEmotionColorsMap();
+  if (colorsMap[emotion]) return colorsMap[emotion];
   
   // fuzzy matches if needed
   const fear = ['กลัว', 'กังวล', 'ระแวง', 'ท้อแท้', 'เหนื่อยล้า'];
@@ -114,6 +145,7 @@ function getEmotionColor(emotion) {
   if (greed.includes(emotion)) return '#ffd700';
   return '#8b949e';
 }
+
 
 function renderEmotionBadge(label, emotion) {
   if (!emotion) return '';
