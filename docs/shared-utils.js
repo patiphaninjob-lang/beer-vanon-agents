@@ -64,7 +64,15 @@ function getCustomEmotionsList() {
     const raw = localStorage.getItem('BEER_CUSTOM_EMOTIONS');
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      if (Array.isArray(parsed)) {
+        const combined = [...DEFAULT_EMOTIONS];
+        parsed.forEach(item => {
+          if (item && !combined.includes(item)) {
+            combined.push(item);
+          }
+        });
+        return combined;
+      }
     }
   } catch (e) {}
   return DEFAULT_EMOTIONS;
@@ -75,7 +83,9 @@ function getCustomEmotionColorsMap() {
     const raw = localStorage.getItem('BEER_CUSTOM_EMOTION_COLORS');
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === 'object') return parsed;
+      if (parsed && typeof parsed === 'object') {
+        return Object.assign({}, DEFAULT_EMOTION_COLORS, parsed);
+      }
     }
   } catch (e) {}
   return DEFAULT_EMOTION_COLORS;
@@ -112,6 +122,26 @@ function detectEmotion(note, mode = 'personal') {
     }
   }
   return null;
+}
+
+async function forceUpdateApp() {
+  try {
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const reg of registrations) {
+        await reg.unregister();
+      }
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      for (const key of keys) {
+        await caches.delete(key);
+      }
+    }
+  } catch (e) {
+    console.warn('Clear cache error:', e);
+  }
+  window.location.href = window.location.origin + window.location.pathname + '?nocache=' + Date.now();
 }
 
 function getEmotionCategory(emotion) {

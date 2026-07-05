@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-custom-emotions-hotfix-v99';
+const CACHE_NAME = 'beer-top100-v20260705-mobile-save-ux-v101-reverted';
 const APP_SHELL = [
   './',
   './index.html',
