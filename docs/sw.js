@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260705-fs-nav-fix-v122';
+const CACHE_NAME = 'beer-top100-v20260705-fs-nav-fix-v123';
 const APP_SHELL = [
   './',
   './index.html',
