@@ -75,29 +75,6 @@
       }
     },
     {
-      "stopLoss": null,
-      "market_emotion": "ใจเย็นรอ",
-      "outcome": null,
-      "targetPrice": null,
-      "archive_date": "2026-07-05",
-      "rrr": null,
-      "archive_phase": "postmarket",
-      "date": "05/07/2026",
-      "review": {
-        "review": "หลังตลาดปิดวันนี้",
-        "risk": "การจำลองข้อมูลการทดสอบระบบ",
-        "invalid": "ถ้าราคาหลุดแผนการจำลองข้อมูล",
-        "thesis": "🧪 [MOCK TEST] บันทึกมุมมองดัชนี Dow Jones ในวันนี้เน้นความมั่นคงไม่เทรดสุ่มสี่สุ่มห้าตามเกณฑ์ Beer Vanon"
-      },
-      "time": "08:55",
-      "setup": null,
-      "id": "mock__DJI_2026-07-05_postmarket_1783221958064",
-      "entryPrice": null,
-      "note": "🧪 [MOCK TEST] บันทึกมุมมองดัชนี Dow Jones ในวันนี้เน้นความมั่นคงไม่เทรดสุ่มสี่สุ่มห้าตามเกณฑ์ Beer Vanon",
-      "emotion": "มีวินัย",
-      "intent": "ถือ"
-    },
-    {
       "spx_price": 7354.02,
       "ixic_pct": -0.24,
       "note": "เทส",
@@ -297,29 +274,6 @@
       "archive_date": "2026-07-04"
     },
     {
-      "intent": "ซื้อ",
-      "emotion": "มั่นใจสุดๆ 🔥",
-      "note": "🧪 [MOCK TEST] วิเคราะห์ดัชนี S&P 500 ภาพรวมตลาดยังคง Bullish อย่างแข็งแกร่ง มีอารมณ์ร่วมแบบมั่นใจสุดๆ สีส้มนีออน",
-      "date": "05/07/2026",
-      "time": "08:55",
-      "archive_phase": "postmarket",
-      "review": {
-        "review": "หลังตลาดปิดวันนี้",
-        "risk": "การจำลองข้อมูลการทดสอบระบบ",
-        "invalid": "ถ้าราคาหลุดแผนการจำลองข้อมูล",
-        "thesis": "🧪 [MOCK TEST] วิเคราะห์ดัชนี S&P 500 ภาพรวมตลาดยังคง Bullish อย่างแข็งแกร่ง มีอารมณ์ร่วมแบบมั่นใจสุดๆ สีส้มนีออน"
-      },
-      "rrr": null,
-      "id": "mock__SPX_2026-07-05_postmarket_1783221958064",
-      "entryPrice": null,
-      "setup": "Breakout",
-      "stopLoss": null,
-      "archive_date": "2026-07-05",
-      "targetPrice": null,
-      "outcome": null,
-      "market_emotion": "มั่นใจแต่ระวัง"
-    },
-    {
       "spx_price": 7440.43,
       "note": "ตลาดกลับมามีแรงซื้อ ความกล้าเิ่มเข้ามา เงินเริ่มไหรเข้า",
       "ixic_pct": 2.07,
@@ -449,29 +403,6 @@
       "archive_date": "2026-07-04",
       "pct_change": -1.39,
       "note": "[หลังตลาดปิด / ส่วนตัว: กังวล / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน"
-    },
-    {
-      "id": "mock_NVDA_2026-07-05_postmarket_1783221958064",
-      "entryPrice": 190,
-      "setup": "Channel Trade",
-      "time": "08:55",
-      "date": "05/07/2026",
-      "review": {
-        "review": "หลังตลาดปิดวันนี้",
-        "invalid": "ถ้าราคาหลุดแผนการจำลองข้อมูล",
-        "risk": "การจำลองข้อมูลการทดสอบระบบ",
-        "thesis": "🧪 [MOCK TEST] บันทึกอารมณ์ซึมเศร้า 📉 (สีม่วงเรืองแสง) หุ้น NVDA พักตัวหลุดเส้น EMA ย่อย ต้องใจเย็นรอประเมินฐานรอบถัดไป"
-      },
-      "archive_phase": "postmarket",
-      "rrr": 3,
-      "archive_date": "2026-07-05",
-      "targetPrice": 220,
-      "outcome": "Loss",
-      "market_emotion": "กลัว",
-      "stopLoss": 180,
-      "intent": "รอจังหวะ",
-      "emotion": "ซึมเศร้า 📉",
-      "note": "🧪 [MOCK TEST] บันทึกอารมณ์ซึมเศร้า 📉 (สีม่วงเรืองแสง) หุ้น NVDA พักตัวหลุดเส้น EMA ย่อย ต้องใจเย็นรอประเมินฐานรอบถัดไป"
     },
     {
       "journal": {
@@ -1039,29 +970,6 @@
     }
   ],
   "MSFT": [
-    {
-      "note": "🧪 [MOCK TEST] บันทึกอารมณ์บ้าคลั่ง 🚀 (สีชมพูนีออนเรืองแสง) หุ้น MSFT วิ่งดีแรงทะลุแนวต้านสำคัญในแผนการบ้าน Ch34",
-      "emotion": "บ้าคลั่ง 🚀",
-      "intent": "ซื้อ",
-      "targetPrice": 410,
-      "archive_date": "2026-07-05",
-      "market_emotion": "โลภ/FOMO",
-      "outcome": "Win",
-      "stopLoss": 380,
-      "entryPrice": 390,
-      "id": "mock_MSFT_2026-07-05_postmarket_1783221958064",
-      "setup": "Buy on Dip",
-      "archive_phase": "postmarket",
-      "time": "08:55",
-      "date": "05/07/2026",
-      "review": {
-        "review": "หลังตลาดปิดวันนี้",
-        "invalid": "ถ้าราคาหลุดแผนการจำลองข้อมูล",
-        "risk": "การจำลองข้อมูลการทดสอบระบบ",
-        "thesis": "🧪 [MOCK TEST] บันทึกอารมณ์บ้าคลั่ง 🚀 (สีชมพูนีออนเรืองแสง) หุ้น MSFT วิ่งดีแรงทะลุแนวต้านสำคัญในแผนการบ้าน Ch34"
-      },
-      "rrr": 2
-    },
     {
       "id": "ebd07620-f335-4eda-a0cd-dc9e733a3db1",
       "archive_date": "2026-06-25",
