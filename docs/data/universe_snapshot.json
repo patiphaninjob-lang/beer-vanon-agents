@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-07T00:20:36.826858+00:00",
+  "updated": "2026-07-07T13:27:45.964231+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -59,10 +59,6 @@
   "error": "",
   "selected_count": 100,
   "selected": [
-    {
-      "ticker": "NVDA",
-      "market_cap": 4736416623916.626
-    },
     {
       "ticker": "AAPL",
       "market_cap": 4592148780746.704
@@ -312,12 +308,12 @@
       "market_cap": 234796820233.93112
     },
     {
-      "ticker": "ANET",
-      "market_cap": 218188878679.56793
+      "ticker": "MRVL",
+      "market_cap": 218249143174.47675
     },
     {
-      "ticker": "MRVL",
-      "market_cap": 218061399737.54883
+      "ticker": "ANET",
+      "market_cap": 218188878679.56793
     },
     {
       "ticker": "NVO",
@@ -372,12 +368,12 @@
       "market_cap": 196549915496.82617
     },
     {
-      "ticker": "STX",
-      "market_cap": 196445664447.65332
-    },
-    {
       "ticker": "PEP",
       "market_cap": 195868961840.6799
+    },
+    {
+      "ticker": "STX",
+      "market_cap": 194689066783.65625
     },
     {
       "ticker": "TMO",
@@ -413,7 +409,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 171475047220.89233
+      "market_cap": 171582947179.91357
     },
     {
       "ticker": "UBS",
@@ -458,6 +454,10 @@
     {
       "ticker": "ETN",
       "market_cap": 160530991213.98926
+    },
+    {
+      "ticker": "BLK",
+      "market_cap": 156732890716.3504
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "updated": "2026-07-07T08:19:19.079644",
+  "updated": "2026-07-07T21:26:23.280762",
   "latest": {
-    "date": "2026-07-06",
-    "archive_key": "2026-07-06-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-07-07T08:19:19.065276",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-06&phase=postmarket",
+    "date": "2026-07-07",
+    "archive_key": "2026-07-07-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-07-07T21:26:23.266388",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-07&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,7 +25,7 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "SHEL"
+          "MRK"
         ]
       }
     }
@@ -88,28 +88,32 @@
       }
     },
     "premarket": {
-      "date": "2026-07-06",
-      "archive_key": "2026-07-06-premarket",
+      "date": "2026-07-07",
+      "archive_key": "2026-07-07-premarket",
       "run_phase": "premarket",
-      "generated": "2026-07-06T22:36:42.961708",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-06&phase=premarket",
+      "generated": "2026-07-07T21:26:23.266388",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-07&phase=premarket",
       "health": {
-        "status": "ok",
-        "issues": [],
+        "status": "warning",
+        "issues": [
+          "fallback_analysis 1"
+        ],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 0
+          "fallback_analysis": 1
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": []
+          "fallback_analysis": [
+            "MRK"
+          ]
         }
       }
     }
