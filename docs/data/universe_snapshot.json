@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-08T00:11:56.173006+00:00",
+  "updated": "2026-07-08T12:53:01.009069+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -309,7 +309,7 @@
     },
     {
       "ticker": "BABA",
-      "market_cap": 235348370264.30316
+      "market_cap": 235297966542.0166
     },
     {
       "ticker": "SHEL",
@@ -337,7 +337,7 @@
     },
     {
       "ticker": "MRVL",
-      "market_cap": 201990114339.12378
+      "market_cap": 201816357330.32227
     },
     {
       "ticker": "TD",
@@ -381,7 +381,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 185580886223.48438
+      "market_cap": 187255304600.47998
     },
     {
       "ticker": "ADI",
@@ -413,7 +413,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 173453504525.79965
+      "market_cap": 173397746520.97446
     },
     {
       "ticker": "TJX",
@@ -445,7 +445,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 163039452531.37036
+      "market_cap": 162936925150.0885
     },
     {
       "ticker": "SMFG",
