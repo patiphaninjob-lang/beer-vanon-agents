@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-10T00:19:08.027594+00:00",
+  "updated": "2026-07-10T13:20:27.187201+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -385,7 +385,7 @@
     },
     {
       "ticker": "PEP",
-      "market_cap": 188446482407.07455
+      "market_cap": 188316760833.74023
     },
     {
       "ticker": "SAP",
