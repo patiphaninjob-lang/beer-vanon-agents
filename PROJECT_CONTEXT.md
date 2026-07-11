@@ -14,7 +14,7 @@
 - **User Sentiment:** Integrated from `docs/notes/notes.json`.
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
 - **Unified Multi-Note Tooltips (v3.7.0):** Corrected the Home page tooltip logic to display all notes of the same day (looping through notes list) rather than just the first note, resolving the issue where some notes were completely missing on the Home page, making tooltip data rendering 100% identical and consistent across Home, History, and Journal pages.
-- **Dynamic Emotion Connection Line (v3.9.61):** Implemented tooltip navigation synchronization so that switching dates via the tooltip `<` and `>` arrow buttons updates the selected candle selection state, date dropdown, reloads the notes archive, and dynamically shifts the leader line to connect the new candlestick to the new emotion card.
+- **Dynamic Emotion Connection Line (v3.9.62):** Expanded bidirectional selection to support weekend date notes by mapping them to the closest trading day candle (`nearestCandle`). Prevented the tooltip and connector from closing when clicking emotion cards by adding click outside listener exclusions.
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.
