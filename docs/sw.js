@@ -1,4 +1,4 @@
-const CACHE_NAME = 'beer-top100-v20260711-chart-layout-v129';
+const CACHE_NAME = 'beer-top100-v20260711-chart-notes-v130';
 const APP_SHELL = [
   './',
   './index.html',
