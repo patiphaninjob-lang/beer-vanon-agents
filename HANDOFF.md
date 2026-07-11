@@ -1,21 +1,22 @@
-# Session Handoff - History Page Consolidation into Fullscreen Modal (v3.9.23)
+# Session Handoff - Mobile Sticky Chart Disable (v3.9.56)
 
 ## Latest Truth
-- **History Consolidation**: Deleted the standalone history pages (`docs/history.html` and `docs/thai/history.html`) completely.
-- **Homepage Range Controls**: Integrated time range tabs (`1M`, `6M`, `1Y`, `5Y`, `ALL`) directly into the fullscreen expanded chart modal of the homepages (`docs/index.html` & `docs/thai/index.html`). Clicking these tabs dynamically redraws the canvas using `filterCandlesByRange(candles, range)`.
-- **Thai Homepage Canvas Charting**: Ported canvas charting, candle hover/click tests, draggable tooltips with neon emotional glows, and dynamic SVG connector lines to the Thai homepage. Clicking "History" on Thai stock cards or the Market Index card now triggers `openExpandedChart` inside the fullscreen modal instead of navigating to a standalone page.
-- **Indices 404 Fetch Mappers**: Integrated automatic ticker mappers inside `openExpandedChart` and `loadAndDrawMiniChart` so that `_MARKET_THAI` and `_MARKET` indices queries resolve to fetch `market.json` index history files, eliminating 404 timing errors.
-- **PWA Service Worker Install Protection**: Removed `./history.html` from the caching `APP_SHELL` arrays of both service workers to prevent PWA install failures.
-- **App Version & Cache Bumping**: Upgraded the app version to `v3.9.23` in `index.html`, `thai/index.html`, `journal.html`, and `thai/journal.html` brand headers and changelogs. Incremented cache versions to `v92` in `docs/sw.js` and `13` in `docs/thai/sw.js`.
-- **Mobile simulation**: Removed history links from `docs/preview.html`.
+- **Mobile Sticky Chart Fix**: Deactivated the sticky CSS placement of the candlestick chart in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) for screen widths under `1180px` (mobile devices, tablets, and small desktop screens). On these devices, the chart layout behaves standardly inline to prevent blocking input fields, slider widgets, and submit buttons during scrolling.
+- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.56` with Thai changelog updates detailing the scroll lock resolution.
+- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v131` (`beer-top100-v20260711-chart-notes-v131`) to force active client browsers to refresh and load latest JS/CSS configurations.
+- **Repository Guidelines**: Deployed changes directly to GitHub via `git add`, `git commit`, and `git push`.
 
-## Files Changed/Deleted
-- `docs/index.html`: Added range selector tabs, wired events, and bumped version to `v3.9.23`.
-- `docs/thai/index.html`: Loaded `shared-utils.js`, injected range tabs, SVG canvas lines observer, draggable tooltips, custom normalization checks, canvas charts rendering, and bumped version to `v3.9.23`.
-- `docs/journal.html` & `docs/thai/journal.html`: Bumped version headers and updated changelogs to `v3.9.23`.
-- `docs/sw.js` & `docs/thai/sw.js`: Removed `./history.html` from caching list and bumped cache versions.
-- `docs/preview.html`: Removed history links.
-- **DELETED**: `docs/history.html` & `docs/thai/history.html`.
+## Files Changed
+- `docs/journal.html`: Constrained `.chart-container.sticky-chart` CSS sticky behavior to `@media screen and (min-width: 1181px)` and bumped version tag.
+- `docs/index.html`: Bumped version tag to `v3.9.56` and documented changes in Thai version-tooltip log.
+- `docs/sw.js`: Bumped cache name suffix to `v131`.
+
+## Tests Run
+- Verified styling rules inside `docs/journal.html` to guarantee the media query format is syntactically sound.
+- Validated git status and diff outputs.
+
+## Open Risks
+- None.
 
 ## Next Steps
-- Verify the live PWA application in multiple clients to ensure cache updates trigger automatically.
+- Verify mobile browser navigation directly to confirm the chart is no longer locked on screen when scrolling through journal entry forms.
