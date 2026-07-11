@@ -1,23 +1,24 @@
-# Session Handoff - Dynamic Emotion Card Connection Line (v3.9.59)
+# Session Handoff - Bidirectional Click Selection & Conditional Visibility (v3.9.60)
 
 ## Latest Truth
-- **Dynamic Leader Line**: Implemented a dynamic connection leader line linking the selected/active candlestick on the chart to the corresponding emotion card in the **ผลลัพธ์รายอารมณ์ (Sentiment Analysis)** sidebar list in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html).
-- **Responsive & Interactive updates**: Highlights the target card using dynamic emotion colors Map + glowing box-shadow, and updates line/dot coordinate alignment on scroll (page and container) and window resize. Automatically fades out (`opacity: 0`) if the card is scrolled out of view.
-- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.59`.
-- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v134`.
+- **Bidirectional Click Selection**: Implemented click selectors in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) for both:
+  1. Clicking a candlestick selects that date, opens its tooltip, and displays the leader line pointing to the corresponding emotion card.
+  2. Clicking an emotion card in the sidebar selects the latest date/candle with that emotion (switching the chart range to 'ALL' if it's out of current view), opens the tooltip, and displays the leader line.
+- **Conditional Visibility**: The leader line will now only show when the tooltip `#hoverTip` is active (`.show`). Clicking outside the chart to dismiss the tooltip hides the connector line immediately.
+- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.60`.
+- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v135`.
 - **Deployment**: Successfully pushed changes to the remote repository.
 
 ## Files Changed
-- `docs/journal.html`: Refactored `#tooltipConnector` CSS, added SVG line/dot elements, implemented `getSelectedCandleEmotion()`, `updateEmotionConnector()` and registered them to scroll/resize and stats updates.
-- `docs/index.html`: Bumped version tag to `v3.9.59` and updated changelog tooltips.
-- `docs/sw.js`: Bumped cache name suffix to `v134`.
+- `docs/journal.html`: Updated `updateEmotionConnector()`, added cursor pointer style, added `selectChartDate()` and `onEmotionCardClick()` functions, and added event delegation in document click listener.
+- `docs/index.html`: Bumped version tag to `v3.9.60` and updated changelog tooltips.
+- `docs/sw.js`: Bumped cache name suffix to `v135`.
 
 ## Tests Run
-- Verified code structure and formatting.
-- Verified coordinate geometry math.
+- Verified code structure, event handlers, and range adjustment fallback.
 
 ## Open Risks
 - None.
 
 ## Next Steps
-- Open the dashboard in browser / mobile simulator, click on a candlestick with recorded emotion on the chart, and verify that the line draws and updates correctly when scrolling through the Sentiment Analysis sidebar.
+- Verify the interactive bidirectional click workflow in browser / mobile simulator. Clicking on an emotion card should jump to and select the latest candle of that emotion and show the connector line. Clicking outside should hide it.
