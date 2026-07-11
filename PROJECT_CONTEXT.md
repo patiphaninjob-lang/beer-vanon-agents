@@ -14,6 +14,7 @@
 - **User Sentiment:** Integrated from `docs/notes/notes.json`.
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
 - **Unified Multi-Note Tooltips (v3.7.0):** Corrected the Home page tooltip logic to display all notes of the same day (looping through notes list) rather than just the first note, resolving the issue where some notes were completely missing on the Home page, making tooltip data rendering 100% identical and consistent across Home, History, and Journal pages.
+- **Dynamic Emotion Connection Line (v3.9.59):** Implemented a dynamic leader line connecting the active candlestick marker in the Journal page to its corresponding emotion stats card in the Sentiment Analysis sidebar, dynamically updating position on scroll and resize, and highlighting the matching card using its custom emotion color.
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.

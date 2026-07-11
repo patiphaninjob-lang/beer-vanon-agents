@@ -1,24 +1,23 @@
-# Session Handoff - Mobile Sticky Chart Overflow Fix (v3.9.58)
+# Session Handoff - Dynamic Emotion Card Connection Line (v3.9.59)
 
 ## Latest Truth
-- **Mobile Sticky Chart Fix**: Re-enabled and corrected the sticky CSS placement of the candlestick chart in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) for all device screen widths (including mobile and tablet viewports).
-- **Overflow Resolution**: Removed `overflow-x: hidden;` from the global `html, body` rule in `journal.html`, and changed `.shell`'s mobile-viewport overflow configuration under max-width `760px` from `overflow: hidden;` to `overflow: visible;`. This enables modern mobile browsers to properly compute and enforce the CSS `position: sticky;` context relative to the viewport.
-- **Responsive Top Offset**: Calculated the height of the mobile stacked topbar to be approximately `94px` and set `.chart-wrap` sticky `top` property to `94px` under max-width `760px` to prevent overlapping/clipping layout, while remaining `58px` on desktop and tablet viewport widths.
-- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.58` with Thai changelog updates detailing the overflow fix.
-- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v133` to force active client browsers to refresh and load latest JS/CSS configurations.
-- **Repository Guidelines**: Deployed changes directly to GitHub via `git add`, `git commit`, and `git push`.
+- **Dynamic Leader Line**: Implemented a dynamic connection leader line linking the selected/active candlestick on the chart to the corresponding emotion card in the **ผลลัพธ์รายอารมณ์ (Sentiment Analysis)** sidebar list in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html).
+- **Responsive & Interactive updates**: Highlights the target card using dynamic emotion colors Map + glowing box-shadow, and updates line/dot coordinate alignment on scroll (page and container) and window resize. Automatically fades out (`opacity: 0`) if the card is scrolled out of view.
+- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.59`.
+- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v134`.
+- **Deployment**: Successfully pushed changes to the remote repository.
 
 ## Files Changed
-- `docs/journal.html`: Removed `overflow-x: hidden` from `html, body`, changed `.shell` overflow on mobile viewport to `visible`, and bumped version tag.
-- `docs/index.html`: Bumped version tag to `v3.9.58` and documented changes in Thai version-tooltip log.
-- `docs/sw.js`: Bumped cache name suffix to `v133`.
+- `docs/journal.html`: Refactored `#tooltipConnector` CSS, added SVG line/dot elements, implemented `getSelectedCandleEmotion()`, `updateEmotionConnector()` and registered them to scroll/resize and stats updates.
+- `docs/index.html`: Bumped version tag to `v3.9.59` and updated changelog tooltips.
+- `docs/sw.js`: Bumped cache name suffix to `v134`.
 
 ## Tests Run
-- Validated styling rules inside `docs/journal.html` to guarantee the CSS structure is syntactically sound.
-- Checked git status and diff outputs.
+- Verified code structure and formatting.
+- Verified coordinate geometry math.
 
 ## Open Risks
 - None.
 
 ## Next Steps
-- Verify mobile browser navigation directly to confirm the chart is locked at the top when scrolling through journal entry forms, sticking perfectly under the topbar.
+- Open the dashboard in browser / mobile simulator, click on a candlestick with recorded emotion on the chart, and verify that the line draws and updates correctly when scrolling through the Sentiment Analysis sidebar.
