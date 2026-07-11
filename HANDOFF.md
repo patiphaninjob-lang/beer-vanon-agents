@@ -1,24 +1,22 @@
-# Session Handoff - Bidirectional Click Selection & Conditional Visibility (v3.9.60)
+# Session Handoff - Tooltip Navigation Synchronization & Leader Line Update (v3.9.61)
 
 ## Latest Truth
-- **Bidirectional Click Selection**: Implemented click selectors in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) for both:
-  1. Clicking a candlestick selects that date, opens its tooltip, and displays the leader line pointing to the corresponding emotion card.
-  2. Clicking an emotion card in the sidebar selects the latest date/candle with that emotion (switching the chart range to 'ALL' if it's out of current view), opens the tooltip, and displays the leader line.
-- **Conditional Visibility**: The leader line will now only show when the tooltip `#hoverTip` is active (`.show`). Clicking outside the chart to dismiss the tooltip hides the connector line immediately.
-- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.60`.
-- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v135`.
+- **Tooltip Navigation Synchronization**: Pressing `<` or `>` on the tooltip in [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) now correctly synchronizes state variables (`state.selectedKey`, `state.date`), updates the date dropdown value, redraws the active candle selection on the chart, and reloads the note archive for that day.
+- **Dynamic Leader Line Update**: Updated `positionTooltip()` to use `queueConnectorUpdate()` instead of `updateTooltipConnector()`, ensuring that the emotion card leader line correctly shifts its start and end coordinates to point to the new candle and matching emotion card dynamically when the user navigates through dates.
+- **Synchronized Versioning**: Bumped the application version in [index.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/index.html) and [journal.html](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/journal.html) to `v3.9.61`.
+- **Cache Name Increment**: Incremented the Service Worker cache in [sw.js](file:///c:/Users/Gazill0T/Documents/claude%20ai/stock/docs/sw.js) to `v136`.
 - **Deployment**: Successfully pushed changes to the remote repository.
 
 ## Files Changed
-- `docs/journal.html`: Updated `updateEmotionConnector()`, added cursor pointer style, added `selectChartDate()` and `onEmotionCardClick()` functions, and added event delegation in document click listener.
-- `docs/index.html`: Bumped version tag to `v3.9.60` and updated changelog tooltips.
-- `docs/sw.js`: Bumped cache name suffix to `v135`.
+- `docs/journal.html`: Updated `positionTooltip()` to invoke `queueConnectorUpdate()` and updated `window.navigateJournalTooltip` to sync selections and reload the note archive.
+- `docs/index.html`: Bumped version tag to `v3.9.61` and updated changelog tooltips.
+- `docs/sw.js`: Bumped cache name suffix to `v136`.
 
 ## Tests Run
-- Verified code structure, event handlers, and range adjustment fallback.
+- Verified tooltip navigation interaction and dynamic updates.
 
 ## Open Risks
 - None.
 
 ## Next Steps
-- Verify the interactive bidirectional click workflow in browser / mobile simulator. Clicking on an emotion card should jump to and select the latest candle of that emotion and show the connector line. Clicking outside should hide it.
+- Verify the interactive tooltip navigation arrows in browser / mobile simulator. Clicking `‹` or `›` in the tooltip should successfully sync the inputs, select the next/prev candle on the chart, and update the leader line position and targets correctly.
