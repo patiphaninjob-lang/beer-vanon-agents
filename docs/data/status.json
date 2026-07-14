@@ -1,32 +1,28 @@
 {
-  "updated": "2026-07-13T21:31:53.279569",
+  "updated": "2026-07-14T08:05:50.492600",
   "latest": {
     "date": "2026-07-13",
-    "archive_key": "2026-07-13-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-07-13T21:31:53.266587",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-13&phase=premarket",
+    "archive_key": "2026-07-13-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-07-14T08:05:50.478452",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-13&phase=postmarket",
     "health": {
-      "status": "warning",
-      "issues": [
-        "fallback_analysis 1"
-      ],
+      "status": "ok",
+      "issues": [],
       "counts": {
         "stocks": 100,
         "expected_stocks": 100,
         "charts": 100,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 1
+        "fallback_analysis": 0
       },
       "missing": {
         "charts": [],
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": [
-          "MSFT"
-        ]
+        "fallback_analysis": []
       }
     }
   },
@@ -58,11 +54,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-07-10",
-      "archive_key": "2026-07-10-postmarket",
+      "date": "2026-07-13",
+      "archive_key": "2026-07-13-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-07-11T08:08:09.275613",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-10&phase=postmarket",
+      "generated": "2026-07-14T08:05:50.478452",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-07-13&phase=postmarket",
       "health": {
         "status": "ok",
         "issues": [],
