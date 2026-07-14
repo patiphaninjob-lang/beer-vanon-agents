@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-14T00:07:13.822677+00:00",
+  "updated": "2026-07-14T12:41:16.358945+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -66,10 +66,6 @@
     {
       "ticker": "AAPL",
       "market_cap": 4660444896502.197
-    },
-    {
-      "ticker": "GOOGL",
-      "market_cap": 4301529172869.543
     },
     {
       "ticker": "GOOG",
@@ -273,11 +269,7 @@
     },
     {
       "ticker": "BABA",
-      "market_cap": 269310252687.56903
-    },
-    {
-      "ticker": "PANW",
-      "market_cap": 269194490051.26953
+      "market_cap": 269288591607.86322
     },
     {
       "ticker": "WFC",
@@ -325,7 +317,7 @@
     },
     {
       "ticker": "TM",
-      "market_cap": 206922392088.0
+      "market_cap": 206933476131.0
     },
     {
       "ticker": "BHP",
@@ -458,6 +450,14 @@
     {
       "ticker": "GLW",
       "market_cap": 157591392661.04163
+    },
+    {
+      "ticker": "ETN",
+      "market_cap": 156426657369.99512
+    },
+    {
+      "ticker": "BUD",
+      "market_cap": 153317723807.1016
     }
   ]
 }
