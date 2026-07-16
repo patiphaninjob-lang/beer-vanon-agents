@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-16T00:09:50.650547+00:00",
+  "updated": "2026-07-16T12:52:32.191856+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 259,
@@ -121,7 +121,7 @@
     },
     {
       "ticker": "JPM",
-      "market_cap": 929549315831.044
+      "market_cap": 922156171734.6191
     },
     {
       "ticker": "WMT",
@@ -133,7 +133,7 @@
     },
     {
       "ticker": "ASML",
-      "market_cap": 699637132272.2388
+      "market_cap": 697245214501.9531
     },
     {
       "ticker": "V",
@@ -201,7 +201,7 @@
     },
     {
       "ticker": "MS",
-      "market_cap": 360488449738.84125
+      "market_cap": 359280604797.3633
     },
     {
       "ticker": "KO",
@@ -272,12 +272,12 @@
       "market_cap": 274110849943.19623
     },
     {
-      "ticker": "DELL",
-      "market_cap": 266650052454.5515
+      "ticker": "WFC",
+      "market_cap": 267797189157.21002
     },
     {
-      "ticker": "WFC",
-      "market_cap": 265025383522.96674
+      "ticker": "DELL",
+      "market_cap": 266650052454.5515
     },
     {
       "ticker": "RTX",
@@ -309,7 +309,7 @@
     },
     {
       "ticker": "C",
-      "market_cap": 230065274418.94843
+      "market_cap": 226264484976.1963
     },
     {
       "ticker": "NVO",
@@ -372,12 +372,12 @@
       "market_cap": 187590915496.82617
     },
     {
-      "ticker": "NEE",
-      "market_cap": 185827434215.41876
+      "ticker": "STX",
+      "market_cap": 187404624920.93335
     },
     {
-      "ticker": "STX",
-      "market_cap": 185728871336.4297
+      "ticker": "NEE",
+      "market_cap": 185827434215.41876
     },
     {
       "ticker": "MRVL",
@@ -405,7 +405,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 178495498054.26343
+      "market_cap": 178616815305.05347
     },
     {
       "ticker": "WDC",
@@ -445,7 +445,7 @@
     },
     {
       "ticker": "SHOP",
-      "market_cap": 160325231025.6276
+      "market_cap": 160325230902.07758
     },
     {
       "ticker": "ETN",
@@ -453,7 +453,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 159222835317.82715
+      "market_cap": 159122708016.78467
     },
     {
       "ticker": "ABT",
