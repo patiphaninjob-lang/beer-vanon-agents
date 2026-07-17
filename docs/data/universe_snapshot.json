@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-17T00:12:46.371743+00:00",
+  "updated": "2026-07-17T12:21:52.785520+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 259,
@@ -269,7 +269,7 @@
     },
     {
       "ticker": "WFC",
-      "market_cap": 266721344717.29047
+      "market_cap": 269510887802.68427
     },
     {
       "ticker": "TXN",
@@ -301,7 +301,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 235764486910.02045
+      "market_cap": 235633676407.2052
     },
     {
       "ticker": "NVO",
@@ -401,7 +401,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 175118443408.8553
+      "market_cap": 175237465391.75446
     },
     {
       "ticker": "DIS",
@@ -432,12 +432,12 @@
       "market_cap": 168964718739.69064
     },
     {
-      "ticker": "BLK",
-      "market_cap": 168487745180.58423
+      "ticker": "STX",
+      "market_cap": 168668687747.34668
     },
     {
-      "ticker": "STX",
-      "market_cap": 167160469056.34375
+      "ticker": "BLK",
+      "market_cap": 168487745180.58423
     },
     {
       "ticker": "SMFG",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 161786150786.24072
+      "market_cap": 161684411543.927
     },
     {
       "ticker": "WDC",
