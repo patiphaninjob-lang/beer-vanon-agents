@@ -1,4 +1,1245 @@
 {
+  "TSLA": [
+    {
+      "pct_change": -7.49,
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-04",
+      "date": "2026-07-04",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: ไม่เชื่อ / 7/10]\nReview: อีก 3 วัน",
+      "id": "2f43974b-141b-44f9-81cc-83d968957b5c",
+      "journal": {
+        "outcome": null,
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "intent": null,
+        "market_season": 2,
+        "market_emotion": "ไม่เชื่อ",
+        "confidence": 7,
+        "emotion": "ระแวง",
+        "review": "อีก 3 วัน",
+        "entryPrice": 393.45
+      },
+      "price": 393.45,
+      "time": "10:47"
+    },
+    {
+      "note": "บันทึกอารมณ์ตลาด\n\nตลาดอยู่ในอารมณ์ \"ลังเล\" เนื่องจากเจ้าของตลาดยังไม่สามารถมองเห็นภาพที่ชัดเจนของอนาคต\n\nสัญญาณที่เจ้าของสังเกตเห็นคือความไม่แน่นอนและความไม่มั่นใจที่ปรากฏในโน้ต \"ยังมองไม่ออก\"\n\nต้องจับตาต่อการเปลี่ยนแปลงของสภาพตลาดและความไม่แน่นอนที่จะเกิดขึ้น",
+      "pct_change": 1.95,
+      "id": "1779630536307",
+      "price": 426.01,
+      "archive_date": "2026-05-24",
+      "time": "20:48",
+      "date": "2026-05-24"
+    }
+  ],
+  "_DJI": [
+    {
+      "pct_change": 0,
+      "date": "2026-07-10",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-10",
+      "id": "ac7766ea-b1f4-4342-8a28-75b04e9221ea",
+      "journal": {
+        "outcome": null,
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "intent": "ถือ",
+        "market_season": null,
+        "confidence": 7,
+        "market_emotion": "เชื่อมั่น",
+        "emotion": "อุ่นใจ",
+        "entryPrice": 52637.01,
+        "review": "อีก 3 วัน"
+      },
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: อุ่นใจ / ตลาด: เชื่อมั่น / ถือ / 7/10]\nThesis: รู้สึว่ายังมีแรงซื้อเข้ามาต่อเนื่องทำให้อุ่นใจระดับหนึ่ง\nIf wrong: โดนทุบแรงๆ\nReview: อีก 3 วัน",
+      "time": "21:17",
+      "price": 0
+    },
+    {
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: เชื่อมั่น / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "journal": {
+        "intent": "รอจังหวะ",
+        "market_season": null,
+        "stopLoss": null,
+        "entryPrice": 52468.78,
+        "review": "อีก 3 วัน",
+        "confidence": 7,
+        "emotion": "ใจเย็นรอ",
+        "market_emotion": "เชื่อมั่น",
+        "outcome": null,
+        "rrr": null,
+        "targetPrice": null,
+        "setup": null
+      },
+      "id": "840c0426-954e-483c-9acf-a012f23932a5",
+      "price": 0,
+      "time": "22:27",
+      "pct_change": 0,
+      "archive_date": "2026-07-09",
+      "archive_phase": "premarket",
+      "date": "2026-07-09"
+    },
+    {
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-07",
+      "date": "2026-07-07",
+      "pct_change": 0,
+      "price": 0,
+      "time": "08:24",
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: ไม่เชื่อ / 7/10]\nReview: อีก 3 วัน",
+      "id": "042001ce-e8e5-48c9-8933-62a4c08559f9",
+      "journal": {
+        "market_emotion": "ไม่เชื่อ",
+        "confidence": 7,
+        "emotion": "เฉยๆ",
+        "review": "อีก 3 วัน",
+        "entryPrice": null,
+        "stopLoss": null,
+        "market_season": 3,
+        "intent": null,
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null
+      }
+    },
+    {
+      "archive_date": "2026-07-06",
+      "archive_phase": "postmarket",
+      "date": "2026-07-06",
+      "pct_change": 0,
+      "price": 0,
+      "time": "08:22",
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: ลังเล / 7/10]\nReview: อีก 3 วัน",
+      "id": "1a7d846f-afd4-4f20-bed6-f5c69caa3612",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "outcome": null,
+        "rrr": null,
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "emotion": "เฉยๆ",
+        "entryPrice": 53055.91,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "intent": null,
+        "market_season": 3
+      }
+    },
+    {
+      "date": "2026-07-04",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-04",
+      "pct_change": 0,
+      "time": "09:09",
+      "price": 0,
+      "journal": {
+        "intent": "รอจังหวะ",
+        "market_season": 3,
+        "stopLoss": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": 52900.07,
+        "emotion": "ก็ปกติดี",
+        "market_emotion": "เชื่อมั่น",
+        "confidence": 7,
+        "outcome": "None",
+        "rrr": null,
+        "targetPrice": null,
+        "setup": null
+      },
+      "id": "1b1b0ed2-7fc7-4974-9e44-c38c2741b9b0",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ก็ปกติดี / ตลาด: เชื่อมั่น / รอจังหวะ / 7/10 / Outcome: None]\nReview: อีก 3 วัน"
+    },
+    {
+      "id": "99947e22-8276-4555-bc4a-37df6e3be1cb",
+      "journal": {
+        "entryPrice": null,
+        "review": "อีก 3 วัน",
+        "confidence": 7,
+        "emotion": "ไม่เชื่อ",
+        "market_emotion": "กล้า",
+        "intent": null,
+        "stopLoss": null,
+        "targetPrice": null,
+        "setup": null,
+        "outcome": null,
+        "rrr": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ไม่เชื่อ / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน",
+      "time": "10:45",
+      "price": 0,
+      "pct_change": 0,
+      "date": "2026-07-05",
+      "archive_date": "2026-07-04",
+      "archive_phase": "postmarket"
+    },
+    {
+      "time": "11:52",
+      "price": 51876.11,
+      "ixic_pct": -0.24,
+      "id": "74d02b4a-cdbc-43a4-9c1a-9453f5b628e2",
+      "date": "2026-06-27",
+      "dji_pct": -0.09,
+      "dji_price": 51876.11,
+      "note": "เทส",
+      "spx_pct": -0.05,
+      "ixic_price": 25297.62,
+      "archive_date": "2026-06-27",
+      "pct_change": -0.09,
+      "spx_price": 7354.02
+    }
+  ],
+  "GOOGL": [
+    {
+      "price": 357.18,
+      "time": "21:33",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: เฉยๆ / 7/10]\nReview: อีก 3 วัน",
+      "id": "8dca1446-c0c8-441e-9bf4-a98be045bcc2",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null,
+        "market_emotion": "เฉยๆ",
+        "confidence": 7,
+        "emotion": "ระแวง",
+        "review": "อีก 3 วัน",
+        "entryPrice": 315.32,
+        "stopLoss": null,
+        "market_season": 2,
+        "intent": null
+      },
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-10",
+      "date": "2026-07-10",
+      "pct_change": -0.48
+    },
+    {
+      "pct_change": -0.36,
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-04",
+      "date": "2026-07-04",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ก็ปกติดี / ตลาด: สับสน / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "id": "f2f0c1df-3c9b-4f10-adf3-92891ebd34e6",
+      "journal": {
+        "rrr": null,
+        "outcome": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "market_season": 2,
+        "intent": "รอจังหวะ",
+        "emotion": "ก็ปกติดี",
+        "confidence": 7,
+        "market_emotion": "สับสน",
+        "review": "อีก 3 วัน",
+        "entryPrice": 359.91
+      },
+      "price": 359.91,
+      "time": "09:13"
+    },
+    {
+      "price": 359.68,
+      "archive_date": "2026-06-13",
+      "time": "16:22",
+      "date": "2026-06-13",
+      "pct_change": 0.53,
+      "note": "รู้สึกว่าเป็นตัวที่จะขึ้นในรอบนี้ด้วย แต่ nvda หุ้นน่าจะวิ่งแรงกว่า",
+      "id": "6d0ceb34-f843-4d47-8004-f07e3e86068d"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "06:36",
+      "archive_date": "2026-05-26",
+      "price": 388.88,
+      "id": "77dad69a-2748-4cef-bae1-6dc2bcfc8702",
+      "pct_change": 1.54,
+      "note": "ภาพใหญ่ผู้คนมาความกล้า แค่ตัว NVDA กลับลงมาในจังหวะนี้ ผมรู้สึกว่าลงมาให้ซื้อง่ายเกินไป พร้อมการเรื่องราวดีๆที่เกิดขึ้นมองแล้วดีเกินไป. ต้องระวัง!"
+    },
+    {
+      "id": "1779629376530",
+      "note": "อารมณืออกทรมต้มกบมากกว่า ต้องระวัง",
+      "pct_change": -1.21,
+      "time": "20:29",
+      "date": "2026-05-24",
+      "price": 382.97,
+      "archive_date": "2026-05-24"
+    }
+  ],
+  "_IXIC": [
+    {
+      "pct_change": -0.24,
+      "spx_price": 7354.02,
+      "spx_pct": -0.05,
+      "ixic_price": 25297.62,
+      "archive_date": "2026-06-27",
+      "note": "้ส",
+      "dji_price": 51876.11,
+      "date": "2026-06-27",
+      "dji_pct": -0.09,
+      "ixic_pct": -0.24,
+      "id": "4abfd869-9756-4026-96e4-da19518c47f3",
+      "time": "11:53",
+      "price": 25297.62
+    }
+  ],
+  "GOOG": [
+    {
+      "pct_change": -2.19,
+      "note": "เทส",
+      "id": "65d01813-1940-4cbf-b9bb-0934c6f78737",
+      "archive_date": "2026-06-27",
+      "price": 334.69,
+      "date": "2026-06-27",
+      "time": "21:48"
+    }
+  ],
+  "ORCL": [
+    {
+      "price": 126.41,
+      "time": "21:50",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: เหนื่อยล้า / ตลาด: ลังเล / รอจังหวะ / 7/10 / Outcome: None]\nThesis: หากถึงจุด stop ก็ขายตามแผน\nReview: อีก 3 วัน",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "outcome": "None",
+        "rrr": null,
+        "market_emotion": "ลังเล",
+        "emotion": "เหนื่อยล้า",
+        "confidence": 7,
+        "entryPrice": 120.58,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "intent": "รอจังหวะ",
+        "market_season": 1
+      },
+      "id": "5377d42a-d8c5-4908-8106-33bdf61c5c3a",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-20",
+      "date": "2026-07-20",
+      "pct_change": 1.77
+    },
+    {
+      "price": 126.41,
+      "time": "09:52",
+      "note": "[หลังตลาดปิด / ส่วนตัว: เชื่อมั่น / ตลาด: เฉยๆ / ซื้อ / 7/10 / Setup: Stop Hunt / Outcome: Open]\nThesis: อารมณ์ตลสดภาพใหญ่มีความกลัวเกิดขึ้นกับหุ้นส่วนใหญ่ในตลาด แต่ตัวนี้อยู่โซนล่าง ลงมานาน และลงมาเยอะแล้ว ยังไม่เด้ง ในสภาวะที่ตลาดมีแรงขายแต่หุ้นไม่ลง แปลว่าไม่มีของจะเทขายแล้ว ก็จะเป็น่วงเด้งขึ้นแล้ว บวกกับ ขึ้นเครื่องหมาย จ่ายปัญผม และอีกนานกว่าจะประกาศงบ ถือว่าเหาะ\nReview: อีก 3 วัน",
+      "id": "67aadf5d-8fbd-4348-ac90-2629b9e527d6",
+      "journal": {
+        "rrr": null,
+        "outcome": "Open",
+        "targetPrice": null,
+        "setup": "Stop Hunt",
+        "market_season": 1,
+        "intent": "ซื้อ",
+        "stopLoss": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": 68.95,
+        "confidence": 7,
+        "market_emotion": "เฉยๆ",
+        "emotion": "เชื่อมั่น"
+      },
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-17",
+      "date": "2026-07-17",
+      "pct_change": 1.77
+    }
+  ],
+  "NVDA": [
+    {
+      "pct_change": -3.52,
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-15",
+      "date": "2026-07-15",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: เฉยๆ / ตลาด: ไม่เชื่อ / 7/10]\nThesis: รู้สึกว่าก็เป็นจังหวะตบให้ลงมาพัก เพราะขึ้นมาหลายวันแล้ว ปกติ\nReview: อีก 3 วัน",
+      "journal": {
+        "rrr": null,
+        "outcome": null,
+        "targetPrice": null,
+        "setup": null,
+        "market_season": null,
+        "intent": null,
+        "stopLoss": null,
+        "entryPrice": 52677.72,
+        "review": "อีก 3 วัน",
+        "market_emotion": "ไม่เชื่อ",
+        "confidence": 7,
+        "emotion": "เฉยๆ"
+      },
+      "id": "189326c7-2a97-4ade-bf20-e71b2153288e",
+      "price": 203.53,
+      "time": "22:24"
+    },
+    {
+      "time": "21:25",
+      "price": 210.96,
+      "id": "089eb9cf-43a8-4b16-8840-db0404b30dac",
+      "journal": {
+        "targetPrice": null,
+        "setup": null,
+        "rrr": null,
+        "outcome": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": null,
+        "emotion": "เฉยๆ",
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "market_season": null,
+        "intent": null,
+        "stopLoss": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: ลังเล / 7/10]\nThesis: รู้สึกว่าเป็นการวัดว่าจะยืนได้หรือไม่ ก็เฉยๆ ยังไม่ใช่จังหวะเทรดของเรา\nReview: อีก 3 วัน",
+      "date": "2026-07-10",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-10",
+      "pct_change": 4.03
+    },
+    {
+      "date": "2026-07-07",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-07",
+      "pct_change": 0.71,
+      "time": "08:27",
+      "price": 196.93,
+      "journal": {
+        "targetPrice": null,
+        "setup": null,
+        "rrr": null,
+        "outcome": null,
+        "entryPrice": 196.93,
+        "review": "อีก 3 วัน",
+        "market_emotion": "ไม่เชื่อ",
+        "confidence": 7,
+        "emotion": "ใจเย็นรอ",
+        "market_season": 6,
+        "intent": "รอจังหวะ",
+        "stopLoss": null
+      },
+      "id": "5d5fca50-cb5f-48d7-ad39-626514ac1aeb",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: ไม่เชื่อ / รอจังหวะ / 7/10]\nReview: อีก 3 วัน"
+    },
+    {
+      "note": "[หลังตลาดปิด / ส่วนตัว: กังวล / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน",
+      "journal": {
+        "outcome": null,
+        "rrr": null,
+        "targetPrice": null,
+        "setup": null,
+        "intent": null,
+        "stopLoss": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": null,
+        "emotion": "กังวล",
+        "confidence": 7,
+        "market_emotion": "กล้า"
+      },
+      "id": "b78d4e9f-37e4-405f-ae92-d1daa5095b6d",
+      "price": 194.83,
+      "time": "13:50",
+      "pct_change": -1.39,
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-04",
+      "date": "2026-07-05"
+    },
+    {
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-03",
+      "date": "2026-07-04",
+      "pct_change": -1.39,
+      "price": 194.83,
+      "time": "12:04",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: ลังเล / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "journal": {
+        "entryPrice": null,
+        "review": "อีก 3 วัน",
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "emotion": "ใจเย็นรอ",
+        "intent": "รอจังหวะ",
+        "stopLoss": null,
+        "targetPrice": null,
+        "setup": null,
+        "outcome": null,
+        "rrr": null
+      },
+      "id": "1d8c5739-392e-4080-a90c-25ea446140eb"
+    },
+    {
+      "id": "f85df0e7-d498-4291-8e0a-a611586eb3bb",
+      "pct_change": -4.13,
+      "note": "เพราะฉนั้นต่อไป หากเล่นหุ้นโซนบน = อย่าหวังกำไรเยอะ",
+      "time": "07:38",
+      "date": "2026-06-25",
+      "price": 200.04,
+      "archive_date": "2026-06-24"
+    },
+    {
+      "id": "e0b30973-5b2e-4e23-997c-f429afa1627e",
+      "note": "ข้อผิดพลาด\nโดยรวมแล้วคือเราอยู่โซนบน โซนบน = แรงขาย มากกว่า แรงซื้อ หากมีอะไรมากระทบนิดหน่อย คนที่มีของพร้อมขายเสมอ",
+      "pct_change": -4.13,
+      "time": "07:34",
+      "date": "2026-06-25",
+      "price": 200.04,
+      "archive_date": "2026-06-24"
+    },
+    {
+      "id": "25f436f9-7eb2-4797-a313-dafb274c9e21",
+      "note": "รู้สึกเซ็งเล็กน้อยที่โดน cutloss",
+      "pct_change": -4.13,
+      "date": "2026-06-24",
+      "time": "06:33",
+      "archive_date": "2026-06-24",
+      "price": 200.04
+    },
+    {
+      "journal": {
+        "review": "อีก 3 วัน",
+        "intent": "ถือ",
+        "emotion": "มั่นใจแต่ระวัง",
+        "confidence": 7
+      },
+      "id": "be0c989c-9fb1-4e43-ac6e-03a5f302e4bd",
+      "note": "[ก่อนตลาดเปิด / มั่นใจแต่ระวัง / ถือ / 7/10]\nThesis: ลงมาเครียล์เพื่อขึ้น\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
+      "time": "22:02",
+      "price": 202.98,
+      "pct_change": -2.72,
+      "date": "2026-06-23",
+      "archive_date": "2026-06-23",
+      "archive_phase": "premarket"
+    },
+    {
+      "date": "2026-06-23",
+      "time": "22:01",
+      "archive_date": "2026-06-23",
+      "price": 202.98,
+      "id": "606672b4-66eb-4a59-9e97-2312a5441386",
+      "pct_change": -2.72,
+      "note": "รู้สึดว่ามีแรงเทขาย ทำให้รู้สึก มีความกลัวเกิดขึ้นในวันนี้ แต่ถามใหญ่ตลาด ยังมีเเรงซื้อเข้ามา อาจจะเป็นการเครียล์คนเพื่อขึ้นต่อ"
+    },
+    {
+      "id": "3b316d3e-df0d-445e-85f0-e09dbc74cc5f",
+      "journal": {
+        "review": "อีก 3 วัน",
+        "intent": "ถือ",
+        "confidence": 8,
+        "emotion": "ใจเย็นรอ"
+      },
+      "note": "[รายวัน / ใจเย็นรอ / ถือ / 8/10]\nThesis: ตลาดอยู่ในช่วงมั่นใจ มีเงินไหรเข้า ถ้าเป็นเว้า คือขึ้นแบบทีรมพาขึ้น\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
+      "time": "21:30",
+      "price": 204.65,
+      "pct_change": -1.33,
+      "date": "2026-06-18",
+      "archive_phase": "legacy",
+      "archive_date": "2026-06-18"
+    },
+    {
+      "price": 207.41,
+      "archive_date": "2026-06-17",
+      "time": "20:51",
+      "date": "2026-06-17",
+      "pct_change": -2.37,
+      "note": "รู้สึดไม่กังวล เพราะคิดว่าแค่ย่อเพื่อไปต่อ ไม่น่าลงแล้ว",
+      "id": "eb5c46a7-a8b2-47be-baf8-859828bd7ca3"
+    },
+    {
+      "pct_change": 0.16,
+      "note": "เป็นตัวที่ซื้อในจังหวะกลับตัวแท่งแรก \nได้จังจงหวะทีดี",
+      "id": "053f16fc-5414-4953-9984-fb66d3085f63",
+      "archive_date": "2026-06-13",
+      "price": 205.19,
+      "date": "2026-06-15",
+      "time": "22:29"
+    },
+    {
+      "time": "16:15",
+      "date": "2026-06-13",
+      "price": 205.19,
+      "archive_date": "2026-06-13",
+      "id": "d271a708-66b0-4ad6-800a-7777e36afc95",
+      "note": "ผมรู้สึกว่ารอยนี้กลับตัวแน่ๆ",
+      "pct_change": 0.16
+    },
+    {
+      "price": 200.42,
+      "archive_date": "2026-06-11",
+      "time": "21:39",
+      "date": "2026-06-11",
+      "note": "198 ผมมองว่าไม่หลุด อารมคนกลัว แบบนี้แหละ กลับตัวแน่ๆ",
+      "pct_change": -3.73,
+      "id": "0e430676-c01d-42cd-b23f-a1915729cc7e"
+    },
+    {
+      "pct_change": -3.73,
+      "note": "ผมเข้าซื้อที่ราคาประมาณ 201.6 โซนนี้ผมคิดว่าราคาไม่ลงไปมากกว่านี้แล้ว น่าจะเป็นจุดกลับตัวรอบนี้",
+      "id": "a6c72c5c-a416-4520-81e5-6ac7f4cd6c75",
+      "price": 200.42,
+      "archive_date": "2026-06-11",
+      "time": "21:36",
+      "date": "2026-06-11"
+    },
+    {
+      "note": "มีข่าวเชิงลบเข้ามา ข่าวสงคราม us กับอิร่าน ทั้มจะโจมตี \nมีความกลัวเข้ามา ผู้คนเกิดกลวามกลัว ไม่กล้าซื้อหุ้น\n* แต่ nvda มีแรงซื็อเข้ามา +กับ เป็นหุ้นที่ดีอยู่แล้ว ลงมาสักพักแล้ว \nเจอข่าวแบบนี้และไม่ลง ก็ไม่น่าจะมีอะไรแย่ไปกว่านี้ น่าจะกลับตัว\nกลับในวันที่คนอื่นกลัว",
+      "pct_change": -3.73,
+      "id": "77106dc9-ddb4-4997-a9d1-fd8c09173a60",
+      "price": 200.42,
+      "archive_date": "2026-06-11",
+      "time": "21:14",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "5a5245ce-4505-4a95-a028-02957bb12b9f",
+      "note": "อยากให้ลงมาพักตัวสัก 2-3 แท่ง",
+      "pct_change": -3.62,
+      "date": "2026-06-04",
+      "time": "22:04",
+      "archive_date": "2026-06-04",
+      "price": 214.75
+    },
+    {
+      "note": "หุ้นดีดขึ้นจรึงแต่ อารมณ์ยังบอกไมใช่",
+      "pct_change": -1.05,
+      "id": "41443534-8850-486d-94f0-25eccce6114e",
+      "price": 212.6,
+      "archive_date": "2026-05-28",
+      "time": "01:06",
+      "date": "2026-05-28"
+    },
+    {
+      "note": "แผนก็คือหาตลาดมีการลงมาเครียล์อีกสักรอบผมว่าน่าสนใจ",
+      "pct_change": -1.05,
+      "id": "724b7174-afe6-484d-a0c0-4518851e58c6",
+      "price": 212.6,
+      "archive_date": "2026-05-28",
+      "time": "21:50",
+      "date": "2026-05-28"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "06:37",
+      "archive_date": "2026-05-26",
+      "price": 214.86,
+      "id": "dfcd7c68-ce52-4cba-a052-963e874d6d44",
+      "pct_change": -0.22,
+      "note": "ภาพใหญ่ผู้คนมาความกล้า แค่ตัว NVDA กลับลงมาในจังหวะนี้ ผมรู้สึกว่าลงมาให้ซื้อง่ายเกินไป พร้อมการเรื่องราวดีๆที่เกิดขึ้นมองแล้วดีเกินไป. ต้องระวัง!"
+    },
+    {
+      "time": "17:33",
+      "date": "2026-05-24",
+      "price": 215.33,
+      "archive_date": "2026-05-24",
+      "id": "1779618817047",
+      "pct_change": -1.9,
+      "note": "ตลาดอยู่ในอารมณ์ \"โลภ\" เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง และมีการซื้อขายที่มี \"buy on drip\" ซึ่งเป็นสัญญาณที่บ่งบอกถึงความต้องการซื้อในตลาด สิ่งที่ต้องจับตาต่อคือการเปลี่ยนแปลงของกราฟและความสามารถของตลาดในการรักษาความเคลื่อนไหวที่เพิ่มขึ้น"
+    },
+    {
+      "archive_date": "2026-05-24",
+      "price": 215.33,
+      "date": "2026-05-24",
+      "time": "14:04",
+      "note": "\"อารมณ์ตลาดตอนนี้เหมือนเคยขึ้นไปทำนิวไฮแล้ว ผู้คนส่วนใหญ่มั่นใจและกล้า แต่ฉันคิดว่าเมื่อคนส่วนใหญ่กล้า มันจะไม่ไปจริง และจะลงมาเพื่อเครียล์ ตอนนี้คนยังไม่กลัวจริง แต่เป็นกลัวที่จะตกรถมากกว่า แต่เมื่อคนเริ่มกลัว มันก็จะซื้อและเด้งไปอีก\n\nตอนนี้คนในโซน 219-225 คิดว่าขึ้นแล้ว แต่ยังไม่ลงมาเคลียร์ต่ออีก แต่ฉันคิดว่าคนเหล่านี้อาจจะเริ่มขายทิ้งกันแล้วเพราะคิดว่าไม่ไปแล้ว\n\nส่วนตัวผมมองว่าน่าสนใจในโซนนี้ เพราะเทรนโลก AI ยังไปได้ต่อ และมันอาจจะขึ้นไปอีกถึง 235\"",
+      "pct_change": -1.9,
+      "id": "1779606285788"
+    }
+  ],
+  "KO": [
+    {
+      "time": "21:32",
+      "date": "2026-05-29",
+      "price": 79.75,
+      "archive_date": "2026-05-29",
+      "id": "4a1bae98-ccd1-4cf4-bbb3-9acc21bfe056",
+      "pct_change": -0.82,
+      "note": "อีกไม่กี่วันจะจ่ายปันผล ซึ่งหุ้น ko มีประวัติการจ่ายปันผลที่ดี มันคง น่าจะมีการไร่ราคาการวันจ่าย ไม่ใช่การขึ้นจริงจัง \"เป็นการเล่นก่อนจ่ายปันผล\""
+    }
+  ],
+  "MSFT": [
+    {
+      "date": "2026-07-10",
+      "archive_date": "2026-07-10",
+      "archive_phase": "postmarket",
+      "pct_change": 0.19,
+      "time": "21:34",
+      "price": 385.1,
+      "id": "5b0f610a-a8d5-4443-8620-f30880e2cec9",
+      "journal": {
+        "confidence": 7,
+        "emotion": "ระแวง",
+        "market_emotion": "เฉยๆ",
+        "review": "อีก 3 วัน",
+        "entryPrice": 357.18,
+        "stopLoss": null,
+        "market_season": 2,
+        "intent": null,
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: เฉยๆ / 7/10]\nReview: อีก 3 วัน"
+    },
+    {
+      "price": 390.49,
+      "time": "17:45",
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน",
+      "journal": {
+        "targetPrice": null,
+        "setup": null,
+        "rrr": null,
+        "outcome": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": 390.49,
+        "confidence": 7,
+        "market_emotion": "กล้า",
+        "emotion": "เฉยๆ",
+        "market_season": 3,
+        "intent": null,
+        "stopLoss": null
+      },
+      "id": "be0fcf3f-ec32-41c5-af3b-2d91840d0b8c",
+      "archive_date": "2026-07-04",
+      "archive_phase": "postmarket",
+      "date": "2026-07-04",
+      "pct_change": 1.62
+    },
+    {
+      "date": "2026-06-25",
+      "time": "21:10",
+      "archive_date": "2026-06-25",
+      "price": 365.46,
+      "id": "ebd07620-f335-4eda-a0cd-dc9e733a3db1",
+      "note": "เปิดตลาดมาด้วยความกลัว แย่งกันขายทิ่ง\nผู้คนกลัว",
+      "pct_change": -2.27
+    },
+    {
+      "time": "21:09",
+      "date": "2026-06-25",
+      "price": 365.46,
+      "archive_date": "2026-06-25",
+      "id": "3977c526-befb-4d8b-be34-279ce6773201",
+      "note": "แต่ก็ยังไว้ใจไม่ได้\nเพราะเป็นโซนล่างที่อยู่โซนบนใหญ่",
+      "pct_change": -2.27
+    },
+    {
+      "date": "2026-06-25",
+      "time": "21:08",
+      "archive_date": "2026-06-25",
+      "price": 365.46,
+      "id": "33aa8497-219e-444b-821a-89078d81ca88",
+      "note": "ตลาดมีความกลัวเข้ามาแล้ว\nหุ้นอยู่โซนล่าง หากหมดแรงขาย\nเป็นโอกาสที่น่าสนใจ",
+      "pct_change": -2.27
+    },
+    {
+      "note": "[รายวัน / กลัว / ขาย / 8/10]\nThesis: ตลาดกำลังให้ premium กับหุ้นผู้นำ AI แต่ต้องระวังว่าข่าวดีอาจถูกสะท้อนไปมากแล้ว ถ้ากราฟยังรับได้และ volume ไม่แห้ง การย่ออาจเป็นจังหวะดูต่อมากกว่าหนีทันที\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
+      "id": "5dd72639-7cb9-48b5-938c-512e441e734a",
+      "journal": {
+        "review": "อีก 3 วัน",
+        "intent": "ขาย",
+        "confidence": 8,
+        "emotion": "กลัว"
+      },
+      "price": 378.91,
+      "time": "22:40",
+      "pct_change": -3.79,
+      "archive_phase": "legacy",
+      "archive_date": "2026-06-18",
+      "date": "2026-06-18"
+    },
+    {
+      "pct_change": -3.79,
+      "note": "รู้สึกว่ามันโดนเทขายในวันที่ตลาดมีเงินไหรเข้า ผู้คนส่วนใหญ่มีความกล้า \nอารมแบบว่าขายใส่พวก FOMO",
+      "id": "181b3235-4913-4911-8d8c-316777589eb0",
+      "archive_date": "2026-06-18",
+      "price": 378.91,
+      "date": "2026-06-18",
+      "time": "22:39"
+    },
+    {
+      "journal": {
+        "review": "อีก 7 วัน",
+        "intent": "รอจังหวะ",
+        "confidence": 9,
+        "emotion": "ไม่เชื่อข่าว"
+      },
+      "id": "b953f7c8-3051-4ea3-9f87-c960d5d56987",
+      "note": "[รายวัน / ไม่เชื่อข่าว / รอจังหวะ / 9/10]\nThesis: รู้สึกว่ามันโดนเทขายในวันที่ตลาดมีเงินไหรเข้า ผู้คนส่วนใหญ่มีความกล้า \nอารมแบบว่าขายใส่พวก FOMO\nIf wrong: ราคากลับขึ้นไปยืนโซน 420 ได้\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 7 วัน",
+      "time": "22:39",
+      "price": 378.91,
+      "pct_change": -3.79,
+      "date": "2026-06-18",
+      "archive_date": "2026-06-18",
+      "archive_phase": "legacy"
+    },
+    {
+      "date": "2026-06-18",
+      "time": "22:34",
+      "archive_date": "2026-06-18",
+      "price": 378.91,
+      "id": "7b8860ce-12dd-49e7-9657-4657c7d949e6",
+      "pct_change": -3.79,
+      "note": "เป็นตัวที่มีแรงขายในวันที่ตลาดขึ้นรอบนี้"
+    },
+    {
+      "id": "ed7e11d1-0bac-4c93-9e0c-8ef87bf040bd",
+      "note": "ช่วงจังหวะกลับตัว เป็นตัวที่จับอารมยากพอสมควร",
+      "pct_change": 0.1,
+      "time": "22:32",
+      "date": "2026-06-15",
+      "price": 390.74,
+      "archive_date": "2026-06-13"
+    },
+    {
+      "archive_date": "2026-06-04",
+      "price": 427.34,
+      "date": "2026-06-04",
+      "time": "22:04",
+      "pct_change": -3.17,
+      "note": "อยากให้ลงมาพักสัก 2-3 แท่ง",
+      "id": "e0e0b09d-1dbc-4e99-a075-fdfa520beff5"
+    },
+    {
+      "price": 440.96,
+      "archive_date": "2026-05-29",
+      "time": "21:33",
+      "date": "2026-05-29",
+      "note": "เข้าสู่ \"ฤดูกล้า\" รอลงเครีย Buy on drip ได้",
+      "pct_change": 3.27,
+      "id": "c250d73a-c558-4591-9b19-76ea962a460e"
+    },
+    {
+      "price": 418.57,
+      "archive_date": "2026-05-25",
+      "time": "21:45",
+      "date": "2026-05-25",
+      "pct_change": -0.12,
+      "note": "ฤดูสังสัย",
+      "id": "1779720320803"
+    }
+  ],
+  "NFLX": [
+    {
+      "id": "1d6fc037-c109-4df5-92d4-39f0ad7bafc0",
+      "journal": {
+        "outcome": null,
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "intent": "ขาย",
+        "market_season": null,
+        "emotion": "ท้อแท้",
+        "confidence": 7,
+        "market_emotion": "สับสน",
+        "review": "อีก 3 วัน",
+        "entryPrice": 68.95
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ท้อแท้ / ตลาด: สับสน / ขาย / 7/10]\nThesis: ถือหุ่นในช่วงประกาศงบมันก็จะเสี่ยงแบบนี้แหละ ก็เป็นบทเรียนไป\nReview: อีก 3 วัน",
+      "time": "09:48",
+      "price": 68.95,
+      "pct_change": -7.26,
+      "date": "2026-07-17",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-17"
+    },
+    {
+      "time": "21:11",
+      "price": 73.68,
+      "id": "8abf523c-4bc5-49d6-8348-b164676c9417",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "outcome": null,
+        "rrr": null,
+        "emotion": "เหนื่อยล้า",
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "review": "อีก 3 วัน",
+        "entryPrice": 73.44,
+        "stopLoss": null,
+        "intent": "รอจังหวะ",
+        "market_season": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: เหนื่อยล้า / ตลาด: ลังเล / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "date": "2026-07-16",
+      "archive_date": "2026-07-15",
+      "archive_phase": "postmarket",
+      "pct_change": 0.2
+    },
+    {
+      "date": "2026-07-13",
+      "archive_date": "2026-07-13",
+      "archive_phase": "postmarket",
+      "pct_change": 0.63,
+      "time": "07:25",
+      "price": 73.83,
+      "id": "851d173d-6685-4f3e-b3bb-57037a4e1996",
+      "journal": {
+        "emotion": "ใจเย็นรอ",
+        "market_emotion": "กังวลเล็กน้อย",
+        "confidence": 7,
+        "entryPrice": 73.83,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "market_season": null,
+        "intent": "ถือ",
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: กังวลเล็กน้อย / ถือ / 7/10]\nThesis: รู่สึกว่าเป็นการเขย่าเพื่อยขค้นต่อ\nReview: อีก 3 วัน"
+    },
+    {
+      "pct_change": 2.09,
+      "date": "2026-07-13",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-13",
+      "id": "e6856f21-7b36-4639-9a4f-2dfc9312ab58",
+      "journal": {
+        "review": "อีก 3 วัน",
+        "entryPrice": 75,
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "emotion": "อุ่นใจ",
+        "market_season": null,
+        "intent": "รอจังหวะ",
+        "stopLoss": null,
+        "targetPrice": null,
+        "setup": null,
+        "rrr": null,
+        "outcome": null
+      },
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: อุ่นใจ / ตลาด: ลังเล / รอจังหวะ / 7/10]\nThesis: รู้สึกอุ่นใจมีแรงซื้อเข้ามา\nReview: อีก 3 วัน",
+      "time": "21:41",
+      "price": 74.9
+    },
+    {
+      "journal": {
+        "outcome": null,
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "intent": "ถือ",
+        "market_season": null,
+        "emotion": "อุ่นใจ",
+        "confidence": 7,
+        "market_emotion": "สับสน",
+        "review": "อีก 3 วัน",
+        "entryPrice": 73.37
+      },
+      "id": "ed804b1e-6981-4a24-9ee6-b5e29b591b56",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: อุ่นใจ / ตลาด: สับสน / ถือ / 7/10]\nThesis: รู้สึกอุ่นใจขึ้นมาหน่อยเพราะมีแรงซื้อเข้ามา\nReview: อีก 3 วัน",
+      "time": "21:40",
+      "price": 75.47,
+      "pct_change": -0.16,
+      "date": "2026-07-10",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-10"
+    },
+    {
+      "time": "00:48",
+      "price": 75.47,
+      "id": "cd119a1f-bc9c-4fab-9e9b-66f9cdb283db",
+      "journal": {
+        "stopLoss": null,
+        "market_season": null,
+        "intent": "ถือ",
+        "market_emotion": "กลัว",
+        "confidence": 8,
+        "emotion": "ไม่เชื่อ",
+        "entryPrice": 75.47,
+        "review": "อีก 3 วัน",
+        "rrr": null,
+        "outcome": "None",
+        "setup": null,
+        "targetPrice": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ไม่เชื่อ / ตลาด: กลัว / ถือ / 8/10 / Outcome: None]\nReview: อีก 3 วัน",
+      "date": "2026-07-10",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-09",
+      "pct_change": -0.16
+    },
+    {
+      "note": "[หลังตลาดปิด / ส่วนตัว: ไม่เชื่อ / ตลาด: กลัว / ถือ / 8/10]\nReview: อีก 3 วัน",
+      "id": "8c5ce41f-550e-4ad5-a36f-6f157ba60a9f",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null,
+        "market_emotion": "กลัว",
+        "emotion": "ไม่เชื่อ",
+        "confidence": 8,
+        "entryPrice": 75.47,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "market_season": null,
+        "intent": "ถือ"
+      },
+      "price": 75.47,
+      "time": "00:47",
+      "pct_change": -0.16,
+      "archive_date": "2026-07-09",
+      "archive_phase": "postmarket",
+      "date": "2026-07-09"
+    },
+    {
+      "time": "22:25",
+      "price": 75.24,
+      "journal": {
+        "outcome": "Open",
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "intent": "ถือ",
+        "market_season": null,
+        "confidence": 7,
+        "market_emotion": "เชื่อมั่น",
+        "emotion": "กังวลเล็กน้อย",
+        "review": "อีก 3 วัน",
+        "entryPrice": 74.61
+      },
+      "id": "d2bf581b-3b4d-49cc-8341-44a84102daad",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: กังวลเล็กน้อย / ตลาด: เชื่อมั่น / ถือ / 7/10 / Outcome: Open]\nReview: อีก 3 วัน",
+      "date": "2026-07-09",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-09",
+      "pct_change": -0.46
+    },
+    {
+      "date": "2026-07-08",
+      "archive_date": "2026-07-08",
+      "archive_phase": "postmarket",
+      "pct_change": -0.77,
+      "time": "22:05",
+      "price": 75.59,
+      "id": "357ac3d3-8075-4f48-a93a-2c76bfc5ee6f",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": "Open",
+        "confidence": 7,
+        "emotion": "กังวลเล็กน้อย",
+        "market_emotion": "เชื่อมั่น",
+        "entryPrice": 75.59,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "market_season": null,
+        "intent": "ถือ"
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: กังวลเล็กน้อย / ตลาด: เชื่อมั่น / ถือ / 7/10 / Outcome: Open]\nReview: อีก 3 วัน"
+    },
+    {
+      "pct_change": 0.21,
+      "date": "2026-07-07",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-07",
+      "id": "4ad1bd08-27c9-4694-ad43-10a593adfb12",
+      "journal": {
+        "emotion": "ใจเย็นรอ",
+        "confidence": 7,
+        "market_emotion": "ไม่เชื่อ",
+        "review": "อีก 3 วัน",
+        "entryPrice": 76.18,
+        "stopLoss": null,
+        "intent": "รอจังหวะ",
+        "market_season": null,
+        "setup": null,
+        "targetPrice": null,
+        "outcome": "Open",
+        "rrr": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: ไม่เชื่อ / รอจังหวะ / 7/10 / Outcome: Open]\nReview: อีก 3 วัน",
+      "time": "08:22",
+      "price": 76.18
+    },
+    {
+      "id": "d7d6fb4f-8d6a-49f6-9153-2e56c8327a2e",
+      "journal": {
+        "market_emotion": "ลังเล",
+        "emotion": "ไม่เชื่อข่าว",
+        "confidence": 7,
+        "review": "อีก 3 วัน",
+        "entryPrice": 76.02,
+        "stopLoss": null,
+        "intent": "ถือ",
+        "market_season": 1,
+        "setup": null,
+        "targetPrice": null,
+        "outcome": "Open",
+        "rrr": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ไม่เชื่อข่าว / ตลาด: ลังเล / ถือ / 7/10 / Outcome: Open]\nReview: อีก 3 วัน",
+      "time": "08:29",
+      "price": 76.02,
+      "pct_change": -2.1,
+      "date": "2026-07-06",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-06"
+    },
+    {
+      "time": "12:23",
+      "price": 77.65,
+      "id": "4c04b397-7d2e-443c-a996-13e81b8837a1",
+      "journal": {
+        "setup": null,
+        "targetPrice": null,
+        "rrr": null,
+        "outcome": null,
+        "market_emotion": "กล้า",
+        "emotion": "ปลอดภัย",
+        "confidence": 7,
+        "entryPrice": null,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "intent": "ถือ"
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ปลอดภัย / ตลาด: กล้า / ถือ / 7/10]\nReview: อีก 3 วัน",
+      "date": "2026-07-05",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-03",
+      "pct_change": 4.66
+    },
+    {
+      "journal": {
+        "targetPrice": 92,
+        "setup": null,
+        "rrr": 11.85,
+        "outcome": "Open",
+        "review": "อีก 7 วัน",
+        "entryPrice": 72.33,
+        "confidence": 7,
+        "emotion": "มั่นใจแต่ระวัง",
+        "intent": "ถือ",
+        "stopLoss": 70.67
+      },
+      "id": "2452e526-7d34-4ceb-8651-70670b298c95",
+      "note": "[ก่อนตลาดเปิด / มั่นใจแต่ระวัง / ถือ / 7/10 / Outcome: Open]\nRRR: 1:11.85 (Entry: 72.33 / Target: 92 / Stop: 70.67)\nThesis: เนื่องจากตลาดอยู่ในช่วงที่มี ความกล้า แรงซื้อเข้ามา จึงทำให้ NFLX มีแรงดีดตัวแรง\nIf wrong: มีแรงขายกลับมาเยอะ และยืนไม่ได้\nRisk: แรงขายเยอะ\nReview: อีก 7 วัน",
+      "time": "07:55",
+      "price": 75.74,
+      "pct_change": 2.61,
+      "date": "2026-06-30",
+      "archive_phase": "premarket",
+      "archive_date": "2026-06-29"
+    },
+    {
+      "journal": {
+        "emotion": "FOMO",
+        "confidence": 7,
+        "review": "อีก 7 วัน",
+        "entryPrice": 72.33,
+        "stopLoss": 70.67,
+        "intent": "ถือ",
+        "setup": null,
+        "targetPrice": 92,
+        "outcome": "Big Win",
+        "rrr": 11.85
+      },
+      "id": "bf0f02e4-8ddf-4b33-9d2e-d52975ab81f7",
+      "note": "[หลังตลาดปิด / FOMO / ถือ / 7/10 / Outcome: Big Win]\nRRR: 1:11.85 (Entry: 72.33 / Target: 92 / Stop: 70.67)\nThesis: เนื่องจากตลาดอยู่ในช่วงที่มี ความกล้า แรงซื้อเข้ามา จึงทำให้ NFLX มีแรงดีดตัวแรง\nIf wrong: มีแรงขายกลับมาเยอะ และยืนไม่ได้\nRisk: แรงขายเยอะ\nReview: อีก 7 วัน",
+      "time": "23:00",
+      "price": 73.81,
+      "pct_change": 4.1,
+      "date": "2026-06-29",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-06-27"
+    },
+    {
+      "id": "4bcf9348-404b-47a5-a970-ac6b619ad47a",
+      "note": "เหตุผลที่เลือกเข้า NFLX เพราะเป็นตัวที่มีแรงขายน้อยสุด และน้อยมาหลายวันแล้ส",
+      "pct_change": -1.31,
+      "time": "21:54",
+      "date": "2026-06-26",
+      "price": 70.9,
+      "archive_date": "2026-06-26"
+    },
+    {
+      "note": "จังหวะปิดตลาดเมื่อวาน ปิดแบบว่าไม่ให้ใครซื้อ แน่นอนจริงๆ",
+      "pct_change": -1.31,
+      "id": "7b73ad1a-7b9e-47fe-899a-e6b96a42d700",
+      "archive_date": "2026-06-26",
+      "price": 70.9,
+      "date": "2026-06-26",
+      "time": "20:35"
+    },
+    {
+      "id": "c1618784-81c6-499e-ac38-7dafac2a9156",
+      "pct_change": -1.31,
+      "note": "คิดไปแล้วว่าโดน Stop ไปแล้ว \nแต่โชวดีที่มาไม่ถึงราคาที่ตั้งไว้",
+      "date": "2026-06-26",
+      "time": "20:31",
+      "archive_date": "2026-06-26",
+      "price": 70.9
+    },
+    {
+      "date": "2026-06-26",
+      "time": "07:32",
+      "archive_date": "2026-06-25",
+      "price": 71.84,
+      "id": "ac571690-8a36-4ae8-b0ba-63836d7a92f7",
+      "note": "เริ่มเกิดความกลัว กังวล เพาาะไม่เป็นไปตามที่คิดไว้",
+      "pct_change": -1.35
+    },
+    {
+      "price": 71.84,
+      "time": "21:47",
+      "note": "[หลังตลาดปิด / มั่นใจแต่ระวัง / ซื้อ / 9/10]\nThesis: รู้สึกว่าแรงขายเริ่มไม่มีแล้ว ดูจากแท่งเทียน 2-3 แท่งก่นหน้า +กับ ตลาดมีความกลัวเข้ามา แต่ NFLX ไม่ตอยสนอง พร้อมกับราคาอยู่ในโวนแห่งความกลัว คนไม่กล้าเข้า จึงทำให้ตัดสินใจเข้าซื้อ\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: อาจมาแรงขายเข้ามาอีกได้ อาจทำให้โดนเครียล์\nReview: อีก 7 วัน",
+      "journal": {
+        "review": "อีก 7 วัน",
+        "intent": "ซื้อ",
+        "confidence": 9,
+        "emotion": "มั่นใจแต่ระวัง"
+      },
+      "id": "725103f4-b98d-4d63-ba9c-c1062bff8542",
+      "archive_date": "2026-06-25",
+      "archive_phase": "postmarket",
+      "date": "2026-06-25",
+      "pct_change": -1.35
+    },
+    {
+      "price": 71.84,
+      "archive_date": "2026-06-25",
+      "time": "21:45",
+      "date": "2026-06-25",
+      "note": "รู้สึกว่าแรงขายเริ่มไม่มีแล้ว ดูจากแท่งเทียน 2-3 แท่งก่นหน้า +กับ ตลาดมีความกลัวเข้ามา แต่ NFLX ไม่ตอยสนอง พร้อมกับราคาอยู่ในโวนแห่งความกลัว คนไม่กล้าเข้า จึงทำให้ตัดสินใจเข้าซื้อ",
+      "pct_change": -1.35,
+      "id": "60be6257-1695-4fa0-bf7d-35583667cd81"
+    },
+    {
+      "price": 80.34,
+      "archive_date": "2026-06-13",
+      "time": "16:14",
+      "date": "2026-06-13",
+      "pct_change": -1.14,
+      "note": "ผมรู้สึกว่ามันต้มกบแน่ๆ",
+      "id": "6e5f1baf-c8f9-401a-a3fa-14ff72774254"
+    },
+    {
+      "id": "b0eab7e1-b071-4d13-a785-0431bcb3bac0",
+      "pct_change": 0.72,
+      "note": "อารมเหมือนตกใจมากกว่าจาดข่าว ทั้ม โพสจะโจมตีอีร่านอีก แผนคือถ้า พรุ้งนี้เปิดโดดมีแรงซื้อกลับเข้ามา่าสนใจ",
+      "date": "2026-06-11",
+      "time": "21:04",
+      "archive_date": "2026-06-11",
+      "price": 82
+    },
+    {
+      "date": "2026-06-10",
+      "time": "21:21",
+      "archive_date": "2026-06-10",
+      "price": 81.41,
+      "id": "c481500c-251d-435b-83c8-6b0b66beab36",
+      "note": "จัดอารมณ์ได้ว่า น่าจะมีการเปลี่ยนชุดเล่น เพราะพวก NVIDIA พวกกลุ่มที่พาขึ้นชึดแรกๆ มีการเทขายกันมาสักพักแล้ว แต่ NFlx ลงต้มกบมานานแล้ว น่าจะถึงรอบกลับตัว",
+      "pct_change": -1.49
+    }
+  ],
   "_custom_emotions": [
     "กลัว",
     "กังวล",
@@ -24,1064 +1265,579 @@
     "กล้า",
     "ปลอดภัย",
     "ก็ปกติดี",
-    "เชื่อมั่น"
+    "เชื่อมั่น",
+    "เฉยๆ",
+    "กังวลเล็กน้อย",
+    "อุ่นใจ",
+    "เพิ่มเริ่ม"
   ],
-  "_DJI": [
+  "AMZN": [
     {
-      "journal": {
-        "emotion": "ก็ปกติดี",
-        "stopLoss": null,
-        "outcome": "None",
-        "market_emotion": "เชื่อมั่น",
-        "targetPrice": null,
-        "rrr": null,
-        "confidence": 7,
-        "review": "อีก 3 วัน",
-        "market_season": 3,
-        "setup": null,
-        "entryPrice": 52900.07,
-        "intent": "รอจังหวะ"
-      },
-      "id": "1b1b0ed2-7fc7-4974-9e44-c38c2741b9b0",
+      "pct_change": -0.69,
+      "archive_date": "2026-07-10",
       "archive_phase": "postmarket",
-      "time": "09:09",
-      "date": "2026-07-04",
-      "price": 0,
-      "archive_date": "2026-07-04",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ก็ปกติดี / ตลาด: เชื่อมั่น / รอจังหวะ / 7/10 / Outcome: None]\nReview: อีก 3 วัน",
-      "pct_change": 0
-    },
-    {
-      "pct_change": 0,
-      "note": "[หลังตลาดปิด / ส่วนตัว: ไม่เชื่อ / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน",
-      "archive_date": "2026-07-04",
-      "date": "2026-07-05",
-      "time": "10:45",
-      "archive_phase": "postmarket",
-      "price": 0,
-      "id": "99947e22-8276-4555-bc4a-37df6e3be1cb",
+      "date": "2026-07-10",
+      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: เฉยๆ / 7/10]\nReview: อีก 3 วัน",
       "journal": {
-        "emotion": "ไม่เชื่อ",
         "stopLoss": null,
-        "targetPrice": null,
-        "market_emotion": "กล้า",
-        "outcome": null,
-        "review": "อีก 3 วัน",
-        "confidence": 7,
-        "rrr": null,
+        "market_season": 2,
         "intent": null,
-        "entryPrice": null,
-        "setup": null
-      }
+        "emotion": "ระแวง",
+        "confidence": 7,
+        "market_emotion": "เฉยๆ",
+        "entryPrice": 385.1,
+        "review": "อีก 3 วัน",
+        "rrr": null,
+        "outcome": null,
+        "setup": null,
+        "targetPrice": null
+      },
+      "id": "fde84710-366d-47e3-bbe4-b7785399c1e3",
+      "price": 245.34,
+      "time": "21:35"
     },
     {
-      "spx_price": 7354.02,
-      "ixic_pct": -0.24,
-      "note": "เทส",
-      "dji_price": 51876.11,
-      "price": 51876.11,
-      "archive_date": "2026-06-27",
-      "ixic_price": 25297.62,
-      "pct_change": -0.09,
-      "id": "74d02b4a-cdbc-43a4-9c1a-9453f5b628e2",
-      "spx_pct": -0.05,
-      "dji_pct": -0.09,
-      "time": "11:52",
-      "date": "2026-06-27"
+      "date": "2026-06-15",
+      "time": "22:32",
+      "archive_date": "2026-06-13",
+      "price": 238.55,
+      "id": "7490fb1b-e925-4c12-ad07-4eee7da2ccd5",
+      "note": "เด้งตามตลาด",
+      "pct_change": -1.23
+    },
+    {
+      "date": "2026-05-24",
+      "time": "21:42",
+      "archive_date": "2026-05-24",
+      "price": 266.32,
+      "id": "1779633723436",
+      "note": "ตลาดอยู่ในอารมณ์ \"โลภ\" เนื่องจากนักลงทุนมีความสนใจและความตั้งใจที่จะลงทุนในตลาดอย่างมาก สัญญาณที่เจ้าของสังเกตเห็นคือความสนใจที่เพิ่มขึ้นในตลาดและความต้องการที่สูงขึ้น ต้องจับตาต่อการเปลี่ยนแปลงในความต้องการและความสนใจของนักลงทุนในตลาด.",
+      "pct_change": -0.8
     }
   ],
   "_MARKET": [
     {
-      "archive_date": "2026-06-26",
-      "spx_price": 7357.49,
-      "ixic_price": 25358.6,
+      "id": "42a08180-1dcd-4302-8869-03972f56f4f0",
       "ixic_pct": -0.46,
       "note": "มีความกล้าเข้ามาเล็กน้อย เริ่มกล้า",
-      "dji_price": 51920.62,
-      "id": "42a08180-1dcd-4302-8869-03972f56f4f0",
-      "spx_pct": -0.01,
-      "dji_pct": 0.14,
       "time": "21:48",
-      "date": "2026-06-26"
+      "dji_price": 51920.62,
+      "spx_price": 7357.49,
+      "spx_pct": -0.01,
+      "date": "2026-06-26",
+      "archive_date": "2026-06-26",
+      "dji_pct": 0.14,
+      "ixic_price": 25358.6
     },
     {
-      "ixic_pct": -0.46,
-      "note": "อารมณ์ คือ มีแรงซื้อกลับเข้ามา",
-      "archive_date": "2026-06-26",
-      "spx_price": 7357.49,
-      "ixic_price": 25358.6,
-      "spx_pct": -0.01,
-      "time": "21:47",
-      "date": "2026-06-26",
       "dji_pct": 0.14,
+      "ixic_price": 25358.6,
+      "archive_date": "2026-06-26",
+      "spx_pct": -0.01,
+      "date": "2026-06-26",
+      "spx_price": 7357.49,
       "dji_price": 51920.62,
+      "time": "21:47",
+      "note": "อารมณ์ คือ มีแรงซื้อกลับเข้ามา",
+      "ixic_pct": -0.46,
       "id": "f48cae59-d46b-453d-848f-494c42c1e5d1"
     },
     {
-      "archive_date": "2026-06-25",
-      "spx_price": 7358.22,
-      "ixic_price": 25476.63,
-      "ixic_pct": -0.43,
-      "note": "เริ่มเกิดความกลัว กังวล เพาาะไม่เป็นไปตามที่คิดไว้",
-      "id": "25b88309-492d-4a9d-9064-c997345ecadb",
       "dji_price": 51848.9,
-      "spx_pct": -0.1,
-      "date": "2026-06-26",
       "time": "07:31",
-      "dji_pct": 0.35
-    },
-    {
+      "note": "เริ่มเกิดความกลัว กังวล เพาาะไม่เป็นไปตามที่คิดไว้",
       "ixic_pct": -0.43,
-      "note": "ตลาดภาพรวมอยู่ใน ฤดู ตื่นตื่น เพราะหนุ้นหลายๆตัว Back all time higth",
-      "spx_price": 7358.22,
-      "archive_date": "2026-06-25",
-      "ixic_price": 25476.63,
-      "spx_pct": -0.1,
-      "date": "2026-06-25",
+      "id": "25b88309-492d-4a9d-9064-c997345ecadb",
       "dji_pct": 0.35,
+      "ixic_price": 25476.63,
+      "archive_date": "2026-06-25",
+      "date": "2026-06-26",
+      "spx_pct": -0.1,
+      "spx_price": 7358.22
+    },
+    {
+      "spx_price": 7358.22,
+      "date": "2026-06-25",
+      "spx_pct": -0.1,
+      "ixic_price": 25476.63,
+      "dji_pct": 0.35,
+      "archive_date": "2026-06-25",
+      "ixic_pct": -0.43,
+      "id": "e222bd25-2b0b-461e-90b3-86b8562f5da4",
+      "note": "ตลาดภาพรวมอยู่ใน ฤดู ตื่นตื่น เพราะหนุ้นหลายๆตัว Back all time higth",
       "time": "21:19",
-      "dji_price": 51848.9,
-      "id": "e222bd25-2b0b-461e-90b3-86b8562f5da4"
+      "dji_price": 51848.9
     },
     {
-      "ixic_price": 26376.34,
       "spx_price": 7511.35,
-      "archive_date": "2026-06-17",
-      "note": "รู้สึกมั่นใจ คิดว่าตลาดยังคงไปต่อ",
-      "ixic_pct": -1.15,
-      "id": "9ce5419b-8224-41d1-9f46-0defb5c14bb1",
-      "dji_price": 51999.67,
-      "dji_pct": 0.64,
+      "spx_pct": -0.57,
       "date": "2026-06-17",
+      "archive_date": "2026-06-17",
+      "dji_pct": 0.64,
+      "ixic_price": 26376.34,
+      "id": "9ce5419b-8224-41d1-9f46-0defb5c14bb1",
+      "ixic_pct": -1.15,
+      "note": "รู้สึกมั่นใจ คิดว่าตลาดยังคงไปต่อ",
       "time": "20:48",
-      "spx_pct": -0.57
+      "dji_price": 51999.67
     },
     {
+      "date": "2026-06-15",
+      "spx_pct": 0.5,
       "ixic_price": 25888.84,
-      "spx_price": 7431.46,
+      "dji_pct": 0.7,
       "archive_date": "2026-06-13",
-      "note": "เป็นช่วงที่เม็ดเงินกำลังไหรเข้า ทำให้หุ้นขึ้น \nไม่ใช่จังหวะซื้อ หากมีหุ้นก็ยังไม่ใช่จังหว่ะขาย",
+      "spx_price": 7431.46,
+      "time": "22:27",
+      "dji_price": 51202.26,
       "ixic_pct": 0.31,
       "id": "44b17ccd-f1de-4938-982f-752cb70e581c",
-      "dji_price": 51202.26,
-      "dji_pct": 0.7,
-      "date": "2026-06-15",
-      "time": "22:27",
-      "spx_pct": 0.5
+      "note": "เป็นช่วงที่เม็ดเงินกำลังไหรเข้า ทำให้หุ้นขึ้น \nไม่ใช่จังหวะซื้อ หากมีหุ้นก็ยังไม่ใช่จังหว่ะขาย"
     },
     {
-      "spx_pct": 0.5,
-      "dji_pct": 0.7,
       "time": "22:26",
-      "date": "2026-06-15",
       "dji_price": 51202.26,
-      "id": "8af595d0-54b9-4f1b-80f0-cf19e4b76429",
       "ixic_pct": 0.31,
+      "id": "8af595d0-54b9-4f1b-80f0-cf19e4b76429",
       "note": "ภาพรวมเข้าสู่ ฤดู ตื่นเต้นแล้ว \nผู้คนจะเกิดความกล้า \nหุ้นจะขึ้นแรง",
-      "spx_price": 7431.46,
+      "spx_pct": 0.5,
+      "date": "2026-06-15",
+      "dji_pct": 0.7,
+      "ixic_price": 25888.84,
       "archive_date": "2026-06-13",
-      "ixic_price": 25888.84
+      "spx_price": 7431.46
     },
     {
-      "spx_pct": 0.5,
-      "dji_pct": 0.7,
-      "date": "2026-06-13",
       "time": "16:20",
       "dji_price": 51202.26,
+      "ixic_pct": 0.31,
       "id": "71564611-d3a2-4073-8a25-0fe5512807ec",
-      "ixic_pct": 0.31,
       "note": "แล้วตัวไหนหละที่จะขึ้นรอบนี้ ผมมองเป็น nvda ที่จะพาตลากขึ้นรอยนี้",
-      "spx_price": 7431.46,
-      "archive_date": "2026-06-13",
-      "ixic_price": 25888.84
-    },
-    {
-      "ixic_pct": 0.31,
-      "note": "รู้สึก่าเป็นการขึ้น แต่ขึ้นบนความกลัว ความกังวล จุดนี้แหละผมมองว่ามันจะขึ้นไปเรื่อยๆ เพราะคนไม่กล้า",
-      "spx_price": 7431.46,
-      "archive_date": "2026-06-13",
-      "ixic_price": 25888.84,
+      "date": "2026-06-13",
       "spx_pct": 0.5,
       "dji_pct": 0.7,
+      "ixic_price": 25888.84,
+      "archive_date": "2026-06-13",
+      "spx_price": 7431.46
+    },
+    {
+      "dji_price": 51202.26,
       "time": "16:18",
-      "date": "2026-06-13",
+      "note": "รู้สึก่าเป็นการขึ้น แต่ขึ้นบนความกลัว ความกังวล จุดนี้แหละผมมองว่ามันจะขึ้นไปเรื่อยๆ เพราะคนไม่กล้า",
       "id": "efdafd15-bfc0-48ac-9d58-50f25a472ee2",
-      "dji_price": 51202.26
+      "ixic_pct": 0.31,
+      "archive_date": "2026-06-13",
+      "ixic_price": 25888.84,
+      "dji_pct": 0.7,
+      "spx_pct": 0.5,
+      "date": "2026-06-13",
+      "spx_price": 7431.46
     },
     {
-      "ixic_price": 26917.47,
-      "spx_price": 7563.63,
-      "archive_date": "2026-05-29",
-      "note": "เหมือนจะ brack all time high",
-      "ixic_pct": 0.91,
-      "id": "60705d85-9dd6-42a4-96d6-8cd651102370",
       "dji_price": 50668.97,
-      "dji_pct": 0.05,
       "time": "21:00",
+      "note": "เหมือนจะ brack all time high",
+      "id": "60705d85-9dd6-42a4-96d6-8cd651102370",
+      "ixic_pct": 0.91,
+      "archive_date": "2026-05-29",
+      "dji_pct": 0.05,
+      "ixic_price": 26917.47,
+      "spx_pct": 0.58,
       "date": "2026-05-29",
-      "spx_pct": 0.58
+      "spx_price": 7563.63
     },
     {
-      "spx_pct": 0.02,
-      "dji_pct": 0.36,
-      "time": "21:48",
       "date": "2026-05-28",
+      "spx_pct": 0.02,
+      "archive_date": "2026-05-27",
+      "dji_pct": 0.36,
+      "ixic_price": 26674.73,
+      "spx_price": 7520.36,
+      "time": "21:48",
       "dji_price": 50644.28,
       "id": "be6f5990-7950-427e-a4c8-3c37761d8e32",
       "ixic_pct": 0.07,
-      "note": "ตลาดยังเกิดอารมณืลังเล จะไปไม่ไป อารมณ์นี้ส่วนตัวไม่ชอบเพราะมันออกได้หลายรนูปแบบ",
-      "archive_date": "2026-05-27",
-      "spx_price": 7520.36,
-      "ixic_price": 26674.73
+      "note": "ตลาดยังเกิดอารมณืลังเล จะไปไม่ไป อารมณ์นี้ส่วนตัวไม่ชอบเพราะมันออกได้หลายรนูปแบบ"
     },
     {
-      "spx_pct": 0.37,
-      "time": "16:20",
-      "date": "2026-05-24",
+      "archive_date": "2026-05-24",
+      "ixic_price": 26343.97,
       "dji_pct": 0.58,
-      "id": "1779614458431",
-      "dji_price": 50579.7,
-      "ixic_pct": 0.19,
-      "note": "\"ตลาดกำลังกล้า เนื่องจาก DJI ได้ทำ All Time High แต่ผมยังไม่แน่ใจว่าตลาดจะ brack จริงหรือไม่\"",
-      "archive_date": "2026-05-24",
+      "date": "2026-05-24",
+      "spx_pct": 0.37,
       "spx_price": 7473.47,
-      "ixic_price": 26343.97
+      "dji_price": 50579.7,
+      "time": "16:20",
+      "note": "\"ตลาดกำลังกล้า เนื่องจาก DJI ได้ทำ All Time High แต่ผมยังไม่แน่ใจว่าตลาดจะ brack จริงหรือไม่\"",
+      "id": "1779614458431",
+      "ixic_pct": 0.19
     }
   ],
-  "_SPX": [
-    {
-      "date": "2026-07-04",
-      "time": "15:31",
-      "archive_phase": "postmarket",
-      "price": 0,
-      "journal": {
-        "intent": null,
-        "entryPrice": null,
-        "market_season": 2,
-        "setup": null,
-        "review": "อีก 3 วัน",
-        "rrr": null,
-        "confidence": 9,
-        "targetPrice": null,
-        "outcome": null,
-        "market_emotion": "ลังเล",
-        "emotion": "ระแวง",
-        "stopLoss": null
-      },
-      "id": "e408bcb6-9dd2-42e6-a0ed-31551fc5e9f4",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: ลังเล / 9/10]\nReview: อีก 3 วัน",
-      "pct_change": 0,
-      "archive_date": "2026-07-04"
-    },
-    {
-      "spx_price": 7440.43,
-      "note": "ตลาดกลับมามีแรงซื้อ ความกล้าเิ่มเข้ามา เงินเริ่มไหรเข้า",
-      "ixic_pct": 2.07,
-      "dji_price": 52182.74,
-      "price": 7440.43,
-      "ixic_price": 25820.14,
-      "archive_date": "2026-06-30",
-      "pct_change": 1.18,
-      "id": "d5ed207c-52fa-49db-bcfb-a37b647d94ef",
-      "time": "20:57",
-      "date": "2026-06-30",
-      "dji_pct": 0.59,
-      "spx_pct": 1.18
-    },
-    {
-      "id": "1b85cf48-6332-43ad-8aed-5c1afbae576e",
-      "spx_pct": -0.05,
-      "time": "11:52",
-      "dji_pct": -0.09,
-      "date": "2026-06-27",
-      "archive_date": "2026-06-27",
-      "ixic_price": 25297.62,
-      "pct_change": -0.05,
-      "dji_price": 51876.11,
-      "price": 7354.02,
-      "spx_price": 7354.02,
-      "ixic_pct": -0.24,
-      "note": "เทส"
-    }
-  ],
-  "AAPL": [
-    {
-      "pct_change": 4.84,
-      "note": "[หลังตลาดปิด / ส่วนตัว: กังวล / ตลาด: FOMO / 7/10]\nReview: อีก 3 วัน",
-      "archive_date": "2026-07-03",
-      "price": 308.63,
-      "time": "12:39",
-      "archive_phase": "postmarket",
-      "date": "2026-07-04",
-      "id": "9aadb1ea-ba95-424e-97a5-229158fbe9ad",
-      "journal": {
-        "review": "อีก 3 วัน",
-        "confidence": 7,
-        "rrr": null,
-        "intent": null,
-        "entryPrice": null,
-        "setup": null,
-        "emotion": "กังวล",
-        "stopLoss": null,
-        "targetPrice": null,
-        "market_emotion": "FOMO",
-        "outcome": null
-      }
-    },
-    {
-      "note": "เงินไหรเข้าตลาดขนาดนี้ แต่หุ้นไม่ขึ้น\nผมรู้สึกว่าไม่น่าสสนใจ",
-      "pct_change": -1.52,
-      "price": 291.13,
-      "date": "2026-06-15",
-      "time": "22:30",
-      "archive_date": "2026-06-13",
-      "id": "67cb40fc-d156-4603-b556-ae2df546bdbf"
-    },
-    {
-      "id": "5c032d88-d1a2-4091-bec2-f791e38910fe",
-      "archive_date": "2026-06-13",
-      "note": "เป็นอีก 1 ตัวที่น่าจะกลับ แต่ทรงกราฟไม่สวย",
-      "time": "16:22",
-      "date": "2026-06-13",
-      "price": 291.13,
-      "pct_change": -1.52
-    },
-    {
-      "time": "20:43",
-      "date": "2026-05-24",
-      "price": 308.82,
-      "pct_change": 1.26,
-      "note": "ตลาดอยู่ในอารมณ์ \"กล้า\" เนื่องจากมีการซื้อขายที่รุนแรงและราคาที่เพิ่มขึ้นอย่างรวดเร็ว สัญญาณที่สังเกตเห็นคือการเพิ่มขึ้นของการซื้อขายและราคาของหุ้นบางตัว ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น \"โลภ\"",
-      "id": "1779630197997",
-      "archive_date": "2026-05-24"
-    }
-  ],
-  "AMD": [
-    {
-      "note": "เป็นผู้นำตลาดในรอบนี้",
-      "price": 511.57,
-      "pct_change": 4.73,
-      "date": "2026-06-15",
-      "time": "22:33",
-      "archive_date": "2026-06-13",
-      "id": "d0947ce2-6764-497b-823d-7c4d55fe4c68"
-    }
-  ],
-  "_GLOBAL_MARKET_SEASON": [
-    {
-      "journal": {
-        "market_season": 3
-      },
-      "id": "a9e8fc14-d737-4d62-8388-a2fbebebfc74",
-      "archive_date": "2026-07-04",
-      "note": "เปลี่ยนสถานะฤดูกาลตลาดใหญ่ล่าสุดเป็น: 🌿 ๓. ตื่นเต้น (Bullish)",
-      "archive_phase": "postmarket",
-      "time": "17:33",
-      "date": "2026-07-06"
-    }
-  ],
-  "NVDA": [
-    {
-      "id": "b78d4e9f-37e4-405f-ae92-d1daa5095b6d",
-      "journal": {
-        "review": "อีก 3 วัน",
-        "confidence": 7,
-        "rrr": null,
-        "intent": null,
-        "entryPrice": null,
-        "setup": null,
-        "stopLoss": null,
-        "emotion": "กังวล",
-        "targetPrice": null,
-        "market_emotion": "กล้า",
-        "outcome": null
-      },
-      "price": 194.83,
-      "time": "13:50",
-      "date": "2026-07-05",
-      "archive_phase": "postmarket",
-      "archive_date": "2026-07-04",
-      "pct_change": -1.39,
-      "note": "[หลังตลาดปิด / ส่วนตัว: กังวล / ตลาด: กล้า / 7/10]\nReview: อีก 3 วัน"
-    },
-    {
-      "journal": {
-        "confidence": 7,
-        "rrr": null,
-        "review": "อีก 3 วัน",
-        "setup": null,
-        "intent": "รอจังหวะ",
-        "entryPrice": null,
-        "emotion": "ใจเย็นรอ",
-        "stopLoss": null,
-        "market_emotion": "ลังเล",
-        "outcome": null,
-        "targetPrice": null
-      },
-      "id": "1d8c5739-392e-4080-a90c-25ea446140eb",
-      "price": 194.83,
-      "date": "2026-07-04",
-      "archive_phase": "postmarket",
-      "time": "12:04",
-      "archive_date": "2026-07-03",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: ลังเล / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
-      "pct_change": -1.39
-    },
-    {
-      "id": "f85df0e7-d498-4291-8e0a-a611586eb3bb",
-      "archive_date": "2026-06-24",
-      "note": "เพราะฉนั้นต่อไป หากเล่นหุ้นโซนบน = อย่าหวังกำไรเยอะ",
-      "date": "2026-06-25",
-      "time": "07:38",
-      "pct_change": -4.13,
-      "price": 200.04
-    },
-    {
-      "id": "e0b30973-5b2e-4e23-997c-f429afa1627e",
-      "archive_date": "2026-06-24",
-      "note": "ข้อผิดพลาด\nโดยรวมแล้วคือเราอยู่โซนบน โซนบน = แรงขาย มากกว่า แรงซื้อ หากมีอะไรมากระทบนิดหน่อย คนที่มีของพร้อมขายเสมอ",
-      "date": "2026-06-25",
-      "time": "07:34",
-      "price": 200.04,
-      "pct_change": -4.13
-    },
-    {
-      "id": "25f436f9-7eb2-4797-a313-dafb274c9e21",
-      "archive_date": "2026-06-24",
-      "note": "รู้สึกเซ็งเล็กน้อยที่โดน cutloss",
-      "date": "2026-06-24",
-      "time": "06:33",
-      "price": 200.04,
-      "pct_change": -4.13
-    },
-    {
-      "archive_date": "2026-06-23",
-      "pct_change": -2.72,
-      "note": "[ก่อนตลาดเปิด / มั่นใจแต่ระวัง / ถือ / 7/10]\nThesis: ลงมาเครียล์เพื่อขึ้น\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
-      "id": "be0c989c-9fb1-4e43-ac6e-03a5f302e4bd",
-      "journal": {
-        "emotion": "มั่นใจแต่ระวัง",
-        "confidence": 7,
-        "intent": "ถือ",
-        "review": "อีก 3 วัน"
-      },
-      "price": 202.98,
-      "archive_phase": "premarket",
-      "time": "22:02",
-      "date": "2026-06-23"
-    },
-    {
-      "archive_date": "2026-06-23",
-      "id": "606672b4-66eb-4a59-9e97-2312a5441386",
-      "price": 202.98,
-      "pct_change": -2.72,
-      "time": "22:01",
-      "date": "2026-06-23",
-      "note": "รู้สึดว่ามีแรงเทขาย ทำให้รู้สึก มีความกลัวเกิดขึ้นในวันนี้ แต่ถามใหญ่ตลาด ยังมีเเรงซื้อเข้ามา อาจจะเป็นการเครียล์คนเพื่อขึ้นต่อ"
-    },
-    {
-      "archive_phase": "legacy",
-      "date": "2026-06-18",
-      "time": "21:30",
-      "price": 204.65,
-      "journal": {
-        "review": "อีก 3 วัน",
-        "intent": "ถือ",
-        "confidence": 8,
-        "emotion": "ใจเย็นรอ"
-      },
-      "id": "3b316d3e-df0d-445e-85f0-e09dbc74cc5f",
-      "note": "[รายวัน / ใจเย็นรอ / ถือ / 8/10]\nThesis: ตลาดอยู่ในช่วงมั่นใจ มีเงินไหรเข้า ถ้าเป็นเว้า คือขึ้นแบบทีรมพาขึ้น\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
-      "pct_change": -1.33,
-      "archive_date": "2026-06-18"
-    },
-    {
-      "archive_date": "2026-06-17",
-      "id": "eb5c46a7-a8b2-47be-baf8-859828bd7ca3",
-      "note": "รู้สึดไม่กังวล เพราะคิดว่าแค่ย่อเพื่อไปต่อ ไม่น่าลงแล้ว",
-      "price": 207.41,
-      "pct_change": -2.37,
-      "time": "20:51",
-      "date": "2026-06-17"
-    },
-    {
-      "time": "22:29",
-      "date": "2026-06-15",
-      "pct_change": 0.16,
-      "price": 205.19,
-      "note": "เป็นตัวที่ซื้อในจังหวะกลับตัวแท่งแรก \nได้จังจงหวะทีดี",
-      "id": "053f16fc-5414-4953-9984-fb66d3085f63",
-      "archive_date": "2026-06-13"
-    },
-    {
-      "pct_change": 0.16,
-      "price": 205.19,
-      "time": "16:15",
-      "date": "2026-06-13",
-      "note": "ผมรู้สึกว่ารอยนี้กลับตัวแน่ๆ",
-      "archive_date": "2026-06-13",
-      "id": "d271a708-66b0-4ad6-800a-7777e36afc95"
-    },
-    {
-      "id": "0e430676-c01d-42cd-b23f-a1915729cc7e",
-      "archive_date": "2026-06-11",
-      "date": "2026-06-11",
-      "time": "21:39",
-      "price": 200.42,
-      "pct_change": -3.73,
-      "note": "198 ผมมองว่าไม่หลุด อารมคนกลัว แบบนี้แหละ กลับตัวแน่ๆ"
-    },
-    {
-      "price": 200.42,
-      "pct_change": -3.73,
-      "time": "21:36",
-      "date": "2026-06-11",
-      "note": "ผมเข้าซื้อที่ราคาประมาณ 201.6 โซนนี้ผมคิดว่าราคาไม่ลงไปมากกว่านี้แล้ว น่าจะเป็นจุดกลับตัวรอบนี้",
-      "archive_date": "2026-06-11",
-      "id": "a6c72c5c-a416-4520-81e5-6ac7f4cd6c75"
-    },
-    {
-      "note": "มีข่าวเชิงลบเข้ามา ข่าวสงคราม us กับอิร่าน ทั้มจะโจมตี \nมีความกลัวเข้ามา ผู้คนเกิดกลวามกลัว ไม่กล้าซื้อหุ้น\n* แต่ nvda มีแรงซื็อเข้ามา +กับ เป็นหุ้นที่ดีอยู่แล้ว ลงมาสักพักแล้ว \nเจอข่าวแบบนี้และไม่ลง ก็ไม่น่าจะมีอะไรแย่ไปกว่านี้ น่าจะกลับตัว\nกลับในวันที่คนอื่นกลัว",
-      "date": "2026-06-11",
-      "time": "21:14",
-      "price": 200.42,
-      "pct_change": -3.73,
-      "id": "77106dc9-ddb4-4997-a9d1-fd8c09173a60",
-      "archive_date": "2026-06-11"
-    },
-    {
-      "note": "อยากให้ลงมาพักตัวสัก 2-3 แท่ง",
-      "date": "2026-06-04",
-      "time": "22:04",
-      "pct_change": -3.62,
-      "price": 214.75,
-      "id": "5a5245ce-4505-4a95-a028-02957bb12b9f",
-      "archive_date": "2026-06-04"
-    },
-    {
-      "id": "41443534-8850-486d-94f0-25eccce6114e",
-      "archive_date": "2026-05-28",
-      "date": "2026-05-28",
-      "time": "01:06",
-      "price": 212.6,
-      "pct_change": -1.05,
-      "note": "หุ้นดีดขึ้นจรึงแต่ อารมณ์ยังบอกไมใช่"
-    },
-    {
-      "price": 212.6,
-      "pct_change": -1.05,
-      "time": "21:50",
-      "date": "2026-05-28",
-      "note": "แผนก็คือหาตลาดมีการลงมาเครียล์อีกสักรอบผมว่าน่าสนใจ",
-      "archive_date": "2026-05-28",
-      "id": "724b7174-afe6-484d-a0c0-4518851e58c6"
-    },
-    {
-      "id": "dfcd7c68-ce52-4cba-a052-963e874d6d44",
-      "archive_date": "2026-05-26",
-      "note": "ภาพใหญ่ผู้คนมาความกล้า แค่ตัว NVDA กลับลงมาในจังหวะนี้ ผมรู้สึกว่าลงมาให้ซื้อง่ายเกินไป พร้อมการเรื่องราวดีๆที่เกิดขึ้นมองแล้วดีเกินไป. ต้องระวัง!",
-      "time": "06:37",
-      "date": "2026-05-26",
-      "pct_change": -0.22,
-      "price": 214.86
-    },
-    {
-      "id": "1779618817047",
-      "archive_date": "2026-05-24",
-      "date": "2026-05-24",
-      "time": "17:33",
-      "pct_change": -1.9,
-      "price": 215.33,
-      "note": "ตลาดอยู่ในอารมณ์ \"โลภ\" เนื่องจากมีการซื้อขายที่เพิ่มขึ้นอย่างต่อเนื่อง และมีการซื้อขายที่มี \"buy on drip\" ซึ่งเป็นสัญญาณที่บ่งบอกถึงความต้องการซื้อในตลาด สิ่งที่ต้องจับตาต่อคือการเปลี่ยนแปลงของกราฟและความสามารถของตลาดในการรักษาความเคลื่อนไหวที่เพิ่มขึ้น"
-    },
-    {
-      "id": "1779606285788",
-      "archive_date": "2026-05-24",
-      "time": "14:04",
-      "date": "2026-05-24",
-      "pct_change": -1.9,
-      "price": 215.33,
-      "note": "\"อารมณ์ตลาดตอนนี้เหมือนเคยขึ้นไปทำนิวไฮแล้ว ผู้คนส่วนใหญ่มั่นใจและกล้า แต่ฉันคิดว่าเมื่อคนส่วนใหญ่กล้า มันจะไม่ไปจริง และจะลงมาเพื่อเครียล์ ตอนนี้คนยังไม่กลัวจริง แต่เป็นกลัวที่จะตกรถมากกว่า แต่เมื่อคนเริ่มกลัว มันก็จะซื้อและเด้งไปอีก\n\nตอนนี้คนในโซน 219-225 คิดว่าขึ้นแล้ว แต่ยังไม่ลงมาเคลียร์ต่ออีก แต่ฉันคิดว่าคนเหล่านี้อาจจะเริ่มขายทิ้งกันแล้วเพราะคิดว่าไม่ไปแล้ว\n\nส่วนตัวผมมองว่าน่าสนใจในโซนนี้ เพราะเทรนโลก AI ยังไปได้ต่อ และมันอาจจะขึ้นไปอีกถึง 235\""
-    }
-  ],
-  "_custom_emotion_colors": {
-    "ใจเย็นรอ": "#ff9100",
-    "ระแวง": "#9e9d24",
-    "ปลอดภัย": "#ffff00",
-    "มั่นใจเกินไป": "#d500f9",
-    "กังวล": "#f06292",
-    "กล้า": "#16d066",
-    "มั่นใจสุดๆ 🔥": "#ff6b0a",
-    "ก็ปกติดี": "#ffffff",
-    "เชื่อมั่น": "#00ff00",
-    "ท้อแท้": "#5c4033",
-    "โลภ": "#ffd700",
-    "ลังเล": "#ffea00",
-    "ไม่เชื่อข่าว": "#7986cb",
-    "สับสน": "#e65100",
-    "มีวินัย": "#00e676",
-    "เหนื่อยล้า": "#78909c",
-    "มั่นใจแต่ระวัง": "#00897b",
-    "หัวร้อน/อยากเอาคืน": "#ff1744",
-    "FOMO": "#00e5ff",
-    "สบายใจ/ใจเย็น": "#0288d1",
-    "เสียดาย": "#311b92",
-    "บ้าคลั่ง 🚀": "#ff007f",
-    "กลัว": "#b71c1c",
-    "ไม่เชื่อ": "#373e6c",
-    "ซึมเศร้า 📉": "#9d4edd"
-  },
   "_watchlist": [
+    "MU",
+    "ORCL",
     "NFLX",
     "TSLA",
     "SPCX",
     "MSFT",
     "NVDA"
   ],
+  "AMD": [
+    {
+      "archive_date": "2026-06-13",
+      "price": 511.57,
+      "date": "2026-06-15",
+      "time": "22:33",
+      "note": "เป็นผู้นำตลาดในรอบนี้",
+      "pct_change": 4.73,
+      "id": "d0947ce2-6764-497b-823d-7c4d55fe4c68"
+    }
+  ],
+  "AAPL": [
+    {
+      "pct_change": -0.28,
+      "archive_date": "2026-07-10",
+      "archive_phase": "postmarket",
+      "date": "2026-07-10",
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: FOMO / 7/10]\nThesis: เป็นการ back all time high ก็รู้สึกเฉยๆนะ ไม่ใช่จังหวะเทรด รายย่อยชอบ\nReview: อีก 3 วัน",
+      "journal": {
+        "confidence": 7,
+        "market_emotion": "FOMO",
+        "emotion": "เฉยๆ",
+        "review": "อีก 3 วัน",
+        "entryPrice": 210.96,
+        "stopLoss": null,
+        "intent": null,
+        "market_season": 3,
+        "setup": null,
+        "targetPrice": null,
+        "outcome": null,
+        "rrr": null
+      },
+      "id": "dbe9f54d-39d1-4a2f-9a2f-890c0638dc80",
+      "price": 315.32,
+      "time": "21:27"
+    },
+    {
+      "time": "08:28",
+      "price": 310.66,
+      "id": "31b38a8b-9c5d-47ea-8c48-679102818514",
+      "journal": {
+        "intent": "รอจังหวะ",
+        "market_season": 3,
+        "stopLoss": null,
+        "entryPrice": 310.66,
+        "review": "อีก 3 วัน",
+        "emotion": "เฉยๆ",
+        "market_emotion": "ไม่เชื่อ",
+        "confidence": 7,
+        "outcome": null,
+        "rrr": null,
+        "targetPrice": null,
+        "setup": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: เฉยๆ / ตลาด: ไม่เชื่อ / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "date": "2026-07-07",
+      "archive_date": "2026-07-07",
+      "archive_phase": "postmarket",
+      "pct_change": -0.64
+    },
+    {
+      "pct_change": 4.84,
+      "archive_date": "2026-07-03",
+      "archive_phase": "postmarket",
+      "date": "2026-07-04",
+      "note": "[หลังตลาดปิด / ส่วนตัว: กังวล / ตลาด: FOMO / 7/10]\nReview: อีก 3 วัน",
+      "journal": {
+        "intent": null,
+        "stopLoss": null,
+        "entryPrice": null,
+        "review": "อีก 3 วัน",
+        "emotion": "กังวล",
+        "market_emotion": "FOMO",
+        "confidence": 7,
+        "outcome": null,
+        "rrr": null,
+        "targetPrice": null,
+        "setup": null
+      },
+      "id": "9aadb1ea-ba95-424e-97a5-229158fbe9ad",
+      "price": 308.63,
+      "time": "12:39"
+    },
+    {
+      "price": 291.13,
+      "archive_date": "2026-06-13",
+      "time": "22:30",
+      "date": "2026-06-15",
+      "note": "เงินไหรเข้าตลาดขนาดนี้ แต่หุ้นไม่ขึ้น\nผมรู้สึกว่าไม่น่าสสนใจ",
+      "pct_change": -1.52,
+      "id": "67cb40fc-d156-4603-b556-ae2df546bdbf"
+    },
+    {
+      "id": "5c032d88-d1a2-4091-bec2-f791e38910fe",
+      "note": "เป็นอีก 1 ตัวที่น่าจะกลับ แต่ทรงกราฟไม่สวย",
+      "pct_change": -1.52,
+      "date": "2026-06-13",
+      "time": "16:22",
+      "archive_date": "2026-06-13",
+      "price": 291.13
+    },
+    {
+      "id": "1779630197997",
+      "pct_change": 1.26,
+      "note": "ตลาดอยู่ในอารมณ์ \"กล้า\" เนื่องจากมีการซื้อขายที่รุนแรงและราคาที่เพิ่มขึ้นอย่างรวดเร็ว สัญญาณที่สังเกตเห็นคือการเพิ่มขึ้นของการซื้อขายและราคาของหุ้นบางตัว ต้องจับตาต่อการเปลี่ยนแปลงของการซื้อขายและราคาที่อาจทำให้ตลาดกลายเป็น \"โลภ\"",
+      "date": "2026-05-24",
+      "time": "20:43",
+      "archive_date": "2026-05-24",
+      "price": 308.82
+    }
+  ],
   "SPCX": [
     {
-      "id": "8e89cbf0-8fca-4f76-a748-067631a7ed8f",
+      "time": "21:38",
+      "price": 145.3,
+      "id": "a297c4e5-016d-4a39-bae9-b7398e4884af",
+      "journal": {
+        "rrr": null,
+        "outcome": null,
+        "targetPrice": null,
+        "setup": null,
+        "market_season": 2,
+        "intent": "รอจังหวะ",
+        "stopLoss": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": 245.34,
+        "emotion": "เพิ่มเริ่ม",
+        "confidence": 7,
+        "market_emotion": "เชื่อมั่น"
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: เพิ่มเริ่ม / ตลาด: เชื่อมั่น / รอจังหวะ / 7/10]\nThesis: รู้สึกว่านี่เป็นเพียงการเริ่มต้นการเครียลเท่านั้น คนส่วนใหญ่ยังไม่กลับยังถือ เพราะมั่นใจว่าหุ้นจะดี\nReview: อีก 3 วัน",
+      "date": "2026-07-10",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-10",
+      "pct_change": -4.51
+    },
+    {
+      "date": "2026-06-28",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-06-27",
+      "pct_change": 0.15,
+      "time": "07:29",
+      "price": 153.23,
       "journal": {
         "intent": "ขาย",
         "review": "อีก 30 วัน",
-        "confidence": 9,
-        "emotion": "ไม่เชื่อข่าว"
-      },
-      "price": 153.23,
-      "time": "07:29",
-      "archive_phase": "postmarket",
-      "date": "2026-06-28",
-      "archive_date": "2026-06-27",
-      "pct_change": 0.15,
-      "note": "[หลังตลาดปิด / ไม่เชื่อข่าว / ขาย / 9/10]\nThesis: ราคาลงมาหยุดที่ราคาเปิด เป็นโซนราคาที่คน ที่ซื้อวันที่เปิดไม่ทัน จะกลับมาซื้อ \nแต่พอตลาดมาแรงซื้อ ราคาดันไม่ขึ้น แปลกมาก\nน่าสงสัยมาก\nIf wrong: ราคาวิ่ง brack All Time high\nReview: อีก 30 วัน"
-    },
-    {
-      "date": "2026-06-25",
-      "time": "21:15",
-      "pct_change": -1.01,
-      "price": 154.54,
-      "note": "ราคามาหยุดที่ราคาเปิด เหมือน ล่อ ให้คนที่เสียดายซื้อที่ราคาเปิดไม่ทัน ซื้อ",
-      "id": "55779e51-7463-49e6-8b22-3e8525662571",
-      "archive_date": "2026-06-25"
-    }
-  ],
-  "AMZN": [
-    {
-      "note": "เด้งตามตลาด",
-      "date": "2026-06-15",
-      "time": "22:32",
-      "pct_change": -1.23,
-      "price": 238.55,
-      "id": "7490fb1b-e925-4c12-ad07-4eee7da2ccd5",
-      "archive_date": "2026-06-13"
-    },
-    {
-      "id": "1779633723436",
-      "archive_date": "2026-05-24",
-      "time": "21:42",
-      "date": "2026-05-24",
-      "pct_change": -0.8,
-      "price": 266.32,
-      "note": "ตลาดอยู่ในอารมณ์ \"โลภ\" เนื่องจากนักลงทุนมีความสนใจและความตั้งใจที่จะลงทุนในตลาดอย่างมาก สัญญาณที่เจ้าของสังเกตเห็นคือความสนใจที่เพิ่มขึ้นในตลาดและความต้องการที่สูงขึ้น ต้องจับตาต่อการเปลี่ยนแปลงในความต้องการและความสนใจของนักลงทุนในตลาด."
-    }
-  ],
-  "NFLX": [
-    {
-      "price": 77.65,
-      "date": "2026-07-05",
-      "time": "12:23",
-      "archive_phase": "postmarket",
-      "journal": {
-        "targetPrice": null,
-        "market_emotion": "กล้า",
-        "outcome": null,
-        "emotion": "ปลอดภัย",
-        "stopLoss": null,
-        "entryPrice": null,
-        "intent": "ถือ",
-        "setup": null,
-        "review": "อีก 3 วัน",
-        "rrr": null,
-        "confidence": 7
-      },
-      "id": "4c04b397-7d2e-443c-a996-13e81b8837a1",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ปลอดภัย / ตลาด: กล้า / ถือ / 7/10]\nReview: อีก 3 วัน",
-      "pct_change": 4.66,
-      "archive_date": "2026-07-03"
-    },
-    {
-      "journal": {
-        "outcome": "Open",
-        "targetPrice": 92,
-        "stopLoss": 70.67,
-        "emotion": "มั่นใจแต่ระวัง",
-        "setup": null,
-        "intent": "ถือ",
-        "entryPrice": 72.33,
-        "rrr": 11.85,
-        "confidence": 7,
-        "review": "อีก 7 วัน"
-      },
-      "id": "2452e526-7d34-4ceb-8651-70670b298c95",
-      "price": 75.74,
-      "time": "07:55",
-      "archive_phase": "premarket",
-      "date": "2026-06-30",
-      "archive_date": "2026-06-29",
-      "note": "[ก่อนตลาดเปิด / มั่นใจแต่ระวัง / ถือ / 7/10 / Outcome: Open]\nRRR: 1:11.85 (Entry: 72.33 / Target: 92 / Stop: 70.67)\nThesis: เนื่องจากตลาดอยู่ในช่วงที่มี ความกล้า แรงซื้อเข้ามา จึงทำให้ NFLX มีแรงดีดตัวแรง\nIf wrong: มีแรงขายกลับมาเยอะ และยืนไม่ได้\nRisk: แรงขายเยอะ\nReview: อีก 7 วัน",
-      "pct_change": 2.61
-    },
-    {
-      "pct_change": 4.1,
-      "note": "[หลังตลาดปิด / FOMO / ถือ / 7/10 / Outcome: Big Win]\nRRR: 1:11.85 (Entry: 72.33 / Target: 92 / Stop: 70.67)\nThesis: เนื่องจากตลาดอยู่ในช่วงที่มี ความกล้า แรงซื้อเข้ามา จึงทำให้ NFLX มีแรงดีดตัวแรง\nIf wrong: มีแรงขายกลับมาเยอะ และยืนไม่ได้\nRisk: แรงขายเยอะ\nReview: อีก 7 วัน",
-      "archive_date": "2026-06-27",
-      "time": "23:00",
-      "date": "2026-06-29",
-      "archive_phase": "postmarket",
-      "price": 73.81,
-      "id": "bf0f02e4-8ddf-4b33-9d2e-d52975ab81f7",
-      "journal": {
-        "entryPrice": 72.33,
-        "intent": "ถือ",
-        "setup": null,
-        "review": "อีก 7 วัน",
-        "confidence": 7,
-        "rrr": 11.85,
-        "targetPrice": 92,
-        "outcome": "Big Win",
-        "stopLoss": 70.67,
-        "emotion": "FOMO"
-      }
-    },
-    {
-      "note": "เหตุผลที่เลือกเข้า NFLX เพราะเป็นตัวที่มีแรงขายน้อยสุด และน้อยมาหลายวันแล้ส",
-      "date": "2026-06-26",
-      "time": "21:54",
-      "price": 70.9,
-      "pct_change": -1.31,
-      "id": "4bcf9348-404b-47a5-a970-ac6b619ad47a",
-      "archive_date": "2026-06-26"
-    },
-    {
-      "id": "7b73ad1a-7b9e-47fe-899a-e6b96a42d700",
-      "archive_date": "2026-06-26",
-      "date": "2026-06-26",
-      "time": "20:35",
-      "pct_change": -1.31,
-      "price": 70.9,
-      "note": "จังหวะปิดตลาดเมื่อวาน ปิดแบบว่าไม่ให้ใครซื้อ แน่นอนจริงๆ"
-    },
-    {
-      "archive_date": "2026-06-26",
-      "id": "c1618784-81c6-499e-ac38-7dafac2a9156",
-      "price": 70.9,
-      "pct_change": -1.31,
-      "date": "2026-06-26",
-      "time": "20:31",
-      "note": "คิดไปแล้วว่าโดน Stop ไปแล้ว \nแต่โชวดีที่มาไม่ถึงราคาที่ตั้งไว้"
-    },
-    {
-      "note": "เริ่มเกิดความกลัว กังวล เพาาะไม่เป็นไปตามที่คิดไว้",
-      "price": 71.84,
-      "pct_change": -1.35,
-      "date": "2026-06-26",
-      "time": "07:32",
-      "archive_date": "2026-06-25",
-      "id": "ac571690-8a36-4ae8-b0ba-63836d7a92f7"
-    },
-    {
-      "archive_date": "2026-06-25",
-      "note": "[หลังตลาดปิด / มั่นใจแต่ระวัง / ซื้อ / 9/10]\nThesis: รู้สึกว่าแรงขายเริ่มไม่มีแล้ว ดูจากแท่งเทียน 2-3 แท่งก่นหน้า +กับ ตลาดมีความกลัวเข้ามา แต่ NFLX ไม่ตอยสนอง พร้อมกับราคาอยู่ในโวนแห่งความกลัว คนไม่กล้าเข้า จึงทำให้ตัดสินใจเข้าซื้อ\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: อาจมาแรงขายเข้ามาอีกได้ อาจทำให้โดนเครียล์\nReview: อีก 7 วัน",
-      "pct_change": -1.35,
-      "journal": {
-        "confidence": 9,
-        "emotion": "มั่นใจแต่ระวัง",
-        "review": "อีก 7 วัน",
-        "intent": "ซื้อ"
-      },
-      "id": "725103f4-b98d-4d63-ba9c-c1062bff8542",
-      "time": "21:47",
-      "date": "2026-06-25",
-      "archive_phase": "postmarket",
-      "price": 71.84
-    },
-    {
-      "note": "รู้สึกว่าแรงขายเริ่มไม่มีแล้ว ดูจากแท่งเทียน 2-3 แท่งก่นหน้า +กับ ตลาดมีความกลัวเข้ามา แต่ NFLX ไม่ตอยสนอง พร้อมกับราคาอยู่ในโวนแห่งความกลัว คนไม่กล้าเข้า จึงทำให้ตัดสินใจเข้าซื้อ",
-      "time": "21:45",
-      "date": "2026-06-25",
-      "pct_change": -1.35,
-      "price": 71.84,
-      "id": "60be6257-1695-4fa0-bf7d-35583667cd81",
-      "archive_date": "2026-06-25"
-    },
-    {
-      "note": "ผมรู้สึกว่ามันต้มกบแน่ๆ",
-      "price": 80.34,
-      "pct_change": -1.14,
-      "time": "16:14",
-      "date": "2026-06-13",
-      "archive_date": "2026-06-13",
-      "id": "6e5f1baf-c8f9-401a-a3fa-14ff72774254"
-    },
-    {
-      "pct_change": 0.72,
-      "price": 82,
-      "time": "21:04",
-      "date": "2026-06-11",
-      "note": "อารมเหมือนตกใจมากกว่าจาดข่าว ทั้ม โพสจะโจมตีอีร่านอีก แผนคือถ้า พรุ้งนี้เปิดโดดมีแรงซื้อกลับเข้ามา่าสนใจ",
-      "archive_date": "2026-06-11",
-      "id": "b0eab7e1-b071-4d13-a785-0431bcb3bac0"
-    },
-    {
-      "note": "จัดอารมณ์ได้ว่า น่าจะมีการเปลี่ยนชุดเล่น เพราะพวก NVIDIA พวกกลุ่มที่พาขึ้นชึดแรกๆ มีการเทขายกันมาสักพักแล้ว แต่ NFlx ลงต้มกบมานานแล้ว น่าจะถึงรอบกลับตัว",
-      "time": "21:21",
-      "date": "2026-06-10",
-      "price": 81.41,
-      "pct_change": -1.49,
-      "id": "c481500c-251d-435b-83c8-6b0b66beab36",
-      "archive_date": "2026-06-10"
-    }
-  ],
-  "_IXIC": [
-    {
-      "spx_pct": -0.05,
-      "dji_pct": -0.09,
-      "time": "11:53",
-      "date": "2026-06-27",
-      "id": "4abfd869-9756-4026-96e4-da19518c47f3",
-      "pct_change": -0.24,
-      "archive_date": "2026-06-27",
-      "ixic_price": 25297.62,
-      "price": 25297.62,
-      "dji_price": 51876.11,
-      "ixic_pct": -0.24,
-      "note": "้ส",
-      "spx_price": 7354.02
-    }
-  ],
-  "TSLA": [
-    {
-      "archive_date": "2026-07-04",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: ไม่เชื่อ / 7/10]\nReview: อีก 3 วัน",
-      "pct_change": -7.49,
-      "journal": {
-        "targetPrice": null,
-        "outcome": null,
-        "market_emotion": "ไม่เชื่อ",
-        "stopLoss": null,
-        "emotion": "ระแวง",
-        "intent": null,
-        "entryPrice": 393.45,
-        "setup": null,
-        "market_season": 2,
-        "review": "อีก 3 วัน",
-        "confidence": 7,
-        "rrr": null
-      },
-      "id": "2f43974b-141b-44f9-81cc-83d968957b5c",
-      "price": 393.45,
-      "archive_phase": "postmarket",
-      "time": "10:47",
-      "date": "2026-07-04"
-    },
-    {
-      "note": "บันทึกอารมณ์ตลาด\n\nตลาดอยู่ในอารมณ์ \"ลังเล\" เนื่องจากเจ้าของตลาดยังไม่สามารถมองเห็นภาพที่ชัดเจนของอนาคต\n\nสัญญาณที่เจ้าของสังเกตเห็นคือความไม่แน่นอนและความไม่มั่นใจที่ปรากฏในโน้ต \"ยังมองไม่ออก\"\n\nต้องจับตาต่อการเปลี่ยนแปลงของสภาพตลาดและความไม่แน่นอนที่จะเกิดขึ้น",
-      "date": "2026-05-24",
-      "time": "20:48",
-      "pct_change": 1.95,
-      "price": 426.01,
-      "id": "1779630536307",
-      "archive_date": "2026-05-24"
-    }
-  ],
-  "GOOG": [
-    {
-      "pct_change": -2.19,
-      "price": 334.69,
-      "time": "21:48",
-      "date": "2026-06-27",
-      "note": "เทส",
-      "archive_date": "2026-06-27",
-      "id": "65d01813-1940-4cbf-b9bb-0934c6f78737"
-    }
-  ],
-  "KO": [
-    {
-      "pct_change": -0.82,
-      "price": 79.75,
-      "date": "2026-05-29",
-      "time": "21:32",
-      "note": "อีกไม่กี่วันจะจ่ายปันผล ซึ่งหุ้น ko มีประวัติการจ่ายปันผลที่ดี มันคง น่าจะมีการไร่ราคาการวันจ่าย ไม่ใช่การขึ้นจริงจัง \"เป็นการเล่นก่อนจ่ายปันผล\"",
-      "archive_date": "2026-05-29",
-      "id": "4a1bae98-ccd1-4cf4-bbb3-9acc21bfe056"
-    }
-  ],
-  "GOOGL": [
-    {
-      "journal": {
-        "setup": null,
-        "market_season": 2,
-        "intent": "รอจังหวะ",
-        "entryPrice": 359.91,
-        "confidence": 7,
-        "rrr": null,
-        "review": "อีก 3 วัน",
-        "market_emotion": "สับสน",
-        "outcome": null,
-        "targetPrice": null,
-        "stopLoss": null,
-        "emotion": "ก็ปกติดี"
-      },
-      "id": "f2f0c1df-3c9b-4f10-adf3-92891ebd34e6",
-      "time": "09:13",
-      "archive_phase": "postmarket",
-      "date": "2026-07-04",
-      "price": 359.91,
-      "archive_date": "2026-07-04",
-      "note": "[หลังตลาดปิด / ส่วนตัว: ก็ปกติดี / ตลาด: สับสน / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
-      "pct_change": -0.36
-    },
-    {
-      "note": "รู้สึกว่าเป็นตัวที่จะขึ้นในรอบนี้ด้วย แต่ nvda หุ้นน่าจะวิ่งแรงกว่า",
-      "price": 359.68,
-      "pct_change": 0.53,
-      "time": "16:22",
-      "date": "2026-06-13",
-      "archive_date": "2026-06-13",
-      "id": "6d0ceb34-f843-4d47-8004-f07e3e86068d"
-    },
-    {
-      "note": "ภาพใหญ่ผู้คนมาความกล้า แค่ตัว NVDA กลับลงมาในจังหวะนี้ ผมรู้สึกว่าลงมาให้ซื้อง่ายเกินไป พร้อมการเรื่องราวดีๆที่เกิดขึ้นมองแล้วดีเกินไป. ต้องระวัง!",
-      "pct_change": 1.54,
-      "price": 388.88,
-      "date": "2026-05-26",
-      "time": "06:36",
-      "archive_date": "2026-05-26",
-      "id": "77dad69a-2748-4cef-bae1-6dc2bcfc8702"
-    },
-    {
-      "note": "อารมณืออกทรมต้มกบมากกว่า ต้องระวัง",
-      "time": "20:29",
-      "date": "2026-05-24",
-      "pct_change": -1.21,
-      "price": 382.97,
-      "id": "1779629376530",
-      "archive_date": "2026-05-24"
-    }
-  ],
-  "MSFT": [
-    {
-      "id": "ebd07620-f335-4eda-a0cd-dc9e733a3db1",
-      "archive_date": "2026-06-25",
-      "note": "เปิดตลาดมาด้วยความกลัว แย่งกันขายทิ่ง\nผู้คนกลัว",
-      "date": "2026-06-25",
-      "time": "21:10",
-      "pct_change": -2.27,
-      "price": 365.46
-    },
-    {
-      "archive_date": "2026-06-25",
-      "id": "3977c526-befb-4d8b-be34-279ce6773201",
-      "pct_change": -2.27,
-      "price": 365.46,
-      "time": "21:09",
-      "date": "2026-06-25",
-      "note": "แต่ก็ยังไว้ใจไม่ได้\nเพราะเป็นโซนล่างที่อยู่โซนบนใหญ่"
-    },
-    {
-      "archive_date": "2026-06-25",
-      "id": "33aa8497-219e-444b-821a-89078d81ca88",
-      "note": "ตลาดมีความกลัวเข้ามาแล้ว\nหุ้นอยู่โซนล่าง หากหมดแรงขาย\nเป็นโอกาสที่น่าสนใจ",
-      "pct_change": -2.27,
-      "price": 365.46,
-      "time": "21:08",
-      "date": "2026-06-25"
-    },
-    {
-      "archive_date": "2026-06-18",
-      "note": "[รายวัน / กลัว / ขาย / 8/10]\nThesis: ตลาดกำลังให้ premium กับหุ้นผู้นำ AI แต่ต้องระวังว่าข่าวดีอาจถูกสะท้อนไปมากแล้ว ถ้ากราฟยังรับได้และ volume ไม่แห้ง การย่ออาจเป็นจังหวะดูต่อมากกว่าหนีทันที\nIf wrong: ถ้าราคาหลุดแนวรับสำคัญพร้อมข่าวดีแต่ไม่เด้ง หรือดัชนีเริ่มขายแรงกว่าหุ้นนำ แปลว่า sentiment อาจเปลี่ยนจากไล่ซื้อเป็นลดความเสี่ยง\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 3 วัน",
-      "pct_change": -3.79,
-      "journal": {
-        "intent": "ขาย",
-        "review": "อีก 3 วัน",
-        "emotion": "กลัว",
-        "confidence": 8
-      },
-      "id": "5dd72639-7cb9-48b5-938c-512e441e734a",
-      "time": "22:40",
-      "archive_phase": "legacy",
-      "date": "2026-06-18",
-      "price": 378.91
-    },
-    {
-      "date": "2026-06-18",
-      "time": "22:39",
-      "price": 378.91,
-      "pct_change": -3.79,
-      "note": "รู้สึกว่ามันโดนเทขายในวันที่ตลาดมีเงินไหรเข้า ผู้คนส่วนใหญ่มีความกล้า \nอารมแบบว่าขายใส่พวก FOMO",
-      "id": "181b3235-4913-4911-8d8c-316777589eb0",
-      "archive_date": "2026-06-18"
-    },
-    {
-      "archive_date": "2026-06-18",
-      "note": "[รายวัน / ไม่เชื่อข่าว / รอจังหวะ / 9/10]\nThesis: รู้สึกว่ามันโดนเทขายในวันที่ตลาดมีเงินไหรเข้า ผู้คนส่วนใหญ่มีความกล้า \nอารมแบบว่าขายใส่พวก FOMO\nIf wrong: ราคากลับขึ้นไปยืนโซน 420 ได้\nRisk: FOMO หลังข่าวใหญ่, valuation แพง, ตลาดตีความข่าวดีไปแล้ว\nReview: อีก 7 วัน",
-      "pct_change": -3.79,
-      "journal": {
-        "review": "อีก 7 วัน",
-        "intent": "รอจังหวะ",
         "emotion": "ไม่เชื่อข่าว",
         "confidence": 9
       },
-      "id": "b953f7c8-3051-4ea3-9f87-c960d5d56987",
-      "price": 378.91,
-      "archive_phase": "legacy",
-      "date": "2026-06-18",
-      "time": "22:39"
+      "id": "8e89cbf0-8fca-4f76-a748-067631a7ed8f",
+      "note": "[หลังตลาดปิด / ไม่เชื่อข่าว / ขาย / 9/10]\nThesis: ราคาลงมาหยุดที่ราคาเปิด เป็นโซนราคาที่คน ที่ซื้อวันที่เปิดไม่ทัน จะกลับมาซื้อ \nแต่พอตลาดมาแรงซื้อ ราคาดันไม่ขึ้น แปลกมาก\nน่าสงสัยมาก\nIf wrong: ราคาวิ่ง brack All Time high\nReview: อีก 30 วัน"
     },
     {
-      "note": "เป็นตัวที่มีแรงขายในวันที่ตลาดขึ้นรอบนี้",
-      "pct_change": -3.79,
-      "price": 378.91,
-      "date": "2026-06-18",
-      "time": "22:34",
-      "archive_date": "2026-06-18",
-      "id": "7b8860ce-12dd-49e7-9657-4657c7d949e6"
+      "pct_change": -1.01,
+      "note": "ราคามาหยุดที่ราคาเปิด เหมือน ล่อ ให้คนที่เสียดายซื้อที่ราคาเปิดไม่ทัน ซื้อ",
+      "id": "55779e51-7463-49e6-8b22-3e8525662571",
+      "price": 154.54,
+      "archive_date": "2026-06-25",
+      "time": "21:15",
+      "date": "2026-06-25"
+    }
+  ],
+  "_SPX": [
+    {
+      "date": "2026-07-20",
+      "archive_date": "2026-07-20",
+      "archive_phase": "premarket",
+      "pct_change": 0,
+      "time": "21:48",
+      "price": 0,
+      "journal": {
+        "stopLoss": null,
+        "intent": "รอจังหวะ",
+        "market_season": null,
+        "confidence": 7,
+        "market_emotion": "ลังเล",
+        "emotion": "เหนื่อยล้า",
+        "review": "อีก 3 วัน",
+        "entryPrice": 7475.04,
+        "outcome": null,
+        "rrr": null,
+        "setup": null,
+        "targetPrice": null
+      },
+      "id": "541f7597-5211-4e5b-9c7e-9eb3274b7769",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: เหนื่อยล้า / ตลาด: ลังเล / รอจังหวะ / 7/10]\nReview: อีก 3 วัน"
     },
     {
-      "time": "22:32",
-      "date": "2026-06-15",
-      "pct_change": 0.1,
-      "price": 390.74,
-      "note": "ช่วงจังหวะกลับตัว เป็นตัวที่จับอารมยากพอสมควร",
-      "id": "ed7e11d1-0bac-4c93-9e0c-8ef87bf040bd",
-      "archive_date": "2026-06-13"
+      "time": "21:19",
+      "price": 0,
+      "journal": {
+        "market_emotion": "สับสน",
+        "confidence": 7,
+        "emotion": "กังวลเล็กน้อย",
+        "entryPrice": 52637.01,
+        "review": "อีก 3 วัน",
+        "stopLoss": null,
+        "intent": "ถือ",
+        "market_season": null,
+        "setup": null,
+        "targetPrice": null,
+        "outcome": null,
+        "rrr": null
+      },
+      "id": "2cb4bf00-2152-47d9-ab5b-a5fbbad867b3",
+      "note": "[ก่อนตลาดเปิด / ส่วนตัว: กังวลเล็กน้อย / ตลาด: สับสน / ถือ / 7/10]\nThesis: รู้สึดว่าอาจมีการโดนเครียล์ได้ ทุบแรงๆ  ถ้าย่อย fomo มากแล้วทิ้งแรงๆ โอกาศกลับขึ้นมายืนได้ จะใช้เวลานาน\nReview: อีก 3 วัน",
+      "date": "2026-07-10",
+      "archive_phase": "premarket",
+      "archive_date": "2026-07-10",
+      "pct_change": 0
     },
     {
-      "time": "22:04",
-      "date": "2026-06-04",
-      "pct_change": -3.17,
-      "price": 427.34,
-      "note": "อยากให้ลงมาพักสัก 2-3 แท่ง",
-      "id": "e0e0b09d-1dbc-4e99-a075-fdfa520beff5",
-      "archive_date": "2026-06-04"
+      "pct_change": 0,
+      "date": "2026-07-07",
+      "archive_phase": "postmarket",
+      "archive_date": "2026-07-07",
+      "id": "fda3afef-9ee2-4b00-9bb6-ecf7417043de",
+      "journal": {
+        "targetPrice": null,
+        "setup": null,
+        "rrr": null,
+        "outcome": null,
+        "review": "อีก 3 วัน",
+        "entryPrice": 7503.85,
+        "confidence": 7,
+        "emotion": "ใจเย็นรอ",
+        "market_emotion": "ลังเล",
+        "market_season": null,
+        "intent": "รอจังหวะ",
+        "stopLoss": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ใจเย็นรอ / ตลาด: ลังเล / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "time": "08:25",
+      "price": 0
     },
     {
-      "date": "2026-05-29",
-      "time": "21:33",
-      "price": 440.96,
-      "pct_change": 3.27,
-      "note": "เข้าสู่ \"ฤดูกล้า\" รอลงเครีย Buy on drip ได้",
-      "id": "c250d73a-c558-4591-9b19-76ea962a460e",
-      "archive_date": "2026-05-29"
+      "time": "08:24",
+      "price": 0,
+      "id": "8e8e664e-7a71-4f4a-b8ad-349c04ade4af",
+      "journal": {
+        "rrr": null,
+        "outcome": null,
+        "setup": null,
+        "targetPrice": null,
+        "stopLoss": null,
+        "market_season": 2,
+        "intent": "รอจังหวะ",
+        "market_emotion": "กล้า",
+        "confidence": 7,
+        "emotion": "สบายใจ/ใจเย็น",
+        "entryPrice": 7537.43,
+        "review": "อีก 3 วัน"
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: สบายใจ/ใจเย็น / ตลาด: กล้า / รอจังหวะ / 7/10]\nReview: อีก 3 วัน",
+      "date": "2026-07-06",
+      "archive_date": "2026-07-06",
+      "archive_phase": "postmarket",
+      "pct_change": 0
     },
     {
-      "id": "1779720320803",
-      "archive_date": "2026-05-25",
-      "time": "21:45",
-      "date": "2026-05-25",
-      "price": 418.57,
-      "pct_change": -0.12,
-      "note": "ฤดูสังสัย"
+      "time": "15:31",
+      "price": 0,
+      "id": "e408bcb6-9dd2-42e6-a0ed-31551fc5e9f4",
+      "journal": {
+        "market_season": 2,
+        "intent": null,
+        "stopLoss": null,
+        "entryPrice": null,
+        "review": "อีก 3 วัน",
+        "emotion": "ระแวง",
+        "confidence": 9,
+        "market_emotion": "ลังเล",
+        "rrr": null,
+        "outcome": null,
+        "targetPrice": null,
+        "setup": null
+      },
+      "note": "[หลังตลาดปิด / ส่วนตัว: ระแวง / ตลาด: ลังเล / 9/10]\nReview: อีก 3 วัน",
+      "date": "2026-07-04",
+      "archive_date": "2026-07-04",
+      "archive_phase": "postmarket",
+      "pct_change": 0
+    },
+    {
+      "spx_pct": 1.18,
+      "archive_date": "2026-06-30",
+      "ixic_price": 25820.14,
+      "spx_price": 7440.43,
+      "pct_change": 1.18,
+      "dji_price": 52182.74,
+      "note": "ตลาดกลับมามีแรงซื้อ ความกล้าเิ่มเข้ามา เงินเริ่มไหรเข้า",
+      "date": "2026-06-30",
+      "dji_pct": 0.59,
+      "time": "20:57",
+      "price": 7440.43,
+      "id": "d5ed207c-52fa-49db-bcfb-a37b647d94ef",
+      "ixic_pct": 2.07
+    },
+    {
+      "spx_pct": -0.05,
+      "archive_date": "2026-06-27",
+      "ixic_price": 25297.62,
+      "spx_price": 7354.02,
+      "pct_change": -0.05,
+      "dji_price": 51876.11,
+      "note": "เทส",
+      "date": "2026-06-27",
+      "dji_pct": -0.09,
+      "time": "11:52",
+      "price": 7354.02,
+      "id": "1b85cf48-6332-43ad-8aed-5c1afbae576e",
+      "ixic_pct": -0.24
+    }
+  ],
+  "_custom_emotion_colors": {
+    "มีวินัย": "#00e676",
+    "บ้าคลั่ง 🚀": "#ff007f",
+    "กล้า": "#16d066",
+    "FOMO": "#00e5ff",
+    "เชื่อมั่น": "#00ff00",
+    "ลังเล": "#ffea00",
+    "สับสน": "#e65100",
+    "ซึมเศร้า 📉": "#9d4edd",
+    "มั่นใจเกินไป": "#d500f9",
+    "ท้อแท้": "#5c4033",
+    "มั่นใจแต่ระวัง": "#00897b",
+    "ไม่เชื่อข่าว": "#7986cb",
+    "ไม่เชื่อ": "#373e6c",
+    "สบายใจ/ใจเย็น": "#0288d1",
+    "ก็ปกติดี": "#ffffff",
+    "กังวล": "#f06292",
+    "ใจเย็นรอ": "#ff9100",
+    "ปลอดภัย": "#ffff00",
+    "หัวร้อน/อยากเอาคืน": "#ff1744",
+    "เหนื่อยล้า": "#78909c",
+    "เสียดาย": "#311b92",
+    "อุ่นใจ": "#23fbd7",
+    "กังวลเล็กน้อย": "#8f5f1b",
+    "เพิ่มเริ่ม": "#c293be",
+    "เฉยๆ": "#4b433a",
+    "ระแวง": "#9e9d24",
+    "มั่นใจสุดๆ 🔥": "#ff6b0a",
+    "โลภ": "#ffd700",
+    "กลัว": "#b71c1c"
+  },
+  "_GLOBAL_MARKET_SEASON": [
+    {
+      "note": "เปลี่ยนสถานะฤดูกาลตลาดใหญ่ล่าสุดเป็น: 🌿 ๓. ตื่นเต้น (Bullish)",
+      "journal": {
+        "market_season": 3
+      },
+      "id": "a9e8fc14-d737-4d62-8388-a2fbebebfc74",
+      "archive_date": "2026-07-04",
+      "archive_phase": "postmarket",
+      "date": "2026-07-06",
+      "time": "17:33"
     }
   ]
 }
