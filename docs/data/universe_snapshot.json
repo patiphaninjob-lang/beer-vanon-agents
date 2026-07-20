@@ -1,9 +1,9 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-18T00:08:23.369674+00:00",
+  "updated": "2026-07-20T13:18:16.163224+00:00",
   "static_count": 139,
   "dynamic_count": 240,
-  "candidate_count": 260,
+  "candidate_count": 261,
   "new_dynamic_tickers": [
     "ABNB",
     "ABT",
@@ -89,7 +89,7 @@
     },
     {
       "ticker": "AVGO",
-      "market_cap": 1764229734999.2803
+      "market_cap": 1764253400940.817
     },
     {
       "ticker": "META",
@@ -102,6 +102,10 @@
     {
       "ticker": "TSLA",
       "market_cap": 1430329865277.7683
+    },
+    {
+      "ticker": "SKHY",
+      "market_cap": 1093389479942.0791
     },
     {
       "ticker": "BRK-B",
@@ -188,16 +192,12 @@
       "market_cap": 386951245774.63586
     },
     {
-      "ticker": "CVX",
-      "market_cap": 373185592746.7583
+      "ticker": "ORCL",
+      "market_cap": 364120349658.59985
     },
     {
       "ticker": "GE",
-      "market_cap": 364467896384.79565
-    },
-    {
-      "ticker": "ORCL",
-      "market_cap": 364120349658.59985
+      "market_cap": 361932917477.67615
     },
     {
       "ticker": "KO",
@@ -353,7 +353,7 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 194007639112.124
+      "market_cap": 193847447134.56906
     },
     {
       "ticker": "MCD",
@@ -366,10 +366,6 @@
     {
       "ticker": "PEP",
       "market_cap": 187153923768.45044
-    },
-    {
-      "ticker": "APH",
-      "market_cap": 186011444329.62244
     },
     {
       "ticker": "NEE",
@@ -458,6 +454,10 @@
     {
       "ticker": "BUD",
       "market_cap": 155670962597.96356
+    },
+    {
+      "ticker": "ETN",
+      "market_cap": 155316113208.0078
     }
   ]
 }
