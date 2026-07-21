@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-21T00:09:27.426191+00:00",
+  "updated": "2026-07-21T12:46:17.271733+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -260,12 +260,12 @@
       "market_cap": 285374229626.97235
     },
     {
-      "ticker": "NFLX",
-      "market_cap": 284649974067.63135
-    },
-    {
       "ticker": "PANW",
       "market_cap": 284157902984.61914
+    },
+    {
+      "ticker": "NFLX",
+      "market_cap": 281482315743.93225
     },
     {
       "ticker": "KLAC",
@@ -301,7 +301,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 238735563587.99133
+      "market_cap": 238518680689.0697
     },
     {
       "ticker": "LIN",
@@ -325,7 +325,7 @@
     },
     {
       "ticker": "TM",
-      "market_cap": 211409632280.7616
+      "market_cap": 211398308479.99902
     },
     {
       "ticker": "SNDK",
