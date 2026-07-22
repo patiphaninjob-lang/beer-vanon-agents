@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-22T00:05:59.885764+00:00",
+  "updated": "2026-07-22T12:47:34.854328+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -240,16 +240,16 @@
       "market_cap": 308288325248.3744
     },
     {
-      "ticker": "NVS",
-      "market_cap": 293598101337.6947
-    },
-    {
       "ticker": "PM",
       "market_cap": 293071394937.88293
     },
     {
       "ticker": "RY",
       "market_cap": 293051999990.2606
+    },
+    {
+      "ticker": "NVS",
+      "market_cap": 292462983149.9658
     },
     {
       "ticker": "GEV",
@@ -273,7 +273,7 @@
     },
     {
       "ticker": "WFC",
-      "market_cap": 268501019666.28998
+      "market_cap": 265721929111.03326
     },
     {
       "ticker": "TXN",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 241285718846.0697
+      "market_cap": 241277691824.7506
     },
     {
       "ticker": "AXP",
@@ -321,7 +321,7 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 218448755802.76077
+      "market_cap": 218400610301.71936
     },
     {
       "ticker": "TM",
@@ -337,7 +337,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 201778428478.8933
+      "market_cap": 199974145767.39844
     },
     {
       "ticker": "TD",
@@ -385,7 +385,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 185709024701.01782
+      "market_cap": 185582890393.42114
     },
     {
       "ticker": "PEP",
@@ -457,7 +457,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 158420877302.05383
+      "market_cap": 158520562979.0432
     }
   ]
 }
