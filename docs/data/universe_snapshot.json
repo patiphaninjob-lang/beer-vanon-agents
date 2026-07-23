@@ -1,9 +1,9 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-23T00:13:30.088008+00:00",
+  "updated": "2026-07-23T12:49:41.103266+00:00",
   "static_count": 139,
   "dynamic_count": 240,
-  "candidate_count": 262,
+  "candidate_count": 261,
   "new_dynamic_tickers": [
     "ABNB",
     "ABT",
@@ -276,20 +276,20 @@
       "market_cap": 267740200406.19623
     },
     {
-      "ticker": "GEV",
-      "market_cap": 264697264547.5061
-    },
-    {
-      "ticker": "WFC",
-      "market_cap": 264461570468.10568
-    },
-    {
       "ticker": "AZN",
       "market_cap": 263230344377.44867
     },
     {
       "ticker": "RTX",
       "market_cap": 262441673024.24268
+    },
+    {
+      "ticker": "GEV",
+      "market_cap": 262346575095.17163
+    },
+    {
+      "ticker": "WFC",
+      "market_cap": 261724289791.7428
     },
     {
       "ticker": "MUFG",
@@ -337,7 +337,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 205459541015.8667
+      "market_cap": 203622342160.85938
     },
     {
       "ticker": "TD",
@@ -377,11 +377,15 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 188777136332.94653
+      "market_cap": 188524703901.7493
     },
     {
       "ticker": "ADI",
       "market_cap": 188371176330.49805
+    },
+    {
+      "ticker": "MCD",
+      "market_cap": 187268034460.53033
     },
     {
       "ticker": "NEE",
@@ -441,15 +445,11 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 163941100938.43842
+      "market_cap": 164044260193.15125
     },
     {
       "ticker": "BLK",
       "market_cap": 163772778635.88342
-    },
-    {
-      "ticker": "SCCO",
-      "market_cap": 163094532788.24405
     },
     {
       "ticker": "GILD",
