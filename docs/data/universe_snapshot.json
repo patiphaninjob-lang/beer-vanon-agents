@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-24T00:10:38.586829+00:00",
+  "updated": "2026-07-24T12:46:32.177578+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -69,11 +69,11 @@
     },
     {
       "ticker": "GOOG",
-      "market_cap": 3884567085198.7026
+      "market_cap": 3893277409313.181
     },
     {
       "ticker": "GOOGL",
-      "market_cap": 3876635487143.448
+      "market_cap": 3885328026318.6294
     },
     {
       "ticker": "MSFT",
@@ -100,12 +100,12 @@
       "market_cap": 1538538302581.1748
     },
     {
-      "ticker": "SKHY",
-      "market_cap": 1203204040245.0
+      "ticker": "TSLA",
+      "market_cap": 1262630816030.3096
     },
     {
-      "ticker": "TSLA",
-      "market_cap": 1200667373489.2378
+      "ticker": "SKHY",
+      "market_cap": 1203204040245.0
     },
     {
       "ticker": "MU",
@@ -281,7 +281,7 @@
     },
     {
       "ticker": "WFC",
-      "market_cap": 263757739959.02576
+      "market_cap": 261027744203.67627
     },
     {
       "ticker": "AZN",
@@ -289,7 +289,7 @@
     },
     {
       "ticker": "TXN",
-      "market_cap": 259367335619.4651
+      "market_cap": 260222305590.1682
     },
     {
       "ticker": "MUFG",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 243352901402.7506
+      "market_cap": 243346305152.9795
     },
     {
       "ticker": "SNDK",
@@ -337,7 +337,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 206649629355.52002
+      "market_cap": 204801788848.51562
     },
     {
       "ticker": "AMGN",
@@ -349,7 +349,7 @@
     },
     {
       "ticker": "IBM",
-      "market_cap": 194227287375.3955
+      "market_cap": 194692065943.16803
     },
     {
       "ticker": "APH",
@@ -365,7 +365,7 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 188983376235.91382
+      "market_cap": 189273965761.28296
     },
     {
       "ticker": "MRVL",
@@ -388,16 +388,16 @@
       "market_cap": 185190498553.88672
     },
     {
-      "ticker": "TMUS",
-      "market_cap": 184429325889.56396
-    },
-    {
       "ticker": "PEP",
       "market_cap": 184192111586.78152
     },
     {
       "ticker": "VZ",
       "market_cap": 182972990161.92053
+    },
+    {
+      "ticker": "TMUS",
+      "market_cap": 182804694323.3396
     },
     {
       "ticker": "UNP",
@@ -437,7 +437,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 164667233270.71533
+      "market_cap": 164770849441.17285
     },
     {
       "ticker": "SMFG",
