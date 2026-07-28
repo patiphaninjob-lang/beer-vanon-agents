@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-28T00:11:18.527499+00:00",
+  "updated": "2026-07-28T13:03:03.386833+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -237,7 +237,7 @@
     },
     {
       "ticker": "PM",
-      "market_cap": 304947629515.97296
+      "market_cap": 304958311182.55286
     },
     {
       "ticker": "NVS",
@@ -293,7 +293,7 @@
     },
     {
       "ticker": "TXN",
-      "market_cap": 255127260077.15567
+      "market_cap": 255170539289.6729
     },
     {
       "ticker": "SHEL",
@@ -305,7 +305,7 @@
     },
     {
       "ticker": "AXP",
-      "market_cap": 228845475712.78625
+      "market_cap": 226492174782.10388
     },
     {
       "ticker": "C",
@@ -313,7 +313,7 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 219683225579.90967
+      "market_cap": 219635542381.66748
     },
     {
       "ticker": "TM",
@@ -325,7 +325,7 @@
     },
     {
       "ticker": "BHP",
-      "market_cap": 213211164346.8118
+      "market_cap": 213211163571.56003
     },
     {
       "ticker": "TMO",
