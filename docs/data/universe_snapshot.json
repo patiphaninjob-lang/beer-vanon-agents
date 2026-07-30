@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-30T00:11:00.157352+00:00",
+  "updated": "2026-07-30T12:55:44.479425+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -132,12 +132,12 @@
       "market_cap": 834621538589.0
     },
     {
-      "ticker": "V",
-      "market_cap": 701230012267.1814
-    },
-    {
       "ticker": "AMD",
       "market_cap": 700440806507.8813
+    },
+    {
+      "ticker": "V",
+      "market_cap": 677389778200.3505
     },
     {
       "ticker": "XOM",
@@ -264,12 +264,12 @@
       "market_cap": 268766986580.00098
     },
     {
-      "ticker": "WFC",
-      "market_cap": 256658101266.8415
-    },
-    {
       "ticker": "PANW",
       "market_cap": 256032245025.63477
+    },
+    {
+      "ticker": "WFC",
+      "market_cap": 253622832615.98224
     },
     {
       "ticker": "TXN",
@@ -373,7 +373,7 @@
     },
     {
       "ticker": "ABT",
-      "market_cap": 188115820632.0
+      "market_cap": 186881395968.0
     },
     {
       "ticker": "APH",
@@ -381,7 +381,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 184492648059.25128
+      "market_cap": 184525630458.3699
     },
     {
       "ticker": "CRWD",
@@ -396,16 +396,16 @@
       "market_cap": 178553385001.04468
     },
     {
+      "ticker": "WELL",
+      "market_cap": 173715501731.28674
+    },
+    {
       "ticker": "UNP",
       "market_cap": 173582921210.99963
     },
     {
-      "ticker": "WELL",
-      "market_cap": 173312895476.34888
-    },
-    {
       "ticker": "STX",
-      "market_cap": 172953903376.76
+      "market_cap": 173525608337.40234
     },
     {
       "ticker": "ADI",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "BA",
-      "market_cap": 169023495862.88004
+      "market_cap": 169147083638.5678
     },
     {
       "ticker": "SHOP",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "BUD",
-      "market_cap": 163932923992.86398
+      "market_cap": 163887794538.6435
     },
     {
       "ticker": "WDC",
