@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-07-31T00:15:50.596982+00:00",
+  "updated": "2026-07-31T13:07:07.804342+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -64,10 +64,6 @@
       "market_cap": 4897205003506.592
     },
     {
-      "ticker": "NVDA",
-      "market_cap": 4724063677383.423
-    },
-    {
       "ticker": "GOOG",
       "market_cap": 4080884564833.362
     },
@@ -77,7 +73,7 @@
     },
     {
       "ticker": "MSFT",
-      "market_cap": 3350966940313.9673
+      "market_cap": 3349663616312.0327
     },
     {
       "ticker": "AMZN",
@@ -97,7 +93,7 @@
     },
     {
       "ticker": "META",
-      "market_cap": 1368286387922.9902
+      "market_cap": 1373182355095.7214
     },
     {
       "ticker": "TSLA",
@@ -137,7 +133,7 @@
     },
     {
       "ticker": "V",
-      "market_cap": 672870499354.6495
+      "market_cap": 683843379041.9362
     },
     {
       "ticker": "XOM",
@@ -189,7 +185,7 @@
     },
     {
       "ticker": "KO",
-      "market_cap": 380772460807.8003
+      "market_cap": 380732573321.8332
     },
     {
       "ticker": "CAT",
@@ -197,7 +193,7 @@
     },
     {
       "ticker": "LRCX",
-      "market_cap": 372310472606.53687
+      "market_cap": 372530487687.43896
     },
     {
       "ticker": "GE",
@@ -281,7 +277,7 @@
     },
     {
       "ticker": "ARM",
-      "market_cap": 257011552780.42395
+      "market_cap": 257964367185.85944
     },
     {
       "ticker": "TXN",
@@ -356,12 +352,12 @@
       "market_cap": 196616078010.4062
     },
     {
-      "ticker": "STX",
-      "market_cap": 193331358337.40234
-    },
-    {
       "ticker": "TTE",
       "market_cap": 193231704661.4169
+    },
+    {
+      "ticker": "STX",
+      "market_cap": 192694400497.76
     },
     {
       "ticker": "VZ",
@@ -393,7 +389,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 183420064553.96002
+      "market_cap": 183387279765.41626
     },
     {
       "ticker": "ABT",
@@ -437,7 +433,7 @@
     },
     {
       "ticker": "BUD",
-      "market_cap": 166340215207.52368
+      "market_cap": 166386019979.91913
     },
     {
       "ticker": "MRVL",
@@ -453,11 +449,15 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 161819380256.427
+      "market_cap": 161921204427.24072
     },
     {
       "ticker": "QCOM",
-      "market_cap": 159786406433.10547
+      "market_cap": 159180006408.6914
+    },
+    {
+      "ticker": "T",
+      "market_cap": 159043864662.95355
     }
   ]
 }
