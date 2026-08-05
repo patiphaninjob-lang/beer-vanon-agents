@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-05T00:15:25.097234+00:00",
+  "updated": "2026-08-05T13:03:48.237076+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -62,10 +62,6 @@
     {
       "ticker": "NVDA",
       "market_cap": 5133398799133.301
-    },
-    {
-      "ticker": "GOOGL",
-      "market_cap": 4618634814281.552
     },
     {
       "ticker": "GOOG",
@@ -289,7 +285,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 248569176001.8409
+      "market_cap": 248430822407.48056
     },
     {
       "ticker": "MUFG",
@@ -365,7 +361,7 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 195801528227.77832
+      "market_cap": 195750827629.17603
     },
     {
       "ticker": "VZ",
@@ -458,6 +454,10 @@
     {
       "ticker": "BUD",
       "market_cap": 166594555520.8812
+    },
+    {
+      "ticker": "SCCO",
+      "market_cap": 162828178798.37396
     }
   ]
 }
