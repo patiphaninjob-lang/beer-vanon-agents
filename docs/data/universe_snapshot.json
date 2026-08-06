@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-06T00:10:39.216542+00:00",
+  "updated": "2026-08-06T13:04:42.120106+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -97,7 +97,7 @@
     },
     {
       "ticker": "SPCX",
-      "market_cap": 1426369214529.5881
+      "market_cap": 1427191270394.79
     },
     {
       "ticker": "TSLA",
@@ -197,7 +197,7 @@
     },
     {
       "ticker": "PLTR",
-      "market_cap": 379806118957.67267
+      "market_cap": 380716537385.874
     },
     {
       "ticker": "UNH",
@@ -209,7 +209,7 @@
     },
     {
       "ticker": "CVX",
-      "market_cap": 371253740515.5687
+      "market_cap": 365736427185.0586
     },
     {
       "ticker": "HSBC",
@@ -225,19 +225,19 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 341838337076.7201
+      "market_cap": 341226780301.60675
     },
     {
       "ticker": "MRK",
       "market_cap": 316952571699.33356
     },
     {
-      "ticker": "GS",
-      "market_cap": 312819970520.4459
-    },
-    {
       "ticker": "NFLX",
       "market_cap": 308964311251.86456
+    },
+    {
+      "ticker": "GS",
+      "market_cap": 308752339036.7754
     },
     {
       "ticker": "BABA",
@@ -301,7 +301,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 242679100555.46967
+      "market_cap": 242607795553.73398
     },
     {
       "ticker": "AXP",
@@ -328,12 +328,12 @@
       "market_cap": 222268343563.7004
     },
     {
-      "ticker": "TM",
-      "market_cap": 220113323827.9995
+      "ticker": "AMGN",
+      "market_cap": 220636022735.5957
     },
     {
-      "ticker": "AMGN",
-      "market_cap": 220109218138.36066
+      "ticker": "TM",
+      "market_cap": 220113323827.9995
     },
     {
       "ticker": "CRWD",
@@ -373,7 +373,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 190148813903.8086
+      "market_cap": 189851040861.23523
     },
     {
       "ticker": "BA",
@@ -413,7 +413,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 179206395574.27036
+      "market_cap": 179174363943.49493
     },
     {
       "ticker": "WDC",
@@ -441,7 +441,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 173678823526.00098
+      "market_cap": 173723551525.8789
     },
     {
       "ticker": "WELL",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "BUD",
-      "market_cap": 167756530375.36407
+      "market_cap": 167729433084.02698
     },
     {
       "ticker": "QCOM",
@@ -457,7 +457,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 165201704100.0
+      "market_cap": 165305656584.0
     }
   ]
 }
