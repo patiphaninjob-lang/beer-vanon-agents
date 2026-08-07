@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-07T01:44:58.978777+00:00",
+  "updated": "2026-08-07T11:58:25.805532+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -89,7 +89,7 @@
     },
     {
       "ticker": "AVGO",
-      "market_cap": 2000871727587.0562
+      "market_cap": 2000895538718.418
     },
     {
       "ticker": "SPCX",
@@ -133,7 +133,7 @@
     },
     {
       "ticker": "AMD",
-      "market_cap": 797820278659.4407
+      "market_cap": 798737386556.9927
     },
     {
       "ticker": "V",
@@ -185,7 +185,7 @@
     },
     {
       "ticker": "CAT",
-      "market_cap": 394708915872.1093
+      "market_cap": 393923002977.7183
     },
     {
       "ticker": "GE",
@@ -221,7 +221,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 342234194639.18805
+      "market_cap": 341621929665.6427
     },
     {
       "ticker": "MS",
@@ -241,7 +241,7 @@
     },
     {
       "ticker": "BABA",
-      "market_cap": 303947361888.18115
+      "market_cap": 303947537266.4078
     },
     {
       "ticker": "RTX",
@@ -301,7 +301,7 @@
     },
     {
       "ticker": "ANET",
-      "market_cap": 242163475538.5924
+      "market_cap": 242558733540.8452
     },
     {
       "ticker": "AXP",
@@ -333,7 +333,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 218500898023.01788
+      "market_cap": 219023853302.00195
     },
     {
       "ticker": "TMO",
@@ -349,7 +349,7 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 209261831860.7542
+      "market_cap": 209005456867.42993
     },
     {
       "ticker": "NVO",
@@ -369,7 +369,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 193619652770.9961
+      "market_cap": 193316444394.7567
     },
     {
       "ticker": "TMUS",
@@ -381,7 +381,7 @@
     },
     {
       "ticker": "SHOP",
-      "market_cap": 191326198719.06207
+      "market_cap": 189702784327.86053
     },
     {
       "ticker": "MRVL",
@@ -413,7 +413,7 @@
     },
     {
       "ticker": "DIS",
-      "market_cap": 181778016394.26123
+      "market_cap": 180749585428.30304
     },
     {
       "ticker": "TJX",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 176442210104.41876
+      "market_cap": 176473753298.44986
     },
     {
       "ticker": "UNP",
@@ -433,7 +433,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 174032177947.99805
+      "market_cap": 174076996948.2422
     },
     {
       "ticker": "UBS",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 166072768518.73767
+      "market_cap": 165968333636.29608
     },
     {
       "ticker": "BUD",
