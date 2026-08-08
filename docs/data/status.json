@@ -1,28 +1,32 @@
 {
-  "updated": "2026-08-07T19:57:03.340708",
+  "updated": "2026-08-08T07:46:51.846758",
   "latest": {
     "date": "2026-08-07",
-    "archive_key": "2026-08-07-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-08-07T19:57:03.326478",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-07&phase=premarket",
+    "archive_key": "2026-08-07-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-08-08T07:46:51.833637",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-07&phase=postmarket",
     "health": {
-      "status": "ok",
-      "issues": [],
+      "status": "warning",
+      "issues": [
+        "fallback_analysis 1"
+      ],
       "counts": {
         "stocks": 100,
         "expected_stocks": 100,
         "charts": 100,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 0
+        "fallback_analysis": 1
       },
       "missing": {
         "charts": [],
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": []
+        "fallback_analysis": [
+          "TJX"
+        ]
       }
     }
   },
@@ -54,28 +58,32 @@
       }
     },
     "postmarket": {
-      "date": "2026-08-06",
-      "archive_key": "2026-08-06-postmarket",
+      "date": "2026-08-07",
+      "archive_key": "2026-08-07-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-08-07T09:43:34.066902",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-06&phase=postmarket",
+      "generated": "2026-08-08T07:46:51.833637",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-07&phase=postmarket",
       "health": {
-        "status": "ok",
-        "issues": [],
+        "status": "warning",
+        "issues": [
+          "fallback_analysis 1"
+        ],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 0
+          "fallback_analysis": 1
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": []
+          "fallback_analysis": [
+            "TJX"
+          ]
         }
       }
     },
