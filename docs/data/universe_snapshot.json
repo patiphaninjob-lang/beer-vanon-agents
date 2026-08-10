@@ -1,9 +1,9 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-07T23:48:11.909164+00:00",
+  "updated": "2026-08-10T11:59:55.456514+00:00",
   "static_count": 139,
   "dynamic_count": 240,
-  "candidate_count": 263,
+  "candidate_count": 262,
   "new_dynamic_tickers": [
     "ABNB",
     "ABT",
@@ -125,7 +125,7 @@
     },
     {
       "ticker": "JPM",
-      "market_cap": 950359634796.1426
+      "market_cap": 950354699232.6942
     },
     {
       "ticker": "WMT",
@@ -209,11 +209,11 @@
     },
     {
       "ticker": "CVX",
-      "market_cap": 366030715209.96094
+      "market_cap": 365956702008.3695
     },
     {
       "ticker": "HSBC",
-      "market_cap": 355756765903.8101
+      "market_cap": 355747513187.5107
     },
     {
       "ticker": "HD",
@@ -225,7 +225,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 338879080211.46515
+      "market_cap": 339486429368.7157
     },
     {
       "ticker": "MRK",
@@ -285,7 +285,7 @@
     },
     {
       "ticker": "KLAC",
-      "market_cap": 258786182650.38712
+      "market_cap": 258839983977.5829
     },
     {
       "ticker": "MUFG",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 244725386011.5
+      "market_cap": 244581573511.5
     },
     {
       "ticker": "ANET",
@@ -317,7 +317,7 @@
     },
     {
       "ticker": "C",
-      "market_cap": 226449000000.0
+      "market_cap": 226453965705.0
     },
     {
       "ticker": "LIN",
@@ -333,7 +333,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 222321248962.40234
+      "market_cap": 221793121788.53577
     },
     {
       "ticker": "TMO",
@@ -405,7 +405,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 184207600663.00537
+      "market_cap": 184496522216.79688
     },
     {
       "ticker": "DIS",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 176578058574.80014
+      "market_cap": 176546496737.08124
     },
     {
       "ticker": "QCOM",
@@ -433,11 +433,11 @@
     },
     {
       "ticker": "BLK",
-      "market_cap": 176135212376.15027
+      "market_cap": 175991879503.60266
     },
     {
       "ticker": "ETN",
-      "market_cap": 174267309155.27344
+      "market_cap": 174222441156.00586
     },
     {
       "ticker": "UNP",
@@ -449,15 +449,15 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 167585256175.93842
+      "market_cap": 167690708500.15125
+    },
+    {
+      "ticker": "BKNG",
+      "market_cap": 166149432828.2752
     },
     {
       "ticker": "SCCO",
-      "market_cap": 166082067359.41736
-    },
-    {
-      "ticker": "GILD",
-      "market_cap": 165389531251.27524
+      "market_cap": 166082069396.36002
     }
   ]
 }
