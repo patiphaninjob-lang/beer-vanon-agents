@@ -1,9 +1,9 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-11T23:59:11.722634+00:00",
+  "updated": "2026-08-12T11:59:19.172027+00:00",
   "static_count": 139,
   "dynamic_count": 240,
-  "candidate_count": 263,
+  "candidate_count": 264,
   "new_dynamic_tickers": [
     "ABNB",
     "ABT",
@@ -189,7 +189,7 @@
     },
     {
       "ticker": "LRCX",
-      "market_cap": 389660486562.3169
+      "market_cap": 389673877192.47437
     },
     {
       "ticker": "CAT",
@@ -209,7 +209,7 @@
     },
     {
       "ticker": "UNH",
-      "market_cap": 365246600061.9094
+      "market_cap": 361003673706.32367
     },
     {
       "ticker": "HSBC",
@@ -220,12 +220,12 @@
       "market_cap": 353457932390.01105
     },
     {
-      "ticker": "PG",
-      "market_cap": 338135873229.2843
-    },
-    {
       "ticker": "MS",
       "market_cap": 338090051513.6719
+    },
+    {
+      "ticker": "PG",
+      "market_cap": 337530940248.53485
     },
     {
       "ticker": "MRK",
@@ -289,7 +289,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 249969696959.5
+      "market_cap": 249966303209.5
     },
     {
       "ticker": "ANET",
@@ -336,12 +336,12 @@
       "market_cap": 224623679538.7004
     },
     {
-      "ticker": "TMO",
-      "market_cap": 223697108030.0
+      "ticker": "AMGN",
+      "market_cap": 224136293395.9961
     },
     {
-      "ticker": "AMGN",
-      "market_cap": 223601131329.96423
+      "ticker": "TMO",
+      "market_cap": 223697108030.0
     },
     {
       "ticker": "SAN",
@@ -369,7 +369,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 195146578971.6513
+      "market_cap": 194999780224.54504
     },
     {
       "ticker": "MCD",
@@ -400,12 +400,12 @@
       "market_cap": 187674630566.11328
     },
     {
-      "ticker": "STX",
-      "market_cap": 186258044433.59375
-    },
-    {
       "ticker": "SCHW",
       "market_cap": 186249451120.28622
+    },
+    {
+      "ticker": "STX",
+      "market_cap": 185966364336.01074
     },
     {
       "ticker": "BA",
@@ -413,7 +413,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 178819798939.5863
+      "market_cap": 178851767183.5298
     },
     {
       "ticker": "DIS",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 178342310317.99316
+      "market_cap": 178388239318.84766
     },
     {
       "ticker": "BLK",
@@ -453,11 +453,11 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 166912798209.10803
+      "market_cap": 166807835073.88458
     },
     {
-      "ticker": "BKNG",
-      "market_cap": 164948368887.7339
+      "ticker": "RIO",
+      "market_cap": 164300986342.02905
     }
   ]
 }
