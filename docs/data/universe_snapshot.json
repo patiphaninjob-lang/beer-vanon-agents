@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-12T23:57:33.870416+00:00",
+  "updated": "2026-08-13T12:00:36.962624+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -66,6 +66,10 @@
     {
       "ticker": "AAPL",
       "market_cap": 4411090905000.0
+    },
+    {
+      "ticker": "GOOGL",
+      "market_cap": 4201471916345.5776
     },
     {
       "ticker": "GOOG",
@@ -149,7 +153,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 509191784606.9336
+      "market_cap": 530444415463.70825
     },
     {
       "ticker": "MA",
@@ -177,7 +181,7 @@
     },
     {
       "ticker": "COST",
-      "market_cap": 421116390721.8596
+      "market_cap": 421118610281.30347
     },
     {
       "ticker": "PLTR",
@@ -293,7 +297,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 248778617169.0166
+      "market_cap": 248775239544.02805
     },
     {
       "ticker": "AZN",
@@ -454,10 +458,6 @@
     {
       "ticker": "WELL",
       "market_cap": 165926120051.58575
-    },
-    {
-      "ticker": "SMFG",
-      "market_cap": 165504362576.89035
     }
   ]
 }
