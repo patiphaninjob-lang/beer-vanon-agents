@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-13T23:57:47.228363+00:00",
+  "updated": "2026-08-14T11:58:34.088237+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -153,7 +153,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 549413258667.9666
+      "market_cap": 552715153289.1896
     },
     {
       "ticker": "MA",
@@ -225,7 +225,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 335322700467.10785
+      "market_cap": 335923675774.9038
     },
     {
       "ticker": "MRK",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 248360932164.66833
+      "market_cap": 248357560164.737
     },
     {
       "ticker": "AZN",
@@ -325,7 +325,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 226051438018.79883
+      "market_cap": 225511703231.68927
     },
     {
       "ticker": "TM",
@@ -349,11 +349,11 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 210860114479.65094
+      "market_cap": 210564514484.99152
     },
     {
       "ticker": "STX",
-      "market_cap": 208823458442.9973
+      "market_cap": 209150988891.60156
     },
     {
       "ticker": "NVO",
@@ -421,7 +421,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 179414990212.2202
+      "market_cap": 179382921296.9137
     },
     {
       "ticker": "UNP",
@@ -433,7 +433,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 176073366784.66797
+      "market_cap": 176028033786.01074
     },
     {
       "ticker": "QCOM",
