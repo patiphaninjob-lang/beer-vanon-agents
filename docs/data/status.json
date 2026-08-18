@@ -1,11 +1,11 @@
 {
-  "updated": "2026-08-17T19:39:55.905044",
+  "updated": "2026-08-18T07:35:03.471392",
   "latest": {
     "date": "2026-08-17",
-    "archive_key": "2026-08-17-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-08-17T19:39:55.890566",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-17&phase=premarket",
+    "archive_key": "2026-08-17-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-08-18T07:35:03.460740",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-17&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -32,14 +32,14 @@
           "MSFT",
           "AMZN",
           "TSM",
-          "AVGO",
           "SPCX",
+          "AVGO",
           "META",
           "TSLA",
           "SKHY",
           "MU",
-          "BRK-B",
           "BRK-A",
+          "BRK-B",
           "LLY",
           "JPM",
           "WMT",
@@ -77,28 +77,51 @@
       }
     },
     "postmarket": {
-      "date": "2026-08-14",
-      "archive_key": "2026-08-14-postmarket",
+      "date": "2026-08-17",
+      "archive_key": "2026-08-17-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-08-15T07:35:16.868501",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-14&phase=postmarket",
+      "generated": "2026-08-18T07:35:03.460740",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-08-17&phase=postmarket",
       "health": {
-        "status": "ok",
-        "issues": [],
+        "status": "warning",
+        "issues": [
+          "fallback_analysis 100"
+        ],
         "counts": {
           "stocks": 100,
           "expected_stocks": 100,
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 0
+          "fallback_analysis": 100
         },
         "missing": {
           "charts": [],
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": []
+          "fallback_analysis": [
+            "NVDA",
+            "AAPL",
+            "GOOGL",
+            "GOOG",
+            "MSFT",
+            "AMZN",
+            "TSM",
+            "SPCX",
+            "AVGO",
+            "META",
+            "TSLA",
+            "SKHY",
+            "MU",
+            "BRK-A",
+            "BRK-B",
+            "LLY",
+            "JPM",
+            "WMT",
+            "AMD",
+            "ASML"
+          ]
         }
       }
     },
