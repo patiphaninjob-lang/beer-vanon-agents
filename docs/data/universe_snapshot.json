@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-18T23:35:38.009118+00:00",
+  "updated": "2026-08-19T11:41:07.825853+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -50,11 +50,11 @@
     "EOG",
     "EPD",
     "EQNR",
-    "ET",
     "FDX",
     "GD",
     "GEV",
-    "GLW"
+    "GLW",
+    "GOOG"
   ],
   "error": "",
   "selected_count": 100,
@@ -153,7 +153,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 511087074350.9396
+      "market_cap": 508060162225.7834
     },
     {
       "ticker": "MA",
@@ -209,7 +209,7 @@
     },
     {
       "ticker": "HSBC",
-      "market_cap": 353729194844.2059
+      "market_cap": 353681839041.72577
     },
     {
       "ticker": "UNH",
@@ -224,12 +224,12 @@
       "market_cap": 336516899270.7124
     },
     {
-      "ticker": "PG",
-      "market_cap": 334037516287.7799
-    },
-    {
       "ticker": "MRK",
       "market_cap": 333487585790.93384
+    },
+    {
+      "ticker": "PG",
+      "market_cap": 333439915363.39325
     },
     {
       "ticker": "NFLX",
@@ -289,7 +289,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 253945369500.88416
+      "market_cap": 253851390300.68222
     },
     {
       "ticker": "TXN",
@@ -309,7 +309,7 @@
     },
     {
       "ticker": "SNDK",
-      "market_cap": 240761371099.80713
+      "market_cap": 238045087735.39917
     },
     {
       "ticker": "C",
@@ -317,7 +317,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 229527134107.89642
+      "market_cap": 230076479339.5996
     },
     {
       "ticker": "AXP",
@@ -325,7 +325,7 @@
     },
     {
       "ticker": "BHP",
-      "market_cap": 226319334943.25842
+      "market_cap": 226295855898.35355
     },
     {
       "ticker": "TM",
@@ -333,7 +333,7 @@
     },
     {
       "ticker": "LIN",
-      "market_cap": 220673502738.99582
+      "market_cap": 220675809890.69052
     },
     {
       "ticker": "IBM",
@@ -349,7 +349,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 205135358337.40234
+      "market_cap": 204814116366.24597
     },
     {
       "ticker": "SAN",
@@ -409,7 +409,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 179820896512.66498
+      "market_cap": 179853043726.34012
     },
     {
       "ticker": "DIS",
@@ -453,7 +453,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 167485433786.01074
+      "market_cap": 167528566784.66797
     },
     {
       "ticker": "TJX",
