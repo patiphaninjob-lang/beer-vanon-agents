@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-19T23:35:48.550718+00:00",
+  "updated": "2026-08-20T11:43:17.820392+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -121,7 +121,7 @@
     },
     {
       "ticker": "MU",
-      "market_cap": 1058359946709.395
+      "market_cap": 1058365599189.765
     },
     {
       "ticker": "JPM",
@@ -157,7 +157,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 487620058067.54175
+      "market_cap": 490550584445.51306
     },
     {
       "ticker": "ABBV",
@@ -225,11 +225,11 @@
     },
     {
       "ticker": "MS",
-      "market_cap": 336769553283.6914
+      "market_cap": 336462410024.97687
     },
     {
       "ticker": "PG",
-      "market_cap": 335601656552.5708
+      "market_cap": 336203131813.7522
     },
     {
       "ticker": "NFLX",
@@ -305,7 +305,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 239316752075.1953
+      "market_cap": 238745344180.75708
     },
     {
       "ticker": "ANET",
@@ -397,7 +397,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 188695159352.74866
+      "market_cap": 188991119445.80078
     },
     {
       "ticker": "SHOP",
@@ -425,7 +425,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 179206395574.27036
+      "market_cap": 179174363943.49493
     },
     {
       "ticker": "BA",
@@ -456,8 +456,8 @@
       "market_cap": 166602363492.61963
     },
     {
-      "ticker": "ETN",
-      "market_cap": 164941833215.33203
+      "ticker": "BKNG",
+      "market_cap": 165049106868.0
     }
   ]
 }
