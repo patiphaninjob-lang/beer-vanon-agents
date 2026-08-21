@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-20T23:38:38.298419+00:00",
+  "updated": "2026-08-21T11:43:24.109542+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -133,7 +133,7 @@
     },
     {
       "ticker": "AMD",
-      "market_cap": 766373548921.6687
+      "market_cap": 766381719267.9482
     },
     {
       "ticker": "XOM",
@@ -348,16 +348,16 @@
       "market_cap": 217513224580.13153
     },
     {
+      "ticker": "SAN",
+      "market_cap": 207119055704.19443
+    },
+    {
       "ticker": "VZ",
       "market_cap": 204373386480.66455
     },
     {
       "ticker": "NVO",
       "market_cap": 204034543522.33954
-    },
-    {
-      "ticker": "SAN",
-      "market_cap": 202443965691.64407
     },
     {
       "ticker": "TTE",
