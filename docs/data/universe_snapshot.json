@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-21T23:37:11.623473+00:00",
+  "updated": "2026-08-24T11:44:38.800402+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 264,
@@ -157,7 +157,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 473275183588.49585
+      "market_cap": 476119499335.1487
     },
     {
       "ticker": "ABBV",
@@ -220,12 +220,12 @@
       "market_cap": 350160712614.808
     },
     {
-      "ticker": "MS",
-      "market_cap": 336415294953.41205
+      "ticker": "PG",
+      "market_cap": 336901683081.8717
     },
     {
-      "ticker": "PG",
-      "market_cap": 336298958096.1438
+      "ticker": "MS",
+      "market_cap": 336415294953.41205
     },
     {
       "ticker": "HD",
@@ -313,7 +313,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 237677522735.5957
+      "market_cap": 237515851497.18704
     },
     {
       "ticker": "SNDK",
@@ -349,7 +349,7 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 212657779466.27768
+      "market_cap": 212232058610.50534
     },
     {
       "ticker": "NVO",
@@ -393,7 +393,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 192647840300.0
+      "market_cap": 192950000000.0
     },
     {
       "ticker": "SHOP",
@@ -429,11 +429,15 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 174776376656.427
+      "market_cap": 174886353963.24072
+    },
+    {
+      "ticker": "UBS",
+      "market_cap": 174674240190.48026
     },
     {
       "ticker": "NEE",
-      "market_cap": 174492080365.80014
+      "market_cap": 174460891379.08124
     },
     {
       "ticker": "T",
@@ -454,10 +458,6 @@
     {
       "ticker": "BA",
       "market_cap": 169297255871.98212
-    },
-    {
-      "ticker": "QCOM",
-      "market_cap": 168825102800.75
     }
   ]
 }
