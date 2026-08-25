@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-24T23:34:38.861102+00:00",
+  "updated": "2026-08-25T11:44:26.121337+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -133,7 +133,7 @@
     },
     {
       "ticker": "AMD",
-      "market_cap": 745624805087.2205
+      "market_cap": 745632975433.5
     },
     {
       "ticker": "V",
@@ -197,7 +197,7 @@
     },
     {
       "ticker": "AMAT",
-      "market_cap": 384427218350.0775
+      "market_cap": 384251947863.66376
     },
     {
       "ticker": "CAT",
@@ -213,7 +213,7 @@
     },
     {
       "ticker": "HSBC",
-      "market_cap": 356801136089.7906
+      "market_cap": 356707912152.2604
     },
     {
       "ticker": "GE",
@@ -273,7 +273,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 256582749156.0
+      "market_cap": 256211556675.0
     },
     {
       "ticker": "WFC",
@@ -297,7 +297,7 @@
     },
     {
       "ticker": "BHP",
-      "market_cap": 246718113877.82767
+      "market_cap": 246853644413.75522
     },
     {
       "ticker": "AMGN",
@@ -357,7 +357,7 @@
     },
     {
       "ticker": "MRVL",
-      "market_cap": 205797954723.67596
+      "market_cap": 206063974680.98657
     },
     {
       "ticker": "ABT",
@@ -365,7 +365,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 198103816601.27252
+      "market_cap": 197840220971.3241
     },
     {
       "ticker": "PEP",
@@ -420,12 +420,12 @@
       "market_cap": 180900634725.5
     },
     {
-      "ticker": "ADI",
-      "market_cap": 180792103177.2754
-    },
-    {
       "ticker": "STX",
       "market_cap": 180103071762.01343
+    },
+    {
+      "ticker": "ADI",
+      "market_cap": 179856170150.66635
     },
     {
       "ticker": "T",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "RIO",
-      "market_cap": 170499497319.3156
+      "market_cap": 170442456564.05463
     },
     {
       "ticker": "QCOM",
