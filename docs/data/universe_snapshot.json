@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-25T23:37:19.957911+00:00",
+  "updated": "2026-08-26T11:46:06.757438+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -161,7 +161,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 462428506064.8643
+      "market_cap": 459665979675.2959
     },
     {
       "ticker": "CSCO",
@@ -213,7 +213,7 @@
     },
     {
       "ticker": "HSBC",
-      "market_cap": 357701721593.5078
+      "market_cap": 357697337633.62317
     },
     {
       "ticker": "UNH",
@@ -229,11 +229,11 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 338578277188.55975
+      "market_cap": 337972552736.7865
     },
     {
       "ticker": "HD",
-      "market_cap": 336905789382.8938
+      "market_cap": 337099375704.4114
     },
     {
       "ticker": "GS",
@@ -281,7 +281,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 254062688917.4919
+      "market_cap": 253987760166.5001
     },
     {
       "ticker": "BHP",
@@ -349,11 +349,11 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 215178174859.0849
+      "market_cap": 215127325159.24432
     },
     {
       "ticker": "SAN",
-      "market_cap": 212813914276.004
+      "market_cap": 213240802288.58325
     },
     {
       "ticker": "VZ",
@@ -373,7 +373,7 @@
     },
     {
       "ticker": "TTE",
-      "market_cap": 196622412154.8518
+      "market_cap": 196484885281.3255
     },
     {
       "ticker": "APH",
@@ -405,7 +405,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 186519086120.60547
+      "market_cap": 186226997231.7406
     },
     {
       "ticker": "SCCO",
@@ -428,16 +428,12 @@
       "market_cap": 181062733426.43173
     },
     {
-      "ticker": "UBS",
-      "market_cap": 177755372543.2599
-    },
-    {
       "ticker": "T",
       "market_cap": 176585981337.27322
     },
     {
       "ticker": "NEE",
-      "market_cap": 175649685796.66498
+      "market_cap": 175681087308.34012
     },
     {
       "ticker": "WELL",
@@ -448,16 +444,20 @@
       "market_cap": 173711429764.9063
     },
     {
-      "ticker": "DE",
-      "market_cap": 170345851212.26233
+      "ticker": "QCOM",
+      "market_cap": 171487789185.15045
     },
     {
-      "ticker": "QCOM",
-      "market_cap": 168625555791.71234
+      "ticker": "DE",
+      "market_cap": 170238729201.20392
     },
     {
       "ticker": "CRM",
       "market_cap": 168460111999.51172
+    },
+    {
+      "ticker": "BA",
+      "market_cap": 166831305268.81073
     }
   ]
 }
