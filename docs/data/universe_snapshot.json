@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-08-27T21:07:54.362379+00:00",
+  "updated": "2026-08-27T23:15:37.660159+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -157,7 +157,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 483889309105.69995
+      "market_cap": 486797414219.28436
     },
     {
       "ticker": "ABBV",
@@ -225,7 +225,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 332719346789.67865
+      "market_cap": 333315656289.656
     },
     {
       "ticker": "NFLX",
@@ -353,7 +353,7 @@
     },
     {
       "ticker": "SAN",
-      "market_cap": 212074756643.9721
+      "market_cap": 211650202945.00665
     },
     {
       "ticker": "CRM",
@@ -385,7 +385,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 192013238416.2567
+      "market_cap": 192314402770.9961
     },
     {
       "ticker": "TTE",
@@ -432,6 +432,10 @@
       "market_cap": 180820692412.4569
     },
     {
+      "ticker": "UBS",
+      "market_cap": 178181490715.6535
+    },
+    {
       "ticker": "QCOM",
       "market_cap": 175995005744.07523
     },
@@ -441,7 +445,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 174116603651.59012
+      "market_cap": 174085481778.16498
     },
     {
       "ticker": "WELL",
@@ -453,11 +457,7 @@
     },
     {
       "ticker": "DE",
-      "market_cap": 168079229801.20392
-    },
-    {
-      "ticker": "WDC",
-      "market_cap": 166569916128.0
+      "market_cap": 168184992956.26233
     }
   ]
 }
