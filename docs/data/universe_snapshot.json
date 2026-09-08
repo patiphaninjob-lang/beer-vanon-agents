@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-09-07T16:28:44.020053+00:00",
+  "updated": "2026-09-08T01:12:23.084290+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -157,7 +157,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 503383637012.54175
+      "market_cap": 506408900231.51306
     },
     {
       "ticker": "ORCL",
@@ -225,7 +225,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 340132139039.8667
+      "market_cap": 340389982981.2854
     },
     {
       "ticker": "DELL",
@@ -281,7 +281,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 265908717438.41772
+      "market_cap": 266005844329.37885
     },
     {
       "ticker": "SNDK",
@@ -289,7 +289,7 @@
     },
     {
       "ticker": "AZN",
-      "market_cap": 252330760474.84128
+      "market_cap": 252329121760.47202
     },
     {
       "ticker": "GEV",
@@ -361,7 +361,7 @@
     },
     {
       "ticker": "NVO",
-      "market_cap": 206019997032.4434
+      "market_cap": 205921904035.65536
     },
     {
       "ticker": "APH",
@@ -373,7 +373,7 @@
     },
     {
       "ticker": "TD",
-      "market_cap": 199278222610.00824
+      "market_cap": 199292088429.69513
     },
     {
       "ticker": "TTE",
@@ -385,7 +385,7 @@
     },
     {
       "ticker": "STX",
-      "market_cap": 192484662887.0161
+      "market_cap": 192786566650.39062
     },
     {
       "ticker": "SCHW",
@@ -416,6 +416,10 @@
       "market_cap": 181837393434.0758
     },
     {
+      "ticker": "UBS",
+      "market_cap": 181524853483.39362
+    },
+    {
       "ticker": "MCD",
       "market_cap": 180936864789.03046
     },
@@ -433,7 +437,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 174033162613.46002
+      "market_cap": 174002055654.41626
     },
     {
       "ticker": "BLK",
@@ -450,10 +454,6 @@
     {
       "ticker": "WELL",
       "market_cap": 170177490518.46326
-    },
-    {
-      "ticker": "UBS",
-      "market_cap": 169559283481.91342
     },
     {
       "ticker": "WDC",
