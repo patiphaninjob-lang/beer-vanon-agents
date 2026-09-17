@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-17T09:23:04.224363",
+  "updated": "2026-09-17T23:32:03.232433",
   "latest": {
-    "date": "2026-09-16",
-    "archive_key": "2026-09-16-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-09-17T09:23:04.210791",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-16&phase=postmarket",
+    "date": "2026-09-17",
+    "archive_key": "2026-09-17-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-09-17T23:32:03.221189",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-17&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,6 +25,7 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
+          "NVDA",
           "AAPL",
           "GOOGL",
           "GOOG",
@@ -36,15 +37,14 @@
           "AVGO",
           "TSLA",
           "SKHY",
+          "MU",
           "BRK-A",
           "BRK-B",
-          "MU",
           "LLY",
           "JPM",
-          "WMT",
           "AMD",
-          "V",
-          "XOM"
+          "WMT",
+          "V"
         ]
       }
     }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-09-16",
-      "archive_key": "2026-09-16-premarket",
+      "date": "2026-09-17",
+      "archive_key": "2026-09-17-premarket",
       "run_phase": "premarket",
-      "generated": "2026-09-16T23:25:00.765972",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-16&phase=premarket",
+      "generated": "2026-09-17T23:32:03.221189",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-17&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -162,13 +162,13 @@
             "AVGO",
             "TSLA",
             "SKHY",
-            "BRK-B",
-            "BRK-A",
             "MU",
+            "BRK-A",
+            "BRK-B",
             "LLY",
             "JPM",
-            "WMT",
             "AMD",
+            "WMT",
             "V"
           ]
         }
