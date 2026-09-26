@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-25T23:49:18.693429",
+  "updated": "2026-09-26T09:31:06.500401",
   "latest": {
     "date": "2026-09-25",
-    "archive_key": "2026-09-25-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-09-25T23:49:18.679870",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-25&phase=premarket",
+    "archive_key": "2026-09-25-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-09-26T09:31:06.486826",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-25&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-09-24",
-      "archive_key": "2026-09-24-postmarket",
+      "date": "2026-09-25",
+      "archive_key": "2026-09-25-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-09-25T09:27:42.623351",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-24&phase=postmarket",
+      "generated": "2026-09-26T09:31:06.486826",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-25&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -108,8 +108,8 @@
             "MSFT",
             "AMZN",
             "TSM",
-            "META",
             "SPCX",
+            "META",
             "AVGO",
             "TSLA",
             "SKHY",
