@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-29T10:33:58.326684",
+  "updated": "2026-09-30T10:04:58.004068",
   "latest": {
-    "date": "2026-09-28",
-    "archive_key": "2026-09-28-postmarket",
+    "date": "2026-09-29",
+    "archive_key": "2026-09-29-postmarket",
     "run_phase": "postmarket",
-    "generated": "2026-09-29T10:33:58.312452",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-28&phase=postmarket",
+    "generated": "2026-09-30T10:04:57.993879",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-29&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -44,7 +44,7 @@
           "AMD",
           "JPM",
           "WMT",
-          "V"
+          "ASML"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-09-28",
-      "archive_key": "2026-09-28-postmarket",
+      "date": "2026-09-29",
+      "archive_key": "2026-09-29-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-09-29T10:33:58.312452",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-28&phase=postmarket",
+      "generated": "2026-09-30T10:04:57.993879",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-09-29&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -120,7 +120,7 @@
             "AMD",
             "JPM",
             "WMT",
-            "V"
+            "ASML"
           ]
         }
       }
