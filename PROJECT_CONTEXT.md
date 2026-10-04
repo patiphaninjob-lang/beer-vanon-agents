@@ -4,7 +4,7 @@
 - **Beer Top 100 Agent (US):** Fully operational. Last verified run: 2026-05-30.
 - **Beer Thai Top 100 Agent (Thai):** Operational and synchronized with US features. Full 100-stock run completed and deployed (2026-05-30).
 - **Analysis Quality:** Sanitized via `_flatten_content`. All reports follow the 6-angle Chapter 34 framework.
-- **Email System:** Simple Notification mode (Short message + Web link).
+- **Email System:** Disabled (ยกเลิกการส่งอีเมลแจ้งเตือนการทำการบ้านทั้งหมด ทั้งใน GitHub Actions และ agent scripts).
 - **Deployment Rule:** Every code fix or functional change MUST be followed by a `git push`.
 
 ## Latest Confirmed Decisions
@@ -15,6 +15,7 @@
 - **Reserved Filenames:** Identified `COM7.BK.json` as a Windows-reserved filename. GitHub Actions (Linux) handles it, but Windows agents must exclude it from `git add`.
 - **Unified Multi-Note Tooltips (v3.7.0):** Corrected the Home page tooltip logic to display all notes of the same day (looping through notes list) rather than just the first note, resolving the issue where some notes were completely missing on the Home page, making tooltip data rendering 100% identical and consistent across Home, History, and Journal pages.
 - **Dynamic Emotion Connection Line (v3.9.62):** Expanded bidirectional selection to support weekend date notes by mapping them to the closest trading day candle (`nearestCandle`). Prevented the tooltip and connector from closing when clicking emotion cards by adding click outside listener exclusions.
+- **Homework Email Notifications Disabled (v3.9.63):** ยกเลิกการส่งอีเมลแจ้งเตือนการทำการบ้านทั้งหมด โดยตั้งค่าเริ่มต้นของสคริปต์ US agent ให้ปิดการส่งอีเมล (Default disabled) และปลด Gmail secrets ออกจาก workflow ใน GitHub Actions เพื่อหยุดการส่งอีเมลรบกวนถาวร
 
 ## Current Architecture / Workflow
 1. `beer_top100_agent.py` & `thai_top100_agent.py`: Main agent scripts.

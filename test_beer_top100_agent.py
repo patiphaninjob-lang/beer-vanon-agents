@@ -191,6 +191,20 @@ class ProcessSingleStockFallbackTest(unittest.TestCase):
         self.assertEqual(health["status"], "ok")
         self.assertEqual(health["issues"], [])
 
+    def test_send_email_disabled_by_default(self):
+        with patch.dict(top100.os.environ, {}, clear=False):
+            if "ENABLE_EMAIL" in top100.os.environ:
+                del top100.os.environ["ENABLE_EMAIL"]
+            with patch("smtplib.SMTP_SSL") as mock_smtp:
+                top100.send_email("<html></html>", "Test Subject")
+                mock_smtp.assert_not_called()
+
+    def test_send_email_forced_with_credentials(self):
+        with patch.dict(top100.os.environ, {"GMAIL_USER": "test@gmail.com", "GMAIL_APP_PASSWORD": "pw"}, clear=False):
+            with patch("smtplib.SMTP_SSL") as mock_smtp:
+                top100.send_email("<html></html>", "Test Subject", force=True)
+                mock_smtp.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

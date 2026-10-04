@@ -1180,8 +1180,12 @@ def build_completion_email(date_str: str, archive_url: str, total_stocks: int, t
 
 # # --- Email # ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---# ---─
 
-def send_email(html: str, subject: str, images: list = None):
+def send_email(html: str, subject: str, images: list = None, force: bool = False):
     """images = list of (cid_string, jpeg_bytes) tuples"""
+    if not force and os.getenv("ENABLE_EMAIL", "false").lower() not in ("true", "1", "yes"):
+        safe_print("  📧 ข้ามการส่ง email แจ้งเตือน (ระบบปิดการส่งอีเมลการบ้าน)")
+        return
+
     user     = os.getenv("GMAIL_USER")
     password = os.getenv("GMAIL_APP_PASSWORD")
     if not user or not password or "xxxx" in (password or ""):
@@ -1260,7 +1264,8 @@ def main():
     parser.add_argument("--date", help="Archive/report date in YYYY-MM-DD format (default: today)")
     parser.add_argument("--no-web", action="store_true", help="Do not write docs/data archive")
     parser.add_argument("--no-history", action="store_true", help="Do not write docs/history-data files")
-    parser.add_argument("--no-email", action="store_true", help="Do not write docs/data archive or send email")
+    parser.add_argument("--no-email", action="store_true", default=False, help="Explicitly disable email sending")
+    parser.add_argument("--send-email", action="store_true", default=False, help="Explicitly enable sending email report (disabled by default)")
     parser.add_argument("--out-html", help="Optional path to save the generated HTML report")
     args = parser.parse_args()
 
@@ -1456,11 +1461,12 @@ def main():
         Path(args.out_html).write_text(report_html, encoding="utf-8")
         safe_print(f"  ✅ บันทึก HTML preview: {args.out_html}")
 
-    if args.no_email:
-        safe_print("📧 ข้ามการส่ง email (--no-email)")
+    should_send_email = getattr(args, "send_email", False) and not getattr(args, "no_email", False)
+    if not should_send_email:
+        safe_print("📧 ยกเลิกการส่ง email แจ้งเตือนการทำการบ้าน (Disabled by default)")
     else:
         safe_print("📧 ส่ง email แจ้งเตือนสถานะ...")
-        send_email(email_html, subject, None)
+        send_email(email_html, subject, None, force=True)
 
     safe_print(f"\n✅ เสร็จสิ้น! วิเคราะห์ {len(stocks_data)}/{len(top_stocks)} หุ้น ใน {time.time() - start_all:.1f}s")
 
