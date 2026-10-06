@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-06T05:34:07.550663",
+  "updated": "2026-10-06T10:56:13.572579",
   "latest": {
     "date": "2026-10-05",
-    "archive_key": "2026-10-05-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-10-06T05:34:07.540988",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-05&phase=premarket",
+    "archive_key": "2026-10-05-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-10-06T10:56:13.563445",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-05&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -26,7 +26,6 @@
         "market_cap": [],
         "fallback_analysis": [
           "NVDA",
-          "AAPL",
           "GOOGL",
           "GOOG",
           "MSFT",
@@ -44,7 +43,8 @@
           "LLY",
           "JPM",
           "WMT",
-          "ASML"
+          "ASML",
+          "V"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-10-02",
-      "archive_key": "2026-10-02-postmarket",
+      "date": "2026-10-05",
+      "archive_key": "2026-10-05-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-10-03T09:54:49.482160",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-02&phase=postmarket",
+      "generated": "2026-10-06T10:56:13.563445",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-05&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -102,7 +102,6 @@
           "market_cap": [],
           "fallback_analysis": [
             "NVDA",
-            "AAPL",
             "GOOGL",
             "GOOG",
             "MSFT",
@@ -114,13 +113,14 @@
             "TSLA",
             "SKHY",
             "MU",
-            "BRK-A",
             "BRK-B",
+            "BRK-A",
             "AMD",
             "LLY",
             "JPM",
             "WMT",
-            "ASML"
+            "ASML",
+            "V"
           ]
         }
       }

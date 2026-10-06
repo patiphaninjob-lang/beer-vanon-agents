@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-10-05T21:36:08.560393+00:00",
+  "updated": "2026-10-06T02:58:14.412856+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 264,
@@ -62,10 +62,6 @@
     {
       "ticker": "NVDA",
       "market_cap": 5768718152618.408
-    },
-    {
-      "ticker": "AAPL",
-      "market_cap": 4858256793981.934
     },
     {
       "ticker": "GOOGL",
@@ -149,7 +145,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 614192583297.3104
+      "market_cap": 610523425368.2834
     },
     {
       "ticker": "JNJ",
@@ -217,7 +213,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 339227766451.2854
+      "market_cap": 338970802883.8667
     },
     {
       "ticker": "PANW",
@@ -261,7 +257,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 274975080444.53754
+      "market_cap": 274975090008.08
     },
     {
       "ticker": "KLAC",
@@ -425,7 +421,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 167978582369.99512
+      "market_cap": 168021842370.60547
     },
     {
       "ticker": "T",
@@ -458,6 +454,10 @@
     {
       "ticker": "WDC",
       "market_cap": 159229307789.52148
+    },
+    {
+      "ticker": "NEE",
+      "market_cap": 159118415236.15988
     }
   ]
 }
