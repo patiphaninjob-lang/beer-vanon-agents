@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-07T10:20:58.180340",
+  "updated": "2026-10-08T01:48:11.887899",
   "latest": {
-    "date": "2026-10-06",
-    "archive_key": "2026-10-06-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-10-07T10:20:58.171339",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-06&phase=postmarket",
+    "date": "2026-10-08",
+    "archive_key": "2026-10-08-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-10-08T01:48:11.880840",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-08&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -27,7 +27,6 @@
         "fallback_analysis": [
           "NVDA",
           "AAPL",
-          "GOOGL",
           "GOOG",
           "MSFT",
           "AMZN",
@@ -38,12 +37,13 @@
           "TSLA",
           "SKHY",
           "MU",
-          "BRK-B",
           "BRK-A",
-          "AMD",
+          "BRK-B",
           "LLY",
+          "AMD",
           "JPM",
           "WMT",
+          "V",
           "ASML"
         ]
       }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-10-06",
-      "archive_key": "2026-10-06-premarket",
+      "date": "2026-10-08",
+      "archive_key": "2026-10-08-premarket",
       "run_phase": "premarket",
-      "generated": "2026-10-07T03:10:52.218168",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-06&phase=premarket",
+      "generated": "2026-10-08T01:48:11.880840",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-08&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -152,7 +152,6 @@
           "fallback_analysis": [
             "NVDA",
             "AAPL",
-            "GOOGL",
             "GOOG",
             "MSFT",
             "AMZN",
@@ -165,10 +164,11 @@
             "MU",
             "BRK-A",
             "BRK-B",
-            "AMD",
             "LLY",
+            "AMD",
             "JPM",
             "WMT",
+            "V",
             "ASML"
           ]
         }
