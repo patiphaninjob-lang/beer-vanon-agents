@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-08T10:40:48.204997",
+  "updated": "2026-10-09T01:51:43.668321",
   "latest": {
-    "date": "2026-10-07",
-    "archive_key": "2026-10-07-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-10-08T10:40:48.184007",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-07&phase=postmarket",
+    "date": "2026-10-09",
+    "archive_key": "2026-10-09-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-10-09T01:51:43.659058",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-09&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -26,6 +26,7 @@
         "market_cap": [],
         "fallback_analysis": [
           "NVDA",
+          "AAPL",
           "GOOGL",
           "GOOG",
           "MSFT",
@@ -41,10 +42,9 @@
           "BRK-B",
           "LLY",
           "AMD",
-          "JPM",
           "WMT",
-          "V",
-          "ASML"
+          "JPM",
+          "V"
         ]
       }
     }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-10-08",
-      "archive_key": "2026-10-08-premarket",
+      "date": "2026-10-09",
+      "archive_key": "2026-10-09-premarket",
       "run_phase": "premarket",
-      "generated": "2026-10-08T01:48:11.880840",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-08&phase=premarket",
+      "generated": "2026-10-09T01:51:43.659058",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-09&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -152,6 +152,7 @@
           "fallback_analysis": [
             "NVDA",
             "AAPL",
+            "GOOGL",
             "GOOG",
             "MSFT",
             "AMZN",
@@ -166,10 +167,9 @@
             "BRK-B",
             "LLY",
             "AMD",
-            "JPM",
             "WMT",
-            "V",
-            "ASML"
+            "JPM",
+            "V"
           ]
         }
       }
