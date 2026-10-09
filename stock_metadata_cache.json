@@ -5029,5 +5029,13 @@
       }
     ],
     "homework_updated": "2026-08-15"
+  },
+  "PBR": {
+    "name": "Petróleo Brasileiro S.A. - Petrobras",
+    "sector": "Energy",
+    "pe_ratio": 6.395202,
+    "exchange": "NYQ",
+    "homework_34": null,
+    "homework_updated": null
   }
 }

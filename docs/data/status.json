@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-09T10:55:26.809320",
+  "updated": "2026-10-10T01:25:26.532839",
   "latest": {
-    "date": "2026-10-08",
-    "archive_key": "2026-10-08-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-10-09T10:55:26.799899",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-08&phase=postmarket",
+    "date": "2026-10-10",
+    "archive_key": "2026-10-10-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-10-10T01:25:26.527508",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-10&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -38,8 +38,8 @@
           "TSLA",
           "SKHY",
           "MU",
-          "BRK-A",
           "BRK-B",
+          "BRK-A",
           "LLY",
           "AMD",
           "JPM",
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-10-09",
-      "archive_key": "2026-10-09-premarket",
+      "date": "2026-10-10",
+      "archive_key": "2026-10-10-premarket",
       "run_phase": "premarket",
-      "generated": "2026-10-09T01:51:43.659058",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-09&phase=premarket",
+      "generated": "2026-10-10T01:25:26.527508",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-10&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -163,12 +163,12 @@
             "TSLA",
             "SKHY",
             "MU",
-            "BRK-A",
             "BRK-B",
+            "BRK-A",
             "LLY",
             "AMD",
-            "WMT",
             "JPM",
+            "WMT",
             "V"
           ]
         }
