@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-10-12T20:18:53.404407+00:00",
+  "updated": "2026-10-12T21:54:39.968192+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -153,7 +153,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 532546234007.4791
+      "market_cap": 535746760237.74347
     },
     {
       "ticker": "MA",
@@ -205,7 +205,7 @@
     },
     {
       "ticker": "DELL",
-      "market_cap": 366329856964.95056
+      "market_cap": 366711367899.1089
     },
     {
       "ticker": "MRK",
@@ -213,7 +213,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 355833391110.1666
+      "market_cap": 356103137698.39325
     },
     {
       "ticker": "UNH",
@@ -333,7 +333,7 @@
     },
     {
       "ticker": "C",
-      "market_cap": 221304222495.27606
+      "market_cap": 221287457341.88153
     },
     {
       "ticker": "BHP",
@@ -445,7 +445,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 165726396948.2422
+      "market_cap": 165683727947.99805
     },
     {
       "ticker": "PBR",
@@ -453,7 +453,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 163770153644.7202
+      "market_cap": 163740881111.9137
     },
     {
       "ticker": "TMUS",
