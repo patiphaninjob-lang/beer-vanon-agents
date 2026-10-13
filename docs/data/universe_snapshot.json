@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-10-12T21:54:39.968192+00:00",
+  "updated": "2026-10-13T03:35:40.171078+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 263,
@@ -153,7 +153,7 @@
     },
     {
       "ticker": "INTC",
-      "market_cap": 535746760237.74347
+      "market_cap": 532546234007.4791
     },
     {
       "ticker": "MA",
@@ -213,7 +213,7 @@
     },
     {
       "ticker": "PG",
-      "market_cap": 356103137698.39325
+      "market_cap": 355833391110.1666
     },
     {
       "ticker": "UNH",
@@ -249,7 +249,7 @@
     },
     {
       "ticker": "SHEL",
-      "market_cap": 289098447371.45856
+      "market_cap": 289098457792.86
     },
     {
       "ticker": "BABA",
@@ -361,7 +361,7 @@
     },
     {
       "ticker": "ADI",
-      "market_cap": 196852294962.8827
+      "market_cap": 196854720156.25
     },
     {
       "ticker": "TTE",
@@ -445,7 +445,7 @@
     },
     {
       "ticker": "ETN",
-      "market_cap": 165683727947.99805
+      "market_cap": 165726396948.2422
     },
     {
       "ticker": "PBR",
@@ -453,7 +453,7 @@
     },
     {
       "ticker": "NEE",
-      "market_cap": 163740881111.9137
+      "market_cap": 163770153644.7202
     },
     {
       "ticker": "TMUS",
