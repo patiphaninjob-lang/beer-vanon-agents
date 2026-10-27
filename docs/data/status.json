@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-27T03:35:29.223381",
+  "updated": "2026-10-27T10:02:29.195038",
   "latest": {
     "date": "2026-10-26",
-    "archive_key": "2026-10-26-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-10-27T03:35:29.214650",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-26&phase=premarket",
+    "archive_key": "2026-10-26-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-10-27T10:02:29.186238",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-26&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -36,15 +36,15 @@
           "META",
           "AVGO",
           "TSLA",
-          "BRK-A",
           "BRK-B",
+          "BRK-A",
           "LLY",
           "SKHY",
           "MU",
           "WMT",
           "JPM",
           "AMD",
-          "V"
+          "XOM"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-10-23",
-      "archive_key": "2026-10-23-postmarket",
+      "date": "2026-10-26",
+      "archive_key": "2026-10-26-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-10-24T09:32:59.618474",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-23&phase=postmarket",
+      "generated": "2026-10-27T10:02:29.186238",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-26&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -103,8 +103,8 @@
           "fallback_analysis": [
             "NVDA",
             "AAPL",
-            "GOOGL",
             "MSFT",
+            "GOOGL",
             "GOOG",
             "AMZN",
             "TSM",
@@ -112,15 +112,15 @@
             "META",
             "AVGO",
             "TSLA",
-            "BRK-A",
             "BRK-B",
+            "BRK-A",
             "LLY",
             "SKHY",
             "MU",
             "WMT",
             "JPM",
             "AMD",
-            "V"
+            "XOM"
           ]
         }
       }
