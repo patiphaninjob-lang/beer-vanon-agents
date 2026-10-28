@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-27T10:02:29.195038",
+  "updated": "2026-10-28T10:11:32.343323",
   "latest": {
-    "date": "2026-10-26",
-    "archive_key": "2026-10-26-postmarket",
+    "date": "2026-10-27",
+    "archive_key": "2026-10-27-postmarket",
     "run_phase": "postmarket",
-    "generated": "2026-10-27T10:02:29.186238",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-26&phase=postmarket",
+    "generated": "2026-10-28T10:11:32.334576",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-27&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -33,18 +33,18 @@
           "AMZN",
           "TSM",
           "SPCX",
-          "META",
           "AVGO",
           "TSLA",
+          "META",
           "BRK-B",
           "BRK-A",
           "LLY",
-          "SKHY",
           "MU",
+          "SKHY",
           "WMT",
-          "JPM",
           "AMD",
-          "XOM"
+          "JPM",
+          "V"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-10-26",
-      "archive_key": "2026-10-26-postmarket",
+      "date": "2026-10-27",
+      "archive_key": "2026-10-27-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-10-27T10:02:29.186238",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-26&phase=postmarket",
+      "generated": "2026-10-28T10:11:32.334576",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-27&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -109,18 +109,18 @@
             "AMZN",
             "TSM",
             "SPCX",
-            "META",
             "AVGO",
             "TSLA",
+            "META",
             "BRK-B",
             "BRK-A",
             "LLY",
-            "SKHY",
             "MU",
+            "SKHY",
             "WMT",
-            "JPM",
             "AMD",
-            "XOM"
+            "JPM",
+            "V"
           ]
         }
       }
