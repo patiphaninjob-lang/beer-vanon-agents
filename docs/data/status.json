@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-29T01:09:10.864758",
+  "updated": "2026-10-29T03:09:12.023046",
   "latest": {
-    "date": "2026-10-29",
-    "archive_key": "2026-10-29-premarket",
+    "date": "2026-10-28",
+    "archive_key": "2026-10-28-premarket",
     "run_phase": "premarket",
-    "generated": "2026-10-29T01:09:10.855976",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-29&phase=premarket",
+    "generated": "2026-10-29T03:09:12.013832",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-28&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,7 +25,6 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "NVDA",
           "AAPL",
           "GOOGL",
           "GOOG",
@@ -36,15 +35,16 @@
           "AVGO",
           "TSLA",
           "META",
-          "SKHY",
-          "BRK-B",
           "BRK-A",
+          "BRK-B",
+          "SKHY",
           "LLY",
           "MU",
           "WMT",
           "AMD",
           "JPM",
-          "V"
+          "V",
+          "XOM"
         ]
       }
     }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-10-29",
-      "archive_key": "2026-10-29-premarket",
+      "date": "2026-10-28",
+      "archive_key": "2026-10-28-premarket",
       "run_phase": "premarket",
-      "generated": "2026-10-29T01:09:10.855976",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-29&phase=premarket",
+      "generated": "2026-10-29T03:09:12.013832",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-28&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -150,7 +150,6 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "NVDA",
             "AAPL",
             "GOOGL",
             "GOOG",
@@ -161,15 +160,16 @@
             "AVGO",
             "TSLA",
             "META",
-            "SKHY",
-            "BRK-B",
             "BRK-A",
+            "BRK-B",
+            "SKHY",
             "LLY",
             "MU",
             "WMT",
             "AMD",
             "JPM",
-            "V"
+            "V",
+            "XOM"
           ]
         }
       }
