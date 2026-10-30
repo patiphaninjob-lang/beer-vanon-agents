@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-30T01:24:55.711565",
+  "updated": "2026-10-30T10:33:55.637414",
   "latest": {
-    "date": "2026-10-30",
-    "archive_key": "2026-10-30-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-10-30T01:24:55.703058",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-30&phase=premarket",
+    "date": "2026-10-29",
+    "archive_key": "2026-10-29-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-10-30T10:33:55.628709",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-29&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-10-28",
-      "archive_key": "2026-10-28-postmarket",
+      "date": "2026-10-29",
+      "archive_key": "2026-10-29-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-10-29T10:24:16.048571",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-28&phase=postmarket",
+      "generated": "2026-10-30T10:33:55.628709",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-10-29&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -103,22 +103,22 @@
           "fallback_analysis": [
             "NVDA",
             "AAPL",
-            "GOOGL",
             "MSFT",
+            "GOOGL",
             "GOOG",
             "AMZN",
             "TSM",
             "SPCX",
             "AVGO",
-            "TSLA",
             "META",
-            "SKHY",
+            "TSLA",
+            "LLY",
             "BRK-A",
             "BRK-B",
-            "LLY",
+            "SKHY",
             "MU",
-            "AMD",
             "WMT",
+            "AMD",
             "JPM",
             "V"
           ]
