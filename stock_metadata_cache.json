@@ -5037,5 +5037,13 @@
     "exchange": "NYQ",
     "homework_34": null,
     "homework_updated": null
+  },
+  "ACN": {
+    "name": "Accenture plc",
+    "sector": "Technology",
+    "pe_ratio": 19.111357,
+    "exchange": "NYQ",
+    "homework_34": null,
+    "homework_updated": null
   }
 }
