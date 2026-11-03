@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-03T11:54:36.896698",
+  "updated": "2026-11-04T02:28:48.557775",
   "latest": {
-    "date": "2026-11-02",
-    "archive_key": "2026-11-02-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-11-03T11:54:36.888127",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-02&phase=postmarket",
+    "date": "2026-11-04",
+    "archive_key": "2026-11-04-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-11-04T02:28:48.551863",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-04&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,17 +25,17 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "AAPL",
           "NVDA",
+          "AAPL",
           "MSFT",
           "GOOGL",
           "GOOG",
           "AMZN",
           "TSM",
           "SPCX",
-          "TSLA",
           "META",
           "AVGO",
+          "TSLA",
           "LLY",
           "BRK-A",
           "BRK-B",
@@ -43,8 +43,8 @@
           "WMT",
           "MU",
           "JPM",
-          "V",
-          "AMD"
+          "AMD",
+          "V"
         ]
       }
     }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-11-02",
-      "archive_key": "2026-11-02-premarket",
+      "date": "2026-11-04",
+      "archive_key": "2026-11-04-premarket",
       "run_phase": "premarket",
-      "generated": "2026-11-03T06:28:44.923973",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-02&phase=premarket",
+      "generated": "2026-11-04T02:28:48.551863",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-04&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -150,17 +150,17 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "AAPL",
             "NVDA",
+            "AAPL",
             "MSFT",
             "GOOGL",
             "GOOG",
             "AMZN",
             "TSM",
             "SPCX",
-            "TSLA",
             "META",
             "AVGO",
+            "TSLA",
             "LLY",
             "BRK-A",
             "BRK-B",
@@ -168,8 +168,8 @@
             "WMT",
             "MU",
             "JPM",
-            "V",
-            "AMD"
+            "AMD",
+            "V"
           ]
         }
       }
