@@ -5045,5 +5045,13 @@
     "exchange": "NYQ",
     "homework_34": null,
     "homework_updated": null
+  },
+  "SONY": {
+    "name": "Sony Group Corporation",
+    "sector": "Technology",
+    "pe_ratio": 22.644793,
+    "exchange": "NYQ",
+    "homework_34": null,
+    "homework_updated": null
   }
 }
