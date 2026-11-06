@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-06T11:24:40.818634",
+  "updated": "2026-11-07T01:57:16.150320",
   "latest": {
-    "date": "2026-11-05",
-    "archive_key": "2026-11-05-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-11-06T11:24:40.802493",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-05&phase=postmarket",
+    "date": "2026-11-07",
+    "archive_key": "2026-11-07-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-11-07T01:57:16.136582",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-07&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,7 +25,6 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "AAPL",
           "NVDA",
           "MSFT",
           "GOOGL",
@@ -34,8 +33,8 @@
           "TSM",
           "SPCX",
           "META",
-          "AVGO",
           "TSLA",
+          "AVGO",
           "BRK-B",
           "BRK-A",
           "LLY",
@@ -44,6 +43,7 @@
           "SKHY",
           "V",
           "MU",
+          "AMD",
           "XOM"
         ]
       }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-11-06",
-      "archive_key": "2026-11-06-premarket",
+      "date": "2026-11-07",
+      "archive_key": "2026-11-07-premarket",
       "run_phase": "premarket",
-      "generated": "2026-11-06T02:45:04.150692",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-06&phase=premarket",
+      "generated": "2026-11-07T01:57:16.136582",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-07&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -150,7 +150,6 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "AAPL",
             "NVDA",
             "MSFT",
             "GOOGL",
@@ -159,8 +158,8 @@
             "TSM",
             "SPCX",
             "META",
-            "AVGO",
             "TSLA",
+            "AVGO",
             "BRK-B",
             "BRK-A",
             "LLY",
@@ -169,6 +168,7 @@
             "SKHY",
             "V",
             "MU",
+            "AMD",
             "XOM"
           ]
         }
