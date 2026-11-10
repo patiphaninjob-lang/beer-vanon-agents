@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-09T21:27:24.250619+00:00",
+  "updated": "2026-11-09T23:11:48.905660+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -62,10 +62,6 @@
     {
       "ticker": "AAPL",
       "market_cap": 5096290941058.96
-    },
-    {
-      "ticker": "NVDA",
-      "market_cap": 4314344445785.5225
     },
     {
       "ticker": "MSFT",
@@ -458,6 +454,10 @@
     {
       "ticker": "SMFG",
       "market_cap": 152289740378.75833
+    },
+    {
+      "ticker": "TJX",
+      "market_cap": 151939422416.8971
     }
   ]
 }
