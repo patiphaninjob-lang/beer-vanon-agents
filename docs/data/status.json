@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-10T07:10:23.596893",
+  "updated": "2026-11-10T12:36:32.535718",
   "latest": {
     "date": "2026-11-09",
-    "archive_key": "2026-11-09-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-11-10T07:10:23.587969",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-09&phase=premarket",
+    "archive_key": "2026-11-09-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-11-10T12:36:32.524639",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-09&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -26,6 +26,7 @@
         "market_cap": [],
         "fallback_analysis": [
           "AAPL",
+          "NVDA",
           "MSFT",
           "GOOGL",
           "GOOG",
@@ -43,8 +44,7 @@
           "JPM",
           "AMD",
           "MU",
-          "V",
-          "JNJ"
+          "V"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-11-06",
-      "archive_key": "2026-11-06-postmarket",
+      "date": "2026-11-09",
+      "archive_key": "2026-11-09-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-11-07T10:46:00.995257",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-06&phase=postmarket",
+      "generated": "2026-11-10T12:36:32.524639",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-09&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -110,17 +110,17 @@
             "TSM",
             "SPCX",
             "META",
-            "TSLA",
             "AVGO",
-            "BRK-A",
-            "BRK-B",
+            "TSLA",
             "LLY",
+            "BRK-B",
+            "BRK-A",
             "WMT",
             "SKHY",
             "JPM",
-            "V",
+            "AMD",
             "MU",
-            "AMD"
+            "V"
           ]
         }
       }
