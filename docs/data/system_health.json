@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T18:08:21.318877+00:00",
+  "updated": "2026-11-11T02:01:35.327297+00:00",
   "status": "warning",
   "checks": [
     {
@@ -12,30 +12,30 @@
       "name": "groq",
       "status": "ok",
       "message": "models reachable (11)",
-      "elapsed_ms": 1061
+      "elapsed_ms": 353
     },
     {
       "name": "gmail",
       "status": "ok",
       "message": "smtp login ok",
-      "elapsed_ms": 337
+      "elapsed_ms": 621
     },
     {
       "name": "universe",
       "status": "warning",
       "message": "static fallback (HTTPError: HTTP Error 403: Forbidden)",
-      "elapsed_ms": 59
+      "elapsed_ms": 128
     },
     {
       "name": "yfinance",
       "status": "ok",
       "message": "SPY and SPCX history ok",
-      "elapsed_ms": 2990
+      "elapsed_ms": 922
     },
     {
       "name": "archive_freshness",
       "status": "ok",
-      "message": "latest archive age 5.5h",
+      "message": "latest archive age -0.6h",
       "elapsed_ms": 0
     }
   ]
