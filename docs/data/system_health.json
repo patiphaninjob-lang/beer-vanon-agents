@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-12T03:11:01.453783+00:00",
-  "status": "warning",
+  "updated": "2026-11-12T18:32:27.285705+00:00",
+  "status": "ok",
   "checks": [
     {
       "name": "env",
@@ -12,30 +12,30 @@
       "name": "groq",
       "status": "ok",
       "message": "models reachable (11)",
-      "elapsed_ms": 774
+      "elapsed_ms": 439
     },
     {
       "name": "gmail",
       "status": "ok",
       "message": "smtp login ok",
-      "elapsed_ms": 490
+      "elapsed_ms": 484
     },
     {
       "name": "universe",
-      "status": "warning",
-      "message": "static fallback (HTTPError: HTTP Error 403: Forbidden)",
-      "elapsed_ms": 72
+      "status": "ok",
+      "message": "nasdaq_screener candidates 262, dynamic 240",
+      "elapsed_ms": 1490
     },
     {
       "name": "yfinance",
       "status": "ok",
       "message": "SPY and SPCX history ok",
-      "elapsed_ms": 799
+      "elapsed_ms": 966
     },
     {
       "name": "archive_freshness",
       "status": "ok",
-      "message": "latest archive age 0.5h",
+      "message": "latest archive age 6.7h",
       "elapsed_ms": 0
     }
   ]
