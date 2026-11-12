@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-12T02:41:36.441957",
+  "updated": "2026-11-12T11:47:36.720413",
   "latest": {
-    "date": "2026-11-12",
-    "archive_key": "2026-11-12-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-11-12T02:41:36.427211",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-12&phase=premarket",
+    "date": "2026-11-11",
+    "archive_key": "2026-11-11-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-11-12T11:47:36.705952",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-11&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -27,7 +27,6 @@
         "fallback_analysis": [
           "AAPL",
           "NVDA",
-          "MSFT",
           "GOOGL",
           "AMZN",
           "SPCX",
@@ -38,13 +37,14 @@
           "BRK-B",
           "WMT",
           "MU",
-          "AMD",
           "JPM",
+          "AMD",
           "V",
           "XOM",
           "JNJ",
           "MA",
-          "ABBV"
+          "ABBV",
+          "COST"
         ]
       }
     }
@@ -77,11 +77,11 @@
       }
     },
     "postmarket": {
-      "date": "2026-11-10",
-      "archive_key": "2026-11-10-postmarket",
+      "date": "2026-11-11",
+      "archive_key": "2026-11-11-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-11-11T10:45:26.993201",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-10&phase=postmarket",
+      "generated": "2026-11-12T11:47:36.705952",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-11&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -103,24 +103,24 @@
           "fallback_analysis": [
             "AAPL",
             "NVDA",
-            "MSFT",
             "GOOGL",
             "AMZN",
             "SPCX",
-            "META",
             "AVGO",
+            "META",
             "TSLA",
             "LLY",
             "BRK-B",
             "WMT",
+            "MU",
             "JPM",
             "AMD",
-            "MU",
             "V",
-            "JNJ",
             "XOM",
+            "JNJ",
             "MA",
-            "ABBV"
+            "ABBV",
+            "COST"
           ]
         }
       }
