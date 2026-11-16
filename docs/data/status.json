@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-14T11:11:07.277975",
+  "updated": "2026-11-17T05:01:07.989771",
   "latest": {
-    "date": "2026-11-13",
-    "archive_key": "2026-11-13-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-11-14T11:11:07.262598",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-13&phase=postmarket",
+    "date": "2026-11-17",
+    "archive_key": "2026-11-17-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-11-17T05:01:07.946861",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-17&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -25,26 +25,26 @@
         "market_indices": [],
         "market_cap": [],
         "fallback_analysis": [
-          "AAPL",
-          "NVDA",
           "MSFT",
+          "NVDA",
           "GOOGL",
           "GOOG",
           "AMZN",
           "TSM",
           "SPCX",
-          "AVGO",
           "META",
+          "AVGO",
           "TSLA",
           "LLY",
-          "BRK-A",
           "BRK-B",
+          "BRK-A",
           "WMT",
-          "SKHY",
           "JPM",
-          "MU",
+          "SKHY",
           "AMD",
-          "V"
+          "MU",
+          "V",
+          "XOM"
         ]
       }
     }
@@ -126,11 +126,11 @@
       }
     },
     "premarket": {
-      "date": "2026-11-14",
-      "archive_key": "2026-11-14-premarket",
+      "date": "2026-11-17",
+      "archive_key": "2026-11-17-premarket",
       "run_phase": "premarket",
-      "generated": "2026-11-14T02:30:20.034222",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-14&phase=premarket",
+      "generated": "2026-11-17T05:01:07.946861",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-17&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -150,26 +150,26 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "AAPL",
-            "NVDA",
             "MSFT",
+            "NVDA",
             "GOOGL",
             "GOOG",
             "AMZN",
             "TSM",
             "SPCX",
-            "AVGO",
             "META",
+            "AVGO",
             "TSLA",
             "LLY",
-            "BRK-A",
             "BRK-B",
+            "BRK-A",
             "WMT",
-            "SKHY",
             "JPM",
+            "SKHY",
             "AMD",
             "MU",
-            "V"
+            "V",
+            "XOM"
           ]
         }
       }
