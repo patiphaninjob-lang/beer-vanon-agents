@@ -5053,5 +5053,13 @@
     "exchange": "NYQ",
     "homework_34": null,
     "homework_updated": null
+  },
+  "ANT": {
+    "name": "Anthropic, PBC",
+    "sector": "Technology",
+    "pe_ratio": null,
+    "exchange": "NMS",
+    "homework_34": null,
+    "homework_updated": null
   }
 }
