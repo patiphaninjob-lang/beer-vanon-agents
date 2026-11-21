@@ -1,7 +1,7 @@
 {
   "date": "2026-11-20",
   "archive_key": "2026-11-20-postmarket",
-  "generated": "2026-11-21T11:57:01.686719",
+  "generated": "2026-11-21T15:49:09.310291",
   "run_phase": "postmarket",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
@@ -24,6 +24,14 @@
   },
   "market_news": {
     "news_list": [
+      {
+        "title": "$1 Million In Cash: Buy Stocks Now Or Wait?",
+        "summary": "Today's big story: Will 2027 Be A 2022 Repeat For Stocks.",
+        "provider": "Trefis",
+        "date": "2026-11-21",
+        "url": "https://www.trefis.com/stock/spy/articles/626553/1-million-in-cash-buy-stocks-now-or-wait/2026-11-20",
+        "ticker": "SPY"
+      },
       {
         "title": "Nasdaq 100 Ends Worst Week Since 2020, S&P 500 In Correction Territory As AI Rout Sours Sentiment —   ANT, NVDA, TTWO, ZS, CRWD In Focus",
         "summary": "Anthropic closed 8.5% lower on Friday, a day after gaining 17% in its debut.",
@@ -54,14 +62,6 @@
         "provider": "Trefis",
         "date": "2026-11-20",
         "url": "https://www.trefis.com/stock/spy/articles/627085/the-inflation-math-in-five-lines/2026-11-20",
-        "ticker": "SPY"
-      },
-      {
-        "title": "Managed Futures Are a Hedge Fund Staple. RSST Stacks $1 of Them on Top of $1 of U.S. Stocks",
-        "summary": "Hedge funds have leaned on trend-following futures for decades, yet most S&P 500 holders never touch them. One small ETF promises both in a single ticker, but the fine print on leverage and fees could change who should b",
-        "provider": "24/7 Wall St.",
-        "date": "2026-11-20",
-        "url": "https://247wallst.com/investing/etf/2026/11/20/managed-futures-are-a-hedge-fund-staple-rsst-stacks-1-of-them-on-top-of-1-of-u-s-stocks/",
         "ticker": "SPY"
       },
       {
@@ -122,14 +122,14 @@
       }
     ],
     "summary_bullets": [
+      "$1 Million In Cash: Buy Stocks Now Or Wait?",
       "Nasdaq 100 Ends Worst Week Since 2020, S&P 500 In Correction Territory As AI Rout Sours Sentiment —   ANT, NVDA, TTWO, ZS, CRWD In Focus",
-      "Why Did The Trade Deficit Nearly Triple To $105 Billion?",
-      "Warren Buffett’s 3 Biggest Investing Lessons for Anyone Retiring in 2027"
+      "Why Did The Trade Deficit Nearly Triple To $105 Billion?"
     ]
   },
   "universe": {
     "source": "nasdaq_screener",
-    "updated": "2026-11-21T03:58:32.206257+00:00",
+    "updated": "2026-11-21T08:48:58.829747+00:00",
     "static_count": 139,
     "dynamic_count": 240,
     "candidate_count": 260,
@@ -250,8 +250,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/ais-honeymoon-ended-wall-street-004604807.html"
         }
       ],
-      "analysis": "AAPL อยู่ในกลุ่ม Technology และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #1, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AAPL อยู่ในกลุ่ม Technology และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #1, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -328,8 +328,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/ais-honeymoon-ended-wall-street-004604807.html"
         }
       ],
-      "analysis": "MSFT อยู่ในกลุ่ม Technology และวันนี้ลง 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #2, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MSFT อยู่ในกลุ่ม Technology และวันนี้ลง 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #2, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -406,8 +406,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/zero-to-sixty-tesla-expands-cybercab-to-dallas-as-waymo-pauses-freeway-operations-this-week/cNbm5YSR91g"
         }
       ],
-      "analysis": "GOOGL อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GOOGL อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -484,8 +484,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/zero-to-sixty-tesla-expands-cybercab-to-dallas-as-waymo-pauses-freeway-operations-this-week/cNbm5YSR91g"
         }
       ],
-      "analysis": "GOOG อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #4, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GOOG อยู่ในกลุ่ม Communication Services และวันนี้ลง 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #4, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -562,8 +562,8 @@
           "url": "https://finance.yahoo.com/video/is-todays-market-showing-warning-signs-of-a-2000-bubble-185443509.html"
         }
       ],
-      "analysis": "NVDA อยู่ในกลุ่ม Technology และวันนี้ลง 14.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #5, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVDA อยู่ในกลุ่ม Technology และวันนี้ลง 14.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #5, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -640,8 +640,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/ais-honeymoon-ended-wall-street-004604807.html"
         }
       ],
-      "analysis": "AMZN อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 4.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMZN อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 4.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -718,8 +718,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/ant-stock-ends-lower-retail-investors-reportedly-bought-as-much-as-120-b-of-anthropic-beating-space-x-debut/cNbSHoQR91f"
         }
       ],
-      "analysis": "SPCX อยู่ในกลุ่ม Industrials และวันนี้ลง 7.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SPCX อยู่ในกลุ่ม Industrials และวันนี้ลง 7.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -796,8 +796,8 @@
           "url": "https://247wallst.com/videos/following-jensen-huang-exit-investors-fear-nvidias-ai-lead-will-collapse/"
         }
       ],
-      "analysis": "TSM อยู่ในกลุ่ม Technology และวันนี้ลง 9.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #8, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TSM อยู่ในกลุ่ม Technology และวันนี้ลง 9.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #8, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -874,8 +874,8 @@
           "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-november-19-dow-sp-500-nasdaq-anthropic-nvidia-141644188.html"
         }
       ],
-      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 12.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 12.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -952,8 +952,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/ais-honeymoon-ended-wall-street-004604807.html"
         }
       ],
-      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 5.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #10, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 5.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #10, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1030,8 +1030,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/3-ev-stocks-earnings-growth-231417251.html"
         }
       ],
-      "analysis": "TSLA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 7.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TSLA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 7.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1108,8 +1108,8 @@
           "url": "https://www.marketbeat.com/instant-alerts/transcript-what-bending-spoons-bsp-said-on-its-q3-earnings-call-2026-11-20/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1186,8 +1186,8 @@
           "url": "https://www.marketbeat.com/instant-alerts/transcript-what-bending-spoons-bsp-said-on-its-q3-earnings-call-2026-11-20/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "BRK-A อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #13, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BRK-A อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #13, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1264,8 +1264,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/cathie-wood-sold-nvidia-and-bought-78-million-of-anthropic-at-ipo/"
         }
       ],
-      "analysis": "LLY อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #14, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LLY อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #14, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1342,8 +1342,8 @@
           "url": "https://finance.yahoo.com/video/sozzi-anthropics-ipo-surges-is-amds-pullback-a-buy-181915349.html"
         }
       ],
-      "analysis": "ANT อยู่ในกลุ่ม Technology และวันนี้ลง 8.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ANT อยู่ในกลุ่ม Technology และวันนี้ลง 8.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1420,8 +1420,8 @@
           "url": "https://www.fool.com/coverage/stock-market-today/2026/11/20/stock-market-today-nov-20-amazon-shares-slide-on-ai-and-mega-cap-tech-sell-off/"
         }
       ],
-      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #16, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #16, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1498,8 +1498,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/jpmorgan-visa-mastercard-customer-emails-180707714.html"
         }
       ],
-      "analysis": "JPM อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #17, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "JPM อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #17, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1576,8 +1576,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/rba-vs-v-stock-better-154003929.html"
         }
       ],
-      "analysis": "V อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "V อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1654,8 +1654,8 @@
           "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-20-2026/card/anthropic-s-post-ipo-selloff-is-near-facebook-levels-of-pain-co8TaLZTppXgHnjPNRMr?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "SKHY อยู่ในกลุ่ม Technology และวันนี้ลง 13.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #19, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SKHY อยู่ในกลุ่ม Technology และวันนี้ลง 13.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #19, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1732,8 +1732,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/mets-owner-steve-cohens-fund-dumped-nearly-all-of-its-amd-and-bet-1-billion-that-microsoft-is-the-safer-ai-stock-amd-has-fallen-31-since/"
         }
       ],
-      "analysis": "AMD อยู่ในกลุ่ม Technology และวันนี้ลง 13.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMD อยู่ในกลุ่ม Technology และวันนี้ลง 13.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1810,8 +1810,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-stocks-jump-17-07-214150203.html"
         }
       ],
-      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 13.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 13.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1888,8 +1888,8 @@
           "url": "https://finance.yahoo.com/energy/articles/technipfmc-deepens-exxonmobil-ties-guyana-150200655.html"
         }
       ],
-      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #22, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #22, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1966,8 +1966,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/how-retirees-can-turn-750000-into-passive-income-with-these-5-dividend-stocks/"
         }
       ],
-      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2044,8 +2044,8 @@
           "url": "https://www.tikr.com/blog/a-4-7-billion-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261120-53j3h7w2"
         }
       ],
-      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #24, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #24, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2122,8 +2122,8 @@
           "url": "https://www.barrons.com/articles/senate-permitting-bill-energy-utility-stocks-d6da279b?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #25, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #25, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2200,8 +2200,8 @@
           "url": "https://www.trefis.com/stock/wmt/articles/627188/own-walmart-its-cash-lags-its-price/2026-11-20"
         }
       ],
-      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #26, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #26, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2278,8 +2278,8 @@
           "url": "https://www.tikr.com/blog/abrams-bison-investments-applied-materials-amat-stock?ref=yahoofinance&tlnk=yf-261120-fqw6rgjj"
         }
       ],
-      "analysis": "ASML อยู่ในกลุ่ม Technology และวันนี้ลง 6.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ASML อยู่ในกลุ่ม Technology และวันนี้ลง 6.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2356,8 +2356,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/coke-ko-quiet-collapse-45x-185359110.html"
         }
       ],
-      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #28, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #28, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2434,8 +2434,8 @@
           "url": "https://finance.yahoo.com/energy/articles/pbrs-280-000-bpd-capacity-140000396.html"
         }
       ],
-      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2512,8 +2512,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/how-retirees-can-turn-750000-into-passive-income-with-these-5-dividend-stocks/"
         }
       ],
-      "analysis": "PG อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #30, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PG อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #30, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2590,8 +2590,8 @@
           "url": "https://www.trefis.com/stock/anet/articles/627269/can-arista-networks-stock-fall-30/2026-11-20"
         }
       ],
-      "analysis": "CSCO อยู่ในกลุ่ม Technology และวันนี้ลง 4.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CSCO อยู่ในกลุ่ม Technology และวันนี้ลง 4.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2668,8 +2668,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/stanley-druckenmiller-dumps-google-stock-121500032.html"
         }
       ],
-      "analysis": "PLTR อยู่ในกลุ่ม Technology และวันนี้ลง 6.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PLTR อยู่ในกลุ่ม Technology และวันนี้ลง 6.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2746,8 +2746,8 @@
           "url": "https://www.investors.com/news/ross-stores-earnings-ross-stores-stock-q3-holiday-outlook/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #33, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #33, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2824,8 +2824,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/halo-faces-legal-setback-germany-141000944.html"
         }
       ],
-      "analysis": "MRK อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MRK อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2902,8 +2902,8 @@
           "url": "https://www.proactiveinvestors.com/companies/news/1102206/microsoft-s-copilot-strategy-offers-path-to-enterprise-ai-growth-says-bank-of-america-1102206.html"
         }
       ],
-      "analysis": "BAC อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #35, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BAC อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #35, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2980,8 +2980,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/does-raised-2026-guidance-change-151009036.html"
         }
       ],
-      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #36, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #36, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3058,8 +3058,8 @@
           "url": "https://www.barrons.com/articles/anthropic-ipo-didnt-save-ai-trade-44b37912?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "ORCL อยู่ในกลุ่ม Technology และวันนี้ลง 8.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ORCL อยู่ในกลุ่ม Technology และวันนี้ลง 8.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3136,8 +3136,8 @@
           "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-20-2026/card/the-few-stocks-defying-the-tech-selloff-PAYAB6pfefN2SlPPJfbh?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "UNH อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #38, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "UNH อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #38, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3214,8 +3214,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/mo-lifts-2026-eps-outlook-162400204.html"
         }
       ],
-      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3292,8 +3292,8 @@
           "url": "https://finance.yahoo.com/video/novartis-ceo-ai-could-cut-140414935.html"
         }
       ],
-      "analysis": "NVS อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #40, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVS อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #40, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3370,8 +3370,8 @@
           "url": "https://www.tikr.com/blog/bad-news-for-anthropic-more-than-60-of-token-traffic-now-carried-by-open-weight-models-per-palo-altos-ceo?ref=yahoofinance&tlnk=yf-261120-m2hfv55p"
         }
       ],
-      "analysis": "PANW อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #41, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PANW อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #41, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3448,8 +3448,8 @@
           "url": "https://www.cryptoprowl.com/releases/hsbc-launches-ethereum-based-money-market-fund-7987"
         }
       ],
-      "analysis": "HSBC อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "HSBC อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3526,8 +3526,8 @@
           "url": "https://www.fool.com/coverage/better-buy/2026/11/20/amd-is-down-26-and-intel-is-down-42-which-ai-stock-is-worth-buying-on-the-dip/"
         }
       ],
-      "analysis": "INTC อยู่ในกลุ่ม Technology และวันนี้ลง 8.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "INTC อยู่ในกลุ่ม Technology และวันนี้ลง 8.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3604,8 +3604,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-astrazeneca-could-sense-etfs-160904771.html"
         }
       ],
-      "analysis": "AZN อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AZN อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3682,8 +3682,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/hf-sinclair-dino-names-shawn-201212839.html"
         }
       ],
-      "analysis": "SHEL อยู่ในกลุ่ม Energy และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #45, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SHEL อยู่ในกลุ่ม Energy และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #45, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3760,8 +3760,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/sandisk-tumbles-8-as-trendforce-turns-bearish-on-2027-nand-prices-micron-falls-5-sk-hynix-slides-4/"
         }
       ],
-      "analysis": "MS อยู่ในกลุ่ม Financial Services และวันนี้ลง 5.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #46, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MS อยู่ในกลุ่ม Financial Services และวันนี้ลง 5.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #46, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3838,8 +3838,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-industrial-select-sector-110501357.html"
         }
       ],
-      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3916,8 +3916,8 @@
           "url": "https://www.marketbeat.com/articles/block-by-block-cash-app-builds-a-stronger-foundation/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "RY อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "RY อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3994,8 +3994,8 @@
           "url": "https://www.marketbeat.com/instant-alerts/event-thermo-fisher-scientific-sees-faster-2027-growth-as-biotech-spending-recovers-2026-11-19/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "TMO อยู่ในกลุ่ม Healthcare และวันนี้ลง 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #49, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TMO อยู่ในกลุ่ม Healthcare และวันนี้ลง 2.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #49, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4072,8 +4072,8 @@
           "url": "https://247wallst.com/investing/2026/11/18/ford-yields-5-27-but-these-3-auto-dividends-come-with-different-risks/"
         }
       ],
-      "analysis": "TM อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TM อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4150,8 +4150,8 @@
           "url": "https://www.trefis.com/stock/lscc/articles/626876/what-have-lattice-stock-holders-had-to-sit-through/2026-11-19"
         }
       ],
-      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 7.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 7.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4228,8 +4228,8 @@
           "url": "https://www.tikr.com/blog/inside-brad-gerstners-portfolio-every-move-he-made-in-the-third-quarter?ref=yahoofinance&tlnk=yf-261119-8874cxx4"
         }
       ],
-      "analysis": "AMAT อยู่ในกลุ่ม Technology และวันนี้ลง 10.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #52, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMAT อยู่ในกลุ่ม Technology และวันนี้ลง 10.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #52, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4306,8 +4306,8 @@
           "url": "https://www.americanbanker.com/news/wells-fargo-grapples-with-change-in-venerable-business-line"
         }
       ],
-      "analysis": "WFC อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #53, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WFC อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #53, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4384,8 +4384,8 @@
           "url": "https://www.trefis.com/stock/lly/articles/626833/eli-lilly-stopped-touting-dose-counts-should-you-worry/2026-11-19"
         }
       ],
-      "analysis": "AMGN อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #54, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMGN อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #54, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4462,8 +4462,8 @@
           "url": "https://www.investors.com/news/technology/crowdstrike-zscaler-merger-create-cybersecurity-giant/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "CRWD อยู่ในกลุ่ม Technology และวันนี้ลง 5.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CRWD อยู่ในกลุ่ม Technology และวันนี้ลง 5.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4540,8 +4540,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-industrial-select-sector-110501357.html"
         }
       ],
-      "analysis": "CAT อยู่ในกลุ่ม Industrials และวันนี้ลง 5.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CAT อยู่ในกลุ่ม Industrials และวันนี้ลง 5.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4618,8 +4618,8 @@
           "url": "https://www.fool.com/investing/2026/11/20/netflix-stock-is-down-36-and-wall-street-keeps-dow/"
         }
       ],
-      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #57, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #57, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4696,8 +4696,8 @@
           "url": "https://www.trefis.com/stock/be/articles/625601/is-bloom-energy-worth-177-after-three-guidance-raises/2026-11-17"
         }
       ],
-      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4774,8 +4774,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/ai-startup-dreamteam-raises-capital-110000538.html"
         }
       ],
-      "analysis": "SAP อยู่ในกลุ่ม Technology และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SAP อยู่ในกลุ่ม Technology และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4852,8 +4852,8 @@
           "url": "https://www.tikr.com/blog/trump-says-nvidias-blackwell-could-reach-china-in-2-to-3-years-nvidias-75-outlook-assumes-zero-china?ref=yahoofinance&tlnk=yf-261120-mmw37mjc"
         }
       ],
-      "analysis": "LRCX อยู่ในกลุ่ม Technology และวันนี้ลง 10.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #60, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LRCX อยู่ในกลุ่ม Technology และวันนี้ลง 10.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #60, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4930,8 +4930,8 @@
           "url": "https://finance.yahoo.com/video/goldman-sees-inflation-cooling-end-170105093.html"
         }
       ],
-      "analysis": "GS อยู่ในกลุ่ม Financial Services และวันนี้ลง 6.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GS อยู่ในกลุ่ม Financial Services และวันนี้ลง 6.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5008,8 +5008,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/bank-montreal-tsx-bmo-reached-071212527.html"
         }
       ],
-      "analysis": "IBM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #62, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "IBM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #62, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5086,8 +5086,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/cracks-ai-cap-ex-boom-215000924.html"
         }
       ],
-      "analysis": "ANET อยู่ในกลุ่ม Technology และวันนี้ลง 11.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #63, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ANET อยู่ในกลุ่ม Technology และวันนี้ลง 11.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #63, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5164,8 +5164,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/icici-bank-hits-52-week-164500260.html"
         }
       ],
-      "analysis": "MUFG อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MUFG อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5242,8 +5242,8 @@
           "url": "https://www.tikr.com/blog/how-many-shares-of-bristol-myers-squibb-merck-or-gilead-sciences-pay-1000-a-month-in-dividends?ref=yahoofinancedividend&tlnk=yf-261120-cfw7cr39"
         }
       ],
-      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5320,8 +5320,8 @@
           "url": "https://247wallst.com/personal-finance/2026/11/20/warren-buffetts-3-biggest-investing-lessons-for-anyone-retiring-in-2027/"
         }
       ],
-      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #66, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #66, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5398,8 +5398,8 @@
           "url": "https://wwd.com/sourcing-journal/industry-news/everful-raises-48-5-million-funding-round-ai-commerce-1239429533/"
         }
       ],
-      "analysis": "BABA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #67, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BABA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #67, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5476,8 +5476,8 @@
           "url": "https://www.barrons.com/articles/tokenized-stocks-are-weird-regular-stocks-may-be-weirder-33bb5066?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5554,8 +5554,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/amazon-mcdonald-just-backed-uber-134946614.html"
         }
       ],
-      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #69, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #69, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5632,8 +5632,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/verizon-stock-worth-buying-cash-153800368.html"
         }
       ],
-      "analysis": "VZ อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "VZ อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5710,8 +5710,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/the-same-10000-in-pepsi-and-coca-cola-could-produce-very-different-results-by-2030/"
         }
       ],
-      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5788,8 +5788,8 @@
           "url": "https://www.tikr.com/blog/better-dividend-stock-totalenergies-vs-mplx?ref=yahoofinancedividend&tlnk=yf-261118-5rg44pw3"
         }
       ],
-      "analysis": "TTE อยู่ในกลุ่ม Energy และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #72, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TTE อยู่ในกลุ่ม Energy และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #72, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5866,8 +5866,8 @@
           "url": "https://www.tikr.com/blog/caterpillar-has-lost-44-since-june-despite-strong-order-rates-and-a-record-backlog?ref=yahoofinance&tlnk=yf-261120-qgc2qgx3"
         }
       ],
-      "analysis": "GEV อยู่ในกลุ่ม Industrials และวันนี้ลง 7.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #73, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GEV อยู่ในกลุ่ม Industrials และวันนี้ลง 7.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #73, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5944,8 +5944,8 @@
           "url": "https://www.cryptoprowl.com/releases/canada-proposes-stablecoin-rules-banning-yield-payments-7462"
         }
       ],
-      "analysis": "TD อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TD อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6022,8 +6022,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/rare-citi-signal-seen-just-141209545.html"
         }
       ],
-      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #75, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #75, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6100,8 +6100,8 @@
           "url": "https://finance.yahoo.com/video/arrow-exploration-ceo-icaco-success-171131689.html"
         }
       ],
-      "analysis": "ABT อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #76, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ABT อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #76, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6178,8 +6178,8 @@
           "url": "https://www.trefis.com/stock/hpe/articles/627189/what-hpe-holders-should-watch-in-monday-s-margin/2026-11-20"
         }
       ],
-      "analysis": "DELL อยู่ในกลุ่ม Technology และวันนี้ลง 11.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DELL อยู่ในกลุ่ม Technology และวันนี้ลง 11.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6256,8 +6256,8 @@
           "url": "https://www.barchart.com/story/news/8817789/welltower-stock-is-wall-street-bullish-or-bearish"
         }
       ],
-      "analysis": "WELL อยู่ในกลุ่ม Real Estate และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WELL อยู่ในกลุ่ม Real Estate และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6334,8 +6334,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/t-mobile-us-tmus-shows-110957380.html"
         }
       ],
-      "analysis": "TMUS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #79, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TMUS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #79, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6412,8 +6412,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/nextera-energys-ytd-rally-beats-141600778.html"
         }
       ],
-      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6490,8 +6490,8 @@
           "url": "https://www.trefis.com/stock/glw/articles/626872/how-much-of-corning-stocks-rise-came-from-sales/2026-11-19"
         }
       ],
-      "analysis": "APH อยู่ในกลุ่ม Technology และวันนี้ลง 7.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #81, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "APH อยู่ในกลุ่ม Technology และวันนี้ลง 7.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #81, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6568,8 +6568,8 @@
           "url": "https://finance.yahoo.com/markets/commodities/articles/bhp-rio-tinto-executives-meet-013702068.html"
         }
       ],
-      "analysis": "BHP อยู่ในกลุ่ม Basic Materials และวันนี้ลง 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BHP อยู่ในกลุ่ม Basic Materials และวันนี้ลง 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6646,8 +6646,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-merck-134800098.html"
         }
       ],
-      "analysis": "UNP อยู่ในกลุ่ม Industrials และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #83, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "UNP อยู่ในกลุ่ม Industrials และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #83, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6724,8 +6724,8 @@
           "url": "https://www.bankless.com/read/news/bitcoin-falls-below-60k-as-etf-outflows-mount"
         }
       ],
-      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6802,8 +6802,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/3-us-ai-infrastructure-stocks-152001324.html"
         }
       ],
-      "analysis": "ADI อยู่ในกลุ่ม Technology และวันนี้ลง 8.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ADI อยู่ในกลุ่ม Technology และวันนี้ลง 8.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6880,8 +6880,8 @@
           "url": "https://247wallst.com/investing/2026/11/19/1000-invested-in-eli-lilly-10-years-ago-would-be-worth-a-fortune-today/"
         }
       ],
-      "analysis": "NVO อยู่ในกลุ่ม Healthcare และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVO อยู่ในกลุ่ม Healthcare และวันนี้ลง 2.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6958,8 +6958,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/onto-innovation-vs-kla-semiconductor-115600131.html"
         }
       ],
-      "analysis": "KLAC อยู่ในกลุ่ม Technology และวันนี้ลง 10.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #87, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "KLAC อยู่ในกลุ่ม Technology และวันนี้ลง 10.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #87, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7036,8 +7036,8 @@
           "url": "https://247wallst.com/investing/etf/2026/11/20/2-farm-etfs-own-what-every-grocery-store-depends-on/"
         }
       ],
-      "analysis": "DE อยู่ในกลุ่ม Industrials และวันนี้ลง 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #88, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DE อยู่ในกลุ่ม Industrials และวันนี้ลง 2.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #88, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7114,8 +7114,8 @@
           "url": "https://www.tikr.com/blog/amd-sinks-another-4-as-chip-rout-deepens-after-short-report-flags-its-own-china-problem?ref=yahoofinance&tlnk=yf-261120-4m34cpwv"
         }
       ],
-      "analysis": "ARM อยู่ในกลุ่ม Technology และวันนี้ลง 14.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #89, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ARM อยู่ในกลุ่ม Technology และวันนี้ลง 14.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #89, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7192,8 +7192,8 @@
           "url": "https://finance.yahoo.com/energy/articles/oil-price-still-high-boon-141200847.html"
         }
       ],
-      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7270,8 +7270,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/intc-capitalize-ai-growth-expanded-150500460.html"
         }
       ],
-      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 7.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 7.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7348,8 +7348,8 @@
           "url": "https://www.retailbankerinternational.com/news/foreign-lenders-target-german-savings/"
         }
       ],
-      "analysis": "SAN อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #92, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SAN อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #92, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7426,8 +7426,8 @@
           "url": "https://www.tikr.com/blog/an-18-billion-hedge-fund-just-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261119-wfwvjg3h"
         }
       ],
-      "analysis": "SHOP อยู่ในกลุ่ม Technology และวันนี้ลง 6.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SHOP อยู่ในกลุ่ม Technology และวันนี้ลง 6.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7504,8 +7504,8 @@
           "url": "https://uk.news.yahoo.com/sony-defeats-2-billion-uk-125646144.html"
         }
       ],
-      "analysis": "SONY อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #94, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SONY อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #94, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7582,8 +7582,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/pfizer-near-term-support-resistance-162129518.html"
         }
       ],
-      "analysis": "PFE อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #95, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PFE อยู่ในกลุ่ม Healthcare และวันนี้ลง 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #95, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7660,8 +7660,8 @@
           "url": "https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-162136581.html"
         }
       ],
-      "analysis": "BUD อยู่ในกลุ่ม Consumer Defensive และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #96, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BUD อยู่ในกลุ่ม Consumer Defensive และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #96, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7738,8 +7738,8 @@
           "url": "https://247wallst.com/personal-finance/2026/11/19/a-retiree-with-500000-in-schwab-investments-tries-to-sell-during-a-market-slide-and-finds-the-website-locked-out-another-2-drop-could-cost-him-10000/"
         }
       ],
-      "analysis": "SCHW อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SCHW อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7816,8 +7816,8 @@
           "url": "https://www.tikr.com/blog/stanley-druckenmiller-dan-loeb-and-12-other-big-funds-sold-danaher-last-quarter-while-26-bought-whos-right?ref=yahoofinance&tlnk=yf-261120-7j639x8m"
         }
       ],
-      "analysis": "DHR อยู่ในกลุ่ม Healthcare และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DHR อยู่ในกลุ่ม Healthcare และวันนี้ลง 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7894,8 +7894,8 @@
           "url": "https://www.investors.com/news/ross-stores-earnings-ross-stores-stock-q3-holiday-outlook/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "TJX อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #99, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TJX อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #99, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7972,8 +7972,8 @@
           "url": "https://finance.yahoo.com/technology/articles/lumen-technologies-700m-pcf-win-141100810.html"
         }
       ],
-      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -8006,8 +8006,7 @@
   "health": {
     "status": "warning",
     "issues": [
-      "missing_charts 1",
-      "fallback_analysis 100"
+      "missing_charts 1"
     ],
     "counts": {
       "stocks": 100,
@@ -8015,7 +8014,7 @@
       "charts": 99,
       "homework_complete": 100,
       "market_indices": 3,
-      "fallback_analysis": 100
+      "fallback_analysis": 0
     },
     "missing": {
       "charts": [
@@ -8024,28 +8023,7 @@
       "homework": [],
       "market_indices": [],
       "market_cap": [],
-      "fallback_analysis": [
-        "AAPL",
-        "MSFT",
-        "GOOGL",
-        "GOOG",
-        "NVDA",
-        "AMZN",
-        "SPCX",
-        "TSM",
-        "AVGO",
-        "META",
-        "TSLA",
-        "BRK-B",
-        "BRK-A",
-        "LLY",
-        "ANT",
-        "WMT",
-        "JPM",
-        "V",
-        "SKHY",
-        "AMD"
-      ]
+      "fallback_analysis": []
     }
   }
 }

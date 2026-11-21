@@ -1,16 +1,15 @@
 {
-  "updated": "2026-11-21T11:57:01.698824",
+  "updated": "2026-11-21T15:49:09.328627",
   "latest": {
     "date": "2026-11-20",
     "archive_key": "2026-11-20-postmarket",
     "run_phase": "postmarket",
-    "generated": "2026-11-21T11:57:01.686719",
+    "generated": "2026-11-21T15:49:09.310291",
     "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-20&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
-        "missing_charts 1",
-        "fallback_analysis 100"
+        "missing_charts 1"
       ],
       "counts": {
         "stocks": 100,
@@ -18,7 +17,7 @@
         "charts": 99,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 100
+        "fallback_analysis": 0
       },
       "missing": {
         "charts": [
@@ -27,28 +26,7 @@
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": [
-          "AAPL",
-          "MSFT",
-          "GOOGL",
-          "GOOG",
-          "NVDA",
-          "AMZN",
-          "SPCX",
-          "TSM",
-          "AVGO",
-          "META",
-          "TSLA",
-          "BRK-B",
-          "BRK-A",
-          "LLY",
-          "ANT",
-          "WMT",
-          "JPM",
-          "V",
-          "SKHY",
-          "AMD"
-        ]
+        "fallback_analysis": []
       }
     }
   },
@@ -83,13 +61,12 @@
       "date": "2026-11-20",
       "archive_key": "2026-11-20-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-11-21T11:57:01.686719",
+      "generated": "2026-11-21T15:49:09.310291",
       "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-20&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
-          "missing_charts 1",
-          "fallback_analysis 100"
+          "missing_charts 1"
         ],
         "counts": {
           "stocks": 100,
@@ -97,7 +74,7 @@
           "charts": 99,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 100
+          "fallback_analysis": 0
         },
         "missing": {
           "charts": [
@@ -106,28 +83,7 @@
           "homework": [],
           "market_indices": [],
           "market_cap": [],
-          "fallback_analysis": [
-            "AAPL",
-            "MSFT",
-            "GOOGL",
-            "GOOG",
-            "NVDA",
-            "AMZN",
-            "SPCX",
-            "TSM",
-            "AVGO",
-            "META",
-            "TSLA",
-            "BRK-B",
-            "BRK-A",
-            "LLY",
-            "ANT",
-            "WMT",
-            "JPM",
-            "V",
-            "SKHY",
-            "AMD"
-          ]
+          "fallback_analysis": []
         }
       }
     },
