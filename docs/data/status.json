@@ -1,15 +1,16 @@
 {
-  "updated": "2026-11-21T15:49:09.328627",
+  "updated": "2026-11-24T06:38:41.842751",
   "latest": {
-    "date": "2026-11-20",
-    "archive_key": "2026-11-20-postmarket",
-    "run_phase": "postmarket",
-    "generated": "2026-11-21T15:49:09.310291",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-20&phase=postmarket",
+    "date": "2026-11-24",
+    "archive_key": "2026-11-24-premarket",
+    "run_phase": "premarket",
+    "generated": "2026-11-24T06:38:41.830178",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-24&phase=premarket",
     "health": {
       "status": "warning",
       "issues": [
-        "missing_charts 1"
+        "missing_charts 1",
+        "fallback_analysis 100"
       ],
       "counts": {
         "stocks": 100,
@@ -17,7 +18,7 @@
         "charts": 99,
         "homework_complete": 100,
         "market_indices": 3,
-        "fallback_analysis": 0
+        "fallback_analysis": 100
       },
       "missing": {
         "charts": [
@@ -26,7 +27,28 @@
         "homework": [],
         "market_indices": [],
         "market_cap": [],
-        "fallback_analysis": []
+        "fallback_analysis": [
+          "AAPL",
+          "NVDA",
+          "MSFT",
+          "GOOGL",
+          "GOOG",
+          "AMZN",
+          "TSM",
+          "SPCX",
+          "META",
+          "TSLA",
+          "AVGO",
+          "BRK-A",
+          "BRK-B",
+          "LLY",
+          "ANT",
+          "WMT",
+          "SKHY",
+          "JPM",
+          "MU",
+          "V"
+        ]
       }
     }
   },
@@ -88,11 +110,11 @@
       }
     },
     "premarket": {
-      "date": "2026-11-21",
-      "archive_key": "2026-11-21-premarket",
+      "date": "2026-11-24",
+      "archive_key": "2026-11-24-premarket",
       "run_phase": "premarket",
-      "generated": "2026-11-21T03:05:14.011713",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-21&phase=premarket",
+      "generated": "2026-11-24T06:38:41.830178",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-24&phase=premarket",
       "health": {
         "status": "warning",
         "issues": [
@@ -116,25 +138,25 @@
           "market_cap": [],
           "fallback_analysis": [
             "AAPL",
+            "NVDA",
             "MSFT",
             "GOOGL",
             "GOOG",
-            "NVDA",
             "AMZN",
-            "SPCX",
             "TSM",
-            "AVGO",
+            "SPCX",
             "META",
             "TSLA",
+            "AVGO",
             "BRK-A",
             "BRK-B",
             "LLY",
             "ANT",
             "WMT",
-            "JPM",
-            "V",
             "SKHY",
-            "AMD"
+            "JPM",
+            "MU",
+            "V"
           ]
         }
       }
