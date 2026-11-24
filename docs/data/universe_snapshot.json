@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-24T06:58:03.428959+00:00",
+  "updated": "2026-11-24T11:40:05.299263+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -453,7 +453,7 @@
     },
     {
       "ticker": "TJX",
-      "market_cap": 153171387994.25
+      "market_cap": 153830094105.5
     },
     {
       "ticker": "CRM",
