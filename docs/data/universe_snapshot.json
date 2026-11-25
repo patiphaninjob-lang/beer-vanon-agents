@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-24T23:18:30.525308+00:00",
+  "updated": "2026-11-25T05:26:45.934961+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -117,7 +117,7 @@
     },
     {
       "ticker": "ANT",
-      "market_cap": 1094794819135.2681
+      "market_cap": 1094861717613.446
     },
     {
       "ticker": "WMT",
@@ -261,7 +261,7 @@
     },
     {
       "ticker": "AMGN",
-      "market_cap": 256356885692.5653
+      "market_cap": 256359592891.1847
     },
     {
       "ticker": "CAT",
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "TJX",
-      "market_cap": 158242269086.83087
+      "market_cap": 158922782275.81808
     },
     {
       "ticker": "BUD",
