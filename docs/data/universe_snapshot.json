@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-25T05:26:45.934961+00:00",
+  "updated": "2026-11-25T10:32:00.618064+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 260,
@@ -449,7 +449,7 @@
     },
     {
       "ticker": "TJX",
-      "market_cap": 158922782275.81808
+      "market_cap": 158242269086.83087
     },
     {
       "ticker": "BUD",
