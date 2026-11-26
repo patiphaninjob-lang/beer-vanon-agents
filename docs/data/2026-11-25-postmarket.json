@@ -1,76 +1,100 @@
 {
   "date": "2026-11-25",
   "archive_key": "2026-11-25-postmarket",
-  "generated": "2026-11-25T13:25:15.542051",
+  "generated": "2026-11-26T17:05:46.657539",
   "run_phase": "postmarket",
   "homework_framework": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ",
   "homework_guide": "บทที่ 34 — การบ้านที่ไม่มีอาจารย์ตรวจ\nใช้กรอบนี้กับหุ้น USทุกตัว ไม่ใช่ดูกราฟอย่างเดียว:\nกรอบการบ้านหลักที่ต้องใช้ทุกครั้ง:\n1) ธุรกิจ — บริษัทขายอะไร ลูกค้าคือใคร แข่งกับใคร ทำเงินยังไง\n2) ตัวเลข — รายได้ กำไร หนี้ กระแสเงินสด valuation ดีขึ้นหรือแย่ลง\n3) การสื่อสาร — ผู้บริหารพูดอะไร ต้องไปฟัง call/read filing/ดู presentation อะไรเพิ่ม\n4) คู่แข่ง — ใครดีกว่า ใครแย่กว่า ตัวนี้เสียเปรียบหรือได้เปรียบตรงไหน\n5) ผู้บริหาร — ประวัติ การตัดสินใจ capital allocation ความน่าเชื่อถือ และความเสี่ยง\n6) แผนของเรา — ตามดู ถือ งด รอจุดไหน และอะไรคือจุดที่ถ้าคิดผิดต้องยอมรับ\n\nหลักคิด: ทำละเอียด 5 ตัว ดีกว่าทำผิวเผิน 50 ตัว และห้ามแต่งข้อมูลที่ยังไม่รู้ ให้บอกว่าต้องไปต่อ\n\nเวลาตอบ ให้เชื่อมกรอบนี้กับข้อมูลจริงที่มีอยู่ ถ้าข้อมูลด้านใดยังไม่มี ให้เขียนเป็นการบ้านที่ต้องไปเติม ไม่เดาขึ้นมาเอง",
   "market_indices": {
     "dji": {
-      "price": 50018.7,
-      "pct_change": 0.85,
-      "chart_b64": "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"
+      "price": 50182.95,
+      "pct_change": 0.33,
+      "chart_b64": "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"
     },
     "spx": {
-      "price": 7201.09,
-      "pct_change": -0.5,
-      "chart_b64": "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"
+      "price": 7182.78,
+      "pct_change": -0.25,
+      "chart_b64": "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"
     },
     "ixic": {
-      "price": 23733.54,
-      "pct_change": -1.48,
-      "chart_b64": "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"
+      "price": 23585.8,
+      "pct_change": -0.62,
+      "chart_b64": "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"
     }
   },
   "market_news": {
     "news_list": [
       {
-        "title": "S&P 500, Nasdaq End Lower As AI Jitters Resurface With Nvidia’s Governance Issues And Talks Of Fresh Import Tariffs  — NVDA, DELL, TSLA, TGTX In Focus",
-        "summary": "The Trump administration is reportedly preparing to roll out new tariffs targeting China and dozens of trading partners.",
-        "provider": "Stocktwits",
+        "title": "Nvidia is cheap on paper, so why won't the market buy it?",
+        "summary": "Market Hang tackles the top stories of the day. Including Nvidia giving back about half of its Jensen Huang rally and why a stock growing sales 60% to 70% can trade at 10 times earnings, whether the Alice Wong affair was",
+        "provider": "Yahoo Finance Video",
         "date": "2026-11-25",
-        "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-lower-as-ai-jitters-resurface-with-nvidia-s-governance-issues-and-talks-of-fresh-import-tariffs-nvda-dell-tsla-tgtx-in-focus/cNbuDhyR9lT",
+        "url": "https://finance.yahoo.com/video/nvidia-is-cheap-on-paper-so-why-wont-the-market-buy-it-192215326.html",
         "ticker": "SPY"
       },
       {
-        "title": "She Retires at 65 With a $900,000 All-Stock 401(k) as the S&P 500 Swings From Its Worst Week to Its Best Day Since April 2025. The 8.6% Drop Erases $77,400, and the Rebound Still Leaves Her $38,409 Short",
-        "summary": "A retiree with every dollar in stocks watched the market crash and then surge in a single week, yet the rebound fixes less than it appears. The bigger threat is hiding in her tax-deferred account, and it arrives years fr",
+        "title": "S&P 500, Nasdaq End Lower But Dow Rebounds As Traders Rotate Out Of AI — NVDA, SPCX, PANW  In Focus",
+        "summary": "The Nasdaq 100 briefly touched bear market territory on Wednesday before paring some losses.",
+        "provider": "Stocktwits",
+        "date": "2026-11-26",
+        "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-lower-but-dow-rebounds-as-traders-rotate-out-of-ai-nvda-spcx-panw-in-focus/cNbx21AR9mC",
+        "ticker": "SPY"
+      },
+      {
+        "title": "How Much of Your Portfolio Should Be in Bitcoin After a 50% Drop?",
+        "summary": "Bitcoin has shed more than half its value, ETF money is walking out the door, and Wall Street's biggest names set their allocation limits before the crash. Does a rebalance now make you smart or just early?",
         "provider": "24/7 Wall St.",
-        "date": "2026-11-24",
-        "url": "https://247wallst.com/personal-finance/2026/11/24/she-retires-at-65-with-a-900000-all-stock-401k-right-after-the-sp-500s-worst-week-since-april-2025-the-8-6-drop-erases-77400-and-mondays-best-day-since-april-2025-still-leaves-her-38409/",
+        "date": "2026-11-25",
+        "url": "https://247wallst.com/investing/cryptocurrency/2026/11/25/how-much-of-your-portfolio-should-be-in-bitcoin-after-a-50-drop/",
         "ticker": "SPY"
       },
       {
-        "title": "Is Apple (AAPL) Above Fair Value As ETF Buying Returns?",
-        "summary": "Heavy buying of Apple (AAPL) by major ETFs like SPY, QQQ, and XLK has flipped a brief selling spell into renewed accumulation, underscoring how large investors still treat the stock as a defensive tech anchor. Apple’s re",
-        "provider": "Simply Wall St.",
-        "date": "2026-11-24",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/apple-aapl-above-fair-value-211324050.html",
+        "title": "Feeling Safe After a Decade of Gains, He Keeps 80% of His $1.4 Million 401(k) in Stocks at 64. Like a Thanksgiving Turkey, He Won’t See It Coming: a 25% Drop Would Cost Him $280,000 Months Before He Retires",
+        "summary": "A decade of gains has convinced one near-retiree that his portfolio is bulletproof. A holiday-dinner parable explains why the months before his last paycheck are the most dangerous, and why a bear market hits him harder ",
+        "provider": "24/7 Wall St.",
+        "date": "2026-11-25",
+        "url": "https://247wallst.com/personal-finance/2026/11/25/feeling-safe-after-a-decade-of-gains-he-keeps-80-of-his-1-4-million-401k-in-stocks-at-64-like-a-thanksgiving-turkey-he-wont-see-it-coming-a-25-drop-would-cost-him-280000-months-before-he-re/",
         "ticker": "SPY"
       },
       {
-        "title": "5 Dividend Growth ETFs to Buy",
-        "summary": "Dividend growth ETFs offer investors a steadily growing stream of passive income and exposure to quality companies.",
-        "provider": "Kiplinger",
-        "date": "2026-11-24",
-        "url": "https://www.kiplinger.com/investing/etfs/dividend-growth-etfs",
+        "title": "Berkshire Hathaway Is Up 15% in 2026 and Easily Beating the S&P 500. Is Berkshire Stock Better Than an Index Fund Now?",
+        "summary": "While AI jitters batter tech-heavy index funds, Berkshire Hathaway keeps pulling ahead under new CEO Greg Abel. Does the conglomerate's defensive streak deserve a spot beside your ETFs, or does a tech rebound leave it be",
+        "provider": "24/7 Wall St.",
+        "date": "2026-11-25",
+        "url": "https://247wallst.com/investing/2026/11/25/berkshire-hathaway-is-up-15-in-2026-and-easily-beating-the-sp-500-is-berkshire-stock-better-than-an-index-fund-now/",
         "ticker": "SPY"
       },
       {
-        "title": "Harbor Arena Structured Income ETF (YLDS): Autocallable Income in an ETF Wrapper",
-        "summary": "<p>The <a href=\"https://www.etf.com/YLDS\"><strong>Harbor Arena Structured Income ETF (YLDS)</strong></a> brings a strategy historically available only to wealthy private clients, autocallable structured notes, into an ex",
-        "provider": "etf.com",
-        "date": "2026-11-24",
-        "url": "http://www.etf.com/sections/news/harbor-arena-structured-income-etf-ylds-autocallable-income-etf-wrapper?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss",
-        "ticker": "SPY"
-      },
-      {
-        "title": "Exchange-Traded Funds, US Equities Mixed After Midday",
-        "summary": "Broad Market Indicators Broad-market exchange-traded fund IWM rose while IVV fell. Actively tr",
-        "provider": "MT Newswires",
-        "date": "2026-11-24",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-us-equities-181033633.html",
+        "title": "Michael Burry Says His Portfolio Was Discussed 'About the Time the Market Reversed Off Its Lows': He Is 'Temporarily Almost Entirely Long'",
+        "summary": "Michael Burry‘s move to a portfolio that is almost entirely long was discussed on financial news just as U.S. stocks reversed off their lows on Wednesday, the ‘Big Short’ investor noted. Timing Of His Portfolio Review Bu",
+        "provider": "Benzinga",
+        "date": "2026-11-26",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/michael-burry-says-portfolio-discussed-025825540.html",
         "ticker": "QQQ"
+      },
+      {
+        "title": "The Average Stock Shrugged Off the Tech Slide. History Is Split",
+        "summary": "Today's big story: Anthropic Below Its IPO Price: Do Giants Come Back.",
+        "provider": "Trefis",
+        "date": "2026-11-25",
+        "url": "https://www.trefis.com/stock/spx/articles/628711/the-average-stock-shrugged-off-the-tech-slide-history-is-split/2026-11-25",
+        "ticker": "QQQ"
+      },
+      {
+        "title": "Exchange-Traded Funds Lower as US Equities Fall After Midday",
+        "summary": "Broad Market Indicators Broad-market exchange-traded funds IWM and IVV fell. Actively traded I",
+        "provider": "MT Newswires",
+        "date": "2026-11-25",
+        "url": "https://finance.yahoo.com/markets/articles/exchange-traded-funds-lower-us-181148276.html",
+        "ticker": "QQQ"
+      },
+      {
+        "title": "Cornucopia of Econ Data Ahead of Thanksgiving",
+        "summary": "Thursday's Thanksgiving holiday has pulled forward many of important economic reports.",
+        "provider": "Zacks",
+        "date": "2026-11-25",
+        "url": "https://finance.yahoo.com/economy/articles/cornucopia-econ-data-ahead-thanksgiving-142700291.html",
+        "ticker": "DIA"
       },
       {
         "title": "Stock Market Today: Jensen’s Return to Nvidia Is Causing Index Indigestion",
@@ -78,15 +102,7 @@
         "provider": "24/7 Wall St.",
         "date": "2026-11-24",
         "url": "https://247wallst.com/investing/2026/11/24/stock-market-today-jensens-return-to-nvidia-is-causing-index-indigestion/",
-        "ticker": "QQQ"
-      },
-      {
-        "title": "Before the bell: Bitcoin can’t catch a break",
-        "summary": "Bitcoin and crypto-linked stocks are retreating in premarket trading after a sharp rally across markets on Monday.",
-        "provider": "TheStreet",
-        "date": "2026-11-24",
-        "url": "https://www.thestreet.com/crypto/markets/before-the-bell-bitcoin-cant-catch-a-break-",
-        "ticker": "QQQ"
+        "ticker": "DIA"
       },
       {
         "title": "Pre-Markets Seeking Post-NVIDIA Equilibrium",
@@ -103,45 +119,31 @@
         "date": "2026-11-23",
         "url": "https://stocktwits.com/news-articles/markets/equity/s-and-p-500-nasdaq-end-best-session-since-april-on-optimism-led-by-jensen-huang-s-reinstatement-nvda-nasa-ttwo-amzn-in-focus/cNbpKSnR9jY",
         "ticker": "DIA"
-      },
-      {
-        "title": "T-Bills Are Beating the Nasdaq, S&P 500 and Dow This Year",
-        "summary": "DoubleLine's Jeffrey Gundlach fired off two terse posts about stocks and cash, then offered no numbers. We ran them ourselves, dividends included, and the results raise a pointed question about where your idle money belo",
-        "provider": "24/7 Wall St.",
-        "date": "2026-11-21",
-        "url": "https://247wallst.com/investing/2026/11/21/t-bills-are-beating-the-nasdaq-sp-500-and-dow-this-year/",
-        "ticker": "DIA"
-      },
-      {
-        "title": "The Dow Jones Did Something It Hasn’t Done Since October 2008",
-        "summary": "Five brutal sessions erased nearly all of the Dow's 2026 gains, yet the biggest AI name barely moved the index. Two high-priced stocks did the real damage, and the last time this happened, a rally fooled almost everyone.",
-        "provider": "24/7 Wall St.",
-        "date": "2026-11-21",
-        "url": "https://247wallst.com/investing/2026/11/21/the-dow-jones-did-something-it-hasnt-done-since-october-2008/",
-        "ticker": "DIA"
       }
     ],
     "summary_bullets": [
-      "S&P 500, Nasdaq End Lower As AI Jitters Resurface With Nvidia’s Governance Issues And Talks Of Fresh Import Tariffs  — NVDA, DELL, TSLA, TGTX In Focus",
-      "She Retires at 65 With a $900,000 All-Stock 401(k) as the S&P 500 Swings From Its Worst Week to Its Best Day Since April 2025. The 8.6% Drop Erases $77,400, and the Rebound Still Leaves Her $38,409 Short",
-      "Is Apple (AAPL) Above Fair Value As ETF Buying Returns?"
+      "Nvidia is cheap on paper, so why won't the market buy it?",
+      "S&P 500, Nasdaq End Lower But Dow Rebounds As Traders Rotate Out Of AI — NVDA, SPCX, PANW  In Focus",
+      "How Much of Your Portfolio Should Be in Bitcoin After a 50% Drop?"
     ]
   },
   "universe": {
     "source": "nasdaq_screener",
-    "updated": "2026-11-25T05:26:45.934961+00:00",
+    "updated": "2026-11-26T10:04:59.040174+00:00",
     "static_count": 139,
     "dynamic_count": 240,
-    "candidate_count": 260,
+    "candidate_count": 261,
     "new_dynamic_tickers": [
       "ABNB",
       "ABT",
       "ACN",
       "ADP",
       "AEM",
+      "AJG",
       "AMX",
       "ANET",
       "ANT",
+      "AON",
       "APH",
       "APP",
       "ARM",
@@ -150,7 +152,6 @@
       "BABA",
       "BAM",
       "BBVA",
-      "BCS",
       "BHP",
       "BMO",
       "BN",
@@ -182,8 +183,7 @@
       "GEV",
       "GLW",
       "GOOG",
-      "GOOGM",
-      "GOOGN"
+      "GOOGM"
     ],
     "error": ""
   },
@@ -191,10 +191,10 @@
     "total": 100,
     "gainers": 59,
     "losers": 41,
-    "avg_change": -0.62,
+    "avg_change": -0.57,
     "top_gainer": {
-      "ticker": "AMGN",
-      "pct": 5.55
+      "ticker": "ADI",
+      "pct": 6.44
     },
     "top_loser": {
       "ticker": "DELL",
@@ -202,84 +202,6 @@
     }
   },
   "stocks": [
-    {
-      "rank": 1,
-      "ticker": "AAPL",
-      "name": "Apple Inc.",
-      "sector": "Technology",
-      "price": 354.07,
-      "pct_change": 1.43,
-      "volume": 41214200,
-      "market_cap": 5145409787176.88,
-      "pe_ratio": 37.7,
-      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:AAPL",
-      "news": [
-        {
-          "title": "Why the Jensen Huang rally faded so quickly",
-          "summary": "Market Hang tackles the top stories of the day. Including why Monday's Jensen Huang rally faded within a day, what teeth the congressional hearings and board investigation can have given why he was reinstated, and whethe",
-          "provider": "Yahoo Finance Video",
-          "date": "2026-11-24",
-          "url": "https://finance.yahoo.com/video/why-the-jensen-huang-rally-faded-so-quickly-194511286.html"
-        },
-        {
-          "title": "Stocks give back gains as Anthropic dips below IPO price",
-          "summary": "Hosts Julie Hyman and Jake Conley, joined on the couch by Barron's markets reporter Jacob Sonenshine, tackle the top stories of the day. Including futures sliding after Monday's biggest rally since April 2025, Anthropic ",
-          "provider": "Yahoo Finance Video",
-          "date": "2026-11-24",
-          "url": "https://finance.yahoo.com/video/stocks-give-back-gains-as-anthropic-dips-below-ipo-price-154408548.html"
-        },
-        {
-          "title": "Who is holding Jensen Huang accountable? It sure looks like nobody",
-          "summary": "Sozzi Unleashed host Brian Sozzi digs into day two of Jensen Huang's return to Nvidia. Including a Financial Times report that interim CEO Colette Kress was left out of the talks to bring Huang back, a Wall Street Journa",
-          "provider": "Yahoo Finance Video",
-          "date": "2026-11-24",
-          "url": "https://finance.yahoo.com/video/who-is-holding-jensen-huang-accountable-it-sure-looks-like-nobody-154255467.html"
-        },
-        {
-          "title": "Xiaomi shares jump over 8% as premium phone sales cushion rising chip costs",
-          "summary": "Investing.com -- Xiaomi shares surged more than 8% on Wednesday after its smartphone business performed better than expected in the third quarter, suggesting the Chinese technology group is using higher-priced devices to",
-          "provider": "Investing.com",
-          "date": "2026-11-25",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/xiaomi-shares-jump-over-8-045749074.html"
-        },
-        {
-          "title": "5 Sleeper Blue-Chip Stock Picks for Steady Long-Term Gains",
-          "summary": "Forget the red-hot headline grabbers for a minute. We're dedicating space to high-quality sleeper stocks that have already delivered and could keep climbing.",
-          "provider": "Kiplinger",
-          "date": "2026-11-25",
-          "url": "https://www.kiplinger.com/investing/blue-chip-stocks/sleeper-blue-chip-stock-picks-for-steady-long-term-gains"
-        }
-      ],
-      "analysis": "AAPL อยู่ในกลุ่ม Technology และวันนี้ขึ้น 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #1, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
-      "homework_checklist": [
-        {
-          "topic": "ธุรกิจ",
-          "insight": "การร่วมมือกับ Alibaba ยังคงเป็นโอกาสที่สำคัญสำหรับ Apple ในอนาคต"
-        },
-        {
-          "topic": "ตัวเลข",
-          "insight": "ราคาหุ้น AAPL ลง 1.1% แต่ยังคงมีโอกาสเพิ่มขึ้นในระยะยาว"
-        },
-        {
-          "topic": "การสื่อสาร",
-          "insight": "CEO ของ Apple กังวลเกี่ยวกับราคหน่วยความจำที่เพิ่มขึ้น แต่ไม่ส่งผลกระทบต่อการเพิ่มขึ้นของราคาหุ้นในระยะยาว"
-        },
-        {
-          "topic": "คู่แข่ง",
-          "insight": "Micron Technology อาจเป็นคู่แข่งที่สำคัญสำหรับ Apple ในเรื่องราคหน่วยความจำ แต่ไม่ส่งผลกระทบต่อการเพิ่มขึ้นของราคาหุ้นในระยะยาว"
-        },
-        {
-          "topic": "ผู้บริหาร",
-          "insight": "CEO ของ Apple กังวลเกี่ยวกับราคหน่วยความจำที่เพิ่มขึ้น แต่ไม่ส่งผลกระทบต่อการเพิ่มขึ้นของราคาหุ้นในระยะยาว"
-        },
-        {
-          "topic": "แผนของเรา",
-          "insight": "ควรตรวจสอบการเปลี่ยนแปลงของราคาหุ้นของ Apple และ Micron Technology ในอนาคต และใช้ข้อมูลนี้เพื่อการตัดสินใจลงทุน"
-        }
-      ],
-      "chart_b64": "/9j/4AAQSkZJRgABAQEAWgBaAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCABmAWsDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAQFBgMCAQf/xAA6EAABBAEDAQQHBgUEAwAAAAABAAIDEQQFEiExEyJBYQYUUXGhscEVMjVzgZEjQ1Ky0RYlM+E2coL/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAAtEQADAAIBBAECAgsAAAAAAAAAAQIDESEEEhMxQVHRM+EFFCIjMkJhcbHB8f/aAAwDAQACEQMRAD8A/PkRFcqEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREARF9DS400Emr4QHxERAF0jifJLHGBRkIDSehs0pun6XkZD4ZnQ7sdzhuO4CxfPjav5sPTMTsZZmNjDHBsZLnUDZPztZ5MnY9aOnpun86dKlpezHotQzRdNy2CeB0ojf93aePZ4i1nGwPdLFGKBlNMJPnXzCmMir0VzdPeFJ16ZyRemsc5ri0WGC3eQsD5kLyrmIREQgIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIu78f+N2cZ/lCTn/ANNx+ql4+jZGRgetRvYQQSGc2av48KHSXs1nDdtqVvRWopGThzY8jGPjfbwNttIskDge66UdSnvlGdS5emF7ZGXtkcKqNu4/uB9VN0bCizsp8cxcGtZu7prxCniPTMGTLx5opZNoBJvq07eOo8VFNpbGJzky+NvT1soEUrHwpMmeGJhaDM0ubZ6AE9f2KsD6N5VnbNCR4Eki/gjaS2xMu78c+/ZTljhGHkd0kgHzFX8wvKuB6llYMeHi47zl+Fmhuobjd1yB8FB1HEfh5j43M2NJJYLvu2aUtreiIV1DtppJ6Iq02iQxSSzmSNjiIogC5t0CzlVGiRsk1SJkjGvad1hwsdCtfHFHGSY42tsAHaKuuipm/DbNeiyL9djG18P/AB+Ris6P/cp44mfzXNa1o8+gCl4ukZRzI7gJjaWOfvFCjRI56+IXyj/qIuo0Mqif/paHO1BuDLA17AWzOouLq29Ofipe/HteyiyQusWO+JezjDDJjej74Zm7XtifYu/asmXOcAHOJA4FnorHM1vKyHSNjd2cTxWygeKo80qxX3tLZjGLx3enw3x/Yu8DXGYmnthMO50Zod6rBJN9Pd+6b9KY/EkJyhtG5pNUBvPX9bVIvpcSACSQBQ8lmoSe0dd57yY/HXrWjR6dpun5eNLJA7IDH/wzuIvgg+z3L5qukY+PpplY6TdC0Btkc27x48yqzT9QnxYJo45Q0VuaCB97c0fK1qNSmZBgyyyRCVrath6HkLGnSyLnhs7sM4q6WtTtqfv9iBo2JAIMljomP2zuZbmgkgUsu77x960n21HDJlMZiAdkSTTq3HcG3081mybNrrZ4HTK+6qr50fERFU6giIgCIiAIiIAiIgCIu+Liy5TnCJj3BrSSWtvwJA/WqUkNpLbOC74f/M78qT+wqzx/R6d7YpJZGNa6i9vIcBx5deq75kePormOihbIJmuB7QbqIHFe++VTfdL7TT8LLEZON8lCI3mMyBvdaQCfM3/gry1rnODWgkngADqtfjvOToDnNiY0vjeAyNtC+egUHRMOXG1B5fFI1hhHec2uTtJH72ox33NpmnV4X0+JZJ5WtlCIrgfLdbXNbVe0H/C5rUarnYMYyceSDdOW1ewGyW8G/K1Rx4M7MjH9ZgkbHJI1veBF2eilPlpmbleObnna2/6ENERWKBEVto+C52TjzTRF0Ty8U5nHDeD8fggral1r0tlU4Fri1wIINEHwUrBhvKxXvAMb5g2j41V/NWetYLptRAx4SP4Rc4sZ494814mqXvNzsY6H6t2lTBjWFhaQQRVqXPtGEdTzDS3v2WObJgYT2GbHjt7XAEMb0A6ftwvGJn4selumY6NoaXuEZcARySBXgsk5znG3OJNVyV5XP4FrTZ7L/SNKm5k0pl+1tRx2bey9XaJrvduvaaVPm4PqssrO03dm9jbqr3An6LhHlTxSiWOVzXgBtjjgUAPgF19c3Y0jJYxJK97Xdo4kngHz81sl2ykjz6d5c9ZLfDX/AAu8rHj0luPPBK9oDhE/dRthJcfBZ7InkyZnTTO3Pd1NUrDU9Y9fxmwiDs6cHXuvwPl5qqV2/ocvT46lbv2XbM/Cglw5m4jowGE215cQLcK58+VKm9JIWPLYYHSN/qLtqzZcSACSQBQ8l8WfYnPazs8jWbzTw9a+DrBkS484mhdteLo1atnYmRrGoZJfK3bASwXx7dvQe1Uiv9OzosTUM9koeS97nDaP6dxKrk2uV7N+lc0+y3+zv/TImjxOg15sTyNzC9prpwCr3U89+E6INDKe15O72gWPisplyibMmmZYD3lwvryVzc5zjbnEmq5K0/inTOLscdSs0P1+ZdnAzDiy5wkia97m5Iq+KDj7PNVeXnZOZt9Yk3bLrugVfuVv9tYv2Z6tsl39j2fQVdV7Vn1Z6XCMcXfVOsi52ERFU6AiIgPo4IK0+sajiTaW+OObc6VoLBtPI3f9FZdfS4kAEkgCh5KlQqaf0OjF1FYpqV/MHEucXOJJJsk+K+Iiuc4REQBERAEXtkT3vYxrSXPNN8+a+amYOn5GVjzvjiDht2tJIHetp8fK1JFUpW36ICKZl6bl4cTZZ4w1rjXDgaPPHwUNQmn6L1FQ9UtHuON8rwyNjnuPQNFkq/x4dPbkZI1COpjJI5oeHcs55Hh7VXaD+Lw+539pUn0lcW6hGWkg9lXB8ylT3T7M8fUePqEtJ8fJXnH9Zz3xYTNzXPPZi64/XyVvjul0iZzZcYbZYg4U4DljLd8VGyNWbJozMYRAOIDCd3Tbt5rzVach5l7Q1ezs/wBNu35JpprTDc5cVTc6bf14J0mq5BDJmTOB7d7uzLyRt7pAPl1+K5apqL890YIYGsbfdBHJAv4qAiLgmkqpU/jg6xTyw12b9tODx7x0+amv1vMfLG50h2MLSWtobq68gePKrUUdq3sv312uN8M6OkfLLvke57iRZcbJWx1KCSdmOIm3sna93NUB1WLBogrRZnpBGY4ziB+/cC4OaB3ebCpabuWdGK1PT5ZT5a4KKbFmglkjlZtdGAXiwaBr/IUyXAxahEGewuk5uRpa2ueb8OlL1j5sUrMqTMx+3lLQXO37bFtAFD9Cq58he1jSBTG7R7rJ+q24PPXfXvjX2L77CbkzZEpymWZHUGDdt5vnz8lTPcPU4mB3IkeSL8Kb/wBrm2Z4EnNmUU4nr1B+i5qHplsSuNqns0fo090jst7zbnOaSfPlUuo/iWT+a75rxj5U2MXGGRzdwIIBIvivquTnOe4ucSXE2SepU74KRic5av4Z8REVTcIiIAiIgCIiALtJO52TLM3umQuNdaDrsfFcUTRKbRJfhysw2ZBikALjZLeAKFH9bKjLVZ3/AIyPyo/osqrNaOfBleRNv6hERVNwiIgCIiAIiIAiIgCIiAL6BZAU3SMV+Vns2Fo7MiQ37AQpjtBnixZJHviLmEOBBP3QDfh7kpqVtk408luJ9pbLRsGJpBimLpKI7EEkULJdZUeHXcMSTktlG94c3ujngD2+S9+kv4az80fIrLg0QUcpX3I58OSs/SrFfrezU+k34az80fIrLN+8PerzW9Tgy8GGOJrwXntBuA6Cx81UywFmVOyOy2Fxsn2bq+oWWFanTPV66leV1PK4NLrOPBHpMxjhjaW0WlrQK5Cysj3SSOe825xsnzWv1z8In9w/uCxy6K9ni9C9w2/qERFQ7AiIgCIiAIiID2yQsbI0VT27T+4P0XhEQBERAEREAREQBERAEREAREQBERAWM2rzS6eMN0cYaAGlwu6FV8lXIinZWYmOJQREUFgiIgCIiAIiIAiIgPoaXGmgk1fClY2n5GTGHxxupzw0Haa5uzfsFfFd9HxYsiSUyZLYi1hABrkFpBPXwVvhZ+HhaeY3T7+wcWktae9ySK94CS060V6lZMeJZJW9srxFPoGVHK4xyNlG01dgcEr0/XMmbAn3RxCyI+Aejg6/HyXPXc+HN7FsO7uAkk14gKqD3CMsB7riCR5i6+ZS0nwR0l1H7x8U1pkzO1GfLx4Y5JdwAt42gd6z9KUFEUkzKlaRLwMuPGm3zwNyG7NrWuPDeb4u/P8AdWUmVpuU/KkdFLHTaJiqnN3jve+6VEu8DgIskEgF0YA8++1Z1Cb2dWLPUrs41+RMy9ayMvGfA+OINfVkA31v2qsRFps5YiYWpQREUFgiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA9Me5jraaJBH6EUfgV8s7S2zRNkIiA+IiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiID/9k="
-    },
     {
       "rank": 2,
       "ticker": "NVDA",
@@ -328,8 +250,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/ai-credit-default-swap-spreads-050255426.html"
         }
       ],
-      "analysis": "NVDA อยู่ในกลุ่ม Technology และวันนี้ลง 5.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #2, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVDA อยู่ในกลุ่ม Technology และวันนี้ลง 5.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #2, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -406,8 +328,8 @@
           "url": "https://wwd.com/business-news/retail/retail-outlook-mood-black-friday-1239462186/"
         }
       ],
-      "analysis": "MSFT อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MSFT อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #3, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -484,8 +406,8 @@
           "url": "https://247wallst.com/investing/2026/11/24/stephanie-link-says-marvell-could-earn-30-a-share-by-2031-is-she-right/"
         }
       ],
-      "analysis": "GOOGL อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #4, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GOOGL อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #4, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -562,8 +484,8 @@
           "url": "https://247wallst.com/investing/2026/11/24/stephanie-link-says-marvell-could-earn-30-a-share-by-2031-is-she-right/"
         }
       ],
-      "analysis": "GOOG อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #5, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GOOG อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #5, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -640,8 +562,8 @@
           "url": "https://www.investors.com/news/netflix-stock-84-price-target-analysts-buys-radford-seinfeld-lot/?src=A00220&yptr=yahoo"
         }
       ],
-      "analysis": "AMZN อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMZN อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #6, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -718,8 +640,8 @@
           "url": "https://www.tikr.com/blog/trumps-southeast-asia-chip-rule-has-cost-nvidia-44-billion-of-revenue-per-jefferies-huang-cant-undo-it?ref=yahoofinance&tlnk=yf-261124-8mwmqrw2"
         }
       ],
-      "analysis": "TSM อยู่ในกลุ่ม Technology และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TSM อยู่ในกลุ่ม Technology และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #7, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -796,8 +718,8 @@
           "url": "https://www.thestreet.com/investing/teslas-3-5-trillion-merger-talks-have-a-surprising-catch"
         }
       ],
-      "analysis": "SPCX อยู่ในกลุ่ม Industrials และวันนี้ลง 5.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #8, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SPCX อยู่ในกลุ่ม Industrials และวันนี้ลง 5.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #8, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -874,8 +796,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/tsla-stock-dell-hp-no-quick-relief-ai-chip-crunch-tesla-memory-cut/cNbuC6fR9ld"
         }
       ],
-      "analysis": "TSLA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TSLA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #9, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -952,8 +874,8 @@
           "url": "https://uk.news.yahoo.com/ai-agents-could-trigger-financial-110122847.html"
         }
       ],
-      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #10, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "META อยู่ในกลุ่ม Communication Services และวันนี้ลง 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #10, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1030,8 +952,8 @@
           "url": "https://www.fool.com/coverage/stock-market-today/2026/11/24/stock-market-today-nov-24-nvidia-gives-back-usd240-billion-in-market-value-despite-wall-street-upgrade-signaling-29-upside/"
         }
       ],
-      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AVGO อยู่ในกลุ่ม Technology และวันนี้ลง 4.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #11, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1108,8 +1030,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/why-gilead-gild-stock-today-204551335.html"
         }
       ],
-      "analysis": "LLY อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LLY อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #12, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1186,8 +1108,8 @@
           "url": "https://www.fool.com/investing/2026/11/24/berkshire-hathaway-has-sold-more-than-half-its-bank-of-america-shares-since-2024-is-the-stock-a-buy-sell-or-hold-25-below-its-high/"
         }
       ],
-      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #13, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BRK-B อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #13, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1264,8 +1186,8 @@
           "url": "https://www.fool.com/investing/2026/11/24/berkshire-hathaway-has-sold-more-than-half-its-bank-of-america-shares-since-2024-is-the-stock-a-buy-sell-or-hold-25-below-its-high/"
         }
       ],
-      "analysis": "BRK-A อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #14, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BRK-A อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #14, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1342,8 +1264,8 @@
           "url": "https://finance.yahoo.com/markets/article/anthropic-stock-drops-below-83-ipo-price-as-day-one-pop-vanishes-143438983.html"
         }
       ],
-      "analysis": "ANT อยู่ในกลุ่ม Technology และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ANT อยู่ในกลุ่ม Technology และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #15, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1370,7 +1292,7 @@
           "insight": "ถ้า thesis ยังไม่ชัด ให้รอดู/หั่น/ถือ ตาม framework ของคุณเองบนข้อมูลชุดนี้ โดยใช้ข่าวและ knowledge context เป็นตัวช่วยตัดสินใจ"
         }
       ],
-      "chart_b64": ""
+      "chart_b64": "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"
     },
     {
       "rank": 16,
@@ -1420,8 +1342,8 @@
           "url": "https://wwd.com/business-news/retail/retail-outlook-mood-black-friday-1239462186/"
         }
       ],
-      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #16, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WMT อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #16, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1498,8 +1420,8 @@
           "url": "https://www.tikr.com/blog/could-meta-actually-climb-30-or-is-j-p-morgan-totally-wrong?ref=yahoofinance&tlnk=yf-261124-24hpvhqr"
         }
       ],
-      "analysis": "JPM อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #17, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "JPM อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #17, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1576,8 +1498,8 @@
           "url": "https://beincrypto.com/softbank-shares-drop-samsung-sk-hynix/"
         }
       ],
-      "analysis": "SKHY อยู่ในกลุ่ม Technology และวันนี้ลง 9.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SKHY อยู่ในกลุ่ม Technology และวันนี้ลง 9.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #18, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1654,8 +1576,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/visa-v-broadens-checkout-options-111840301.html"
         }
       ],
-      "analysis": "V อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #19, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "V อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #19, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1732,8 +1654,8 @@
           "url": "https://www.kiplinger.com/investing/blue-chip-stocks/sleeper-blue-chip-stock-picks-for-steady-long-term-gains"
         }
       ],
-      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 11.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MU อยู่ในกลุ่ม Technology และวันนี้ลง 11.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #20, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1810,8 +1732,8 @@
           "url": "https://beincrypto.com/jim-cramer-tom-lee-ai-stock-call/"
         }
       ],
-      "analysis": "AMD อยู่ในกลุ่ม Technology และวันนี้ลง 8.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMD อยู่ในกลุ่ม Technology และวันนี้ลง 8.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #21, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1888,8 +1810,8 @@
           "url": "https://www.kiplinger.com/investing/stocks/dividend-stocks/best-dividend-stocks-you-can-count-on"
         }
       ],
-      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #22, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "JNJ อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #22, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -1966,8 +1888,8 @@
           "url": "https://www.kiplinger.com/investing/stocks/dividend-stocks/best-dividend-stocks-you-can-count-on"
         }
       ],
-      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "XOM อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #23, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2044,8 +1966,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/etfs-bought-120-million-mastercard-110212516.html"
         }
       ],
-      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #24, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MA อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #24, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2122,8 +2044,8 @@
           "url": "https://www.kiplinger.com/investing/stocks/dividend-stocks/best-dividend-stocks-you-can-count-on"
         }
       ],
-      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #25, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ABBV อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #25, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2200,8 +2122,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/asml-stock-changed-nvidia-ceo-121558672.html"
         }
       ],
-      "analysis": "ASML อยู่ในกลุ่ม Technology และวันนี้ลง 3.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #26, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ASML อยู่ในกลุ่ม Technology และวันนี้ลง 3.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #26, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2278,8 +2200,8 @@
           "url": "https://finance.yahoo.com/small-business/articles/costco-membership-worth-honest-math-151931170.html"
         }
       ],
-      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "COST อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #27, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2356,8 +2278,8 @@
           "url": "https://247wallst.com/investing/2026/11/24/short-term-bond-funds-vs-dividend-stocks-which-income-holds-up-better-for-retirees/"
         }
       ],
-      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #28, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "KO อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #28, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2434,8 +2356,8 @@
           "url": "https://www.trefis.com/stock/xom/articles/628301/your-exxon-dividend-needs-only-about-59-oil/2026-11-24"
         }
       ],
-      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CVX อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #29, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2512,8 +2434,8 @@
           "url": "https://www.trefis.com/stock/nke/articles/627485/nike-sells-shoes-can-it-stop-paying-for-ai/2026-11-24"
         }
       ],
-      "analysis": "PG อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #30, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PG อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #30, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2590,8 +2512,8 @@
           "url": "https://www.trefis.com/stock/snow/articles/628635/why-is-snowflake-stock-going-up/2026-11-24"
         }
       ],
-      "analysis": "PLTR อยู่ในกลุ่ม Technology และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PLTR อยู่ในกลุ่ม Technology และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #31, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2668,8 +2590,8 @@
           "url": "https://www.trefis.com/stock/cien/articles/628392/can-ciena-stock-hit-400/2026-11-24"
         }
       ],
-      "analysis": "CSCO อยู่ในกลุ่ม Technology และวันนี้ลง 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CSCO อยู่ในกลุ่ม Technology และวันนี้ลง 2.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #32, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2746,8 +2668,8 @@
           "url": "https://www.tikr.com/blog/tariffs-strike-again-343-companies-report-28-5-billion-in-trump-tariff-refunds-retail-beats-need-a-second-look?ref=yahoofinance&tlnk=yf-261123-rf9p82g5"
         }
       ],
-      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #33, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "HD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #33, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2824,8 +2746,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/why-pfizer-pfe-stock-4-203040700.html"
         }
       ],
-      "analysis": "MRK อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MRK อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #34, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2902,8 +2824,8 @@
           "url": "https://www.tikr.com/blog/not-good-oracles-credit-swaps-blow-out-again-a-day-after-huangs-return-lifted-nvidia?ref=yahoofinance&tlnk=yf-261124-vcwxc3ff"
         }
       ],
-      "analysis": "ORCL อยู่ในกลุ่ม Technology และวันนี้ลง 3.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #35, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ORCL อยู่ในกลุ่ม Technology และวันนี้ลง 3.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #35, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -2980,8 +2902,8 @@
           "url": "https://finance.yahoo.com/markets/options/articles/quants-unwind-bond-shorts-stock-190817431.html"
         }
       ],
-      "analysis": "BAC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #36, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BAC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #36, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3058,8 +2980,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-see-ge-133004818.html"
         }
       ],
-      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GE อยู่ในกลุ่ม Industrials และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #37, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3136,8 +3058,8 @@
           "url": "https://www.trefis.com/stock/unh/articles/628256/own-humana-stock-its-profit-cushion-is-the-thinnest/2026-11-24"
         }
       ],
-      "analysis": "UNH อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #38, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "UNH อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #38, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3214,8 +3136,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/navigator-enxtls-nvg-stock-may-211236924.html"
         }
       ],
-      "analysis": "NVS อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVS อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #39, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3292,8 +3214,8 @@
           "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-24-2026/card/stocks-to-watch-nvidia-alibaba-hewlett-packard-OcmKGzhL652jokQhkx9J?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "INTC อยู่ในกลุ่ม Technology และวันนี้ลง 8.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #40, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "INTC อยู่ในกลุ่ม Technology และวันนี้ลง 8.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #40, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3370,8 +3292,8 @@
           "url": "https://www.trefis.com/stock/panw/articles/628394/could-you-have-seen-palo-alto-networks-run-coming/2026-11-24"
         }
       ],
-      "analysis": "PANW อยู่ในกลุ่ม Technology และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #41, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PANW อยู่ในกลุ่ม Technology และวันนี้ลง 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #41, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3448,8 +3370,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/philip-morris-pm-down-7-153009129.html"
         }
       ],
-      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PM อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 0.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #42, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3526,8 +3448,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/3-british-stocks-trading-43-150917879.html"
         }
       ],
-      "analysis": "AZN อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AZN อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #43, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3604,8 +3526,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/hsbc-values-tesla-just-212-162221658.html"
         }
       ],
-      "analysis": "HSBC อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "HSBC อยู่ในกลุ่ม Financial Services และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #44, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3682,8 +3604,8 @@
           "url": "https://247wallst.com/investing/2026/11/24/a-borr-drilling-insider-raised-his-stake-22-in-one-day/"
         }
       ],
-      "analysis": "MS อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #45, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MS อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #45, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3760,8 +3682,8 @@
           "url": "https://www.trefis.com/stock/ba/articles/628592/a-memo-to-boeing-s-airplane-team-about-steady-output/2026-11-24"
         }
       ],
-      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #46, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "RTX อยู่ในกลุ่ม Industrials และวันนี้ขึ้น 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #46, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3838,8 +3760,8 @@
           "url": "https://247wallst.com/investing/2026/11/23/350000-in-shell-bp-and-totalenergies-could-pay-15000-a-year-in-dividends/"
         }
       ],
-      "analysis": "SHEL อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SHEL อยู่ในกลุ่ม Energy และวันนี้ขึ้น 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #47, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3916,8 +3838,8 @@
           "url": "https://www.marketbeat.com/instant-alerts/transcript-rayonier-q3-earnings-call-highlights-2026-11-07/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "RY อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "RY อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #48, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -3994,8 +3916,8 @@
           "url": "https://www.tikr.com/blog/stanley-druckenmiller-and-25-other-big-funds-sold-thermo-fisher-scientific-last-quarter-while-15-bought-whos-right?ref=yahoofinance&tlnk=yf-261122-7cr84v6j"
         }
       ],
-      "analysis": "TMO อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #49, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TMO อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #49, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4072,8 +3994,8 @@
           "url": "https://www.fool.com/coverage/better-buy/2026/11/24/applied-materials-vs-intel-which-technology-stock-is-a-better-buy-for-2027/"
         }
       ],
-      "analysis": "AMAT อยู่ในกลุ่ม Technology และวันนี้ลง 6.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMAT อยู่ในกลุ่ม Technology และวันนี้ลง 6.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #50, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4150,8 +4072,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/why-pfizer-pfe-stock-4-203040700.html"
         }
       ],
-      "analysis": "AMGN อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 5.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AMGN อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 5.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #51, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4228,8 +4150,8 @@
           "url": "https://www.tikr.com/blog/cathie-wood-and-3-other-big-funds-sold-deere-last-quarter-should-you-follow-them-before-earnings?ref=yahoofinance&tlnk=yf-261124-4w84727f"
         }
       ],
-      "analysis": "CAT อยู่ในกลุ่ม Industrials และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #52, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CAT อยู่ในกลุ่ม Industrials และวันนี้ลง 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #52, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4306,8 +4228,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/moody-upgrades-toyota-outlook-positive-171321572.html"
         }
       ],
-      "analysis": "TM อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #53, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TM อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #53, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4384,8 +4306,8 @@
           "url": "https://www.barchart.com/story/news/8987042/lam-research-stock-outlook-is-wall-street-bullish-or-bearish"
         }
       ],
-      "analysis": "LRCX อยู่ในกลุ่ม Technology และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #54, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LRCX อยู่ในกลุ่ม Technology และวันนี้ลง 6.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #54, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4462,8 +4384,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/zoom-beats-margins-wells-fargo-160359085.html"
         }
       ],
-      "analysis": "WFC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WFC อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #55, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4540,8 +4462,8 @@
           "url": "https://www.fool.com/investing/2026/11/24/netflix-stock-is-down-37-in-2026-but-the-business-is-still-growing-heres-why-id-buy-it-before-the-end-of-november/"
         }
       ],
-      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NFLX อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #56, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4618,8 +4540,8 @@
           "url": "https://www.marketbeat.com/instant-alerts/event-sap-cfo-sees-headcount-declining-as-ai-boosts-productivity-plans-new-revenue-metric-2026-11-21/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "SAP อยู่ในกลุ่ม Technology และวันนี้ขึ้น 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #57, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SAP อยู่ในกลุ่ม Technology และวันนี้ขึ้น 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #57, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4696,8 +4618,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-materials-select-sector-110539884.html"
         }
       ],
-      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 0.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "LIN อยู่ในกลุ่ม Basic Materials และวันนี้ลง 0.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #58, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4774,8 +4696,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-vishay-vsh-stock-down-203140382.html"
         }
       ],
-      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 11.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TXN อยู่ในกลุ่ม Technology และวันนี้ลง 11.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #59, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4852,8 +4774,8 @@
           "url": "https://www.tikr.com/blog/could-coinbase-actually-climb-70-or-is-goldman-sachs-totally-wrong?ref=yahoofinance&tlnk=yf-261124-3g59p4hf"
         }
       ],
-      "analysis": "GS อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #60, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GS อยู่ในกลุ่ม Financial Services และวันนี้ลง 2.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #60, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -4930,8 +4852,8 @@
           "url": "https://www.trefis.com/stock/acn/articles/628410/the-single-most-important-metric-for-accenture-stock/2026-11-24"
         }
       ],
-      "analysis": "IBM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "IBM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 1.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #61, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5008,8 +4930,8 @@
           "url": "https://stocktwits.com/news-articles/markets/equity/gild-kymr-stocks-hit-record-highs-wall-street-backs-gilead-s-resilience-kymera-s-eczema-data/cNbs0gtR9kx"
         }
       ],
-      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #62, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GILD อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 4.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #62, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5086,8 +5008,8 @@
           "url": "https://www.wsj.com/finance/commodities-futures/gold-catches-breath-but-stays-at-over-one-year-lows-b3d16f60?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "MUFG อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #63, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MUFG อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #63, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5164,8 +5086,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/crowdstrike-stock-bid-zscaler-deal-202415003.html"
         }
       ],
-      "analysis": "CRWD อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CRWD อยู่ในกลุ่ม Technology และวันนี้ขึ้น 0.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #64, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5242,8 +5164,8 @@
           "url": "https://www.trefis.com/stock/anet/articles/628275/can-arista-networks-stock-hit-270/2026-11-24"
         }
       ],
-      "analysis": "ANET อยู่ในกลุ่ม Technology และวันนี้ลง 5.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ANET อยู่ในกลุ่ม Technology และวันนี้ลง 5.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #65, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5320,8 +5242,8 @@
           "url": "https://www.tikr.com/blog/not-good-trump-administration-blacklists-an-alibaba-unit-over-ai-chips-alibabas-cloud-plan-was-already-shrinking?ref=yahoofinance&tlnk=yf-261124-4hmpqwm4"
         }
       ],
-      "analysis": "BABA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #66, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BABA อยู่ในกลุ่ม Consumer Cyclical และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #66, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5398,8 +5320,8 @@
           "url": "https://www.trefis.com/stock/fwona/articles/628585/did-liberty-media-s-industry-carry-its-stock/2026-11-24"
         }
       ],
-      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #67, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DIS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #67, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5476,8 +5398,8 @@
           "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/black-friday-shopping-check-this-credit-card-perk-first-195924850.html"
         }
       ],
-      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "AXP อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #68, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5554,8 +5476,8 @@
           "url": "https://www.kiplinger.com/investing/stocks/dividend-stocks/best-dividend-stocks-you-can-count-on"
         }
       ],
-      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #69, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "MCD อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 1.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #69, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5632,8 +5554,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/liberty-global-lbtyb-stock-down-173102557.html"
         }
       ],
-      "analysis": "VZ อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "VZ อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #70, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5710,8 +5632,8 @@
           "url": "https://www.kiplinger.com/investing/stocks/dividend-stocks/best-dividend-stocks-you-can-count-on"
         }
       ],
-      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PEP อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #71, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5788,8 +5710,8 @@
           "url": "https://finance.yahoo.com/energy/articles/energy-transition-today-renewable-energy-113702122.html"
         }
       ],
-      "analysis": "GEV อยู่ในกลุ่ม Industrials และวันนี้ลง 4.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #72, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "GEV อยู่ในกลุ่ม Industrials และวันนี้ลง 4.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #72, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5866,8 +5788,8 @@
           "url": "https://www.cryptoprowl.com/releases/canada-proposes-stablecoin-rules-banning-yield-payments-7462"
         }
       ],
-      "analysis": "TD อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #73, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TD อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #73, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -5944,8 +5866,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/citi-sees-short-squeeze-risk-142450017.html"
         }
       ],
-      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "C อยู่ในกลุ่ม Financial Services และวันนี้ลง 0.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #74, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6022,8 +5944,8 @@
           "url": "https://finance.yahoo.com/technology/ai/articles/le-monde-details-suspected-nvidia-042239633.html"
         }
       ],
-      "analysis": "DELL อยู่ในกลุ่ม Technology และวันนี้ลง 11.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #75, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DELL อยู่ในกลุ่ม Technology และวันนี้ลง 11.8% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #75, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6100,8 +6022,8 @@
           "url": "https://247wallst.com/investing/2026/11/23/350000-in-shell-bp-and-totalenergies-could-pay-15000-a-year-in-dividends/"
         }
       ],
-      "analysis": "TTE อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #76, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TTE อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #76, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6178,8 +6100,8 @@
           "url": "https://www.fool.com/coverage/better-buy/2026/11/24/abbott-laboratories-vs-intuitive-surgical-which-healthcare-stock-is-a-better-buy-for-2027/"
         }
       ],
-      "analysis": "ABT อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ABT อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 2.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #77, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6256,8 +6178,8 @@
           "url": "https://www.trefis.com/stock/aph/articles/628286/is-amphenol-stock-paying-you-enough-for-the-swings/2026-11-24"
         }
       ],
-      "analysis": "APH อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "APH อยู่ในกลุ่ม Technology และวันนี้ลง 5.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #78, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6334,8 +6256,8 @@
           "url": "https://247wallst.com/investing/2026/11/20/3-healthcare-reits-raised-their-2026-outlooks-as-senior-housing-demand-grows/"
         }
       ],
-      "analysis": "WELL อยู่ในกลุ่ม Real Estate และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #79, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "WELL อยู่ในกลุ่ม Real Estate และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #79, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6412,8 +6334,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/novo-nordisk-cpse-novo-b-181155742.html"
         }
       ],
-      "analysis": "NVO อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NVO อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #80, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6490,8 +6412,8 @@
           "url": "https://www.trefis.com/stock/nrg/articles/628623/why-did-nrg-stock-jump/2026-11-24"
         }
       ],
-      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #81, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "NEE อยู่ในกลุ่ม Utilities และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #81, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6568,8 +6490,8 @@
           "url": "https://www.tikr.com/blog/starlinks-40x-upgrade-targets-150mbps-to-phones-ast-spacemobile-has-a-big-problem?ref=yahoofinance&tlnk=yf-261123-m4mrj3j8"
         }
       ],
-      "analysis": "TMUS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TMUS อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 0.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #82, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6646,8 +6568,8 @@
           "url": "https://247wallst.com/investing/etf/2026/11/24/the-10-year-treasury-yields-4-92-jpmorgans-income-etf-paid-5-7-over-the-past-year-blackrocks-paid-6-06-and-neither-has-a-maturity-date/"
         }
       ],
-      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #83, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BLK อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #83, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6724,8 +6646,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/top-stock-reports-nvidia-cisco-203500498.html"
         }
       ],
-      "analysis": "BHP อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BHP อยู่ในกลุ่ม Basic Materials และวันนี้ลง 1.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #84, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6802,8 +6724,8 @@
           "url": "https://www.proactiveinvestors.com/companies/news/1102367/amazon-s-7-5-billion-decart-tech-deal-makes-wedbush-s-case-for-chip-choice-1102367.html"
         }
       ],
-      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "QCOM อยู่ในกลุ่ม Technology และวันนี้ลง 0.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #85, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6880,8 +6802,8 @@
           "url": "https://finance.yahoo.com/technology/articles/form-benefits-rising-industry-usage-134800513.html"
         }
       ],
-      "analysis": "KLAC อยู่ในกลุ่ม Technology และวันนี้ลง 8.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "KLAC อยู่ในกลุ่ม Technology และวันนี้ลง 8.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #86, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -6958,8 +6880,8 @@
           "url": "https://www.tikr.com/blog/anthropic-sinks-7-below-ipo-price-as-ai-stocks-slide-cramer-blames-endless-hammering-of-small-bids?ref=yahoofinance&tlnk=yf-261124-m94c8jgv"
         }
       ],
-      "analysis": "ARM อยู่ในกลุ่ม Technology และวันนี้ลง 8.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #87, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "ARM อยู่ในกลุ่ม Technology และวันนี้ลง 8.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #87, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7036,8 +6958,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/3-dividend-paying-stocks-railroad-163000902.html"
         }
       ],
-      "analysis": "UNP อยู่ในกลุ่ม Industrials และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #88, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "UNP อยู่ในกลุ่ม Industrials และวันนี้ขึ้น 0.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #88, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7114,8 +7036,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/vtex-vtex-stock-6-4-180030173.html"
         }
       ],
-      "analysis": "SHOP อยู่ในกลุ่ม Technology และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #89, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SHOP อยู่ในกลุ่ม Technology และวันนี้ลง 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #89, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7192,8 +7114,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/banco-santander-bme-san-stock-061554832.html"
         }
       ],
-      "analysis": "SAN อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SAN อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 0.1% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #90, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7270,8 +7192,8 @@
           "url": "https://www.tikr.com/blog/cathie-wood-and-3-other-big-funds-sold-deere-last-quarter-should-you-follow-them-before-earnings?ref=yahoofinance&tlnk=yf-261124-4w84727f"
         }
       ],
-      "analysis": "DE อยู่ในกลุ่ม Industrials และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DE อยู่ในกลุ่ม Industrials และวันนี้ลง 3.0% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #91, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7348,8 +7270,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/why-abbvie-abbv-stock-today-210038489.html"
         }
       ],
-      "analysis": "PFE อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #92, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "PFE อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 3.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #92, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7426,8 +7348,8 @@
           "url": "https://www.trefis.com/stock/hood/articles/628429/has-robinhood-stock-become-a-different-bet/2026-11-24"
         }
       ],
-      "analysis": "SCHW อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SCHW อยู่ในกลุ่ม Financial Services และวันนี้ขึ้น 1.7% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #93, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7504,8 +7426,8 @@
           "url": "https://www.marketbeat.com/articles/grand-theft-auto-vi-arrives-why-take-two-is-a-waiting-game/?utm_source=yahoofinance&utm_medium=yahoofinance"
         }
       ],
-      "analysis": "SONY อยู่ในกลุ่ม Technology และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #94, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "SONY อยู่ในกลุ่ม Technology และวันนี้ลง 0.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #94, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7582,8 +7504,8 @@
           "url": "https://finance.yahoo.com/healthcare/articles/abbotts-voyager-ce-trial-open-132700635.html"
         }
       ],
-      "analysis": "DHR อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #95, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "DHR อยู่ในกลุ่ม Healthcare และวันนี้ขึ้น 1.5% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #95, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7660,8 +7582,8 @@
           "url": "https://finance.yahoo.com/energy/articles/conocophillips-4-425b-asset-sale-162500237.html"
         }
       ],
-      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #96, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "COP อยู่ในกลุ่ม Energy และวันนี้ขึ้น 1.9% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #96, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7689,6 +7611,84 @@
         }
       ],
       "chart_b64": "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"
+    },
+    {
+      "rank": 96,
+      "ticker": "ADI",
+      "name": "Analog Devices, Inc.",
+      "sector": "Technology",
+      "price": 333.11,
+      "pct_change": 6.44,
+      "volume": 9202700,
+      "market_cap": 160784332863.97473,
+      "pe_ratio": 59.9,
+      "tv_url": "https://www.tradingview.com/chart/?symbol=NASDAQ:ADI",
+      "news": [
+        {
+          "title": "Analog Devices Just Plunged After Earnings. Is Its Dividend Now a Bargain?",
+          "summary": "Record revenue, a clear earnings beat, and still a 17% one-day wipeout. Analog Devices has raised its payout for 22 straight years, but one number in its outlook could decide whether that streak survives the AI boom.",
+          "provider": "24/7 Wall St.",
+          "date": "2026-11-25",
+          "url": "https://247wallst.com/investing/2026/11/25/analog-devices-just-plunged-after-earnings-is-its-dividend-now-a-bargain/"
+        },
+        {
+          "title": "Earnings Calendar and Analysis for This Week",
+          "summary": "Check out our earnings calendar for this week, as well as our previews and recaps of the more noteworthy reports.",
+          "provider": "Kiplinger",
+          "date": "2026-11-25",
+          "url": "https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks"
+        },
+        {
+          "title": "Chip Stocks Just Pulled a Whipsaw Last Seen at the April 2025 Tariff Pause",
+          "summary": "A CEO reinstatement sent chip stocks soaring one day and a fresh selloff erased most of it the next. Only two other sessions in three decades looked like this, and one involved a pandemic. What does the speed of the give",
+          "provider": "24/7 Wall St.",
+          "date": "2026-11-25",
+          "url": "https://247wallst.com/investing/2026/11/25/chip-stocks-just-pulled-a-whipsaw-last-seen-at-the-april-2025-tariff-pause/"
+        },
+        {
+          "title": "Analog Devices: 3 Key Takeaways for Long-Term Investors",
+          "summary": "The company is spending $1.6 billion to $1.9 billion on new capacity in fiscal 2027, a bet that will shape how much growth turns into shareholder cash.",
+          "provider": "Motley Fool",
+          "date": "2026-11-25",
+          "url": "https://www.fool.com/earnings/takeaways/2026/11/25/analog-devices-3-key-takeaways-for-long-term-investors/"
+        },
+        {
+          "title": "ADI Q4 Earnings Call Points Capacity Push and Supply Bottlenecks",
+          "summary": "ADI plans to more than double fiscal 2027 capital spending to ease supply bottlenecks as data center demand surges and growth extends beyond AI-focused markets.",
+          "provider": "Zacks",
+          "date": "2026-11-25",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/adi-q4-earnings-call-points-140000273.html"
+        }
+      ],
+      "analysis": "ADI อยู่ในกลุ่ม Technology และวันนี้ขึ้น 6.4% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #96, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "fallback",
+      "homework_checklist": [
+        {
+          "topic": "ธุรกิจ",
+          "insight": "ธุรกิจของ ADI ยังคงขยายตัวในด้านโทรคมนาคมและเครื่องมืออิเล็กทรอนิกส์ที่มีความสามารถสูง"
+        },
+        {
+          "topic": "ตัวเลข",
+          "insight": "ราคาหุ้น ADI ลง 0.8% แต่ไม่ได้กระทบต่อความมั่นใจในโอกาสในการเติบโตในระยะยาว"
+        },
+        {
+          "topic": "การสื่อสาร",
+          "insight": "ข่าวล่าสุดเกี่ยวกับ MPWR และ MCHP ยังคงแสดงถึงโอกาสในการเติบโตในอนาคต"
+        },
+        {
+          "topic": "คู่แข่ง",
+          "insight": "บริษัทอื่นๆ ในด้านเทคโนโลยีและอุปกรณ์อิเล็กทรอนิกส์ เช่น Broadcom และ Amazon อาจเป็นคู่แข่งในการแข่งขัน"
+        },
+        {
+          "topic": "ผู้บริหาร",
+          "insight": "ผู้บริหารของ ADI พูดเรื่อง capital allocation, growth และ risk management สม่ำเสมอ และพฤติกรรมสอดคล้องกับ thesis"
+        },
+        {
+          "topic": "แผนของเรา",
+          "insight": "ควรพิจารณาเทรดหุ้น ADI ในระยะยาว เนื่องจากมีการเปลี่ยนแปลงในราคาหุ้นที่มีความน่าสนใจ"
+        }
+      ],
+      "chart_b64": "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"
     },
     {
       "rank": 97,
@@ -7738,8 +7738,8 @@
           "url": "https://www.trefis.com/stock/crm/articles/628295/what-could-salesforce-stock-be-worth-in-three-years/2026-11-24"
         }
       ],
-      "analysis": "CRM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 4.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "CRM อยู่ในกลุ่ม Technology และวันนี้ขึ้น 4.2% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #97, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7816,8 +7816,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/why-ross-stores-rost-stock-170122810.html"
         }
       ],
-      "analysis": "TJX อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 3.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "TJX อยู่ในกลุ่ม Consumer Cyclical และวันนี้ขึ้น 3.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #98, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7894,8 +7894,8 @@
           "url": "https://www.wsj.com/cmo-today/why-marketers-shouldnt-treat-every-frown-from-legal-like-a-stop-sign-9db81b5c?siteid=yhoof2&yptr=yahoo"
         }
       ],
-      "analysis": "BUD อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #99, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "BUD อยู่ในกลุ่ม Consumer Defensive และวันนี้ขึ้น 1.3% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #99, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -7972,8 +7972,8 @@
           "url": "https://www.trefis.com/stock/vz/articles/628307/is-cheap-verizon-stock-a-real-bargain/2026-11-24"
         }
       ],
-      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า: Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
-      "analysis_status": "fallback",
+      "analysis": "T อยู่ในกลุ่ม Communication Services และวันนี้ขึ้น 2.6% แต่โมเดลวิเคราะห์ไม่ผ่าน จึงใช้ข้อมูลพื้นฐานและ framework สำรองแทน\n\nBeer มองว่า:  Beer view แบบสำรอง: ใช้ rank #100, volume, ข่าว และ context เพื่อตัดสิน thesis ก่อน ไม่ควรเดาเกินข้อมูลที่มี",
+      "analysis_status": "",
       "homework_checklist": [
         {
           "topic": "ธุรกิจ",
@@ -8006,45 +8006,23 @@
   "health": {
     "status": "warning",
     "issues": [
-      "missing_charts 1",
-      "fallback_analysis 100"
+      "fallback_analysis 1"
     ],
     "counts": {
       "stocks": 100,
       "expected_stocks": 100,
-      "charts": 99,
+      "charts": 100,
       "homework_complete": 100,
       "market_indices": 3,
-      "fallback_analysis": 100
+      "fallback_analysis": 1
     },
     "missing": {
-      "charts": [
-        "ANT"
-      ],
+      "charts": [],
       "homework": [],
       "market_indices": [],
       "market_cap": [],
       "fallback_analysis": [
-        "AAPL",
-        "NVDA",
-        "MSFT",
-        "GOOGL",
-        "GOOG",
-        "AMZN",
-        "TSM",
-        "SPCX",
-        "TSLA",
-        "META",
-        "AVGO",
-        "LLY",
-        "BRK-B",
-        "BRK-A",
-        "ANT",
-        "WMT",
-        "JPM",
-        "SKHY",
-        "V",
-        "MU"
+        "ADI"
       ]
     }
   }

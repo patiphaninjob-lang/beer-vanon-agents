@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-26T05:00:25.073888+00:00",
+  "updated": "2026-11-26T10:04:59.040174+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 261,
@@ -59,10 +59,6 @@
   "error": "",
   "selected_count": 100,
   "selected": [
-    {
-      "ticker": "AAPL",
-      "market_cap": 5167353080425.721
-    },
     {
       "ticker": "MSFT",
       "market_cap": 3638315442470.2866
@@ -436,16 +432,16 @@
       "market_cap": 162217832022.80804
     },
     {
+      "ticker": "TJX",
+      "market_cap": 161386268470.5915
+    },
+    {
       "ticker": "SCHW",
       "market_cap": 161295414764.89252
     },
     {
       "ticker": "ADI",
       "market_cap": 160784332863.97473
-    },
-    {
-      "ticker": "TJX",
-      "market_cap": 160695206543.26468
     },
     {
       "ticker": "DHR",
@@ -458,6 +454,10 @@
     {
       "ticker": "BUD",
       "market_cap": 157490932513.1148
+    },
+    {
+      "ticker": "T",
+      "market_cap": 154736790130.44077
     }
   ]
 }
