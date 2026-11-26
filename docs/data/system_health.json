@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T04:14:21.263998+00:00",
+  "updated": "2026-11-26T19:46:06.073412+00:00",
   "status": "ok",
   "checks": [
     {
@@ -12,30 +12,30 @@
       "name": "groq",
       "status": "ok",
       "message": "models reachable (11)",
-      "elapsed_ms": 278
+      "elapsed_ms": 310
     },
     {
       "name": "gmail",
       "status": "ok",
       "message": "smtp login ok",
-      "elapsed_ms": 533
+      "elapsed_ms": 282
     },
     {
       "name": "universe",
       "status": "ok",
-      "message": "nasdaq_screener candidates 261, dynamic 240",
-      "elapsed_ms": 2396
+      "message": "nasdaq_screener candidates 262, dynamic 240",
+      "elapsed_ms": 1267
     },
     {
       "name": "yfinance",
       "status": "ok",
       "message": "SPY and SPCX history ok",
-      "elapsed_ms": 804
+      "elapsed_ms": 839
     },
     {
       "name": "archive_freshness",
       "status": "ok",
-      "message": "latest archive age -1.6h",
+      "message": "latest archive age 2.7h",
       "elapsed_ms": 0
     }
   ]
