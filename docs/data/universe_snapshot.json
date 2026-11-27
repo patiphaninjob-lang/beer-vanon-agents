@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-27T05:02:17.696879+00:00",
+  "updated": "2026-11-27T19:57:53.204680+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -61,403 +61,403 @@
   "selected": [
     {
       "ticker": "AAPL",
-      "market_cap": 5167353080425.721
+      "market_cap": 5210368658456.359
     },
     {
       "ticker": "MSFT",
-      "market_cap": 3638315442470.2866
+      "market_cap": 3660000030279.0947
     },
     {
       "ticker": "NVDA",
-      "market_cap": 3605147173690.796
+      "market_cap": 3633882162643.4326
     },
     {
       "ticker": "GOOGL",
-      "market_cap": 3357491475036.621
+      "market_cap": 3380358134948.7305
     },
     {
       "ticker": "GOOG",
-      "market_cap": 3331428255065.918
+      "market_cap": 3349377390014.6484
     },
     {
       "ticker": "AMZN",
-      "market_cap": 2643055316937.7896
+      "market_cap": 2747834653522.1934
     },
     {
       "ticker": "TSM",
-      "market_cap": 1775537145772.5286
+      "market_cap": 1832588348706.5286
     },
     {
       "ticker": "SPCX",
-      "market_cap": 1730770792231.8538
+      "market_cap": 1814294251149.9692
     },
     {
       "ticker": "META",
-      "market_cap": 1559026015237.1104
+      "market_cap": 1607773554654.2903
     },
     {
       "ticker": "TSLA",
-      "market_cap": 1502601463494.1677
+      "market_cap": 1581103178400.0
     },
     {
       "ticker": "AVGO",
-      "market_cap": 1436194211257.6812
+      "market_cap": 1490995534552.5454
     },
     {
       "ticker": "LLY",
-      "market_cap": 1240113020962.7742
+      "market_cap": 1240255570613.121
     },
     {
       "ticker": "BRK-A",
-      "market_cap": 1232433471900.0
+      "market_cap": 1236172625340.0
     },
     {
       "ticker": "BRK-B",
-      "market_cap": 1230776497622.0037
+      "market_cap": 1233899478652.7393
     },
     {
       "ticker": "ANT",
-      "market_cap": 1106624326101.9866
+      "market_cap": 1228127055422.5405
     },
     {
       "ticker": "WMT",
-      "market_cap": 1046778498407.0376
+      "market_cap": 1056219675803.3253
     },
     {
       "ticker": "JPM",
-      "market_cap": 841137729946.9734
-    },
-    {
-      "ticker": "V",
-      "market_cap": 791826911399.3354
+      "market_cap": 857655624334.6642
     },
     {
       "ticker": "SKHY",
-      "market_cap": 783729627989.5636
+      "market_cap": 842682122180.0
+    },
+    {
+      "ticker": "V",
+      "market_cap": 801473065781.9441
     },
     {
       "ticker": "MU",
-      "market_cap": 682379255691.25
+      "market_cap": 734245767649.5286
     },
     {
       "ticker": "AMD",
-      "market_cap": 672006272584.8463
+      "market_cap": 702641552503.826
     },
     {
       "ticker": "JNJ",
-      "market_cap": 659458580145.2623
+      "market_cap": 663238074894.5493
     },
     {
       "ticker": "XOM",
-      "market_cap": 644843491416.7993
+      "market_cap": 653409821202.8025
     },
     {
       "ticker": "MA",
-      "market_cap": 574950074433.8423
+      "market_cap": 581039640135.4933
     },
     {
       "ticker": "ABBV",
-      "market_cap": 520527669210.49274
+      "market_cap": 515931856026.219
     },
     {
       "ticker": "ASML",
-      "market_cap": 502230134308.0569
+      "market_cap": 510994529997.29175
     },
     {
       "ticker": "COST",
-      "market_cap": 481597433751.3003
+      "market_cap": 486471856590.3003
     },
     {
       "ticker": "KO",
-      "market_cap": 419822633118.61316
-    },
-    {
-      "ticker": "CVX",
-      "market_cap": 411616959106.9463
-    },
-    {
-      "ticker": "PG",
-      "market_cap": 401509563959.2521
+      "market_cap": 419005293993.182
     },
     {
       "ticker": "PLTR",
-      "market_cap": 394169682947.8167
+      "market_cap": 414843175686.6583
+    },
+    {
+      "ticker": "CVX",
+      "market_cap": 414543839635.9463
+    },
+    {
+      "ticker": "PG",
+      "market_cap": 400651995513.6426
     },
     {
       "ticker": "CSCO",
-      "market_cap": 371378606901.40295
+      "market_cap": 382575175384.7791
     },
     {
       "ticker": "HD",
-      "market_cap": 360484112495.87085
+      "market_cap": 361372185160.6432
     },
     {
       "ticker": "MRK",
-      "market_cap": 345849301018.18787
+      "market_cap": 348388538684.1587
     },
     {
       "ticker": "BAC",
-      "market_cap": 334936151468.57
+      "market_cap": 338593253818.6433
     },
     {
       "ticker": "GE",
-      "market_cap": 327551903271.32324
+      "market_cap": 334744023811.57184
     },
     {
       "ticker": "ORCL",
-      "market_cap": 323867503255.4391
+      "market_cap": 334000054404.9391
     },
     {
       "ticker": "UNH",
-      "market_cap": 310194069889.6452
-    },
-    {
-      "ticker": "NVS",
-      "market_cap": 293284341815.9122
-    },
-    {
-      "ticker": "PANW",
-      "market_cap": 292390952026.3672
+      "market_cap": 314871309012.8428
     },
     {
       "ticker": "INTC",
-      "market_cap": 289508056488.0371
+      "market_cap": 305081008110.0464
+    },
+    {
+      "ticker": "PANW",
+      "market_cap": 301109968017.5781
     },
     {
       "ticker": "PM",
-      "market_cap": 287291416953.2148
+      "market_cap": 292715531882.8395
+    },
+    {
+      "ticker": "NVS",
+      "market_cap": 290999123431.93304
     },
     {
       "ticker": "AZN",
-      "market_cap": 285694659403.0591
+      "market_cap": 284888175292.0215
     },
     {
       "ticker": "HSBC",
-      "market_cap": 279504794283.31757
+      "market_cap": 284831235087.18915
     },
     {
       "ticker": "SHEL",
-      "market_cap": 265290882883.83206
+      "market_cap": 268966546558.423
     },
     {
       "ticker": "RTX",
-      "market_cap": 264746744406.6526
-    },
-    {
-      "ticker": "RY",
-      "market_cap": 262238689991.61334
+      "market_cap": 267836954201.60797
     },
     {
       "ticker": "MS",
-      "market_cap": 261888004350.7813
+      "market_cap": 267092943283.25012
     },
     {
-      "ticker": "TMO",
-      "market_cap": 253996045067.99805
-    },
-    {
-      "ticker": "AMGN",
-      "market_cap": 253817302285.26123
-    },
-    {
-      "ticker": "TM",
-      "market_cap": 253252179896.80298
-    },
-    {
-      "ticker": "CAT",
-      "market_cap": 248789377579.23328
-    },
-    {
-      "ticker": "AMAT",
-      "market_cap": 246951646500.25873
+      "ticker": "RY",
+      "market_cap": 262114096379.63666
     },
     {
       "ticker": "TXN",
-      "market_cap": 246891603910.92456
+      "market_cap": 257546169141.8114
+    },
+    {
+      "ticker": "CAT",
+      "market_cap": 257048946834.0669
+    },
+    {
+      "ticker": "AMGN",
+      "market_cap": 256435311915.9842
+    },
+    {
+      "ticker": "AMAT",
+      "market_cap": 255570127324.94815
+    },
+    {
+      "ticker": "TMO",
+      "market_cap": 253077150337.5022
+    },
+    {
+      "ticker": "TM",
+      "market_cap": 252336769556.5661
     },
     {
       "ticker": "NFLX",
-      "market_cap": 243956821270.6544
+      "market_cap": 250198438522.94122
     },
     {
       "ticker": "WFC",
-      "market_cap": 242969771986.71613
+      "market_cap": 246992240418.39194
     },
     {
       "ticker": "SAP",
-      "market_cap": 241655734418.07715
+      "market_cap": 246595727122.09644
     },
     {
       "ticker": "LIN",
-      "market_cap": 240839934576.32996
+      "market_cap": 244512604808.32996
     },
     {
       "ticker": "LRCX",
-      "market_cap": 231109119848.09875
-    },
-    {
-      "ticker": "GS",
-      "market_cap": 231044762470.72192
+      "market_cap": 240702763039.7339
     },
     {
       "ticker": "IBM",
-      "market_cap": 230108563547.06192
+      "market_cap": 234465571034.9679
+    },
+    {
+      "ticker": "GS",
+      "market_cap": 234459818074.838
     },
     {
       "ticker": "MUFG",
-      "market_cap": 220217126187.2485
-    },
-    {
-      "ticker": "GILD",
-      "market_cap": 219217453451.7435
+      "market_cap": 225396067865.57272
     },
     {
       "ticker": "CRWD",
-      "market_cap": 215703854990.43097
+      "market_cap": 223845561216.06903
     },
     {
       "ticker": "BABA",
-      "market_cap": 214592883752.53653
-    },
-    {
-      "ticker": "DIS",
-      "market_cap": 214528523694.55356
-    },
-    {
-      "ticker": "AXP",
-      "market_cap": 209473754725.55933
+      "market_cap": 223100966888.7195
     },
     {
       "ticker": "ANET",
-      "market_cap": 207185355856.72632
+      "market_cap": 220754284596.7129
     },
     {
-      "ticker": "MCD",
-      "market_cap": 200089974924.0
+      "ticker": "GILD",
+      "market_cap": 219539934678.0
     },
     {
-      "ticker": "PEP",
-      "market_cap": 196139315390.54614
+      "ticker": "DIS",
+      "market_cap": 217329691307.57498
     },
     {
-      "ticker": "VZ",
-      "market_cap": 195956604266.75586
-    },
-    {
-      "ticker": "TD",
-      "market_cap": 189527917232.70276
-    },
-    {
-      "ticker": "GEV",
-      "market_cap": 189244102190.0
+      "ticker": "AXP",
+      "market_cap": 212162654402.47528
     },
     {
       "ticker": "DELL",
-      "market_cap": 188874533962.72278
+      "market_cap": 201527203807.02972
     },
     {
-      "ticker": "C",
-      "market_cap": 187584331169.03998
+      "ticker": "MCD",
+      "market_cap": 199468880903.06543
     },
     {
-      "ticker": "TTE",
-      "market_cap": 187491242463.32748
+      "ticker": "PEP",
+      "market_cap": 197052370220.71155
     },
     {
-      "ticker": "ABT",
-      "market_cap": 187049692908.0
+      "ticker": "VZ",
+      "market_cap": 197034208687.9331
     },
     {
-      "ticker": "WELL",
-      "market_cap": 180600070700.2209
-    },
-    {
-      "ticker": "NVO",
-      "market_cap": 180523857661.64688
+      "ticker": "GEV",
+      "market_cap": 194619692754.27576
     },
     {
       "ticker": "QCOM",
-      "market_cap": 180466203918.45703
+      "market_cap": 191818904571.5332
     },
     {
-      "ticker": "APH",
-      "market_cap": 180453612140.39227
+      "ticker": "C",
+      "market_cap": 191325084289.67
+    },
+    {
+      "ticker": "TD",
+      "market_cap": 190899657761.1858
+    },
+    {
+      "ticker": "TTE",
+      "market_cap": 188016992317.71124
     },
     {
       "ticker": "BHP",
-      "market_cap": 179860311752.2008
+      "market_cap": 187205197834.8264
     },
     {
-      "ticker": "NEE",
-      "market_cap": 179130917325.65414
+      "ticker": "ABT",
+      "market_cap": 187170928291.52338
     },
     {
-      "ticker": "UNP",
-      "market_cap": 177312442027.69336
-    },
-    {
-      "ticker": "BLK",
-      "market_cap": 176329925240.99817
-    },
-    {
-      "ticker": "TMUS",
-      "market_cap": 176104064928.75
-    },
-    {
-      "ticker": "KLAC",
-      "market_cap": 174857554800.6742
-    },
-    {
-      "ticker": "DE",
-      "market_cap": 172835286866.36133
+      "ticker": "APH",
+      "market_cap": 185540284159.20258
     },
     {
       "ticker": "ARM",
-      "market_cap": 172815694122.31445
+      "market_cap": 183558503265.38086
+    },
+    {
+      "ticker": "KLAC",
+      "market_cap": 183535289389.36517
+    },
+    {
+      "ticker": "WELL",
+      "market_cap": 183175048483.5097
     },
     {
       "ticker": "SHOP",
-      "market_cap": 171622028548.4928
+      "market_cap": 182403089290.89856
     },
     {
-      "ticker": "SONY",
-      "market_cap": 166046951479.29855
+      "ticker": "NVO",
+      "market_cap": 180964475425.1508
+    },
+    {
+      "ticker": "TMUS",
+      "market_cap": 180277601444.60468
+    },
+    {
+      "ticker": "BLK",
+      "market_cap": 180205949337.99512
+    },
+    {
+      "ticker": "NEE",
+      "market_cap": 178166142462.0799
+    },
+    {
+      "ticker": "UNP",
+      "market_cap": 177021265127.08008
+    },
+    {
+      "ticker": "DE",
+      "market_cap": 176399726913.81934
     },
     {
       "ticker": "SAN",
-      "market_cap": 163218706553.248
-    },
-    {
-      "ticker": "CRM",
-      "market_cap": 162303835525.5127
-    },
-    {
-      "ticker": "PFE",
-      "market_cap": 162217832022.80804
-    },
-    {
-      "ticker": "TJX",
-      "market_cap": 161386268470.5915
-    },
-    {
-      "ticker": "SCHW",
-      "market_cap": 161295414764.89252
+      "market_cap": 171574120320.74597
     },
     {
       "ticker": "ADI",
-      "market_cap": 160784332863.97473
+      "market_cap": 167006038898.0
     },
     {
-      "ticker": "DHR",
-      "market_cap": 159947735084.26132
+      "ticker": "CRM",
+      "market_cap": 163126835525.5127
+    },
+    {
+      "ticker": "SONY",
+      "market_cap": 163016256797.89566
+    },
+    {
+      "ticker": "PFE",
+      "market_cap": 162559831074.34598
+    },
+    {
+      "ticker": "SCHW",
+      "market_cap": 162348280518.414
     },
     {
       "ticker": "COP",
-      "market_cap": 159638884447.62036
+      "market_cap": 161743439405.80023
     },
     {
-      "ticker": "BUD",
-      "market_cap": 157490932513.1148
+      "ticker": "DHR",
+      "market_cap": 161031167815.94885
+    },
+    {
+      "ticker": "TJX",
+      "market_cap": 158143275449.56622
+    },
+    {
+      "ticker": "T",
+      "market_cap": 156353542212.50436
     }
   ]
 }
