@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-27T04:09:46.027463",
+  "updated": "2026-11-27T13:00:47.367910",
   "latest": {
     "date": "2026-11-27",
-    "archive_key": "2026-11-27-premarket",
-    "run_phase": "premarket",
-    "generated": "2026-11-27T04:09:46.016541",
-    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-27&phase=premarket",
+    "archive_key": "2026-11-27-postmarket",
+    "run_phase": "postmarket",
+    "generated": "2026-11-27T13:00:47.353718",
+    "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-27&phase=postmarket",
     "health": {
       "status": "warning",
       "issues": [
@@ -77,15 +77,15 @@
       }
     },
     "postmarket": {
-      "date": "2026-11-25",
-      "archive_key": "2026-11-25-postmarket",
+      "date": "2026-11-27",
+      "archive_key": "2026-11-27-postmarket",
       "run_phase": "postmarket",
-      "generated": "2026-11-26T17:05:46.657539",
-      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-25&phase=postmarket",
+      "generated": "2026-11-27T13:00:47.353718",
+      "url": "https://patiphaninjob-lang.github.io/beer-vanon-agents/?date=2026-11-27&phase=postmarket",
       "health": {
         "status": "warning",
         "issues": [
-          "fallback_analysis 1"
+          "fallback_analysis 100"
         ],
         "counts": {
           "stocks": 100,
@@ -93,7 +93,7 @@
           "charts": 100,
           "homework_complete": 100,
           "market_indices": 3,
-          "fallback_analysis": 1
+          "fallback_analysis": 100
         },
         "missing": {
           "charts": [],
@@ -101,7 +101,26 @@
           "market_indices": [],
           "market_cap": [],
           "fallback_analysis": [
-            "ADI"
+            "AAPL",
+            "MSFT",
+            "NVDA",
+            "GOOGL",
+            "GOOG",
+            "AMZN",
+            "TSM",
+            "SPCX",
+            "META",
+            "TSLA",
+            "AVGO",
+            "LLY",
+            "BRK-A",
+            "BRK-B",
+            "ANT",
+            "WMT",
+            "JPM",
+            "V",
+            "SKHY",
+            "MU"
           ]
         }
       }

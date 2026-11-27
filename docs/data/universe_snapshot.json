@@ -1,6 +1,6 @@
 {
   "source": "nasdaq_screener",
-  "updated": "2026-11-26T20:11:16.514982+00:00",
+  "updated": "2026-11-27T05:02:17.696879+00:00",
   "static_count": 139,
   "dynamic_count": 240,
   "candidate_count": 262,
@@ -436,16 +436,16 @@
       "market_cap": 162217832022.80804
     },
     {
+      "ticker": "TJX",
+      "market_cap": 161386268470.5915
+    },
+    {
       "ticker": "SCHW",
       "market_cap": 161295414764.89252
     },
     {
       "ticker": "ADI",
       "market_cap": 160784332863.97473
-    },
-    {
-      "ticker": "TJX",
-      "market_cap": 160695206543.26468
     },
     {
       "ticker": "DHR",
